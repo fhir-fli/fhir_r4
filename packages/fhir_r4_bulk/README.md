@@ -54,7 +54,7 @@ final zipBytes = await FhirBulk.toZipFile(ndJsonMap);
 // System-level export
 final exportRequest = BulkRequestSystem(
   base: Uri.parse('https://example.com/fhir'),
-  since: FhirDateTime('2023-01-01'),
+  since: FhirDateTime.fromString('2023-01-01'),
   types: [
     WhichResource(R4ResourceType.Patient),
     WhichResource(R4ResourceType.Observation),
@@ -85,14 +85,13 @@ final importRequest = BulkImportRequest(
       url: Uri.parse('https://example.com/observations.ndjson'),
     ),
   ],
-  headers: {'Authorization': 'Bearer token'},
 );
 
 // Execute the import
 final outcome = await importRequest.importData();
 
 // Check for job ID in the response
-final jobId = outcome.issue?.first.diagnostics?.value;
+final jobId = outcome.issue.first.diagnostics?.valueString;
 print('Import job started: $jobId');
 ```
 
@@ -105,7 +104,7 @@ final request = BulkRequestGroup(
   base: Uri.parse('https://example.com/fhir'),
   id: FhirId('diabetes-cohort'),
   // Only resources updated since this date
-  since: FhirDateTime('2023-01-01'),
+  since: FhirDateTime.fromString('2023-01-01'),
   // Specific resource types to include
   types: [
     WhichResource(R4ResourceType.Patient),
@@ -128,7 +127,7 @@ final resources = await bulkRequest.request();
 // Check for errors
 for (final resource in resources) {
   if (resource is OperationOutcome) {
-    print('Error: ${resource.issue?.first.diagnostics?.value}');
+    print('Error: ${resource.issue.first.diagnostics?.valueString}');
   }
 }
 ```

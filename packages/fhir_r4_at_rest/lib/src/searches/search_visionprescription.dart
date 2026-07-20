@@ -13,12 +13,25 @@ class SearchVisionPrescription extends SearchResource {
   SearchVisionPrescription identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [VisionPrescription]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchVisionPrescription patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [VisionPrescription]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchVisionPrescription encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
     return this;
   }
 
@@ -34,16 +47,21 @@ class SearchVisionPrescription extends SearchResource {
     return this;
   }
 
+  /// a reference search for [prescriber] in the resource
+  /// [VisionPrescription]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchVisionPrescription prescriber(FhirString value) {
+    addParameterValue('prescriber', value.toString());
+    return this;
+  }
+
   /// a token search for [status] in the resource
   /// [VisionPrescription]
   SearchVisionPrescription status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }

@@ -13,11 +13,8 @@ class SearchGraphDefinition extends SearchResource {
   SearchGraphDefinition context(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('context', paramValue);
     return this;
   }
@@ -30,16 +27,12 @@ class SearchGraphDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    if (modifier != null &&
-        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for quantity type');
-    }
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -48,12 +41,9 @@ class SearchGraphDefinition extends SearchResource {
   SearchGraphDefinition contextType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -71,16 +61,8 @@ class SearchGraphDefinition extends SearchResource {
 
   /// a string search for [description] in the resource
   /// [GraphDefinition]
-  SearchGraphDefinition description(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('description', paramValue);
+  SearchGraphDefinition description(FhirString value) {
+    addParameterValue('description', value.toString());
     return this;
   }
 
@@ -89,42 +71,23 @@ class SearchGraphDefinition extends SearchResource {
   SearchGraphDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('jurisdiction', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [GraphDefinition]
-  SearchGraphDefinition name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchGraphDefinition name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
   /// a string search for [publisher] in the resource
   /// [GraphDefinition]
-  SearchGraphDefinition publisher(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('publisher', paramValue);
+  SearchGraphDefinition publisher(FhirString value) {
+    addParameterValue('publisher', value.toString());
     return this;
   }
 
@@ -133,24 +96,16 @@ class SearchGraphDefinition extends SearchResource {
   SearchGraphDefinition status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
 
   /// a uri search for [url] in the resource
   /// [GraphDefinition]
-  SearchGraphDefinition url(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('url', paramValue);
+  SearchGraphDefinition url(FhirUri value) {
+    addParameterValue('url', value.toString());
     return this;
   }
 
@@ -159,11 +114,8 @@ class SearchGraphDefinition extends SearchResource {
   SearchGraphDefinition version(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('version', paramValue);
     return this;
   }
@@ -173,11 +125,8 @@ class SearchGraphDefinition extends SearchResource {
   SearchGraphDefinition start(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('start', paramValue);
     return this;
   }

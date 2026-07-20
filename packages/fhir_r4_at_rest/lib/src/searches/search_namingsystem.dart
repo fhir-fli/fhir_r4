@@ -13,11 +13,8 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem context(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('context', paramValue);
     return this;
   }
@@ -30,16 +27,12 @@ class SearchNamingSystem extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    if (modifier != null &&
-        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for quantity type');
-    }
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -48,12 +41,9 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem contextType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -71,16 +61,8 @@ class SearchNamingSystem extends SearchResource {
 
   /// a string search for [description] in the resource
   /// [NamingSystem]
-  SearchNamingSystem description(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('description', paramValue);
+  SearchNamingSystem description(FhirString value) {
+    addParameterValue('description', value.toString());
     return this;
   }
 
@@ -89,42 +71,23 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem jurisdiction(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('jurisdiction', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [NamingSystem]
-  SearchNamingSystem name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchNamingSystem name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
   /// a string search for [publisher] in the resource
   /// [NamingSystem]
-  SearchNamingSystem publisher(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('publisher', paramValue);
+  SearchNamingSystem publisher(FhirString value) {
+    addParameterValue('publisher', value.toString());
     return this;
   }
 
@@ -133,27 +96,16 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
 
   /// a string search for [contact] in the resource
   /// [NamingSystem]
-  SearchNamingSystem contact(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('contact', paramValue);
+  SearchNamingSystem contact(FhirString value) {
+    addParameterValue('contact', value.toString());
     return this;
   }
 
@@ -162,12 +114,9 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem idType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('id_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('id-type', paramValue);
     return this;
   }
 
@@ -176,11 +125,8 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem kind(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('kind', paramValue);
     return this;
   }
@@ -199,16 +145,8 @@ class SearchNamingSystem extends SearchResource {
 
   /// a string search for [responsible] in the resource
   /// [NamingSystem]
-  SearchNamingSystem responsible(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('responsible', paramValue);
+  SearchNamingSystem responsible(FhirString value) {
+    addParameterValue('responsible', value.toString());
     return this;
   }
 
@@ -217,11 +155,8 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem telecom(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('telecom', paramValue);
     return this;
   }
@@ -231,27 +166,16 @@ class SearchNamingSystem extends SearchResource {
   SearchNamingSystem type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
     return this;
   }
 
   /// a string search for [value] in the resource
   /// [NamingSystem]
-  SearchNamingSystem value(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('value', paramValue);
+  SearchNamingSystem value(FhirString value) {
+    addParameterValue('value', value.toString());
     return this;
   }
 }

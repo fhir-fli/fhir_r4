@@ -152,7 +152,7 @@ final search = SearchPatient()
   .active(FhirString('true'))
   .gender(FhirString('male'))
   .birthdate(
-    FhirDateTime('1970-01-01'),
+    FhirDateTime.fromString('1970-01-01'),
     modifier: SearchModifier.gt,
   );
 
@@ -190,7 +190,7 @@ final bundle = Bundle(
   entry: [
     BundleEntry(
       request: BundleRequest(
-        method: HTTPVerb.POST,
+        method: HTTPVerb.pOST,
         url: FhirUri('Patient'),
       ),
       resource: Patient(

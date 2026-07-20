@@ -13,11 +13,8 @@ class SearchBodyStructure extends SearchResource {
   SearchBodyStructure identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchBodyStructure extends SearchResource {
   SearchBodyStructure location(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('location', paramValue);
     return this;
   }
@@ -41,12 +35,17 @@ class SearchBodyStructure extends SearchResource {
   SearchBodyStructure morphology(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('morphology', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [BodyStructure]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchBodyStructure patient(FhirString value) {
+    addParameterValue('patient', value.toString());
     return this;
   }
 }

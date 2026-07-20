@@ -7,8 +7,8 @@ environment:
   sdk: ^3.7.2
 
 dependencies:
-  fhir_r4: ^0.6.0
-  fhir_r4_path: ^0.6.0
+  fhir_r4: ^0.7.0
+  fhir_r4_path: ^0.7.0
   flutter:
     sdk: flutter
   url_launcher: ^6.3.2

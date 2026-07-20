@@ -10,76 +10,36 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 class SearchLocation extends SearchResource {
   /// a string search for [address] in the resource
   /// [Location]
-  SearchLocation address(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address', paramValue);
+  SearchLocation address(FhirString value) {
+    addParameterValue('address', value.toString());
     return this;
   }
 
   /// a string search for [addressCity] in the resource
   /// [Location]
-  SearchLocation addressCity(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_city', paramValue);
+  SearchLocation addressCity(FhirString value) {
+    addParameterValue('address-city', value.toString());
     return this;
   }
 
   /// a string search for [addressCountry] in the resource
   /// [Location]
-  SearchLocation addressCountry(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_country', paramValue);
+  SearchLocation addressCountry(FhirString value) {
+    addParameterValue('address-country', value.toString());
     return this;
   }
 
   /// a string search for [addressPostalcode] in the resource
   /// [Location]
-  SearchLocation addressPostalcode(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_postalcode', paramValue);
+  SearchLocation addressPostalcode(FhirString value) {
+    addParameterValue('address-postalcode', value.toString());
     return this;
   }
 
   /// a string search for [addressState] in the resource
   /// [Location]
-  SearchLocation addressState(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_state', paramValue);
+  SearchLocation addressState(FhirString value) {
+    addParameterValue('address-state', value.toString());
     return this;
   }
 
@@ -88,12 +48,17 @@ class SearchLocation extends SearchResource {
   SearchLocation addressUse(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('address_use', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('address-use', paramValue);
+    return this;
+  }
+
+  /// a reference search for [endpoint] in the resource
+  /// [Location]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchLocation endpoint(FhirString value) {
+    addParameterValue('endpoint', value.toString());
     return this;
   }
 
@@ -102,27 +67,16 @@ class SearchLocation extends SearchResource {
   SearchLocation identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [Location]
-  SearchLocation name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchLocation name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
@@ -131,12 +85,25 @@ class SearchLocation extends SearchResource {
   SearchLocation operationalStatus(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('operational_status', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('operational-status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [organization] in the resource
+  /// [Location]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchLocation organization(FhirString value) {
+    addParameterValue('organization', value.toString());
+    return this;
+  }
+
+  /// a reference search for [partof] in the resource
+  /// [Location]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchLocation partof(FhirString value) {
+    addParameterValue('partof', value.toString());
     return this;
   }
 
@@ -145,11 +112,8 @@ class SearchLocation extends SearchResource {
   SearchLocation status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
@@ -159,11 +123,8 @@ class SearchLocation extends SearchResource {
   SearchLocation type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
     return this;
   }

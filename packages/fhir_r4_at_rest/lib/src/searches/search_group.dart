@@ -13,11 +13,8 @@ class SearchGroup extends SearchResource {
   SearchGroup actual(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('actual', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchGroup extends SearchResource {
   SearchGroup characteristic(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('characteristic', paramValue);
     return this;
   }
@@ -41,11 +35,8 @@ class SearchGroup extends SearchResource {
   SearchGroup code(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('code', paramValue);
     return this;
   }
@@ -55,11 +46,8 @@ class SearchGroup extends SearchResource {
   SearchGroup exclude(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('exclude', paramValue);
     return this;
   }
@@ -69,12 +57,25 @@ class SearchGroup extends SearchResource {
   SearchGroup identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [managingEntity] in the resource
+  /// [Group]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGroup managingEntity(FhirString value) {
+    addParameterValue('managing-entity', value.toString());
+    return this;
+  }
+
+  /// a reference search for [member] in the resource
+  /// [Group]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGroup member(FhirString value) {
+    addParameterValue('member', value.toString());
     return this;
   }
 
@@ -83,11 +84,8 @@ class SearchGroup extends SearchResource {
   SearchGroup type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
     return this;
   }
@@ -97,11 +95,8 @@ class SearchGroup extends SearchResource {
   SearchGroup value(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('value', paramValue);
     return this;
   }

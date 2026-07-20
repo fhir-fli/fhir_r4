@@ -298,4 +298,4 @@ BSD-3-Clause License - see [LICENSE](LICENSE) file for details.
 
 Built with ❤️ by the [FHIRfli](https://www.fhirfli.dev) team.
 
-Implements [SMART App Launch](http://hl7.org/fhir/smart-app-launch/) specification from HL7.
+Implements [SMART App Launch](https://hl7.org/fhir/smart-app-launch/) specification from HL7.

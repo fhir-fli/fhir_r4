@@ -13,11 +13,8 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition context(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('context', paramValue);
     return this;
   }
@@ -30,16 +27,12 @@ class SearchStructureDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    if (modifier != null &&
-        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for quantity type');
-    }
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -48,12 +41,9 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition contextType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -71,16 +61,8 @@ class SearchStructureDefinition extends SearchResource {
 
   /// a string search for [description] in the resource
   /// [StructureDefinition]
-  SearchStructureDefinition description(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('description', paramValue);
+  SearchStructureDefinition description(FhirString value) {
+    addParameterValue('description', value.toString());
     return this;
   }
 
@@ -89,42 +71,23 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('jurisdiction', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [StructureDefinition]
-  SearchStructureDefinition name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchStructureDefinition name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
   /// a string search for [publisher] in the resource
   /// [StructureDefinition]
-  SearchStructureDefinition publisher(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('publisher', paramValue);
+  SearchStructureDefinition publisher(FhirString value) {
+    addParameterValue('publisher', value.toString());
     return this;
   }
 
@@ -133,39 +96,23 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
 
   /// a string search for [title] in the resource
   /// [StructureDefinition]
-  SearchStructureDefinition title(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('title', paramValue);
+  SearchStructureDefinition title(FhirString value) {
+    addParameterValue('title', value.toString());
     return this;
   }
 
   /// a uri search for [url] in the resource
   /// [StructureDefinition]
-  SearchStructureDefinition url(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('url', paramValue);
+  SearchStructureDefinition url(FhirUri value) {
+    addParameterValue('url', value.toString());
     return this;
   }
 
@@ -174,11 +121,8 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition version(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('version', paramValue);
     return this;
   }
@@ -188,11 +132,8 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -202,12 +143,17 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition abstract(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('abstract', paramValue);
+    return this;
+  }
+
+  /// a reference search for [base] in the resource
+  /// [StructureDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchStructureDefinition base(FhirString value) {
+    addParameterValue('base', value.toString());
     return this;
   }
 
@@ -216,12 +162,9 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition basePath(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('base_path', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('base-path', paramValue);
     return this;
   }
 
@@ -230,11 +173,8 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition derivation(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('derivation', paramValue);
     return this;
   }
@@ -244,11 +184,8 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition experimental(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('experimental', paramValue);
     return this;
   }
@@ -258,12 +195,9 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition extContext(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('ext_context', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('ext-context', paramValue);
     return this;
   }
 
@@ -272,11 +206,8 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition keyword(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('keyword', paramValue);
     return this;
   }
@@ -286,11 +217,8 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition kind(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('kind', paramValue);
     return this;
   }
@@ -300,24 +228,24 @@ class SearchStructureDefinition extends SearchResource {
   SearchStructureDefinition path(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('path', paramValue);
     return this;
   }
 
   /// a uri search for [type] in the resource
   /// [StructureDefinition]
-  SearchStructureDefinition type(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('type', paramValue);
+  SearchStructureDefinition type(FhirUri value) {
+    addParameterValue('type', value.toString());
+    return this;
+  }
+
+  /// a reference search for [valueset] in the resource
+  /// [StructureDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchStructureDefinition valueset(FhirString value) {
+    addParameterValue('valueset', value.toString());
     return this;
   }
 }

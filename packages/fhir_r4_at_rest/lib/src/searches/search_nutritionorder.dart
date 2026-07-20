@@ -13,12 +13,25 @@ class SearchNutritionOrder extends SearchResource {
   SearchNutritionOrder identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [NutritionOrder]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchNutritionOrder patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [NutritionOrder]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchNutritionOrder encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
     return this;
   }
 
@@ -27,11 +40,8 @@ class SearchNutritionOrder extends SearchResource {
   SearchNutritionOrder additive(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('additive', paramValue);
     return this;
   }
@@ -53,24 +63,24 @@ class SearchNutritionOrder extends SearchResource {
   SearchNutritionOrder formula(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('formula', paramValue);
+    return this;
+  }
+
+  /// a reference search for [instantiatesCanonical] in the resource
+  /// [NutritionOrder]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchNutritionOrder instantiatesCanonical(FhirString value) {
+    addParameterValue('instantiates-canonical', value.toString());
     return this;
   }
 
   /// a uri search for [instantiatesUri] in the resource
   /// [NutritionOrder]
-  SearchNutritionOrder instantiatesUri(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('instantiates_uri', paramValue);
+  SearchNutritionOrder instantiatesUri(FhirUri value) {
+    addParameterValue('instantiates-uri', value.toString());
     return this;
   }
 
@@ -79,12 +89,17 @@ class SearchNutritionOrder extends SearchResource {
   SearchNutritionOrder oraldiet(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('oraldiet', paramValue);
+    return this;
+  }
+
+  /// a reference search for [provider] in the resource
+  /// [NutritionOrder]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchNutritionOrder provider(FhirString value) {
+    addParameterValue('provider', value.toString());
     return this;
   }
 
@@ -93,11 +108,8 @@ class SearchNutritionOrder extends SearchResource {
   SearchNutritionOrder status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
@@ -107,11 +119,8 @@ class SearchNutritionOrder extends SearchResource {
   SearchNutritionOrder supplement(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('supplement', paramValue);
     return this;
   }

@@ -13,11 +13,8 @@ class SearchSpecimen extends SearchResource {
   SearchSpecimen accession(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('accession', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchSpecimen extends SearchResource {
   SearchSpecimen bodysite(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('bodysite', paramValue);
     return this;
   }
@@ -48,16 +42,21 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
+  /// a reference search for [collector] in the resource
+  /// [Specimen]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSpecimen collector(FhirString value) {
+    addParameterValue('collector', value.toString());
+    return this;
+  }
+
   /// a token search for [container] in the resource
   /// [Specimen]
   SearchSpecimen container(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('container', paramValue);
     return this;
   }
@@ -67,12 +66,9 @@ class SearchSpecimen extends SearchResource {
   SearchSpecimen containerId(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('container_id', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('container-id', paramValue);
     return this;
   }
 
@@ -81,12 +77,25 @@ class SearchSpecimen extends SearchResource {
   SearchSpecimen identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [parent] in the resource
+  /// [Specimen]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSpecimen parent(FhirString value) {
+    addParameterValue('parent', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [Specimen]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSpecimen patient(FhirString value) {
+    addParameterValue('patient', value.toString());
     return this;
   }
 
@@ -95,12 +104,17 @@ class SearchSpecimen extends SearchResource {
   SearchSpecimen status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [Specimen]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchSpecimen subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 
@@ -109,11 +123,8 @@ class SearchSpecimen extends SearchResource {
   SearchSpecimen type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
     return this;
   }

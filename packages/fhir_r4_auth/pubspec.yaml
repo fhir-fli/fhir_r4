@@ -1,6 +1,6 @@
 name: fhir_r4_auth
 description: Secure authentication and authorization package for FHIR R4B applications implementing SMART on FHIR
-version: 0.6.0
+version: 0.7.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 issue_tracker: https://github.com/fhir-fli/fhir_r4/issues
@@ -19,7 +19,7 @@ environment:
 
 dependencies:
   crypto: ^3.0.7                 # PKCE and crypto operations
-  fhir_r4: ^0.6.0
+  fhir_r4: ^0.7.0
   flutter:
     sdk: flutter
   flutter_appauth: ^12.0.0         # Native OAuth for mobile

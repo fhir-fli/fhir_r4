@@ -217,10 +217,10 @@ class MessageDefinition extends CanonicalResource {
             ),
           )
           .toList(),
-      responseRequired: JsonParser.parsePrimitive<MessageheaderResponseRequest>(
+      responseRequired: JsonParser.parsePrimitive<MessageHeaderResponseRequest>(
         json,
         'responseRequired',
-        MessageheaderResponseRequest.fromJson,
+        MessageHeaderResponseRequest.fromJson,
       ),
       allowedResponse: (json['allowedResponse'] as List<dynamic>?)
           ?.map<MessageDefinitionAllowedResponse>(
@@ -343,7 +343,7 @@ class MessageDefinition extends CanonicalResource {
   /// [responseRequired]
   /// Declare at a message definition level whether a response is required or
   /// only upon error or success, or never.
-  final MessageheaderResponseRequest? responseRequired;
+  final MessageHeaderResponseRequest? responseRequired;
 
   /// [allowedResponse]
   /// Indicates what types of messages may be sent as an application-level

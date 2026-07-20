@@ -81,7 +81,7 @@ final builder = CdsResponseBuilder()
         label: 'Switch to Azithromycin',
         action: CdsResponseBuilder.createAction(
           resource: MedicationRequest(
-            status: MedicationrequestStatus.draft,
+            status: MedicationRequestStatus.draft,
             intent: MedicationRequestIntent.order,
             medicationX: CodeableConcept(text: 'Azithromycin 250mg'.toFhirString),
             subject: Reference(reference: 'Patient/456'.toFhirString),

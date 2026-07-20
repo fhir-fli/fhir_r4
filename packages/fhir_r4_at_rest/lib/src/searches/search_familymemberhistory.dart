@@ -13,11 +13,8 @@ class SearchFamilyMemberHistory extends SearchResource {
   SearchFamilyMemberHistory code(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('code', paramValue);
     return this;
   }
@@ -39,24 +36,32 @@ class SearchFamilyMemberHistory extends SearchResource {
   SearchFamilyMemberHistory identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [FamilyMemberHistory]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchFamilyMemberHistory patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [instantiatesCanonical] in the resource
+  /// [FamilyMemberHistory]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchFamilyMemberHistory instantiatesCanonical(FhirString value) {
+    addParameterValue('instantiates-canonical', value.toString());
     return this;
   }
 
   /// a uri search for [instantiatesUri] in the resource
   /// [FamilyMemberHistory]
-  SearchFamilyMemberHistory instantiatesUri(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('instantiates_uri', paramValue);
+  SearchFamilyMemberHistory instantiatesUri(FhirUri value) {
+    addParameterValue('instantiates-uri', value.toString());
     return this;
   }
 
@@ -65,11 +70,8 @@ class SearchFamilyMemberHistory extends SearchResource {
   SearchFamilyMemberHistory relationship(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('relationship', paramValue);
     return this;
   }
@@ -79,11 +81,8 @@ class SearchFamilyMemberHistory extends SearchResource {
   SearchFamilyMemberHistory sex(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('sex', paramValue);
     return this;
   }
@@ -93,11 +92,8 @@ class SearchFamilyMemberHistory extends SearchResource {
   SearchFamilyMemberHistory status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }

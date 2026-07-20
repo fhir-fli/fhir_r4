@@ -25,12 +25,17 @@ class SearchComposition extends SearchResource {
   SearchComposition identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [Composition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchComposition patient(FhirString value) {
+    addParameterValue('patient', value.toString());
     return this;
   }
 
@@ -39,12 +44,25 @@ class SearchComposition extends SearchResource {
   SearchComposition type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
+    return this;
+  }
+
+  /// a reference search for [attester] in the resource
+  /// [Composition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchComposition attester(FhirString value) {
+    addParameterValue('attester', value.toString());
+    return this;
+  }
+
+  /// a reference search for [author] in the resource
+  /// [Composition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchComposition author(FhirString value) {
+    addParameterValue('author', value.toString());
     return this;
   }
 
@@ -53,11 +71,8 @@ class SearchComposition extends SearchResource {
   SearchComposition category(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('category', paramValue);
     return this;
   }
@@ -67,11 +82,8 @@ class SearchComposition extends SearchResource {
   SearchComposition confidentiality(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('confidentiality', paramValue);
     return this;
   }
@@ -81,12 +93,25 @@ class SearchComposition extends SearchResource {
   SearchComposition context(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('context', paramValue);
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [Composition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchComposition encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
+    return this;
+  }
+
+  /// a reference search for [entry] in the resource
+  /// [Composition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchComposition entry(FhirString value) {
+    addParameterValue('entry', value.toString());
     return this;
   }
 
@@ -107,12 +132,17 @@ class SearchComposition extends SearchResource {
   SearchComposition relatedId(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('related_id', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('related-id', paramValue);
+    return this;
+  }
+
+  /// a reference search for [relatedRef] in the resource
+  /// [Composition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchComposition relatedRef(FhirString value) {
+    addParameterValue('related-ref', value.toString());
     return this;
   }
 
@@ -121,11 +151,8 @@ class SearchComposition extends SearchResource {
   SearchComposition section(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('section', paramValue);
     return this;
   }
@@ -135,27 +162,24 @@ class SearchComposition extends SearchResource {
   SearchComposition status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [Composition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchComposition subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 
   /// a string search for [title] in the resource
   /// [Composition]
-  SearchComposition title(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('title', paramValue);
+  SearchComposition title(FhirString value) {
+    addParameterValue('title', value.toString());
     return this;
   }
 }

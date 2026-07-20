@@ -39,7 +39,7 @@ abstract class $MessageDefinitionCopyWith<T>
     EventXMessageDefinition? eventX,
     MessageSignificanceCategory? category,
     List<MessageDefinitionFocus>? focus,
-    MessageheaderResponseRequest? responseRequired,
+    MessageHeaderResponseRequest? responseRequired,
     List<MessageDefinitionAllowedResponse>? allowedResponse,
     List<FhirCanonical>? graph,
     bool? disallowExtensions,
@@ -170,7 +170,7 @@ class _$MessageDefinitionCopyWithImpl<T>
             : focus as List<MessageDefinitionFocus>?,
         responseRequired: identical(responseRequired, fhirSentinel)
             ? _value.responseRequired
-            : responseRequired as MessageheaderResponseRequest?,
+            : responseRequired as MessageHeaderResponseRequest?,
         allowedResponse: identical(allowedResponse, fhirSentinel)
             ? _value.allowedResponse
             : allowedResponse as List<MessageDefinitionAllowedResponse>?,

@@ -13,12 +13,17 @@ class SearchClinicalUseDefinition extends SearchResource {
   SearchClinicalUseDefinition contraindication(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('contraindication', paramValue);
+    return this;
+  }
+
+  /// a reference search for [contraindicationReference] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition contraindicationReference(FhirString value) {
+    addParameterValue('contraindication-reference', value.toString());
     return this;
   }
 
@@ -27,12 +32,17 @@ class SearchClinicalUseDefinition extends SearchResource {
   SearchClinicalUseDefinition effect(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('effect', paramValue);
+    return this;
+  }
+
+  /// a reference search for [effectReference] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition effectReference(FhirString value) {
+    addParameterValue('effect-reference', value.toString());
     return this;
   }
 
@@ -41,11 +51,8 @@ class SearchClinicalUseDefinition extends SearchResource {
   SearchClinicalUseDefinition identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -55,12 +62,17 @@ class SearchClinicalUseDefinition extends SearchResource {
   SearchClinicalUseDefinition indication(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('indication', paramValue);
+    return this;
+  }
+
+  /// a reference search for [indicationReference] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition indicationReference(FhirString value) {
+    addParameterValue('indication-reference', value.toString());
     return this;
   }
 
@@ -69,12 +81,25 @@ class SearchClinicalUseDefinition extends SearchResource {
   SearchClinicalUseDefinition interaction(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('interaction', paramValue);
+    return this;
+  }
+
+  /// a reference search for [product] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition product(FhirString value) {
+    addParameterValue('product', value.toString());
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [ClinicalUseDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchClinicalUseDefinition subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 
@@ -83,11 +108,8 @@ class SearchClinicalUseDefinition extends SearchResource {
   SearchClinicalUseDefinition type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
     return this;
   }

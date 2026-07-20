@@ -2,7 +2,7 @@ name: fhir_r4_validation
 description: >-
   StructureDefinition-driven validation for FHIR R4B resources: structure,
   cardinality, value set bindings, and invariants.
-version: 0.6.0
+version: 0.7.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 issue_tracker: https://github.com/fhir-fli/fhir_r4/issues
@@ -28,8 +28,8 @@ environment:
 
 dependencies:
   collection: ^1.19.1
-  fhir_r4: ^0.6.0
-  fhir_r4_path: ^0.6.0
+  fhir_r4: ^0.7.0
+  fhir_r4_path: ^0.7.0
   http: ^1.6.0
 
 dev_dependencies:

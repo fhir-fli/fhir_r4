@@ -13,11 +13,8 @@ class SearchPractitionerRole extends SearchResource {
   SearchPractitionerRole email(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('email', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchPractitionerRole extends SearchResource {
   SearchPractitionerRole phone(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('phone', paramValue);
     return this;
   }
@@ -41,11 +35,8 @@ class SearchPractitionerRole extends SearchResource {
   SearchPractitionerRole telecom(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('telecom', paramValue);
     return this;
   }
@@ -55,11 +46,8 @@ class SearchPractitionerRole extends SearchResource {
   SearchPractitionerRole active(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('active', paramValue);
     return this;
   }
@@ -76,17 +64,46 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
+  /// a reference search for [endpoint] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole endpoint(FhirString value) {
+    addParameterValue('endpoint', value.toString());
+    return this;
+  }
+
   /// a token search for [identifier] in the resource
   /// [PractitionerRole]
   SearchPractitionerRole identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [location] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole location(FhirString value) {
+    addParameterValue('location', value.toString());
+    return this;
+  }
+
+  /// a reference search for [organization] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole organization(FhirString value) {
+    addParameterValue('organization', value.toString());
+    return this;
+  }
+
+  /// a reference search for [practitioner] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole practitioner(FhirString value) {
+    addParameterValue('practitioner', value.toString());
     return this;
   }
 
@@ -95,12 +112,17 @@ class SearchPractitionerRole extends SearchResource {
   SearchPractitionerRole role(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('role', paramValue);
+    return this;
+  }
+
+  /// a reference search for [service] in the resource
+  /// [PractitionerRole]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchPractitionerRole service(FhirString value) {
+    addParameterValue('service', value.toString());
     return this;
   }
 
@@ -109,11 +131,8 @@ class SearchPractitionerRole extends SearchResource {
   SearchPractitionerRole specialty(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('specialty', paramValue);
     return this;
   }

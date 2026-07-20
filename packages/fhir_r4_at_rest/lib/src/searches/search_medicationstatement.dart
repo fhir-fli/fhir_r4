@@ -13,11 +13,8 @@ class SearchMedicationStatement extends SearchResource {
   SearchMedicationStatement code(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('code', paramValue);
     return this;
   }
@@ -27,12 +24,25 @@ class SearchMedicationStatement extends SearchResource {
   SearchMedicationStatement identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [medication] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement medication(FhirString value) {
+    addParameterValue('medication', value.toString());
     return this;
   }
 
@@ -41,11 +51,8 @@ class SearchMedicationStatement extends SearchResource {
   SearchMedicationStatement status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
@@ -55,12 +62,17 @@ class SearchMedicationStatement extends SearchResource {
   SearchMedicationStatement category(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('category', paramValue);
+    return this;
+  }
+
+  /// a reference search for [context] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement context(FhirString value) {
+    addParameterValue('context', value.toString());
     return this;
   }
 
@@ -73,6 +85,30 @@ class SearchMedicationStatement extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('effective', paramValue);
+    return this;
+  }
+
+  /// a reference search for [partOf] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement partOf(FhirString value) {
+    addParameterValue('part-of', value.toString());
+    return this;
+  }
+
+  /// a reference search for [source] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement source(FhirString value) {
+    addParameterValue('source', value.toString());
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [MedicationStatement]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicationStatement subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

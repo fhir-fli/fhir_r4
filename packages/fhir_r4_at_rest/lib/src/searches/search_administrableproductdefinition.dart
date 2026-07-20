@@ -8,17 +8,30 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [AdministrableProductDefinition] resource.
 class SearchAdministrableProductDefinition extends SearchResource {
+  /// a reference search for [device] in the resource
+  /// [AdministrableProductDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdministrableProductDefinition device(FhirString value) {
+    addParameterValue('device', value.toString());
+    return this;
+  }
+
   /// a token search for [doseForm] in the resource
   /// [AdministrableProductDefinition]
   SearchAdministrableProductDefinition doseForm(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('dose_form', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('dose-form', paramValue);
+    return this;
+  }
+
+  /// a reference search for [formOf] in the resource
+  /// [AdministrableProductDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdministrableProductDefinition formOf(FhirString value) {
+    addParameterValue('form-of', value.toString());
     return this;
   }
 
@@ -27,11 +40,8 @@ class SearchAdministrableProductDefinition extends SearchResource {
   SearchAdministrableProductDefinition identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -41,12 +51,17 @@ class SearchAdministrableProductDefinition extends SearchResource {
   SearchAdministrableProductDefinition ingredient(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('ingredient', paramValue);
+    return this;
+  }
+
+  /// a reference search for [manufacturedItem] in the resource
+  /// [AdministrableProductDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdministrableProductDefinition manufacturedItem(FhirString value) {
+    addParameterValue('manufactured-item', value.toString());
     return this;
   }
 
@@ -55,11 +70,8 @@ class SearchAdministrableProductDefinition extends SearchResource {
   SearchAdministrableProductDefinition route(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('route', paramValue);
     return this;
   }
@@ -69,12 +81,9 @@ class SearchAdministrableProductDefinition extends SearchResource {
   SearchAdministrableProductDefinition targetSpecies(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('target_species', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('target-species', paramValue);
     return this;
   }
 }

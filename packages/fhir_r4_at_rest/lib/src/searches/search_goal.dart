@@ -13,12 +13,17 @@ class SearchGoal extends SearchResource {
   SearchGoal identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [Goal]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGoal patient(FhirString value) {
+    addParameterValue('patient', value.toString());
     return this;
   }
 
@@ -27,12 +32,9 @@ class SearchGoal extends SearchResource {
   SearchGoal achievementStatus(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('achievement_status', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('achievement-status', paramValue);
     return this;
   }
 
@@ -41,11 +43,8 @@ class SearchGoal extends SearchResource {
   SearchGoal category(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('category', paramValue);
     return this;
   }
@@ -55,12 +54,9 @@ class SearchGoal extends SearchResource {
   SearchGoal lifecycleStatus(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('lifecycle_status', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('lifecycle-status', paramValue);
     return this;
   }
 
@@ -72,7 +68,15 @@ class SearchGoal extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('start_date', paramValue);
+    addParameterValue('start-date', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [Goal]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchGoal subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 
@@ -84,7 +88,7 @@ class SearchGoal extends SearchResource {
   }) {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('target_date', paramValue);
+    addParameterValue('target-date', paramValue);
     return this;
   }
 }

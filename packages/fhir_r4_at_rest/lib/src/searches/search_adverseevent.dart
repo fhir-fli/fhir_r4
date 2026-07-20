@@ -13,11 +13,8 @@ class SearchAdverseEvent extends SearchResource {
   SearchAdverseEvent actuality(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('actuality', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchAdverseEvent extends SearchResource {
   SearchAdverseEvent category(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('category', paramValue);
     return this;
   }
@@ -53,12 +47,33 @@ class SearchAdverseEvent extends SearchResource {
   SearchAdverseEvent event(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('event', paramValue);
+    return this;
+  }
+
+  /// a reference search for [location] in the resource
+  /// [AdverseEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdverseEvent location(FhirString value) {
+    addParameterValue('location', value.toString());
+    return this;
+  }
+
+  /// a reference search for [recorder] in the resource
+  /// [AdverseEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdverseEvent recorder(FhirString value) {
+    addParameterValue('recorder', value.toString());
+    return this;
+  }
+
+  /// a reference search for [resultingcondition] in the resource
+  /// [AdverseEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdverseEvent resultingcondition(FhirString value) {
+    addParameterValue('resultingcondition', value.toString());
     return this;
   }
 
@@ -67,11 +82,8 @@ class SearchAdverseEvent extends SearchResource {
   SearchAdverseEvent seriousness(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('seriousness', paramValue);
     return this;
   }
@@ -81,12 +93,33 @@ class SearchAdverseEvent extends SearchResource {
   SearchAdverseEvent severity(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('severity', paramValue);
+    return this;
+  }
+
+  /// a reference search for [study] in the resource
+  /// [AdverseEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdverseEvent study(FhirString value) {
+    addParameterValue('study', value.toString());
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [AdverseEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdverseEvent subject(FhirString value) {
+    addParameterValue('subject', value.toString());
+    return this;
+  }
+
+  /// a reference search for [substance] in the resource
+  /// [AdverseEvent]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchAdverseEvent substance(FhirString value) {
+    addParameterValue('substance', value.toString());
     return this;
   }
 }

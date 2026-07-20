@@ -1,5 +1,12 @@
 # fhir_r4_auth
 
+## [0.7.0]
+
+- Family release train: cores and companions released in lockstep at 0.7.0
+- README: SMART App Launch link now https
+- Tests: replaced a statistically unsound PKCE repeated-pattern test (CI flake)
+- fhir_r4 ^0.7.0
+
 ## [0.6.0]
 
 - flutter_appauth ^12.0.0 + flutter_web_auth_2 ^5.0.0 (verified live against the Epic sandbox: standalone patient+clinician on web, EHR launch on web, standalone on Linux desktop)

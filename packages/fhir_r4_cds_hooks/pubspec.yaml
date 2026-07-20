@@ -1,6 +1,6 @@
 name: fhir_r4_cds_hooks
 description: CDS Hooks 2.0 client and service support for FHIR R4B.
-version: 0.6.0
+version: 0.7.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 issue_tracker: https://github.com/fhir-fli/fhir_r4/issues
@@ -25,7 +25,7 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
-  fhir_r4: ^0.6.0
+  fhir_r4: ^0.7.0
   http: ^1.6.0
 
 dev_dependencies:

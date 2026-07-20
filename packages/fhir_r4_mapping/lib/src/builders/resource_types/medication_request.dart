@@ -78,7 +78,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
   factory MedicationRequestBuilder.empty() => MedicationRequestBuilder(
-        status: MedicationrequestStatusBuilder.values.first,
+        status: MedicationRequestStatusBuilder.values.first,
         intent: MedicationRequestIntentBuilder.values.first,
         medicationX: CodeableConceptBuilder.empty(),
         subject: ReferenceBuilder.empty(),
@@ -160,10 +160,10 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<MedicationrequestStatusBuilder>(
+      status: JsonParser.parsePrimitive<MedicationRequestStatusBuilder>(
         json,
         'status',
-        MedicationrequestStatusBuilder.fromJson,
+        MedicationRequestStatusBuilder.fromJson,
         '$objectPath.status',
       ),
       statusReason: JsonParser.parseObject<CodeableConceptBuilder>(
@@ -451,7 +451,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
   /// [status]
   /// A code specifying the current state of the order. Generally, this will
   /// be active or completed state.
-  MedicationrequestStatusBuilder? status;
+  MedicationRequestStatusBuilder? status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the MedicationRequest.
@@ -1134,7 +1134,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
         }
       case 'status':
         {
-          if (child is MedicationrequestStatusBuilder) {
+          if (child is MedicationRequestStatusBuilder) {
             status = child;
             return;
           } else if (child is PrimitiveTypeBuilder) {
@@ -1143,7 +1143,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
               final stringValue = child.toString();
               // For enums, try to create directly from the string value
               try {
-                final converted = MedicationrequestStatusBuilder(stringValue);
+                final converted = MedicationRequestStatusBuilder(stringValue);
                 status = converted;
                 return;
               } catch (e) {
@@ -1830,7 +1830,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
         }
       case 'status':
         {
-          status = MedicationrequestStatusBuilder.empty();
+          status = MedicationRequestStatusBuilder.empty();
           return;
         }
       case 'statusReason':
@@ -2015,7 +2015,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     List<FhirExtensionBuilder>? extension_,
     List<FhirExtensionBuilder>? modifierExtension,
     List<IdentifierBuilder>? identifier,
-    MedicationrequestStatusBuilder? status,
+    MedicationRequestStatusBuilder? status,
     CodeableConceptBuilder? statusReason,
     MedicationRequestIntentBuilder? intent,
     List<CodeableConceptBuilder>? category,

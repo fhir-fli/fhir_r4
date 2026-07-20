@@ -13,11 +13,8 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire code(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('code', paramValue);
     return this;
   }
@@ -27,11 +24,8 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire context(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('context', paramValue);
     return this;
   }
@@ -44,16 +38,12 @@ class SearchQuestionnaire extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    if (modifier != null &&
-        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for quantity type');
-    }
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -62,12 +52,9 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire contextType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -85,28 +72,15 @@ class SearchQuestionnaire extends SearchResource {
 
   /// a uri search for [definition] in the resource
   /// [Questionnaire]
-  SearchQuestionnaire definition(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('definition', paramValue);
+  SearchQuestionnaire definition(FhirUri value) {
+    addParameterValue('definition', value.toString());
     return this;
   }
 
   /// a string search for [description] in the resource
   /// [Questionnaire]
-  SearchQuestionnaire description(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('description', paramValue);
+  SearchQuestionnaire description(FhirString value) {
+    addParameterValue('description', value.toString());
     return this;
   }
 
@@ -127,11 +101,8 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -141,42 +112,23 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire jurisdiction(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('jurisdiction', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [Questionnaire]
-  SearchQuestionnaire name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchQuestionnaire name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
   /// a string search for [publisher] in the resource
   /// [Questionnaire]
-  SearchQuestionnaire publisher(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('publisher', paramValue);
+  SearchQuestionnaire publisher(FhirString value) {
+    addParameterValue('publisher', value.toString());
     return this;
   }
 
@@ -185,11 +137,8 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
@@ -199,39 +148,23 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire subjectType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('subject_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('subject-type', paramValue);
     return this;
   }
 
   /// a string search for [title] in the resource
   /// [Questionnaire]
-  SearchQuestionnaire title(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('title', paramValue);
+  SearchQuestionnaire title(FhirString value) {
+    addParameterValue('title', value.toString());
     return this;
   }
 
   /// a uri search for [url] in the resource
   /// [Questionnaire]
-  SearchQuestionnaire url(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('url', paramValue);
+  SearchQuestionnaire url(FhirUri value) {
+    addParameterValue('url', value.toString());
     return this;
   }
 
@@ -240,11 +173,8 @@ class SearchQuestionnaire extends SearchResource {
   SearchQuestionnaire version(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('version', paramValue);
     return this;
   }

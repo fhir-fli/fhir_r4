@@ -8,6 +8,14 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [RequestGroup] resource.
 class SearchRequestGroup extends SearchResource {
+  /// a reference search for [author] in the resource
+  /// [RequestGroup]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRequestGroup author(FhirString value) {
+    addParameterValue('author', value.toString());
+    return this;
+  }
+
   /// a date search for [authored] in the resource
   /// [RequestGroup]
   SearchRequestGroup authored(
@@ -25,12 +33,17 @@ class SearchRequestGroup extends SearchResource {
   SearchRequestGroup code(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('code', paramValue);
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [RequestGroup]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRequestGroup encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
     return this;
   }
 
@@ -39,12 +52,9 @@ class SearchRequestGroup extends SearchResource {
   SearchRequestGroup groupIdentifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('group_identifier', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('group-identifier', paramValue);
     return this;
   }
 
@@ -53,24 +63,24 @@ class SearchRequestGroup extends SearchResource {
   SearchRequestGroup identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [instantiatesCanonical] in the resource
+  /// [RequestGroup]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRequestGroup instantiatesCanonical(FhirString value) {
+    addParameterValue('instantiates-canonical', value.toString());
     return this;
   }
 
   /// a uri search for [instantiatesUri] in the resource
   /// [RequestGroup]
-  SearchRequestGroup instantiatesUri(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('instantiates_uri', paramValue);
+  SearchRequestGroup instantiatesUri(FhirUri value) {
+    addParameterValue('instantiates-uri', value.toString());
     return this;
   }
 
@@ -79,12 +89,25 @@ class SearchRequestGroup extends SearchResource {
   SearchRequestGroup intent(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('intent', paramValue);
+    return this;
+  }
+
+  /// a reference search for [participant] in the resource
+  /// [RequestGroup]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRequestGroup participant(FhirString value) {
+    addParameterValue('participant', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [RequestGroup]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRequestGroup patient(FhirString value) {
+    addParameterValue('patient', value.toString());
     return this;
   }
 
@@ -93,11 +116,8 @@ class SearchRequestGroup extends SearchResource {
   SearchRequestGroup priority(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('priority', paramValue);
     return this;
   }
@@ -107,12 +127,17 @@ class SearchRequestGroup extends SearchResource {
   SearchRequestGroup status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [RequestGroup]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchRequestGroup subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

@@ -1,21 +1,23 @@
 import 'dart:convert';
-import 'dart:io';
+
+import 'package:fhir_r4_path/src/utils/io_support_stub.dart'
+    if (dart.library.io) 'package:fhir_r4_path/src/utils/io_support_io.dart';
 
 /// Logging Class for Client
 class ClientLogger {
   /// Constructor
   ClientLogger({
-    String? logFilePath,
+    this.logFilePath,
     this.isHtmlFormat = false,
     this.isTextFormat = false,
-  }) : logFile = logFilePath != null ? File(logFilePath) : null {
-    if (logFile != null && !logFile!.existsSync()) {
-      logFile!.createSync(recursive: true);
+  }) {
+    if (logFilePath != null) {
+      ensureFileExists(logFilePath!);
     }
   }
 
-  /// Log file to write the logs to.
-  final File? logFile;
+  /// Path of the log file to write the logs to.
+  final String? logFilePath;
 
   /// Whether to log in HTML format.
   final bool isHtmlFormat;
@@ -71,16 +73,14 @@ class ClientLogger {
       }
     } else {
       // Default console log for unexpected requests.
-      stdout
-        ..writeln('Unexpected request to server:')
-        ..writeln('Method: $method')
-        ..writeln('URL: $url');
-      headers?.forEach((header) => stdout.writeln('Header: $header'));
+      consoleOut('Unexpected request to server:');
+      consoleOut('Method: $method');
+      consoleOut('URL: $url');
+      headers?.forEach((header) => consoleOut('Header: $header'));
       if (body != null) {
-        stdout
-          ..writeln('Body:')
-          ..writeln('----')
-          ..writeln(utf8.decode(body));
+        consoleOut('Body:');
+        consoleOut('----');
+        consoleOut(utf8.decode(body));
       }
     }
 
@@ -120,15 +120,13 @@ class ClientLogger {
           ..writeln(utf8.decode(body));
       }
     } else {
-      stdout
-        ..writeln('Response logged:')
-        ..writeln('Outcome: $outcome');
-      headers?.forEach((header) => stdout.writeln('Header: $header'));
+      consoleOut('Response logged:');
+      consoleOut('Outcome: $outcome');
+      headers?.forEach((header) => consoleOut('Header: $header'));
       if (body != null) {
-        stdout
-          ..writeln('Body:')
-          ..writeln('----')
-          ..writeln(utf8.decode(body));
+        consoleOut('Body:');
+        consoleOut('----');
+        consoleOut(utf8.decode(body));
       }
     }
 
@@ -147,7 +145,7 @@ class ClientLogger {
   bool verifyHasNoRequests({bool rebuildCache = false}) {
     if (rebuildCache) return true;
     if (requests != 0) {
-      stderr.writeln('$requests unexpected requests logged.');
+      consoleErr('$requests unexpected requests logged.');
       return false;
     }
     return true;
@@ -165,8 +163,8 @@ class ClientLogger {
 
   /// Writes the content to the log file if available.
   void _writeToLogFile(String content) {
-    if (logFile != null) {
-      logFile!.writeAsStringSync(content, mode: FileMode.append);
+    if (logFilePath != null) {
+      appendToFile(logFilePath!, content);
     }
   }
 }

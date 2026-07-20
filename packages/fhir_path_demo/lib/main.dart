@@ -54,6 +54,26 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  /// Converts a decoded JSON value into the `List<FhirBase>` form the
+  /// engine expects for %-variable lookups. Objects must be FHIR resources.
+  static List<FhirBase> _toFhirValues(dynamic value) {
+    if (value == null) return <FhirBase>[];
+    if (value is List) {
+      return value.expand(_toFhirValues).toList();
+    }
+    if (value is bool) return <FhirBase>[FhirBoolean(value)];
+    if (value is int) return <FhirBase>[FhirInteger(value)];
+    if (value is double) return <FhirBase>[FhirDecimal(value)];
+    if (value is String) return <FhirBase>[FhirString(value)];
+    if (value is Map<String, dynamic> && value.containsKey('resourceType')) {
+      return <FhirBase>[Resource.fromJson(value)];
+    }
+    throw FormatException(
+      'Unsupported variable value (use JSON scalars, lists of scalars, or '
+      'FHIR resources with a "resourceType"): $value',
+    );
+  }
+
   Future<void> _evaluate() async {
     try {
       // 1) lazy‑init engine
@@ -64,11 +84,19 @@ class _MyHomePageState extends State<MyHomePage> {
           json.decode(_resourceController.text) as Map<String, dynamic>;
       final resource = Resource.fromJson(jsonMap);
 
-      // 3) if the user supplied a variables map, decode it straight through
+      // 3) if the user supplied a variables map, convert each entry into
+      //    the List<FhirBase> form the engine's %-variable lookup expects
+      //    (raw JSON values would silently resolve to empty)
       Map<String, dynamic>? environment;
       if (_variablesController.text.trim().isNotEmpty) {
-        environment =
+        final rawVars =
             json.decode(_variablesController.text) as Map<String, dynamic>;
+        environment = <String, dynamic>{
+          for (final entry in rawVars.entries)
+            (entry.key.startsWith('%')
+                ? entry.key.substring(1)
+                : entry.key): _toFhirValues(entry.value),
+        };
       }
 
       // 4) parse the expression, then evaluate with context, root & base all = `resource`
@@ -188,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       expands: true,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: '{ "%var": "value" }',
+                        hintText: '{ "minAge": 18 }  (use as %minAge)',
                       ),
                       style: const TextStyle(fontFamily: 'monospace'),
                     ),

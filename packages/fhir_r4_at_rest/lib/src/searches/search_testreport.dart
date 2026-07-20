@@ -13,11 +13,8 @@ class SearchTestReport extends SearchResource {
   SearchTestReport identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -36,13 +33,8 @@ class SearchTestReport extends SearchResource {
 
   /// a uri search for [participant] in the resource
   /// [TestReport]
-  SearchTestReport participant(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('participant', paramValue);
+  SearchTestReport participant(FhirUri value) {
+    addParameterValue('participant', value.toString());
     return this;
   }
 
@@ -51,27 +43,24 @@ class SearchTestReport extends SearchResource {
   SearchTestReport result(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('result', paramValue);
     return this;
   }
 
   /// a string search for [tester] in the resource
   /// [TestReport]
-  SearchTestReport tester(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('tester', paramValue);
+  SearchTestReport tester(FhirString value) {
+    addParameterValue('tester', value.toString());
+    return this;
+  }
+
+  /// a reference search for [testscript] in the resource
+  /// [TestReport]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchTestReport testscript(FhirString value) {
+    addParameterValue('testscript', value.toString());
     return this;
   }
 }

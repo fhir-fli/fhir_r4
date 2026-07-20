@@ -24,7 +24,7 @@ It's still a work on progress, but I plan on outlining in-depth all of the funct
 
 ```yaml
 dependencies:
-  fhir_r4: ^0.6.0
+  fhir_r4: ^0.6.1
 ```
 
 ## Basic Usage
@@ -92,7 +92,7 @@ final myString2 = 'Hello'.toFhirString;
 final myBoolean2 = true.toFhirBoolean;
 
 // Accessing values
-final stringValue = myString.value;
+final stringValue = myString.valueString;
 final boolValue = myBoolean.valueBoolean;
 ```
 
@@ -128,8 +128,8 @@ FHIR code sets are implemented as specialized enum-like classes:
 final status = AccountStatus.active;
 
 // Accessing metadata
-final displayText = status.display?.value;  // 'Active'
-final system = status.system?.value;        // 'http://hl7.org/fhir/ValueSet/account-status'
+final displayText = status.display?.valueString;  // 'Active'
+final system = status.system?.valueString;        // 'http://hl7.org/fhir/ValueSet/account-status'
 ```
 
 ### Class Utility Methods

@@ -25,12 +25,17 @@ class SearchCareTeam extends SearchResource {
   SearchCareTeam identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [CareTeam]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCareTeam patient(FhirString value) {
+    addParameterValue('patient', value.toString());
     return this;
   }
 
@@ -39,12 +44,25 @@ class SearchCareTeam extends SearchResource {
   SearchCareTeam category(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('category', paramValue);
+    return this;
+  }
+
+  /// a reference search for [encounter] in the resource
+  /// [CareTeam]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCareTeam encounter(FhirString value) {
+    addParameterValue('encounter', value.toString());
+    return this;
+  }
+
+  /// a reference search for [participant] in the resource
+  /// [CareTeam]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCareTeam participant(FhirString value) {
+    addParameterValue('participant', value.toString());
     return this;
   }
 
@@ -53,12 +71,17 @@ class SearchCareTeam extends SearchResource {
   SearchCareTeam status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [subject] in the resource
+  /// [CareTeam]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchCareTeam subject(FhirString value) {
+    addParameterValue('subject', value.toString());
     return this;
   }
 }

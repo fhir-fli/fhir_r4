@@ -13,11 +13,8 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition context(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('context', paramValue);
     return this;
   }
@@ -30,16 +27,12 @@ class SearchMessageDefinition extends SearchResource {
     FhirUri? system,
     SearchModifier? modifier,
   }) {
-    if (modifier != null &&
-        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for quantity type');
-    }
-    final paramValue = modifier != null
-        ? '$modifier$value|${system?.toString() ?? ''}|'
-            '${unit?.toString() ?? ''}'
-        : '$value|${system?.toString() ?? ''}|'
+    final numberPart = modifier != null ? '$modifier$value' : value.toString();
+    final paramValue = (system == null && unit == null)
+        ? numberPart
+        : '$numberPart|${system?.toString() ?? ''}|'
             '${unit?.toString() ?? ''}';
-    addParameterValue('context_quantity', paramValue);
+    addParameterValue('context-quantity', paramValue);
     return this;
   }
 
@@ -48,12 +41,9 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition contextType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('context_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('context-type', paramValue);
     return this;
   }
 
@@ -71,16 +61,8 @@ class SearchMessageDefinition extends SearchResource {
 
   /// a string search for [description] in the resource
   /// [MessageDefinition]
-  SearchMessageDefinition description(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('description', paramValue);
+  SearchMessageDefinition description(FhirString value) {
+    addParameterValue('description', value.toString());
     return this;
   }
 
@@ -89,42 +71,23 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('jurisdiction', paramValue);
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [MessageDefinition]
-  SearchMessageDefinition name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchMessageDefinition name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
   /// a string search for [publisher] in the resource
   /// [MessageDefinition]
-  SearchMessageDefinition publisher(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('publisher', paramValue);
+  SearchMessageDefinition publisher(FhirString value) {
+    addParameterValue('publisher', value.toString());
     return this;
   }
 
@@ -133,39 +96,23 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
 
   /// a string search for [title] in the resource
   /// [MessageDefinition]
-  SearchMessageDefinition title(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('title', paramValue);
+  SearchMessageDefinition title(FhirString value) {
+    addParameterValue('title', value.toString());
     return this;
   }
 
   /// a uri search for [url] in the resource
   /// [MessageDefinition]
-  SearchMessageDefinition url(
-    FhirUri value, {
-    SearchModifier? modifier,
-  }) {
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('url', paramValue);
+  SearchMessageDefinition url(FhirUri value) {
+    addParameterValue('url', value.toString());
     return this;
   }
 
@@ -174,11 +121,8 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition version(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('version', paramValue);
     return this;
   }
@@ -188,11 +132,8 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -202,11 +143,8 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition category(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('category', paramValue);
     return this;
   }
@@ -216,11 +154,8 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition event(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('event', paramValue);
     return this;
   }
@@ -230,12 +165,17 @@ class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition focus(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('focus', paramValue);
+    return this;
+  }
+
+  /// a reference search for [parent] in the resource
+  /// [MessageDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMessageDefinition parent(FhirString value) {
+    addParameterValue('parent', value.toString());
     return this;
   }
 }

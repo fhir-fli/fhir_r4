@@ -13,12 +13,17 @@ class SearchEnrollmentResponse extends SearchResource {
   SearchEnrollmentResponse identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [request] in the resource
+  /// [EnrollmentResponse]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchEnrollmentResponse request(FhirString value) {
+    addParameterValue('request', value.toString());
     return this;
   }
 
@@ -27,11 +32,8 @@ class SearchEnrollmentResponse extends SearchResource {
   SearchEnrollmentResponse status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }

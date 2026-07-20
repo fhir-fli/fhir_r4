@@ -13,11 +13,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition characteristic(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('characteristic', paramValue);
     return this;
   }
@@ -27,12 +24,17 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition characteristicType(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('characteristic_type', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('characteristic-type', paramValue);
+    return this;
+  }
+
+  /// a reference search for [contact] in the resource
+  /// [MedicinalProductDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicinalProductDefinition contact(FhirString value) {
+    addParameterValue('contact', value.toString());
     return this;
   }
 
@@ -41,11 +43,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition domain(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('domain', paramValue);
     return this;
   }
@@ -55,11 +54,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -69,27 +65,24 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition ingredient(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('ingredient', paramValue);
+    return this;
+  }
+
+  /// a reference search for [masterFile] in the resource
+  /// [MedicinalProductDefinition]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchMedicinalProductDefinition masterFile(FhirString value) {
+    addParameterValue('master-file', value.toString());
     return this;
   }
 
   /// a string search for [name] in the resource
   /// [MedicinalProductDefinition]
-  SearchMedicinalProductDefinition name(
-    FhirString value, {
-    SearchModifier? modifier,
-  }) {
-    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
-      throw ArgumentError('Modifier $modifier not allowed for string type');
-    }
-    final paramValue =
-        (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name', paramValue);
+  SearchMedicinalProductDefinition name(FhirString value) {
+    addParameterValue('name', value.toString());
     return this;
   }
 
@@ -98,12 +91,9 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition nameLanguage(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('name_language', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('name-language', paramValue);
     return this;
   }
 
@@ -112,12 +102,9 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition productClassification(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('product_classification', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('product-classification', paramValue);
     return this;
   }
 
@@ -126,11 +113,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
     return this;
   }
@@ -140,11 +124,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
   SearchMedicinalProductDefinition type(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('type', paramValue);
     return this;
   }

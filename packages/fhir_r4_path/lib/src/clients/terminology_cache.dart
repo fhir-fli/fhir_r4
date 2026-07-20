@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_print
 
-import 'dart:async';
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
-import 'package:universal_io/io.dart';
+import 'package:fhir_r4_path/src/utils/io_support_stub.dart'
+    if (dart.library.io) 'package:fhir_r4_path/src/utils/io_support_io.dart';
 
 /// A two-level cache for managing terminology operations.
 class TerminologyCache {
@@ -168,8 +168,7 @@ class TerminologyCache {
     if (folder == null) return;
 
     try {
-      final file = File('$folder/${nc.name}.cache');
-      final sink = file.openWrite()..writeln(entryMarker);
+      final sink = StringBuffer()..writeln(entryMarker);
 
       for (final entry in nc.list) {
         // Write request
@@ -232,7 +231,7 @@ class TerminologyCache {
         sink.writeln(entryMarker);
       }
 
-      unawaited(sink.close());
+      writeFileAsString('$folder/${nc.name}.cache', sink.toString());
     } catch (e) {
       print('Error saving ${nc.name}: $e');
     }
@@ -313,19 +312,18 @@ class TerminologyCache {
   void _load() {
     if (folder == null) return;
 
-    final directory = Directory(folder!);
-    if (!directory.existsSync()) return;
+    final files = listFilesWithContents(folder!);
 
-    for (final file in directory.listSync().whereType<File>()) {
-      if (file.path.endsWith('.cache') &&
-          !file.path.endsWith('validation.cache')) {
+    for (final fileEntry in files.entries) {
+      if (fileEntry.key.endsWith('.cache') &&
+          !fileEntry.key.endsWith('validation.cache')) {
         var entryCount = 0;
         try {
-          final title = file.uri.pathSegments.last.replaceFirst('.cache', '');
+          final title = fileEntry.key.replaceFirst('.cache', '');
           final nc = NamedCache(name: title);
           caches[title] = nc;
 
-          var content = file.readAsStringSync();
+          var content = fileEntry.value;
           if (content.startsWith('?')) {
             content = content.substring(1);
           }
@@ -385,7 +383,7 @@ class TerminologyCache {
           }
         } catch (e) {
           throw Exception(
-            'Error loading ${file.path}: $e entry $entryCount',
+            'Error loading $folder/${fileEntry.key}: $e entry $entryCount',
           );
         }
       }

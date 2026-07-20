@@ -1,0 +1,8 @@
+# Demo app: family policy with demo-appropriate relaxations (this is
+# sample UI code, not published API).
+include: ../../analysis_options.yaml
+analyzer:
+  errors:
+    public_member_api_docs: ignore
+    lines_longer_than_80_chars: ignore
+    only_throw_errors: ignore

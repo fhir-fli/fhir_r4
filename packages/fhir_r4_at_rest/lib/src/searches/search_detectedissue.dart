@@ -13,12 +13,25 @@ class SearchDetectedIssue extends SearchResource {
   SearchDetectedIssue identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [DetectedIssue]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDetectedIssue patient(FhirString value) {
+    addParameterValue('patient', value.toString());
+    return this;
+  }
+
+  /// a reference search for [author] in the resource
+  /// [DetectedIssue]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDetectedIssue author(FhirString value) {
+    addParameterValue('author', value.toString());
     return this;
   }
 
@@ -27,11 +40,8 @@ class SearchDetectedIssue extends SearchResource {
   SearchDetectedIssue code(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('code', paramValue);
     return this;
   }
@@ -45,6 +55,14 @@ class SearchDetectedIssue extends SearchResource {
     final paramValue =
         (modifier != null ? '$modifier$value' : value.toString());
     addParameterValue('identified', paramValue);
+    return this;
+  }
+
+  /// a reference search for [implicated] in the resource
+  /// [DetectedIssue]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchDetectedIssue implicated(FhirString value) {
+    addParameterValue('implicated', value.toString());
     return this;
   }
 }

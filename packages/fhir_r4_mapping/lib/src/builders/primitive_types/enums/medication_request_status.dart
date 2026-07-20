@@ -1,7 +1,7 @@
 part of '../primitive_types.dart';
 
-/// Actual enum for MedicationrequestStatus
-enum MedicationrequestStatusBuilderEnum {
+/// Actual enum for MedicationRequestStatus
+enum MedicationRequestStatusBuilderEnum {
   /// active
   active,
 
@@ -34,37 +34,37 @@ enum MedicationrequestStatusBuilderEnum {
   @override
   String toString() {
     switch (this) {
-      case MedicationrequestStatusBuilderEnum.active:
+      case MedicationRequestStatusBuilderEnum.active:
         return 'active';
-      case MedicationrequestStatusBuilderEnum.onHold:
+      case MedicationRequestStatusBuilderEnum.onHold:
         return 'on-hold';
-      case MedicationrequestStatusBuilderEnum.cancelled:
+      case MedicationRequestStatusBuilderEnum.cancelled:
         return 'cancelled';
-      case MedicationrequestStatusBuilderEnum.completed:
+      case MedicationRequestStatusBuilderEnum.completed:
         return 'completed';
-      case MedicationrequestStatusBuilderEnum.enteredInError:
+      case MedicationRequestStatusBuilderEnum.enteredInError:
         return 'entered-in-error';
-      case MedicationrequestStatusBuilderEnum.stopped:
+      case MedicationRequestStatusBuilderEnum.stopped:
         return 'stopped';
-      case MedicationrequestStatusBuilderEnum.draft:
+      case MedicationRequestStatusBuilderEnum.draft:
         return 'draft';
-      case MedicationrequestStatusBuilderEnum.unknown:
+      case MedicationRequestStatusBuilderEnum.unknown:
         return 'unknown';
     }
   }
 
   /// Converts a string/JSON value to the corresponding enum value.
-  static MedicationrequestStatusBuilderEnum? fromJson(
+  static MedicationRequestStatusBuilderEnum? fromJson(
     dynamic json,
   ) {
     if (json == null || json is! String) {
       return null;
     }
-    return MedicationrequestStatusBuilderEnum.fromString(json);
+    return MedicationRequestStatusBuilderEnum.fromString(json);
   }
 
   /// Converts a string to the corresponding enum value.
-  static MedicationrequestStatusBuilderEnum? fromString(
+  static MedicationRequestStatusBuilderEnum? fromString(
     String? value,
   ) {
     if (value == null) {
@@ -72,30 +72,30 @@ enum MedicationrequestStatusBuilderEnum {
     }
     switch (value) {
       case 'active':
-        return MedicationrequestStatusBuilderEnum.active;
+        return MedicationRequestStatusBuilderEnum.active;
       case 'on-hold':
-        return MedicationrequestStatusBuilderEnum.onHold;
+        return MedicationRequestStatusBuilderEnum.onHold;
       case 'cancelled':
-        return MedicationrequestStatusBuilderEnum.cancelled;
+        return MedicationRequestStatusBuilderEnum.cancelled;
       case 'completed':
-        return MedicationrequestStatusBuilderEnum.completed;
+        return MedicationRequestStatusBuilderEnum.completed;
       case 'entered-in-error':
-        return MedicationrequestStatusBuilderEnum.enteredInError;
+        return MedicationRequestStatusBuilderEnum.enteredInError;
       case 'stopped':
-        return MedicationrequestStatusBuilderEnum.stopped;
+        return MedicationRequestStatusBuilderEnum.stopped;
       case 'draft':
-        return MedicationrequestStatusBuilderEnum.draft;
+        return MedicationRequestStatusBuilderEnum.draft;
       case 'unknown':
-        return MedicationrequestStatusBuilderEnum.unknown;
+        return MedicationRequestStatusBuilderEnum.unknown;
     }
     return null;
   }
 }
 
 /// MedicationRequest Status Codes
-class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
+class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  MedicationrequestStatusBuilder._({
+  MedicationRequestStatusBuilder._({
     required super.valueString,
     this.valueEnum,
     super.system,
@@ -110,7 +110,7 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory MedicationrequestStatusBuilder(
+  factory MedicationRequestStatusBuilder(
     String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
@@ -123,10 +123,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     final valueString =
         rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
-    final valueEnum = MedicationrequestStatusBuilderEnum.fromString(
+    final valueEnum = MedicationRequestStatusBuilderEnum.fromString(
       valueString,
     );
-    return MedicationrequestStatusBuilder._(
+    return MedicationRequestStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
       system: system,
@@ -140,14 +140,14 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
     );
   }
 
-  /// Create empty [MedicationrequestStatusBuilder]
+  /// Create empty [MedicationRequestStatusBuilder]
   /// with element only
-  factory MedicationrequestStatusBuilder.empty() =>
-      MedicationrequestStatusBuilder._(valueString: null);
+  factory MedicationRequestStatusBuilder.empty() =>
+      MedicationRequestStatusBuilder._(valueString: null);
 
   /// Factory constructor to create
-  /// [MedicationrequestStatusBuilder] from JSON.
-  factory MedicationrequestStatusBuilder.fromJson(
+  /// [MedicationRequestStatusBuilder] from JSON.
+  factory MedicationRequestStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
@@ -155,29 +155,29 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
     final element =
         elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationrequestStatusBuilder._(
+      return MedicationRequestStatusBuilder._(
         valueString: null,
         element: element,
       );
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MedicationrequestStatusBuilder cannot be constructed from JSON.',
+        'MedicationRequestStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return MedicationrequestStatusBuilder._(
+    return MedicationRequestStatusBuilder._(
       valueString: value,
       element: element,
     );
   }
 
-  ///  An actual enum that can be used for MedicationrequestStatusBuilder
-  final MedicationrequestStatusBuilderEnum? valueEnum;
+  ///  An actual enum that can be used for MedicationRequestStatusBuilder
+  final MedicationRequestStatusBuilderEnum? valueEnum;
 
   /// active
-  static MedicationrequestStatusBuilder active =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder active =
+      MedicationRequestStatusBuilder._(
     valueString: 'active',
-    valueEnum: MedicationrequestStatusBuilderEnum.active,
+    valueEnum: MedicationRequestStatusBuilderEnum.active,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -188,10 +188,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// on_hold
-  static MedicationrequestStatusBuilder onHold =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder onHold =
+      MedicationRequestStatusBuilder._(
     valueString: 'on-hold',
-    valueEnum: MedicationrequestStatusBuilderEnum.onHold,
+    valueEnum: MedicationRequestStatusBuilderEnum.onHold,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -202,10 +202,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// cancelled
-  static MedicationrequestStatusBuilder cancelled =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder cancelled =
+      MedicationRequestStatusBuilder._(
     valueString: 'cancelled',
-    valueEnum: MedicationrequestStatusBuilderEnum.cancelled,
+    valueEnum: MedicationRequestStatusBuilderEnum.cancelled,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -216,10 +216,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// completed
-  static MedicationrequestStatusBuilder completed =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder completed =
+      MedicationRequestStatusBuilder._(
     valueString: 'completed',
-    valueEnum: MedicationrequestStatusBuilderEnum.completed,
+    valueEnum: MedicationRequestStatusBuilderEnum.completed,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -230,10 +230,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// entered_in_error
-  static MedicationrequestStatusBuilder enteredInError =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder enteredInError =
+      MedicationRequestStatusBuilder._(
     valueString: 'entered-in-error',
-    valueEnum: MedicationrequestStatusBuilderEnum.enteredInError,
+    valueEnum: MedicationRequestStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -244,10 +244,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// stopped
-  static MedicationrequestStatusBuilder stopped =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder stopped =
+      MedicationRequestStatusBuilder._(
     valueString: 'stopped',
-    valueEnum: MedicationrequestStatusBuilderEnum.stopped,
+    valueEnum: MedicationRequestStatusBuilderEnum.stopped,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -258,10 +258,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// draft
-  static MedicationrequestStatusBuilder draft =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder draft =
+      MedicationRequestStatusBuilder._(
     valueString: 'draft',
-    valueEnum: MedicationrequestStatusBuilderEnum.draft,
+    valueEnum: MedicationRequestStatusBuilderEnum.draft,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -272,10 +272,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// unknown
-  static MedicationrequestStatusBuilder unknown =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder unknown =
+      MedicationRequestStatusBuilder._(
     valueString: 'unknown',
-    valueEnum: MedicationrequestStatusBuilderEnum.unknown,
+    valueEnum: MedicationRequestStatusBuilderEnum.unknown,
     system: FhirUriBuilder._(
       valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
     ),
@@ -286,14 +286,14 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   );
 
   /// For instances where an Element is present but not value
-  static MedicationrequestStatusBuilder elementOnly =
-      MedicationrequestStatusBuilder._(
+  static MedicationRequestStatusBuilder elementOnly =
+      MedicationRequestStatusBuilder._(
     valueString: null,
     element: ElementBuilder.empty(),
   );
 
   /// List of all enum-like values
-  static List<MedicationrequestStatusBuilder> values = [
+  static List<MedicationRequestStatusBuilder> values = [
     active,
     onHold,
     cancelled,
@@ -305,10 +305,10 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   ];
 
   /// Returns the enum value with an element attached
-  MedicationrequestStatusBuilder withElement(
+  MedicationRequestStatusBuilder withElement(
     ElementBuilder? newElement,
   ) {
-    return MedicationrequestStatusBuilder._(
+    return MedicationRequestStatusBuilder._(
       valueString: valueString,
       element: newElement,
     );

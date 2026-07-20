@@ -13,12 +13,9 @@ class SearchManufacturedItemDefinition extends SearchResource {
   SearchManufacturedItemDefinition doseForm(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('dose_form', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('dose-form', paramValue);
     return this;
   }
 
@@ -27,11 +24,8 @@ class SearchManufacturedItemDefinition extends SearchResource {
   SearchManufacturedItemDefinition identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
     return this;
   }
@@ -41,11 +35,8 @@ class SearchManufacturedItemDefinition extends SearchResource {
   SearchManufacturedItemDefinition ingredient(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('ingredient', paramValue);
     return this;
   }

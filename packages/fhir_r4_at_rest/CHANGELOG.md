@@ -1,5 +1,13 @@
 # fhir_r4_at_rest
 
+## [0.7.0]
+
+- Generated request methods for reference search parameters
+- Search wire-format conformance: parameter wire names now use the spec SearchParameter codes; exact spec wire values for number/quantity parameters; search prefixes only applied to ordered types
+- Regression tests: repeated `_include` values are kept and comma values passed verbatim (GH fhir_r4#33; fix shipped in 0.6.x)
+- README: fixed non-compiling examples found by the docs verification pass
+- fhir_r4 ^0.7.0
+
 ## [0.6.0]
 
 - Family lockstep 0.6.0 (fhir_r4 ^0.6.0)

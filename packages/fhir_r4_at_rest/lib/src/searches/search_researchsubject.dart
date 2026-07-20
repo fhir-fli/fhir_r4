@@ -25,12 +25,25 @@ class SearchResearchSubject extends SearchResource {
   SearchResearchSubject identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [individual] in the resource
+  /// [ResearchSubject]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchSubject individual(FhirString value) {
+    addParameterValue('individual', value.toString());
+    return this;
+  }
+
+  /// a reference search for [patient] in the resource
+  /// [ResearchSubject]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchSubject patient(FhirString value) {
+    addParameterValue('patient', value.toString());
     return this;
   }
 
@@ -39,12 +52,17 @@ class SearchResearchSubject extends SearchResource {
   SearchResearchSubject status(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('status', paramValue);
+    return this;
+  }
+
+  /// a reference search for [study] in the resource
+  /// [ResearchSubject]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchResearchSubject study(FhirString value) {
+    addParameterValue('study', value.toString());
     return this;
   }
 }

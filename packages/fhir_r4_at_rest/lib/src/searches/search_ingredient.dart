@@ -8,16 +8,21 @@ import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 /// A class to build query parameters for RESTful requests for
 /// the [Ingredient] resource.
 class SearchIngredient extends SearchResource {
+  /// a reference search for [for_] in the resource
+  /// [Ingredient]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchIngredient for_(FhirString value) {
+    addParameterValue('for', value.toString());
+    return this;
+  }
+
   /// a token search for [function] in the resource
   /// [Ingredient]
   SearchIngredient function(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('function', paramValue);
     return this;
   }
@@ -27,12 +32,17 @@ class SearchIngredient extends SearchResource {
   SearchIngredient identifier(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('identifier', paramValue);
+    return this;
+  }
+
+  /// a reference search for [manufacturer] in the resource
+  /// [Ingredient]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchIngredient manufacturer(FhirString value) {
+    addParameterValue('manufacturer', value.toString());
     return this;
   }
 
@@ -41,12 +51,17 @@ class SearchIngredient extends SearchResource {
   SearchIngredient role(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
+    final paramValue = system != null ? '$system|$value' : value.toString();
     addParameterValue('role', paramValue);
+    return this;
+  }
+
+  /// a reference search for [substance] in the resource
+  /// [Ingredient]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchIngredient substance(FhirString value) {
+    addParameterValue('substance', value.toString());
     return this;
   }
 
@@ -55,12 +70,17 @@ class SearchIngredient extends SearchResource {
   SearchIngredient substanceCode(
     FhirString value, {
     FhirUri? system,
-    SearchModifier? modifier,
   }) {
-    final paramValue = system != null
-        ? (modifier != null ? '$modifier$system|$value' : '$system|$value')
-        : (modifier != null ? '$modifier$value' : value.toString());
-    addParameterValue('substance_code', paramValue);
+    final paramValue = system != null ? '$system|$value' : value.toString();
+    addParameterValue('substance-code', paramValue);
+    return this;
+  }
+
+  /// a reference search for [substanceDefinition] in the resource
+  /// [Ingredient]
+  /// (accepts an id, a `Type/id` relative reference, or a URL)
+  SearchIngredient substanceDefinition(FhirString value) {
+    addParameterValue('substance-definition', value.toString());
     return this;
   }
 }
