@@ -121,10 +121,10 @@ class MedicationRequest extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<MedicationrequestStatus>(
+      status: JsonParser.parsePrimitive<MedicationRequestStatus>(
         json,
         'status',
-        MedicationrequestStatus.fromJson,
+        MedicationRequestStatus.fromJson,
       )!,
       statusReason: JsonParser.parseObject<CodeableConcept>(
         json,
@@ -357,7 +357,7 @@ class MedicationRequest extends DomainResource {
   /// [status]
   /// A code specifying the current state of the order. Generally, this will
   /// be active or completed state.
-  final MedicationrequestStatus status;
+  final MedicationRequestStatus status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the MedicationRequest.

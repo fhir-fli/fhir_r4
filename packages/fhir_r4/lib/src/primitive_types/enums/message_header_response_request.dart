@@ -1,7 +1,7 @@
 part of '../primitive_types.dart';
 
-/// Actual enum for MessageheaderResponseRequest
-enum MessageheaderResponseRequestEnum {
+/// Actual enum for MessageHeaderResponseRequest
+enum MessageHeaderResponseRequestEnum {
   /// always
   always,
 
@@ -22,39 +22,39 @@ enum MessageheaderResponseRequestEnum {
   @override
   String toString() {
     switch (this) {
-      case MessageheaderResponseRequestEnum.always:
+      case MessageHeaderResponseRequestEnum.always:
         return 'always';
-      case MessageheaderResponseRequestEnum.onError:
+      case MessageHeaderResponseRequestEnum.onError:
         return 'on-error';
-      case MessageheaderResponseRequestEnum.never:
+      case MessageHeaderResponseRequestEnum.never:
         return 'never';
-      case MessageheaderResponseRequestEnum.onSuccess:
+      case MessageHeaderResponseRequestEnum.onSuccess:
         return 'on-success';
     }
   }
 
   /// Converts a string/JSON value to the corresponding enum value.
-  static MessageheaderResponseRequestEnum? fromJson(dynamic json) {
+  static MessageHeaderResponseRequestEnum? fromJson(dynamic json) {
     if (json == null || json is! String) {
       return null;
     }
-    return MessageheaderResponseRequestEnum.fromString(json);
+    return MessageHeaderResponseRequestEnum.fromString(json);
   }
 
   /// Converts a string to the corresponding enum value.
-  static MessageheaderResponseRequestEnum? fromString(String? value) {
+  static MessageHeaderResponseRequestEnum? fromString(String? value) {
     if (value == null) {
       return null;
     }
     switch (value) {
       case 'always':
-        return MessageheaderResponseRequestEnum.always;
+        return MessageHeaderResponseRequestEnum.always;
       case 'on-error':
-        return MessageheaderResponseRequestEnum.onError;
+        return MessageHeaderResponseRequestEnum.onError;
       case 'never':
-        return MessageheaderResponseRequestEnum.never;
+        return MessageHeaderResponseRequestEnum.never;
       case 'on-success':
-        return MessageheaderResponseRequestEnum.onSuccess;
+        return MessageHeaderResponseRequestEnum.onSuccess;
     }
     return null;
   }
@@ -62,9 +62,9 @@ enum MessageheaderResponseRequestEnum {
 
 /// HL7-defined table of codes which identify conditions under which
 /// acknowledgments are required to be returned in response to a message.
-class MessageheaderResponseRequest extends FhirCodeEnum {
+class MessageHeaderResponseRequest extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  const MessageheaderResponseRequest._({
+  const MessageHeaderResponseRequest._({
     required super.valueString,
     this.valueEnum,
     super.system,
@@ -78,7 +78,7 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory MessageheaderResponseRequest(
+  factory MessageHeaderResponseRequest(
     String? rawValue, {
     FhirUri? system,
     FhirString? version,
@@ -90,8 +90,8 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
-    final valueEnum = MessageheaderResponseRequestEnum.fromString(valueString);
-    return MessageheaderResponseRequest._(
+    final valueEnum = MessageHeaderResponseRequestEnum.fromString(valueString);
+    return MessageHeaderResponseRequest._(
       valueString: valueString,
       valueEnum: valueEnum,
       system: system,
@@ -104,40 +104,40 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
     );
   }
 
-  /// Factory constructor to create [MessageheaderResponseRequest]
+  /// Factory constructor to create [MessageHeaderResponseRequest]
   /// from JSON.
-  factory MessageheaderResponseRequest.fromJson(
+  factory MessageHeaderResponseRequest.fromJson(
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
-    final valueEnum = MessageheaderResponseRequestEnum.fromString(value);
+    final valueEnum = MessageHeaderResponseRequestEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MessageheaderResponseRequest._(
+      return MessageHeaderResponseRequest._(
         valueString: null,
         element: element,
       );
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MessageheaderResponseRequest cannot be constructed from JSON.',
+        'MessageHeaderResponseRequest cannot be constructed from JSON.',
       );
     }
-    return MessageheaderResponseRequest._(
+    return MessageHeaderResponseRequest._(
       valueString: value,
       valueEnum: valueEnum,
       element: element,
     );
   }
 
-  /// An actual enum that can be used for MessageheaderResponseRequest
-  final MessageheaderResponseRequestEnum? valueEnum;
+  /// An actual enum that can be used for MessageHeaderResponseRequest
+  final MessageHeaderResponseRequestEnum? valueEnum;
 
   /// always
-  static const MessageheaderResponseRequest always =
-      MessageheaderResponseRequest._(
+  static const MessageHeaderResponseRequest always =
+      MessageHeaderResponseRequest._(
     valueString: 'always',
-    valueEnum: MessageheaderResponseRequestEnum.always,
+    valueEnum: MessageHeaderResponseRequestEnum.always,
     system: FhirUri._(
       valueString:
           'http://hl7.org/fhir/ValueSet/messageheader-response-request',
@@ -149,10 +149,10 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   );
 
   /// on_error
-  static const MessageheaderResponseRequest onError =
-      MessageheaderResponseRequest._(
+  static const MessageHeaderResponseRequest onError =
+      MessageHeaderResponseRequest._(
     valueString: 'on-error',
-    valueEnum: MessageheaderResponseRequestEnum.onError,
+    valueEnum: MessageHeaderResponseRequestEnum.onError,
     system: FhirUri._(
       valueString:
           'http://hl7.org/fhir/ValueSet/messageheader-response-request',
@@ -164,10 +164,10 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   );
 
   /// never
-  static const MessageheaderResponseRequest never =
-      MessageheaderResponseRequest._(
+  static const MessageHeaderResponseRequest never =
+      MessageHeaderResponseRequest._(
     valueString: 'never',
-    valueEnum: MessageheaderResponseRequestEnum.never,
+    valueEnum: MessageHeaderResponseRequestEnum.never,
     system: FhirUri._(
       valueString:
           'http://hl7.org/fhir/ValueSet/messageheader-response-request',
@@ -179,10 +179,10 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   );
 
   /// on_success
-  static const MessageheaderResponseRequest onSuccess =
-      MessageheaderResponseRequest._(
+  static const MessageHeaderResponseRequest onSuccess =
+      MessageHeaderResponseRequest._(
     valueString: 'on-success',
-    valueEnum: MessageheaderResponseRequestEnum.onSuccess,
+    valueEnum: MessageHeaderResponseRequestEnum.onSuccess,
     system: FhirUri._(
       valueString:
           'http://hl7.org/fhir/ValueSet/messageheader-response-request',
@@ -194,7 +194,7 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   );
 
   /// List of all enum-like values
-  static final List<MessageheaderResponseRequest> values = [
+  static final List<MessageHeaderResponseRequest> values = [
     always,
     onError,
     never,
@@ -202,8 +202,8 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   ];
 
   /// Returns the enum value with an element attached
-  MessageheaderResponseRequest withElement(Element? newElement) {
-    return MessageheaderResponseRequest._(
+  MessageHeaderResponseRequest withElement(Element? newElement) {
+    return MessageHeaderResponseRequest._(
       valueString: valueString,
       element: newElement,
     );
@@ -221,15 +221,15 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   String toString() => valueString ?? '';
 
   @override
-  MessageheaderResponseRequest clone() => copyWith();
+  MessageHeaderResponseRequest clone() => copyWith();
 
   /// Creates a new instance with the specified fields replaced.
   @override
-  MessageheaderResponseRequestCopyWithImpl<MessageheaderResponseRequest>
-      get copyWith => MessageheaderResponseRequestCopyWithImpl<
-              MessageheaderResponseRequest>(
+  MessageHeaderResponseRequestCopyWithImpl<MessageHeaderResponseRequest>
+      get copyWith => MessageHeaderResponseRequestCopyWithImpl<
+              MessageHeaderResponseRequest>(
             this,
-            (v) => v as MessageheaderResponseRequest,
+            (v) => v as MessageHeaderResponseRequest,
           );
 }
 
@@ -237,10 +237,10 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
 /// The call method uses parameters of type Object? with a default value of
 /// [fhirSentinel] so that omitted parameters retain the sentinel value while
 /// explicit nulls do not.
-class MessageheaderResponseRequestCopyWithImpl<T>
+class MessageHeaderResponseRequestCopyWithImpl<T>
     extends $FhirCodeCopyWithImpl<T> {
   /// Constructor for the copyWith implementation.
-  MessageheaderResponseRequestCopyWithImpl(super._value, super._then);
+  MessageHeaderResponseRequestCopyWithImpl(super._value, super._then);
 
   @override
   T call({
@@ -257,7 +257,7 @@ class MessageheaderResponseRequestCopyWithImpl<T>
       );
     }
     return _then(
-      MessageheaderResponseRequest(
+      MessageHeaderResponseRequest(
         identical(newValue, fhirSentinel)
             ? _value.valueString
             : newValue as String?,

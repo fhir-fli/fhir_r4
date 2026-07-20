@@ -282,10 +282,10 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
           )
           .toList(),
       responseRequired:
-          JsonParser.parsePrimitive<MessageheaderResponseRequestBuilder>(
+          JsonParser.parsePrimitive<MessageHeaderResponseRequestBuilder>(
         json,
         'responseRequired',
-        MessageheaderResponseRequestBuilder.fromJson,
+        MessageHeaderResponseRequestBuilder.fromJson,
         '$objectPath.responseRequired',
       ),
       allowedResponse: (json['allowedResponse'] as List<dynamic>?)
@@ -413,7 +413,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
   /// [responseRequired]
   /// Declare at a message definition level whether a response is required or
   /// only upon error or success, or never.
-  MessageheaderResponseRequestBuilder? responseRequired;
+  MessageHeaderResponseRequestBuilder? responseRequired;
 
   /// [allowedResponse]
   /// Indicates what types of messages may be sent as an application-level
@@ -1331,7 +1331,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
         }
       case 'responseRequired':
         {
-          if (child is MessageheaderResponseRequestBuilder) {
+          if (child is MessageHeaderResponseRequestBuilder) {
             responseRequired = child;
             return;
           } else if (child is PrimitiveTypeBuilder) {
@@ -1341,7 +1341,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
               // For enums, try to create directly from the string value
               try {
                 final converted =
-                    MessageheaderResponseRequestBuilder(stringValue);
+                    MessageHeaderResponseRequestBuilder(stringValue);
                 responseRequired = converted;
                 return;
               } catch (e) {
@@ -1664,7 +1664,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
         }
       case 'responseRequired':
         {
-          responseRequired = MessageheaderResponseRequestBuilder.empty();
+          responseRequired = MessageHeaderResponseRequestBuilder.empty();
           return;
         }
       case 'allowedResponse':
@@ -1715,7 +1715,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
     EventXMessageDefinitionBuilder? eventX,
     MessageSignificanceCategoryBuilder? category,
     List<MessageDefinitionFocusBuilder>? focus,
-    MessageheaderResponseRequestBuilder? responseRequired,
+    MessageHeaderResponseRequestBuilder? responseRequired,
     List<MessageDefinitionAllowedResponseBuilder>? allowedResponse,
     List<FhirCanonicalBuilder>? graph,
     CodingBuilder? eventCoding,

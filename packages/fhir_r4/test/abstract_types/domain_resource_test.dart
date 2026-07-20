@@ -32,7 +32,7 @@ void main() {
         );
         final request = MedicationRequest(
           id: 'mr-1'.toFhirString,
-          status: MedicationrequestStatus.active,
+          status: MedicationRequestStatus.active,
           intent: MedicationRequestIntent.order,
           medicationX: Reference(reference: '#med-1'.toFhirString),
           subject: Reference(reference: 'Patient/1'.toFhirString),

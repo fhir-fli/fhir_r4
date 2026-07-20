@@ -19,7 +19,7 @@ abstract class $MedicationRequestCopyWith<T>
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    MedicationrequestStatus? status,
+    MedicationRequestStatus? status,
     CodeableConcept? statusReason,
     MedicationRequestIntent? intent,
     List<CodeableConcept>? category,
@@ -130,7 +130,7 @@ class _$MedicationRequestCopyWithImpl<T>
             : identifier as List<Identifier>?,
         status: identical(status, fhirSentinel)
             ? _value.status
-            : (status as MedicationrequestStatus?) ?? _value.status,
+            : (status as MedicationRequestStatus?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,
