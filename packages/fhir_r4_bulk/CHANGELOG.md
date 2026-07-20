@@ -1,5 +1,11 @@
 # fhir_r4_bulk
 
+## [0.7.0]
+
+- Web/WASM compatible: dart:io usage now behind conditional imports; `universal_io` dependency removed
+- README: fixed non-compiling examples found by the docs verification pass
+- fhir_r4 ^0.7.0
+
 ## [0.6.0]
 
 - Family lockstep 0.6.0 (fhir_r4 ^0.6.0)

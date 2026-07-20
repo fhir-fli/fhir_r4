@@ -1,5 +1,11 @@
 # fhir_r4_db
 
+## [0.7.0]
+
+- Family release train: cores and companions released in lockstep at 0.7.0
+- README: fixed non-compiling examples found by the docs verification pass
+- fhir_r4 ^0.7.0
+
 ## [0.6.0]
 
 - Family lockstep 0.6.0

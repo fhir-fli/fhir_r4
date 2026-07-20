@@ -1,5 +1,11 @@
 # fhir_r4
 
+## [0.7.0]
+
+- BREAKING: `MedicationrequestStatus` -> `MedicationRequestStatus` and `MessageheaderResponseRequest` -> `MessageHeaderResponseRequest` (with their `...Enum` and `...CopyWithImpl` companions) — these ValueSet-derived enum names came from miscased tokens in HL7's own spec data (GH fhir_r4#34). The old names remain available as deprecated typedef aliases and will be removed in a future release. Verified against the full spec input that these two were the only miscased generated names
+- The generator now restores canonical type-name casing for all ValueSet-derived enum names, so this class of bug cannot recur
+- README: fixed non-compiling examples found by the docs verification pass
+
 ## [0.6.1]
 
 - Fix: fractional timezone offsets (+05:30 India, +05:45 Nepal, -03:30 Newfoundland, ...) were truncated to whole hours when rendering the value string (the object held the correct offset; serialization hardcoded ':00' minutes). Round-trips now preserve them; regression tests added

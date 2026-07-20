@@ -2,7 +2,7 @@ name: fhir_r4_mapping
 description: >-
   FHIR Mapping Language (FML) engine for FHIR R4B: parse StructureMaps and
   transform healthcare data between structures.
-version: 0.6.0
+version: 0.7.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 issue_tracker: https://github.com/fhir-fli/fhir_r4/issues
@@ -30,8 +30,8 @@ dependencies:
   collection: ^1.19.1
   crypto: ^3.0.7
   fhir_node: ^0.6.0
-  fhir_r4: ^0.6.0
-  fhir_r4_path: ^0.6.0
+  fhir_r4: ^0.7.0
+  fhir_r4_path: ^0.7.0
   http: ^1.6.0
   uuid: ^4.5.3
   xml: '>=6.6.1 <8.0.0'

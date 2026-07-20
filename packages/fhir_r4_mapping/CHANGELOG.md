@@ -1,5 +1,11 @@
 # fhir_r4_mapping
 
+## [0.7.0]
+
+- BREAKING: `MedicationrequestStatusBuilder` -> `MedicationRequestStatusBuilder` and `MessageheaderResponseRequestBuilder` -> `MessageHeaderResponseRequestBuilder` (with their `...BuilderEnum` companions), matching the core enum rename (GH fhir_r4#34). Old names remain as deprecated typedef aliases
+- Web/WASM compatible transitively (fhir_r4_path 0.7.0 removed the last dart:io in the dependency chain)
+- fhir_r4 ^0.7.0, fhir_r4_path ^0.7.0
+
 ## [0.6.0]
 
 - Family lockstep 0.6.0; fhir_node dependency now declared explicitly
