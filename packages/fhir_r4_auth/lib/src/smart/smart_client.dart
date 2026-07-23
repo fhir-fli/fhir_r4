@@ -1,6 +1,7 @@
 /// SMART on FHIR client implementation
 library;
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart' show CapabilityStatement, FhirExtension;
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
@@ -48,7 +49,15 @@ class SmartFhirClient extends FhirAuthClient {
         _auditLogger = auditLogger,
         _sessionManager = sessionManager,
         _logger = logger ?? Logger('SmartFhirClient'),
-        super(innerClient: httpClient);
+        super(innerClient: httpClient) {
+    // When the session times out (idle or absolute), purge the in-memory
+    // tokens so the client immediately stops sending the bearer token. The
+    // session manager clears persistent storage separately.
+    final sm = _sessionManager;
+    if (sm != null) {
+      _timeoutSub = sm.onTimeout.listen((_) => clearInMemoryTokens());
+    }
+  }
 
   /// Get SMART configuration (null if using BackendServiceConfig)
   SmartConfig? get smartConfig =>
@@ -74,6 +83,15 @@ class SmartFhirClient extends FhirAuthClient {
   /// Discovered endpoints
   Uri? _revocationEndpoint;
   Uri? _introspectionEndpoint;
+
+  /// Discovered JWKS URI (used to verify id_token signatures)
+  Uri? _jwksUri;
+
+  /// Discovered authorization-server issuer (expected id_token `iss`)
+  String? _issuer;
+
+  /// Subscription that purges in-memory tokens on session timeout
+  StreamSubscription<TimeoutReason>? _timeoutSub;
 
   /// Token introspector (lazy initialized)
   TokenIntrospector? _tokenIntrospector;
@@ -106,6 +124,7 @@ class SmartFhirClient extends FhirAuthClient {
         scopes: bc.scopes,
         enablePkce: false,
         enableOpenId: false,
+        allowInsecureConnections: bc.allowInsecureConnections,
         httpClient: _httpClient,
       );
       return _oauthFlow!;
@@ -133,6 +152,13 @@ class SmartFhirClient extends FhirAuthClient {
       additionalParameters: sc.buildAuthorizationParameters(),
       enablePkce: sc.enablePkce,
       enableOpenId: sc.enableOpenId,
+      // Verify the id_token signature against the discovered JWKS, and pin the
+      // expected issuer/audience. When JWKS discovery yielded nothing the
+      // signature is skipped (code flow over TLS) but claims are still checked.
+      jwksUri: _jwksUri?.toString(),
+      expectedIssuer: _issuer,
+      expectedAudience: sc.clientId,
+      allowInsecureConnections: sc.allowInsecureConnections,
       httpClient: _httpClient,
     );
 
@@ -397,6 +423,16 @@ class SmartFhirClient extends FhirAuthClient {
                 ),
               )
               .toList();
+        }
+
+        // Capture JWKS URI and issuer for id_token signature/claim validation
+        if (metadata['jwks_uri'] != null) {
+          _jwksUri = Uri.parse(metadata['jwks_uri'] as String);
+          _logger.fine('Discovered JWKS URI: $_jwksUri');
+        }
+        if (metadata['issuer'] != null) {
+          _issuer = metadata['issuer'] as String;
+          _logger.fine('Discovered issuer: $_issuer');
         }
 
         // Store discovered endpoints
@@ -664,7 +700,15 @@ class SmartFhirClient extends FhirAuthClient {
   String? get tenant => _cachedSmartTokens?.tenant;
 
   @override
+  void clearInMemoryTokens() {
+    _cachedSmartTokens = null;
+    super.clearInMemoryTokens();
+  }
+
+  @override
   void close() {
+    unawaited(_timeoutSub?.cancel());
+    _timeoutSub = null;
     _sessionManager?.dispose();
     _oauthFlow?.dispose();
     _tokenIntrospector?.dispose();
