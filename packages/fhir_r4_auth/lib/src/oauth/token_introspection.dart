@@ -9,7 +9,8 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         ContentTypes,
         HttpHeaders,
         NetworkException,
-        OAuthParameters;
+        OAuthParameters,
+        assertSecureAuthUrl;
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 
@@ -174,10 +175,18 @@ class TokenIntrospector {
     required this.clientId,
     this.clientSecret,
     this.useBasicAuth = true,
+    this.allowInsecureConnections = false,
     http.Client? httpClient,
     Logger? logger,
   })  : _httpClient = httpClient ?? http.Client(),
-        _logger = logger ?? Logger('TokenIntrospector');
+        _logger = logger ?? Logger('TokenIntrospector') {
+    // The token is sent to this endpoint — it must be TLS-protected.
+    assertSecureAuthUrl(
+      introspectionEndpoint,
+      field: 'introspectionEndpoint',
+      allowInsecure: allowInsecureConnections,
+    );
+  }
 
   /// Token introspection endpoint URL
   final Uri introspectionEndpoint;
@@ -190,6 +199,10 @@ class TokenIntrospector {
 
   /// Use HTTP Basic auth for client credentials
   final bool useBasicAuth;
+
+  /// Allow a plaintext (non-HTTPS) introspection endpoint. Defaults to `false`;
+  /// loopback hosts are always permitted for local development.
+  final bool allowInsecureConnections;
 
   final http.Client _httpClient;
   final Logger _logger;

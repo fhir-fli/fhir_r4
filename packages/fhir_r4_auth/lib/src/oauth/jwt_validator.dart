@@ -12,10 +12,12 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         NetworkException,
         SecurityException,
         SecurityViolationType,
-        assertSecureAuthUrl;
+        assertSecureAuthUrl,
+        constantTimeEquals;
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 import 'package:logging/logging.dart';
+import 'package:uuid/uuid.dart';
 
 /// JWT validator for secure token verification with JWK/JWKS support
 class JwtValidator {
@@ -48,6 +50,28 @@ class JwtValidator {
   final http.Client _httpClient;
   final Logger _logger;
 
+  /// Signature algorithms accepted during verification.
+  ///
+  /// `none` is deliberately excluded — an unsigned token must never be treated
+  /// as verified. Symmetric (`HS*`) algorithms are included for the shared-
+  /// secret path; the JWKS/PEM paths use the asymmetric families.
+  static const Set<String> _allowedAlgorithms = <String>{
+    'HS256', 'HS384', 'HS512', //
+    'RS256', 'RS384', 'RS512', //
+    'ES256', 'ES384', 'ES512', //
+    'PS256', 'PS384', 'PS512', //
+  };
+
+  /// JOSE header parameters that embed or reference a key. An attacker can set
+  /// these to point verification at a key they control, so we reject any token
+  /// that carries them and rely solely on our configured trust anchors.
+  static const Set<String> _forbiddenHeaderParams = <String>{
+    'jwk',
+    'jku',
+    'x5u',
+    'x5c',
+  };
+
   /// Cache for JWKS keysets
   final Map<String, JsonWebKeyStore> _jwksCache = {};
 
@@ -69,6 +93,10 @@ class JwtValidator {
   }) async {
     try {
       _logger.fine('Validating JWT token');
+
+      // Reject dangerous headers (alg:none, embedded/attacker-referenced keys)
+      // before doing anything else with the token.
+      _assertSafeHeader(token);
 
       JsonWebToken jwt;
 
@@ -278,6 +306,55 @@ class JwtValidator {
     );
   }
 
+  /// Reject a JWT whose header is unsafe before any signature processing.
+  ///
+  /// Enforces an algorithm allowlist (notably excluding `none`) and rejects
+  /// headers that carry their own key material or a key reference
+  /// (`jwk`/`jku`/`x5u`/`x5c`), which an attacker could use to have the token
+  /// verified against a key they control.
+  void _assertSafeHeader(String token) {
+    final parts = token.split('.');
+    if (parts.length < 2) {
+      throw const SecurityException(
+        'Malformed JWT',
+        details: 'Token does not have a header and payload segment.',
+        securityViolationType: SecurityViolationType.invalidJwtSignature,
+      );
+    }
+
+    final Map<String, dynamic> header;
+    try {
+      header = jsonDecode(
+        utf8.decode(base64Url.decode(base64Url.normalize(parts[0]))),
+      ) as Map<String, dynamic>;
+    } catch (e) {
+      throw SecurityException(
+        'Malformed JWT header',
+        details: e.toString(),
+        securityViolationType: SecurityViolationType.invalidJwtSignature,
+      );
+    }
+
+    for (final param in _forbiddenHeaderParams) {
+      if (header.containsKey(param)) {
+        throw SecurityException(
+          'Untrusted key material in JWT header',
+          details: 'Header parameter "$param" is not permitted.',
+          securityViolationType: SecurityViolationType.tokenTampered,
+        );
+      }
+    }
+
+    final alg = header['alg'] as String?;
+    if (alg == null || !_allowedAlgorithms.contains(alg)) {
+      throw SecurityException(
+        'Disallowed JWT algorithm',
+        details: 'Algorithm "$alg" is not in the accepted allowlist.',
+        securityViolationType: SecurityViolationType.invalidJwtSignature,
+      );
+    }
+  }
+
   /// Get algorithm from JWT header
   String _getAlgorithmFromToken(String token) {
     try {
@@ -351,7 +428,7 @@ class JwtValidator {
 
     // Validate nonce
     if (expectedNonce != null) {
-      if (claims.nonce != expectedNonce) {
+      if (!constantTimeEquals(claims.nonce ?? '', expectedNonce)) {
         throw const SecurityException(
           'Invalid nonce - possible replay attack',
           details: 'Nonce mismatch',
@@ -399,7 +476,7 @@ class JwtValidator {
       // Base64url encode (without padding)
       final expectedHash = base64Url.encode(leftmostBytes).replaceAll('=', '');
 
-      final isValid = expectedHash == atHash;
+      final isValid = constantTimeEquals(expectedHash, atHash);
 
       if (!isValid) {
         _logger.warning(
@@ -436,7 +513,9 @@ class JwtValidator {
       'aud': audience,
       'iat': now.millisecondsSinceEpoch ~/ 1000,
       'exp': exp.millisecondsSinceEpoch ~/ 1000,
-      'jti': jwtId ?? DateTime.now().millisecondsSinceEpoch.toString(),
+      // jti must be unique/unpredictable to prevent assertion replay; a random
+      // UUID is used rather than a timestamp (which can collide/be guessed).
+      'jti': jwtId ?? const Uuid().v4(),
     });
 
     // Create key from PEM

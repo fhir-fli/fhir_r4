@@ -25,7 +25,8 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         SmartTokenResponse,
         TimeoutReason,
         TokenIntrospector,
-        WebAuthenticator;
+        WebAuthenticator,
+        assertSecureAuthUrl;
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 
@@ -131,6 +132,15 @@ class SmartFhirClient extends FhirAuthClient {
     }
 
     final sc = smartConfig!;
+
+    // PKCE is mandatory for public clients in the SMART authorization code
+    // flow; a public client must never be able to silently disable it.
+    if (sc.isPublicClient && !sc.enablePkce) {
+      throw const ConfigurationException(
+        'PKCE is required for public SMART clients',
+        configurationField: 'enablePkce',
+      );
+    }
 
     // Get endpoints if not configured
     var authEndpoint = sc.authorizeUrl;
@@ -403,9 +413,16 @@ class SmartFhirClient extends FhirAuthClient {
   Future<Map<String, dynamic>> _discoverEndpoints() async {
     _logger.fine('Discovering SMART endpoints');
 
-    // Try .well-known/smart-configuration first
+    // Try .well-known/smart-configuration first. The discovery document is the
+    // root of trust for every OAuth endpoint, so it MUST be fetched over TLS —
+    // otherwise a network attacker could substitute malicious endpoints.
     final metadataUrl =
         Uri.parse('${config.fhirBaseUrl}/.well-known/smart-configuration');
+    assertSecureAuthUrl(
+      metadataUrl,
+      field: 'fhirBaseUrl (SMART discovery)',
+      allowInsecure: config.allowInsecureConnections,
+    );
 
     try {
       final response = await _httpClient.get(metadataUrl);
@@ -472,8 +489,15 @@ class SmartFhirClient extends FhirAuthClient {
   Future<Map<String, dynamic>> _discoverFromCapabilityStatement() async {
     _logger.fine('Fetching CapabilityStatement for endpoint discovery');
 
+    final metadataUrl = Uri.parse('${config.fhirBaseUrl}/metadata');
+    assertSecureAuthUrl(
+      metadataUrl,
+      field: 'fhirBaseUrl (CapabilityStatement discovery)',
+      allowInsecure: config.allowInsecureConnections,
+    );
+
     final response = await _httpClient.get(
-      Uri.parse('${config.fhirBaseUrl}/metadata'),
+      metadataUrl,
       headers: <String, String>{'Accept': 'application/fhir+json'},
     );
 
@@ -668,6 +692,7 @@ class SmartFhirClient extends FhirAuthClient {
       introspectionEndpoint: _introspectionEndpoint!,
       clientId: config.clientId,
       clientSecret: config.clientSecret,
+      allowInsecureConnections: config.allowInsecureConnections,
       httpClient: _httpClient,
       logger: _logger,
     );

@@ -44,8 +44,14 @@ abstract class FhirAuthClient extends http.BaseClient {
   /// Current token response
   SmartTokenResponse? _currentTokens;
 
-  /// Lock for token refresh to prevent concurrent refreshes
-  final _refreshLock = Completer<void>()..complete();
+  /// The in-flight refresh operation, if one is running.
+  ///
+  /// Concurrent callers await this same future instead of starting their own
+  /// refresh, so a burst of expired-token requests triggers exactly one token
+  /// exchange. This matters with refresh-token rotation: parallel refreshes
+  /// would each present the same refresh token, and the second would be
+  /// rejected (and can invalidate the whole token family).
+  Future<void>? _refreshInFlight;
 
   /// Get FHIR base URL
   FhirUri get fhirBaseUrl => config.fhirBaseUrl;
@@ -96,46 +102,43 @@ abstract class FhirAuthClient extends http.BaseClient {
   /// Hook for subclasses to handle logout
   Future<void> onLogout() async {}
 
-  /// Refresh the access token
-  Future<void> refreshToken() async {
-    // Prevent concurrent refreshes
-    if (!_refreshLock.isCompleted) {
-      await _refreshLock.future;
-      return;
+  /// Refresh the access token.
+  ///
+  /// Concurrent calls are coalesced: the first starts the refresh and every
+  /// other caller awaits the same operation.
+  Future<void> refreshToken() {
+    // Assigned synchronously before any await, so concurrent callers that
+    // arrive before this refresh completes observe the same in-flight future.
+    final existing = _refreshInFlight;
+    if (existing != null) return existing;
+
+    final op = _performRefresh();
+    _refreshInFlight = op;
+    return op.whenComplete(() => _refreshInFlight = null);
+  }
+
+  Future<void> _performRefresh() async {
+    logger.fine('Refreshing access token');
+
+    final current = _currentTokens ?? await tokenStorage.loadTokens();
+
+    // Perform refresh - subclass handles the strategy
+    // (backend services re-authenticate; SMART uses refresh token)
+    final refreshTokenValue = current?.refreshToken;
+    var newTokens = await performTokenRefresh(refreshTokenValue ?? '');
+
+    // Per RFC 6749 §6, the authorization server MAY omit refresh_token from a
+    // refresh response, in which case the client keeps using the existing one.
+    // Carry it forward so we don't strand ourselves without a refresh token.
+    if (newTokens.refreshToken == null && current?.refreshToken != null) {
+      newTokens = newTokens.copyWith(refreshToken: current!.refreshToken);
     }
 
-    final lock = Completer<void>();
-    // Fire-and-forget: chain the new lock to the prior one's completion
-    // without blocking this refresh on it.
-    unawaited(_refreshLock.future.then((_) => lock.complete()));
+    // storeTokens updates in-memory state, secure storage, and auth state (and
+    // lets subclasses refresh their own token caches).
+    await storeTokens(newTokens);
 
-    try {
-      logger.fine('Refreshing access token');
-
-      final current = _currentTokens ?? await tokenStorage.loadTokens();
-
-      // Perform refresh - subclass handles the strategy
-      // (backend services re-authenticate; SMART uses refresh token)
-      final refreshTokenValue = current?.refreshToken;
-      final newTokens = await performTokenRefresh(refreshTokenValue ?? '');
-
-      // Update tokens
-      _currentTokens = newTokens;
-      await tokenStorage.saveTokens(newTokens);
-
-      // Update auth state
-      await tokenStorage.saveAuthState(
-        AuthState(
-          tokenResponse: newTokens,
-          lastAuthenticated: DateTime.now(),
-          authMethod: config.authMethod,
-        ),
-      );
-
-      logger.fine('Token refresh successful');
-    } finally {
-      lock.complete();
-    }
+    logger.fine('Token refresh successful');
   }
 
   /// Perform the actual token refresh - implemented by subclass
@@ -162,13 +165,32 @@ abstract class FhirAuthClient extends http.BaseClient {
     return _currentTokens?.accessToken;
   }
 
+  /// Whether the bearer token may be attached to a request for [url].
+  ///
+  /// The access token is bound to the configured FHIR server (its OAuth
+  /// audience). Only requests to that same origin (scheme + host + port) get
+  /// the `Authorization` header, so the token can never leak to a different
+  /// host if the client is pointed at (or redirected to) one.
+  bool _isFhirServerOrigin(Uri url) {
+    final base = Uri.parse(config.fhirBaseUrl.toString());
+    return url.scheme == base.scheme &&
+        url.host == base.host &&
+        url.port == base.port;
+  }
+
   /// Send HTTP request with authentication
   @override
   Future<http.StreamedResponse> send(http.BaseRequest request) async {
-    // Add authentication header
-    final token = await getAccessToken();
+    // Add authentication header, but only for the configured FHIR server.
+    final sameOrigin = _isFhirServerOrigin(request.url);
+    final token = sameOrigin ? await getAccessToken() : null;
     if (token != null) {
       request.headers[HttpHeaders.authorization] = 'Bearer $token';
+    } else if (!sameOrigin) {
+      logger.warning(
+        'Not attaching bearer token: request host ${request.url.host} does '
+        'not match the configured FHIR server ${config.fhirBaseUrl}',
+      );
     }
 
     // Add standard headers
@@ -182,7 +204,7 @@ abstract class FhirAuthClient extends http.BaseClient {
     var response = await innerClient.send(request);
 
     // Handle 401 Unauthorized - try to refresh/re-authenticate and retry once
-    if (response.statusCode == 401 && _currentTokens != null) {
+    if (response.statusCode == 401 && _currentTokens != null && sameOrigin) {
       logger.fine('Got 401, attempting token refresh');
 
       try {
