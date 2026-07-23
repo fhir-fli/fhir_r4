@@ -11,7 +11,8 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         JwtClaims,
         NetworkException,
         SecurityException,
-        SecurityViolationType;
+        SecurityViolationType,
+        assertSecureAuthUrl;
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 import 'package:logging/logging.dart';
@@ -25,6 +26,7 @@ class JwtValidator {
     this.issuer,
     this.audience,
     this.clockSkew = const Duration(seconds: 30),
+    this.allowInsecureConnections = false,
     http.Client? httpClient,
     Logger? logger,
   })  : _httpClient = httpClient ?? http.Client(),
@@ -38,6 +40,10 @@ class JwtValidator {
 
   /// Clock skew tolerance for time-based claims
   final Duration clockSkew;
+
+  /// Allow plaintext (non-HTTPS) JWKS URIs. Defaults to `false`; loopback
+  /// hosts are always permitted for local development.
+  final bool allowInsecureConnections;
 
   final http.Client _httpClient;
   final Logger _logger;
@@ -59,6 +65,7 @@ class JwtValidator {
     bool validateExpiry = true,
     bool validateNotBefore = true,
     bool validateAtHash = true,
+    bool allowUnverified = false,
   }) async {
     try {
       _logger.fine('Validating JWT token');
@@ -75,10 +82,25 @@ class JwtValidator {
       } else if (jwksUri != null) {
         // Fetch and verify with JWKS
         jwt = await _verifyWithJwks(token, jwksUri);
-      } else {
-        // Decode without verification (NOT RECOMMENDED for production)
-        _logger.warning('Decoding JWT without signature verification');
+      } else if (allowUnverified) {
+        // No key material available. The caller has explicitly accepted an
+        // unverified decode — e.g. an id_token received directly from the
+        // token endpoint over TLS, where OpenID Connect Core §3.1.3.7 permits
+        // relying on the TLS channel in place of the signature. Claims
+        // (iss/aud/nonce/exp) are still validated below.
+        _logger.warning(
+          'Decoding JWT without signature verification (no JWKS/PEM/secret '
+          'provided and allowUnverified=true)',
+        );
         jwt = JsonWebToken.unverified(token);
+      } else {
+        // Fail closed: refuse to accept a token we cannot verify.
+        throw const SecurityException(
+          'Cannot verify JWT signature',
+          details: 'No key material (JWKS URI, PEM public key, or shared '
+              'secret) was provided and allowUnverified is false.',
+          securityViolationType: SecurityViolationType.invalidJwtSignature,
+        );
       }
 
       // Parse claims
@@ -184,9 +206,15 @@ class JwtValidator {
       }
     }
 
-    // Fetch JWKS
+    // Fetch JWKS (over TLS)
+    final jwksUrl = Uri.parse(jwksUri);
+    assertSecureAuthUrl(
+      jwksUrl,
+      field: 'jwksUri',
+      allowInsecure: allowInsecureConnections,
+    );
     _logger.fine('Fetching JWKS from $jwksUri');
-    final response = await _httpClient.get(Uri.parse(jwksUri));
+    final response = await _httpClient.get(jwksUrl);
 
     if (response.statusCode != 200) {
       throw NetworkException(

@@ -16,6 +16,7 @@ class AuthConfig {
     this.scopes = const <String>[],
     this.clientSecret,
     this.authMethod = ClientAuthMethod.none,
+    this.allowInsecureConnections = false,
   });
 
   /// Create from JSON
@@ -29,6 +30,8 @@ class AuthConfig {
       authMethod: ClientAuthMethod.values.byName(
         json['authMethod'] as String? ?? 'none',
       ),
+      allowInsecureConnections:
+          json['allowInsecureConnections'] as bool? ?? false,
     );
   }
 
@@ -50,21 +53,35 @@ class AuthConfig {
   /// Client authentication method
   final ClientAuthMethod authMethod;
 
+  /// Allow plaintext (non-HTTPS) OAuth/OIDC endpoints.
+  ///
+  /// Defaults to `false`, which enforces TLS on all OAuth endpoints (loopback
+  /// hosts are always permitted for local development). Set to `true` only in
+  /// controlled development/test environments.
+  final bool allowInsecureConnections;
+
   /// Check if this is a public client
   bool get isPublicClient => authMethod == ClientAuthMethod.none;
 
   /// Check if this is a confidential client
   bool get isConfidentialClient => !isPublicClient;
 
-  /// Convert to JSON
-  Map<String, dynamic> toJson() {
+  /// Convert to JSON.
+  ///
+  /// Secret material (`clientSecret`, and the private key on
+  /// [BackendServiceConfig]) is omitted unless [includeSecrets] is `true`.
+  /// This prevents secrets from leaking through incidental serialization
+  /// (logging, analytics, generic persistence). Pass `includeSecrets: true`
+  /// only when deliberately persisting the config to secure storage.
+  Map<String, dynamic> toJson({bool includeSecrets = false}) {
     return {
       'fhirBaseUrl': fhirBaseUrl.toString(),
       'clientId': clientId,
       'redirectUri': redirectUri.toString(),
       'scopes': scopes,
-      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (includeSecrets && clientSecret != null) 'clientSecret': clientSecret,
       'authMethod': authMethod.name,
+      'allowInsecureConnections': allowInsecureConnections,
     };
   }
 }
@@ -80,6 +97,7 @@ class SmartConfig extends AuthConfig {
     super.scopes,
     super.clientSecret,
     super.authMethod,
+    super.allowInsecureConnections,
     this.launchType = LaunchType.standalone,
     this.launchToken,
     this.iss,
@@ -107,6 +125,7 @@ class SmartConfig extends AuthConfig {
       scopes: base.scopes,
       clientSecret: base.clientSecret,
       authMethod: base.authMethod,
+      allowInsecureConnections: base.allowInsecureConnections,
       launchType: LaunchType.values.byName(
         json['launchType'] as String? ?? 'standalone',
       ),
@@ -296,9 +315,9 @@ class SmartConfig extends AuthConfig {
   }
 
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({bool includeSecrets = false}) {
     return {
-      ...super.toJson(),
+      ...super.toJson(includeSecrets: includeSecrets),
       'launchType': launchType.name,
       if (launchToken != null) 'launchToken': launchToken,
       if (iss != null) 'iss': iss,
@@ -328,6 +347,7 @@ class BackendServiceConfig extends AuthConfig {
     required this.privateKey,
     required this.tokenUrl,
     super.scopes,
+    super.allowInsecureConnections,
     this.algorithm = 'RS384',
     this.keyId,
     this.tokenLifetime = const Duration(minutes: 5),
@@ -344,6 +364,8 @@ class BackendServiceConfig extends AuthConfig {
       privateKey: json['privateKey'] as String,
       tokenUrl: Uri.parse(json['tokenUrl'] as String),
       scopes: (json['scopes'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+      allowInsecureConnections:
+          json['allowInsecureConnections'] as bool? ?? false,
       algorithm: json['algorithm'] as String? ?? 'RS384',
       keyId: json['keyId'] as String?,
       tokenLifetime: json['tokenLifetime'] != null
@@ -368,10 +390,10 @@ class BackendServiceConfig extends AuthConfig {
   final Duration tokenLifetime;
 
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({bool includeSecrets = false}) {
     return {
-      ...super.toJson(),
-      'privateKey': privateKey,
+      ...super.toJson(includeSecrets: includeSecrets),
+      if (includeSecrets) 'privateKey': privateKey,
       'tokenUrl': tokenUrl.toString(),
       'algorithm': algorithm,
       if (keyId != null) 'keyId': keyId,
