@@ -139,8 +139,7 @@ void main() {
       expect(
         () => OAuthFlow(
           clientId: 'c',
-          authorizationEndpoint:
-              Uri.parse('http://auth.example.com/authorize'),
+          authorizationEndpoint: Uri.parse('http://auth.example.com/authorize'),
           tokenEndpoint: Uri.parse('http://auth.example.com/token'),
           redirectUri: Uri.parse('https://app.example.com/cb'),
         ),
