@@ -17,7 +17,8 @@ import 'package:fhir_r4_auth/fhir_r4_auth.dart'
         SecurityException,
         SecurityViolationType,
         SmartTokenResponse,
-        StateManager;
+        StateManager,
+        assertSecureAuthUrl;
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 
@@ -37,6 +38,10 @@ class OAuthFlow {
     this.useBasicAuth = true,
     this.enablePkce = true,
     this.enableOpenId = true,
+    this.jwksUri,
+    this.expectedIssuer,
+    String? expectedAudience,
+    this.allowInsecureConnections = false,
     http.Client? httpClient,
     PkceManager? pkceManager,
     StateManager? stateManager,
@@ -46,10 +51,28 @@ class OAuthFlow {
   })  : _httpClient = httpClient ?? http.Client(),
         _pkceManager = pkceManager ?? PkceManager(),
         _stateManager = stateManager ?? StateManager(),
-        _jwtValidator = jwtValidator ?? JwtValidator(),
+        _jwtValidator = jwtValidator ??
+            JwtValidator(
+              issuer: expectedIssuer,
+              // An OpenID Connect id_token's audience is the client_id.
+              audience: expectedAudience ?? clientId,
+              allowInsecureConnections: allowInsecureConnections,
+            ),
         _rateLimiter =
             rateLimiter ?? RateLimiter(config: RateLimitConfig.tokenEndpoint()),
-        _logger = logger ?? Logger('OAuthFlow');
+        _logger = logger ?? Logger('OAuthFlow') {
+    // Enforce TLS on the OAuth endpoints up front (loopback allowed for dev).
+    assertSecureAuthUrl(
+      authorizationEndpoint,
+      field: 'authorizationEndpoint',
+      allowInsecure: allowInsecureConnections,
+    );
+    assertSecureAuthUrl(
+      tokenEndpoint,
+      field: 'tokenEndpoint',
+      allowInsecure: allowInsecureConnections,
+    );
+  }
 
   /// OAuth client ID
   final String clientId;
@@ -80,6 +103,20 @@ class OAuthFlow {
 
   /// Whether to include OpenID Connect nonce in authorization request
   final bool enableOpenId;
+
+  /// JWKS URI used to verify the id_token signature.
+  ///
+  /// When null, no key material is available and the id_token signature is not
+  /// checked (permitted for the code flow over TLS per OIDC Core §3.1.3.7);
+  /// issuer/audience/nonce/at_hash/expiry are still validated.
+  final String? jwksUri;
+
+  /// Expected id_token issuer (`iss`). When null, the issuer is not checked.
+  final String? expectedIssuer;
+
+  /// Allow plaintext (non-HTTPS) OAuth/OIDC endpoints. Defaults to `false`;
+  /// loopback hosts are always permitted for local development.
+  final bool allowInsecureConnections;
 
   final http.Client _httpClient;
   final PkceManager _pkceManager;
@@ -424,6 +461,12 @@ class OAuthFlow {
   }) async {
     _logger.fine('Revoking token');
 
+    assertSecureAuthUrl(
+      revocationEndpoint,
+      field: 'revocationEndpoint',
+      allowInsecure: allowInsecureConnections,
+    );
+
     final body = <String, String>{
       'token': token,
       'token_type_hint': tokenTypeHint,
@@ -472,8 +515,12 @@ class OAuthFlow {
     try {
       await _jwtValidator.validateToken(
         idToken,
+        jwksUri: jwksUri,
         expectedNonce: expectedNonce,
         accessToken: accessToken,
+        // Only accept an unverified decode when we genuinely have no JWKS to
+        // verify against. When a JWKS URI is known, the signature must verify.
+        allowUnverified: jwksUri == null,
       );
 
       _logger.fine('ID token validated successfully');

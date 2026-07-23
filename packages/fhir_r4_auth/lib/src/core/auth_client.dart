@@ -239,6 +239,17 @@ abstract class FhirAuthClient extends http.BaseClient {
     return _currentTokens ??= await tokenStorage.loadTokens();
   }
 
+  /// Purge the in-memory access/refresh tokens without touching persistent
+  /// storage.
+  ///
+  /// Called when a session times out so the client immediately stops
+  /// attaching the (now-invalid) bearer token to outgoing requests. Storage is
+  /// cleared separately by the session manager. Subclasses that cache their
+  /// own token copy should override this and call the `super` implementation.
+  void clearInMemoryTokens() {
+    _currentTokens = null;
+  }
+
   /// Get patient context if available
   String? get patientContext => _currentTokens?.patientContext;
 

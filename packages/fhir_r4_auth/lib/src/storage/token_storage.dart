@@ -53,9 +53,15 @@ class SecureTokenStorage implements TokenStorage {
   /// Data is automatically migrated to custom ciphers
   static const AndroidOptions _androidOptions = AndroidOptions.defaultOptions;
 
-  /// iOS-specific options for secure storage
+  /// iOS-specific options for secure storage.
+  ///
+  /// `first_unlock_this_device` keeps credentials available after the first
+  /// unlock following a boot, but pins them to this device: the keychain item
+  /// is excluded from iCloud Keychain sync and from encrypted backups restored
+  /// onto a different device. For PHI/token material this is the correct
+  /// default — it prevents credentials from leaving the device.
   static const IOSOptions _iosOptions = IOSOptions(
-    accessibility: KeychainAccessibility.first_unlock,
+    accessibility: KeychainAccessibility.first_unlock_this_device,
   );
 
   /// Generate storage key with prefix

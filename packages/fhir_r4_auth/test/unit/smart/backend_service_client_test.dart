@@ -103,7 +103,8 @@ void main() {
         tokenLifetime: const Duration(minutes: 10),
       );
 
-      final json = original.toJson();
+      // Secrets are only serialized when explicitly requested.
+      final json = original.toJson(includeSecrets: true);
       final restored = BackendServiceConfig.fromJson(json);
 
       expect(
