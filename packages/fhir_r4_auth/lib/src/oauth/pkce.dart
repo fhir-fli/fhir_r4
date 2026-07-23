@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show CodeChallengeMethod, OAuthParameters;
+    show CodeChallengeMethod, OAuthParameters, constantTimeEquals;
 
 /// PKCE generator for OAuth 2.0 authorization code flow
 class PkceManager {
@@ -106,7 +106,7 @@ class PkceManager {
     final expectedChallenge =
         base64Url.encode(digest.bytes).replaceAll('=', '');
 
-    return expectedChallenge == challenge;
+    return constantTimeEquals(expectedChallenge, challenge);
   }
 
   /// Reset the PKCE parameters (generates new ones on next access)

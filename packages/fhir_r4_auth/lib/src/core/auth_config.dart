@@ -3,7 +3,12 @@ library;
 
 import 'package:fhir_r4/fhir_r4.dart' show FhirUri;
 import 'package:fhir_r4_auth/fhir_r4_auth.dart'
-    show ClientAuthMethod, LaunchType, SmartCapability;
+    show
+        ClientAuthMethod,
+        LaunchType,
+        SecurityException,
+        SecurityViolationType,
+        SmartCapability;
 
 /// Base configuration for FHIR authentication
 class AuthConfig {
@@ -159,6 +164,14 @@ class SmartConfig extends AuthConfig {
   }
 
   /// Create from launch parameters (e.g., from URL query)
+  ///
+  /// SECURITY: In an EHR launch the `iss` (issuer / FHIR server) comes from the
+  /// launch URL, which is attacker-controllable. A malicious launcher can point
+  /// the app at a hostile server to phish tokens and data ("iss spoofing").
+  /// Always pass [allowedIssuers] with the set of FHIR servers you trust; the
+  /// launch is rejected when `iss` is not among them. Omitting [allowedIssuers]
+  /// preserves the legacy (insecure) behavior of trusting any issuer and is
+  /// strongly discouraged in production.
   factory SmartConfig.fromLaunchParameters({
     required Map<String, String> parameters,
     required Uri currentUrl,
@@ -166,10 +179,23 @@ class SmartConfig extends AuthConfig {
     Uri? redirectUri,
     List<String>? scopes,
     String? clientSecret,
+    Set<String>? allowedIssuers,
   }) {
     // Extract SMART parameters
     final iss = parameters['iss'];
     final launch = parameters['launch'];
+
+    // Reject an untrusted issuer before it is ever used as the FHIR base URL
+    // or token audience.
+    if (allowedIssuers != null && allowedIssuers.isNotEmpty) {
+      if (iss == null || !allowedIssuers.contains(iss)) {
+        throw SecurityException(
+          'Untrusted SMART launch issuer',
+          details: 'The launch "iss" ($iss) is not in the allowed issuer list.',
+          securityViolationType: SecurityViolationType.invalidIssuer,
+        );
+      }
+    }
 
     // Determine launch type
     final launchType = launch != null ? LaunchType.ehr : LaunchType.standalone;
