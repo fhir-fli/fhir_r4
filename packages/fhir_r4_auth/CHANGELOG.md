@@ -1,5 +1,19 @@
 # fhir_r4_auth
 
+## [0.7.2]
+
+Second security hardening pass (library code only; fhir_r4 core unchanged at ^0.7.0):
+
+- Fixed a broken concurrency guard where the "prevent concurrent refreshes" lock was permanently completed and did nothing — parallel refreshes are now coalesced into a single token exchange. This prevents refresh-token-rotation servers from rejecting a racing refresh and invalidating the token family.
+- Refresh no longer discards the refresh token when the server omits it from a refresh response (RFC 6749 §6) — the existing refresh token is carried forward instead of being nulled out.
+- TLS is now enforced on the SMART discovery documents (`.well-known/smart-configuration` and `/metadata`) and on the token introspection endpoint, closing the remaining plaintext paths (loopback still allowed; `allowInsecureConnections` opt-out).
+- The bearer token is now origin-bound: it is attached only to requests whose scheme/host/port match the configured FHIR server, so it cannot leak to another host.
+- `SmartConfig.fromLaunchParameters` accepts an `allowedIssuers` set and rejects an EHR-launch `iss` that is not allowlisted (mitigates SMART "iss spoofing" token theft).
+- JWT verification enforces an algorithm allowlist (rejects `alg: none` and unknown algorithms) and rejects tokens carrying their own key material or key references (`jwk`/`jku`/`x5u`/`x5c`).
+- Client-assertion JWTs (`createSignedJwt`) now use a random UUID `jti` instead of a timestamp.
+- PKCE can no longer be disabled for a public SMART client.
+- `at_hash`, nonce, and PKCE challenge comparisons now use a constant-time equality check.
+
 ## [0.7.1]
 
 Security hardening of the SMART on FHIR auth flow (auth-only patch; fhir_r4 core unchanged at ^0.7.0):
