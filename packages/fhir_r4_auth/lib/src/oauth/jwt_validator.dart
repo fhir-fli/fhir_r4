@@ -29,9 +29,11 @@ class JwtValidator {
     this.audience,
     this.clockSkew = const Duration(seconds: 30),
     this.allowInsecureConnections = false,
+    this.networkTimeout = const Duration(seconds: 30),
     http.Client? httpClient,
     Logger? logger,
   })  : _httpClient = httpClient ?? http.Client(),
+        _ownsHttpClient = httpClient == null,
         _logger = logger ?? Logger('JwtValidator');
 
   /// Expected issuer
@@ -47,7 +49,11 @@ class JwtValidator {
   /// hosts are always permitted for local development.
   final bool allowInsecureConnections;
 
+  /// Maximum time to wait for a JWKS fetch before failing.
+  final Duration networkTimeout;
+
   final http.Client _httpClient;
+  final bool _ownsHttpClient;
   final Logger _logger;
 
   /// Signature algorithms accepted during verification.
@@ -242,7 +248,7 @@ class JwtValidator {
       allowInsecure: allowInsecureConnections,
     );
     _logger.fine('Fetching JWKS from $jwksUri');
-    final response = await _httpClient.get(jwksUrl);
+    final response = await _httpClient.get(jwksUrl).timeout(networkTimeout);
 
     if (response.statusCode != 200) {
       throw NetworkException(
@@ -548,6 +554,12 @@ class JwtValidator {
     _jwksCache.clear();
     _jwksCacheExpiry.clear();
     _logger.fine('JWKS cache cleared');
+  }
+
+  /// Release the HTTP client used for JWKS fetches (if this validator owns it).
+  void dispose() {
+    if (_ownsHttpClient) _httpClient.close();
+    clearCache();
   }
 
   /// Get cache statistics (for monitoring)

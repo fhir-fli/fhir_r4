@@ -78,6 +78,9 @@ class SmartFhirClient extends FhirAuthClient {
   final Logger _logger;
   OAuthFlow? _oauthFlow;
 
+  /// Maximum time to wait for a discovery-document fetch before failing.
+  static const Duration _discoveryTimeout = Duration(seconds: 30);
+
   /// SMART capabilities from server
   List<SmartCapability>? _serverCapabilities;
 
@@ -425,7 +428,8 @@ class SmartFhirClient extends FhirAuthClient {
     );
 
     try {
-      final response = await _httpClient.get(metadataUrl);
+      final response =
+          await _httpClient.get(metadataUrl).timeout(_discoveryTimeout);
 
       if (response.statusCode == 200) {
         final metadata = jsonDecode(response.body) as Map<String, dynamic>;
@@ -499,7 +503,7 @@ class SmartFhirClient extends FhirAuthClient {
     final response = await _httpClient.get(
       metadataUrl,
       headers: <String, String>{'Accept': 'application/fhir+json'},
-    );
+    ).timeout(_discoveryTimeout);
 
     if (response.statusCode != 200) {
       throw NetworkException(

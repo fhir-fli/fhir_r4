@@ -42,6 +42,7 @@ class OAuthFlow {
     this.expectedIssuer,
     String? expectedAudience,
     this.allowInsecureConnections = false,
+    this.networkTimeout = const Duration(seconds: 30),
     http.Client? httpClient,
     PkceManager? pkceManager,
     StateManager? stateManager,
@@ -51,12 +52,14 @@ class OAuthFlow {
   })  : _httpClient = httpClient ?? http.Client(),
         _pkceManager = pkceManager ?? PkceManager(),
         _stateManager = stateManager ?? StateManager(),
+        _ownsJwtValidator = jwtValidator == null,
         _jwtValidator = jwtValidator ??
             JwtValidator(
               issuer: expectedIssuer,
               // An OpenID Connect id_token's audience is the client_id.
               audience: expectedAudience ?? clientId,
               allowInsecureConnections: allowInsecureConnections,
+              networkTimeout: networkTimeout,
             ),
         _rateLimiter =
             rateLimiter ?? RateLimiter(config: RateLimitConfig.tokenEndpoint()),
@@ -118,7 +121,12 @@ class OAuthFlow {
   /// loopback hosts are always permitted for local development.
   final bool allowInsecureConnections;
 
+  /// Maximum time to wait for each token/revocation HTTP call before failing,
+  /// so a hung or slow authorization server cannot block the flow forever.
+  final Duration networkTimeout;
+
   final http.Client _httpClient;
+  final bool _ownsJwtValidator;
   final PkceManager _pkceManager;
   final StateManager _stateManager;
   final JwtValidator _jwtValidator;
@@ -256,11 +264,13 @@ class OAuthFlow {
     }
 
     // Make token request
-    final response = await _httpClient.post(
-      tokenEndpoint,
-      headers: headers,
-      body: body,
-    );
+    final response = await _httpClient
+        .post(
+          tokenEndpoint,
+          headers: headers,
+          body: body,
+        )
+        .timeout(networkTimeout);
 
     if (response.statusCode != 200) {
       _logger.severe('Token exchange failed: ${response.statusCode}');
@@ -336,11 +346,13 @@ class OAuthFlow {
       }
     }
 
-    final response = await _httpClient.post(
-      tokenEndpoint,
-      headers: headers,
-      body: body,
-    );
+    final response = await _httpClient
+        .post(
+          tokenEndpoint,
+          headers: headers,
+          body: body,
+        )
+        .timeout(networkTimeout);
 
     if (response.statusCode != 200) {
       _logger.severe('Token refresh failed: ${response.statusCode}');
@@ -418,11 +430,13 @@ class OAuthFlow {
       HttpHeaders.accept: 'application/json',
     };
 
-    final response = await _httpClient.post(
-      tokenEndpoint,
-      headers: headers,
-      body: body,
-    );
+    final response = await _httpClient
+        .post(
+          tokenEndpoint,
+          headers: headers,
+          body: body,
+        )
+        .timeout(networkTimeout);
 
     if (response.statusCode != 200) {
       _logger.severe('Client credentials grant failed: ${response.statusCode}');
@@ -487,11 +501,13 @@ class OAuthFlow {
     }
 
     try {
-      final response = await _httpClient.post(
-        revocationEndpoint,
-        headers: headers,
-        body: body,
-      );
+      final response = await _httpClient
+          .post(
+            revocationEndpoint,
+            headers: headers,
+            body: body,
+          )
+          .timeout(networkTimeout);
 
       if (response.statusCode == 200) {
         _logger.fine('Token revoked successfully');
@@ -548,6 +564,8 @@ class OAuthFlow {
   /// Clean up resources
   void dispose() {
     _httpClient.close();
+    // Only dispose the validator we created; a caller-supplied one is theirs.
+    if (_ownsJwtValidator) _jwtValidator.dispose();
     reset();
   }
 }

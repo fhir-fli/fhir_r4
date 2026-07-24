@@ -61,6 +61,16 @@ void main() {
   //
   //    For an EHR launch, build the config from the launch parameters with
   //    `SmartConfig.fromLaunchParameters(...)` instead of the constructor.
+  //    ALWAYS pass `allowedIssuers` there — the launch `iss` is attacker-
+  //    controllable, and the allowlist is what stops a hostile launcher from
+  //    pointing the app at a server that phishes tokens:
+  //
+  //      SmartConfig.fromLaunchParameters(
+  //        parameters: launchQueryParameters,
+  //        currentUrl: currentUrl,
+  //        clientId: 'my-fhir-app',
+  //        allowedIssuers: {'https://ehr.example.org/fhir'},
+  //      );
   print('\nReady. Call `await client.login()` to start the browser flow.');
   client.close();
 }
