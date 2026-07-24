@@ -176,6 +176,7 @@ class TokenIntrospector {
     this.clientSecret,
     this.useBasicAuth = true,
     this.allowInsecureConnections = false,
+    this.networkTimeout = const Duration(seconds: 30),
     http.Client? httpClient,
     Logger? logger,
   })  : _httpClient = httpClient ?? http.Client(),
@@ -203,6 +204,9 @@ class TokenIntrospector {
   /// Allow a plaintext (non-HTTPS) introspection endpoint. Defaults to `false`;
   /// loopback hosts are always permitted for local development.
   final bool allowInsecureConnections;
+
+  /// Maximum time to wait for the introspection HTTP call before failing.
+  final Duration networkTimeout;
 
   final http.Client _httpClient;
   final Logger _logger;
@@ -244,11 +248,13 @@ class TokenIntrospector {
       }
 
       // Make introspection request
-      final response = await _httpClient.post(
-        introspectionEndpoint,
-        headers: headers,
-        body: body,
-      );
+      final response = await _httpClient
+          .post(
+            introspectionEndpoint,
+            headers: headers,
+            body: body,
+          )
+          .timeout(networkTimeout);
 
       if (response.statusCode != 200) {
         _logger.severe('Token introspection failed: ${response.statusCode}');

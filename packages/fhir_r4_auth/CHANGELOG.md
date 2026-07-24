@@ -1,5 +1,13 @@
 # fhir_r4_auth
 
+## [0.7.3]
+
+Robustness hardening (library code only; fhir_r4 core unchanged at ^0.7.0):
+
+- All OAuth/OpenID Connect HTTP calls (token exchange, refresh, client-credentials grant, revocation, SMART discovery, JWKS fetch, token introspection) now enforce a 30-second network timeout (configurable via `networkTimeout`), so a hung or slow server can no longer block the auth flow indefinitely.
+- `JwtValidator` now releases the HTTP client it owns via `dispose()`, and `OAuthFlow.dispose()` disposes the validator it created — fixing a socket leak on JWKS-verifying flows.
+- Example updated to demonstrate the `allowedIssuers` allowlist for EHR launches.
+
 ## [0.7.2]
 
 Second security hardening pass (library code only; fhir_r4 core unchanged at ^0.7.0):
