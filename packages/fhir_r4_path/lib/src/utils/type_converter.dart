@@ -376,26 +376,26 @@ abstract class TypeConvertor {
     }
   }
 
-  /// Converts a [FhirBase] to [CodeableConcept], if possible
+  /// Converts a [FhirBase] to [CodeableConcept], if possible.
+  ///
+  /// Follows R4's `Base.castToCodeableConcept`, which accepts a
+  /// `CodeableConcept` and a `code`. R4 has no `string` branch — R5 added one,
+  /// so do not copy this method between versions. Java's third branch is over
+  /// `org.hl7.fhir.r4.elementmodel.Element`, the untyped element model, which
+  /// this port has no equivalent of: values here are always typed.
   static CodeableConcept? castToCodeableConcept(FhirBase? b) {
     if (b == null) {
       return null;
     }
-    throw UnimplementedError();
-
-    // if (b is CodeableConcept) {return b;}
-    // else if (b is Element) {
-    //   return ObjectConverter.readAsCodeableConcept((Element) b);
-    // } else if (b is FhirCode) {
-    //   CodeableConcept cc = new CodeableConcept();
-    //   cc.addCoding().setCode(((CodeType) b).asStringValue());
-    //   return cc;
-    // } else if (b is FhirString) {
-    //   CodeableConcept cc = new CodeableConcept();
-    //   cc.addCoding().setCode(((FhirString) b).asStringValue());
-    //   return cc;
-    // } else {throw  FHIRException(message:
-    // "Unable to convert a ${b.fhirType}  to a CodeableConcept"); }
+    if (b is CodeableConcept) {
+      return b;
+    } else if (b is FhirCode) {
+      return CodeableConcept(coding: <Coding>[Coding(code: b)]);
+    } else {
+      throw FHIRException(
+        message: 'Unable to convert a ${b.fhirType} to a CodeableConcept',
+      );
+    }
   }
 
   /// Converts a [FhirBase] to [CodeableReference], if possible
