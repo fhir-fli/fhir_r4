@@ -116,7 +116,7 @@ abstract class BulkRequest {
 
       if (initialResponse.statusCode == 200) {
         // Possibly an immediate final result
-        return _parseFinalResponse(initialResponse);
+        return await _parseFinalResponse(initialResponse);
       }
 
       // Otherwise, 202 -> we must poll
@@ -143,7 +143,7 @@ abstract class BulkRequest {
         return _failedHttp(pollResponse.statusCode, pollResponse);
       }
 
-      return _parseFinalResponse(pollResponse);
+      return await _parseFinalResponse(pollResponse);
     } finally {
       if (shouldCloseClient) {
         httpClient.close();
