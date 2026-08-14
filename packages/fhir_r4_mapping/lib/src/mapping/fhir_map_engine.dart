@@ -905,16 +905,18 @@ class FhirMapEngine {
       switch (src.listMode?.valueString) {
         case 'first':
           final bt = items.first;
-          items.clear();
-          items.add(bt);
+          items
+            ..clear()
+            ..add(bt);
         case 'not_first':
           if (items.isNotEmpty) {
             items.removeAt(0);
           }
         case 'last':
           final bt = items.last;
-          items.clear();
-          items.add(bt);
+          items
+            ..clear()
+            ..add(bt);
         case 'not_last':
           if (items.isNotEmpty) {
             items.removeLast();
