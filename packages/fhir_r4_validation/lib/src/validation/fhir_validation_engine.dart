@@ -26,14 +26,14 @@ class FhirValidationEngine {
     Client? client,
     StructureDefinition? structureDefinition,
   }) async {
+    // Only the decode belongs in the try. Validation itself used to sit in
+    // here too, returned without await, so its exceptions escaped the catch
+    // entirely — and awaiting it without moving it would have been worse,
+    // reporting a genuine validation failure as 'Failed to parse resource
+    // JSON'. The try now covers exactly what its message claims.
+    Map<String, dynamic> resourceMap;
     try {
-      final resourceMap =
-          json.decode(structureToValidate) as Map<String, dynamic>;
-      return validateFhirMap(
-        structureToValidate: resourceMap,
-        structureDefinition: structureDefinition,
-        client: client,
-      );
+      resourceMap = json.decode(structureToValidate) as Map<String, dynamic>;
     } catch (e) {
       final results = ValidationResults();
       return results
@@ -43,6 +43,11 @@ class FhirValidationEngine {
           Severity.error,
         );
     }
+    return validateFhirMap(
+      structureToValidate: resourceMap,
+      structureDefinition: structureDefinition,
+      client: client,
+    );
   }
 
   /// Validate a FHIR resource from a JSON map

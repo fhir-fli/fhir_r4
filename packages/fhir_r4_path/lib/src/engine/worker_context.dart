@@ -922,22 +922,24 @@ class WorkerContext implements IWorkerContext {
     ValueSet? valueSet,
   ) async {
     try {
-      // Validate locally if client-side validation is enabled
+      // Validate locally if client-side validation is enabled.
+      //
+      // Through the checker, so that the value set is actually consulted. This
+      // built the checker and then ignored it, validating the coding against
+      // its code system alone — so `Coding.memberOf(vs)` answered a question
+      // about the code system and never about `vs`: true for any valid code
+      // whether or not the value set listed it, and false whenever the code
+      // system was absent. The `CodeableConcept` path next door was already
+      // doing this correctly, which is why only the `Coding` form was wrong.
       if (options.useClient) {
         final checker = ValueSetChecker(
           options: options,
           valueSet: valueSet,
           context: this,
         );
-
-        final codeSystem = await fetchCodeSystem(coding.system?.primitiveValue);
-
-        if (codeSystem == null) {
-          return ValidationResult.error(
-            message: 'Code system not found: ${coding.system}',
-          );
-        }
-        return checker.validateCodeAgainstCodeSystem(coding, codeSystem);
+        return await checker.validateCode(
+          CodeableConcept(coding: <Coding>[coding]),
+        );
       }
 
       // Validate with server if server-side validation is enabled
