@@ -50,6 +50,13 @@ class ValueSetChecker {
     final errors = <String>[];
     final warnings = <String>[];
 
+    // The display the code system gives this code, carried out with the
+    // answer. The per-coding validation below already resolves it; dropping it
+    // here is what made `Coding.memberOf` correct and left every other caller
+    // of validateCodeWithCoding — the mapping engine among them — with codes
+    // that had lost their display.
+    String? display;
+
     if (!options.membershipOnly) {
       for (final coding in code.coding ?? <Coding>[]) {
         if (coding.system == null) {
@@ -77,8 +84,11 @@ class ValueSetChecker {
 
         if (!res.isOk) {
           errors.add(res.message ?? 'Unknown error');
-        } else if (res.message != null) {
-          warnings.add(res.message!);
+        } else {
+          display ??= res.display;
+          if (res.message != null) {
+            warnings.add(res.message!);
+          }
         }
       }
     }
@@ -99,9 +109,10 @@ class ValueSetChecker {
       return ValidationResult(
         severity: IssueSeverity.warning,
         message: warnings.join(', '),
-      );
+      )..display = display;
     } else {
-      return ValidationResult(severity: IssueSeverity.information);
+      return ValidationResult(severity: IssueSeverity.information)
+        ..display = display;
     }
   }
 
