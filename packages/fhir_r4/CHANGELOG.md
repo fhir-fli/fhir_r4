@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.8.0]
+
+- No code changes; version aligned with the fhir_r4 0.8.0 family release
+
 ## [0.7.0]
 
 - BREAKING: `MedicationrequestStatus` -> `MedicationRequestStatus` and `MessageheaderResponseRequest` -> `MessageHeaderResponseRequest` (with their `...Enum` and `...CopyWithImpl` companions) — these ValueSet-derived enum names came from miscased tokens in HL7's own spec data (GH fhir_r4#34). The old names remain available as deprecated typedef aliases and will be removed in a future release. Verified against the full spec input that these two were the only miscased generated names

@@ -1,5 +1,9 @@
 # fhir_r4_auth
 
+## [0.8.0]
+
+- No code changes; version aligned with the fhir_r4 0.8.0 family release
+
 ## [0.7.3]
 
 Robustness hardening (library code only; fhir_r4 core unchanged at ^0.7.0):

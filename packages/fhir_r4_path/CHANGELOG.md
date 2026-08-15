@@ -1,5 +1,12 @@
 # fhir_r4_path
 
+## [0.8.0]
+
+- BREAKING: `memberOf` now throws `PathEngineException` when the value set cannot be resolved, instead of returning an empty collection. The spec is explicit ("If the valueset cannot be resolved as a uri to a value set, an error is thrown"), and the old behavior made `where(code.memberOf(...)).count()` answer a confident `0` that a caller could not distinguish from a genuine none
+- BREAKING: `memberOf` now asks only whether the code is in the value set, not whether it is also valid in its own code system. A value set enumerating SNOMED concepts is answerable from the enumeration alone, and SNOMED is licensed — the wider question returned `false` offline for a code the value set plainly lists. The operator form (`memberOf(...)` as an operation) had both defects and now matches the function form
+- fhir_path ^0.14.0
+- fhir_r4 ^0.8.0
+
 ## [0.7.0]
 
 - BREAKING: `ClientLogger.logFile` (dart:io `File?`) -> `logFilePath` (`String?`), part of making the package web/WASM-compatible

@@ -1,5 +1,9 @@
 # fhir_r4_cds_hooks
 
+## [0.8.0]
+
+- No code changes; version aligned with the fhir_r4 0.8.0 family release
+
 ## [0.7.0]
 
 - Family release train: cores and companions released in lockstep at 0.7.0
