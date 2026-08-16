@@ -1,0 +1,20 @@
+include: ../../analysis_options.yaml
+
+analyzer:
+  errors:
+    # walkFhirPath is deliberately kept deprecated-but-supported forever, for
+    # years of caller code that still uses it (settled: it is never removed).
+    # This lint demands deleting deprecated APIs on breaking-version bumps, so
+    # it can never be satisfied here. It was suppressed with an ignore_for_file
+    # in walk_fhir_path.dart, but that only fires on breaking versions — on a
+    # patch release the ignore itself became an 'unnecessary_ignore' failure.
+    # Disabling the rule for this package is stable across both.
+    remove_deprecations_in_breaking_versions: ignore
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
