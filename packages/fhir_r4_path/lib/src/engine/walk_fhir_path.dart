@@ -1,8 +1,9 @@
 // walkFhirPath is intentionally kept deprecated-but-supported across breaking
 // (0.x minor) releases for backwards compatibility with years of caller code
-// that still uses it. Do not remove it — so this lint, which demands deleting
-// deprecated APIs on breaking-version bumps, is suppressed for this file.
-// ignore_for_file: remove_deprecations_in_breaking_versions
+// that still uses it. Do not remove it. The lint that demands deleting
+// deprecated APIs on breaking-version bumps is disabled for this package in
+// analysis_options.yaml — an inline ignore only applies on breaking versions
+// and is itself flagged as unnecessary on patch releases.
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 
