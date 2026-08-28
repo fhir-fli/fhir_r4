@@ -175,70 +175,70 @@ packages:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_at_rest:
     dependency: "direct overridden"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_at_rest"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_auth:
     dependency: "direct overridden"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_auth"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_bulk:
     dependency: "direct overridden"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_bulk"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_cds_hooks:
     dependency: "direct overridden"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_cds_hooks"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_cql:
     dependency: "direct overridden"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_cql"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_db:
     dependency: "direct overridden"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_db"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_mapping:
     dependency: "direct main"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_mapping"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   fhir_r4_path:
     dependency: "direct main"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_path"
       relative: false
     source: path
-    version: "0.8.1"
+    version: "0.9.0"
   fhir_r4_validation:
     dependency: "direct overridden"
     description:
       path: "/home/grey/dev/fhir/fhir_r4/packages/fhir_r4_validation"
       relative: false
     source: path
-    version: "0.8.0"
+    version: "0.9.0"
   file:
     dependency: transitive
     description:
