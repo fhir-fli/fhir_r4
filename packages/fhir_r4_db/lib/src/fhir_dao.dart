@@ -2291,6 +2291,37 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return matchingIds;
   }
 
+  /// The patient this resource is about, or null when it names none.
+  ///
+  /// Reads the reference search index rather than the resource itself: the
+  /// extraction already ran at save time, so this is one indexed row read.
+  ///
+  /// Only subject-of-care parameters count — `patient` and `subject`. A
+  /// resource can reference several patients: `Observation.performer` may be a
+  /// patient who reported their own reading, and `AllergyIntolerance.recorder`
+  /// may be one too. Naming any of those as the subject would answer "who
+  /// accessed this person's record" with someone who was merely mentioned in
+  /// it, which is worse than answering nothing.
+  Future<String?> subjectOfCare(String resourceType, String id) async {
+    if (resourceType == 'Patient') return id;
+
+    final rows = await (select(referenceSearchParameters)
+          ..where(
+            (tbl) =>
+                tbl.resourceType.equals(resourceType) &
+                tbl.id.equals(id) &
+                tbl.referenceResourceType.equals('Patient') &
+                tbl.searchName.isIn(const ['patient', 'subject']),
+          ))
+        .get();
+
+    for (final row in rows) {
+      final part = row.referenceIdPart;
+      if (part != null && part.isNotEmpty) return part;
+    }
+    return null;
+  }
+
   Future<Set<String>> _resolveHasParameter(
     String sourceResourceType,
     HasParameter hasParam,
