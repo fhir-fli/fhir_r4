@@ -743,7 +743,7 @@ class $StringSearchParametersTable extends StringSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   StringSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -1196,7 +1196,7 @@ class $TokenSearchParametersTable extends TokenSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   TokenSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -1762,7 +1762,7 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   ReferenceSearchParameter map(Map<String, dynamic> data,
       {String? tablePrefix}) {
@@ -2431,7 +2431,7 @@ class $DateSearchParametersTable extends DateSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   DateSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -2884,7 +2884,7 @@ class $NumberSearchParametersTable extends NumberSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   NumberSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -3350,7 +3350,7 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   QuantitySearchParameter map(Map<String, dynamic> data,
       {String? tablePrefix}) {
@@ -3884,7 +3884,7 @@ class $UriSearchParametersTable extends UriSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   UriSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -4323,7 +4323,7 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   CompositeSearchParameter map(Map<String, dynamic> data,
       {String? tablePrefix}) {
@@ -4779,7 +4779,7 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
 
   @override
   Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, paramIndex};
+      {resourceType, id, searchPath, searchName, paramIndex};
   @override
   SpecialSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';

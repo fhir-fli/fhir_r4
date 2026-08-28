@@ -2050,9 +2050,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       final query = select(quantitySearchParameters);
+      // searchName first, as every other matcher does. Without it a quantity
+      // parameter could only be found when its name happened to be the last
+      // segment of its path — which `value-quantity` never is, because its
+      // path is `Observation.value.ofType(Quantity)`. That is why the row was
+      // written correctly and the search still returned nothing.
       var whereCondition =
           quantitySearchParameters.resourceType.equals(resourceType) &
-              (quantitySearchParameters.searchPath
+              (quantitySearchParameters.searchName.equals(searchPath) |
+                  quantitySearchParameters.searchPath
                       .like('$resourceType.$searchPath') |
                   quantitySearchParameters.searchPath
                       .like('$resourceType.%.$searchPath'));
