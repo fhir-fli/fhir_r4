@@ -30,7 +30,14 @@ class CompositeSearchParameters extends Table {
   TextColumn get component2 => text()();
 
   @override
-  Set<Column> get primaryKey => {resourceType, id, searchPath, paramIndex};
+
+  /// searchName is part of the key: one FHIR path can back more than one
+  /// search parameter — Observation.code serves both `code` and
+  /// `combo-code` — and without it the second one collides with the first
+  /// on insert, so only one of them could ever be indexed.
+  @override
+  Set<Column> get primaryKey =>
+      {resourceType, id, searchPath, searchName, paramIndex};
 }
 
 /// Extension on [fhir.FhirBase] to extract composite search parameters.

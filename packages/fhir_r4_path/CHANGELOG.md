@@ -1,5 +1,9 @@
 # fhir_r4_path
 
+## [0.9.0]
+
+- No code changes; version aligned with the fhir_r4 0.9.0 family release
+
 ## [0.8.1]
 
 - Fixed: validating a `Coding` lost the code system's `display`. 0.8.0 routed `validateCodeWithCoding` through the value-set checker so that `Coding.memberOf` would actually consult the value set; the checker answered membership but dropped the display it had already resolved, so every other caller — the FHIR Mapping engine among them — produced codings with no display. The checker now carries the display out with the answer, and `memberOf` keeps its 0.8.0 semantics

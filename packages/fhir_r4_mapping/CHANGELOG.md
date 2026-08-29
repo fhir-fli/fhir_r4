@@ -1,5 +1,9 @@
 # fhir_r4_mapping
 
+## [0.9.0]
+
+- No code changes; version aligned with the fhir_r4 0.9.0 family release
+
 ## [0.8.0]
 
 - Carries the `memberOf` behavior change from fhir_r4_path ^0.8.0 — an invariant or expression using `memberOf` against a value set that cannot be resolved now throws rather than silently answering no. See the fhir_r4_path 0.8.0 entry

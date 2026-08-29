@@ -1,5 +1,12 @@
 # fhir_r4_db
 
+## [0.9.0]
+
+- Recovered 201 search parameters the generator had been dropping silently. Every one used an `as` cast in its FHIRPath expression, and the expression splitter did not strip the wrapping parentheses, so the parameter compiled to nothing and indexed nothing. `value-quantity`, `value-concept`, `medication` and Immunization `date` were among them, and reverse chaining with `_has` can now chain through them.
+- Search index tables now include `searchName` in their primary key. Without it a resource could hold only one parameter per path, so a second parameter reading the same element silently replaced the first. **Schema version 4 to 5**; existing databases migrate automatically on open.
+- Added `FhirDao.subjectOfCare`, which resolves any resource to the patient whose record it is by reading the reference search index. Only the subject-of-care parameters count, so a `performer` or `recorder` who happens to be a patient is never returned.
+- fhir_r4 ^0.9.0
+
 ## [0.8.0]
 
 - No code changes; version aligned with the fhir_r4 0.8.0 family release

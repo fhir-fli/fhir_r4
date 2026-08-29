@@ -3,7 +3,13 @@
 .packages
 build/
 pubspec_overrides.yaml
+# Application packages check their lock in (dart.dev): the lock is the only
+# record of what an app actually built against. Library packages leave it out.
 packages/**/pubspec.lock
+!packages/fhir_mapping_demo/pubspec.lock
+!packages/fhir_path_demo/pubspec.lock
+!packages/fhir_r4_auth/standalone_demo/pubspec.lock
+!packages/fhir_r4_auth/ehr_launch_demo/pubspec.lock
 
 # OS / editor files
 .DS_Store

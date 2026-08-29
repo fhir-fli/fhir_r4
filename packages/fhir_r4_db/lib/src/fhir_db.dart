@@ -36,7 +36,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -129,6 +129,35 @@ class FhirDb extends _$FhirDb {
               await customStatement(
                 'UPDATE $table SET last_updated = last_updated * 1000',
               );
+            }
+          }
+          if (from < 5) {
+            // searchName joins the primary key of every index table.
+            //
+            // One FHIR path can back more than one search parameter —
+            // Observation.code serves both `code` and `combo-code`, and the
+            // polymorphic value parameters (`value-quantity`,
+            // `value-concept`) share a path with each other. With searchName
+            // outside the key the second row collided with the first on
+            // insert, so only one of them could ever be indexed.
+            //
+            // Rows are preserved. Parameters that could not be indexed before
+            // appear for resources saved after this upgrade; existing
+            // resources need re-saving to pick them up, the same way a FHIR
+            // server reindexes after a SearchParameter is added.
+            final indexTables = <TableInfo<Table, dynamic>>[
+              stringSearchParameters,
+              tokenSearchParameters,
+              referenceSearchParameters,
+              dateSearchParameters,
+              numberSearchParameters,
+              quantitySearchParameters,
+              uriSearchParameters,
+              compositeSearchParameters,
+              specialSearchParameters,
+            ];
+            for (final table in indexTables) {
+              await m.alterTable(TableMigration(table));
             }
           }
         },

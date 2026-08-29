@@ -93,9 +93,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Account.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry in resource.subject?.where((e) {
-            final ref = e.reference?.toString().split('/') ?? [];
+            final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Patient';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -127,7 +127,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Account.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -173,13 +173,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ActivityDefinition _:
       // ActivityDefinition.relatedArtifact.where(type='composed-of').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'composed-of')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'composed-of')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -193,11 +194,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // ActivityDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ActivityDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ActivityDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ActivityDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ActivityDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ActivityDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ActivityDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -230,9 +285,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ActivityDefinition.relatedArtifact.where(type='depends-on').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'depends-on')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'depends-on')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -266,9 +321,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ActivityDefinition.relatedArtifact.where(type='derived-from').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'derived-from')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'derived-from')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -369,9 +424,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ActivityDefinition.relatedArtifact.where(type='predecessor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'predecessor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'predecessor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -420,9 +475,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ActivityDefinition.relatedArtifact.where(type='successor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'successor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'successor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -513,11 +568,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ActivityDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ActivityDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ActivityDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.AdministrableProductDefinition _:
       // AdministrableProductDefinition.device (reference)
       i = 0;
@@ -622,8 +695,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AdministrableProductDefinition.routeOfAdministration.code (token)
       i = 0;
       for (final entry in resource.routeOfAdministration
-              .map<fhir.CodeableConcept?>((e) => e.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -640,13 +713,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AdministrableProductDefinition.routeOfAdministration.targetSpecies.code (token)
       i = 0;
       for (final entry in resource.routeOfAdministration
-              .expand(
-                (e) =>
-                    e.targetSpecies ??
-                    <fhir.AdministrableProductDefinitionTargetSpecies>[],
-              )
-              .map<fhir.CodeableConcept?>((e) => e.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) =>
+                  e?.targetSpecies ??
+                  <fhir.AdministrableProductDefinitionTargetSpecies>[])
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -660,11 +731,12 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.AdverseEvent _:
       // AdverseEvent.actuality (token)
       i = 0;
       for (final entry
-          in resource.actuality.makeIterable<fhir.FhirCodeEnum>() ??
+          in resource.actuality?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -829,7 +901,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // AdverseEvent.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -846,8 +918,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AdverseEvent.suspectEntity.instance (reference)
       i = 0;
       for (final entry in resource.suspectEntity
-              ?.map<fhir.Reference?>((e) => e.instance)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.instance)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -861,6 +933,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.AllergyIntolerance _:
       // AllergyIntolerance.asserter (reference)
       i = 0;
@@ -931,8 +1004,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AllergyIntolerance.reaction.substance (token)
       i = 0;
       for (final entry in resource.reaction
-              ?.map<fhir.CodeableConcept?>((e) => e.substance)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.substance)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1017,8 +1090,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AllergyIntolerance.reaction.manifestation (token)
       i = 0;
       for (final entry in resource.reaction
-              ?.expand((e) => e.manifestation ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.manifestation ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1035,8 +1108,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AllergyIntolerance.reaction.onset (date)
       i = 0;
       for (final entry in resource.reaction
-              ?.map<fhir.FhirDateTime?>((e) => e.onset)
-              .makeIterable<fhir.FhirDateTime>() ??
+              ?.map<fhir.FhirDateTime?>((e) => e?.onset)
+              ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -1052,7 +1125,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // AllergyIntolerance.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1085,8 +1158,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AllergyIntolerance.reaction.exposureRoute (token)
       i = 0;
       for (final entry in resource.reaction
-              ?.map<fhir.CodeableConcept?>((e) => e.exposureRoute)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.exposureRoute)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1103,8 +1176,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AllergyIntolerance.reaction.severity (token)
       i = 0;
       for (final entry in resource.reaction
-              ?.map<fhir.FhirCodeEnum?>((e) => e.severity)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.severity)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1151,12 +1224,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Appointment _:
       // Appointment.participant.actor (reference)
       i = 0;
       for (final entry in resource.participant
-              .map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1239,11 +1313,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Appointment.participant.actor.where(resolve() is Location) (reference)
       i = 0;
       for (final entry in resource.participant
-              .map<fhir.Reference?>((e) => e.actor)
-              .where((e) {
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.where((e) {
             final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Location';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1260,8 +1334,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Appointment.participant.status (token)
       i = 0;
       for (final entry in resource.participant
-              .map<fhir.FhirCodeEnum?>((e) => e.status)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.status)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1278,11 +1352,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Appointment.participant.actor.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry in resource.participant
-              .map<fhir.Reference?>((e) => e.actor)
-              .where((e) {
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.where((e) {
             final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Patient';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1299,11 +1373,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Appointment.participant.actor.where(resolve() is Practitioner) (reference)
       i = 0;
       for (final entry in resource.participant
-              .map<fhir.Reference?>((e) => e.actor)
-              .where((e) {
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.where((e) {
             final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1420,7 +1494,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Appointment.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1451,6 +1525,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.AppointmentResponse _:
       // AppointmentResponse.actor (reference)
       i = 0;
@@ -1470,8 +1545,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // AppointmentResponse.appointment (reference)
       i = 0;
-      for (final entry in resource.appointment.makeIterable<fhir.Reference>() ??
-          <fhir.Reference>[]) {
+      for (final entry
+          in resource.appointment?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -1504,8 +1580,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AppointmentResponse.actor.where(resolve() is Location) (reference)
       i = 0;
       for (final entry
-          in resource.actor?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.actor?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Location';
               }) ??
               <fhir.Reference>[]) {
@@ -1524,7 +1600,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AppointmentResponse.participantStatus (token)
       i = 0;
       for (final entry
-          in resource.participantStatus.makeIterable<fhir.FhirCodeEnum>() ??
+          in resource.participantStatus?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1541,8 +1617,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AppointmentResponse.actor.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.actor?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.actor?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -1561,8 +1637,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AppointmentResponse.actor.where(resolve() is Practitioner) (reference)
       i = 0;
       for (final entry
-          in resource.actor?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.actor?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
               }) ??
               <fhir.Reference>[]) {
@@ -1578,6 +1654,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.AuditEvent _:
       // AuditEvent.action (token)
       i = 0;
@@ -1598,9 +1675,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.agent.network.address (string)
       i = 0;
       for (final entry in resource.agent
-              .map<fhir.AuditEventNetwork?>((e) => e.network)
-              .map<fhir.FhirString?>((e) => e?.address)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.AuditEventNetwork?>((e) => e?.network)
+              ?.map<fhir.FhirString?>((e) => e?.address)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -1617,8 +1694,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.agent.who (reference)
       i = 0;
       for (final entry in resource.agent
-              .map<fhir.Reference?>((e) => e.who)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.who)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1635,8 +1712,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.agent.name (string)
       i = 0;
       for (final entry in resource.agent
-              .map<fhir.FhirString?>((e) => e.name)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.name)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -1653,8 +1730,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.agent.role (token)
       i = 0;
       for (final entry in resource.agent
-              .expand((e) => e.role ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.role ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1671,8 +1748,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.agent.altId (token)
       i = 0;
       for (final entry in resource.agent
-              .map<fhir.FhirString?>((e) => e.altId)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.altId)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1688,7 +1765,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // AuditEvent.recorded (date)
       i = 0;
-      for (final entry in resource.recorded.makeIterable<fhir.FhirInstant>() ??
+      for (final entry in resource.recorded?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -1705,8 +1782,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.entity.what (reference)
       i = 0;
       for (final entry in resource.entity
-              ?.map<fhir.Reference?>((e) => e.what)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.what)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1723,8 +1800,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.entity.name (string)
       i = 0;
       for (final entry in resource.entity
-              ?.map<fhir.FhirString?>((e) => e.name)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.name)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -1741,8 +1818,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.entity.role (token)
       i = 0;
       for (final entry in resource.entity
-              ?.map<fhir.Coding?>((e) => e.role)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.role)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1759,8 +1836,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.entity.type (token)
       i = 0;
       for (final entry in resource.entity
-              ?.map<fhir.Coding?>((e) => e.type)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.type)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1793,10 +1870,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.agent.who.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.agent.map<fhir.Reference?>((e) => e.who).where((e) {
+          in resource.agent?.map<fhir.Reference?>((e) => e?.who)?.where((e) {
                 final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
-              }).makeIterable<fhir.Reference>() ??
+              })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1813,10 +1890,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.entity.what.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.entity?.map<fhir.Reference?>((e) => e.what).where((e) {
+          in resource.entity?.map<fhir.Reference?>((e) => e?.what)?.where((e) {
                 final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
-              }).makeIterable<fhir.Reference>() ??
+              })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1833,8 +1910,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.agent.policy (uri)
       i = 0;
       for (final entry in resource.agent
-              .expand((e) => e.policy ?? <fhir.FhirUri>[])
-              .makeIterable<fhir.FhirUri>() ??
+              ?.expand((e) => e?.policy ?? <fhir.FhirUri>[])
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -1851,7 +1928,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.source.site (token)
       i = 0;
       for (final entry
-          in resource.source.site?.makeIterable<fhir.FhirString>() ??
+          in resource.source?.site?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1868,7 +1945,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.source.observer (reference)
       i = 0;
       for (final entry
-          in resource.source.observer.makeIterable<fhir.Reference>() ??
+          in resource.source?.observer?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -1901,7 +1978,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // AuditEvent.type (token)
       i = 0;
       for (final entry
-          in resource.type.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
+          in resource.type?.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -1914,6 +1991,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Basic _:
       // Basic.author (reference)
       i = 0;
@@ -1933,7 +2011,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Basic.code (token)
       i = 0;
-      for (final entry in resource.code.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -1983,8 +2061,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Basic.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -2016,6 +2094,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.BodyStructure _:
       // BodyStructure.identifier (token)
       i = 0;
@@ -2070,7 +2149,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // BodyStructure.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -2084,6 +2163,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Bundle _:
       // Bundle.entry[0].resource (reference)
       i = 0;
@@ -2097,7 +2177,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Bundle.entry[0].resource',
             i,
-            searchName: 'message',
+            searchName: 'composition',
           ),
         );
         i++;
@@ -2115,6 +2195,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Bundle.identifier',
             i,
             searchName: 'identifier',
+          ),
+        );
+        i++;
+      }
+      // Bundle.entry[0].resource (reference)
+      i = 0;
+      for (final entry in resource.entry?.firstOrNull?.resource
+              ?.makeIterable<fhir.Resource>() ??
+          <fhir.Resource>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Bundle.entry[0].resource',
+            i,
+            searchName: 'message',
           ),
         );
         i++;
@@ -2138,7 +2235,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Bundle.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2152,12 +2249,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CapabilityStatement _:
+      // CapabilityStatement.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CapabilityStatement.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // CapabilityStatement.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CapabilityStatement.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // CapabilityStatement.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CapabilityStatement.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // CapabilityStatement.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2215,14 +2367,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'CapabilityStatement.version',
             i,
-            searchName: 'version',
+            searchName: 'fhirversion',
           ),
         );
         i++;
       }
       // CapabilityStatement.format (token)
       i = 0;
-      for (final entry in resource.format.makeIterable<fhir.FhirCode>() ??
+      for (final entry in resource.format?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2273,8 +2425,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CapabilityStatement.rest.mode (token)
       i = 0;
       for (final entry in resource.rest
-              ?.map<fhir.FhirCodeEnum?>((e) => e.mode)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.mode)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2324,10 +2476,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.rest
               ?.expand(
-                (e) => e.resource ?? <fhir.CapabilityStatementResource>[],
-              )
-              .map<fhir.FhirCode?>((e) => e.type)
-              .makeIterable<fhir.FhirCode>() ??
+                  (e) => e?.resource ?? <fhir.CapabilityStatementResource>[])
+              ?.map<fhir.FhirCode?>((e) => e?.type)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2345,10 +2496,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.rest
               ?.expand(
-                (e) => e.resource ?? <fhir.CapabilityStatementResource>[],
-              )
-              .map<fhir.FhirCanonical?>((e) => e.profile)
-              .makeIterable<fhir.FhirCanonical>() ??
+                  (e) => e?.resource ?? <fhir.CapabilityStatementResource>[])
+              ?.map<fhir.FhirCanonical?>((e) => e?.profile)
+              ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -2365,9 +2515,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CapabilityStatement.rest.security.service (token)
       i = 0;
       for (final entry in resource.rest
-              ?.map<fhir.CapabilityStatementSecurity?>((e) => e.security)
-              .expand((e) => e?.service ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CapabilityStatementSecurity?>((e) => e?.security)
+              ?.expand((e) => e?.service ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2384,7 +2534,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CapabilityStatement.software.name (string)
       i = 0;
       for (final entry
-          in resource.software?.name.makeIterable<fhir.FhirString>() ??
+          in resource.software?.name?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -2418,10 +2568,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.rest
               ?.expand(
-                (e) => e.resource ?? <fhir.CapabilityStatementResource>[],
-              )
-              .expand((e) => e.supportedProfile ?? <fhir.FhirCanonical>[])
-              .makeIterable<fhir.FhirCanonical>() ??
+                  (e) => e?.resource ?? <fhir.CapabilityStatementResource>[])
+              ?.expand((e) => e?.supportedProfile ?? <fhir.FhirCanonical>[])
+              ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -2467,6 +2616,39 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // CapabilityStatement.version (token)
+      i = 0;
+      for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
+          <fhir.FhirString>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CapabilityStatement.version',
+            i,
+            searchName: 'version',
+          ),
+        );
+        i++;
+      }
+      // CapabilityStatement.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CapabilityStatement.useContext',
+            i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
       // CapabilityStatement.useContext (composite)
       i = 0;
       for (final entry
@@ -2484,6 +2666,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CarePlan _:
       // CarePlan.period (date)
       i = 0;
@@ -2521,8 +2704,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CarePlan.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -2541,9 +2724,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CarePlan.activity.detail.code (token)
       i = 0;
       for (final entry in resource.activity
-              ?.map<fhir.CarePlanDetail?>((e) => e.detail)
-              .map<fhir.CodeableConcept?>((e) => e?.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CarePlanDetail?>((e) => e?.detail)
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2560,9 +2743,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CarePlan.activity.detail.scheduled (date)
       i = 0;
       for (final entry in resource.activity
-              ?.map<fhir.CarePlanDetail?>((e) => e.detail)
-              .map<fhir.ScheduledXCarePlanDetail?>((e) => e?.scheduledX)
-              .makeIterable<fhir.ScheduledXCarePlanDetail>() ??
+              ?.map<fhir.CarePlanDetail?>((e) => e?.detail)
+              ?.map<fhir.ScheduledXCarePlanDetail?>((e) => e?.scheduledX)
+              ?.makeIterable<fhir.ScheduledXCarePlanDetail>() ??
           <fhir.ScheduledXCarePlanDetail>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -2579,8 +2762,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CarePlan.activity.reference (reference)
       i = 0;
       for (final entry in resource.activity
-              ?.map<fhir.Reference?>((e) => e.reference)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -2727,7 +2910,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CarePlan.intent (token)
       i = 0;
-      for (final entry in resource.intent.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2760,9 +2943,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CarePlan.activity.detail.performer (reference)
       i = 0;
       for (final entry in resource.activity
-              ?.map<fhir.CarePlanDetail?>((e) => e.detail)
-              .expand((e) => e?.performer ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.CarePlanDetail?>((e) => e?.detail)
+              ?.expand((e) => e?.performer ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -2794,7 +2977,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CarePlan.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -2810,7 +2993,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CarePlan.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -2824,6 +3007,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CareTeam _:
       // CareTeam.period (date)
       i = 0;
@@ -2861,8 +3045,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CareTeam.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -2914,8 +3098,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CareTeam.participant.member (reference)
       i = 0;
       for (final entry in resource.participant
-              ?.map<fhir.Reference?>((e) => e.member)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.member)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -2961,6 +3145,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ChargeItem _:
       // ChargeItem.account (reference)
       i = 0;
@@ -2980,7 +3165,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ChargeItem.code (token)
       i = 0;
-      for (final entry in resource.code.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3097,8 +3282,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ChargeItem.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -3117,8 +3302,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ChargeItem.performer.actor (reference)
       i = 0;
       for (final entry in resource.performer
-              ?.map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3135,8 +3320,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ChargeItem.performer.function (token)
       i = 0;
       for (final entry in resource.performer
-              ?.map<fhir.CodeableConcept?>((e) => e.function_)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.function_)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3234,7 +3419,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ChargeItem.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3248,12 +3433,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ChargeItemDefinition _:
+      // ChargeItemDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ChargeItemDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ChargeItemDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ChargeItemDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ChargeItemDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ChargeItemDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ChargeItemDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3369,7 +3609,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ChargeItemDefinition.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3402,7 +3642,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ChargeItemDefinition.url (uri)
       i = 0;
       for (final entry
-          in resource.url.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
+          in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
             resourceType,
@@ -3443,17 +3683,89 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ChargeItemDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ChargeItemDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ChargeItemDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.Citation _:
+      // Citation.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Citation.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // Citation.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Citation.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // Citation.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Citation.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // Citation.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3585,7 +3897,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Citation.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3659,17 +3971,35 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Citation.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // Citation.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Citation.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.Claim _:
       // Claim.careTeam.provider (reference)
       i = 0;
       for (final entry in resource.careTeam
-              ?.map<fhir.Reference?>((e) => e.provider)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.provider)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3685,7 +4015,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Claim.created (date)
       i = 0;
-      for (final entry in resource.created.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -3702,9 +4032,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Claim.item.detail.udi (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.detail ?? <fhir.ClaimDetail>[])
-              .expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.detail ?? <fhir.ClaimDetail>[])
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3721,8 +4051,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Claim.item.encounter (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.encounter ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.encounter ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3804,8 +4134,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Claim.item.udi (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3821,7 +4151,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Claim.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3855,7 +4185,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Claim.priority (token)
       i = 0;
       for (final entry
-          in resource.priority.makeIterable<fhir.CodeableConcept>() ??
+          in resource.priority?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3872,8 +4202,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Claim.procedure.udi (reference)
       i = 0;
       for (final entry in resource.procedure
-              ?.expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3889,7 +4219,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Claim.provider (reference)
       i = 0;
-      for (final entry in resource.provider.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.provider?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3905,7 +4235,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Claim.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3922,10 +4252,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Claim.item.detail.subDetail.udi (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.detail ?? <fhir.ClaimDetail>[])
-              .expand((e) => e.subDetail ?? <fhir.ClaimSubDetail>[])
-              .expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.detail ?? <fhir.ClaimDetail>[])
+              ?.expand((e) => e?.subDetail ?? <fhir.ClaimSubDetail>[])
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -3941,7 +4271,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Claim.use (token)
       i = 0;
-      for (final entry in resource.use.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.use?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -3955,10 +4285,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ClaimResponse _:
       // ClaimResponse.created (date)
       i = 0;
-      for (final entry in resource.created.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -4008,7 +4339,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClaimResponse.insurer (reference)
       i = 0;
-      for (final entry in resource.insurer.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.insurer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -4024,7 +4355,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClaimResponse.outcome (token)
       i = 0;
-      for (final entry in resource.outcome.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.outcome?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4040,7 +4371,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClaimResponse.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -4105,7 +4436,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClaimResponse.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4121,7 +4452,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClaimResponse.use (token)
       i = 0;
-      for (final entry in resource.use.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.use?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4135,6 +4466,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ClinicalImpression _:
       // ClinicalImpression.date (date)
       i = 0;
@@ -4155,8 +4487,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ClinicalImpression.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -4207,8 +4539,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ClinicalImpression.finding.itemCodeableConcept (token)
       i = 0;
       for (final entry in resource.finding
-              ?.map<fhir.CodeableConcept?>((e) => e.itemCodeableConcept)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.itemCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4225,8 +4557,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ClinicalImpression.finding.itemReference (reference)
       i = 0;
       for (final entry in resource.finding
-              ?.map<fhir.Reference?>((e) => e.itemReference)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.itemReference)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -4260,8 +4592,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ClinicalImpression.investigation.item (reference)
       i = 0;
       for (final entry in resource.investigation
-              ?.expand((e) => e.item ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.item ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -4309,7 +4641,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClinicalImpression.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4325,7 +4657,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClinicalImpression.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -4356,6 +4688,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ClinicalUseDefinition _:
       // ClinicalUseDefinition.contraindication.diseaseSymptomProcedure (token)
       i = 0;
@@ -4369,7 +4702,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ClinicalUseDefinition.contraindication.diseaseSymptomProcedure',
             i,
-            searchName: 'contraindication-reference',
+            searchName: 'contraindication',
           ),
         );
         i++;
@@ -4403,7 +4736,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ClinicalUseDefinition.undesirableEffect.symptomConditionEffect',
             i,
-            searchName: 'effect-reference',
+            searchName: 'effect',
           ),
         );
         i++;
@@ -4454,7 +4787,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ClinicalUseDefinition.indication.diseaseSymptomProcedure',
             i,
-            searchName: 'indication-reference',
+            searchName: 'indication',
           ),
         );
         i++;
@@ -4496,10 +4829,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ClinicalUseDefinition.subject.where(resolve() is MedicinalProductDefinition) (reference)
       i = 0;
       for (final entry in resource.subject?.where((e) {
-            final ref = e.reference?.toString().split('/') ?? [];
+            final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 &&
                 ref[ref.length - 2] == 'MedicinalProductDefinition';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -4531,7 +4864,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ClinicalUseDefinition.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4545,12 +4878,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CodeSystem _:
+      // CodeSystem.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CodeSystem.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // CodeSystem.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CodeSystem.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // CodeSystem.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CodeSystem.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // CodeSystem.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4689,7 +5077,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'CodeSystem.url',
             i,
-            searchName: 'system',
+            searchName: 'url',
           ),
         );
         i++;
@@ -4722,6 +5110,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'CodeSystem.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // CodeSystem.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CodeSystem.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -4730,8 +5135,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CodeSystem.concept.code (token)
       i = 0;
       for (final entry in resource.concept
-              ?.map<fhir.FhirCode?>((e) => e.code)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.map<fhir.FhirCode?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4747,7 +5152,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CodeSystem.content (token)
       i = 0;
-      for (final entry in resource.content.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.content?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4781,9 +5186,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CodeSystem.concept.designation.language (token)
       i = 0;
       for (final entry in resource.concept
-              ?.expand((e) => e.designation ?? <fhir.CodeSystemDesignation>[])
-              .map<fhir.FhirCodeEnum?>((e) => e.language)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.expand((e) => e?.designation ?? <fhir.CodeSystemDesignation>[])
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.language)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -4814,6 +5219,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // CodeSystem.url (uri)
+      i = 0;
+      for (final entry
+          in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
+        searchParameterLists.uriParams.addAll(
+          entry.toUriSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CodeSystem.url',
+            i,
+            searchName: 'system',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.Communication _:
       // Communication.basedOn (reference)
       i = 0;
@@ -4951,8 +5373,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Communication.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -5035,7 +5457,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Communication.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5065,6 +5487,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CommunicationRequest _:
       // CommunicationRequest.authoredOn (date)
       i = 0;
@@ -5183,11 +5606,28 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // CommunicationRequest.occurrence.ofType(dateTime) (date)
+      i = 0;
+      for (final entry
+          in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CommunicationRequest.occurrence.ofType(dateTime)',
+            i,
+            searchName: 'occurrence',
+          ),
+        );
+        i++;
+      }
       // CommunicationRequest.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -5286,7 +5726,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CommunicationRequest.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5316,12 +5756,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CompartmentDefinition _:
+      // CompartmentDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CompartmentDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // CompartmentDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CompartmentDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // CompartmentDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CompartmentDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // CompartmentDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5370,7 +5865,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CompartmentDefinition.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -5460,6 +5955,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'CompartmentDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // CompartmentDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'CompartmentDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -5467,7 +5979,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CompartmentDefinition.code (token)
       i = 0;
-      for (final entry in resource.code.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.code?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5484,8 +5996,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // CompartmentDefinition.resource.code (token)
       i = 0;
       for (final entry in resource.resource
-              ?.map<fhir.FhirCode?>((e) => e.code)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.map<fhir.FhirCode?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5499,10 +6011,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Composition _:
       // Composition.date (date)
       i = 0;
-      for (final entry in resource.date.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -5536,8 +6049,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Composition.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -5555,7 +6068,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Composition.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5572,8 +6085,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Composition.attester.party (reference)
       i = 0;
       for (final entry in resource.attester
-              ?.map<fhir.Reference?>((e) => e.party)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.party)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -5589,7 +6102,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Composition.author (reference)
       i = 0;
-      for (final entry in resource.author.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -5640,8 +6153,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Composition.event.code (token)
       i = 0;
       for (final entry in resource.event
-              ?.expand((e) => e.code ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.code ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5674,8 +6187,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Composition.section.entry (reference)
       i = 0;
       for (final entry in resource.section
-              ?.expand((e) => e.entry ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.entry ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -5692,8 +6205,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Composition.event.period (date)
       i = 0;
       for (final entry in resource.event
-              ?.map<fhir.Period?>((e) => e.period)
-              .makeIterable<fhir.Period>() ??
+              ?.map<fhir.Period?>((e) => e?.period)
+              ?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -5707,11 +6220,47 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Composition.relatesTo.target.ofType(Identifier) (token)
+      i = 0;
+      for (final entry in resource.relatesTo
+              ?.map<fhir.Identifier?>((e) => e?.targetIdentifier)
+              ?.makeIterable<fhir.Identifier>() ??
+          <fhir.Identifier>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Composition.relatesTo.target.ofType(Identifier)',
+            i,
+            searchName: 'related-id',
+          ),
+        );
+        i++;
+      }
+      // Composition.relatesTo.target.ofType(Reference) (reference)
+      i = 0;
+      for (final entry in resource.relatesTo
+              ?.map<fhir.Reference?>((e) => e?.targetReference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Composition.relatesTo.target.ofType(Reference)',
+            i,
+            searchName: 'related-ref',
+          ),
+        );
+        i++;
+      }
       // Composition.section.code (token)
       i = 0;
       for (final entry in resource.section
-              ?.map<fhir.CodeableConcept?>((e) => e.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5727,7 +6276,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Composition.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5759,7 +6308,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Composition.title (string)
       i = 0;
-      for (final entry in resource.title.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -5773,12 +6322,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ConceptMap _:
+      // ConceptMap.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ConceptMap.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ConceptMap.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ConceptMap.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -5950,6 +6554,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ConceptMap.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ConceptMap.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -5975,11 +6596,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ConceptMap.group.element.target.dependsOn.property (uri)
       i = 0;
       for (final entry in resource.group
-              ?.expand((e) => e.element ?? <fhir.ConceptMapElement>[])
-              .expand((e) => e.target ?? <fhir.ConceptMapTarget>[])
-              .expand((e) => e.dependsOn ?? <fhir.ConceptMapDependsOn>[])
-              .map<fhir.FhirUri?>((e) => e.property)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.expand((e) => e?.element ?? <fhir.ConceptMapElement>[])
+              ?.expand((e) => e?.target ?? <fhir.ConceptMapTarget>[])
+              ?.expand((e) => e?.dependsOn ?? <fhir.ConceptMapDependsOn>[])
+              ?.map<fhir.FhirUri?>((e) => e?.property)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -5996,9 +6617,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ConceptMap.group.unmapped.url (reference)
       i = 0;
       for (final entry in resource.group
-              ?.map<fhir.ConceptMapUnmapped?>((e) => e.unmapped)
-              .map<fhir.FhirCanonical?>((e) => e?.url)
-              .makeIterable<fhir.FhirCanonical>() ??
+              ?.map<fhir.ConceptMapUnmapped?>((e) => e?.unmapped)
+              ?.map<fhir.FhirCanonical?>((e) => e?.url)
+              ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -6015,11 +6636,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ConceptMap.group.element.target.product.property (uri)
       i = 0;
       for (final entry in resource.group
-              ?.expand((e) => e.element ?? <fhir.ConceptMapElement>[])
-              .expand((e) => e.target ?? <fhir.ConceptMapTarget>[])
-              .expand((e) => e.product ?? <fhir.ConceptMapDependsOn>[])
-              .map<fhir.FhirUri?>((e) => e.property)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.expand((e) => e?.element ?? <fhir.ConceptMapElement>[])
+              ?.expand((e) => e?.target ?? <fhir.ConceptMapTarget>[])
+              ?.expand((e) => e?.product ?? <fhir.ConceptMapDependsOn>[])
+              ?.map<fhir.FhirUri?>((e) => e?.property)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -6033,12 +6654,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // ConceptMap.source.ofType(canonical) (reference)
+      i = 0;
+      for (final entry
+          in resource.sourceCanonical?.makeIterable<fhir.FhirCanonical>() ??
+              <fhir.FhirCanonical>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.source.ofType(canonical)',
+            i,
+            searchName: 'source',
+          ),
+        );
+        i++;
+      }
       // ConceptMap.group.element.code (token)
       i = 0;
       for (final entry in resource.group
-              ?.expand((e) => e.element ?? <fhir.ConceptMapElement>[])
-              .map<fhir.FhirCode?>((e) => e.code)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.expand((e) => e?.element ?? <fhir.ConceptMapElement>[])
+              ?.map<fhir.FhirCode?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -6055,8 +6693,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ConceptMap.group.source (uri)
       i = 0;
       for (final entry in resource.group
-              ?.map<fhir.FhirUri?>((e) => e.source)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.map<fhir.FhirUri?>((e) => e?.source)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -6070,13 +6708,46 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // ConceptMap.source.ofType(uri) (reference)
+      i = 0;
+      for (final entry in resource.sourceUri?.makeIterable<fhir.FhirUri>() ??
+          <fhir.FhirUri>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.source.ofType(uri)',
+            i,
+            searchName: 'source-uri',
+          ),
+        );
+        i++;
+      }
+      // ConceptMap.target.ofType(canonical) (reference)
+      i = 0;
+      for (final entry
+          in resource.targetCanonical?.makeIterable<fhir.FhirCanonical>() ??
+              <fhir.FhirCanonical>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.target.ofType(canonical)',
+            i,
+            searchName: 'target',
+          ),
+        );
+        i++;
+      }
       // ConceptMap.group.element.target.code (token)
       i = 0;
       for (final entry in resource.group
-              ?.expand((e) => e.element ?? <fhir.ConceptMapElement>[])
-              .expand((e) => e.target ?? <fhir.ConceptMapTarget>[])
-              .map<fhir.FhirCode?>((e) => e.code)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.expand((e) => e?.element ?? <fhir.ConceptMapElement>[])
+              ?.expand((e) => e?.target ?? <fhir.ConceptMapTarget>[])
+              ?.map<fhir.FhirCode?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -6093,8 +6764,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ConceptMap.group.target (uri)
       i = 0;
       for (final entry in resource.group
-              ?.map<fhir.FhirUri?>((e) => e.target)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.map<fhir.FhirUri?>((e) => e?.target)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -6108,6 +6779,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // ConceptMap.target.ofType(uri) (reference)
+      i = 0;
+      for (final entry in resource.targetUri?.makeIterable<fhir.FhirUri>() ??
+          <fhir.FhirUri>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ConceptMap.target.ofType(uri)',
+            i,
+            searchName: 'target-uri',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.Condition _:
       // Condition.code (token)
       i = 0;
@@ -6145,8 +6833,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Condition.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -6331,8 +7019,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Condition.evidence.code (token)
       i = 0;
       for (final entry in resource.evidence
-              ?.expand((e) => e.code ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.code ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -6349,8 +7037,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Condition.evidence.detail (reference)
       i = 0;
       for (final entry in resource.evidence
-              ?.expand((e) => e.detail ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.detail ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -6483,8 +7171,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Condition.stage.summary (token)
       i = 0;
       for (final entry in resource.stage
-              ?.map<fhir.CodeableConcept?>((e) => e.summary)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.summary)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -6500,7 +7188,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Condition.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -6531,6 +7219,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Consent _:
       // Consent.dateTime (date)
       i = 0;
@@ -6602,8 +7291,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Consent.provision.actor.reference (reference)
       i = 0;
       for (final entry in resource.provision?.actor
-              ?.map<fhir.Reference?>((e) => e.reference)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -6620,7 +7309,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Consent.category (token)
       i = 0;
       for (final entry
-          in resource.category.makeIterable<fhir.CodeableConcept>() ??
+          in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -6653,8 +7342,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Consent.provision.data.reference (reference)
       i = 0;
       for (final entry in resource.provision?.data
-              ?.map<fhir.Reference?>((e) => e.reference)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -6721,8 +7410,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Consent.scope (token)
       i = 0;
-      for (final entry in resource.scope.makeIterable<fhir.CodeableConcept>() ??
-          <fhir.CodeableConcept>[]) {
+      for (final entry
+          in resource.scope?.makeIterable<fhir.CodeableConcept>() ??
+              <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -6771,7 +7461,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Consent.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -6785,6 +7475,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Contract _:
       // Contract.authority (reference)
       i = 0;
@@ -6871,9 +7562,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Contract.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry in resource.subject?.where((e) {
-            final ref = e.reference?.toString().split('/') ?? [];
+            final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Patient';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -6890,8 +7581,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Contract.signer.party (reference)
       i = 0;
       for (final entry in resource.signer
-              ?.map<fhir.Reference?>((e) => e.party)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.party)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -6953,11 +7644,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Coverage _:
       // Coverage.beneficiary (reference)
       i = 0;
-      for (final entry in resource.beneficiary.makeIterable<fhir.Reference>() ??
-          <fhir.Reference>[]) {
+      for (final entry
+          in resource.beneficiary?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -6965,7 +7658,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Coverage.beneficiary',
             i,
-            searchName: 'patient',
+            searchName: 'beneficiary',
           ),
         );
         i++;
@@ -6973,8 +7666,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Coverage.class.type (token)
       i = 0;
       for (final entry in resource.class_
-              ?.map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -6991,8 +7684,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Coverage.class.value (string)
       i = 0;
       for (final entry in resource.class_
-              ?.map<fhir.FhirString?>((e) => e.value)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.value)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -7039,9 +7732,26 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Coverage.beneficiary (reference)
+      i = 0;
+      for (final entry
+          in resource.beneficiary?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Coverage.beneficiary',
+            i,
+            searchName: 'patient',
+          ),
+        );
+        i++;
+      }
       // Coverage.payor (reference)
       i = 0;
-      for (final entry in resource.payor.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.payor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -7074,7 +7784,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Coverage.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -7120,10 +7830,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CoverageEligibilityRequest _:
       // CoverageEligibilityRequest.created (date)
       i = 0;
-      for (final entry in resource.created.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -7188,7 +7899,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CoverageEligibilityRequest.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -7220,7 +7931,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CoverageEligibilityRequest.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -7234,10 +7945,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.CoverageEligibilityResponse _:
       // CoverageEligibilityResponse.created (date)
       i = 0;
-      for (final entry in resource.created.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -7287,7 +7999,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CoverageEligibilityResponse.insurer (reference)
       i = 0;
-      for (final entry in resource.insurer.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.insurer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -7303,7 +8015,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CoverageEligibilityResponse.outcome (token)
       i = 0;
-      for (final entry in resource.outcome.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.outcome?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -7319,7 +8031,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CoverageEligibilityResponse.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -7335,7 +8047,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CoverageEligibilityResponse.request (reference)
       i = 0;
-      for (final entry in resource.request.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.request?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -7367,7 +8079,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // CoverageEligibilityResponse.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -7381,6 +8093,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DetectedIssue _:
       // DetectedIssue.identifier (token)
       i = 0;
@@ -7480,12 +8193,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Device _:
       // Device.deviceName.name (string)
       i = 0;
       for (final entry in resource.deviceName
-              ?.map<fhir.FhirString?>((e) => e.name)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.name)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -7502,8 +8216,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Device.type.coding.display (string)
       i = 0;
       for (final entry in resource.type?.coding
-              ?.map<fhir.FhirString?>((e) => e.display)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.display)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -7668,8 +8382,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Device.udiCarrier.carrierHRF (string)
       i = 0;
       for (final entry in resource.udiCarrier
-              ?.map<fhir.FhirString?>((e) => e.carrierHRF)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.carrierHRF)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -7686,8 +8400,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Device.udiCarrier.deviceIdentifier (string)
       i = 0;
       for (final entry in resource.udiCarrier
-              ?.map<fhir.FhirString?>((e) => e.deviceIdentifier)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.deviceIdentifier)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -7717,6 +8431,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DeviceDefinition _:
       // DeviceDefinition.identifier (token)
       i = 0;
@@ -7768,11 +8483,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DeviceMetric _:
       // DeviceMetric.category (token)
       i = 0;
-      for (final entry in resource.category.makeIterable<fhir.FhirCodeEnum>() ??
-          <fhir.FhirCodeEnum>[]) {
+      for (final entry
+          in resource.category?.makeIterable<fhir.FhirCodeEnum>() ??
+              <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -7836,7 +8553,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DeviceMetric.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -7850,7 +8567,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DeviceRequest _:
+      // DeviceRequest.code.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.codeCodeableConcept
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'DeviceRequest.code.ofType(CodeableConcept)',
+            i,
+            searchName: 'code',
+          ),
+        );
+        i++;
+      }
       // DeviceRequest.identifier (token)
       i = 0;
       for (final entry
@@ -7871,8 +8606,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DeviceRequest.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -7933,6 +8668,57 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'DeviceRequest.basedOn',
             i,
             searchName: 'based-on',
+          ),
+        );
+        i++;
+      }
+      // DeviceRequest.code.ofType(Reference) (reference)
+      i = 0;
+      for (final entry
+          in resource.codeReference?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'DeviceRequest.code.ofType(Reference)',
+            i,
+            searchName: 'device',
+          ),
+        );
+        i++;
+      }
+      // DeviceRequest.occurrence.ofType(dateTime) (date)
+      i = 0;
+      for (final entry
+          in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'DeviceRequest.occurrence.ofType(dateTime)',
+            i,
+            searchName: 'event-date',
+          ),
+        );
+        i++;
+      }
+      // DeviceRequest.occurrence.ofType(Period) (date)
+      i = 0;
+      for (final entry
+          in resource.occurrencePeriod?.makeIterable<fhir.Period>() ??
+              <fhir.Period>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'DeviceRequest.occurrence.ofType(Period)',
+            i,
+            searchName: 'event-date',
           ),
         );
         i++;
@@ -8006,7 +8792,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DeviceRequest.intent (token)
       i = 0;
-      for (final entry in resource.intent.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8087,7 +8873,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DeviceRequest.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -8101,12 +8887,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DeviceUseStatement _:
       // DeviceUseStatement.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -8124,7 +8911,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DeviceUseStatement.device (reference)
       i = 0;
-      for (final entry in resource.device.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.device?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -8157,7 +8944,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DeviceUseStatement.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -8171,10 +8958,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DiagnosticReport _:
       // DiagnosticReport.code (token)
       i = 0;
-      for (final entry in resource.code.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8225,8 +9013,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DiagnosticReport.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -8327,8 +9115,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DiagnosticReport.media.link (reference)
       i = 0;
       for (final entry in resource.media
-              ?.map<fhir.Reference?>((e) => e.link)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.link)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -8409,7 +9197,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DiagnosticReport.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8439,6 +9227,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DocumentManifest _:
       // DocumentManifest.masterIdentifier (token)
       i = 0;
@@ -8477,8 +9266,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentManifest.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -8561,7 +9350,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DocumentManifest.content (reference)
       i = 0;
-      for (final entry in resource.content.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.content?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -8594,8 +9383,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentManifest.related.identifier (token)
       i = 0;
       for (final entry in resource.related
-              ?.map<fhir.Identifier?>((e) => e.identifier)
-              .makeIterable<fhir.Identifier>() ??
+              ?.map<fhir.Identifier?>((e) => e?.identifier)
+              ?.makeIterable<fhir.Identifier>() ??
           <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8612,8 +9401,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentManifest.related.ref (reference)
       i = 0;
       for (final entry in resource.related
-              ?.map<fhir.Reference?>((e) => e.ref)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.ref)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -8645,7 +9434,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DocumentManifest.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8675,6 +9464,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.DocumentReference _:
       // DocumentReference.masterIdentifier (token)
       i = 0;
@@ -8713,8 +9503,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -8749,9 +9539,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.context.encounter.where(resolve() is Encounter) (reference)
       i = 0;
       for (final entry in resource.context?.encounter?.where((e) {
-            final ref = e.reference?.toString().split('/') ?? [];
+            final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Encounter';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -8818,9 +9608,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.content.attachment.contentType (token)
       i = 0;
       for (final entry in resource.content
-              .map<fhir.Attachment?>((e) => e.attachment)
-              .map<fhir.FhirCode?>((e) => e?.contentType)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.map<fhir.Attachment?>((e) => e?.attachment)
+              ?.map<fhir.FhirCode?>((e) => e?.contentType)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8920,8 +9710,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.content.format (token)
       i = 0;
       for (final entry in resource.content
-              .map<fhir.Coding?>((e) => e.format)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.format)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8938,9 +9728,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.content.attachment.language (token)
       i = 0;
       for (final entry in resource.content
-              .map<fhir.Attachment?>((e) => e.attachment)
-              .map<fhir.FhirCodeEnum?>((e) => e?.language)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.Attachment?>((e) => e?.attachment)
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.language)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -8957,9 +9747,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.content.attachment.url (uri)
       i = 0;
       for (final entry in resource.content
-              .map<fhir.Attachment?>((e) => e.attachment)
-              .map<fhir.FhirUrl?>((e) => e?.url)
-              .makeIterable<fhir.FhirUrl>() ??
+              ?.map<fhir.Attachment?>((e) => e?.attachment)
+              ?.map<fhir.FhirUrl?>((e) => e?.url)
+              ?.makeIterable<fhir.FhirUrl>() ??
           <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -9010,8 +9800,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.relatesTo.target (reference)
       i = 0;
       for (final entry in resource.relatesTo
-              ?.map<fhir.Reference?>((e) => e.target)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.target)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9028,8 +9818,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // DocumentReference.relatesTo.code (token)
       i = 0;
       for (final entry in resource.relatesTo
-              ?.map<fhir.FhirCodeEnum?>((e) => e.code)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9079,7 +9869,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // DocumentReference.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9126,6 +9916,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Encounter _:
       // Encounter.period (date)
       i = 0;
@@ -9163,8 +9954,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -9248,7 +10039,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.class (token)
       i = 0;
       for (final entry
-          in resource.class_.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
+          in resource.class_?.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -9264,8 +10055,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.diagnosis.condition (reference)
       i = 0;
       for (final entry in resource.diagnosis
-              ?.map<fhir.Reference?>((e) => e.condition)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.condition)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9315,8 +10106,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.location.location (reference)
       i = 0;
       for (final entry in resource.location
-              ?.map<fhir.Reference?>((e) => e.location)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.location)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9333,8 +10124,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.location.period (date)
       i = 0;
       for (final entry in resource.location
-              ?.map<fhir.Period?>((e) => e.period)
-              .makeIterable<fhir.Period>() ??
+              ?.map<fhir.Period?>((e) => e?.period)
+              ?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -9367,8 +10158,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.participant.individual (reference)
       i = 0;
       for (final entry in resource.participant
-              ?.map<fhir.Reference?>((e) => e.individual)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.individual)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9385,8 +10176,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.participant.type (token)
       i = 0;
       for (final entry in resource.participant
-              ?.expand((e) => e.type ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.type ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9403,11 +10194,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Encounter.participant.individual.where(resolve() is Practitioner) (reference)
       i = 0;
       for (final entry in resource.participant
-              ?.map<fhir.Reference?>((e) => e.individual)
-              .where((e) {
+              ?.map<fhir.Reference?>((e) => e?.individual)
+              ?.where((e) {
             final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9491,7 +10282,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Encounter.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9521,11 +10312,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.FhirEndpoint _:
       // Endpoint.connectionType (token)
       i = 0;
-      for (final entry in resource.connectionType.makeIterable<fhir.Coding>() ??
-          <fhir.Coding>[]) {
+      for (final entry
+          in resource.connectionType?.makeIterable<fhir.Coding>() ??
+              <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -9591,7 +10384,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Endpoint.payloadType (token)
       i = 0;
       for (final entry
-          in resource.payloadType.makeIterable<fhir.CodeableConcept>() ??
+          in resource.payloadType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9607,7 +10400,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Endpoint.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9621,6 +10414,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.EnrollmentRequest _:
       // EnrollmentRequest.identifier (token)
       i = 0;
@@ -9650,7 +10444,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'EnrollmentRequest.candidate',
             i,
-            searchName: 'subject',
+            searchName: 'patient',
           ),
         );
         i++;
@@ -9671,6 +10465,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // EnrollmentRequest.candidate (reference)
+      i = 0;
+      for (final entry in resource.candidate?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EnrollmentRequest.candidate',
+            i,
+            searchName: 'subject',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.EnrollmentResponse _:
       // EnrollmentResponse.identifier (token)
       i = 0;
@@ -9721,6 +10532,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.EpisodeOfCare _:
       // EpisodeOfCare.period (date)
       i = 0;
@@ -9757,7 +10569,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // EpisodeOfCare.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9790,8 +10602,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // EpisodeOfCare.careManager.where(resolve() is Practitioner) (reference)
       i = 0;
       for (final entry
-          in resource.careManager?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.careManager?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
               }) ??
               <fhir.Reference>[]) {
@@ -9810,8 +10622,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // EpisodeOfCare.diagnosis.condition (reference)
       i = 0;
       for (final entry in resource.diagnosis
-              ?.map<fhir.Reference?>((e) => e.condition)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.condition)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9861,7 +10673,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // EpisodeOfCare.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9875,13 +10687,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.EventDefinition _:
       // EventDefinition.relatedArtifact.where(type='composed-of').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'composed-of')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'composed-of')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9895,11 +10708,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // EventDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EventDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // EventDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EventDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // EventDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EventDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // EventDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -9932,9 +10799,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // EventDefinition.relatedArtifact.where(type='depends-on').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'depends-on')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'depends-on')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -9951,9 +10818,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // EventDefinition.relatedArtifact.where(type='derived-from').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'derived-from')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'derived-from')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -10054,9 +10921,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // EventDefinition.relatedArtifact.where(type='predecessor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'predecessor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'predecessor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -10105,9 +10972,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // EventDefinition.relatedArtifact.where(type='successor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'successor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'successor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -10198,17 +11065,89 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'EventDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // EventDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EventDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.Evidence _:
+      // Evidence.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Evidence.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // Evidence.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Evidence.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // Evidence.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Evidence.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // Evidence.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -10290,7 +11229,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Evidence.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -10364,17 +11303,89 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Evidence.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // Evidence.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Evidence.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.EvidenceReport _:
+      // EvidenceReport.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceReport.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // EvidenceReport.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceReport.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // EvidenceReport.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceReport.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // EvidenceReport.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -10423,7 +11434,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // EvidenceReport.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -10465,17 +11476,89 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'EvidenceReport.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // EvidenceReport.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceReport.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.EvidenceVariable _:
+      // EvidenceVariable.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceVariable.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // EvidenceVariable.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceVariable.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // EvidenceVariable.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceVariable.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // EvidenceVariable.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -10573,7 +11656,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // EvidenceVariable.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -10647,17 +11730,89 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'EvidenceVariable.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // EvidenceVariable.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'EvidenceVariable.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.ExampleScenario _:
+      // ExampleScenario.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ExampleScenario.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ExampleScenario.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ExampleScenario.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ExampleScenario.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ExampleScenario.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ExampleScenario.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -10813,17 +11968,35 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ExampleScenario.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ExampleScenario.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ExampleScenario.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.ExplanationOfBenefit _:
       // ExplanationOfBenefit.careTeam.provider (reference)
       i = 0;
       for (final entry in resource.careTeam
-              ?.map<fhir.Reference?>((e) => e.provider)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.provider)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -10856,8 +12029,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ExplanationOfBenefit.insurance.coverage (reference)
       i = 0;
       for (final entry in resource.insurance
-              .map<fhir.Reference?>((e) => e.coverage)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.coverage)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -10873,7 +12046,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ExplanationOfBenefit.created (date)
       i = 0;
-      for (final entry in resource.created.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -10890,9 +12063,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ExplanationOfBenefit.item.detail.udi (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.detail ?? <fhir.ExplanationOfBenefitDetail>[])
-              .expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.detail ?? <fhir.ExplanationOfBenefitDetail>[])
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -10926,8 +12099,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ExplanationOfBenefit.item.encounter (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.encounter ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.encounter ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -10993,8 +12166,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ExplanationOfBenefit.item.udi (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11010,7 +12183,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ExplanationOfBenefit.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11044,8 +12217,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ExplanationOfBenefit.procedure.udi (reference)
       i = 0;
       for (final entry in resource.procedure
-              ?.expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11061,7 +12234,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ExplanationOfBenefit.provider (reference)
       i = 0;
-      for (final entry in resource.provider.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.provider?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11077,7 +12250,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ExplanationOfBenefit.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11094,12 +12267,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ExplanationOfBenefit.item.detail.subDetail.udi (reference)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.detail ?? <fhir.ExplanationOfBenefitDetail>[])
-              .expand(
-                (e) => e.subDetail ?? <fhir.ExplanationOfBenefitSubDetail>[],
-              )
-              .expand((e) => e.udi ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.detail ?? <fhir.ExplanationOfBenefitDetail>[])
+              ?.expand(
+                  (e) => e?.subDetail ?? <fhir.ExplanationOfBenefitSubDetail>[])
+              ?.expand((e) => e?.udi ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11113,12 +12285,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.FamilyMemberHistory _:
       // FamilyMemberHistory.condition.code (token)
       i = 0;
       for (final entry in resource.condition
-              ?.map<fhir.CodeableConcept?>((e) => e.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11167,7 +12340,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // FamilyMemberHistory.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11218,7 +12391,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // FamilyMemberHistory.relationship (token)
       i = 0;
       for (final entry
-          in resource.relationship.makeIterable<fhir.CodeableConcept>() ??
+          in resource.relationship?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11250,7 +12423,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // FamilyMemberHistory.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11264,6 +12437,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Flag _:
       // Flag.period (date)
       i = 0;
@@ -11284,8 +12458,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Flag.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -11352,7 +12526,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Flag.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11366,6 +12540,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Goal _:
       // Goal.identifier (token)
       i = 0;
@@ -11387,8 +12562,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Goal.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -11441,7 +12616,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Goal.lifecycleStatus (token)
       i = 0;
       for (final entry
-          in resource.lifecycleStatus.makeIterable<fhir.FhirCodeEnum>() ??
+          in resource.lifecycleStatus?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11455,9 +12630,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Goal.start.ofType(date) (date)
+      i = 0;
+      for (final entry in resource.startDate?.makeIterable<fhir.FhirDate>() ??
+          <fhir.FhirDate>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Goal.start.ofType(date)',
+            i,
+            searchName: 'start-date',
+          ),
+        );
+        i++;
+      }
       // Goal.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11471,12 +12662,85 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Goal.target.due.ofType(date) (date)
+      i = 0;
+      for (final entry in resource.target
+              ?.map<fhir.FhirDate?>((e) => e?.dueDate)
+              ?.makeIterable<fhir.FhirDate>() ??
+          <fhir.FhirDate>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Goal.target.due.ofType(date)',
+            i,
+            searchName: 'target-date',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.GraphDefinition _:
+      // GraphDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'GraphDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // GraphDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'GraphDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // GraphDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'GraphDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // GraphDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11542,7 +12806,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // GraphDefinition.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -11632,6 +12896,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'GraphDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // GraphDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'GraphDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -11639,7 +12920,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // GraphDefinition.start (token)
       i = 0;
-      for (final entry in resource.start.makeIterable<fhir.FhirCode>() ??
+      for (final entry in resource.start?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11653,10 +12934,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.FhirGroup _:
       // Group.actual (token)
       i = 0;
-      for (final entry in resource.actual.makeIterable<fhir.FhirBoolean>() ??
+      for (final entry in resource.actual?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11673,8 +12955,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Group.characteristic.code (token)
       i = 0;
       for (final entry in resource.characteristic
-              ?.map<fhir.CodeableConcept?>((e) => e.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11707,8 +12989,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Group.characteristic.exclude (token)
       i = 0;
       for (final entry in resource.characteristic
-              ?.map<fhir.FhirBoolean?>((e) => e.exclude)
-              .makeIterable<fhir.FhirBoolean>() ??
+              ?.map<fhir.FhirBoolean?>((e) => e?.exclude)
+              ?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11759,8 +13041,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Group.member.entity (reference)
       i = 0;
       for (final entry in resource.member
-              ?.map<fhir.Reference?>((e) => e.entity)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.entity)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -11776,7 +13058,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Group.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -11786,6 +13068,42 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Group.type',
             i,
             searchName: 'type',
+          ),
+        );
+        i++;
+      }
+      // Group.characteristic.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.characteristic
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Group.characteristic.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'value',
+          ),
+        );
+        i++;
+      }
+      // Group.characteristic.value.ofType(boolean) (token)
+      i = 0;
+      for (final entry in resource.characteristic
+              ?.map<fhir.FhirBoolean?>((e) => e?.valueBoolean)
+              ?.makeIterable<fhir.FhirBoolean>() ??
+          <fhir.FhirBoolean>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Group.characteristic.value.ofType(boolean)',
+            i,
+            searchName: 'value',
           ),
         );
         i++;
@@ -11807,6 +13125,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.GuidanceResponse _:
       // GuidanceResponse.identifier (token)
       i = 0;
@@ -11828,8 +13147,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // GuidanceResponse.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -11878,6 +13197,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.HealthcareService _:
       // HealthcareService.active (token)
       i = 0;
@@ -12077,6 +13397,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ImagingStudy _:
       // ImagingStudy.identifier (token)
       i = 0;
@@ -12098,8 +13419,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -12134,8 +13455,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.series.bodySite (token)
       i = 0;
       for (final entry in resource.series
-              ?.map<fhir.Coding?>((e) => e.bodySite)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.bodySite)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12152,9 +13473,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.series.instance.sopClass (token)
       i = 0;
       for (final entry in resource.series
-              ?.expand((e) => e.instance ?? <fhir.ImagingStudyInstance>[])
-              .map<fhir.Coding?>((e) => e.sopClass)
-              .makeIterable<fhir.Coding>() ??
+              ?.expand((e) => e?.instance ?? <fhir.ImagingStudyInstance>[])
+              ?.map<fhir.Coding?>((e) => e?.sopClass)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12203,8 +13524,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.series.endpoint (reference)
       i = 0;
       for (final entry in resource.series
-              ?.expand((e) => e.endpoint ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.endpoint ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12221,9 +13542,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.series.instance.uid (token)
       i = 0;
       for (final entry in resource.series
-              ?.expand((e) => e.instance ?? <fhir.ImagingStudyInstance>[])
-              .map<fhir.FhirId?>((e) => e.uid)
-              .makeIterable<fhir.FhirId>() ??
+              ?.expand((e) => e?.instance ?? <fhir.ImagingStudyInstance>[])
+              ?.map<fhir.FhirId?>((e) => e?.uid)
+              ?.makeIterable<fhir.FhirId>() ??
           <fhir.FhirId>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12257,8 +13578,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.series.modality (token)
       i = 0;
       for (final entry in resource.series
-              ?.map<fhir.Coding?>((e) => e.modality)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.modality)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12275,9 +13596,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.series.performer.actor (reference)
       i = 0;
       for (final entry in resource.series
-              ?.expand((e) => e.performer ?? <fhir.ImagingStudyPerformer>[])
-              .map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.performer ?? <fhir.ImagingStudyPerformer>[])
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12327,8 +13648,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImagingStudy.series.uid (token)
       i = 0;
       for (final entry in resource.series
-              ?.map<fhir.FhirId?>((e) => e.uid)
-              .makeIterable<fhir.FhirId>() ??
+              ?.map<fhir.FhirId?>((e) => e?.uid)
+              ?.makeIterable<fhir.FhirId>() ??
           <fhir.FhirId>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12360,7 +13681,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ImagingStudy.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12376,7 +13697,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ImagingStudy.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12390,7 +13711,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Immunization _:
+      // Immunization.occurrence.ofType(dateTime) (date)
+      i = 0;
+      for (final entry
+          in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Immunization.occurrence.ofType(dateTime)',
+            i,
+            searchName: 'date',
+          ),
+        );
+        i++;
+      }
       // Immunization.identifier (token)
       i = 0;
       for (final entry
@@ -12410,7 +13749,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Immunization.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12476,8 +13815,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Immunization.performer.actor (reference)
       i = 0;
       for (final entry in resource.performer
-              ?.map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12494,8 +13833,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Immunization.reaction.detail (reference)
       i = 0;
       for (final entry in resource.reaction
-              ?.map<fhir.Reference?>((e) => e.detail)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.detail)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12512,8 +13851,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Immunization.reaction.date (date)
       i = 0;
       for (final entry in resource.reaction
-              ?.map<fhir.FhirDateTime?>((e) => e.date)
-              .makeIterable<fhir.FhirDateTime>() ??
+              ?.map<fhir.FhirDateTime?>((e) => e?.date)
+              ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -12564,8 +13903,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Immunization.protocolApplied.series (string)
       i = 0;
       for (final entry in resource.protocolApplied
-              ?.map<fhir.FhirString?>((e) => e.series)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.series)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -12581,7 +13920,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Immunization.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12615,8 +13954,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Immunization.protocolApplied.targetDisease (token)
       i = 0;
       for (final entry in resource.protocolApplied
-              ?.expand((e) => e.targetDisease ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.targetDisease ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12633,7 +13972,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Immunization.vaccineCode (token)
       i = 0;
       for (final entry
-          in resource.vaccineCode.makeIterable<fhir.CodeableConcept>() ??
+          in resource.vaccineCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12647,6 +13986,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ImmunizationEvaluation _:
       // ImmunizationEvaluation.date (date)
       i = 0;
@@ -12667,7 +14007,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationEvaluation.doseStatus (token)
       i = 0;
       for (final entry
-          in resource.doseStatus.makeIterable<fhir.CodeableConcept>() ??
+          in resource.doseStatus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12701,7 +14041,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationEvaluation.immunizationEvent (reference)
       i = 0;
       for (final entry
-          in resource.immunizationEvent.makeIterable<fhir.Reference>() ??
+          in resource.immunizationEvent?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12717,7 +14057,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ImmunizationEvaluation.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12733,7 +14073,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ImmunizationEvaluation.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12750,7 +14090,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationEvaluation.targetDisease (token)
       i = 0;
       for (final entry
-          in resource.targetDisease.makeIterable<fhir.CodeableConcept>() ??
+          in resource.targetDisease?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12764,10 +14104,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ImmunizationRecommendation _:
       // ImmunizationRecommendation.date (date)
       i = 0;
-      for (final entry in resource.date.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -12801,10 +14142,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationRecommendation.recommendation.supportingPatientInformation (reference)
       i = 0;
       for (final entry in resource.recommendation
-              .expand(
-                (e) => e.supportingPatientInformation ?? <fhir.Reference>[],
-              )
-              .makeIterable<fhir.Reference>() ??
+              ?.expand(
+                  (e) => e?.supportingPatientInformation ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12820,7 +14160,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ImmunizationRecommendation.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12837,8 +14177,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationRecommendation.recommendation.forecastStatus (token)
       i = 0;
       for (final entry in resource.recommendation
-              .map<fhir.CodeableConcept?>((e) => e.forecastStatus)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.forecastStatus)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12855,8 +14195,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationRecommendation.recommendation.supportingImmunization (reference)
       i = 0;
       for (final entry in resource.recommendation
-              .expand((e) => e.supportingImmunization ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.supportingImmunization ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -12873,8 +14213,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationRecommendation.recommendation.targetDisease (token)
       i = 0;
       for (final entry in resource.recommendation
-              .map<fhir.CodeableConcept?>((e) => e.targetDisease)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.targetDisease)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12891,8 +14231,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImmunizationRecommendation.recommendation.vaccineCode (token)
       i = 0;
       for (final entry in resource.recommendation
-              .expand((e) => e.vaccineCode ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.vaccineCode ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12906,12 +14246,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ImplementationGuide _:
+      // ImplementationGuide.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ImplementationGuide.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ImplementationGuide.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ImplementationGuide.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ImplementationGuide.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ImplementationGuide.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ImplementationGuide.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -12977,7 +14372,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ImplementationGuide.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -13083,6 +14478,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ImplementationGuide.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ImplementationGuide.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ImplementationGuide.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -13091,8 +14503,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImplementationGuide.dependsOn.uri (reference)
       i = 0;
       for (final entry in resource.dependsOn
-              ?.map<fhir.FhirCanonical?>((e) => e.uri)
-              .makeIterable<fhir.FhirCanonical>() ??
+              ?.map<fhir.FhirCanonical?>((e) => e?.uri)
+              ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13126,8 +14538,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImplementationGuide.global.profile (reference)
       i = 0;
       for (final entry in resource.global
-              ?.map<fhir.FhirCanonical?>((e) => e.profile)
-              .makeIterable<fhir.FhirCanonical>() ??
+              ?.map<fhir.FhirCanonical?>((e) => e?.profile)
+              ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13144,8 +14556,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ImplementationGuide.definition.resource.reference (reference)
       i = 0;
       for (final entry in resource.definition?.resource
-              .map<fhir.Reference?>((e) => e.reference)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13159,6 +14571,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Ingredient _:
       // Ingredient.for (reference)
       i = 0;
@@ -13229,7 +14642,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Ingredient.role (token)
       i = 0;
-      for (final entry in resource.role.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.role?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -13245,7 +14658,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Ingredient.substance.code.reference (reference)
       i = 0;
-      for (final entry in resource.substance.code.reference
+      for (final entry in resource.substance?.code?.reference
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
@@ -13255,14 +14668,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Ingredient.substance.code.reference',
             i,
-            searchName: 'substance-definition',
+            searchName: 'substance',
           ),
         );
         i++;
       }
       // Ingredient.substance.code.concept (token)
       i = 0;
-      for (final entry in resource.substance.code.concept
+      for (final entry in resource.substance?.code?.concept
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
@@ -13277,12 +14690,30 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Ingredient.substance.code.reference (reference)
+      i = 0;
+      for (final entry in resource.substance?.code?.reference
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Ingredient.substance.code.reference',
+            i,
+            searchName: 'substance-definition',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.InsurancePlan _:
       // InsurancePlan.contact.address (string)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.Address?>((e) => e.address)
-              .makeIterable<fhir.Address>() ??
+              ?.map<fhir.Address?>((e) => e?.address)
+              ?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -13299,9 +14730,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // InsurancePlan.contact.address.city (string)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.Address?>((e) => e.address)
-              .map<fhir.FhirString?>((e) => e?.city)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.Address?>((e) => e?.address)
+              ?.map<fhir.FhirString?>((e) => e?.city)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -13318,9 +14749,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // InsurancePlan.contact.address.country (string)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.Address?>((e) => e.address)
-              .map<fhir.FhirString?>((e) => e?.country)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.Address?>((e) => e?.address)
+              ?.map<fhir.FhirString?>((e) => e?.country)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -13337,9 +14768,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // InsurancePlan.contact.address.postalCode (string)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.Address?>((e) => e.address)
-              .map<fhir.FhirString?>((e) => e?.postalCode)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.Address?>((e) => e?.address)
+              ?.map<fhir.FhirString?>((e) => e?.postalCode)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -13356,9 +14787,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // InsurancePlan.contact.address.state (string)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.Address?>((e) => e.address)
-              .map<fhir.FhirString?>((e) => e?.state)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.Address?>((e) => e?.address)
+              ?.map<fhir.FhirString?>((e) => e?.state)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -13375,9 +14806,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // InsurancePlan.contact.address.use (token)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.Address?>((e) => e.address)
-              .map<fhir.FhirCodeEnum?>((e) => e?.use)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.Address?>((e) => e?.address)
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.use)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -13505,6 +14936,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Invoice _:
       // Invoice.account (reference)
       i = 0;
@@ -13574,8 +15006,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Invoice.participant.actor (reference)
       i = 0;
       for (final entry in resource.participant
-              ?.map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13592,8 +15024,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Invoice.participant.role (token)
       i = 0;
       for (final entry in resource.participant
-              ?.map<fhir.CodeableConcept?>((e) => e.role)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.role)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -13610,8 +15042,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Invoice.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -13645,7 +15077,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Invoice.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -13723,13 +15155,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Library _:
       // Library.relatedArtifact.where(type='composed-of').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'composed-of')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'composed-of')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13746,8 +15179,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Library.content.contentType (token)
       i = 0;
       for (final entry in resource.content
-              ?.map<fhir.FhirCode?>((e) => e.contentType)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.map<fhir.FhirCode?>((e) => e?.contentType)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -13761,11 +15194,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Library.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Library.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // Library.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Library.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // Library.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Library.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // Library.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -13798,9 +15285,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Library.relatedArtifact.where(type='depends-on').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'depends-on')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'depends-on')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13817,9 +15304,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Library.relatedArtifact.where(type='derived-from').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'derived-from')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'derived-from')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13920,9 +15407,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Library.relatedArtifact.where(type='predecessor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'predecessor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'predecessor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -13971,9 +15458,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Library.relatedArtifact.where(type='successor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'successor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'successor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14022,7 +15509,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Library.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -14080,11 +15567,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Library.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // Library.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Library.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.Linkage _:
       // Linkage.author (reference)
       i = 0;
@@ -14105,8 +15610,26 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Linkage.item.resource (reference)
       i = 0;
       for (final entry in resource.item
-              .map<fhir.Reference?>((e) => e.resource)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.resource)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Linkage.item.resource',
+            i,
+            searchName: 'item',
+          ),
+        );
+        i++;
+      }
+      // Linkage.item.resource (reference)
+      i = 0;
+      for (final entry in resource.item
+              ?.map<fhir.Reference?>((e) => e?.resource)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14120,6 +15643,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.FhirList _:
       // List.code (token)
       i = 0;
@@ -14173,8 +15697,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // List.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -14226,8 +15750,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // List.entry.item (reference)
       i = 0;
       for (final entry in resource.entry
-              ?.map<fhir.Reference?>((e) => e.item)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.item)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14244,8 +15768,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // List.note.text (string)
       i = 0;
       for (final entry in resource.note
-              ?.map<fhir.FhirMarkdown?>((e) => e.text)
-              .makeIterable<fhir.FhirMarkdown>() ??
+              ?.map<fhir.FhirMarkdown?>((e) => e?.text)
+              ?.makeIterable<fhir.FhirMarkdown>() ??
           <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -14277,7 +15801,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // List.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -14323,6 +15847,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Location _:
       // Location.address (string)
       i = 0;
@@ -14589,11 +16114,12 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ManufacturedItemDefinition _:
       // ManufacturedItemDefinition.manufacturedDoseForm (token)
       i = 0;
       for (final entry in resource.manufacturedDoseForm
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -14641,13 +16167,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Measure _:
       // Measure.relatedArtifact.where(type='composed-of').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'composed-of')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'composed-of')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14661,11 +16188,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Measure.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Measure.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // Measure.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Measure.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // Measure.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Measure.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // Measure.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -14698,9 +16279,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Measure.relatedArtifact.where(type='depends-on').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'depends-on')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'depends-on')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14734,9 +16315,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Measure.relatedArtifact.where(type='derived-from').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'derived-from')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'derived-from')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14837,9 +16418,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Measure.relatedArtifact.where(type='predecessor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'predecessor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'predecessor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14888,9 +16469,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Measure.relatedArtifact.where(type='successor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'successor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'successor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -14981,11 +16562,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Measure.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // Measure.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Measure.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.MeasureReport _:
       // MeasureReport.date (date)
       i = 0;
@@ -15039,8 +16638,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // MeasureReport.measure (reference)
       i = 0;
-      for (final entry in resource.measure.makeIterable<fhir.FhirCanonical>() ??
-          <fhir.FhirCanonical>[]) {
+      for (final entry
+          in resource.measure?.makeIterable<fhir.FhirCanonical>() ??
+              <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -15056,8 +16656,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MeasureReport.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -15076,7 +16676,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MeasureReport.period (date)
       i = 0;
       for (final entry
-          in resource.period.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
+          in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
             resourceType,
@@ -15107,7 +16707,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // MeasureReport.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -15137,6 +16737,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Media _:
       // Media.basedOn (reference)
       i = 0;
@@ -15256,8 +16857,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Media.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -15292,7 +16893,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Media.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -15354,6 +16955,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Medication _:
       // Medication.code (token)
       i = 0;
@@ -15421,6 +17023,42 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Medication.ingredient.item.ofType(Reference) (reference)
+      i = 0;
+      for (final entry in resource.ingredient
+              ?.map<fhir.Reference?>((e) => e?.itemReference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Medication.ingredient.item.ofType(Reference)',
+            i,
+            searchName: 'ingredient',
+          ),
+        );
+        i++;
+      }
+      // Medication.ingredient.item.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.ingredient
+              ?.map<fhir.CodeableConcept?>((e) => e?.itemCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Medication.ingredient.item.ofType(CodeableConcept)',
+            i,
+            searchName: 'ingredient-code',
+          ),
+        );
+        i++;
+      }
       // Medication.batch.lotNumber (token)
       i = 0;
       for (final entry
@@ -15471,7 +17109,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MedicationAdministration _:
+      // MedicationAdministration.medication.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.medicationCodeableConcept
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationAdministration.medication.ofType(CodeableConcept)',
+            i,
+            searchName: 'code',
+          ),
+        );
+        i++;
+      }
       // MedicationAdministration.identifier (token)
       i = 0;
       for (final entry
@@ -15492,8 +17148,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationAdministration.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -15544,7 +17200,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationAdministration.effective (date)
       i = 0;
       for (final entry in resource.effectiveX
-              .makeIterable<fhir.EffectiveXMedicationAdministration>() ??
+              ?.makeIterable<fhir.EffectiveXMedicationAdministration>() ??
           <fhir.EffectiveXMedicationAdministration>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -15558,11 +17214,28 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // MedicationAdministration.medication.ofType(Reference) (reference)
+      i = 0;
+      for (final entry
+          in resource.medicationReference?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationAdministration.medication.ofType(Reference)',
+            i,
+            searchName: 'medication',
+          ),
+        );
+        i++;
+      }
       // MedicationAdministration.performer.actor (reference)
       i = 0;
       for (final entry in resource.performer
-              ?.map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -15628,7 +17301,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // MedicationAdministration.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -15644,7 +17317,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // MedicationAdministration.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -15658,7 +17331,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MedicationDispense _:
+      // MedicationDispense.medication.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.medicationCodeableConcept
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationDispense.medication.ofType(CodeableConcept)',
+            i,
+            searchName: 'code',
+          ),
+        );
+        i++;
+      }
       // MedicationDispense.identifier (token)
       i = 0;
       for (final entry
@@ -15679,8 +17370,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationDispense.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -15696,9 +17387,26 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // MedicationDispense.medication.ofType(Reference) (reference)
+      i = 0;
+      for (final entry
+          in resource.medicationReference?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationDispense.medication.ofType(Reference)',
+            i,
+            searchName: 'medication',
+          ),
+        );
+        i++;
+      }
       // MedicationDispense.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -15748,8 +17456,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationDispense.performer.actor (reference)
       i = 0;
       for (final entry in resource.performer
-              ?.map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -15879,12 +17587,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MedicationKnowledge _:
       // MedicationKnowledge.medicineClassification.classification (token)
       i = 0;
       for (final entry in resource.medicineClassification
-              ?.expand((e) => e.classification ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.classification ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -15901,8 +17610,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationKnowledge.medicineClassification.type (token)
       i = 0;
       for (final entry in resource.medicineClassification
-              ?.map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -15949,6 +17658,42 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // MedicationKnowledge.ingredient.item.ofType(Reference) (reference)
+      i = 0;
+      for (final entry in resource.ingredient
+              ?.map<fhir.Reference?>((e) => e?.itemReference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationKnowledge.ingredient.item.ofType(Reference)',
+            i,
+            searchName: 'ingredient',
+          ),
+        );
+        i++;
+      }
+      // MedicationKnowledge.ingredient.item.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.ingredient
+              ?.map<fhir.CodeableConcept?>((e) => e?.itemCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationKnowledge.ingredient.item.ofType(CodeableConcept)',
+            i,
+            searchName: 'ingredient-code',
+          ),
+        );
+        i++;
+      }
       // MedicationKnowledge.manufacturer (reference)
       i = 0;
       for (final entry
@@ -15969,8 +17714,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationKnowledge.monitoringProgram.name (token)
       i = 0;
       for (final entry in resource.monitoringProgram
-              ?.map<fhir.FhirString?>((e) => e.name)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.name)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -15987,8 +17732,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationKnowledge.monitoringProgram.type (token)
       i = 0;
       for (final entry in resource.monitoringProgram
-              ?.map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16005,8 +17750,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationKnowledge.monograph.source (reference)
       i = 0;
       for (final entry in resource.monograph
-              ?.map<fhir.Reference?>((e) => e.source)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.source)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -16023,8 +17768,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationKnowledge.monograph.type (token)
       i = 0;
       for (final entry in resource.monograph
-              ?.map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16041,8 +17786,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationKnowledge.cost.source (token)
       i = 0;
       for (final entry in resource.cost
-              ?.map<fhir.FhirString?>((e) => e.source)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.source)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16072,7 +17817,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MedicationRequest _:
+      // MedicationRequest.medication.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.medicationCodeableConcept
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationRequest.medication.ofType(CodeableConcept)',
+            i,
+            searchName: 'code',
+          ),
+        );
+        i++;
+      }
       // MedicationRequest.identifier (token)
       i = 0;
       for (final entry
@@ -16093,8 +17856,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationRequest.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -16110,9 +17873,26 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // MedicationRequest.medication.ofType(Reference) (reference)
+      i = 0;
+      for (final entry
+          in resource.medicationReference?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationRequest.medication.ofType(Reference)',
+            i,
+            searchName: 'medication',
+          ),
+        );
+        i++;
+      }
       // MedicationRequest.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16163,9 +17943,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationRequest.dosageInstruction.timing.event (date)
       i = 0;
       for (final entry in resource.dosageInstruction
-              ?.map<fhir.Timing?>((e) => e.timing)
-              .expand((e) => e?.event ?? <fhir.FhirDateTime>[])
-              .makeIterable<fhir.FhirDateTime>() ??
+              ?.map<fhir.Timing?>((e) => e?.timing)
+              ?.expand((e) => e?.event ?? <fhir.FhirDateTime>[])
+              ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -16247,7 +18027,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // MedicationRequest.intent (token)
       i = 0;
-      for (final entry in resource.intent.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16296,7 +18076,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // MedicationRequest.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -16310,7 +18090,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MedicationStatement _:
+      // MedicationStatement.medication.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.medicationCodeableConcept
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationStatement.medication.ofType(CodeableConcept)',
+            i,
+            searchName: 'code',
+          ),
+        );
+        i++;
+      }
       // MedicationStatement.identifier (token)
       i = 0;
       for (final entry
@@ -16331,8 +18129,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicationStatement.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -16348,9 +18146,26 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // MedicationStatement.medication.ofType(Reference) (reference)
+      i = 0;
+      for (final entry
+          in resource.medicationReference?.makeIterable<fhir.Reference>() ??
+              <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MedicationStatement.medication.ofType(Reference)',
+            i,
+            searchName: 'medication',
+          ),
+        );
+        i++;
+      }
       // MedicationStatement.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16449,7 +18264,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // MedicationStatement.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -16463,14 +18278,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MedicinalProductDefinition _:
       // MedicinalProductDefinition.characteristic.value (token)
       i = 0;
       for (final entry in resource.characteristic
               ?.map<fhir.ValueXMedicinalProductDefinitionCharacteristic?>(
-                (e) => e.valueX,
-              )
-              .makeIterable<
+                  (e) => e?.valueX)
+              ?.makeIterable<
                   fhir.ValueXMedicinalProductDefinitionCharacteristic>() ??
           <fhir.ValueXMedicinalProductDefinitionCharacteristic>[]) {
         searchParameterLists.tokenParams.addAll(
@@ -16488,8 +18303,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicinalProductDefinition.characteristic.type (token)
       i = 0;
       for (final entry in resource.characteristic
-              ?.map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16506,8 +18321,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicinalProductDefinition.contact.contact (reference)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.Reference?>((e) => e.contact)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.contact)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -16591,8 +18406,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicinalProductDefinition.name.productName (string)
       i = 0;
       for (final entry in resource.name
-              .map<fhir.FhirString?>((e) => e.productName)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.productName)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -16609,13 +18424,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MedicinalProductDefinition.name.countryLanguage.language (token)
       i = 0;
       for (final entry in resource.name
-              .expand(
-                (e) =>
-                    e.countryLanguage ??
-                    <fhir.MedicinalProductDefinitionCountryLanguage>[],
-              )
-              .map<fhir.CodeableConcept?>((e) => e.language)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) =>
+                  e?.countryLanguage ??
+                  <fhir.MedicinalProductDefinitionCountryLanguage>[])
+              ?.map<fhir.CodeableConcept?>((e) => e?.language)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16679,12 +18492,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MessageDefinition _:
+      // MessageDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MessageDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // MessageDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MessageDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // MessageDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MessageDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // MessageDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16856,6 +18724,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'MessageDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // MessageDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MessageDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -16898,7 +18783,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageDefinition.event (token)
       i = 0;
       for (final entry
-          in resource.eventX.makeIterable<fhir.EventXMessageDefinition>() ??
+          in resource.eventX?.makeIterable<fhir.EventXMessageDefinition>() ??
               <fhir.EventXMessageDefinition>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16915,8 +18800,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageDefinition.focus.code (token)
       i = 0;
       for (final entry in resource.focus
-              ?.map<fhir.FhirCode?>((e) => e.code)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.map<fhir.FhirCode?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16946,6 +18831,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MessageHeader _:
       // MessageHeader.author (reference)
       i = 0;
@@ -16966,7 +18852,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.response.code (token)
       i = 0;
       for (final entry
-          in resource.response?.code.makeIterable<fhir.FhirCodeEnum>() ??
+          in resource.response?.code?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -16983,8 +18869,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.destination.name (string)
       i = 0;
       for (final entry in resource.destination
-              ?.map<fhir.FhirString?>((e) => e.name)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.name)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -17001,8 +18887,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.destination.endpoint (uri)
       i = 0;
       for (final entry in resource.destination
-              ?.map<fhir.FhirUrl?>((e) => e.endpoint)
-              .makeIterable<fhir.FhirUrl>() ??
+              ?.map<fhir.FhirUrl?>((e) => e?.endpoint)
+              ?.makeIterable<fhir.FhirUrl>() ??
           <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -17035,7 +18921,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.event (token)
       i = 0;
       for (final entry
-          in resource.eventX.makeIterable<fhir.EventXMessageHeader>() ??
+          in resource.eventX?.makeIterable<fhir.EventXMessageHeader>() ??
               <fhir.EventXMessageHeader>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17068,8 +18954,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.destination.receiver (reference)
       i = 0;
       for (final entry in resource.destination
-              ?.map<fhir.Reference?>((e) => e.receiver)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.receiver)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -17086,7 +18972,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.response.identifier (token)
       i = 0;
       for (final entry
-          in resource.response?.identifier.makeIterable<fhir.FhirId>() ??
+          in resource.response?.identifier?.makeIterable<fhir.FhirId>() ??
               <fhir.FhirId>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17136,7 +19022,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.source.name (string)
       i = 0;
       for (final entry
-          in resource.source.name?.makeIterable<fhir.FhirString>() ??
+          in resource.source?.name?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -17153,7 +19039,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.source.endpoint (uri)
       i = 0;
       for (final entry
-          in resource.source.endpoint.makeIterable<fhir.FhirUrl>() ??
+          in resource.source?.endpoint?.makeIterable<fhir.FhirUrl>() ??
               <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -17170,8 +19056,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MessageHeader.destination.target (reference)
       i = 0;
       for (final entry in resource.destination
-              ?.map<fhir.Reference?>((e) => e.target)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.target)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -17185,6 +19071,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.MolecularSequence _:
       // MolecularSequence.referenceSeq.chromosome (token)
       i = 0;
@@ -17272,8 +19159,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MolecularSequence.variant.end (number)
       i = 0;
       for (final entry in resource.variant
-              ?.map<fhir.FhirInteger?>((e) => e.end)
-              .makeIterable<fhir.FhirInteger>() ??
+              ?.map<fhir.FhirInteger?>((e) => e?.end)
+              ?.makeIterable<fhir.FhirInteger>() ??
           <fhir.FhirInteger>[]) {
         searchParameterLists.numberParams.addAll(
           entry.toNumberSearchParameter(
@@ -17290,8 +19177,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // MolecularSequence.variant.start (number)
       i = 0;
       for (final entry in resource.variant
-              ?.map<fhir.FhirInteger?>((e) => e.start)
-              .makeIterable<fhir.FhirInteger>() ??
+              ?.map<fhir.FhirInteger?>((e) => e?.start)
+              ?.makeIterable<fhir.FhirInteger>() ??
           <fhir.FhirInteger>[]) {
         searchParameterLists.numberParams.addAll(
           entry.toNumberSearchParameter(
@@ -17351,6 +19238,40 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'MolecularSequence.variant',
             i,
+            searchName: 'chromosome-variant-coordinate',
+          ),
+        );
+        i++;
+      }
+      // MolecularSequence.referenceSeq (composite)
+      i = 0;
+      for (final entry in resource.referenceSeq
+              ?.makeIterable<fhir.MolecularSequenceReferenceSeq>() ??
+          <fhir.MolecularSequenceReferenceSeq>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MolecularSequence.referenceSeq',
+            i,
+            searchName: 'chromosome-window-coordinate',
+          ),
+        );
+        i++;
+      }
+      // MolecularSequence.variant (composite)
+      i = 0;
+      for (final entry
+          in resource.variant?.makeIterable<fhir.MolecularSequenceVariant>() ??
+              <fhir.MolecularSequenceVariant>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'MolecularSequence.variant',
+            i,
             searchName: 'referenceseqid-variant-coordinate',
           ),
         );
@@ -17373,12 +19294,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.NamingSystem _:
+      // NamingSystem.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'NamingSystem.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // NamingSystem.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'NamingSystem.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // NamingSystem.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'NamingSystem.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // NamingSystem.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17394,7 +19370,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NamingSystem.date (date)
       i = 0;
-      for (final entry in resource.date.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -17444,7 +19420,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NamingSystem.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -17476,7 +19452,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NamingSystem.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17502,6 +19478,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'NamingSystem.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // NamingSystem.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'NamingSystem.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -17510,8 +19503,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // NamingSystem.contact.name (string)
       i = 0;
       for (final entry in resource.contact
-              ?.map<fhir.FhirString?>((e) => e.name)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.name)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -17528,8 +19521,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // NamingSystem.uniqueId.type (token)
       i = 0;
       for (final entry in resource.uniqueId
-              .map<fhir.FhirCodeEnum?>((e) => e.type)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.type)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17545,7 +19538,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NamingSystem.kind (token)
       i = 0;
-      for (final entry in resource.kind.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.kind?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17562,8 +19555,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // NamingSystem.uniqueId.period (date)
       i = 0;
       for (final entry in resource.uniqueId
-              .map<fhir.Period?>((e) => e.period)
-              .makeIterable<fhir.Period>() ??
+              ?.map<fhir.Period?>((e) => e?.period)
+              ?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -17597,8 +19590,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // NamingSystem.contact.telecom (token)
       i = 0;
       for (final entry in resource.contact
-              ?.expand((e) => e.telecom ?? <fhir.ContactPoint>[])
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.expand((e) => e?.telecom ?? <fhir.ContactPoint>[])
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17631,8 +19624,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // NamingSystem.uniqueId.value (string)
       i = 0;
       for (final entry in resource.uniqueId
-              .map<fhir.FhirString?>((e) => e.value)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.value)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -17646,6 +19639,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.NutritionOrder _:
       // NutritionOrder.identifier (token)
       i = 0;
@@ -17666,7 +19660,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NutritionOrder.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -17715,8 +19709,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NutritionOrder.dateTime (date)
       i = 0;
-      for (final entry in resource.dateTime.makeIterable<fhir.FhirDateTime>() ??
-          <fhir.FhirDateTime>[]) {
+      for (final entry
+          in resource.dateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
             resourceType,
@@ -17815,7 +19810,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NutritionOrder.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17832,8 +19827,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // NutritionOrder.supplement.type (token)
       i = 0;
       for (final entry in resource.supplement
-              ?.map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17847,6 +19842,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.NutritionProduct _:
       // NutritionProduct.instance.identifier (token)
       i = 0;
@@ -17867,7 +19863,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // NutritionProduct.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17881,10 +19877,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Observation _:
       // Observation.code (token)
       i = 0;
-      for (final entry in resource.code.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -17893,7 +19890,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Observation.code',
             i,
-            searchName: 'combo-code',
+            searchName: 'code',
           ),
         );
         i++;
@@ -17935,8 +19932,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Observation.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -18001,11 +19998,185 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Observation.code (token)
+      i = 0;
+      for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.code',
+            i,
+            searchName: 'combo-code',
+          ),
+        );
+        i++;
+      }
       // Observation.component.code (token)
       i = 0;
       for (final entry in resource.component
-              ?.map<fhir.CodeableConcept?>((e) => e.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.code',
+            i,
+            searchName: 'combo-code',
+          ),
+        );
+        i++;
+      }
+      // Observation.dataAbsentReason (token)
+      i = 0;
+      for (final entry
+          in resource.dataAbsentReason?.makeIterable<fhir.CodeableConcept>() ??
+              <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.dataAbsentReason',
+            i,
+            searchName: 'combo-data-absent-reason',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.dataAbsentReason (token)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.CodeableConcept?>((e) => e?.dataAbsentReason)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.dataAbsentReason',
+            i,
+            searchName: 'combo-data-absent-reason',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.valueCodeableConcept
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'combo-value-concept',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'combo-value-concept',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry
+          in resource.valueQuantity?.makeIterable<fhir.Quantity>() ??
+              <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(Quantity)',
+            i,
+            searchName: 'combo-value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(SampledData) (quantity)
+      i = 0;
+      for (final entry
+          in resource.valueSampledData?.makeIterable<fhir.SampledData>() ??
+              <fhir.SampledData>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(SampledData)',
+            i,
+            searchName: 'combo-value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.value.ofType(Quantity)',
+            i,
+            searchName: 'combo-value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.value.ofType(SampledData) (quantity)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.SampledData?>((e) => e?.valueSampledData)
+              ?.makeIterable<fhir.SampledData>() ??
+          <fhir.SampledData>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.value.ofType(SampledData)',
+            i,
+            searchName: 'combo-value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.code (token)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18015,6 +20186,78 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation.component.code',
             i,
             searchName: 'component-code',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.dataAbsentReason (token)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.CodeableConcept?>((e) => e?.dataAbsentReason)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.dataAbsentReason',
+            i,
+            searchName: 'component-data-absent-reason',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'component-value-concept',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.value.ofType(Quantity)',
+            i,
+            searchName: 'component-value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.component.value.ofType(SampledData) (quantity)
+      i = 0;
+      for (final entry in resource.component
+              ?.map<fhir.SampledData?>((e) => e?.valueSampledData)
+              ?.makeIterable<fhir.SampledData>() ??
+          <fhir.SampledData>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component.value.ofType(SampledData)',
+            i,
+            searchName: 'component-value-quantity',
           ),
         );
         i++;
@@ -18032,24 +20275,6 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation.dataAbsentReason',
             i,
             searchName: 'data-absent-reason',
-          ),
-        );
-        i++;
-      }
-      // Observation.component.dataAbsentReason (token)
-      i = 0;
-      for (final entry in resource.component
-              ?.map<fhir.CodeableConcept?>((e) => e.dataAbsentReason)
-              .makeIterable<fhir.CodeableConcept>() ??
-          <fhir.CodeableConcept>[]) {
-        searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
-            resourceType,
-            id,
-            lastUpdated,
-            'Observation.component.dataAbsentReason',
-            i,
-            searchName: 'component-data-absent-reason',
           ),
         );
         i++;
@@ -18186,7 +20411,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Observation.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18212,6 +20437,204 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation.subject',
             i,
             searchName: 'subject',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.valueCodeableConcept
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'value-concept',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(dateTime) (date)
+      i = 0;
+      for (final entry
+          in resource.valueDateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(dateTime)',
+            i,
+            searchName: 'value-date',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(Period) (date)
+      i = 0;
+      for (final entry in resource.valuePeriod?.makeIterable<fhir.Period>() ??
+          <fhir.Period>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(Period)',
+            i,
+            searchName: 'value-date',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry
+          in resource.valueQuantity?.makeIterable<fhir.Quantity>() ??
+              <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(Quantity)',
+            i,
+            searchName: 'value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(SampledData) (quantity)
+      i = 0;
+      for (final entry
+          in resource.valueSampledData?.makeIterable<fhir.SampledData>() ??
+              <fhir.SampledData>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(SampledData)',
+            i,
+            searchName: 'value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.value.ofType(string) (string)
+      i = 0;
+      for (final entry
+          in resource.valueString?.makeIterable<fhir.FhirString>() ??
+              <fhir.FhirString>[]) {
+        searchParameterLists.stringParams.addAll(
+          entry.toStringSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.value.ofType(string)',
+            i,
+            searchName: 'value-string',
+          ),
+        );
+        i++;
+      }
+      // Observation (composite)
+      i = 0;
+      for (final entry in resource.makeIterable<fhir.Observation>() ??
+          <fhir.Observation>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation',
+            i,
+            searchName: 'code-value-concept',
+          ),
+        );
+        i++;
+      }
+      // Observation (composite)
+      i = 0;
+      for (final entry in resource.makeIterable<fhir.Observation>() ??
+          <fhir.Observation>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation',
+            i,
+            searchName: 'code-value-date',
+          ),
+        );
+        i++;
+      }
+      // Observation (composite)
+      i = 0;
+      for (final entry in resource.makeIterable<fhir.Observation>() ??
+          <fhir.Observation>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation',
+            i,
+            searchName: 'code-value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation (composite)
+      i = 0;
+      for (final entry in resource.makeIterable<fhir.Observation>() ??
+          <fhir.Observation>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation',
+            i,
+            searchName: 'code-value-string',
+          ),
+        );
+        i++;
+      }
+      // Observation (composite)
+      i = 0;
+      for (final entry in resource.makeIterable<fhir.Observation>() ??
+          <fhir.Observation>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation',
+            i,
+            searchName: 'combo-code-value-concept',
+          ),
+        );
+        i++;
+      }
+      // Observation.component (composite)
+      i = 0;
+      for (final entry
+          in resource.component?.makeIterable<fhir.ObservationComponent>() ??
+              <fhir.ObservationComponent>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component',
+            i,
+            searchName: 'combo-code-value-concept',
           ),
         );
         i++;
@@ -18244,17 +20667,106 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Observation.component',
             i,
+            searchName: 'combo-code-value-quantity',
+          ),
+        );
+        i++;
+      }
+      // Observation.component (composite)
+      i = 0;
+      for (final entry
+          in resource.component?.makeIterable<fhir.ObservationComponent>() ??
+              <fhir.ObservationComponent>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component',
+            i,
+            searchName: 'component-code-value-concept',
+          ),
+        );
+        i++;
+      }
+      // Observation.component (composite)
+      i = 0;
+      for (final entry
+          in resource.component?.makeIterable<fhir.ObservationComponent>() ??
+              <fhir.ObservationComponent>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Observation.component',
+            i,
             searchName: 'component-code-value-quantity',
           ),
         );
         i++;
       }
+      break;
     case fhir.OperationDefinition _:
+      // OperationDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'OperationDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // OperationDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'OperationDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // OperationDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'OperationDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // OperationDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18320,7 +20832,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // OperationDefinition.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -18426,6 +20938,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'OperationDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // OperationDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'OperationDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -18449,8 +20978,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // OperationDefinition.code (token)
       i = 0;
-      for (final entry
-          in resource.code.makeIterable<fhir.FhirCode>() ?? <fhir.FhirCode>[]) {
+      for (final entry in resource.code?.makeIterable<fhir.FhirCode>() ??
+          <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -18482,7 +21011,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // OperationDefinition.instance (token)
       i = 0;
-      for (final entry in resource.instance.makeIterable<fhir.FhirBoolean>() ??
+      for (final entry in resource.instance?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18498,7 +21027,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // OperationDefinition.kind (token)
       i = 0;
-      for (final entry in resource.kind.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.kind?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18531,7 +21060,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // OperationDefinition.system (token)
       i = 0;
-      for (final entry in resource.system.makeIterable<fhir.FhirBoolean>() ??
+      for (final entry in resource.system?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18547,7 +21076,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // OperationDefinition.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.FhirBoolean>() ??
+      for (final entry in resource.type?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18561,6 +21090,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Organization _:
       // Organization.active (token)
       i = 0;
@@ -18597,8 +21127,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Organization.address.city (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.city)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.city)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -18615,8 +21145,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Organization.address.country (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.country)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.country)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -18633,8 +21163,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Organization.address.postalCode (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.postalCode)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.postalCode)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -18651,8 +21181,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Organization.address.state (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.state)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.state)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -18669,8 +21199,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Organization.address.use (token)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirCodeEnum?>((e) => e.use)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.use)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18728,7 +21258,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Organization.name',
             i,
-            searchName: 'phonetic',
+            searchName: 'name',
           ),
         );
         i++;
@@ -18765,6 +21295,22 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Organization.name (string)
+      i = 0;
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
+          <fhir.FhirString>[]) {
+        searchParameterLists.stringParams.addAll(
+          entry.toStringSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Organization.name',
+            i,
+            searchName: 'phonetic',
+          ),
+        );
+        i++;
+      }
       // Organization.type (token)
       i = 0;
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
@@ -18781,6 +21327,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.OrganizationAffiliation _:
       // OrganizationAffiliation.active (token)
       i = 0;
@@ -18818,7 +21365,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'email')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -18918,7 +21465,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'phone')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19015,13 +21562,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.PackagedProductDefinition _:
       // PackagedProductDefinition.package.containedItem.item.reference (reference)
       i = 0;
       for (final entry in resource.package?.containedItem
-              ?.map<fhir.CodeableReference?>((e) => e.item)
-              .map<fhir.Reference?>((e) => e?.reference)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.CodeableReference?>((e) => e?.item)
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -19030,7 +21578,45 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'PackagedProductDefinition.package.containedItem.item.reference',
             i,
-            searchName: 'package',
+            searchName: 'biological',
+          ),
+        );
+        i++;
+      }
+      // PackagedProductDefinition.package.containedItem.item.reference (reference)
+      i = 0;
+      for (final entry in resource.package?.containedItem
+              ?.map<fhir.CodeableReference?>((e) => e?.item)
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PackagedProductDefinition.package.containedItem.item.reference',
+            i,
+            searchName: 'contained-item',
+          ),
+        );
+        i++;
+      }
+      // PackagedProductDefinition.package.containedItem.item.reference (reference)
+      i = 0;
+      for (final entry in resource.package?.containedItem
+              ?.map<fhir.CodeableReference?>((e) => e?.item)
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PackagedProductDefinition.package.containedItem.item.reference',
+            i,
+            searchName: 'device',
           ),
         );
         i++;
@@ -19052,6 +21638,44 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // PackagedProductDefinition.package.containedItem.item.reference (reference)
+      i = 0;
+      for (final entry in resource.package?.containedItem
+              ?.map<fhir.CodeableReference?>((e) => e?.item)
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PackagedProductDefinition.package.containedItem.item.reference',
+            i,
+            searchName: 'manufactured-item',
+          ),
+        );
+        i++;
+      }
+      // PackagedProductDefinition.package.containedItem.item.reference (reference)
+      i = 0;
+      for (final entry in resource.package?.containedItem
+              ?.map<fhir.CodeableReference?>((e) => e?.item)
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PackagedProductDefinition.package.containedItem.item.reference',
+            i,
+            searchName: 'medication',
+          ),
+        );
+        i++;
+      }
       // PackagedProductDefinition.name (token)
       i = 0;
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
@@ -19064,6 +21688,44 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'PackagedProductDefinition.name',
             i,
             searchName: 'name',
+          ),
+        );
+        i++;
+      }
+      // PackagedProductDefinition.package.containedItem.item.reference (reference)
+      i = 0;
+      for (final entry in resource.package?.containedItem
+              ?.map<fhir.CodeableReference?>((e) => e?.item)
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PackagedProductDefinition.package.containedItem.item.reference',
+            i,
+            searchName: 'nutrition',
+          ),
+        );
+        i++;
+      }
+      // PackagedProductDefinition.package.containedItem.item.reference (reference)
+      i = 0;
+      for (final entry in resource.package?.containedItem
+              ?.map<fhir.CodeableReference?>((e) => e?.item)
+              ?.map<fhir.Reference?>((e) => e?.reference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PackagedProductDefinition.package.containedItem.item.reference',
+            i,
+            searchName: 'package',
           ),
         );
         i++;
@@ -19101,6 +21763,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Patient _:
       // Patient.active (token)
       i = 0;
@@ -19137,8 +21800,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.address.city (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.city)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.city)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19155,8 +21818,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.address.country (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.country)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.country)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19173,8 +21836,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.address.postalCode (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.postalCode)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.postalCode)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19191,8 +21854,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.address.state (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.state)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.state)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19209,8 +21872,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.address.use (token)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirCodeEnum?>((e) => e.use)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.use)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19240,13 +21903,28 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Patient.deceased.ofType(dateTime) (date)
+      i = 0;
+      for (final entry
+          in resource.deceasedDateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Patient.deceased.ofType(dateTime)',
+            i,
+            searchName: 'death-date',
+          ),
+        );
+        i++;
+      }
       // Patient.deceased.exists() and Patient.deceased != false (token)
       i = 0;
       for (final entry in [
-        fhir.FhirBoolean(
-          resource.deceasedX != null &&
-              (resource.deceasedBoolean?.valueBoolean ?? true),
-        ),
+        fhir.FhirBoolean(resource.deceasedX != null &&
+            resource.deceasedBoolean?.valueBoolean != false)
       ]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19264,7 +21942,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'email')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19281,8 +21959,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.name.family (string)
       i = 0;
       for (final entry in resource.name
-              ?.map<fhir.FhirString?>((e) => e.family)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.family)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19332,8 +22010,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.name.given (string)
       i = 0;
       for (final entry in resource.name
-              ?.expand((e) => e.given ?? <fhir.FhirString>[])
-              .makeIterable<fhir.FhirString>() ??
+              ?.expand((e) => e?.given ?? <fhir.FhirString>[])
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19367,8 +22045,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.communication.language (token)
       i = 0;
       for (final entry in resource.communication
-              ?.map<fhir.CodeableConcept?>((e) => e.language)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.language)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19385,8 +22063,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Patient.link.other (reference)
       i = 0;
       for (final entry in resource.link
-              ?.map<fhir.Reference?>((e) => e.other)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.other)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -19411,7 +22089,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Patient.name',
             i,
-            searchName: 'phonetic',
+            searchName: 'name',
           ),
         );
         i++;
@@ -19437,7 +22115,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'phone')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19447,6 +22125,22 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             "Patient.telecom.where(system='phone')",
             i,
             searchName: 'phone',
+          ),
+        );
+        i++;
+      }
+      // Patient.name (string)
+      i = 0;
+      for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
+          <fhir.HumanName>[]) {
+        searchParameterLists.stringParams.addAll(
+          entry.toStringSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Patient.name',
+            i,
+            searchName: 'phonetic',
           ),
         );
         i++;
@@ -19467,10 +22161,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.PaymentNotice _:
       // PaymentNotice.created (date)
       i = 0;
-      for (final entry in resource.created.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -19568,7 +22263,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // PaymentNotice.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19582,10 +22277,11 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.PaymentReconciliation _:
       // PaymentReconciliation.created (date)
       i = 0;
-      for (final entry in resource.created.makeIterable<fhir.FhirDateTime>() ??
+      for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -19700,7 +22396,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // PaymentReconciliation.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19714,6 +22410,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Person _:
       // Person.address (string)
       i = 0;
@@ -19734,8 +22431,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.address.city (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.city)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.city)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19752,8 +22449,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.address.country (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.country)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.country)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19770,8 +22467,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.address.postalCode (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.postalCode)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.postalCode)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19788,8 +22485,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.address.state (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.state)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.state)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -19806,8 +22503,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.address.use (token)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirCodeEnum?>((e) => e.use)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.use)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19841,7 +22538,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'email')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19875,7 +22572,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'phone')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -19900,7 +22597,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Person.name',
             i,
-            searchName: 'name',
+            searchName: 'phonetic',
           ),
         );
         i++;
@@ -19941,8 +22638,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.link.target (reference)
       i = 0;
       for (final entry in resource.link
-              ?.map<fhir.Reference?>((e) => e.target)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.target)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -19952,6 +22649,22 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Person.link.target',
             i,
             searchName: 'link',
+          ),
+        );
+        i++;
+      }
+      // Person.name (string)
+      i = 0;
+      for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
+          <fhir.HumanName>[]) {
+        searchParameterLists.stringParams.addAll(
+          entry.toStringSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Person.name',
+            i,
+            searchName: 'name',
           ),
         );
         i++;
@@ -19976,10 +22689,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.link.target.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.link?.map<fhir.Reference?>((e) => e.target).where((e) {
+          in resource.link?.map<fhir.Reference?>((e) => e?.target)?.where((e) {
                 final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
-              }).makeIterable<fhir.Reference>() ??
+              })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -19996,10 +22709,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.link.target.where(resolve() is Practitioner) (reference)
       i = 0;
       for (final entry
-          in resource.link?.map<fhir.Reference?>((e) => e.target).where((e) {
+          in resource.link?.map<fhir.Reference?>((e) => e?.target)?.where((e) {
                 final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Practitioner';
-              }).makeIterable<fhir.Reference>() ??
+              })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20016,10 +22729,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Person.link.target.where(resolve() is RelatedPerson) (reference)
       i = 0;
       for (final entry
-          in resource.link?.map<fhir.Reference?>((e) => e.target).where((e) {
+          in resource.link?.map<fhir.Reference?>((e) => e?.target)?.where((e) {
                 final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'RelatedPerson';
-              }).makeIterable<fhir.Reference>() ??
+              })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20033,13 +22746,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.PlanDefinition _:
       // PlanDefinition.relatedArtifact.where(type='composed-of').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'composed-of')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'composed-of')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20053,11 +22767,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // PlanDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PlanDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // PlanDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PlanDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // PlanDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PlanDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // PlanDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -20091,9 +22859,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.action
               ?.map<fhir.DefinitionXPlanDefinitionAction?>(
-                (e) => e.definitionX,
-              )
-              .makeIterable<fhir.DefinitionXPlanDefinitionAction>() ??
+                  (e) => e?.definitionX)
+              ?.makeIterable<fhir.DefinitionXPlanDefinitionAction>() ??
           <fhir.DefinitionXPlanDefinitionAction>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20110,9 +22877,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // PlanDefinition.relatedArtifact.where(type='depends-on').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'depends-on')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'depends-on')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20146,9 +22913,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // PlanDefinition.relatedArtifact.where(type='derived-from').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'derived-from')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'derived-from')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20249,9 +23016,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // PlanDefinition.relatedArtifact.where(type='predecessor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'predecessor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'predecessor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20300,9 +23067,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // PlanDefinition.relatedArtifact.where(type='successor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'successor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'successor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -20409,11 +23176,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'PlanDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // PlanDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'PlanDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.Practitioner _:
       // Practitioner.address (string)
       i = 0;
@@ -20434,8 +23219,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Practitioner.address.city (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.city)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.city)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -20452,8 +23237,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Practitioner.address.country (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.country)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.country)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -20470,8 +23255,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Practitioner.address.postalCode (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.postalCode)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.postalCode)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -20488,8 +23273,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Practitioner.address.state (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.state)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.state)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -20506,8 +23291,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Practitioner.address.use (token)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirCodeEnum?>((e) => e.use)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.use)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -20525,7 +23310,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'email')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -20542,8 +23327,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Practitioner.name.family (string)
       i = 0;
       for (final entry in resource.name
-              ?.map<fhir.FhirString?>((e) => e.family)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.family)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -20576,8 +23361,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Practitioner.name.given (string)
       i = 0;
       for (final entry in resource.name
-              ?.expand((e) => e.given ?? <fhir.FhirString>[])
-              .makeIterable<fhir.FhirString>() ??
+              ?.expand((e) => e?.given ?? <fhir.FhirString>[])
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -20595,7 +23380,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'phone')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -20620,7 +23405,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Practitioner.name',
             i,
-            searchName: 'name',
+            searchName: 'phonetic',
           ),
         );
         i++;
@@ -20691,12 +23476,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Practitioner.name (string)
+      i = 0;
+      for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
+          <fhir.HumanName>[]) {
+        searchParameterLists.stringParams.addAll(
+          entry.toStringSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Practitioner.name',
+            i,
+            searchName: 'name',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.PractitionerRole _:
       // PractitionerRole.telecom.where(system='email') (token)
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'email')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -20714,7 +23516,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'phone')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -20909,6 +23711,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Procedure _:
       // Procedure.code (token)
       i = 0;
@@ -20963,8 +23766,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Procedure.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -21098,8 +23901,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Procedure.performer.actor (reference)
       i = 0;
       for (final entry in resource.performer
-              ?.map<fhir.Reference?>((e) => e.actor)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.actor)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -21149,7 +23952,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Procedure.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -21165,7 +23968,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Procedure.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -21179,12 +23982,13 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Provenance _:
       // Provenance.agent.who (reference)
       i = 0;
       for (final entry in resource.agent
-              .map<fhir.Reference?>((e) => e.who)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.who)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -21201,8 +24005,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Provenance.agent.role (token)
       i = 0;
       for (final entry in resource.agent
-              .expand((e) => e.role ?? <fhir.CodeableConcept>[])
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.expand((e) => e?.role ?? <fhir.CodeableConcept>[])
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -21219,8 +24023,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Provenance.agent.type (token)
       i = 0;
       for (final entry in resource.agent
-              .map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -21237,8 +24041,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Provenance.entity.what (reference)
       i = 0;
       for (final entry in resource.entity
-              ?.map<fhir.Reference?>((e) => e.what)
-              .makeIterable<fhir.Reference>() ??
+              ?.map<fhir.Reference?>((e) => e?.what)
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -21270,10 +24074,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Provenance.target.where(resolve() is Patient) (reference)
       i = 0;
-      for (final entry in resource.target.where((e) {
-            final ref = e.reference?.toString().split('/') ?? [];
+      for (final entry in resource.target?.where((e) {
+            final ref = e?.reference?.toString().split('/') ?? [];
             return ref.length > 1 && ref[ref.length - 2] == 'Patient';
-          }).makeIterable<fhir.Reference>() ??
+          })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -21289,7 +24093,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Provenance.recorded (date)
       i = 0;
-      for (final entry in resource.recorded.makeIterable<fhir.FhirInstant>() ??
+      for (final entry in resource.recorded?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -21306,8 +24110,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Provenance.signature.type (token)
       i = 0;
       for (final entry in resource.signature
-              ?.expand((e) => e.type ?? <fhir.Coding>[])
-              .makeIterable<fhir.Coding>() ??
+              ?.expand((e) => e?.type ?? <fhir.Coding>[])
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -21323,7 +24127,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Provenance.target (reference)
       i = 0;
-      for (final entry in resource.target.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.target?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -21337,12 +24141,30 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Provenance.occurred.ofType(dateTime) (date)
+      i = 0;
+      for (final entry
+          in resource.occurredDateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Provenance.occurred.ofType(dateTime)',
+            i,
+            searchName: 'when',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.Questionnaire _:
       // Questionnaire.item.code (token)
       i = 0;
       for (final entry in resource.item
-              ?.expand((e) => e.code ?? <fhir.Coding>[])
-              .makeIterable<fhir.Coding>() ??
+              ?.expand((e) => e?.code ?? <fhir.Coding>[])
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -21356,11 +24178,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Questionnaire.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Questionnaire.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // Questionnaire.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Questionnaire.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // Questionnaire.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Questionnaire.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // Questionnaire.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -21393,8 +24269,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Questionnaire.item.definition (uri)
       i = 0;
       for (final entry in resource.item
-              ?.map<fhir.FhirUri?>((e) => e.definition)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.map<fhir.FhirUri?>((e) => e?.definition)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -21600,11 +24476,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'Questionnaire.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // Questionnaire.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Questionnaire.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.QuestionnaireResponse _:
       // QuestionnaireResponse.author (reference)
       i = 0;
@@ -21707,8 +24601,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // QuestionnaireResponse.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -21759,7 +24653,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // QuestionnaireResponse.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -21789,6 +24683,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.RegulatedAuthorization _:
       // RegulatedAuthorization.case.identifier (token)
       i = 0;
@@ -21907,6 +24802,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.RelatedPerson _:
       // RelatedPerson.address (string)
       i = 0;
@@ -21927,8 +24823,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RelatedPerson.address.city (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.city)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.city)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -21945,8 +24841,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RelatedPerson.address.country (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.country)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.country)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -21963,8 +24859,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RelatedPerson.address.postalCode (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.postalCode)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.postalCode)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -21981,8 +24877,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RelatedPerson.address.state (string)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirString?>((e) => e.state)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.state)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -21999,8 +24895,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RelatedPerson.address.use (token)
       i = 0;
       for (final entry in resource.address
-              ?.map<fhir.FhirCodeEnum?>((e) => e.use)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.use)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22034,7 +24930,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'email')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22068,7 +24964,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.telecom
               ?.where((e) => e.system?.valueString == 'phone')
-              .makeIterable<fhir.ContactPoint>() ??
+              ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22093,7 +24989,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'RelatedPerson.name',
             i,
-            searchName: 'name',
+            searchName: 'phonetic',
           ),
         );
         i++;
@@ -22147,9 +25043,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // RelatedPerson.name (string)
+      i = 0;
+      for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
+          <fhir.HumanName>[]) {
+        searchParameterLists.stringParams.addAll(
+          entry.toStringSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'RelatedPerson.name',
+            i,
+            searchName: 'name',
+          ),
+        );
+        i++;
+      }
       // RelatedPerson.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22180,6 +25092,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.RequestGroup _:
       // RequestGroup.author (reference)
       i = 0;
@@ -22316,7 +25229,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // RequestGroup.intent (token)
       i = 0;
-      for (final entry in resource.intent.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22333,8 +25246,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RequestGroup.action.participant (reference)
       i = 0;
       for (final entry in resource.action
-              ?.expand((e) => e.participant ?? <fhir.Reference>[])
-              .makeIterable<fhir.Reference>() ??
+              ?.expand((e) => e?.participant ?? <fhir.Reference>[])
+              ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22351,8 +25264,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RequestGroup.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -22387,7 +25300,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // RequestGroup.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22417,13 +25330,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ResearchDefinition _:
       // ResearchDefinition.relatedArtifact.where(type='composed-of').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'composed-of')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'composed-of')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22437,11 +25351,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // ResearchDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ResearchDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ResearchDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ResearchDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22474,9 +25442,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchDefinition.relatedArtifact.where(type='depends-on').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'depends-on')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'depends-on')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22510,9 +25478,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchDefinition.relatedArtifact.where(type='derived-from').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'derived-from')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'derived-from')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22613,9 +25581,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchDefinition.relatedArtifact.where(type='predecessor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'predecessor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'predecessor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22647,7 +25615,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ResearchDefinition.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22664,9 +25632,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchDefinition.relatedArtifact.where(type='successor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'successor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'successor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22757,18 +25725,36 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ResearchDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ResearchDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.ResearchElementDefinition _:
       // ResearchElementDefinition.relatedArtifact.where(type='composed-of').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'composed-of')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'composed-of')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22782,11 +25768,65 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // ResearchElementDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchElementDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ResearchElementDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchElementDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ResearchElementDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchElementDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ResearchElementDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -22819,9 +25859,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchElementDefinition.relatedArtifact.where(type='depends-on').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'depends-on')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'depends-on')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22855,9 +25895,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchElementDefinition.relatedArtifact.where(type='derived-from').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'derived-from')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'derived-from')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22958,9 +25998,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchElementDefinition.relatedArtifact.where(type='predecessor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'predecessor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'predecessor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -22992,7 +26032,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ResearchElementDefinition.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -23009,9 +26049,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ResearchElementDefinition.relatedArtifact.where(type='successor').resource (reference)
       i = 0;
       for (final entry in resource.relatedArtifact
-              ?.where((e) => e.type.valueString == 'successor')
-              .map((e) => e.resource)
-              .makeIterable<fhir.RelatedArtifact>() ??
+              ?.where((e) => e.type?.valueString == 'successor')
+              ?.map((e) => e?.resource)
+              ?.makeIterable<fhir.RelatedArtifact>() ??
           <fhir.RelatedArtifact>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -23102,11 +26142,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ResearchElementDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ResearchElementDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchElementDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.ResearchStudy _:
       // ResearchStudy.category (token)
       i = 0;
@@ -23292,7 +26350,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ResearchStudy.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -23322,6 +26380,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ResearchSubject _:
       // ResearchSubject.period (date)
       i = 0;
@@ -23358,7 +26417,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ResearchSubject.individual (reference)
       i = 0;
-      for (final entry in resource.individual.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.individual?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ResearchSubject.individual',
+            i,
+            searchName: 'individual',
+          ),
+        );
+        i++;
+      }
+      // ResearchSubject.individual (reference)
+      i = 0;
+      for (final entry in resource.individual?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -23374,7 +26449,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ResearchSubject.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -23390,7 +26465,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ResearchSubject.study (reference)
       i = 0;
-      for (final entry in resource.study.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.study?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -23404,7 +26479,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.RiskAssessment _:
+      // RiskAssessment.occurrence.ofType(dateTime) (date)
+      i = 0;
+      for (final entry
+          in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
+              <fhir.FhirDateTime>[]) {
+        searchParameterLists.dateParams.addAll(
+          entry.toDateSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'RiskAssessment.occurrence.ofType(dateTime)',
+            i,
+            searchName: 'date',
+          ),
+        );
+        i++;
+      }
       // RiskAssessment.identifier (token)
       i = 0;
       for (final entry
@@ -23425,8 +26518,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RiskAssessment.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -23511,9 +26604,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       i = 0;
       for (final entry in resource.prediction
               ?.map<fhir.ProbabilityXRiskAssessmentPrediction?>(
-                (e) => e.probabilityX,
-              )
-              .makeIterable<fhir.ProbabilityXRiskAssessmentPrediction>() ??
+                  (e) => e?.probabilityX)
+              ?.makeIterable<fhir.ProbabilityXRiskAssessmentPrediction>() ??
           <fhir.ProbabilityXRiskAssessmentPrediction>[]) {
         searchParameterLists.numberParams.addAll(
           entry.toNumberSearchParameter(
@@ -23530,8 +26622,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // RiskAssessment.prediction.qualitativeRisk (token)
       i = 0;
       for (final entry in resource.prediction
-              ?.map<fhir.CodeableConcept?>((e) => e.qualitativeRisk)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.qualitativeRisk)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -23547,7 +26639,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // RiskAssessment.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -23561,6 +26653,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Schedule _:
       // Schedule.active (token)
       i = 0;
@@ -23580,7 +26673,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Schedule.actor (reference)
       i = 0;
-      for (final entry in resource.actor.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.actor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -23679,12 +26772,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.SearchParameter _:
+      // SearchParameter.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'SearchParameter.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // SearchParameter.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'SearchParameter.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // SearchParameter.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'SearchParameter.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // SearchParameter.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -23750,7 +26898,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // SearchParameter.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -23840,6 +26988,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'SearchParameter.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // SearchParameter.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'SearchParameter.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -23847,8 +27012,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // SearchParameter.base (token)
       i = 0;
-      for (final entry
-          in resource.base.makeIterable<fhir.FhirCode>() ?? <fhir.FhirCode>[]) {
+      for (final entry in resource.base?.makeIterable<fhir.FhirCode>() ??
+          <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -23863,8 +27028,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // SearchParameter.code (token)
       i = 0;
-      for (final entry
-          in resource.code.makeIterable<fhir.FhirCode>() ?? <fhir.FhirCode>[]) {
+      for (final entry in resource.code?.makeIterable<fhir.FhirCode>() ??
+          <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -23880,8 +27045,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // SearchParameter.component.definition (reference)
       i = 0;
       for (final entry in resource.component
-              ?.map<fhir.FhirCanonical?>((e) => e.definition)
-              .makeIterable<fhir.FhirCanonical>() ??
+              ?.map<fhir.FhirCanonical?>((e) => e?.definition)
+              ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -23930,7 +27095,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // SearchParameter.type (token)
       i = 0;
-      for (final entry in resource.type.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -23944,6 +27109,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.ServiceRequest _:
       // ServiceRequest.code (token)
       i = 0;
@@ -23981,8 +27147,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ServiceRequest.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -24117,7 +27283,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ServiceRequest.intent (token)
       i = 0;
-      for (final entry in resource.intent.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24265,7 +27431,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ServiceRequest.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24281,7 +27447,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // ServiceRequest.subject (reference)
       i = 0;
-      for (final entry in resource.subject.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -24295,6 +27461,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Slot _:
       // Slot.appointmentType (token)
       i = 0;
@@ -24332,7 +27499,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Slot.schedule (reference)
       i = 0;
-      for (final entry in resource.schedule.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.schedule?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -24399,7 +27566,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Slot.start (date)
       i = 0;
-      for (final entry in resource.start.makeIterable<fhir.FhirInstant>() ??
+      for (final entry in resource.start?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -24415,7 +27582,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Slot.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24429,6 +27596,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Specimen _:
       // Specimen.accessionIdentifier (token)
       i = 0;
@@ -24501,8 +27669,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Specimen.container.type (token)
       i = 0;
       for (final entry in resource.container
-              ?.map<fhir.CodeableConcept?>((e) => e.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24519,8 +27687,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Specimen.container.identifier (token)
       i = 0;
       for (final entry in resource.container
-              ?.expand((e) => e.identifier ?? <fhir.Identifier>[])
-              .makeIterable<fhir.Identifier>() ??
+              ?.expand((e) => e?.identifier ?? <fhir.Identifier>[])
+              ?.makeIterable<fhir.Identifier>() ??
           <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24570,8 +27738,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Specimen.subject.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.subject?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.subject?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -24635,13 +27803,14 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.SpecimenDefinition _:
       // SpecimenDefinition.typeTested.container.type (token)
       i = 0;
       for (final entry in resource.typeTested
-              ?.map<fhir.SpecimenDefinitionContainer?>((e) => e.container)
-              .map<fhir.CodeableConcept?>((e) => e?.type)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.SpecimenDefinitionContainer?>((e) => e?.container)
+              ?.map<fhir.CodeableConcept?>((e) => e?.type)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24689,12 +27858,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.StructureDefinition _:
+      // StructureDefinition.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureDefinition.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // StructureDefinition.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureDefinition.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // StructureDefinition.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureDefinition.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // StructureDefinition.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24760,7 +27984,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // StructureDefinition.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -24866,6 +28090,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'StructureDefinition.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // StructureDefinition.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureDefinition.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -24890,8 +28131,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // StructureDefinition.abstract (token)
       i = 0;
-      for (final entry in resource.abstract_.makeIterable<fhir.FhirBoolean>() ??
-          <fhir.FhirBoolean>[]) {
+      for (final entry
+          in resource.abstract_?.makeIterable<fhir.FhirBoolean>() ??
+              <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
             resourceType,
@@ -24924,9 +28166,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // StructureDefinition.snapshot.element.base.path (token)
       i = 0;
       for (final entry in resource.snapshot?.element
-              .map<fhir.ElementDefinitionBase?>((e) => e.base)
-              .map<fhir.FhirString?>((e) => e?.path)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.ElementDefinitionBase?>((e) => e?.base)
+              ?.map<fhir.FhirString?>((e) => e?.path)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24943,9 +28185,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // StructureDefinition.differential.element.base.path (token)
       i = 0;
       for (final entry in resource.differential?.element
-              .map<fhir.ElementDefinitionBase?>((e) => e.base)
-              .map<fhir.FhirString?>((e) => e?.path)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.ElementDefinitionBase?>((e) => e?.base)
+              ?.map<fhir.FhirString?>((e) => e?.path)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -24996,8 +28238,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // StructureDefinition.context.type (token)
       i = 0;
       for (final entry in resource.context
-              ?.map<fhir.FhirCodeEnum?>((e) => e.type)
-              .makeIterable<fhir.FhirCodeEnum>() ??
+              ?.map<fhir.FhirCodeEnum?>((e) => e?.type)
+              ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25029,7 +28271,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // StructureDefinition.kind (token)
       i = 0;
-      for (final entry in resource.kind.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.kind?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25046,8 +28288,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // StructureDefinition.snapshot.element.path (token)
       i = 0;
       for (final entry in resource.snapshot?.element
-              .map<fhir.FhirString?>((e) => e.path)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.path)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25064,8 +28306,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // StructureDefinition.differential.element.path (token)
       i = 0;
       for (final entry in resource.differential?.element
-              .map<fhir.FhirString?>((e) => e.path)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.path)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25082,7 +28324,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // StructureDefinition.type (uri)
       i = 0;
       for (final entry
-          in resource.type.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
+          in resource.type?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
             resourceType,
@@ -25098,9 +28340,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // StructureDefinition.snapshot.element.binding.valueSet (reference)
       i = 0;
       for (final entry in resource.snapshot?.element
-              .map<fhir.ElementDefinitionBinding?>((e) => e.binding)
-              .map<fhir.FhirCanonical?>((e) => e?.valueSet)
-              .makeIterable<fhir.FhirCanonical>() ??
+              ?.map<fhir.ElementDefinitionBinding?>((e) => e?.binding)
+              ?.map<fhir.FhirCanonical?>((e) => e?.valueSet)
+              ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -25114,12 +28356,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.StructureMap _:
+      // StructureMap.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureMap.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // StructureMap.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureMap.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // StructureMap.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureMap.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // StructureMap.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25185,7 +28482,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // StructureMap.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -25291,6 +28588,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'StructureMap.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // StructureMap.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'StructureMap.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -25313,6 +28627,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Subscription _:
       // Subscription.contact (token)
       i = 0;
@@ -25332,7 +28647,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Subscription.criteria (string)
       i = 0;
-      for (final entry in resource.criteria.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.criteria?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -25349,7 +28664,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Subscription.channel.payload (token)
       i = 0;
       for (final entry
-          in resource.channel.payload?.makeIterable<fhir.FhirCode>() ??
+          in resource.channel?.payload?.makeIterable<fhir.FhirCode>() ??
               <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25365,7 +28680,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Subscription.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25382,7 +28697,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Subscription.channel.type (token)
       i = 0;
       for (final entry
-          in resource.channel.type.makeIterable<fhir.FhirCodeEnum>() ??
+          in resource.channel?.type?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25399,7 +28714,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Subscription.channel.endpoint (uri)
       i = 0;
       for (final entry
-          in resource.channel.endpoint?.makeIterable<fhir.FhirUrl>() ??
+          in resource.channel?.endpoint?.makeIterable<fhir.FhirUrl>() ??
               <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -25413,6 +28728,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.SubscriptionTopic _:
       // SubscriptionTopic.date (date)
       i = 0;
@@ -25441,7 +28757,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'SubscriptionTopic.url',
             i,
-            searchName: 'url',
+            searchName: 'derived-or-self',
           ),
         );
         i++;
@@ -25483,8 +28799,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // SubscriptionTopic.resourceTrigger.resource (uri)
       i = 0;
       for (final entry in resource.resourceTrigger
-              ?.map<fhir.FhirUri?>((e) => e.resource)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.map<fhir.FhirUri?>((e) => e?.resource)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -25533,8 +28849,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // SubscriptionTopic.resourceTrigger.description (string)
       i = 0;
       for (final entry in resource.resourceTrigger
-              ?.map<fhir.FhirMarkdown?>((e) => e.description)
-              .makeIterable<fhir.FhirMarkdown>() ??
+              ?.map<fhir.FhirMarkdown?>((e) => e?.description)
+              ?.makeIterable<fhir.FhirMarkdown>() ??
           <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -25544,6 +28860,22 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'SubscriptionTopic.resourceTrigger.description',
             i,
             searchName: 'trigger-description',
+          ),
+        );
+        i++;
+      }
+      // SubscriptionTopic.url (uri)
+      i = 0;
+      for (final entry
+          in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
+        searchParameterLists.uriParams.addAll(
+          entry.toUriSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'SubscriptionTopic.url',
+            i,
+            searchName: 'url',
           ),
         );
         i++;
@@ -25564,6 +28896,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Substance _:
       // Substance.category (token)
       i = 0;
@@ -25584,7 +28917,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Substance.code (token)
       i = 0;
-      for (final entry in resource.code.makeIterable<fhir.CodeableConcept>() ??
+      for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25598,11 +28931,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Substance.ingredient.substance.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.ingredient
+              ?.map<fhir.CodeableConcept?>((e) => e?.substanceCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Substance.ingredient.substance.ofType(CodeableConcept)',
+            i,
+            searchName: 'code',
+          ),
+        );
+        i++;
+      }
       // Substance.instance.identifier (token)
       i = 0;
       for (final entry in resource.instance
-              ?.map<fhir.Identifier?>((e) => e.identifier)
-              .makeIterable<fhir.Identifier>() ??
+              ?.map<fhir.Identifier?>((e) => e?.identifier)
+              ?.makeIterable<fhir.Identifier>() ??
           <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25619,8 +28970,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Substance.instance.expiry (date)
       i = 0;
       for (final entry in resource.instance
-              ?.map<fhir.FhirDateTime?>((e) => e.expiry)
-              .makeIterable<fhir.FhirDateTime>() ??
+              ?.map<fhir.FhirDateTime?>((e) => e?.expiry)
+              ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -25654,8 +29005,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Substance.instance.quantity (quantity)
       i = 0;
       for (final entry in resource.instance
-              ?.map<fhir.Quantity?>((e) => e.quantity)
-              .makeIterable<fhir.Quantity>() ??
+              ?.map<fhir.Quantity?>((e) => e?.quantity)
+              ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
           entry.toQuantitySearchParameter(
@@ -25685,6 +29036,25 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      // Substance.ingredient.substance.ofType(Reference) (reference)
+      i = 0;
+      for (final entry in resource.ingredient
+              ?.map<fhir.Reference?>((e) => e?.substanceReference)
+              ?.makeIterable<fhir.Reference>() ??
+          <fhir.Reference>[]) {
+        searchParameterLists.referenceParams.addAll(
+          entry.toReferenceSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'Substance.ingredient.substance.ofType(Reference)',
+            i,
+            searchName: 'substance-reference',
+          ),
+        );
+        i++;
+      }
+      break;
     case fhir.SubstanceDefinition _:
       // SubstanceDefinition.classification (token)
       i = 0;
@@ -25706,8 +29076,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // SubstanceDefinition.code.code (token)
       i = 0;
       for (final entry in resource.code
-              ?.map<fhir.CodeableConcept?>((e) => e.code)
-              .makeIterable<fhir.CodeableConcept>() ??
+              ?.map<fhir.CodeableConcept?>((e) => e?.code)
+              ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -25758,8 +29128,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // SubstanceDefinition.name.name (string)
       i = 0;
       for (final entry in resource.name
-              ?.map<fhir.FhirString?>((e) => e.name)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.name)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -25773,6 +29143,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.SupplyDelivery _:
       // SupplyDelivery.identifier (token)
       i = 0;
@@ -25855,6 +29226,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.SupplyRequest _:
       // SupplyRequest.authoredOn (date)
       i = 0;
@@ -25971,6 +29343,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.Task _:
       // Task.authoredOn (date)
       i = 0;
@@ -26106,7 +29479,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Task.intent (token)
       i = 0;
-      for (final entry in resource.intent.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -26172,8 +29545,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // Task.for.where(resolve() is Patient) (reference)
       i = 0;
       for (final entry
-          in resource.for_?.makeIterable<fhir.Reference>().where((e) {
-                final ref = e.reference?.toString().split('/') ?? [];
+          in resource.for_?.makeIterable<fhir.Reference>()?.where((e) {
+                final ref = e?.reference?.toString().split('/') ?? [];
                 return ref.length > 1 && ref[ref.length - 2] == 'Patient';
               }) ??
               <fhir.Reference>[]) {
@@ -26258,7 +29631,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // Task.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -26288,12 +29661,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.TerminologyCapabilities _:
+      // TerminologyCapabilities.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TerminologyCapabilities.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // TerminologyCapabilities.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TerminologyCapabilities.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // TerminologyCapabilities.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TerminologyCapabilities.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // TerminologyCapabilities.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -26465,11 +29893,29 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'TerminologyCapabilities.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // TerminologyCapabilities.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TerminologyCapabilities.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.TestReport _:
       // TestReport.identifier (token)
       i = 0;
@@ -26507,8 +29953,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // TestReport.participant.uri (uri)
       i = 0;
       for (final entry in resource.participant
-              ?.map<fhir.FhirUri?>((e) => e.uri)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.map<fhir.FhirUri?>((e) => e?.uri)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -26524,7 +29970,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // TestReport.result (token)
       i = 0;
-      for (final entry in resource.result.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.result?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -26556,7 +30002,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // TestReport.testScript (reference)
       i = 0;
-      for (final entry in resource.testScript.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.testScript?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -26570,12 +30016,67 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.TestScript _:
+      // TestScript.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TestScript.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // TestScript.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TestScript.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // TestScript.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TestScript.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // TestScript.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -26658,7 +30159,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // TestScript.name (string)
       i = 0;
-      for (final entry in resource.name.makeIterable<fhir.FhirString>() ??
+      for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -26707,8 +30208,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // TestScript.metadata.capability.description (string)
       i = 0;
       for (final entry in resource.metadata?.capability
-              .map<fhir.FhirString?>((e) => e.description)
-              .makeIterable<fhir.FhirString>() ??
+              ?.map<fhir.FhirString?>((e) => e?.description)
+              ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
           entry.toStringSearchParameter(
@@ -26782,17 +30283,89 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'TestScript.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // TestScript.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'TestScript.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
         i++;
       }
+      break;
     case fhir.ValueSet _:
+      // ValueSet.useContext.value.ofType(CodeableConcept) (token)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.CodeableConcept?>((e) => e?.valueCodeableConcept)
+              ?.makeIterable<fhir.CodeableConcept>() ??
+          <fhir.CodeableConcept>[]) {
+        searchParameterLists.tokenParams.addAll(
+          entry.toTokenSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ValueSet.useContext.value.ofType(CodeableConcept)',
+            i,
+            searchName: 'context',
+          ),
+        );
+        i++;
+      }
+      // ValueSet.useContext.value.ofType(Quantity) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Quantity?>((e) => e?.valueQuantity)
+              ?.makeIterable<fhir.Quantity>() ??
+          <fhir.Quantity>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ValueSet.useContext.value.ofType(Quantity)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
+      // ValueSet.useContext.value.ofType(Range) (quantity)
+      i = 0;
+      for (final entry in resource.useContext
+              ?.map<fhir.Range?>((e) => e?.valueRange)
+              ?.makeIterable<fhir.Range>() ??
+          <fhir.Range>[]) {
+        searchParameterLists.quantityParams.addAll(
+          entry.toQuantitySearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ValueSet.useContext.value.ofType(Range)',
+            i,
+            searchName: 'context-quantity',
+          ),
+        );
+        i++;
+      }
       // ValueSet.useContext.code (token)
       i = 0;
       for (final entry in resource.useContext
-              ?.map<fhir.Coding?>((e) => e.code)
-              .makeIterable<fhir.Coding>() ??
+              ?.map<fhir.Coding?>((e) => e?.code)
+              ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -26964,6 +30537,23 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             lastUpdated,
             'ValueSet.useContext',
             i,
+            searchName: 'context-type-quantity',
+          ),
+        );
+        i++;
+      }
+      // ValueSet.useContext (composite)
+      i = 0;
+      for (final entry
+          in resource.useContext?.makeIterable<fhir.UsageContext>() ??
+              <fhir.UsageContext>[]) {
+        searchParameterLists.compositeParams.addAll(
+          entry.toCompositeSearchParameter(
+            resourceType,
+            id,
+            lastUpdated,
+            'ValueSet.useContext',
+            i,
             searchName: 'context-type-value',
           ),
         );
@@ -26989,8 +30579,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ValueSet.expansion.contains.code (token)
       i = 0;
       for (final entry in resource.expansion?.contains
-              ?.map<fhir.FhirCode?>((e) => e.code)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.map<fhir.FhirCode?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -27007,9 +30597,9 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ValueSet.compose.include.concept.code (token)
       i = 0;
       for (final entry in resource.compose?.include
-              .expand((e) => e.concept ?? <fhir.ValueSetConcept>[])
-              .map<fhir.FhirCode?>((e) => e.code)
-              .makeIterable<fhir.FhirCode>() ??
+              ?.expand((e) => e?.concept ?? <fhir.ValueSetConcept>[])
+              ?.map<fhir.FhirCode?>((e) => e?.code)
+              ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -27043,8 +30633,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // ValueSet.compose.include.system (uri)
       i = 0;
       for (final entry in resource.compose?.include
-              .map<fhir.FhirUri?>((e) => e.system)
-              .makeIterable<fhir.FhirUri>() ??
+              ?.map<fhir.FhirUri?>((e) => e?.system)
+              ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
           entry.toUriSearchParameter(
@@ -27058,6 +30648,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.VerificationResult _:
       // VerificationResult.target (reference)
       i = 0;
@@ -27075,6 +30666,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
     case fhir.VisionPrescription _:
       // VisionPrescription.identifier (token)
       i = 0;
@@ -27095,7 +30687,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // VisionPrescription.patient (reference)
       i = 0;
-      for (final entry in resource.patient.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -27128,7 +30720,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       // VisionPrescription.dateWritten (date)
       i = 0;
       for (final entry
-          in resource.dateWritten.makeIterable<fhir.FhirDateTime>() ??
+          in resource.dateWritten?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
           entry.toDateSearchParameter(
@@ -27144,7 +30736,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // VisionPrescription.prescriber (reference)
       i = 0;
-      for (final entry in resource.prescriber.makeIterable<fhir.Reference>() ??
+      for (final entry in resource.prescriber?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
@@ -27160,7 +30752,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       }
       // VisionPrescription.status (token)
       i = 0;
-      for (final entry in resource.status.makeIterable<fhir.FhirCodeEnum>() ??
+      for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
           entry.toTokenSearchParameter(
@@ -27174,6 +30766,2036 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
         );
         i++;
       }
+      break;
   }
   return searchParameterLists;
 }
+
+/// Maps (resourceType, searchParamName) to the indexed search paths.
+/// Used to translate HTTP query parameter names to database search paths.
+const Map<String, Map<String, List<String>>> searchParamMap = {
+  'Account': {
+    'identifier': ['Account.identifier'],
+    'name': ['Account.name'],
+    'owner': ['Account.owner'],
+    'patient': ['Account.subject.where(resolve() is Patient)'],
+    'period': ['Account.servicePeriod'],
+    'status': ['Account.status'],
+    'subject': ['Account.subject'],
+    'type': ['Account.type'],
+  },
+  'ActivityDefinition': {
+    'composed-of': [
+      "ActivityDefinition.relatedArtifact.where(type='composed-of').resource"
+    ],
+    'context-type': ['ActivityDefinition.useContext.code'],
+    'context-type-quantity': ['ActivityDefinition.useContext'],
+    'context-type-value': ['ActivityDefinition.useContext'],
+    'date': ['ActivityDefinition.date'],
+    'depends-on': [
+      'ActivityDefinition.library',
+      "ActivityDefinition.relatedArtifact.where(type='depends-on').resource"
+    ],
+    'derived-from': [
+      "ActivityDefinition.relatedArtifact.where(type='derived-from').resource"
+    ],
+    'description': ['ActivityDefinition.description'],
+    'effective': ['ActivityDefinition.effectivePeriod'],
+    'identifier': ['ActivityDefinition.identifier'],
+    'jurisdiction': ['ActivityDefinition.jurisdiction'],
+    'name': ['ActivityDefinition.name'],
+    'predecessor': [
+      "ActivityDefinition.relatedArtifact.where(type='predecessor').resource"
+    ],
+    'publisher': ['ActivityDefinition.publisher'],
+    'status': ['ActivityDefinition.status'],
+    'successor': [
+      "ActivityDefinition.relatedArtifact.where(type='successor').resource"
+    ],
+    'title': ['ActivityDefinition.title'],
+    'topic': ['ActivityDefinition.topic'],
+    'url': ['ActivityDefinition.url'],
+    'version': ['ActivityDefinition.version'],
+  },
+  'AdministrableProductDefinition': {
+    'device': ['AdministrableProductDefinition.device'],
+    'dose-form': ['AdministrableProductDefinition.administrableDoseForm'],
+    'form-of': ['AdministrableProductDefinition.formOf'],
+    'identifier': ['AdministrableProductDefinition.identifier'],
+    'ingredient': ['AdministrableProductDefinition.ingredient'],
+    'manufactured-item': ['AdministrableProductDefinition.producedFrom'],
+    'route': ['AdministrableProductDefinition.routeOfAdministration.code'],
+    'target-species': [
+      'AdministrableProductDefinition.routeOfAdministration.targetSpecies.code'
+    ],
+  },
+  'AdverseEvent': {
+    'actuality': ['AdverseEvent.actuality'],
+    'category': ['AdverseEvent.category'],
+    'date': ['AdverseEvent.date'],
+    'event': ['AdverseEvent.event'],
+    'location': ['AdverseEvent.location'],
+    'recorder': ['AdverseEvent.recorder'],
+    'resultingcondition': ['AdverseEvent.resultingCondition'],
+    'seriousness': ['AdverseEvent.seriousness'],
+    'severity': ['AdverseEvent.severity'],
+    'study': ['AdverseEvent.study'],
+    'subject': ['AdverseEvent.subject'],
+    'substance': ['AdverseEvent.suspectEntity.instance'],
+  },
+  'AllergyIntolerance': {
+    'asserter': ['AllergyIntolerance.asserter'],
+    'category': ['AllergyIntolerance.category'],
+    'clinical-status': ['AllergyIntolerance.clinicalStatus'],
+    'code': [
+      'AllergyIntolerance.code',
+      'AllergyIntolerance.reaction.substance'
+    ],
+    'criticality': ['AllergyIntolerance.criticality'],
+    'date': ['AllergyIntolerance.recordedDate'],
+    'identifier': ['AllergyIntolerance.identifier'],
+    'last-date': ['AllergyIntolerance.lastOccurrence'],
+    'manifestation': ['AllergyIntolerance.reaction.manifestation'],
+    'onset': ['AllergyIntolerance.reaction.onset'],
+    'patient': ['AllergyIntolerance.patient'],
+    'recorder': ['AllergyIntolerance.recorder'],
+    'route': ['AllergyIntolerance.reaction.exposureRoute'],
+    'severity': ['AllergyIntolerance.reaction.severity'],
+    'type': ['AllergyIntolerance.type'],
+    'verification-status': ['AllergyIntolerance.verificationStatus'],
+  },
+  'Appointment': {
+    'actor': ['Appointment.participant.actor'],
+    'appointment-type': ['Appointment.appointmentType'],
+    'based-on': ['Appointment.basedOn'],
+    'date': ['Appointment.start'],
+    'identifier': ['Appointment.identifier'],
+    'location': ['Appointment.participant.actor.where(resolve() is Location)'],
+    'part-status': ['Appointment.participant.status'],
+    'patient': ['Appointment.participant.actor.where(resolve() is Patient)'],
+    'practitioner': [
+      'Appointment.participant.actor.where(resolve() is Practitioner)'
+    ],
+    'reason-code': ['Appointment.reasonCode'],
+    'reason-reference': ['Appointment.reasonReference'],
+    'service-category': ['Appointment.serviceCategory'],
+    'service-type': ['Appointment.serviceType'],
+    'slot': ['Appointment.slot'],
+    'specialty': ['Appointment.specialty'],
+    'status': ['Appointment.status'],
+    'supporting-info': ['Appointment.supportingInformation'],
+  },
+  'AppointmentResponse': {
+    'actor': ['AppointmentResponse.actor'],
+    'appointment': ['AppointmentResponse.appointment'],
+    'identifier': ['AppointmentResponse.identifier'],
+    'location': ['AppointmentResponse.actor.where(resolve() is Location)'],
+    'part-status': ['AppointmentResponse.participantStatus'],
+    'patient': ['AppointmentResponse.actor.where(resolve() is Patient)'],
+    'practitioner': [
+      'AppointmentResponse.actor.where(resolve() is Practitioner)'
+    ],
+  },
+  'AuditEvent': {
+    'action': ['AuditEvent.action'],
+    'address': ['AuditEvent.agent.network.address'],
+    'agent': ['AuditEvent.agent.who'],
+    'agent-name': ['AuditEvent.agent.name'],
+    'agent-role': ['AuditEvent.agent.role'],
+    'altid': ['AuditEvent.agent.altId'],
+    'date': ['AuditEvent.recorded'],
+    'entity': ['AuditEvent.entity.what'],
+    'entity-name': ['AuditEvent.entity.name'],
+    'entity-role': ['AuditEvent.entity.role'],
+    'entity-type': ['AuditEvent.entity.type'],
+    'outcome': ['AuditEvent.outcome'],
+    'patient': [
+      'AuditEvent.agent.who.where(resolve() is Patient)',
+      'AuditEvent.entity.what.where(resolve() is Patient)'
+    ],
+    'policy': ['AuditEvent.agent.policy'],
+    'site': ['AuditEvent.source.site'],
+    'source': ['AuditEvent.source.observer'],
+    'subtype': ['AuditEvent.subtype'],
+    'type': ['AuditEvent.type'],
+  },
+  'Basic': {
+    'author': ['Basic.author'],
+    'code': ['Basic.code'],
+    'created': ['Basic.created'],
+    'identifier': ['Basic.identifier'],
+    'patient': ['Basic.subject.where(resolve() is Patient)'],
+    'subject': ['Basic.subject'],
+  },
+  'BodyStructure': {
+    'identifier': ['BodyStructure.identifier'],
+    'location': ['BodyStructure.location'],
+    'morphology': ['BodyStructure.morphology'],
+    'patient': ['BodyStructure.patient'],
+  },
+  'Bundle': {
+    'composition': ['Bundle.entry[0].resource'],
+    'identifier': ['Bundle.identifier'],
+    'message': ['Bundle.entry[0].resource'],
+    'timestamp': ['Bundle.timestamp'],
+    'type': ['Bundle.type'],
+  },
+  'CapabilityStatement': {
+    'context-type': ['CapabilityStatement.useContext.code'],
+    'context-type-quantity': ['CapabilityStatement.useContext'],
+    'context-type-value': ['CapabilityStatement.useContext'],
+    'date': ['CapabilityStatement.date'],
+    'description': ['CapabilityStatement.description'],
+    'fhirversion': ['CapabilityStatement.version'],
+    'format': ['CapabilityStatement.format'],
+    'guide': ['CapabilityStatement.implementationGuide'],
+    'jurisdiction': ['CapabilityStatement.jurisdiction'],
+    'mode': ['CapabilityStatement.rest.mode'],
+    'name': ['CapabilityStatement.name'],
+    'publisher': ['CapabilityStatement.publisher'],
+    'resource': ['CapabilityStatement.rest.resource.type'],
+    'resource-profile': ['CapabilityStatement.rest.resource.profile'],
+    'security-service': ['CapabilityStatement.rest.security.service'],
+    'software': ['CapabilityStatement.software.name'],
+    'status': ['CapabilityStatement.status'],
+    'supported-profile': ['CapabilityStatement.rest.resource.supportedProfile'],
+    'title': ['CapabilityStatement.title'],
+    'url': ['CapabilityStatement.url'],
+    'version': ['CapabilityStatement.version'],
+  },
+  'CarePlan': {
+    'activity-code': ['CarePlan.activity.detail.code'],
+    'activity-date': ['CarePlan.activity.detail.scheduled'],
+    'activity-reference': ['CarePlan.activity.reference'],
+    'based-on': ['CarePlan.basedOn'],
+    'care-team': ['CarePlan.careTeam'],
+    'category': ['CarePlan.category'],
+    'condition': ['CarePlan.addresses'],
+    'date': ['CarePlan.period'],
+    'encounter': ['CarePlan.encounter'],
+    'goal': ['CarePlan.goal'],
+    'identifier': ['CarePlan.identifier'],
+    'instantiates-canonical': ['CarePlan.instantiatesCanonical'],
+    'instantiates-uri': ['CarePlan.instantiatesUri'],
+    'intent': ['CarePlan.intent'],
+    'part-of': ['CarePlan.partOf'],
+    'patient': ['CarePlan.subject.where(resolve() is Patient)'],
+    'performer': ['CarePlan.activity.detail.performer'],
+    'replaces': ['CarePlan.replaces'],
+    'status': ['CarePlan.status'],
+    'subject': ['CarePlan.subject'],
+  },
+  'CareTeam': {
+    'category': ['CareTeam.category'],
+    'date': ['CareTeam.period'],
+    'encounter': ['CareTeam.encounter'],
+    'identifier': ['CareTeam.identifier'],
+    'participant': ['CareTeam.participant.member'],
+    'patient': ['CareTeam.subject.where(resolve() is Patient)'],
+    'status': ['CareTeam.status'],
+    'subject': ['CareTeam.subject'],
+  },
+  'ChargeItem': {
+    'account': ['ChargeItem.account'],
+    'code': ['ChargeItem.code'],
+    'context': ['ChargeItem.context'],
+    'entered-date': ['ChargeItem.enteredDate'],
+    'enterer': ['ChargeItem.enterer'],
+    'factor-override': ['ChargeItem.factorOverride'],
+    'identifier': ['ChargeItem.identifier'],
+    'occurrence': ['ChargeItem.occurrence'],
+    'patient': ['ChargeItem.subject.where(resolve() is Patient)'],
+    'performer-actor': ['ChargeItem.performer.actor'],
+    'performer-function': ['ChargeItem.performer.function'],
+    'performing-organization': ['ChargeItem.performingOrganization'],
+    'price-override': ['ChargeItem.priceOverride'],
+    'quantity': ['ChargeItem.quantity'],
+    'requesting-organization': ['ChargeItem.requestingOrganization'],
+    'service': ['ChargeItem.service'],
+    'subject': ['ChargeItem.subject'],
+  },
+  'ChargeItemDefinition': {
+    'context-type': ['ChargeItemDefinition.useContext.code'],
+    'context-type-quantity': ['ChargeItemDefinition.useContext'],
+    'context-type-value': ['ChargeItemDefinition.useContext'],
+    'date': ['ChargeItemDefinition.date'],
+    'description': ['ChargeItemDefinition.description'],
+    'effective': ['ChargeItemDefinition.effectivePeriod'],
+    'identifier': ['ChargeItemDefinition.identifier'],
+    'jurisdiction': ['ChargeItemDefinition.jurisdiction'],
+    'publisher': ['ChargeItemDefinition.publisher'],
+    'status': ['ChargeItemDefinition.status'],
+    'title': ['ChargeItemDefinition.title'],
+    'url': ['ChargeItemDefinition.url'],
+    'version': ['ChargeItemDefinition.version'],
+  },
+  'Citation': {
+    'context-type': ['Citation.useContext.code'],
+    'context-type-quantity': ['Citation.useContext'],
+    'context-type-value': ['Citation.useContext'],
+    'date': ['Citation.date'],
+    'description': ['Citation.description'],
+    'effective': ['Citation.effectivePeriod'],
+    'identifier': ['Citation.identifier'],
+    'jurisdiction': ['Citation.jurisdiction'],
+    'name': ['Citation.name'],
+    'publisher': ['Citation.publisher'],
+    'status': ['Citation.status'],
+    'title': ['Citation.title'],
+    'url': ['Citation.url'],
+    'version': ['Citation.version'],
+  },
+  'Claim': {
+    'care-team': ['Claim.careTeam.provider'],
+    'created': ['Claim.created'],
+    'detail-udi': ['Claim.item.detail.udi'],
+    'encounter': ['Claim.item.encounter'],
+    'enterer': ['Claim.enterer'],
+    'facility': ['Claim.facility'],
+    'identifier': ['Claim.identifier'],
+    'insurer': ['Claim.insurer'],
+    'item-udi': ['Claim.item.udi'],
+    'patient': ['Claim.patient'],
+    'payee': ['Claim.payee.party'],
+    'priority': ['Claim.priority'],
+    'procedure-udi': ['Claim.procedure.udi'],
+    'provider': ['Claim.provider'],
+    'status': ['Claim.status'],
+    'subdetail-udi': ['Claim.item.detail.subDetail.udi'],
+    'use': ['Claim.use'],
+  },
+  'ClaimResponse': {
+    'created': ['ClaimResponse.created'],
+    'disposition': ['ClaimResponse.disposition'],
+    'identifier': ['ClaimResponse.identifier'],
+    'insurer': ['ClaimResponse.insurer'],
+    'outcome': ['ClaimResponse.outcome'],
+    'patient': ['ClaimResponse.patient'],
+    'payment-date': ['ClaimResponse.payment.date'],
+    'request': ['ClaimResponse.request'],
+    'requestor': ['ClaimResponse.requestor'],
+    'status': ['ClaimResponse.status'],
+    'use': ['ClaimResponse.use'],
+  },
+  'ClinicalImpression': {
+    'assessor': ['ClinicalImpression.assessor'],
+    'date': ['ClinicalImpression.date'],
+    'encounter': ['ClinicalImpression.encounter'],
+    'finding-code': ['ClinicalImpression.finding.itemCodeableConcept'],
+    'finding-ref': ['ClinicalImpression.finding.itemReference'],
+    'identifier': ['ClinicalImpression.identifier'],
+    'investigation': ['ClinicalImpression.investigation.item'],
+    'patient': ['ClinicalImpression.subject.where(resolve() is Patient)'],
+    'previous': ['ClinicalImpression.previous'],
+    'problem': ['ClinicalImpression.problem'],
+    'status': ['ClinicalImpression.status'],
+    'subject': ['ClinicalImpression.subject'],
+    'supporting-info': ['ClinicalImpression.supportingInfo'],
+  },
+  'ClinicalUseDefinition': {
+    'contraindication': [
+      'ClinicalUseDefinition.contraindication.diseaseSymptomProcedure'
+    ],
+    'contraindication-reference': [
+      'ClinicalUseDefinition.contraindication.diseaseSymptomProcedure'
+    ],
+    'effect': [
+      'ClinicalUseDefinition.undesirableEffect.symptomConditionEffect'
+    ],
+    'effect-reference': [
+      'ClinicalUseDefinition.undesirableEffect.symptomConditionEffect'
+    ],
+    'identifier': ['ClinicalUseDefinition.identifier'],
+    'indication': ['ClinicalUseDefinition.indication.diseaseSymptomProcedure'],
+    'indication-reference': [
+      'ClinicalUseDefinition.indication.diseaseSymptomProcedure'
+    ],
+    'interaction': ['ClinicalUseDefinition.interaction.type'],
+    'product': [
+      'ClinicalUseDefinition.subject.where(resolve() is MedicinalProductDefinition)'
+    ],
+    'subject': ['ClinicalUseDefinition.subject'],
+    'type': ['ClinicalUseDefinition.type'],
+  },
+  'CodeSystem': {
+    'code': ['CodeSystem.concept.code'],
+    'content-mode': ['CodeSystem.content'],
+    'context-type': ['CodeSystem.useContext.code'],
+    'context-type-quantity': ['CodeSystem.useContext'],
+    'context-type-value': ['CodeSystem.useContext'],
+    'date': ['CodeSystem.date'],
+    'description': ['CodeSystem.description'],
+    'identifier': ['CodeSystem.identifier'],
+    'jurisdiction': ['CodeSystem.jurisdiction'],
+    'language': ['CodeSystem.concept.designation.language'],
+    'name': ['CodeSystem.name'],
+    'publisher': ['CodeSystem.publisher'],
+    'status': ['CodeSystem.status'],
+    'supplements': ['CodeSystem.supplements'],
+    'system': ['CodeSystem.url'],
+    'title': ['CodeSystem.title'],
+    'url': ['CodeSystem.url'],
+    'version': ['CodeSystem.version'],
+  },
+  'Communication': {
+    'based-on': ['Communication.basedOn'],
+    'category': ['Communication.category'],
+    'encounter': ['Communication.encounter'],
+    'identifier': ['Communication.identifier'],
+    'instantiates-canonical': ['Communication.instantiatesCanonical'],
+    'instantiates-uri': ['Communication.instantiatesUri'],
+    'medium': ['Communication.medium'],
+    'part-of': ['Communication.partOf'],
+    'patient': ['Communication.subject.where(resolve() is Patient)'],
+    'received': ['Communication.received'],
+    'recipient': ['Communication.recipient'],
+    'sender': ['Communication.sender'],
+    'sent': ['Communication.sent'],
+    'status': ['Communication.status'],
+    'subject': ['Communication.subject'],
+  },
+  'CommunicationRequest': {
+    'authored': ['CommunicationRequest.authoredOn'],
+    'based-on': ['CommunicationRequest.basedOn'],
+    'category': ['CommunicationRequest.category'],
+    'encounter': ['CommunicationRequest.encounter'],
+    'group-identifier': ['CommunicationRequest.groupIdentifier'],
+    'identifier': ['CommunicationRequest.identifier'],
+    'medium': ['CommunicationRequest.medium'],
+    'patient': ['CommunicationRequest.subject.where(resolve() is Patient)'],
+    'priority': ['CommunicationRequest.priority'],
+    'recipient': ['CommunicationRequest.recipient'],
+    'replaces': ['CommunicationRequest.replaces'],
+    'requester': ['CommunicationRequest.requester'],
+    'sender': ['CommunicationRequest.sender'],
+    'status': ['CommunicationRequest.status'],
+    'subject': ['CommunicationRequest.subject'],
+  },
+  'CompartmentDefinition': {
+    'code': ['CompartmentDefinition.code'],
+    'context-type': ['CompartmentDefinition.useContext.code'],
+    'context-type-quantity': ['CompartmentDefinition.useContext'],
+    'context-type-value': ['CompartmentDefinition.useContext'],
+    'date': ['CompartmentDefinition.date'],
+    'description': ['CompartmentDefinition.description'],
+    'name': ['CompartmentDefinition.name'],
+    'publisher': ['CompartmentDefinition.publisher'],
+    'resource': ['CompartmentDefinition.resource.code'],
+    'status': ['CompartmentDefinition.status'],
+    'url': ['CompartmentDefinition.url'],
+    'version': ['CompartmentDefinition.version'],
+  },
+  'Composition': {
+    'attester': ['Composition.attester.party'],
+    'author': ['Composition.author'],
+    'category': ['Composition.category'],
+    'confidentiality': ['Composition.confidentiality'],
+    'context': ['Composition.event.code'],
+    'date': ['Composition.date'],
+    'encounter': ['Composition.encounter'],
+    'entry': ['Composition.section.entry'],
+    'identifier': ['Composition.identifier'],
+    'patient': ['Composition.subject.where(resolve() is Patient)'],
+    'period': ['Composition.event.period'],
+    'section': ['Composition.section.code'],
+    'status': ['Composition.status'],
+    'subject': ['Composition.subject'],
+    'title': ['Composition.title'],
+    'type': ['Composition.type'],
+  },
+  'ConceptMap': {
+    'context-type': ['ConceptMap.useContext.code'],
+    'context-type-quantity': ['ConceptMap.useContext'],
+    'context-type-value': ['ConceptMap.useContext'],
+    'date': ['ConceptMap.date'],
+    'dependson': ['ConceptMap.group.element.target.dependsOn.property'],
+    'description': ['ConceptMap.description'],
+    'identifier': ['ConceptMap.identifier'],
+    'jurisdiction': ['ConceptMap.jurisdiction'],
+    'name': ['ConceptMap.name'],
+    'other': ['ConceptMap.group.unmapped.url'],
+    'product': ['ConceptMap.group.element.target.product.property'],
+    'publisher': ['ConceptMap.publisher'],
+    'source-code': ['ConceptMap.group.element.code'],
+    'source-system': ['ConceptMap.group.source'],
+    'status': ['ConceptMap.status'],
+    'target-code': ['ConceptMap.group.element.target.code'],
+    'target-system': ['ConceptMap.group.target'],
+    'title': ['ConceptMap.title'],
+    'url': ['ConceptMap.url'],
+    'version': ['ConceptMap.version'],
+  },
+  'Condition': {
+    'abatement-age': [
+      'Condition.abatement.as(Age)',
+      'Condition.abatement.as(Range)'
+    ],
+    'abatement-date': [
+      'Condition.abatement.as(Period)',
+      'Condition.abatement.as(dateTime)'
+    ],
+    'abatement-string': ['Condition.abatement.as(string)'],
+    'asserter': ['Condition.asserter'],
+    'body-site': ['Condition.bodySite'],
+    'category': ['Condition.category'],
+    'clinical-status': ['Condition.clinicalStatus'],
+    'code': ['Condition.code'],
+    'encounter': ['Condition.encounter'],
+    'evidence': ['Condition.evidence.code'],
+    'evidence-detail': ['Condition.evidence.detail'],
+    'identifier': ['Condition.identifier'],
+    'onset-age': ['Condition.onset.as(Age)', 'Condition.onset.as(Range)'],
+    'onset-date': [
+      'Condition.onset.as(Period)',
+      'Condition.onset.as(dateTime)'
+    ],
+    'onset-info': ['Condition.onset.as(string)'],
+    'patient': ['Condition.subject.where(resolve() is Patient)'],
+    'recorded-date': ['Condition.recordedDate'],
+    'severity': ['Condition.severity'],
+    'stage': ['Condition.stage.summary'],
+    'subject': ['Condition.subject'],
+    'verification-status': ['Condition.verificationStatus'],
+  },
+  'Consent': {
+    'action': ['Consent.provision.action'],
+    'actor': ['Consent.provision.actor.reference'],
+    'category': ['Consent.category'],
+    'consentor': ['Consent.performer'],
+    'data': ['Consent.provision.data.reference'],
+    'date': ['Consent.dateTime'],
+    'identifier': ['Consent.identifier'],
+    'organization': ['Consent.organization'],
+    'patient': ['Consent.patient'],
+    'period': ['Consent.provision.period'],
+    'purpose': ['Consent.provision.purpose'],
+    'scope': ['Consent.scope'],
+    'security-label': ['Consent.provision.securityLabel'],
+    'source-reference': ['Consent.source'],
+    'status': ['Consent.status'],
+  },
+  'Contract': {
+    'authority': ['Contract.authority'],
+    'domain': ['Contract.domain'],
+    'identifier': ['Contract.identifier'],
+    'instantiates': ['Contract.instantiatesUri'],
+    'issued': ['Contract.issued'],
+    'patient': ['Contract.subject.where(resolve() is Patient)'],
+    'signer': ['Contract.signer.party'],
+    'status': ['Contract.status'],
+    'subject': ['Contract.subject'],
+    'url': ['Contract.url'],
+  },
+  'Coverage': {
+    'beneficiary': ['Coverage.beneficiary'],
+    'class-type': ['Coverage.class.type'],
+    'class-value': ['Coverage.class.value'],
+    'dependent': ['Coverage.dependent'],
+    'identifier': ['Coverage.identifier'],
+    'patient': ['Coverage.beneficiary'],
+    'payor': ['Coverage.payor'],
+    'policy-holder': ['Coverage.policyHolder'],
+    'status': ['Coverage.status'],
+    'subscriber': ['Coverage.subscriber'],
+    'type': ['Coverage.type'],
+  },
+  'CoverageEligibilityRequest': {
+    'created': ['CoverageEligibilityRequest.created'],
+    'enterer': ['CoverageEligibilityRequest.enterer'],
+    'facility': ['CoverageEligibilityRequest.facility'],
+    'identifier': ['CoverageEligibilityRequest.identifier'],
+    'patient': ['CoverageEligibilityRequest.patient'],
+    'provider': ['CoverageEligibilityRequest.provider'],
+    'status': ['CoverageEligibilityRequest.status'],
+  },
+  'CoverageEligibilityResponse': {
+    'created': ['CoverageEligibilityResponse.created'],
+    'disposition': ['CoverageEligibilityResponse.disposition'],
+    'identifier': ['CoverageEligibilityResponse.identifier'],
+    'insurer': ['CoverageEligibilityResponse.insurer'],
+    'outcome': ['CoverageEligibilityResponse.outcome'],
+    'patient': ['CoverageEligibilityResponse.patient'],
+    'request': ['CoverageEligibilityResponse.request'],
+    'requestor': ['CoverageEligibilityResponse.requestor'],
+    'status': ['CoverageEligibilityResponse.status'],
+  },
+  'DetectedIssue': {
+    'author': ['DetectedIssue.author'],
+    'code': ['DetectedIssue.code'],
+    'identified': ['DetectedIssue.identified'],
+    'identifier': ['DetectedIssue.identifier'],
+    'implicated': ['DetectedIssue.implicated'],
+    'patient': ['DetectedIssue.patient'],
+  },
+  'Device': {
+    'device-name': [
+      'Device.deviceName.name',
+      'Device.type.coding.display',
+      'Device.type.text'
+    ],
+    'identifier': ['Device.identifier'],
+    'location': ['Device.location'],
+    'manufacturer': ['Device.manufacturer'],
+    'model': ['Device.modelNumber'],
+    'organization': ['Device.owner'],
+    'patient': ['Device.patient'],
+    'status': ['Device.status'],
+    'type': ['Device.type'],
+    'udi-carrier': ['Device.udiCarrier.carrierHRF'],
+    'udi-di': ['Device.udiCarrier.deviceIdentifier'],
+    'url': ['Device.url'],
+  },
+  'DeviceDefinition': {
+    'identifier': ['DeviceDefinition.identifier'],
+    'parent': ['DeviceDefinition.parentDevice'],
+    'type': ['DeviceDefinition.type'],
+  },
+  'DeviceMetric': {
+    'category': ['DeviceMetric.category'],
+    'identifier': ['DeviceMetric.identifier'],
+    'parent': ['DeviceMetric.parent'],
+    'source': ['DeviceMetric.source'],
+    'type': ['DeviceMetric.type'],
+  },
+  'DeviceRequest': {
+    'authored-on': ['DeviceRequest.authoredOn'],
+    'based-on': ['DeviceRequest.basedOn'],
+    'encounter': ['DeviceRequest.encounter'],
+    'group-identifier': ['DeviceRequest.groupIdentifier'],
+    'identifier': ['DeviceRequest.identifier'],
+    'instantiates-canonical': ['DeviceRequest.instantiatesCanonical'],
+    'instantiates-uri': ['DeviceRequest.instantiatesUri'],
+    'insurance': ['DeviceRequest.insurance'],
+    'intent': ['DeviceRequest.intent'],
+    'patient': ['DeviceRequest.subject.where(resolve() is Patient)'],
+    'performer': ['DeviceRequest.performer'],
+    'prior-request': ['DeviceRequest.priorRequest'],
+    'requester': ['DeviceRequest.requester'],
+    'status': ['DeviceRequest.status'],
+    'subject': ['DeviceRequest.subject'],
+  },
+  'DeviceUseStatement': {
+    'device': ['DeviceUseStatement.device'],
+    'identifier': ['DeviceUseStatement.identifier'],
+    'patient': ['DeviceUseStatement.subject.where(resolve() is Patient)'],
+    'subject': ['DeviceUseStatement.subject'],
+  },
+  'DiagnosticReport': {
+    'based-on': ['DiagnosticReport.basedOn'],
+    'category': ['DiagnosticReport.category'],
+    'code': ['DiagnosticReport.code'],
+    'conclusion': ['DiagnosticReport.conclusionCode'],
+    'date': ['DiagnosticReport.effective'],
+    'encounter': ['DiagnosticReport.encounter'],
+    'identifier': ['DiagnosticReport.identifier'],
+    'issued': ['DiagnosticReport.issued'],
+    'media': ['DiagnosticReport.media.link'],
+    'patient': ['DiagnosticReport.subject.where(resolve() is Patient)'],
+    'performer': ['DiagnosticReport.performer'],
+    'result': ['DiagnosticReport.result'],
+    'results-interpreter': ['DiagnosticReport.resultsInterpreter'],
+    'specimen': ['DiagnosticReport.specimen'],
+    'status': ['DiagnosticReport.status'],
+    'subject': ['DiagnosticReport.subject'],
+  },
+  'DocumentManifest': {
+    'author': ['DocumentManifest.author'],
+    'created': ['DocumentManifest.created'],
+    'description': ['DocumentManifest.description'],
+    'identifier': [
+      'DocumentManifest.identifier',
+      'DocumentManifest.masterIdentifier'
+    ],
+    'item': ['DocumentManifest.content'],
+    'patient': ['DocumentManifest.subject.where(resolve() is Patient)'],
+    'recipient': ['DocumentManifest.recipient'],
+    'related-id': ['DocumentManifest.related.identifier'],
+    'related-ref': ['DocumentManifest.related.ref'],
+    'source': ['DocumentManifest.source'],
+    'status': ['DocumentManifest.status'],
+    'subject': ['DocumentManifest.subject'],
+    'type': ['DocumentManifest.type'],
+  },
+  'DocumentReference': {
+    'authenticator': ['DocumentReference.authenticator'],
+    'author': ['DocumentReference.author'],
+    'category': ['DocumentReference.category'],
+    'contenttype': ['DocumentReference.content.attachment.contentType'],
+    'custodian': ['DocumentReference.custodian'],
+    'date': ['DocumentReference.date'],
+    'description': ['DocumentReference.description'],
+    'encounter': [
+      'DocumentReference.context.encounter.where(resolve() is Encounter)'
+    ],
+    'event': ['DocumentReference.context.event'],
+    'facility': ['DocumentReference.context.facilityType'],
+    'format': ['DocumentReference.content.format'],
+    'identifier': [
+      'DocumentReference.identifier',
+      'DocumentReference.masterIdentifier'
+    ],
+    'language': ['DocumentReference.content.attachment.language'],
+    'location': ['DocumentReference.content.attachment.url'],
+    'patient': ['DocumentReference.subject.where(resolve() is Patient)'],
+    'period': ['DocumentReference.context.period'],
+    'related': ['DocumentReference.context.related'],
+    'relatesto': ['DocumentReference.relatesTo.target'],
+    'relation': ['DocumentReference.relatesTo.code'],
+    'relationship': ['DocumentReference.relatesTo'],
+    'security-label': ['DocumentReference.securityLabel'],
+    'setting': ['DocumentReference.context.practiceSetting'],
+    'status': ['DocumentReference.status'],
+    'subject': ['DocumentReference.subject'],
+    'type': ['DocumentReference.type'],
+  },
+  'Encounter': {
+    'account': ['Encounter.account'],
+    'appointment': ['Encounter.appointment'],
+    'based-on': ['Encounter.basedOn'],
+    'class': ['Encounter.class'],
+    'date': ['Encounter.period'],
+    'diagnosis': ['Encounter.diagnosis.condition'],
+    'episode-of-care': ['Encounter.episodeOfCare'],
+    'identifier': ['Encounter.identifier'],
+    'length': ['Encounter.length'],
+    'location': ['Encounter.location.location'],
+    'location-period': ['Encounter.location.period'],
+    'part-of': ['Encounter.partOf'],
+    'participant': ['Encounter.participant.individual'],
+    'participant-type': ['Encounter.participant.type'],
+    'patient': ['Encounter.subject.where(resolve() is Patient)'],
+    'practitioner': [
+      'Encounter.participant.individual.where(resolve() is Practitioner)'
+    ],
+    'reason-code': ['Encounter.reasonCode'],
+    'reason-reference': ['Encounter.reasonReference'],
+    'service-provider': ['Encounter.serviceProvider'],
+    'special-arrangement': ['Encounter.hospitalization.specialArrangement'],
+    'status': ['Encounter.status'],
+    'subject': ['Encounter.subject'],
+    'type': ['Encounter.type'],
+  },
+  'EnrollmentRequest': {
+    'identifier': ['EnrollmentRequest.identifier'],
+    'patient': ['EnrollmentRequest.candidate'],
+    'status': ['EnrollmentRequest.status'],
+    'subject': ['EnrollmentRequest.candidate'],
+  },
+  'EnrollmentResponse': {
+    'identifier': ['EnrollmentResponse.identifier'],
+    'request': ['EnrollmentResponse.request'],
+    'status': ['EnrollmentResponse.status'],
+  },
+  'EpisodeOfCare': {
+    'care-manager': [
+      'EpisodeOfCare.careManager.where(resolve() is Practitioner)'
+    ],
+    'condition': ['EpisodeOfCare.diagnosis.condition'],
+    'date': ['EpisodeOfCare.period'],
+    'identifier': ['EpisodeOfCare.identifier'],
+    'incoming-referral': ['EpisodeOfCare.referralRequest'],
+    'organization': ['EpisodeOfCare.managingOrganization'],
+    'patient': ['EpisodeOfCare.patient'],
+    'status': ['EpisodeOfCare.status'],
+    'type': ['EpisodeOfCare.type'],
+  },
+  'EventDefinition': {
+    'composed-of': [
+      "EventDefinition.relatedArtifact.where(type='composed-of').resource"
+    ],
+    'context-type': ['EventDefinition.useContext.code'],
+    'context-type-quantity': ['EventDefinition.useContext'],
+    'context-type-value': ['EventDefinition.useContext'],
+    'date': ['EventDefinition.date'],
+    'depends-on': [
+      "EventDefinition.relatedArtifact.where(type='depends-on').resource"
+    ],
+    'derived-from': [
+      "EventDefinition.relatedArtifact.where(type='derived-from').resource"
+    ],
+    'description': ['EventDefinition.description'],
+    'effective': ['EventDefinition.effectivePeriod'],
+    'identifier': ['EventDefinition.identifier'],
+    'jurisdiction': ['EventDefinition.jurisdiction'],
+    'name': ['EventDefinition.name'],
+    'predecessor': [
+      "EventDefinition.relatedArtifact.where(type='predecessor').resource"
+    ],
+    'publisher': ['EventDefinition.publisher'],
+    'status': ['EventDefinition.status'],
+    'successor': [
+      "EventDefinition.relatedArtifact.where(type='successor').resource"
+    ],
+    'title': ['EventDefinition.title'],
+    'topic': ['EventDefinition.topic'],
+    'url': ['EventDefinition.url'],
+    'version': ['EventDefinition.version'],
+  },
+  'Evidence': {
+    'context-type': ['Evidence.useContext.code'],
+    'context-type-quantity': ['Evidence.useContext'],
+    'context-type-value': ['Evidence.useContext'],
+    'date': ['Evidence.date'],
+    'description': ['Evidence.description'],
+    'identifier': ['Evidence.identifier'],
+    'publisher': ['Evidence.publisher'],
+    'status': ['Evidence.status'],
+    'title': ['Evidence.title'],
+    'url': ['Evidence.url'],
+    'version': ['Evidence.version'],
+  },
+  'EvidenceReport': {
+    'context-type': ['EvidenceReport.useContext.code'],
+    'context-type-quantity': ['EvidenceReport.useContext'],
+    'context-type-value': ['EvidenceReport.useContext'],
+    'identifier': ['EvidenceReport.identifier'],
+    'publisher': ['EvidenceReport.publisher'],
+    'status': ['EvidenceReport.status'],
+    'url': ['EvidenceReport.url'],
+  },
+  'EvidenceVariable': {
+    'context-type': ['EvidenceVariable.useContext.code'],
+    'context-type-quantity': ['EvidenceVariable.useContext'],
+    'context-type-value': ['EvidenceVariable.useContext'],
+    'date': ['EvidenceVariable.date'],
+    'description': ['EvidenceVariable.description'],
+    'identifier': ['EvidenceVariable.identifier'],
+    'name': ['EvidenceVariable.name'],
+    'publisher': ['EvidenceVariable.publisher'],
+    'status': ['EvidenceVariable.status'],
+    'title': ['EvidenceVariable.title'],
+    'url': ['EvidenceVariable.url'],
+    'version': ['EvidenceVariable.version'],
+  },
+  'ExampleScenario': {
+    'context-type': ['ExampleScenario.useContext.code'],
+    'context-type-quantity': ['ExampleScenario.useContext'],
+    'context-type-value': ['ExampleScenario.useContext'],
+    'date': ['ExampleScenario.date'],
+    'identifier': ['ExampleScenario.identifier'],
+    'jurisdiction': ['ExampleScenario.jurisdiction'],
+    'name': ['ExampleScenario.name'],
+    'publisher': ['ExampleScenario.publisher'],
+    'status': ['ExampleScenario.status'],
+    'url': ['ExampleScenario.url'],
+    'version': ['ExampleScenario.version'],
+  },
+  'ExplanationOfBenefit': {
+    'care-team': ['ExplanationOfBenefit.careTeam.provider'],
+    'claim': ['ExplanationOfBenefit.claim'],
+    'coverage': ['ExplanationOfBenefit.insurance.coverage'],
+    'created': ['ExplanationOfBenefit.created'],
+    'detail-udi': ['ExplanationOfBenefit.item.detail.udi'],
+    'disposition': ['ExplanationOfBenefit.disposition'],
+    'encounter': ['ExplanationOfBenefit.item.encounter'],
+    'enterer': ['ExplanationOfBenefit.enterer'],
+    'facility': ['ExplanationOfBenefit.facility'],
+    'identifier': ['ExplanationOfBenefit.identifier'],
+    'item-udi': ['ExplanationOfBenefit.item.udi'],
+    'patient': ['ExplanationOfBenefit.patient'],
+    'payee': ['ExplanationOfBenefit.payee.party'],
+    'procedure-udi': ['ExplanationOfBenefit.procedure.udi'],
+    'provider': ['ExplanationOfBenefit.provider'],
+    'status': ['ExplanationOfBenefit.status'],
+    'subdetail-udi': ['ExplanationOfBenefit.item.detail.subDetail.udi'],
+  },
+  'FamilyMemberHistory': {
+    'code': ['FamilyMemberHistory.condition.code'],
+    'date': ['FamilyMemberHistory.date'],
+    'identifier': ['FamilyMemberHistory.identifier'],
+    'instantiates-canonical': ['FamilyMemberHistory.instantiatesCanonical'],
+    'instantiates-uri': ['FamilyMemberHistory.instantiatesUri'],
+    'patient': ['FamilyMemberHistory.patient'],
+    'relationship': ['FamilyMemberHistory.relationship'],
+    'sex': ['FamilyMemberHistory.sex'],
+    'status': ['FamilyMemberHistory.status'],
+  },
+  'Flag': {
+    'author': ['Flag.author'],
+    'date': ['Flag.period'],
+    'encounter': ['Flag.encounter'],
+    'identifier': ['Flag.identifier'],
+    'patient': ['Flag.subject.where(resolve() is Patient)'],
+    'subject': ['Flag.subject'],
+  },
+  'Goal': {
+    'achievement-status': ['Goal.achievementStatus'],
+    'category': ['Goal.category'],
+    'identifier': ['Goal.identifier'],
+    'lifecycle-status': ['Goal.lifecycleStatus'],
+    'patient': ['Goal.subject.where(resolve() is Patient)'],
+    'subject': ['Goal.subject'],
+  },
+  'GraphDefinition': {
+    'context-type': ['GraphDefinition.useContext.code'],
+    'context-type-quantity': ['GraphDefinition.useContext'],
+    'context-type-value': ['GraphDefinition.useContext'],
+    'date': ['GraphDefinition.date'],
+    'description': ['GraphDefinition.description'],
+    'jurisdiction': ['GraphDefinition.jurisdiction'],
+    'name': ['GraphDefinition.name'],
+    'publisher': ['GraphDefinition.publisher'],
+    'start': ['GraphDefinition.start'],
+    'status': ['GraphDefinition.status'],
+    'url': ['GraphDefinition.url'],
+    'version': ['GraphDefinition.version'],
+  },
+  'GuidanceResponse': {
+    'identifier': ['GuidanceResponse.identifier'],
+    'patient': ['GuidanceResponse.subject.where(resolve() is Patient)'],
+    'request': ['GuidanceResponse.requestIdentifier'],
+    'subject': ['GuidanceResponse.subject'],
+  },
+  'HealthcareService': {
+    'active': ['HealthcareService.active'],
+    'characteristic': ['HealthcareService.characteristic'],
+    'coverage-area': ['HealthcareService.coverageArea'],
+    'endpoint': ['HealthcareService.endpoint'],
+    'identifier': ['HealthcareService.identifier'],
+    'location': ['HealthcareService.location'],
+    'name': ['HealthcareService.name'],
+    'organization': ['HealthcareService.providedBy'],
+    'program': ['HealthcareService.program'],
+    'service-category': ['HealthcareService.category'],
+    'service-type': ['HealthcareService.type'],
+    'specialty': ['HealthcareService.specialty'],
+  },
+  'ImagingStudy': {
+    'basedon': ['ImagingStudy.basedOn'],
+    'bodysite': ['ImagingStudy.series.bodySite'],
+    'dicom-class': ['ImagingStudy.series.instance.sopClass'],
+    'encounter': ['ImagingStudy.encounter'],
+    'endpoint': ['ImagingStudy.endpoint', 'ImagingStudy.series.endpoint'],
+    'identifier': ['ImagingStudy.identifier'],
+    'instance': ['ImagingStudy.series.instance.uid'],
+    'interpreter': ['ImagingStudy.interpreter'],
+    'modality': ['ImagingStudy.series.modality'],
+    'patient': ['ImagingStudy.subject.where(resolve() is Patient)'],
+    'performer': ['ImagingStudy.series.performer.actor'],
+    'reason': ['ImagingStudy.reasonCode'],
+    'referrer': ['ImagingStudy.referrer'],
+    'series': ['ImagingStudy.series.uid'],
+    'started': ['ImagingStudy.started'],
+    'status': ['ImagingStudy.status'],
+    'subject': ['ImagingStudy.subject'],
+  },
+  'Immunization': {
+    'identifier': ['Immunization.identifier'],
+    'location': ['Immunization.location'],
+    'lot-number': ['Immunization.lotNumber'],
+    'manufacturer': ['Immunization.manufacturer'],
+    'patient': ['Immunization.patient'],
+    'performer': ['Immunization.performer.actor'],
+    'reaction': ['Immunization.reaction.detail'],
+    'reaction-date': ['Immunization.reaction.date'],
+    'reason-code': ['Immunization.reasonCode'],
+    'reason-reference': ['Immunization.reasonReference'],
+    'series': ['Immunization.protocolApplied.series'],
+    'status': ['Immunization.status'],
+    'status-reason': ['Immunization.statusReason'],
+    'target-disease': ['Immunization.protocolApplied.targetDisease'],
+    'vaccine-code': ['Immunization.vaccineCode'],
+  },
+  'ImmunizationEvaluation': {
+    'date': ['ImmunizationEvaluation.date'],
+    'dose-status': ['ImmunizationEvaluation.doseStatus'],
+    'identifier': ['ImmunizationEvaluation.identifier'],
+    'immunization-event': ['ImmunizationEvaluation.immunizationEvent'],
+    'patient': ['ImmunizationEvaluation.patient'],
+    'status': ['ImmunizationEvaluation.status'],
+    'target-disease': ['ImmunizationEvaluation.targetDisease'],
+  },
+  'ImmunizationRecommendation': {
+    'date': ['ImmunizationRecommendation.date'],
+    'identifier': ['ImmunizationRecommendation.identifier'],
+    'information': [
+      'ImmunizationRecommendation.recommendation.supportingPatientInformation'
+    ],
+    'patient': ['ImmunizationRecommendation.patient'],
+    'status': ['ImmunizationRecommendation.recommendation.forecastStatus'],
+    'support': [
+      'ImmunizationRecommendation.recommendation.supportingImmunization'
+    ],
+    'target-disease': [
+      'ImmunizationRecommendation.recommendation.targetDisease'
+    ],
+    'vaccine-type': ['ImmunizationRecommendation.recommendation.vaccineCode'],
+  },
+  'ImplementationGuide': {
+    'context-type': ['ImplementationGuide.useContext.code'],
+    'context-type-quantity': ['ImplementationGuide.useContext'],
+    'context-type-value': ['ImplementationGuide.useContext'],
+    'date': ['ImplementationGuide.date'],
+    'depends-on': ['ImplementationGuide.dependsOn.uri'],
+    'description': ['ImplementationGuide.description'],
+    'experimental': ['ImplementationGuide.experimental'],
+    'global': ['ImplementationGuide.global.profile'],
+    'jurisdiction': ['ImplementationGuide.jurisdiction'],
+    'name': ['ImplementationGuide.name'],
+    'publisher': ['ImplementationGuide.publisher'],
+    'resource': ['ImplementationGuide.definition.resource.reference'],
+    'status': ['ImplementationGuide.status'],
+    'title': ['ImplementationGuide.title'],
+    'url': ['ImplementationGuide.url'],
+    'version': ['ImplementationGuide.version'],
+  },
+  'Ingredient': {
+    'for': ['Ingredient.for'],
+    'function': ['Ingredient.function'],
+    'identifier': ['Ingredient.identifier'],
+    'manufacturer': ['Ingredient.manufacturer'],
+    'role': ['Ingredient.role'],
+    'substance': ['Ingredient.substance.code.reference'],
+    'substance-code': ['Ingredient.substance.code.concept'],
+    'substance-definition': ['Ingredient.substance.code.reference'],
+  },
+  'InsurancePlan': {
+    'address': ['InsurancePlan.contact.address'],
+    'address-city': ['InsurancePlan.contact.address.city'],
+    'address-country': ['InsurancePlan.contact.address.country'],
+    'address-postalcode': ['InsurancePlan.contact.address.postalCode'],
+    'address-state': ['InsurancePlan.contact.address.state'],
+    'address-use': ['InsurancePlan.contact.address.use'],
+    'administered-by': ['InsurancePlan.administeredBy'],
+    'endpoint': ['InsurancePlan.endpoint'],
+    'identifier': ['InsurancePlan.identifier'],
+    'owned-by': ['InsurancePlan.ownedBy'],
+    'phonetic': ['InsurancePlan.name'],
+    'status': ['InsurancePlan.status'],
+    'type': ['InsurancePlan.type'],
+  },
+  'Invoice': {
+    'account': ['Invoice.account'],
+    'date': ['Invoice.date'],
+    'identifier': ['Invoice.identifier'],
+    'issuer': ['Invoice.issuer'],
+    'participant': ['Invoice.participant.actor'],
+    'participant-role': ['Invoice.participant.role'],
+    'patient': ['Invoice.subject.where(resolve() is Patient)'],
+    'recipient': ['Invoice.recipient'],
+    'status': ['Invoice.status'],
+    'subject': ['Invoice.subject'],
+    'totalgross': ['Invoice.totalGross'],
+    'totalnet': ['Invoice.totalNet'],
+    'type': ['Invoice.type'],
+  },
+  'Library': {
+    'composed-of': [
+      "Library.relatedArtifact.where(type='composed-of').resource"
+    ],
+    'content-type': ['Library.content.contentType'],
+    'context-type': ['Library.useContext.code'],
+    'context-type-quantity': ['Library.useContext'],
+    'context-type-value': ['Library.useContext'],
+    'date': ['Library.date'],
+    'depends-on': ["Library.relatedArtifact.where(type='depends-on').resource"],
+    'derived-from': [
+      "Library.relatedArtifact.where(type='derived-from').resource"
+    ],
+    'description': ['Library.description'],
+    'effective': ['Library.effectivePeriod'],
+    'identifier': ['Library.identifier'],
+    'jurisdiction': ['Library.jurisdiction'],
+    'name': ['Library.name'],
+    'predecessor': [
+      "Library.relatedArtifact.where(type='predecessor').resource"
+    ],
+    'publisher': ['Library.publisher'],
+    'status': ['Library.status'],
+    'successor': ["Library.relatedArtifact.where(type='successor').resource"],
+    'title': ['Library.title'],
+    'topic': ['Library.topic'],
+    'type': ['Library.type'],
+    'url': ['Library.url'],
+    'version': ['Library.version'],
+  },
+  'Linkage': {
+    'author': ['Linkage.author'],
+    'item': ['Linkage.item.resource'],
+    'source': ['Linkage.item.resource'],
+  },
+  'Location': {
+    'address': ['Location.address'],
+    'address-city': ['Location.address.city'],
+    'address-country': ['Location.address.country'],
+    'address-postalcode': ['Location.address.postalCode'],
+    'address-state': ['Location.address.state'],
+    'address-use': ['Location.address.use'],
+    'endpoint': ['Location.endpoint'],
+    'identifier': ['Location.identifier'],
+    'name': ['Location.alias', 'Location.name'],
+    'near': ['Location.position'],
+    'operational-status': ['Location.operationalStatus'],
+    'organization': ['Location.managingOrganization'],
+    'partof': ['Location.partOf'],
+    'status': ['Location.status'],
+    'type': ['Location.type'],
+  },
+  'ManufacturedItemDefinition': {
+    'dose-form': ['ManufacturedItemDefinition.manufacturedDoseForm'],
+    'identifier': ['ManufacturedItemDefinition.identifier'],
+    'ingredient': ['ManufacturedItemDefinition.ingredient'],
+  },
+  'Measure': {
+    'composed-of': [
+      "Measure.relatedArtifact.where(type='composed-of').resource"
+    ],
+    'context-type': ['Measure.useContext.code'],
+    'context-type-quantity': ['Measure.useContext'],
+    'context-type-value': ['Measure.useContext'],
+    'date': ['Measure.date'],
+    'depends-on': [
+      'Measure.library',
+      "Measure.relatedArtifact.where(type='depends-on').resource"
+    ],
+    'derived-from': [
+      "Measure.relatedArtifact.where(type='derived-from').resource"
+    ],
+    'description': ['Measure.description'],
+    'effective': ['Measure.effectivePeriod'],
+    'identifier': ['Measure.identifier'],
+    'jurisdiction': ['Measure.jurisdiction'],
+    'name': ['Measure.name'],
+    'predecessor': [
+      "Measure.relatedArtifact.where(type='predecessor').resource"
+    ],
+    'publisher': ['Measure.publisher'],
+    'status': ['Measure.status'],
+    'successor': ["Measure.relatedArtifact.where(type='successor').resource"],
+    'title': ['Measure.title'],
+    'topic': ['Measure.topic'],
+    'url': ['Measure.url'],
+    'version': ['Measure.version'],
+  },
+  'MeasureReport': {
+    'date': ['MeasureReport.date'],
+    'evaluated-resource': ['MeasureReport.evaluatedResource'],
+    'identifier': ['MeasureReport.identifier'],
+    'measure': ['MeasureReport.measure'],
+    'patient': ['MeasureReport.subject.where(resolve() is Patient)'],
+    'period': ['MeasureReport.period'],
+    'reporter': ['MeasureReport.reporter'],
+    'status': ['MeasureReport.status'],
+    'subject': ['MeasureReport.subject'],
+  },
+  'Media': {
+    'based-on': ['Media.basedOn'],
+    'created': ['Media.created'],
+    'device': ['Media.device'],
+    'encounter': ['Media.encounter'],
+    'identifier': ['Media.identifier'],
+    'modality': ['Media.modality'],
+    'operator': ['Media.operator'],
+    'patient': ['Media.subject.where(resolve() is Patient)'],
+    'site': ['Media.bodySite'],
+    'status': ['Media.status'],
+    'subject': ['Media.subject'],
+    'type': ['Media.type'],
+    'view': ['Media.view'],
+  },
+  'Medication': {
+    'code': ['Medication.code'],
+    'expiration-date': ['Medication.batch.expirationDate'],
+    'form': ['Medication.form'],
+    'identifier': ['Medication.identifier'],
+    'lot-number': ['Medication.batch.lotNumber'],
+    'manufacturer': ['Medication.manufacturer'],
+    'status': ['Medication.status'],
+  },
+  'MedicationAdministration': {
+    'context': ['MedicationAdministration.context'],
+    'device': ['MedicationAdministration.device'],
+    'effective-time': ['MedicationAdministration.effective'],
+    'identifier': ['MedicationAdministration.identifier'],
+    'patient': ['MedicationAdministration.subject.where(resolve() is Patient)'],
+    'performer': ['MedicationAdministration.performer.actor'],
+    'reason-given': ['MedicationAdministration.reasonCode'],
+    'reason-not-given': ['MedicationAdministration.statusReason'],
+    'request': ['MedicationAdministration.request'],
+    'status': ['MedicationAdministration.status'],
+    'subject': ['MedicationAdministration.subject'],
+  },
+  'MedicationDispense': {
+    'context': ['MedicationDispense.context'],
+    'destination': ['MedicationDispense.destination'],
+    'identifier': ['MedicationDispense.identifier'],
+    'patient': ['MedicationDispense.subject.where(resolve() is Patient)'],
+    'performer': ['MedicationDispense.performer.actor'],
+    'prescription': ['MedicationDispense.authorizingPrescription'],
+    'receiver': ['MedicationDispense.receiver'],
+    'responsibleparty': ['MedicationDispense.substitution.responsibleParty'],
+    'status': ['MedicationDispense.status'],
+    'subject': ['MedicationDispense.subject'],
+    'type': ['MedicationDispense.type'],
+    'whenhandedover': ['MedicationDispense.whenHandedOver'],
+    'whenprepared': ['MedicationDispense.whenPrepared'],
+  },
+  'MedicationKnowledge': {
+    'classification': [
+      'MedicationKnowledge.medicineClassification.classification'
+    ],
+    'classification-type': ['MedicationKnowledge.medicineClassification.type'],
+    'code': ['MedicationKnowledge.code'],
+    'doseform': ['MedicationKnowledge.doseForm'],
+    'manufacturer': ['MedicationKnowledge.manufacturer'],
+    'monitoring-program-name': ['MedicationKnowledge.monitoringProgram.name'],
+    'monitoring-program-type': ['MedicationKnowledge.monitoringProgram.type'],
+    'monograph': ['MedicationKnowledge.monograph.source'],
+    'monograph-type': ['MedicationKnowledge.monograph.type'],
+    'source-cost': ['MedicationKnowledge.cost.source'],
+    'status': ['MedicationKnowledge.status'],
+  },
+  'MedicationRequest': {
+    'authoredon': ['MedicationRequest.authoredOn'],
+    'category': ['MedicationRequest.category'],
+    'date': ['MedicationRequest.dosageInstruction.timing.event'],
+    'encounter': ['MedicationRequest.encounter'],
+    'identifier': ['MedicationRequest.identifier'],
+    'intended-dispenser': ['MedicationRequest.dispenseRequest.performer'],
+    'intended-performer': ['MedicationRequest.performer'],
+    'intended-performertype': ['MedicationRequest.performerType'],
+    'intent': ['MedicationRequest.intent'],
+    'patient': ['MedicationRequest.subject.where(resolve() is Patient)'],
+    'priority': ['MedicationRequest.priority'],
+    'requester': ['MedicationRequest.requester'],
+    'status': ['MedicationRequest.status'],
+    'subject': ['MedicationRequest.subject'],
+  },
+  'MedicationStatement': {
+    'category': ['MedicationStatement.category'],
+    'context': ['MedicationStatement.context'],
+    'effective': ['MedicationStatement.effective'],
+    'identifier': ['MedicationStatement.identifier'],
+    'part-of': ['MedicationStatement.partOf'],
+    'patient': ['MedicationStatement.subject.where(resolve() is Patient)'],
+    'source': ['MedicationStatement.informationSource'],
+    'status': ['MedicationStatement.status'],
+    'subject': ['MedicationStatement.subject'],
+  },
+  'MedicinalProductDefinition': {
+    'characteristic': ['MedicinalProductDefinition.characteristic.value'],
+    'characteristic-type': ['MedicinalProductDefinition.characteristic.type'],
+    'contact': ['MedicinalProductDefinition.contact.contact'],
+    'domain': ['MedicinalProductDefinition.domain'],
+    'identifier': ['MedicinalProductDefinition.identifier'],
+    'ingredient': ['MedicinalProductDefinition.ingredient'],
+    'master-file': ['MedicinalProductDefinition.masterFile'],
+    'name': ['MedicinalProductDefinition.name.productName'],
+    'name-language': [
+      'MedicinalProductDefinition.name.countryLanguage.language'
+    ],
+    'product-classification': ['MedicinalProductDefinition.classification'],
+    'status': ['MedicinalProductDefinition.status'],
+    'type': ['MedicinalProductDefinition.type'],
+  },
+  'MessageDefinition': {
+    'category': ['MessageDefinition.category'],
+    'context-type': ['MessageDefinition.useContext.code'],
+    'context-type-quantity': ['MessageDefinition.useContext'],
+    'context-type-value': ['MessageDefinition.useContext'],
+    'date': ['MessageDefinition.date'],
+    'description': ['MessageDefinition.description'],
+    'event': ['MessageDefinition.event'],
+    'focus': ['MessageDefinition.focus.code'],
+    'identifier': ['MessageDefinition.identifier'],
+    'jurisdiction': ['MessageDefinition.jurisdiction'],
+    'name': ['MessageDefinition.name'],
+    'parent': ['MessageDefinition.parent'],
+    'publisher': ['MessageDefinition.publisher'],
+    'status': ['MessageDefinition.status'],
+    'title': ['MessageDefinition.title'],
+    'url': ['MessageDefinition.url'],
+    'version': ['MessageDefinition.version'],
+  },
+  'MessageHeader': {
+    'author': ['MessageHeader.author'],
+    'code': ['MessageHeader.response.code'],
+    'destination': ['MessageHeader.destination.name'],
+    'destination-uri': ['MessageHeader.destination.endpoint'],
+    'enterer': ['MessageHeader.enterer'],
+    'event': ['MessageHeader.event'],
+    'focus': ['MessageHeader.focus'],
+    'receiver': ['MessageHeader.destination.receiver'],
+    'response-id': ['MessageHeader.response.identifier'],
+    'responsible': ['MessageHeader.responsible'],
+    'sender': ['MessageHeader.sender'],
+    'source': ['MessageHeader.source.name'],
+    'source-uri': ['MessageHeader.source.endpoint'],
+    'target': ['MessageHeader.destination.target'],
+  },
+  'MolecularSequence': {
+    'chromosome': ['MolecularSequence.referenceSeq.chromosome'],
+    'chromosome-variant-coordinate': ['MolecularSequence.variant'],
+    'chromosome-window-coordinate': ['MolecularSequence.referenceSeq'],
+    'identifier': ['MolecularSequence.identifier'],
+    'patient': ['MolecularSequence.patient'],
+    'referenceseqid': ['MolecularSequence.referenceSeq.referenceSeqId'],
+    'referenceseqid-variant-coordinate': ['MolecularSequence.variant'],
+    'referenceseqid-window-coordinate': ['MolecularSequence.referenceSeq'],
+    'type': ['MolecularSequence.type'],
+    'variant-end': ['MolecularSequence.variant.end'],
+    'variant-start': ['MolecularSequence.variant.start'],
+    'window-end': ['MolecularSequence.referenceSeq.windowEnd'],
+    'window-start': ['MolecularSequence.referenceSeq.windowStart'],
+  },
+  'NamingSystem': {
+    'contact': ['NamingSystem.contact.name'],
+    'context-type': ['NamingSystem.useContext.code'],
+    'context-type-quantity': ['NamingSystem.useContext'],
+    'context-type-value': ['NamingSystem.useContext'],
+    'date': ['NamingSystem.date'],
+    'description': ['NamingSystem.description'],
+    'id-type': ['NamingSystem.uniqueId.type'],
+    'jurisdiction': ['NamingSystem.jurisdiction'],
+    'kind': ['NamingSystem.kind'],
+    'name': ['NamingSystem.name'],
+    'period': ['NamingSystem.uniqueId.period'],
+    'publisher': ['NamingSystem.publisher'],
+    'responsible': ['NamingSystem.responsible'],
+    'status': ['NamingSystem.status'],
+    'telecom': ['NamingSystem.contact.telecom'],
+    'type': ['NamingSystem.type'],
+    'value': ['NamingSystem.uniqueId.value'],
+  },
+  'NutritionOrder': {
+    'additive': ['NutritionOrder.enteralFormula.additiveType'],
+    'datetime': ['NutritionOrder.dateTime'],
+    'encounter': ['NutritionOrder.encounter'],
+    'formula': ['NutritionOrder.enteralFormula.baseFormulaType'],
+    'identifier': ['NutritionOrder.identifier'],
+    'instantiates-canonical': ['NutritionOrder.instantiatesCanonical'],
+    'instantiates-uri': ['NutritionOrder.instantiatesUri'],
+    'oraldiet': ['NutritionOrder.oralDiet.type'],
+    'patient': ['NutritionOrder.patient'],
+    'provider': ['NutritionOrder.orderer'],
+    'status': ['NutritionOrder.status'],
+    'supplement': ['NutritionOrder.supplement.type'],
+  },
+  'NutritionProduct': {
+    'identifier': ['NutritionProduct.instance.identifier'],
+    'status': ['NutritionProduct.status'],
+  },
+  'Observation': {
+    'based-on': ['Observation.basedOn'],
+    'category': ['Observation.category'],
+    'code': ['Observation.code'],
+    'combo-code': ['Observation.code', 'Observation.component.code'],
+    'combo-code-value-concept': ['Observation.component'],
+    'combo-code-value-quantity': ['Observation.component'],
+    'combo-data-absent-reason': [
+      'Observation.component.dataAbsentReason',
+      'Observation.dataAbsentReason'
+    ],
+    'component-code': ['Observation.component.code'],
+    'component-code-value-concept': ['Observation.component'],
+    'component-code-value-quantity': ['Observation.component'],
+    'component-data-absent-reason': ['Observation.component.dataAbsentReason'],
+    'data-absent-reason': ['Observation.dataAbsentReason'],
+    'date': ['Observation.effective'],
+    'derived-from': ['Observation.derivedFrom'],
+    'device': ['Observation.device'],
+    'encounter': ['Observation.encounter'],
+    'focus': ['Observation.focus'],
+    'has-member': ['Observation.hasMember'],
+    'identifier': ['Observation.identifier'],
+    'method': ['Observation.method'],
+    'part-of': ['Observation.partOf'],
+    'patient': ['Observation.subject.where(resolve() is Patient)'],
+    'performer': ['Observation.performer'],
+    'specimen': ['Observation.specimen'],
+    'status': ['Observation.status'],
+    'subject': ['Observation.subject'],
+  },
+  'OperationDefinition': {
+    'base': ['OperationDefinition.base'],
+    'code': ['OperationDefinition.code'],
+    'context-type': ['OperationDefinition.useContext.code'],
+    'context-type-quantity': ['OperationDefinition.useContext'],
+    'context-type-value': ['OperationDefinition.useContext'],
+    'date': ['OperationDefinition.date'],
+    'description': ['OperationDefinition.description'],
+    'input-profile': ['OperationDefinition.inputProfile'],
+    'instance': ['OperationDefinition.instance'],
+    'jurisdiction': ['OperationDefinition.jurisdiction'],
+    'kind': ['OperationDefinition.kind'],
+    'name': ['OperationDefinition.name'],
+    'output-profile': ['OperationDefinition.outputProfile'],
+    'publisher': ['OperationDefinition.publisher'],
+    'status': ['OperationDefinition.status'],
+    'system': ['OperationDefinition.system'],
+    'title': ['OperationDefinition.title'],
+    'type': ['OperationDefinition.type'],
+    'url': ['OperationDefinition.url'],
+    'version': ['OperationDefinition.version'],
+  },
+  'Organization': {
+    'active': ['Organization.active'],
+    'address': ['Organization.address'],
+    'address-city': ['Organization.address.city'],
+    'address-country': ['Organization.address.country'],
+    'address-postalcode': ['Organization.address.postalCode'],
+    'address-state': ['Organization.address.state'],
+    'address-use': ['Organization.address.use'],
+    'endpoint': ['Organization.endpoint'],
+    'identifier': ['Organization.identifier'],
+    'name': ['Organization.alias', 'Organization.name'],
+    'partof': ['Organization.partOf'],
+    'phonetic': ['Organization.name'],
+    'type': ['Organization.type'],
+  },
+  'OrganizationAffiliation': {
+    'active': ['OrganizationAffiliation.active'],
+    'date': ['OrganizationAffiliation.period'],
+    'email': ["OrganizationAffiliation.telecom.where(system='email')"],
+    'endpoint': ['OrganizationAffiliation.endpoint'],
+    'identifier': ['OrganizationAffiliation.identifier'],
+    'location': ['OrganizationAffiliation.location'],
+    'network': ['OrganizationAffiliation.network'],
+    'participating-organization': [
+      'OrganizationAffiliation.participatingOrganization'
+    ],
+    'phone': ["OrganizationAffiliation.telecom.where(system='phone')"],
+    'primary-organization': ['OrganizationAffiliation.organization'],
+    'role': ['OrganizationAffiliation.code'],
+    'service': ['OrganizationAffiliation.healthcareService'],
+    'specialty': ['OrganizationAffiliation.specialty'],
+    'telecom': ['OrganizationAffiliation.telecom'],
+  },
+  'PackagedProductDefinition': {
+    'biological': [
+      'PackagedProductDefinition.package.containedItem.item.reference'
+    ],
+    'contained-item': [
+      'PackagedProductDefinition.package.containedItem.item.reference'
+    ],
+    'device': [
+      'PackagedProductDefinition.package.containedItem.item.reference'
+    ],
+    'identifier': ['PackagedProductDefinition.identifier'],
+    'manufactured-item': [
+      'PackagedProductDefinition.package.containedItem.item.reference'
+    ],
+    'medication': [
+      'PackagedProductDefinition.package.containedItem.item.reference'
+    ],
+    'name': ['PackagedProductDefinition.name'],
+    'nutrition': [
+      'PackagedProductDefinition.package.containedItem.item.reference'
+    ],
+    'package': [
+      'PackagedProductDefinition.package.containedItem.item.reference'
+    ],
+    'package-for': ['PackagedProductDefinition.packageFor'],
+    'status': ['PackagedProductDefinition.status'],
+  },
+  'Patient': {
+    'active': ['Patient.active'],
+    'address': ['Patient.address'],
+    'address-city': ['Patient.address.city'],
+    'address-country': ['Patient.address.country'],
+    'address-postalcode': ['Patient.address.postalCode'],
+    'address-state': ['Patient.address.state'],
+    'address-use': ['Patient.address.use'],
+    'birthdate': ['Patient.birthDate'],
+    'deceased': ['Patient.deceased.exists() and Patient.deceased != false'],
+    'email': ["Patient.telecom.where(system='email')"],
+    'family': ['Patient.name.family'],
+    'gender': ['Patient.gender'],
+    'general-practitioner': ['Patient.generalPractitioner'],
+    'given': ['Patient.name.given'],
+    'identifier': ['Patient.identifier'],
+    'language': ['Patient.communication.language'],
+    'link': ['Patient.link.other'],
+    'name': ['Patient.name'],
+    'organization': ['Patient.managingOrganization'],
+    'phone': ["Patient.telecom.where(system='phone')"],
+    'phonetic': ['Patient.name'],
+    'telecom': ['Patient.telecom'],
+  },
+  'PaymentNotice': {
+    'created': ['PaymentNotice.created'],
+    'identifier': ['PaymentNotice.identifier'],
+    'payment-status': ['PaymentNotice.paymentStatus'],
+    'provider': ['PaymentNotice.provider'],
+    'request': ['PaymentNotice.request'],
+    'response': ['PaymentNotice.response'],
+    'status': ['PaymentNotice.status'],
+  },
+  'PaymentReconciliation': {
+    'created': ['PaymentReconciliation.created'],
+    'disposition': ['PaymentReconciliation.disposition'],
+    'identifier': ['PaymentReconciliation.identifier'],
+    'outcome': ['PaymentReconciliation.outcome'],
+    'payment-issuer': ['PaymentReconciliation.paymentIssuer'],
+    'request': ['PaymentReconciliation.request'],
+    'requestor': ['PaymentReconciliation.requestor'],
+    'status': ['PaymentReconciliation.status'],
+  },
+  'Person': {
+    'address': ['Person.address'],
+    'address-city': ['Person.address.city'],
+    'address-country': ['Person.address.country'],
+    'address-postalcode': ['Person.address.postalCode'],
+    'address-state': ['Person.address.state'],
+    'address-use': ['Person.address.use'],
+    'birthdate': ['Person.birthDate'],
+    'email': ["Person.telecom.where(system='email')"],
+    'gender': ['Person.gender'],
+    'identifier': ['Person.identifier'],
+    'link': ['Person.link.target'],
+    'name': ['Person.name'],
+    'organization': ['Person.managingOrganization'],
+    'patient': ['Person.link.target.where(resolve() is Patient)'],
+    'phone': ["Person.telecom.where(system='phone')"],
+    'phonetic': ['Person.name'],
+    'practitioner': ['Person.link.target.where(resolve() is Practitioner)'],
+    'relatedperson': ['Person.link.target.where(resolve() is RelatedPerson)'],
+    'telecom': ['Person.telecom'],
+  },
+  'PlanDefinition': {
+    'composed-of': [
+      "PlanDefinition.relatedArtifact.where(type='composed-of').resource"
+    ],
+    'context-type': ['PlanDefinition.useContext.code'],
+    'context-type-quantity': ['PlanDefinition.useContext'],
+    'context-type-value': ['PlanDefinition.useContext'],
+    'date': ['PlanDefinition.date'],
+    'definition': ['PlanDefinition.action.definition'],
+    'depends-on': [
+      'PlanDefinition.library',
+      "PlanDefinition.relatedArtifact.where(type='depends-on').resource"
+    ],
+    'derived-from': [
+      "PlanDefinition.relatedArtifact.where(type='derived-from').resource"
+    ],
+    'description': ['PlanDefinition.description'],
+    'effective': ['PlanDefinition.effectivePeriod'],
+    'identifier': ['PlanDefinition.identifier'],
+    'jurisdiction': ['PlanDefinition.jurisdiction'],
+    'name': ['PlanDefinition.name'],
+    'predecessor': [
+      "PlanDefinition.relatedArtifact.where(type='predecessor').resource"
+    ],
+    'publisher': ['PlanDefinition.publisher'],
+    'status': ['PlanDefinition.status'],
+    'successor': [
+      "PlanDefinition.relatedArtifact.where(type='successor').resource"
+    ],
+    'title': ['PlanDefinition.title'],
+    'topic': ['PlanDefinition.topic'],
+    'type': ['PlanDefinition.type'],
+    'url': ['PlanDefinition.url'],
+    'version': ['PlanDefinition.version'],
+  },
+  'Practitioner': {
+    'active': ['Practitioner.active'],
+    'address': ['Practitioner.address'],
+    'address-city': ['Practitioner.address.city'],
+    'address-country': ['Practitioner.address.country'],
+    'address-postalcode': ['Practitioner.address.postalCode'],
+    'address-state': ['Practitioner.address.state'],
+    'address-use': ['Practitioner.address.use'],
+    'communication': ['Practitioner.communication'],
+    'email': ["Practitioner.telecom.where(system='email')"],
+    'family': ['Practitioner.name.family'],
+    'gender': ['Practitioner.gender'],
+    'given': ['Practitioner.name.given'],
+    'identifier': ['Practitioner.identifier'],
+    'name': ['Practitioner.name'],
+    'phone': ["Practitioner.telecom.where(system='phone')"],
+    'phonetic': ['Practitioner.name'],
+    'telecom': ['Practitioner.telecom'],
+  },
+  'PractitionerRole': {
+    'active': ['PractitionerRole.active'],
+    'date': ['PractitionerRole.period'],
+    'email': ["PractitionerRole.telecom.where(system='email')"],
+    'endpoint': ['PractitionerRole.endpoint'],
+    'identifier': ['PractitionerRole.identifier'],
+    'location': ['PractitionerRole.location'],
+    'organization': ['PractitionerRole.organization'],
+    'phone': ["PractitionerRole.telecom.where(system='phone')"],
+    'practitioner': ['PractitionerRole.practitioner'],
+    'role': ['PractitionerRole.code'],
+    'service': ['PractitionerRole.healthcareService'],
+    'specialty': ['PractitionerRole.specialty'],
+    'telecom': ['PractitionerRole.telecom'],
+  },
+  'Procedure': {
+    'based-on': ['Procedure.basedOn'],
+    'category': ['Procedure.category'],
+    'code': ['Procedure.code'],
+    'date': ['Procedure.performed'],
+    'encounter': ['Procedure.encounter'],
+    'identifier': ['Procedure.identifier'],
+    'instantiates-canonical': ['Procedure.instantiatesCanonical'],
+    'instantiates-uri': ['Procedure.instantiatesUri'],
+    'location': ['Procedure.location'],
+    'part-of': ['Procedure.partOf'],
+    'patient': ['Procedure.subject.where(resolve() is Patient)'],
+    'performer': ['Procedure.performer.actor'],
+    'reason-code': ['Procedure.reasonCode'],
+    'reason-reference': ['Procedure.reasonReference'],
+    'status': ['Procedure.status'],
+    'subject': ['Procedure.subject'],
+  },
+  'Provenance': {
+    'agent': ['Provenance.agent.who'],
+    'agent-role': ['Provenance.agent.role'],
+    'agent-type': ['Provenance.agent.type'],
+    'entity': ['Provenance.entity.what'],
+    'location': ['Provenance.location'],
+    'patient': ['Provenance.target.where(resolve() is Patient)'],
+    'recorded': ['Provenance.recorded'],
+    'signature-type': ['Provenance.signature.type'],
+    'target': ['Provenance.target'],
+  },
+  'Questionnaire': {
+    'code': ['Questionnaire.item.code'],
+    'context-type': ['Questionnaire.useContext.code'],
+    'context-type-quantity': ['Questionnaire.useContext'],
+    'context-type-value': ['Questionnaire.useContext'],
+    'date': ['Questionnaire.date'],
+    'definition': ['Questionnaire.item.definition'],
+    'description': ['Questionnaire.description'],
+    'effective': ['Questionnaire.effectivePeriod'],
+    'identifier': ['Questionnaire.identifier'],
+    'jurisdiction': ['Questionnaire.jurisdiction'],
+    'name': ['Questionnaire.name'],
+    'publisher': ['Questionnaire.publisher'],
+    'status': ['Questionnaire.status'],
+    'subject-type': ['Questionnaire.subjectType'],
+    'title': ['Questionnaire.title'],
+    'url': ['Questionnaire.url'],
+    'version': ['Questionnaire.version'],
+  },
+  'QuestionnaireResponse': {
+    'author': ['QuestionnaireResponse.author'],
+    'authored': ['QuestionnaireResponse.authored'],
+    'based-on': ['QuestionnaireResponse.basedOn'],
+    'encounter': ['QuestionnaireResponse.encounter'],
+    'identifier': ['QuestionnaireResponse.identifier'],
+    'part-of': ['QuestionnaireResponse.partOf'],
+    'patient': ['QuestionnaireResponse.subject.where(resolve() is Patient)'],
+    'questionnaire': ['QuestionnaireResponse.questionnaire'],
+    'source': ['QuestionnaireResponse.source'],
+    'status': ['QuestionnaireResponse.status'],
+    'subject': ['QuestionnaireResponse.subject'],
+  },
+  'RegulatedAuthorization': {
+    'case': ['RegulatedAuthorization.case.identifier'],
+    'case-type': ['RegulatedAuthorization.case.type'],
+    'holder': ['RegulatedAuthorization.holder'],
+    'identifier': ['RegulatedAuthorization.identifier'],
+    'region': ['RegulatedAuthorization.region'],
+    'status': ['RegulatedAuthorization.status'],
+    'subject': ['RegulatedAuthorization.subject'],
+  },
+  'RelatedPerson': {
+    'active': ['RelatedPerson.active'],
+    'address': ['RelatedPerson.address'],
+    'address-city': ['RelatedPerson.address.city'],
+    'address-country': ['RelatedPerson.address.country'],
+    'address-postalcode': ['RelatedPerson.address.postalCode'],
+    'address-state': ['RelatedPerson.address.state'],
+    'address-use': ['RelatedPerson.address.use'],
+    'birthdate': ['RelatedPerson.birthDate'],
+    'email': ["RelatedPerson.telecom.where(system='email')"],
+    'gender': ['RelatedPerson.gender'],
+    'identifier': ['RelatedPerson.identifier'],
+    'name': ['RelatedPerson.name'],
+    'patient': ['RelatedPerson.patient'],
+    'phone': ["RelatedPerson.telecom.where(system='phone')"],
+    'phonetic': ['RelatedPerson.name'],
+    'relationship': ['RelatedPerson.relationship'],
+    'telecom': ['RelatedPerson.telecom'],
+  },
+  'RequestGroup': {
+    'author': ['RequestGroup.author'],
+    'authored': ['RequestGroup.authoredOn'],
+    'code': ['RequestGroup.code'],
+    'encounter': ['RequestGroup.encounter'],
+    'group-identifier': ['RequestGroup.groupIdentifier'],
+    'identifier': ['RequestGroup.identifier'],
+    'instantiates-canonical': ['RequestGroup.instantiatesCanonical'],
+    'instantiates-uri': ['RequestGroup.instantiatesUri'],
+    'intent': ['RequestGroup.intent'],
+    'participant': ['RequestGroup.action.participant'],
+    'patient': ['RequestGroup.subject.where(resolve() is Patient)'],
+    'priority': ['RequestGroup.priority'],
+    'status': ['RequestGroup.status'],
+    'subject': ['RequestGroup.subject'],
+  },
+  'ResearchDefinition': {
+    'composed-of': [
+      "ResearchDefinition.relatedArtifact.where(type='composed-of').resource"
+    ],
+    'context-type': ['ResearchDefinition.useContext.code'],
+    'context-type-quantity': ['ResearchDefinition.useContext'],
+    'context-type-value': ['ResearchDefinition.useContext'],
+    'date': ['ResearchDefinition.date'],
+    'depends-on': [
+      'ResearchDefinition.library',
+      "ResearchDefinition.relatedArtifact.where(type='depends-on').resource"
+    ],
+    'derived-from': [
+      "ResearchDefinition.relatedArtifact.where(type='derived-from').resource"
+    ],
+    'description': ['ResearchDefinition.description'],
+    'effective': ['ResearchDefinition.effectivePeriod'],
+    'identifier': ['ResearchDefinition.identifier'],
+    'jurisdiction': ['ResearchDefinition.jurisdiction'],
+    'name': ['ResearchDefinition.name'],
+    'predecessor': [
+      "ResearchDefinition.relatedArtifact.where(type='predecessor').resource"
+    ],
+    'publisher': ['ResearchDefinition.publisher'],
+    'status': ['ResearchDefinition.status'],
+    'successor': [
+      "ResearchDefinition.relatedArtifact.where(type='successor').resource"
+    ],
+    'title': ['ResearchDefinition.title'],
+    'topic': ['ResearchDefinition.topic'],
+    'url': ['ResearchDefinition.url'],
+    'version': ['ResearchDefinition.version'],
+  },
+  'ResearchElementDefinition': {
+    'composed-of': [
+      "ResearchElementDefinition.relatedArtifact.where(type='composed-of').resource"
+    ],
+    'context-type': ['ResearchElementDefinition.useContext.code'],
+    'context-type-quantity': ['ResearchElementDefinition.useContext'],
+    'context-type-value': ['ResearchElementDefinition.useContext'],
+    'date': ['ResearchElementDefinition.date'],
+    'depends-on': [
+      'ResearchElementDefinition.library',
+      "ResearchElementDefinition.relatedArtifact.where(type='depends-on').resource"
+    ],
+    'derived-from': [
+      "ResearchElementDefinition.relatedArtifact.where(type='derived-from').resource"
+    ],
+    'description': ['ResearchElementDefinition.description'],
+    'effective': ['ResearchElementDefinition.effectivePeriod'],
+    'identifier': ['ResearchElementDefinition.identifier'],
+    'jurisdiction': ['ResearchElementDefinition.jurisdiction'],
+    'name': ['ResearchElementDefinition.name'],
+    'predecessor': [
+      "ResearchElementDefinition.relatedArtifact.where(type='predecessor').resource"
+    ],
+    'publisher': ['ResearchElementDefinition.publisher'],
+    'status': ['ResearchElementDefinition.status'],
+    'successor': [
+      "ResearchElementDefinition.relatedArtifact.where(type='successor').resource"
+    ],
+    'title': ['ResearchElementDefinition.title'],
+    'topic': ['ResearchElementDefinition.topic'],
+    'url': ['ResearchElementDefinition.url'],
+    'version': ['ResearchElementDefinition.version'],
+  },
+  'ResearchStudy': {
+    'category': ['ResearchStudy.category'],
+    'date': ['ResearchStudy.period'],
+    'focus': ['ResearchStudy.focus'],
+    'identifier': ['ResearchStudy.identifier'],
+    'keyword': ['ResearchStudy.keyword'],
+    'location': ['ResearchStudy.location'],
+    'partof': ['ResearchStudy.partOf'],
+    'principalinvestigator': ['ResearchStudy.principalInvestigator'],
+    'protocol': ['ResearchStudy.protocol'],
+    'site': ['ResearchStudy.site'],
+    'sponsor': ['ResearchStudy.sponsor'],
+    'status': ['ResearchStudy.status'],
+    'title': ['ResearchStudy.title'],
+  },
+  'ResearchSubject': {
+    'date': ['ResearchSubject.period'],
+    'identifier': ['ResearchSubject.identifier'],
+    'individual': ['ResearchSubject.individual'],
+    'patient': ['ResearchSubject.individual'],
+    'status': ['ResearchSubject.status'],
+    'study': ['ResearchSubject.study'],
+  },
+  'RiskAssessment': {
+    'condition': ['RiskAssessment.condition'],
+    'encounter': ['RiskAssessment.encounter'],
+    'identifier': ['RiskAssessment.identifier'],
+    'method': ['RiskAssessment.method'],
+    'patient': ['RiskAssessment.subject.where(resolve() is Patient)'],
+    'performer': ['RiskAssessment.performer'],
+    'probability': ['RiskAssessment.prediction.probability'],
+    'risk': ['RiskAssessment.prediction.qualitativeRisk'],
+    'subject': ['RiskAssessment.subject'],
+  },
+  'Schedule': {
+    'active': ['Schedule.active'],
+    'actor': ['Schedule.actor'],
+    'date': ['Schedule.planningHorizon'],
+    'identifier': ['Schedule.identifier'],
+    'service-category': ['Schedule.serviceCategory'],
+    'service-type': ['Schedule.serviceType'],
+    'specialty': ['Schedule.specialty'],
+  },
+  'SearchParameter': {
+    'base': ['SearchParameter.base'],
+    'code': ['SearchParameter.code'],
+    'component': ['SearchParameter.component.definition'],
+    'context-type': ['SearchParameter.useContext.code'],
+    'context-type-quantity': ['SearchParameter.useContext'],
+    'context-type-value': ['SearchParameter.useContext'],
+    'date': ['SearchParameter.date'],
+    'derived-from': ['SearchParameter.derivedFrom'],
+    'description': ['SearchParameter.description'],
+    'jurisdiction': ['SearchParameter.jurisdiction'],
+    'name': ['SearchParameter.name'],
+    'publisher': ['SearchParameter.publisher'],
+    'status': ['SearchParameter.status'],
+    'target': ['SearchParameter.target'],
+    'type': ['SearchParameter.type'],
+    'url': ['SearchParameter.url'],
+    'version': ['SearchParameter.version'],
+  },
+  'ServiceRequest': {
+    'authored': ['ServiceRequest.authoredOn'],
+    'based-on': ['ServiceRequest.basedOn'],
+    'body-site': ['ServiceRequest.bodySite'],
+    'category': ['ServiceRequest.category'],
+    'code': ['ServiceRequest.code'],
+    'encounter': ['ServiceRequest.encounter'],
+    'identifier': ['ServiceRequest.identifier'],
+    'instantiates-canonical': ['ServiceRequest.instantiatesCanonical'],
+    'instantiates-uri': ['ServiceRequest.instantiatesUri'],
+    'intent': ['ServiceRequest.intent'],
+    'occurrence': ['ServiceRequest.occurrence'],
+    'patient': ['ServiceRequest.subject.where(resolve() is Patient)'],
+    'performer': ['ServiceRequest.performer'],
+    'performer-type': ['ServiceRequest.performerType'],
+    'priority': ['ServiceRequest.priority'],
+    'replaces': ['ServiceRequest.replaces'],
+    'requester': ['ServiceRequest.requester'],
+    'requisition': ['ServiceRequest.requisition'],
+    'specimen': ['ServiceRequest.specimen'],
+    'status': ['ServiceRequest.status'],
+    'subject': ['ServiceRequest.subject'],
+  },
+  'Slot': {
+    'appointment-type': ['Slot.appointmentType'],
+    'identifier': ['Slot.identifier'],
+    'schedule': ['Slot.schedule'],
+    'service-category': ['Slot.serviceCategory'],
+    'service-type': ['Slot.serviceType'],
+    'specialty': ['Slot.specialty'],
+    'start': ['Slot.start'],
+    'status': ['Slot.status'],
+  },
+  'Specimen': {
+    'accession': ['Specimen.accessionIdentifier'],
+    'bodysite': ['Specimen.collection.bodySite'],
+    'collected': ['Specimen.collection.collected'],
+    'collector': ['Specimen.collection.collector'],
+    'container': ['Specimen.container.type'],
+    'container-id': ['Specimen.container.identifier'],
+    'identifier': ['Specimen.identifier'],
+    'parent': ['Specimen.parent'],
+    'patient': ['Specimen.subject.where(resolve() is Patient)'],
+    'status': ['Specimen.status'],
+    'subject': ['Specimen.subject'],
+    'type': ['Specimen.type'],
+  },
+  'SpecimenDefinition': {
+    'container': ['SpecimenDefinition.typeTested.container.type'],
+    'identifier': ['SpecimenDefinition.identifier'],
+    'type': ['SpecimenDefinition.typeCollected'],
+  },
+  'StructureDefinition': {
+    'abstract': ['StructureDefinition.abstract'],
+    'base': ['StructureDefinition.baseDefinition'],
+    'base-path': [
+      'StructureDefinition.differential.element.base.path',
+      'StructureDefinition.snapshot.element.base.path'
+    ],
+    'context-type': ['StructureDefinition.useContext.code'],
+    'context-type-quantity': ['StructureDefinition.useContext'],
+    'context-type-value': ['StructureDefinition.useContext'],
+    'date': ['StructureDefinition.date'],
+    'derivation': ['StructureDefinition.derivation'],
+    'description': ['StructureDefinition.description'],
+    'experimental': ['StructureDefinition.experimental'],
+    'ext-context': ['StructureDefinition.context.type'],
+    'identifier': ['StructureDefinition.identifier'],
+    'jurisdiction': ['StructureDefinition.jurisdiction'],
+    'keyword': ['StructureDefinition.keyword'],
+    'kind': ['StructureDefinition.kind'],
+    'name': ['StructureDefinition.name'],
+    'path': [
+      'StructureDefinition.differential.element.path',
+      'StructureDefinition.snapshot.element.path'
+    ],
+    'publisher': ['StructureDefinition.publisher'],
+    'status': ['StructureDefinition.status'],
+    'title': ['StructureDefinition.title'],
+    'type': ['StructureDefinition.type'],
+    'url': ['StructureDefinition.url'],
+    'valueset': ['StructureDefinition.snapshot.element.binding.valueSet'],
+    'version': ['StructureDefinition.version'],
+  },
+  'StructureMap': {
+    'context-type': ['StructureMap.useContext.code'],
+    'context-type-quantity': ['StructureMap.useContext'],
+    'context-type-value': ['StructureMap.useContext'],
+    'date': ['StructureMap.date'],
+    'description': ['StructureMap.description'],
+    'identifier': ['StructureMap.identifier'],
+    'jurisdiction': ['StructureMap.jurisdiction'],
+    'name': ['StructureMap.name'],
+    'publisher': ['StructureMap.publisher'],
+    'status': ['StructureMap.status'],
+    'title': ['StructureMap.title'],
+    'url': ['StructureMap.url'],
+    'version': ['StructureMap.version'],
+  },
+  'Subscription': {
+    'contact': ['Subscription.contact'],
+    'criteria': ['Subscription.criteria'],
+    'payload': ['Subscription.channel.payload'],
+    'status': ['Subscription.status'],
+    'type': ['Subscription.channel.type'],
+    'url': ['Subscription.channel.endpoint'],
+  },
+  'SubscriptionTopic': {
+    'date': ['SubscriptionTopic.date'],
+    'derived-or-self': [
+      'SubscriptionTopic.derivedFrom',
+      'SubscriptionTopic.url'
+    ],
+    'identifier': ['SubscriptionTopic.identifier'],
+    'resource': ['SubscriptionTopic.resourceTrigger.resource'],
+    'status': ['SubscriptionTopic.status'],
+    'title': ['SubscriptionTopic.title'],
+    'trigger-description': ['SubscriptionTopic.resourceTrigger.description'],
+    'url': ['SubscriptionTopic.url'],
+    'version': ['SubscriptionTopic.version'],
+  },
+  'Substance': {
+    'category': ['Substance.category'],
+    'code': ['Substance.code'],
+    'container-identifier': ['Substance.instance.identifier'],
+    'expiry': ['Substance.instance.expiry'],
+    'identifier': ['Substance.identifier'],
+    'quantity': ['Substance.instance.quantity'],
+    'status': ['Substance.status'],
+  },
+  'SubstanceDefinition': {
+    'classification': ['SubstanceDefinition.classification'],
+    'code': ['SubstanceDefinition.code.code'],
+    'domain': ['SubstanceDefinition.domain'],
+    'identifier': ['SubstanceDefinition.identifier'],
+    'name': ['SubstanceDefinition.name.name'],
+  },
+  'SupplyDelivery': {
+    'identifier': ['SupplyDelivery.identifier'],
+    'patient': ['SupplyDelivery.patient'],
+    'receiver': ['SupplyDelivery.receiver'],
+    'status': ['SupplyDelivery.status'],
+    'supplier': ['SupplyDelivery.supplier'],
+  },
+  'SupplyRequest': {
+    'category': ['SupplyRequest.category'],
+    'date': ['SupplyRequest.authoredOn'],
+    'identifier': ['SupplyRequest.identifier'],
+    'requester': ['SupplyRequest.requester'],
+    'status': ['SupplyRequest.status'],
+    'subject': ['SupplyRequest.deliverTo'],
+    'supplier': ['SupplyRequest.supplier'],
+  },
+  'Task': {
+    'authored-on': ['Task.authoredOn'],
+    'based-on': ['Task.basedOn'],
+    'business-status': ['Task.businessStatus'],
+    'code': ['Task.code'],
+    'encounter': ['Task.encounter'],
+    'focus': ['Task.focus'],
+    'group-identifier': ['Task.groupIdentifier'],
+    'identifier': ['Task.identifier'],
+    'intent': ['Task.intent'],
+    'modified': ['Task.lastModified'],
+    'owner': ['Task.owner'],
+    'part-of': ['Task.partOf'],
+    'patient': ['Task.for.where(resolve() is Patient)'],
+    'performer': ['Task.performerType'],
+    'period': ['Task.executionPeriod'],
+    'priority': ['Task.priority'],
+    'requester': ['Task.requester'],
+    'status': ['Task.status'],
+    'subject': ['Task.for'],
+  },
+  'TerminologyCapabilities': {
+    'context-type': ['TerminologyCapabilities.useContext.code'],
+    'context-type-quantity': ['TerminologyCapabilities.useContext'],
+    'context-type-value': ['TerminologyCapabilities.useContext'],
+    'date': ['TerminologyCapabilities.date'],
+    'description': ['TerminologyCapabilities.description'],
+    'jurisdiction': ['TerminologyCapabilities.jurisdiction'],
+    'name': ['TerminologyCapabilities.name'],
+    'publisher': ['TerminologyCapabilities.publisher'],
+    'status': ['TerminologyCapabilities.status'],
+    'title': ['TerminologyCapabilities.title'],
+    'url': ['TerminologyCapabilities.url'],
+    'version': ['TerminologyCapabilities.version'],
+  },
+  'TestReport': {
+    'identifier': ['TestReport.identifier'],
+    'issued': ['TestReport.issued'],
+    'participant': ['TestReport.participant.uri'],
+    'result': ['TestReport.result'],
+    'tester': ['TestReport.tester'],
+    'testscript': ['TestReport.testScript'],
+  },
+  'TestScript': {
+    'context-type': ['TestScript.useContext.code'],
+    'context-type-quantity': ['TestScript.useContext'],
+    'context-type-value': ['TestScript.useContext'],
+    'date': ['TestScript.date'],
+    'description': ['TestScript.description'],
+    'identifier': ['TestScript.identifier'],
+    'jurisdiction': ['TestScript.jurisdiction'],
+    'name': ['TestScript.name'],
+    'publisher': ['TestScript.publisher'],
+    'status': ['TestScript.status'],
+    'testscript-capability': ['TestScript.metadata.capability.description'],
+    'title': ['TestScript.title'],
+    'url': ['TestScript.url'],
+    'version': ['TestScript.version'],
+  },
+  'ValueSet': {
+    'code': [
+      'ValueSet.compose.include.concept.code',
+      'ValueSet.expansion.contains.code'
+    ],
+    'context-type': ['ValueSet.useContext.code'],
+    'context-type-quantity': ['ValueSet.useContext'],
+    'context-type-value': ['ValueSet.useContext'],
+    'date': ['ValueSet.date'],
+    'description': ['ValueSet.description'],
+    'expansion': ['ValueSet.expansion.identifier'],
+    'identifier': ['ValueSet.identifier'],
+    'jurisdiction': ['ValueSet.jurisdiction'],
+    'name': ['ValueSet.name'],
+    'publisher': ['ValueSet.publisher'],
+    'reference': ['ValueSet.compose.include.system'],
+    'status': ['ValueSet.status'],
+    'title': ['ValueSet.title'],
+    'url': ['ValueSet.url'],
+    'version': ['ValueSet.version'],
+  },
+  'VerificationResult': {
+    'target': ['VerificationResult.target'],
+  },
+  'VisionPrescription': {
+    'datewritten': ['VisionPrescription.dateWritten'],
+    'encounter': ['VisionPrescription.encounter'],
+    'identifier': ['VisionPrescription.identifier'],
+    'patient': ['VisionPrescription.patient'],
+    'prescriber': ['VisionPrescription.prescriber'],
+    'status': ['VisionPrescription.status'],
+  },
+};
