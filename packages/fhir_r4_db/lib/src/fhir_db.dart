@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
 
 part 'fhir_db.g.dart';
@@ -180,18 +181,51 @@ class FhirDb extends _$FhirDb {
           if (from == 5) {
             // `:exact` needs the value as written, and the only column there
             // was holds it normalized, so casing and accents are gone before
-            // a query can ask about them. Nullable, so an existing database
-            // opens without a rewrite.
-            //
-            // Rows written before this keep a null exact value and cannot
-            // answer :exact until their resource is saved again. Backfilling
-            // is not possible: the original text is not in this table, only in
-            // the resource, and re-indexing every resource here would block
-            // startup on a device for an unbounded time.
+            // a query can ask about them.
             await customStatement(
               'ALTER TABLE string_search_parameters '
-              'ADD COLUMN exact_value TEXT',
+              "ADD COLUMN exact_value TEXT NOT NULL DEFAULT ''",
             );
+          }
+          if (from < 6) {
+            // Rebuild the string index from the resources.
+            //
+            // The index is DERIVED data: every value in it comes from a
+            // resource that is still sitting in `resources`. So there is
+            // nothing to preserve and nothing to lose, and leaving old rows
+            // with a null exact value would mean `:exact` silently ignored
+            // every record stored before the upgrade — a wrong answer rather
+            // than an error.
+            //
+            // The accent folding changed in the same version, so the
+            // normalized column is stale for every accented value too. Both
+            // are fixed by the same rebuild.
+            await customStatement('DELETE FROM string_search_parameters');
+            final stored = await customSelect(
+              'SELECT resource FROM resources',
+            ).get();
+            for (final row in stored) {
+              fhir.Resource resource;
+              try {
+                resource = fhir.Resource.fromJsonString(
+                  row.data['resource']! as String,
+                );
+              } catch (_) {
+                // A resource that will not parse cannot be indexed, and
+                // failing the upgrade over one bad row would keep the whole
+                // database shut. Only the PARSE is guarded: an insert that
+                // fails is a bug in this migration, and swallowing it would
+                // leave the index quietly empty.
+                continue;
+              }
+              for (final param
+                  in updateSearchParameters(resource).stringParams) {
+                await into(stringSearchParameters).insert(
+                  param,
+                  mode: InsertMode.insertOrReplace,
+                );
+              }
+            }
           }
         },
       );

@@ -40,9 +40,11 @@ class StringSearchParameters extends Table {
   /// casing and the accents it has to compare. Both are needed, which is what
   /// HAPI does: SP_VALUE_NORMALIZED beside SP_VALUE_EXACT.
   ///
-  /// Nullable so a schema-5 database opens without a rewrite; rows written
-  /// before the upgrade have no exact value and are re-indexed on next save.
-  TextColumn get exactValue => text().nullable()();
+  /// Not nullable: the upgrade rebuilds this index from the stored resources,
+  /// so there is no row without one. A nullable column would have meant
+  /// `:exact` silently ignoring every record written before the upgrade,
+  /// which is a wrong answer rather than an error.
+  TextColumn get exactValue => text().withDefault(const Constant(''))();
 
   @override
 
@@ -83,7 +85,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               stringValue: Value(_normalizeString(stringValue.valueString!)),
-              exactValue: Value(stringValue.valueString),
+              exactValue: Value(stringValue.valueString!),
             ),
           );
         }
@@ -204,7 +206,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               stringValue:
                   Value(_normalizeString(contactPoint.value!.valueString!)),
-              exactValue: Value(contactPoint.value!.valueString),
+              exactValue: Value(contactPoint.value!.valueString!),
             ),
           );
         }

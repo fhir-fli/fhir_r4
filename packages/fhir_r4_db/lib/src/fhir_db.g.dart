@@ -670,8 +670,10 @@ class $StringSearchParametersTable extends StringSearchParameters
       const VerificationMeta('exactValue');
   @override
   late final GeneratedColumn<String> exactValue = GeneratedColumn<String>(
-      'exact_value', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
+      'exact_value', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(''));
   @override
   List<GeneratedColumn> get $columns => [
         resourceType,
@@ -776,7 +778,7 @@ class $StringSearchParametersTable extends StringSearchParameters
       stringValue: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}string_value'])!,
       exactValue: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}exact_value']),
+          .read(DriftSqlType.string, data['${effectivePrefix}exact_value'])!,
     );
   }
 
@@ -823,9 +825,11 @@ class StringSearchParameter extends DataClass
   /// casing and the accents it has to compare. Both are needed, which is what
   /// HAPI does: SP_VALUE_NORMALIZED beside SP_VALUE_EXACT.
   ///
-  /// Nullable so a schema-5 database opens without a rewrite; rows written
-  /// before the upgrade have no exact value and are re-indexed on next save.
-  final String? exactValue;
+  /// Not nullable: the upgrade rebuilds this index from the stored resources,
+  /// so there is no row without one. A nullable column would have meant
+  /// `:exact` silently ignoring every record written before the upgrade,
+  /// which is a wrong answer rather than an error.
+  final String exactValue;
   const StringSearchParameter(
       {required this.resourceType,
       required this.id,
@@ -834,7 +838,7 @@ class StringSearchParameter extends DataClass
       required this.searchName,
       required this.paramIndex,
       required this.stringValue,
-      this.exactValue});
+      required this.exactValue});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -845,9 +849,7 @@ class StringSearchParameter extends DataClass
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['string_value'] = Variable<String>(stringValue);
-    if (!nullToAbsent || exactValue != null) {
-      map['exact_value'] = Variable<String>(exactValue);
-    }
+    map['exact_value'] = Variable<String>(exactValue);
     return map;
   }
 
@@ -860,9 +862,7 @@ class StringSearchParameter extends DataClass
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       stringValue: Value(stringValue),
-      exactValue: exactValue == null && nullToAbsent
-          ? const Value.absent()
-          : Value(exactValue),
+      exactValue: Value(exactValue),
     );
   }
 
@@ -877,7 +877,7 @@ class StringSearchParameter extends DataClass
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       stringValue: serializer.fromJson<String>(json['stringValue']),
-      exactValue: serializer.fromJson<String?>(json['exactValue']),
+      exactValue: serializer.fromJson<String>(json['exactValue']),
     );
   }
   @override
@@ -891,7 +891,7 @@ class StringSearchParameter extends DataClass
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'stringValue': serializer.toJson<String>(stringValue),
-      'exactValue': serializer.toJson<String?>(exactValue),
+      'exactValue': serializer.toJson<String>(exactValue),
     };
   }
 
@@ -903,7 +903,7 @@ class StringSearchParameter extends DataClass
           String? searchName,
           int? paramIndex,
           String? stringValue,
-          Value<String?> exactValue = const Value.absent()}) =>
+          String? exactValue}) =>
       StringSearchParameter(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
@@ -912,7 +912,7 @@ class StringSearchParameter extends DataClass
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         stringValue: stringValue ?? this.stringValue,
-        exactValue: exactValue.present ? exactValue.value : this.exactValue,
+        exactValue: exactValue ?? this.exactValue,
       );
   StringSearchParameter copyWithCompanion(
       StringSearchParametersCompanion data) {
@@ -977,7 +977,7 @@ class StringSearchParametersCompanion
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> stringValue;
-  final Value<String?> exactValue;
+  final Value<String> exactValue;
   final Value<int> rowid;
   const StringSearchParametersCompanion({
     this.resourceType = const Value.absent(),
@@ -1038,7 +1038,7 @@ class StringSearchParametersCompanion
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? stringValue,
-      Value<String?>? exactValue,
+      Value<String>? exactValue,
       Value<int>? rowid}) {
     return StringSearchParametersCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -6314,7 +6314,7 @@ typedef $$StringSearchParametersTableCreateCompanionBuilder
   Value<String> searchName,
   required int paramIndex,
   required String stringValue,
-  Value<String?> exactValue,
+  Value<String> exactValue,
   Value<int> rowid,
 });
 typedef $$StringSearchParametersTableUpdateCompanionBuilder
@@ -6326,7 +6326,7 @@ typedef $$StringSearchParametersTableUpdateCompanionBuilder
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> stringValue,
-  Value<String?> exactValue,
+  Value<String> exactValue,
   Value<int> rowid,
 });
 
@@ -6471,7 +6471,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> stringValue = const Value.absent(),
-            Value<String?> exactValue = const Value.absent(),
+            Value<String> exactValue = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               StringSearchParametersCompanion(
@@ -6493,7 +6493,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String stringValue,
-            Value<String?> exactValue = const Value.absent(),
+            Value<String> exactValue = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               StringSearchParametersCompanion.insert(
