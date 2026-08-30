@@ -235,4 +235,100 @@ Future<void> main() async {
       expect(await b('eb1990-01-01'), equals(['p1']));
     });
   });
+
+  group('string search is normalized by case and combining characters', () {
+    // R4 3.1.1.4.8: a string search "is insensitive to casing and included
+    // combining characters, like accents or other diacritical marks", and a
+    // field matches "after both have been normalized by case and combining
+    // characters".
+    test('case, which already worked', () async {
+      expect(
+        await ids(R4ResourceType.Patient, 'family', 'FAULKEN'),
+        equals(['p1']),
+      );
+    });
+
+    test('an accented stored value is found by an unaccented query', () async {
+      await dao.saveResource(
+        Patient.fromJson({
+          'resourceType': 'Patient',
+          'id': 'accented',
+          'name': [
+            {'family': 'Mu\u00f1oz'},
+          ],
+        }),
+      );
+      // p2 is stored as plain "Munoz" in the fixture above; both fold the same
+      // way, so both come back.
+      expect(
+        await ids(R4ResourceType.Patient, 'family', 'Munoz'),
+        equals(['accented', 'p2']),
+      );
+    });
+
+    test('an unaccented stored value is found by an accented query', () async {
+      expect(
+        await ids(R4ResourceType.Patient, 'family', 'Mu\u00f1oz'),
+        equals(['p2']),
+        reason: 'the query is folded the same way the index was',
+      );
+    });
+
+    test('a prefix search folds too', () async {
+      await dao.saveResource(
+        Patient.fromJson({
+          'resourceType': 'Patient',
+          'id': 'accented',
+          'name': [
+            {'family': 'Mu\u00f1oz'},
+          ],
+        }),
+      );
+      // "Mun" is not a prefix of "Mu\u00f1oz" character by character; it is a
+      // prefix of the folded form, which is what the default search compares.
+      expect(
+        await ids(R4ResourceType.Patient, 'family', 'Mun'),
+        equals(['accented', 'p2']),
+      );
+    });
+
+    test(':exact respects casing, because it is exact', () async {
+      // "returns results that match the entire supplied parameter, including
+      // casing and combining characters".
+      expect(
+        await ids(R4ResourceType.Patient, 'family:exact', 'Faulkenberry'),
+        equals(['p1']),
+      );
+      expect(
+        await ids(R4ResourceType.Patient, 'family:exact', 'faulkenberry'),
+        isEmpty,
+      );
+      expect(
+        await ids(R4ResourceType.Patient, 'family:exact', 'FAULKENBERRY'),
+        isEmpty,
+      );
+    });
+
+    test(':exact respects accents too', () async {
+      await dao.saveResource(
+        Patient.fromJson({
+          'resourceType': 'Patient',
+          'id': 'accented',
+          'name': [
+            {'family': 'Mu\u00f1oz'},
+          ],
+        }),
+      );
+      expect(
+        await ids(R4ResourceType.Patient, 'family:exact', 'Mu\u00f1oz'),
+        equals(['accented']),
+      );
+      expect(
+        await ids(R4ResourceType.Patient, 'family:exact', 'Munoz'),
+        equals(['p2']),
+        reason: 'the unaccented spelling is a different value, and :exact '
+            'must not collapse them',
+      );
+    });
+  });
 }

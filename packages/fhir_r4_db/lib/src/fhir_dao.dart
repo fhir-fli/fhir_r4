@@ -1214,7 +1214,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       // otherwise be matched with the backslash still in it.
       final searchValue = unescapeValue(value);
 
-      final normalizedValue = searchValue.toLowerCase().trim();
+      // Folded the same way the index was, or the query and the stored value
+      // normalize differently and an accented name is unfindable.
+      final normalizedValue = normalizeSearchString(searchValue).trim();
 
       final query = select(stringSearchParameters);
       var whereCondition =
@@ -1226,8 +1228,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                       .like('$resourceType.%.$searchPath'));
 
       if (modifier == 'exact') {
+        // R4 3.1.1.4.4: ":exact returns results that match the entire supplied
+        // parameter, including casing and combining characters." So it compares
+        // the value as written, not the normalized one, and the search value
+        // keeps its own casing and accents too.
         whereCondition = whereCondition &
-            stringSearchParameters.stringValue.equals(normalizedValue);
+            stringSearchParameters.exactValue.equals(searchValue.trim());
       } else if (modifier == 'contains') {
         whereCondition = whereCondition &
             stringSearchParameters.stringValue.like('%$normalizedValue%');

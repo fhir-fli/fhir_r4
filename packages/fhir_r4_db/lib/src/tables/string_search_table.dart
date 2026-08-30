@@ -23,8 +23,26 @@ class StringSearchParameters extends Table {
   /// Index for multiple values from the same path
   IntColumn get paramIndex => integer()();
 
-  /// Normalized string value for case- and accent-insensitive searches
+  /// Normalized string value for case- and accent-insensitive searches.
+  ///
+  /// R4 3.1.1.4.8: a string search "is insensitive to casing and included
+  /// combining characters, like accents or other diacritical marks", and by
+  /// default "a field matches ... if the value of the field equals or starts
+  /// with the supplied parameter value, after both have been normalized by
+  /// case and combining characters".
   TextColumn get stringValue => text()();
+
+  /// The value exactly as it was written, for `:exact`.
+  ///
+  /// R4 3.1.1.4.4: ":exact returns results that match the entire supplied
+  /// parameter, including casing and combining characters." That is
+  /// unanswerable from the normalized column, because normalizing destroys the
+  /// casing and the accents it has to compare. Both are needed, which is what
+  /// HAPI does: SP_VALUE_NORMALIZED beside SP_VALUE_EXACT.
+  ///
+  /// Nullable so a schema-5 database opens without a rewrite; rows written
+  /// before the upgrade have no exact value and are re-indexed on next save.
+  TextColumn get exactValue => text().nullable()();
 
   @override
 
@@ -65,6 +83,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               paramIndex:
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               stringValue: Value(_normalizeString(stringValue.valueString!)),
+              exactValue: Value(stringValue.valueString),
             ),
           );
         }
@@ -115,6 +134,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               searchName: Value(searchName),
               paramIndex: Value(paramIndex == null ? i : paramIndex * 100 + i),
               stringValue: Value(_normalizeString(nameParts[i])),
+              exactValue: Value(nameParts[i]),
             ),
           );
         }
@@ -165,6 +185,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               searchName: Value(searchName),
               paramIndex: Value(paramIndex == null ? i : paramIndex * 100 + i),
               stringValue: Value(_normalizeString(addressParts[i])),
+              exactValue: Value(addressParts[i]),
             ),
           );
         }
@@ -183,6 +204,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
                   paramIndex == null ? const Value.absent() : Value(paramIndex),
               stringValue:
                   Value(_normalizeString(contactPoint.value!.valueString!)),
+              exactValue: Value(contactPoint.value!.valueString),
             ),
           );
         }
@@ -194,7 +216,131 @@ extension StringSearchParametersExtension on fhir.FhirBase {
   }
 
   /// Normalize string for case-insensitive and accent-insensitive searching.
-  String _normalizeString(String input) {
-    return input.toLowerCase();
-  }
+  /// Case- and accent-folded, for the default and `:contains` searches.
+  ///
+  /// R4 3.1.1.4.8 requires insensitivity to "casing and included combining
+  /// characters, like accents or other diacritical marks". Lower-casing alone
+  /// left the accents in, so `family=Munoz` could not find `Mu\u00f1oz`.
+  ///
+  /// Decomposition is done from a table rather than by a Unicode library
+  /// because Dart core has no NFD: the alternative was a dependency for a
+  /// dozen characters. It covers Latin-1 and Latin Extended-A, which is what
+  /// European names are written in. A script outside that range is left
+  /// alone, which is the same behaviour as before and no worse.
+  String _normalizeString(String input) => normalizeSearchString(input);
 }
+
+/// Case- and accent-folds a string for the default and `:contains` searches.
+///
+/// Public because BOTH sides have to fold identically: the value going into
+/// the index here, and the value coming in on a query. Fold one and not the
+/// other and an accented name becomes unfindable, which is exactly the bug
+/// this replaced.
+String normalizeSearchString(String input) {
+  final buffer = StringBuffer();
+  for (final rune in input.toLowerCase().runes) {
+    buffer.write(_foldAccents[rune] ?? String.fromCharCode(rune));
+  }
+  return buffer.toString();
+}
+
+/// Lower-case accented letters mapped to their base letter.
+///
+/// Built from the Latin-1 Supplement and Latin Extended-A blocks. Only the
+/// lower-case forms are needed because the input is lower-cased first.
+const _foldAccents = <int, String>{
+  0xE0: 'a',
+  0xE1: 'a',
+  0xE2: 'a',
+  0xE3: 'a',
+  0xE4: 'a',
+  0xE5: 'a',
+  0xE6: 'ae',
+  0xE7: 'c',
+  0xE8: 'e',
+  0xE9: 'e',
+  0xEA: 'e',
+  0xEB: 'e',
+  0xEC: 'i',
+  0xED: 'i',
+  0xEE: 'i',
+  0xEF: 'i',
+  0xF0: 'd',
+  0xF1: 'n',
+  0xF2: 'o',
+  0xF3: 'o',
+  0xF4: 'o',
+  0xF5: 'o',
+  0xF6: 'o',
+  0xF8: 'o',
+  0xF9: 'u',
+  0xFA: 'u',
+  0xFB: 'u',
+  0xFC: 'u',
+  0xFD: 'y',
+  0xFF: 'y',
+  0xFE: 'th',
+  0xDF: 'ss',
+  0x101: 'a',
+  0x103: 'a',
+  0x105: 'a',
+  0x107: 'c',
+  0x109: 'c',
+  0x10B: 'c',
+  0x10D: 'c',
+  0x10F: 'd',
+  0x111: 'd',
+  0x113: 'e',
+  0x115: 'e',
+  0x117: 'e',
+  0x119: 'e',
+  0x11B: 'e',
+  0x11D: 'g',
+  0x11F: 'g',
+  0x121: 'g',
+  0x123: 'g',
+  0x125: 'h',
+  0x127: 'h',
+  0x129: 'i',
+  0x12B: 'i',
+  0x12D: 'i',
+  0x12F: 'i',
+  0x131: 'i',
+  0x133: 'ij',
+  0x135: 'j',
+  0x137: 'k',
+  0x13A: 'l',
+  0x13C: 'l',
+  0x13E: 'l',
+  0x140: 'l',
+  0x142: 'l',
+  0x144: 'n',
+  0x146: 'n',
+  0x148: 'n',
+  0x14B: 'n',
+  0x14D: 'o',
+  0x14F: 'o',
+  0x151: 'o',
+  0x153: 'oe',
+  0x155: 'r',
+  0x157: 'r',
+  0x159: 'r',
+  0x15B: 's',
+  0x15D: 's',
+  0x15F: 's',
+  0x161: 's',
+  0x163: 't',
+  0x165: 't',
+  0x167: 't',
+  0x169: 'u',
+  0x16B: 'u',
+  0x16D: 'u',
+  0x16F: 'u',
+  0x171: 'u',
+  0x173: 'u',
+  0x175: 'w',
+  0x177: 'y',
+  0x17A: 'z',
+  0x17C: 'z',
+  0x17E: 'z',
+};

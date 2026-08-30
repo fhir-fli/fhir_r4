@@ -36,7 +36,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -157,8 +157,41 @@ class FhirDb extends _$FhirDb {
               specialSearchParameters,
             ];
             for (final table in indexTables) {
-              await m.alterTable(TableMigration(table));
+              await m.alterTable(
+                TableMigration(
+                  table,
+                  // exact_value arrived with schema 6 and is not in a database
+                  // older than 5. Without declaring it new, drift copies the
+                  // rows with a SELECT naming every CURRENT column, and the
+                  // upgrade fails on "no such column: exact_value" — which
+                  // means a real version-4 database would not open at all.
+                  newColumns: [
+                    if (identical(table, stringSearchParameters))
+                      stringSearchParameters.exactValue,
+                  ],
+                ),
+              );
             }
+          }
+          // Exactly 5, not `< 6`. Anything older went through the rebuild
+          // above, which recreates each index table from the CURRENT
+          // definition and so already has this column; adding it again is a
+          // duplicate-column error.
+          if (from == 5) {
+            // `:exact` needs the value as written, and the only column there
+            // was holds it normalized, so casing and accents are gone before
+            // a query can ask about them. Nullable, so an existing database
+            // opens without a rewrite.
+            //
+            // Rows written before this keep a null exact value and cannot
+            // answer :exact until their resource is saved again. Backfilling
+            // is not possible: the original text is not in this table, only in
+            // the resource, and re-indexing every resource here would block
+            // startup on a device for an unbounded time.
+            await customStatement(
+              'ALTER TABLE string_search_parameters '
+              'ADD COLUMN exact_value TEXT',
+            );
           }
         },
       );

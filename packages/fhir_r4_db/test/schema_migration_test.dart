@@ -62,8 +62,21 @@ void main() {
       final sql = row.data['sql']! as String;
       // Only the primary-key clause spells it `"search_name",` — in the
       // column list it is `"search_name" TEXT ...`.
-      final v4Sql = sql.replaceFirst('"search_name", ', '');
+      var v4Sql = sql.replaceFirst('"search_name", ', '');
       expect(v4Sql, isNot(equals(sql)), reason: 'PK rewrite failed for $name');
+      // A real version-4 database has no exact_value: that column arrived
+      // with schema 6, when `:exact` needed the value as written rather than
+      // the normalized one. Leaving it in would make the fixture a database
+      // that never existed.
+      if (name == 'string_search_parameters') {
+        final before = v4Sql;
+        v4Sql = v4Sql.replaceFirst(RegExp(r',\s*"exact_value" TEXT NULL'), '');
+        expect(
+          v4Sql,
+          isNot(equals(before)),
+          reason: 'exact_value not found in the generated schema',
+        );
+      }
       await db.customStatement('DROP TABLE "$name"');
       await db.customStatement(v4Sql);
     }
@@ -105,8 +118,45 @@ void main() {
     );
 
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(5));
+    expect(version.data.values.first, equals(6));
 
+    // The rows come across with a null exact value: schema 6 added that
+    // column and the original text is not in this table to backfill from.
+    // They answer the default search; they cannot answer :exact until the
+    // resource is saved again.
+    expect(rows.every((r) => r.exactValue == null), isTrue);
+
+    await db.close();
+  });
+
+  test('a version-5 database gains the column without a rebuild', () async {
+    // The 4 to 5 rebuild recreates each index table from the current
+    // definition, so it brings exact_value with it. A database already at 5
+    // did not go through that, and needs the column added on its own — and
+    // adding it twice is a duplicate-column error, which is why the branch
+    // tests `from == 5` rather than `from < 6`.
+    await createSchemaV4(dbFile);
+    final upgraded = FhirDb(NativeDatabase(dbFile));
+    await upgraded.customSelect('SELECT 1').get();
+    await upgraded.customStatement('PRAGMA user_version = 5');
+    await upgraded.customStatement(
+      'ALTER TABLE string_search_parameters DROP COLUMN exact_value',
+    );
+    await upgraded.close();
+
+    final db = FhirDb(NativeDatabase(dbFile));
+    await db.fhirDao.saveResource(
+      Patient(
+        id: 'pat-3'.toFhirString,
+        name: [HumanName(family: 'Mu\u00f1oz'.toFhirString)],
+      ),
+    );
+    final rows = await db.fhirDao.select(db.stringSearchParameters).get();
+    expect(
+      rows.any((r) => r.exactValue == 'Mu\u00f1oz'),
+      isTrue,
+      reason: 'the column has to exist and be written after the upgrade',
+    );
     await db.close();
   });
 
