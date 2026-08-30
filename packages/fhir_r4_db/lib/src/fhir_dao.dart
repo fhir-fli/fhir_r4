@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
+import 'package:fhir_r4_db/src/search/search_parameter_types.dart';
 import 'package:fhir_r4_db/src/search/search_query_key.dart';
 
 part 'fhir_dao.g.dart';
@@ -988,15 +989,26 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (declared != null && key.chain == null) {
       switch (declared.type) {
         case 'date':
-          return _searchDateParameter(resourceType, searchPath, paramValues);
+          return _searchDateParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            declared,
+          );
         case 'quantity':
           return _searchQuantityParameter(
             resourceType,
             searchPath,
             paramValues,
+            declared,
           );
         case 'number':
-          return _searchNumberParameter(resourceType, searchPath, paramValues);
+          return _searchNumberParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            declared,
+          );
         case 'uri':
           return _searchUriParameter(resourceType, searchPath, paramValues);
         case 'token':
@@ -1111,11 +1123,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
 
     if (isDateParam) {
-      return _searchDateParameter(resourceType, searchPath, paramValues);
+      return _searchDateParameter(resourceType, searchPath, paramValues, null);
     } else if (isQuantityParam) {
-      return _searchQuantityParameter(resourceType, searchPath, paramValues);
+      return _searchQuantityParameter(
+        resourceType,
+        searchPath,
+        paramValues,
+        null,
+      );
     } else if (isNumberParam) {
-      return _searchNumberParameter(resourceType, searchPath, paramValues);
+      return _searchNumberParameter(
+        resourceType,
+        searchPath,
+        paramValues,
+        null,
+      );
     } else if (isUriParam) {
       return _searchUriParameter(resourceType, searchPath, paramValues);
     } else if (isTokenParam) {
@@ -1589,6 +1611,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    SearchParameterDefinition? declared,
   ) async {
     final matchingIds = <String>{};
 
@@ -1596,26 +1619,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       String? modifier;
       var searchValue = value;
 
-      // eq and ne were absent, so `birthdate=eq1980-05-15` compared the
-      // literal string "eq1980-05-15" as a date and matched nothing. R4
-      // search.html lists nine prefixes and eq is the default.
-      const datePrefixes = [
-        'eq',
-        'ne',
-        'gt',
-        'lt',
-        'ge',
-        'le',
-        'ap',
-        'sa',
-        'eb',
-      ];
-      for (final prefix in datePrefixes) {
-        if (value.startsWith(prefix) && value.length > prefix.length) {
-          modifier = prefix;
-          searchValue = value.substring(prefix.length);
-          break;
-        }
+      // The comparators the PARAMETER declares, not a list copied out of the
+      // prose. R4 core declares all nine on every date parameter, but a
+      // deployment's custom parameter may declare fewer and must then be held
+      // to that.
+      final (prefix, rest) = splitComparator(
+        declared ?? const SearchParameterDefinition('date', comparatorPrefixes),
+        value,
+      );
+      if (prefix != null) {
+        modifier = prefix;
+        searchValue = rest;
       }
 
       if (modifier == 'missing') {
@@ -2035,20 +2049,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    SearchParameterDefinition? declared,
   ) async {
     final matchingIds = <String>{};
     for (final value in values) {
       String? modifier;
       var searchValue = value;
-      // R4 puts the comparator on the FRONT of the value, and lists nine
-      // of them. This read five off the END, so every comparator search on an
-      // ordered type returned nothing.
-      for (final prefix in comparatorPrefixes) {
-        if (value.startsWith(prefix) && value.length > prefix.length) {
-          modifier = prefix;
-          searchValue = value.substring(prefix.length);
-          break;
-        }
+      final (prefix, rest) = splitComparator(
+        declared ??
+            const SearchParameterDefinition('quantity', comparatorPrefixes),
+        value,
+      );
+      if (prefix != null) {
+        modifier = prefix;
+        searchValue = rest;
       }
 
       double? numValue;
@@ -2110,20 +2124,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    SearchParameterDefinition? declared,
   ) async {
     final matchingIds = <String>{};
     for (final value in values) {
       String? modifier;
       var searchValue = value;
-      // R4 puts the comparator on the FRONT of the value, and lists nine
-      // of them. This read five off the END, so every comparator search on an
-      // ordered type returned nothing.
-      for (final prefix in comparatorPrefixes) {
-        if (value.startsWith(prefix) && value.length > prefix.length) {
-          modifier = prefix;
-          searchValue = value.substring(prefix.length);
-          break;
-        }
+      final (prefix, rest) = splitComparator(
+        declared ??
+            const SearchParameterDefinition('number', comparatorPrefixes),
+        value,
+      );
+      if (prefix != null) {
+        modifier = prefix;
+        searchValue = rest;
       }
 
       final parts = searchValue.split('|');

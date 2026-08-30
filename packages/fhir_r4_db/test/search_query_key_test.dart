@@ -1,3 +1,4 @@
+import 'package:fhir_r4_db/src/search/search_parameter_types.dart';
 import 'package:fhir_r4_db/src/search/search_query_key.dart';
 import 'package:test/test.dart';
 
@@ -115,6 +116,34 @@ void main() {
       ]) {
         expect(splitComparator(definition, name), equals((null, name)));
       }
+    });
+  });
+
+  group('the comparators come from the parameter, not from a copied list', () {
+    test('a narrowed declaration is honoured', () {
+      // The commit that generated `comparator` claimed it was read "so a
+      // custom parameter that narrows the set stays correct", while the date,
+      // quantity and number handlers still used their own hardcoded list of
+      // nine. The claim was false until they were changed to take the
+      // definition. This is the test that would have caught it.
+      const narrowed = SearchParameterDefinition('date', ['ge', 'le']);
+      expect(
+        splitComparator(narrowed, 'ge1980-01-01'),
+        equals(('ge', '1980-01-01')),
+      );
+      expect(
+        splitComparator(narrowed, 'gt1980-01-01'),
+        equals((null, 'gt1980-01-01')),
+        reason: 'gt is not declared on this parameter',
+      );
+    });
+
+    test('a declaration with none strips nothing', () {
+      const none = SearchParameterDefinition('string', []);
+      expect(
+        splitComparator(none, 'gt1980-01-01'),
+        equals((null, 'gt1980-01-01')),
+      );
     });
   });
 
