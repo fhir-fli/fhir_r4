@@ -418,7 +418,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         // Handle special parameters
         if (paramName == '_id') {
-          final ids = paramValues.expand((v) => v.split(',')).toSet();
+          // R4 3.1.1.4.19: a comma separates OR values, so a literal comma
+          // inside an id is written with a leading backslash.
+          final ids = paramValues.expand((v) => splitEscaped(v, ',')).toSet();
           if (firstParam) {
             matchingIds = ids;
           } else {
@@ -861,16 +863,109 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   // Private: Search parameter type resolution and query helpers
   // ──────────────────────────────────────────────────────────────────────────
 
+  /// The R4 comparator prefixes, for the ordered types: number, date and
+  /// quantity. search.html: "a prefix to the parameter value may be used to
+  /// control the nature of the matching".
+  static const comparatorPrefixes = [
+    'eq',
+    'ne',
+    'gt',
+    'lt',
+    'ge',
+    'le',
+    'sa',
+    'eb',
+    'ap',
+  ];
+
+  /// The value with any R4 comparator prefix removed.
+  ///
+  /// Only strips when what follows still looks like a number or a date, so an
+  /// ordinary string beginning with those two letters is left alone — `Apgar`
+  /// keeps its `ap`, `Nelson` keeps its `ne`, `Ledger` keeps its `le`.
+  static String stripComparatorPrefix(String value) {
+    for (final prefix in comparatorPrefixes) {
+      if (!value.startsWith(prefix) || value.length == prefix.length) {
+        continue;
+      }
+      final rest = value.substring(prefix.length);
+      final looksOrdered = RegExp(r'^-?\d').hasMatch(rest);
+      if (looksOrdered) {
+        return rest;
+      }
+    }
+    return value;
+  }
+
   /// Determine the parameter type and dispatch to the appropriate search method.
   Future<Set<String>> _resolveSearchParameter(
     String resourceType,
     String paramName,
     List<String> paramValues,
   ) async {
+    // R4 search.html gives exactly two forms, and this DAO used to read both
+    // off the END of the value (`family=Smith:exact`), which is neither:
+    //
+    //   [parameter]:[modifier]=[value]   — modifier on the NAME
+    //   [parameter]=[prefix][value]      — prefix on the VALUE, ordered types
+    //
+    // Every modifier and every comparator was therefore unreachable from a
+    // conforming client, and any string value containing a colon was truncated
+    // at it — `name=Clinic: SOUTH Wing` returned `Clinic: North Wing`.
+    final key = SearchQueryKey.parse(paramName);
+    final modifier = key.modifier;
+
     // searchPath is the original HTTP param name (e.g., "monitoring-program-name")
     // The search tables store this in the searchName column alongside the
     // FHIR expression path in searchPath. Queries match on either.
-    final searchPath = paramName;
+    //
+    // A chained key keeps its chain, because the reference branch parses the
+    // chain itself.
+    final searchPath = key.chain == null ? key.name : paramName;
+
+    // What the parameter IS, from the published definitions. This decides
+    // whether `gt` on the front of a value is a comparator or the first two
+    // letters of a name. Not having this fact is why the old code guessed from
+    // the shape of the value.
+    final declared = searchParameterFor(resourceType, key.name);
+
+    // R4 3.1.1.4.4, a SHALL: a modifier the parameter's type does not allow is
+    // rejected, not ignored. Ignoring it silently changes what the query means
+    // and returns records the client did not ask for.
+    //
+    // Only checked when the parameter is known. A custom parameter this build
+    // has no definition for cannot have its modifier validated, and refusing
+    // it on that basis would reject searches a deployment does support.
+    if (declared != null && modifier != null) {
+      if (!isModifierAllowed(declared.type, modifier)) {
+        throw UnsupportedSearchModifier(
+          parameter: key.name,
+          modifier: modifier,
+          type: declared.type,
+          allowed: modifiersByType[declared.type] ?? const <String>{},
+        );
+      }
+    }
+
+    // :missing applies to every parameter type, so it is answered before any
+    // type detection runs. R4 search.html: "true" finds resources where the
+    // parameter is absent, "false" where it is present, so the false case is
+    // the complement rather than a second query.
+    if (modifier == 'missing') {
+      final absent = await _searchMissingParameter(resourceType, searchPath);
+      final wantsAbsent = paramValues.any(
+        (v) => v.trim().toLowerCase() == 'true',
+      );
+      if (wantsAbsent) {
+        return absent;
+      }
+      final all = (await (select(resources)
+                ..where((tbl) => tbl.resourceType.equals(resourceType)))
+              .get())
+          .map((r) => r.id)
+          .toSet();
+      return all.difference(absent);
+    }
 
     var isDateParam = false;
     var isTokenParam = false;
@@ -907,39 +1002,79 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
 
-    for (final val in paramValues) {
-      var valWithoutModifier = val;
-      const knownSearchModifiers = [
-        'gt',
-        'lt',
-        'ge',
-        'le',
-        'ap',
-        'sa',
-        'eb',
-        'missing',
-        'exact',
-        'contains',
-        'text',
-        'above',
-        'below',
-        'not',
-        'of-type',
-        'in',
-        'not-in',
-      ];
-      String? detectedModifier;
-      for (final mod in knownSearchModifiers) {
-        if (val.endsWith(':$mod')) {
-          valWithoutModifier = val.substring(0, val.length - mod.length - 1);
-          detectedModifier = mod;
-          break;
-        }
+    // When the parameter is known, its declared type settles everything and
+    // nothing is inferred from the values at all.
+    if (declared != null && key.chain == null) {
+      switch (declared.type) {
+        case 'date':
+          return _searchDateParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            declared,
+          );
+        case 'quantity':
+          return _searchQuantityParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            declared,
+          );
+        case 'number':
+          return _searchNumberParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            declared,
+          );
+        case 'uri':
+          return _searchUriParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            modifier,
+          );
+        case 'token':
+          return _searchTokenParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            modifier,
+          );
+        case 'string':
+          return _searchStringParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            modifier,
+          );
+        case 'composite':
+          return _searchCompositeParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+          );
+        case 'reference':
+          return _searchReferenceParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            false,
+            modifier,
+          );
       }
+    }
+
+    // Unknown parameter, or a chained one the reference branch handles: fall
+    // back to inspecting the values, which is what this did for everything
+    // before the definitions were available.
+    for (final val in paramValues) {
+      final valWithoutModifier = stripComparatorPrefix(val);
+      final detectedModifier = valWithoutModifier == val ? null : 'prefix';
 
       // Check for token or quantity (contains |)
       if (valWithoutModifier.contains('|')) {
-        final parts = valWithoutModifier.split('|');
+        final parts = splitEscaped(valWithoutModifier, '|');
         var foundNumeric = false;
         if (parts.length == 2) {
           try {
@@ -961,9 +1096,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         isTokenParam = true;
       }
 
-      if (detectedModifier != null &&
-          const ['gt', 'lt', 'ge', 'le', 'ap', 'sa', 'eb']
-              .contains(detectedModifier)) {
+      if (detectedModifier == 'prefix') {
         final datePattern = RegExp(r'^\d{4}(-\d{2})?(-\d{2})?(T.*)?$');
         if (datePattern.hasMatch(valWithoutModifier)) {
           isDateParam = true;
@@ -1014,15 +1147,30 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
 
     if (isDateParam) {
-      return _searchDateParameter(resourceType, searchPath, paramValues);
+      return _searchDateParameter(resourceType, searchPath, paramValues, null);
     } else if (isQuantityParam) {
-      return _searchQuantityParameter(resourceType, searchPath, paramValues);
+      return _searchQuantityParameter(
+        resourceType,
+        searchPath,
+        paramValues,
+        null,
+      );
     } else if (isNumberParam) {
-      return _searchNumberParameter(resourceType, searchPath, paramValues);
+      return _searchNumberParameter(
+        resourceType,
+        searchPath,
+        paramValues,
+        null,
+      );
     } else if (isUriParam) {
       return _searchUriParameter(resourceType, searchPath, paramValues);
     } else if (isTokenParam) {
-      return _searchTokenParameter(resourceType, searchPath, paramValues);
+      return _searchTokenParameter(
+        resourceType,
+        searchPath,
+        paramValues,
+        modifier,
+      );
     } else if (isCompositeParam) {
       return _searchCompositeParameter(resourceType, searchPath, paramValues);
     } else if (isReferenceParam || isChainedReference) {
@@ -1034,10 +1182,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       );
     } else {
       // Default: try string and token search tables
-      final stringIds =
-          await _searchStringParameter(resourceType, searchPath, paramValues);
-      final tokenIds =
-          await _searchTokenParameter(resourceType, searchPath, paramValues);
+      final stringIds = await _searchStringParameter(
+        resourceType,
+        searchPath,
+        paramValues,
+        modifier,
+      );
+      final tokenIds = await _searchTokenParameter(
+        resourceType,
+        searchPath,
+        paramValues,
+        modifier,
+      );
       return stringIds.union(tokenIds);
     }
   }
@@ -1050,22 +1206,23 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    String? modifier,
   ) async {
     final matchingIds = <String>{};
 
     for (final value in values) {
-      String? modifier;
-      var searchValue = value;
+      // The value is DATA. It used to be split on any colon it contained,
+      // which truncated `Clinic: North Wing` to `Clinic` and made
+      // `name=Clinic: SOUTH Wing` return the North Wing.
+      //
+      // A string is compared whole, so it also has to lose FHIR's escaping
+      // before the comparison: a name written with an escaped comma would
+      // otherwise be matched with the backslash still in it.
+      final searchValue = unescapeValue(value);
 
-      if (value.contains(':')) {
-        final parts = value.split(':');
-        if (parts.length == 2) {
-          searchValue = parts[0];
-          modifier = parts[1];
-        }
-      }
-
-      final normalizedValue = searchValue.toLowerCase().trim();
+      // Folded the same way the index was, or the query and the stored value
+      // normalize differently and an accented name is unfindable.
+      final normalizedValue = normalizeSearchString(searchValue).trim();
 
       final query = select(stringSearchParameters);
       var whereCondition =
@@ -1077,8 +1234,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                       .like('$resourceType.%.$searchPath'));
 
       if (modifier == 'exact') {
+        // R4 3.1.1.4.4: ":exact returns results that match the entire supplied
+        // parameter, including casing and combining characters." So it compares
+        // the value as written, not the normalized one, and the search value
+        // keeps its own casing and accents too.
         whereCondition = whereCondition &
-            stringSearchParameters.stringValue.equals(normalizedValue);
+            stringSearchParameters.exactValue.equals(searchValue.trim());
       } else if (modifier == 'contains') {
         whereCondition = whereCondition &
             stringSearchParameters.stringValue.like('%$normalizedValue%');
@@ -1122,27 +1283,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    String? modifier,
   ) async {
     final matchingIds = <String>{};
 
     for (final value in values) {
-      String? modifier;
-      var searchValue = value;
-      const knownTokenModifiers = [
-        'missing',
-        'not',
-        'text',
-        'of-type',
-        'in',
-        'not-in',
-      ];
-      for (final mod in knownTokenModifiers) {
-        if (value.endsWith(':$mod')) {
-          modifier = mod;
-          searchValue = value.substring(0, value.length - mod.length - 1);
-          break;
-        }
-      }
+      // The modifier arrives from the parameter NAME, per R4 search.html. It
+      // used to be read off the end of the value, so `code:text=x` never
+      // reached this and `code=x:text` did.
+      //
+      // Escaping is stripped AFTER any `|` split below, never before, or the
+      // split would consume an escaped pipe that is part of the value.
+      final searchValue = value;
 
       if (modifier == 'in') {
         // :in modifier — value is a ValueSet URL; match tokens in that ValueSet
@@ -1220,7 +1372,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // Searches identifiers where type.coding matches and value matches.
         // Since identifier.type is not indexed, we search by value first,
         // then filter by type in Dart.
-        final pipeParts = searchValue.split('|');
+        final pipeParts = splitEscaped(searchValue, '|');
         if (pipeParts.length == 3) {
           final typeSystem = pipeParts[0];
           final typeCode = pipeParts[1];
@@ -1274,7 +1426,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     var tokenValue = searchValue;
 
     if (searchValue.contains('|')) {
-      final parts = searchValue.split('|');
+      final parts = splitEscaped(searchValue, '|');
       if (parts.length == 2) {
         system = parts[0].isEmpty ? null : parts[0];
         tokenValue = parts[1];
@@ -1496,6 +1648,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    SearchParameterDefinition? declared,
   ) async {
     final matchingIds = <String>{};
 
@@ -1503,27 +1656,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       String? modifier;
       var searchValue = value;
 
-      const dateModifiers = [
-        'gt',
-        'lt',
-        'ge',
-        'le',
-        'ap',
-        'sa',
-        'eb',
-        'missing',
-      ];
-      for (final mod in dateModifiers) {
-        if (value.startsWith(mod) && mod != 'missing') {
-          modifier = mod;
-          searchValue = value.substring(mod.length);
-          break;
-        }
-        if (value.endsWith(':$mod')) {
-          modifier = mod;
-          searchValue = value.substring(0, value.length - mod.length - 1);
-          break;
-        }
+      // The comparators the PARAMETER declares, not a list copied out of the
+      // prose. R4 core declares all nine on every date parameter, but a
+      // deployment's custom parameter may declare fewer and must then be held
+      // to that.
+      final (prefix, rest) = splitComparator(
+        declared ?? const SearchParameterDefinition('date', comparatorPrefixes),
+        value,
+      );
+      if (prefix != null) {
+        modifier = prefix;
+        searchValue = rest;
       }
 
       if (modifier == 'missing') {
@@ -1608,7 +1751,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               (dateSearchParameters.dateValue.isBiggerOrEqualValue(dayBefore) &
                   dateSearchParameters.dateValue
                       .isSmallerOrEqualValue(dayAfter));
+        case 'ne':
+          whereCondition = whereCondition &
+              dateSearchParameters.dateValue.equals(searchDate).not();
         default:
+          // eq, and no prefix at all, which R4 makes the same thing: "eq" is
+          // the default.
           whereCondition = whereCondition &
               dateSearchParameters.dateValue.equals(searchDate);
       }
@@ -1752,7 +1900,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         var matches = false;
         for (final value in values) {
-          final parts = value.split('|');
+          final parts = splitEscaped(value, '|');
           final searchSystem = parts.length > 1 ? parts[0] : null;
           final searchCode = parts.length > 1 ? parts[1] : parts[0];
           for (final tag in tags) {
@@ -1833,7 +1981,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         var matches = false;
         for (final value in values) {
-          final parts = value.split('|');
+          final parts = splitEscaped(value, '|');
           final searchSystem = parts.length > 1 ? parts[0] : null;
           final searchCode = parts.length > 1 ? parts[1] : parts[0];
           for (final security in securities) {
@@ -1938,18 +2086,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    SearchParameterDefinition? declared,
   ) async {
     final matchingIds = <String>{};
     for (final value in values) {
       String? modifier;
       var searchValue = value;
-      const numberModifiers = ['gt', 'lt', 'ge', 'le', 'ap'];
-      for (final mod in numberModifiers) {
-        if (value.endsWith(':$mod')) {
-          modifier = mod;
-          searchValue = value.substring(0, value.length - mod.length - 1);
-          break;
-        }
+      final (prefix, rest) = splitComparator(
+        declared ??
+            const SearchParameterDefinition('quantity', comparatorPrefixes),
+        value,
+      );
+      if (prefix != null) {
+        modifier = prefix;
+        searchValue = rest;
       }
 
       double? numValue;
@@ -1989,7 +2139,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                   .isBiggerOrEqualValue(numValue - range) &
               numberSearchParameters.numberValue
                   .isSmallerOrEqualValue(numValue + range);
+        case 'ne':
+          whereCondition = whereCondition &
+              numberSearchParameters.numberValue.equals(numValue).not();
         default:
+          // eq, and no prefix at all: R4 makes eq the default.
           whereCondition = whereCondition &
               numberSearchParameters.numberValue.equals(numValue);
       }
@@ -2007,21 +2161,23 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
+    SearchParameterDefinition? declared,
   ) async {
     final matchingIds = <String>{};
     for (final value in values) {
       String? modifier;
       var searchValue = value;
-      const quantityModifiers = ['gt', 'lt', 'ge', 'le', 'ap'];
-      for (final mod in quantityModifiers) {
-        if (value.endsWith(':$mod')) {
-          modifier = mod;
-          searchValue = value.substring(0, value.length - mod.length - 1);
-          break;
-        }
+      final (prefix, rest) = splitComparator(
+        declared ??
+            const SearchParameterDefinition('number', comparatorPrefixes),
+        value,
+      );
+      if (prefix != null) {
+        modifier = prefix;
+        searchValue = rest;
       }
 
-      final parts = searchValue.split('|');
+      final parts = splitEscaped(searchValue, '|');
       double? numValue;
       String? system;
       String? code;
@@ -2089,7 +2245,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           whereCondition = whereCondition &
               quantitySearchParameters.quantityValue
                   .isSmallerOrEqualValue(numValue);
+        case 'ne':
+          whereCondition = whereCondition &
+              quantitySearchParameters.quantityValue.equals(numValue).not();
         default:
+          // eq, and no prefix at all: R4 makes eq the default.
           whereCondition = whereCondition &
               quantitySearchParameters.quantityValue.equals(numValue);
       }
@@ -2106,20 +2266,16 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   Future<Set<String>> _searchUriParameter(
     String resourceType,
     String searchPath,
-    List<String> values,
-  ) async {
+    List<String> values, [
+    String? modifier,
+  ]) async {
     final matchingIds = <String>{};
     for (final value in values) {
-      // Detect :above / :below modifiers (suffix-based)
-      var searchValue = value;
-      String? modifier;
-      for (final mod in ['above', 'below']) {
-        if (value.endsWith(':$mod')) {
-          searchValue = value.substring(0, value.length - mod.length - 1);
-          modifier = mod;
-          break;
-        }
-      }
+      // :above and :below were already implemented here and already correct.
+      // They were simply unreachable: the modifier was read off the END of the
+      // value, so `url:below=http://x` never arrived and `url=http://x:below`
+      // did. The modifier now comes from the parameter name.
+      final searchValue = unescapeValue(value);
 
       final pathCondition = uriSearchParameters.searchName.equals(searchPath) |
           uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
@@ -2169,8 +2325,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
-    bool isChained,
-  ) async {
+    bool isChained, [
+    String? modifier,
+  ]) async {
     final matchingIds = <String>{};
 
     if (isChained) {
@@ -2229,6 +2386,45 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                         .like('$resourceType.$searchPath') |
                     referenceSearchParameters.searchPath
                         .like('$resourceType.%.$searchPath'));
+
+        // R4 3.1.1.4.12: ":identifier allows for searching by the identifier
+        // rather than the literal reference ... the search value works as a
+        // token search". So it tests Reference.identifier, NOT the referenced
+        // resource — an Observation whose subject carries the MRN matches,
+        // while one that merely points at a Patient holding that MRN does not.
+        if (modifier == 'identifier') {
+          final parts = splitEscaped(value, '|');
+          final identifierValue =
+              parts.length > 1 ? parts[1] : unescapeValue(value);
+          final identifierSystem = parts.length > 1 ? parts[0] : null;
+          whereCondition = whereCondition &
+              referenceSearchParameters.identifierValue.equals(identifierValue);
+          if (identifierSystem != null && identifierSystem.isNotEmpty) {
+            whereCondition = whereCondition &
+                referenceSearchParameters.identifierSystem
+                    .equals(identifierSystem);
+          }
+          query.where((tbl) => whereCondition);
+          for (final row in await query.get()) {
+            matchingIds.add(row.id);
+          }
+          continue;
+        }
+
+        // R4 3.1.1.4.12: a resource type as the modifier says which type the
+        // reference must point at, and `subject:Patient=23` "has the same
+        // effect as" `subject=Patient/23`.
+        if (modifier != null && modifier != 'missing' && !value.contains('/')) {
+          whereCondition = whereCondition &
+              referenceSearchParameters.referenceResourceType.equals(modifier) &
+              referenceSearchParameters.referenceIdPart
+                  .equals(unescapeValue(value));
+          query.where((tbl) => whereCondition);
+          for (final row in await query.get()) {
+            matchingIds.add(row.id);
+          }
+          continue;
+        }
 
         if (value.contains('/')) {
           final parts = value.split('/');

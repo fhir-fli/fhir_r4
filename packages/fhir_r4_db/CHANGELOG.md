@@ -1,5 +1,17 @@
 # fhir_r4_db
 
+## [0.10.0]
+
+- **Search modifiers and comparators now work.** They were read off the END of the value (`family=Smith:exact`, `birthdate=1980-01-01:gt`), a syntax FHIR does not have, so every modifier and every comparator was unreachable from a conforming client. Measured through a REST server before and after: 7 of 41 queries returned anything, now all 41 do. The modifier is taken from the parameter name and the comparator from the front of the value, as the specification defines them.
+- A search parameter is now dispatched on its **declared type**, read from the published SearchParameter definitions and generated into `search_parameter_types.dart`. Nothing is inferred from the shape of a value any more, so a name beginning with a comparator's two letters — Apgar, Nelson, Ledger — is no longer mistaken for one. Comparators come from each parameter's own `comparator` element, so a custom parameter that narrows the set is honoured.
+- A key is split at the first `.` or `:` and the remainder carried whole, which is how chained (`subject:Patient.name`) and reverse-chained (`_has:Observation:patient:code`) parameters are parsed without guessing what a colon means.
+- **FHIR's escaping is honoured.** `$`, `,` and `|` inside a value are written with a leading backslash, and were previously split on regardless: `Organization?name=Clinic: SOUTH Wing` returned `Clinic: North Wing`. Values are no longer truncated at a colon, and `code=a\,b` is one code.
+- **`:exact` is exact, and accents fold.** Strings are indexed twice: normalized for the default and `:contains` searches, verbatim for `:exact`. Folding covers accents as well as case, so `family=Munoz` finds `Muñoz` and `family:exact=munoz` no longer matches `Munoz`. **Schema version 5 to 6**; the string index is rebuilt from the stored resources on open, so nothing is left half-indexed.
+- `eq` and `ne` were missing entirely from date, quantity and number comparators.
+- `:missing` answers both `true` and `false`. `:identifier` on a reference tests `Reference.identifier` rather than the referenced resource. `:above` and `:below` on a uri are reachable. `subject:Patient=23` behaves as `subject=Patient/23`.
+- An unsupported modifier now throws `UnsupportedSearchModifier` instead of being ignored, which R4 3.1.1.4.4 makes a SHALL: ignoring one silently changes what a query means. An unknown *parameter* is still ignored, as the same page says it should be.
+- The search parsing API is exported so a server can catch that failure and return the 400 the specification requires.
+
 ## [0.9.0]
 
 - Recovered 201 search parameters the generator had been dropping silently. Every one used an `as` cast in its FHIRPath expression, and the expression splitter did not strip the wrapping parentheses, so the parameter compiled to nothing and indexed nothing. `value-quantity`, `value-concept`, `medication` and Immunization `date` were among them, and reverse chaining with `_has` can now chain through them.

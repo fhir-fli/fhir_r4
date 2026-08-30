@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
 
 part 'fhir_db.g.dart';
@@ -36,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -157,7 +158,73 @@ class FhirDb extends _$FhirDb {
               specialSearchParameters,
             ];
             for (final table in indexTables) {
-              await m.alterTable(TableMigration(table));
+              await m.alterTable(
+                TableMigration(
+                  table,
+                  // exact_value arrived with schema 6 and is not in a database
+                  // older than 5. Without declaring it new, drift copies the
+                  // rows with a SELECT naming every CURRENT column, and the
+                  // upgrade fails on "no such column: exact_value" — which
+                  // means a real version-4 database would not open at all.
+                  newColumns: [
+                    if (identical(table, stringSearchParameters))
+                      stringSearchParameters.exactValue,
+                  ],
+                ),
+              );
+            }
+          }
+          // Exactly 5, not `< 6`. Anything older went through the rebuild
+          // above, which recreates each index table from the CURRENT
+          // definition and so already has this column; adding it again is a
+          // duplicate-column error.
+          if (from == 5) {
+            // `:exact` needs the value as written, and the only column there
+            // was holds it normalized, so casing and accents are gone before
+            // a query can ask about them.
+            await customStatement(
+              'ALTER TABLE string_search_parameters '
+              "ADD COLUMN exact_value TEXT NOT NULL DEFAULT ''",
+            );
+          }
+          if (from < 6) {
+            // Rebuild the string index from the resources.
+            //
+            // The index is DERIVED data: every value in it comes from a
+            // resource that is still sitting in `resources`. So there is
+            // nothing to preserve and nothing to lose, and leaving old rows
+            // with a null exact value would mean `:exact` silently ignored
+            // every record stored before the upgrade — a wrong answer rather
+            // than an error.
+            //
+            // The accent folding changed in the same version, so the
+            // normalized column is stale for every accented value too. Both
+            // are fixed by the same rebuild.
+            await customStatement('DELETE FROM string_search_parameters');
+            final stored = await customSelect(
+              'SELECT resource FROM resources',
+            ).get();
+            for (final row in stored) {
+              fhir.Resource resource;
+              try {
+                resource = fhir.Resource.fromJsonString(
+                  row.data['resource']! as String,
+                );
+              } catch (_) {
+                // A resource that will not parse cannot be indexed, and
+                // failing the upgrade over one bad row would keep the whole
+                // database shut. Only the PARSE is guarded: an insert that
+                // fails is a bug in this migration, and swallowing it would
+                // leave the index quietly empty.
+                continue;
+              }
+              for (final param
+                  in updateSearchParameters(resource).stringParams) {
+                await into(stringSearchParameters).insert(
+                  param,
+                  mode: InsertMode.insertOrReplace,
+                );
+              }
             }
           }
         },

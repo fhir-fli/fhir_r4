@@ -666,6 +666,14 @@ class $StringSearchParametersTable extends StringSearchParameters
   late final GeneratedColumn<String> stringValue = GeneratedColumn<String>(
       'string_value', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _exactValueMeta =
+      const VerificationMeta('exactValue');
+  @override
+  late final GeneratedColumn<String> exactValue = GeneratedColumn<String>(
+      'exact_value', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(''));
   @override
   List<GeneratedColumn> get $columns => [
         resourceType,
@@ -674,7 +682,8 @@ class $StringSearchParametersTable extends StringSearchParameters
         searchPath,
         searchName,
         paramIndex,
-        stringValue
+        stringValue,
+        exactValue
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -738,6 +747,12 @@ class $StringSearchParametersTable extends StringSearchParameters
     } else if (isInserting) {
       context.missing(_stringValueMeta);
     }
+    if (data.containsKey('exact_value')) {
+      context.handle(
+          _exactValueMeta,
+          exactValue.isAcceptableOrUnknown(
+              data['exact_value']!, _exactValueMeta));
+    }
     return context;
   }
 
@@ -762,6 +777,8 @@ class $StringSearchParametersTable extends StringSearchParameters
           .read(DriftSqlType.int, data['${effectivePrefix}param_index'])!,
       stringValue: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}string_value'])!,
+      exactValue: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}exact_value'])!,
     );
   }
 
@@ -791,8 +808,28 @@ class StringSearchParameter extends DataClass
   /// Index for multiple values from the same path
   final int paramIndex;
 
-  /// Normalized string value for case- and accent-insensitive searches
+  /// Normalized string value for case- and accent-insensitive searches.
+  ///
+  /// R4 3.1.1.4.8: a string search "is insensitive to casing and included
+  /// combining characters, like accents or other diacritical marks", and by
+  /// default "a field matches ... if the value of the field equals or starts
+  /// with the supplied parameter value, after both have been normalized by
+  /// case and combining characters".
   final String stringValue;
+
+  /// The value exactly as it was written, for `:exact`.
+  ///
+  /// R4 3.1.1.4.4: ":exact returns results that match the entire supplied
+  /// parameter, including casing and combining characters." That is
+  /// unanswerable from the normalized column, because normalizing destroys the
+  /// casing and the accents it has to compare. Both are needed, which is what
+  /// HAPI does: SP_VALUE_NORMALIZED beside SP_VALUE_EXACT.
+  ///
+  /// Not nullable: the upgrade rebuilds this index from the stored resources,
+  /// so there is no row without one. A nullable column would have meant
+  /// `:exact` silently ignoring every record written before the upgrade,
+  /// which is a wrong answer rather than an error.
+  final String exactValue;
   const StringSearchParameter(
       {required this.resourceType,
       required this.id,
@@ -800,7 +837,8 @@ class StringSearchParameter extends DataClass
       required this.searchPath,
       required this.searchName,
       required this.paramIndex,
-      required this.stringValue});
+      required this.stringValue,
+      required this.exactValue});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -811,6 +849,7 @@ class StringSearchParameter extends DataClass
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['string_value'] = Variable<String>(stringValue);
+    map['exact_value'] = Variable<String>(exactValue);
     return map;
   }
 
@@ -823,6 +862,7 @@ class StringSearchParameter extends DataClass
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       stringValue: Value(stringValue),
+      exactValue: Value(exactValue),
     );
   }
 
@@ -837,6 +877,7 @@ class StringSearchParameter extends DataClass
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       stringValue: serializer.fromJson<String>(json['stringValue']),
+      exactValue: serializer.fromJson<String>(json['exactValue']),
     );
   }
   @override
@@ -850,6 +891,7 @@ class StringSearchParameter extends DataClass
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'stringValue': serializer.toJson<String>(stringValue),
+      'exactValue': serializer.toJson<String>(exactValue),
     };
   }
 
@@ -860,7 +902,8 @@ class StringSearchParameter extends DataClass
           String? searchPath,
           String? searchName,
           int? paramIndex,
-          String? stringValue}) =>
+          String? stringValue,
+          String? exactValue}) =>
       StringSearchParameter(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
@@ -869,6 +912,7 @@ class StringSearchParameter extends DataClass
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         stringValue: stringValue ?? this.stringValue,
+        exactValue: exactValue ?? this.exactValue,
       );
   StringSearchParameter copyWithCompanion(
       StringSearchParametersCompanion data) {
@@ -887,6 +931,8 @@ class StringSearchParameter extends DataClass
           data.paramIndex.present ? data.paramIndex.value : this.paramIndex,
       stringValue:
           data.stringValue.present ? data.stringValue.value : this.stringValue,
+      exactValue:
+          data.exactValue.present ? data.exactValue.value : this.exactValue,
     );
   }
 
@@ -899,14 +945,15 @@ class StringSearchParameter extends DataClass
           ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
-          ..write('stringValue: $stringValue')
+          ..write('stringValue: $stringValue, ')
+          ..write('exactValue: $exactValue')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, stringValue);
+      searchName, paramIndex, stringValue, exactValue);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -917,7 +964,8 @@ class StringSearchParameter extends DataClass
           other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
-          other.stringValue == this.stringValue);
+          other.stringValue == this.stringValue &&
+          other.exactValue == this.exactValue);
 }
 
 class StringSearchParametersCompanion
@@ -929,6 +977,7 @@ class StringSearchParametersCompanion
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> stringValue;
+  final Value<String> exactValue;
   final Value<int> rowid;
   const StringSearchParametersCompanion({
     this.resourceType = const Value.absent(),
@@ -938,6 +987,7 @@ class StringSearchParametersCompanion
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.stringValue = const Value.absent(),
+    this.exactValue = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   StringSearchParametersCompanion.insert({
@@ -948,6 +998,7 @@ class StringSearchParametersCompanion
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String stringValue,
+    this.exactValue = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
@@ -963,6 +1014,7 @@ class StringSearchParametersCompanion
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? stringValue,
+    Expression<String>? exactValue,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -973,6 +1025,7 @@ class StringSearchParametersCompanion
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (stringValue != null) 'string_value': stringValue,
+      if (exactValue != null) 'exact_value': exactValue,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -985,6 +1038,7 @@ class StringSearchParametersCompanion
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? stringValue,
+      Value<String>? exactValue,
       Value<int>? rowid}) {
     return StringSearchParametersCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -994,6 +1048,7 @@ class StringSearchParametersCompanion
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       stringValue: stringValue ?? this.stringValue,
+      exactValue: exactValue ?? this.exactValue,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1022,6 +1077,9 @@ class StringSearchParametersCompanion
     if (stringValue.present) {
       map['string_value'] = Variable<String>(stringValue.value);
     }
+    if (exactValue.present) {
+      map['exact_value'] = Variable<String>(exactValue.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1038,6 +1096,7 @@ class StringSearchParametersCompanion
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('stringValue: $stringValue, ')
+          ..write('exactValue: $exactValue, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -6255,6 +6314,7 @@ typedef $$StringSearchParametersTableCreateCompanionBuilder
   Value<String> searchName,
   required int paramIndex,
   required String stringValue,
+  Value<String> exactValue,
   Value<int> rowid,
 });
 typedef $$StringSearchParametersTableUpdateCompanionBuilder
@@ -6266,6 +6326,7 @@ typedef $$StringSearchParametersTableUpdateCompanionBuilder
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> stringValue,
+  Value<String> exactValue,
   Value<int> rowid,
 });
 
@@ -6298,6 +6359,9 @@ class $$StringSearchParametersTableFilterComposer
 
   ColumnFilters<String> get stringValue => $composableBuilder(
       column: $table.stringValue, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get exactValue => $composableBuilder(
+      column: $table.exactValue, builder: (column) => ColumnFilters(column));
 }
 
 class $$StringSearchParametersTableOrderingComposer
@@ -6330,6 +6394,9 @@ class $$StringSearchParametersTableOrderingComposer
 
   ColumnOrderings<String> get stringValue => $composableBuilder(
       column: $table.stringValue, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get exactValue => $composableBuilder(
+      column: $table.exactValue, builder: (column) => ColumnOrderings(column));
 }
 
 class $$StringSearchParametersTableAnnotationComposer
@@ -6361,6 +6428,9 @@ class $$StringSearchParametersTableAnnotationComposer
 
   GeneratedColumn<String> get stringValue => $composableBuilder(
       column: $table.stringValue, builder: (column) => column);
+
+  GeneratedColumn<String> get exactValue => $composableBuilder(
+      column: $table.exactValue, builder: (column) => column);
 }
 
 class $$StringSearchParametersTableTableManager extends RootTableManager<
@@ -6401,6 +6471,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> stringValue = const Value.absent(),
+            Value<String> exactValue = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               StringSearchParametersCompanion(
@@ -6411,6 +6482,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             stringValue: stringValue,
+            exactValue: exactValue,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -6421,6 +6493,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String stringValue,
+            Value<String> exactValue = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               StringSearchParametersCompanion.insert(
@@ -6431,6 +6504,7 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             stringValue: stringValue,
+            exactValue: exactValue,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0
