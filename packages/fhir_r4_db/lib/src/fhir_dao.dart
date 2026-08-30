@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
+import 'package:fhir_r4_db/src/search/search_escaping.dart';
 import 'package:fhir_r4_db/src/search/search_parameter_types.dart';
 import 'package:fhir_r4_db/src/search/search_query_key.dart';
 
@@ -420,7 +421,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         // Handle special parameters
         if (paramName == '_id') {
-          final ids = paramValues.expand((v) => v.split(',')).toSet();
+          // R4 3.1.1.4.19: a comma separates OR values, so a literal comma
+          // inside an id is written with a leading backslash.
+          final ids = paramValues.expand((v) => splitEscaped(v, ',')).toSet();
           if (firstParam) {
             matchingIds = ids;
           } else {
@@ -1050,7 +1053,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
       // Check for token or quantity (contains |)
       if (valWithoutModifier.contains('|')) {
-        final parts = valWithoutModifier.split('|');
+        final parts = splitEscaped(valWithoutModifier, '|');
         var foundNumeric = false;
         if (parts.length == 2) {
           try {
@@ -1190,7 +1193,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       // The value is DATA. It used to be split on any colon it contained,
       // which truncated `Clinic: North Wing` to `Clinic` and made
       // `name=Clinic: SOUTH Wing` return the North Wing.
-      final searchValue = value;
+      //
+      // A string is compared whole, so it also has to lose FHIR's escaping
+      // before the comparison: a name written with an escaped comma would
+      // otherwise be matched with the backslash still in it.
+      final searchValue = unescapeValue(value);
 
       final normalizedValue = searchValue.toLowerCase().trim();
 
@@ -1257,6 +1264,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       // The modifier arrives from the parameter NAME, per R4 search.html. It
       // used to be read off the end of the value, so `code:text=x` never
       // reached this and `code=x:text` did.
+      //
+      // Escaping is stripped AFTER any `|` split below, never before, or the
+      // split would consume an escaped pipe that is part of the value.
       final searchValue = value;
 
       if (modifier == 'in') {
@@ -1335,7 +1345,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // Searches identifiers where type.coding matches and value matches.
         // Since identifier.type is not indexed, we search by value first,
         // then filter by type in Dart.
-        final pipeParts = searchValue.split('|');
+        final pipeParts = splitEscaped(searchValue, '|');
         if (pipeParts.length == 3) {
           final typeSystem = pipeParts[0];
           final typeCode = pipeParts[1];
@@ -1389,7 +1399,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     var tokenValue = searchValue;
 
     if (searchValue.contains('|')) {
-      final parts = searchValue.split('|');
+      final parts = splitEscaped(searchValue, '|');
       if (parts.length == 2) {
         system = parts[0].isEmpty ? null : parts[0];
         tokenValue = parts[1];
@@ -1863,7 +1873,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         var matches = false;
         for (final value in values) {
-          final parts = value.split('|');
+          final parts = splitEscaped(value, '|');
           final searchSystem = parts.length > 1 ? parts[0] : null;
           final searchCode = parts.length > 1 ? parts[1] : parts[0];
           for (final tag in tags) {
@@ -1944,7 +1954,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         var matches = false;
         for (final value in values) {
-          final parts = value.split('|');
+          final parts = splitEscaped(value, '|');
           final searchSystem = parts.length > 1 ? parts[0] : null;
           final searchCode = parts.length > 1 ? parts[1] : parts[0];
           for (final security in securities) {
@@ -2140,7 +2150,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         searchValue = rest;
       }
 
-      final parts = searchValue.split('|');
+      final parts = splitEscaped(searchValue, '|');
       double? numValue;
       String? system;
       String? code;

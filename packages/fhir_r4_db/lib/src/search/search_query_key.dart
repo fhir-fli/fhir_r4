@@ -90,7 +90,11 @@ const modifiersByType = <String, Set<String>>{
   'date': {'missing'},
   'number': {'missing'},
   'quantity': {'missing'},
-  'special': {'missing'},
+  // R4 3.1.1.4.21: for a `special` parameter "the general modifiers and
+  // comparators do not apply, except as stated in the description", so nothing
+  // is allowed here by default. Not even :missing.
+  'special': <String>{},
+  // R4 3.1.1.4.17: "Modifiers are not used on composite parameters."
   'composite': <String>{},
 };
 

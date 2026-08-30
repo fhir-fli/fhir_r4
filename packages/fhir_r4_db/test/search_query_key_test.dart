@@ -169,7 +169,8 @@ void main() {
       }
     });
 
-    test('missing applies to every type except composite', () {
+    test('missing applies to every type except composite and special', () {
+      // R4 3.1.1.4.4 gives :missing to "all parameters (except combination)".
       for (final type in [
         'string',
         'token',
@@ -178,11 +179,14 @@ void main() {
         'date',
         'number',
         'quantity',
-        'special',
       ]) {
         expect(isModifierAllowed(type, 'missing'), isTrue, reason: type);
       }
+      // 3.1.1.4.17: "Modifiers are not used on composite parameters."
       expect(isModifierAllowed('composite', 'missing'), isFalse);
+      // 3.1.1.4.21: for special, "the general modifiers and comparators do
+      // not apply, except as stated in the description".
+      expect(isModifierAllowed('special', 'missing'), isFalse);
     });
 
     test('a reference takes any resource type as its modifier', () {
