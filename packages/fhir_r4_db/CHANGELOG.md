@@ -1,5 +1,10 @@
 # fhir_r4_db
 
+## [0.11.0]
+
+- **A repeated search parameter is an AND, and a comma is an OR.** R4 3.1.1.4.17 gives the two separators different meanings: `?given=Anna&given=Beth` asks for records having *both*, `?given=Anna,Beth` for records having *either*. Every value handed to `search` was previously treated as one OR group, so the AND form returned the OR answer. Each element of a parameter's value list is now one repetition, and the elements are intersected; the comma split happens inside each element, where FHIR's escaping applies, so `name=Clinic\, North` stays a single value rather than becoming two.
+- The comma split belongs here rather than in a caller: it needs the escaping rules and the parameter's declared type, and a caller that splits first turns an OR into an AND with no way for this package to tell the difference.
+
 ## [0.10.0]
 
 - **Search modifiers and comparators now work.** They were read off the END of the value (`family=Smith:exact`, `birthdate=1980-01-01:gt`), a syntax FHIR does not have, so every modifier and every comparator was unreachable from a conforming client. Measured through a REST server before and after: 7 of 41 queries returned anything, now all 41 do. The modifier is taken from the parameter name and the comparator from the front of the value, as the specification defines them.
