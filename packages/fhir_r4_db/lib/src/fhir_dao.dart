@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
+import 'package:meta/meta.dart';
 
 part 'fhir_dao.g.dart';
 
@@ -36,6 +37,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
   /// Set to true to store resources for sync.
   bool storeForSync = false;
+
+  /// Pulls the index rows out of a resource.
+  ///
+  /// Production always uses the generated [updateSearchParameters]. It is a
+  /// field so a test can replace it with one that fails, which is the only way
+  /// to exercise what a save does when indexing cannot be completed.
+  @visibleForTesting
+  SearchParameterLists Function(fhir.Resource resource)
+      extractSearchParameters = updateSearchParameters;
 
   /// Set to true to store versionId as a timestamp instead of an integer.
   bool versionIdAsTime = false;
@@ -86,30 +96,37 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       versionIdAsTime: versionIdAsTime,
     );
 
-    await into(resources).insertOnConflictUpdate(
-      ResourcesCompanion(
-        resourceType: Value(resource.resourceType.toString()),
-        id: Value(newResource.id!.valueString!),
-        resource: Value(newResource.toJsonString()),
-        lastUpdated: Value(
-          newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
+    // The row and its index rows go in together. Separately, a failure part
+    // way through left a resource stored that no search could find, and the
+    // caller was handed the resource as though it had worked.
+    await transaction(() async {
+      await into(resources).insertOnConflictUpdate(
+        ResourcesCompanion(
+          resourceType: Value(resource.resourceType.toString()),
+          id: Value(newResource.id!.valueString!),
+          resource: Value(newResource.toJsonString()),
+          lastUpdated: Value(
+            newResource
+                .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
+          ),
         ),
-      ),
-    );
+      );
 
-    await into(resourcesHistory).insertOnConflictUpdate(
-      ResourcesHistoryCompanion(
-        resourceType: Value(resource.resourceType.toString()),
-        id: Value(newResource.id!.valueString!),
-        versionId: Value(newResource.meta?.versionId?.toString() ?? '1'),
-        resource: Value(newResource.toJsonString()),
-        lastUpdated: Value(
-          newResource.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
+      await into(resourcesHistory).insertOnConflictUpdate(
+        ResourcesHistoryCompanion(
+          resourceType: Value(resource.resourceType.toString()),
+          id: Value(newResource.id!.valueString!),
+          versionId: Value(newResource.meta?.versionId?.toString() ?? '1'),
+          resource: Value(newResource.toJsonString()),
+          lastUpdated: Value(
+            newResource
+                .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
+          ),
         ),
-      ),
-    );
+      );
 
-    await _updateSearchParameters(newResource);
+      await _updateSearchParameters(newResource);
+    });
 
     if (storeForSync) {
       await _saveToSync(newResource);
@@ -767,33 +784,38 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   // Private: Search parameter indexing
   // ──────────────────────────────────────────────────────────────────────────
 
-  Future<bool> _updateSearchParameters(fhir.Resource resource) async {
-    try {
-      final searchParams = updateSearchParameters(resource);
-      await batch((batch) {
-        final resourceType = resource.resourceType.toString();
-        final id = resource.id!.valueString!;
+  /// Rewrites the index rows for one resource.
+  ///
+  /// A failure here is NOT caught. It used to be: the exception was printed
+  /// and `false` returned, and [saveResource] ignored the `false`, so a
+  /// resource could be stored with no index rows while the caller was told
+  /// the save had succeeded. The record was then invisible to every search,
+  /// which is worse than an error the caller can act on.
+  Future<void> _updateSearchParameters(fhir.Resource resource) async {
+    final searchParams = extractSearchParameters(resource);
+    await batch((batch) {
+      final resourceType = resource.resourceType.toString();
+      final id = resource.id!.valueString!;
 
-        // Delete old search parameters
-        _deleteSearchParams(batch, resourceType, id);
+      // Delete old search parameters
+      _deleteSearchParams(batch, resourceType, id);
 
-        // Insert new search parameters
-        _insertSearchParams(batch, searchParams);
-      });
-      return true;
-    } catch (e) {
-      print('Error updating search parameters: $e');
-      return false;
-    }
+      // Insert new search parameters
+      _insertSearchParams(batch, searchParams);
+    });
   }
 
-  Future<bool> _updateSearchParametersBulk(
+  /// Rewrites the index rows for a batch of resources.
+  ///
+  /// As with [_updateSearchParameters], a failure propagates rather than
+  /// leaving unindexed rows behind a successful-looking return.
+  Future<void> _updateSearchParametersBulk(
     List<fhir.Resource> resourcesList,
   ) async {
-    try {
+    {
       final searchParameterLists = SearchParameterLists();
       for (final resource in resourcesList) {
-        final searchParams = updateSearchParameters(resource);
+        final searchParams = extractSearchParameters(resource);
         searchParameterLists.stringParams.addAll(searchParams.stringParams);
         searchParameterLists.tokenParams.addAll(searchParams.tokenParams);
         searchParameterLists.referenceParams
@@ -817,10 +839,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         }
         _insertSearchParams(batch, searchParameterLists);
       });
-      return true;
-    } catch (e) {
-      print('Error updating search parameters in bulk: $e');
-      return false;
     }
   }
 

@@ -1,5 +1,11 @@
 # fhir_r4_db
 
+## [Unreleased]
+
+- **A save that cannot be indexed now fails instead of succeeding quietly.** `_updateSearchParameters` caught every exception, printed it and returned `false`, and `saveResource` ignored that `false` and returned the resource. A record could therefore be stored with no index rows while the caller was told the save had worked, and it was then invisible to every search — a wrong answer rather than an error. The failure propagates now.
+- **`saveResource` writes the resource, its history row and its index rows in one transaction**, so a failure part way through leaves the store as it was rather than leaving a resource nothing can find. A failed update keeps the previous version.
+- `FhirDao.extractSearchParameters` is a `@visibleForTesting` field holding the generated extractor, which is what lets a test make indexing fail. Production behaviour is unchanged.
+
 ## [0.11.0]
 
 - **A repeated search parameter is an AND, and a comma is an OR.** R4 3.1.1.4.17 gives the two separators different meanings: `?given=Anna&given=Beth` asks for records having *both*, `?given=Anna,Beth` for records having *either*. Every value handed to `search` was previously treated as one OR group, so the AND form returned the OR answer. Each element of a parameter's value list is now one repetition, and the elements are intersected; the comma split happens inside each element, where FHIR's escaping applies, so `name=Clinic\, North` stays a single value rather than becoming two.
