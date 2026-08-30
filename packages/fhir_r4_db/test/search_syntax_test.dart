@@ -125,6 +125,68 @@ Future<void> main() async {
     });
   });
 
+  group('an unsupported modifier is rejected, not ignored', () {
+    // R4 3.1.1.4.4, a SHALL: "Server SHALL reject any search request that
+    // contains is suffixed by a modifier that the server does not support for
+    // that parameter ... using an HTTP 400 error". Contrast an unknown
+    // PARAMETER, which the same page says a server SHOULD ignore: ignoring a
+    // parameter only widens the result set and the self link discloses it,
+    // while ignoring a modifier changes what the query means silently.
+    test('a modifier from another type is refused', () async {
+      // :exact is a string modifier. gender is a token.
+      await expectLater(
+        ids(R4ResourceType.Patient, 'gender:exact', 'male'),
+        throwsA(isA<UnsupportedSearchModifier>()),
+      );
+    });
+
+    test('an invented modifier is refused', () async {
+      await expectLater(
+        ids(R4ResourceType.Patient, 'family:banana', 'Faulkenberry'),
+        throwsA(isA<UnsupportedSearchModifier>()),
+      );
+    });
+
+    test('the message names the parameter, its type, and what is allowed',
+        () async {
+      try {
+        await ids(R4ResourceType.Patient, 'gender:contains', 'male');
+        fail('expected a rejection');
+      } on UnsupportedSearchModifier catch (e) {
+        expect(e.message, contains('gender'));
+        expect(e.message, contains('token'));
+        expect(e.message, contains(':not'));
+      }
+    });
+
+    test('a modifier the type DOES allow is not refused', () async {
+      await expectLater(
+        ids(R4ResourceType.Patient, 'gender:not', 'female'),
+        completes,
+      );
+      await expectLater(
+        ids(R4ResourceType.Patient, 'family:exact', 'Faulkenberry'),
+        completes,
+      );
+    });
+
+    test('a reference takes a resource type as its modifier', () async {
+      await expectLater(
+        ids(R4ResourceType.Observation, 'subject:Patient', 'p1'),
+        completes,
+      );
+    });
+
+    test('an unknown PARAMETER is not rejected on this basis', () async {
+      // Nothing is known about it, so its modifier cannot be judged, and
+      // refusing would reject searches a deployment does support.
+      await expectLater(
+        ids(R4ResourceType.Patient, 'not-a-parameter:exact', 'x'),
+        completes,
+      );
+    });
+  });
+
   group('a colon inside a VALUE is data, not syntax', () {
     test('the whole name matches', () async {
       expect(

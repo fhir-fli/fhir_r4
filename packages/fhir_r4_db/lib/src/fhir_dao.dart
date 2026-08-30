@@ -4,9 +4,6 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
-import 'package:fhir_r4_db/src/search/search_escaping.dart';
-import 'package:fhir_r4_db/src/search/search_parameter_types.dart';
-import 'package:fhir_r4_db/src/search/search_query_key.dart';
 
 part 'fhir_dao.g.dart';
 
@@ -931,6 +928,24 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // letters of a name. Not having this fact is why the old code guessed from
     // the shape of the value.
     final declared = searchParameterFor(resourceType, key.name);
+
+    // R4 3.1.1.4.4, a SHALL: a modifier the parameter's type does not allow is
+    // rejected, not ignored. Ignoring it silently changes what the query means
+    // and returns records the client did not ask for.
+    //
+    // Only checked when the parameter is known. A custom parameter this build
+    // has no definition for cannot have its modifier validated, and refusing
+    // it on that basis would reject searches a deployment does support.
+    if (declared != null && modifier != null) {
+      if (!isModifierAllowed(declared.type, modifier)) {
+        throw UnsupportedSearchModifier(
+          parameter: key.name,
+          modifier: modifier,
+          type: declared.type,
+          allowed: modifiersByType[declared.type] ?? const <String>{},
+        );
+      }
+    }
 
     // :missing applies to every parameter type, so it is answered before any
     // type detection runs. R4 search.html: "true" finds resources where the

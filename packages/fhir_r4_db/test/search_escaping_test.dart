@@ -3,7 +3,6 @@
 import 'package:drift/native.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_db/fhir_r4_db.dart' hide Resource;
-import 'package:fhir_r4_db/src/search/search_escaping.dart';
 import 'package:test/test.dart';
 
 /// R4 3.1.1.4.19. `$`, `,` and `|` are separators, so a literal one inside a

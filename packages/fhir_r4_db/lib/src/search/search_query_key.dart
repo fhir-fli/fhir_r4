@@ -65,6 +65,50 @@ class SearchQueryKey {
   String toString() => '$name${qualifier ?? ''}';
 }
 
+/// Thrown when a search names a modifier its parameter's type does not allow.
+///
+/// R4 3.1.1.4.4 is a SHALL, not a preference: "Server SHALL reject any search
+/// request that contains is suffixed by a modifier that the server does not
+/// support for that parameter ... using an HTTP 400 error with an
+/// OperationOutcome with a clear error message."
+///
+/// Note the asymmetry with an unknown PARAMETER, which the same page says a
+/// server SHOULD ignore. Ignoring a parameter can only widen the result set,
+/// and the client can see what was used from the self link. Ignoring a
+/// MODIFIER silently changes what the query means and hands back records the
+/// client did not ask for, with nothing to reveal it.
+class UnsupportedSearchModifier implements Exception {
+  /// Creates the failure for [modifier] on [parameter].
+  const UnsupportedSearchModifier({
+    required this.parameter,
+    required this.modifier,
+    required this.type,
+    required this.allowed,
+  });
+
+  /// The search parameter as the client wrote it, without the modifier.
+  final String parameter;
+
+  /// The modifier that is not allowed.
+  final String modifier;
+
+  /// The parameter's declared search type.
+  final String type;
+
+  /// What that type does allow, for the error message.
+  final Set<String> allowed;
+
+  /// A message naming what was asked for and what the type permits.
+  String get message =>
+      'The modifier ":$modifier" is not allowed on "$parameter", which is a '
+      '$type search parameter. '
+      '${allowed.isEmpty ? "That type takes no modifiers." : "Allowed: "
+          "${(allowed.toList()..sort()).map((m) => ":$m").join(", ")}."}';
+
+  @override
+  String toString() => 'UnsupportedSearchModifier: $message';
+}
+
 /// The modifiers R4 allows, per search parameter type.
 ///
 /// This is NOT generated, and it cannot be: R4 core populates

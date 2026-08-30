@@ -1,5 +1,4 @@
-import 'package:fhir_r4_db/src/search/search_parameter_types.dart';
-import 'package:fhir_r4_db/src/search/search_query_key.dart';
+import 'package:fhir_r4_db/fhir_r4_db.dart';
 import 'package:test/test.dart';
 
 /// The key is cut at the first `.` or `:`, whichever comes first, and the rest
