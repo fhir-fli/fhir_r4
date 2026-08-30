@@ -331,4 +331,117 @@ Future<void> main() async {
       );
     });
   });
+
+  group('reference and uri modifiers', () {
+    setUp(() async {
+      await dao.saveResource(
+        Observation.fromJson({
+          'resourceType': 'Observation',
+          'id': 'obs-ref',
+          'status': 'final',
+          'code': {
+            'coding': [
+              {'system': 'http://loinc.org', 'code': '1975-2'},
+            ],
+          },
+          'subject': {
+            'reference': 'Patient/p1',
+            'identifier': {
+              'system': 'http://example.org/mrn',
+              'value': '12345',
+            },
+          },
+        }),
+      );
+      await dao.saveResource(
+        ValueSet.fromJson({
+          'resourceType': 'ValueSet',
+          'id': 'vs-deep',
+          'url': 'http://acme.org/fhir/ValueSet/123',
+          'status': 'active',
+        }),
+      );
+    });
+
+    test('a plain reference search works, so a zero below is the modifier',
+        () async {
+      expect(
+        await ids(R4ResourceType.Observation, 'subject', 'Patient/p1'),
+        equals(['obs-ref']),
+      );
+    });
+
+    test('subject:Patient=p1 has the same effect as subject=Patient/p1',
+        () async {
+      // R4 3.1.1.4.12 says exactly that of these two forms.
+      expect(
+        await ids(R4ResourceType.Observation, 'subject:Patient', 'p1'),
+        equals(['obs-ref']),
+      );
+    });
+
+    test('a resource-type modifier that does not match finds nothing',
+        () async {
+      expect(
+        await ids(R4ResourceType.Observation, 'subject:Group', 'p1'),
+        isEmpty,
+      );
+    });
+
+    test(':identifier tests the reference, not the referenced resource',
+        () async {
+      expect(
+        await ids(
+          R4ResourceType.Observation,
+          'subject:identifier',
+          'http://example.org/mrn|12345',
+        ),
+        equals(['obs-ref']),
+      );
+    });
+
+    test(':identifier with the wrong system finds nothing', () async {
+      expect(
+        await ids(
+          R4ResourceType.Observation,
+          'subject:identifier',
+          'http://elsewhere.org/mrn|12345',
+        ),
+        isEmpty,
+      );
+    });
+
+    test('uri :below left-matches the stored value', () async {
+      // The spec's own example: url:below=http://acme.org/fhir/ returns value
+      // sets whose url starts with it.
+      expect(
+        await ids(
+          R4ResourceType.ValueSet,
+          'url:below',
+          'http://acme.org/fhir/',
+        ),
+        equals(['vs-deep']),
+      );
+    });
+
+    test('uri :above matches a stored value that is a prefix of the query',
+        () async {
+      expect(
+        await ids(
+          R4ResourceType.ValueSet,
+          'url:above',
+          'http://acme.org/fhir/ValueSet/123/_history/5',
+        ),
+        equals(['vs-deep']),
+      );
+    });
+
+    test('a plain uri search is still exact', () async {
+      expect(
+        await ids(R4ResourceType.ValueSet, 'url', 'http://acme.org/fhir/'),
+        isEmpty,
+        reason: 'without :below the whole URI must match',
+      );
+    });
+  });
 }

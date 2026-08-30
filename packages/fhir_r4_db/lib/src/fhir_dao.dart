@@ -1028,7 +1028,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             declared,
           );
         case 'uri':
-          return _searchUriParameter(resourceType, searchPath, paramValues);
+          return _searchUriParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            modifier,
+          );
         case 'token':
           return _searchTokenParameter(
             resourceType,
@@ -1052,9 +1057,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         case 'reference':
           return _searchReferenceParameter(
             resourceType,
-            paramName,
+            searchPath,
             paramValues,
             false,
+            modifier,
           );
       }
     }
@@ -2260,20 +2266,16 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   Future<Set<String>> _searchUriParameter(
     String resourceType,
     String searchPath,
-    List<String> values,
-  ) async {
+    List<String> values, [
+    String? modifier,
+  ]) async {
     final matchingIds = <String>{};
     for (final value in values) {
-      // Detect :above / :below modifiers (suffix-based)
-      var searchValue = value;
-      String? modifier;
-      for (final mod in ['above', 'below']) {
-        if (value.endsWith(':$mod')) {
-          searchValue = value.substring(0, value.length - mod.length - 1);
-          modifier = mod;
-          break;
-        }
-      }
+      // :above and :below were already implemented here and already correct.
+      // They were simply unreachable: the modifier was read off the END of the
+      // value, so `url:below=http://x` never arrived and `url=http://x:below`
+      // did. The modifier now comes from the parameter name.
+      final searchValue = unescapeValue(value);
 
       final pathCondition = uriSearchParameters.searchName.equals(searchPath) |
           uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
@@ -2323,8 +2325,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     List<String> values,
-    bool isChained,
-  ) async {
+    bool isChained, [
+    String? modifier,
+  ]) async {
     final matchingIds = <String>{};
 
     if (isChained) {
@@ -2383,6 +2386,45 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                         .like('$resourceType.$searchPath') |
                     referenceSearchParameters.searchPath
                         .like('$resourceType.%.$searchPath'));
+
+        // R4 3.1.1.4.12: ":identifier allows for searching by the identifier
+        // rather than the literal reference ... the search value works as a
+        // token search". So it tests Reference.identifier, NOT the referenced
+        // resource — an Observation whose subject carries the MRN matches,
+        // while one that merely points at a Patient holding that MRN does not.
+        if (modifier == 'identifier') {
+          final parts = splitEscaped(value, '|');
+          final identifierValue =
+              parts.length > 1 ? parts[1] : unescapeValue(value);
+          final identifierSystem = parts.length > 1 ? parts[0] : null;
+          whereCondition = whereCondition &
+              referenceSearchParameters.identifierValue.equals(identifierValue);
+          if (identifierSystem != null && identifierSystem.isNotEmpty) {
+            whereCondition = whereCondition &
+                referenceSearchParameters.identifierSystem
+                    .equals(identifierSystem);
+          }
+          query.where((tbl) => whereCondition);
+          for (final row in await query.get()) {
+            matchingIds.add(row.id);
+          }
+          continue;
+        }
+
+        // R4 3.1.1.4.12: a resource type as the modifier says which type the
+        // reference must point at, and `subject:Patient=23` "has the same
+        // effect as" `subject=Patient/23`.
+        if (modifier != null && modifier != 'missing' && !value.contains('/')) {
+          whereCondition = whereCondition &
+              referenceSearchParameters.referenceResourceType.equals(modifier) &
+              referenceSearchParameters.referenceIdPart
+                  .equals(unescapeValue(value));
+          query.where((tbl) => whereCondition);
+          for (final row in await query.get()) {
+            matchingIds.add(row.id);
+          }
+          continue;
+        }
 
         if (value.contains('/')) {
           final parts = value.split('/');
