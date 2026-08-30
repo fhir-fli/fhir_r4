@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
+import 'package:fhir_r4_db/src/search/search_query_key.dart';
 
 part 'fhir_dao.g.dart';
 
@@ -895,35 +896,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return value;
   }
 
-  /// The parameter name with any modifier removed.
-  ///
-  /// A chained reference keeps its chain: `subject:Patient.name` is the
-  /// parameter `subject`, type-modified to `Patient`, chained to `name`, so
-  /// the name this returns is `subject.name`.
-  static String _nameOf(String paramName) {
-    final colon = paramName.indexOf(':');
-    if (colon < 0) {
-      return paramName;
-    }
-    final afterModifier = paramName.substring(colon + 1);
-    final dot = afterModifier.indexOf('.');
-    return dot < 0
-        ? paramName.substring(0, colon)
-        : '${paramName.substring(0, colon)}${afterModifier.substring(dot)}';
-  }
-
-  /// The modifier on a parameter name, or null when there is none.
-  static String? _modifierOf(String paramName) {
-    final colon = paramName.indexOf(':');
-    if (colon < 0) {
-      return null;
-    }
-    final afterModifier = paramName.substring(colon + 1);
-    final dot = afterModifier.indexOf('.');
-    final modifier = dot < 0 ? afterModifier : afterModifier.substring(0, dot);
-    return modifier.isEmpty ? null : modifier;
-  }
-
   /// Determine the parameter type and dispatch to the appropriate search method.
   Future<Set<String>> _resolveSearchParameter(
     String resourceType,
@@ -939,12 +911,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // Every modifier and every comparator was therefore unreachable from a
     // conforming client, and any string value containing a colon was truncated
     // at it — `name=Clinic: SOUTH Wing` returned `Clinic: North Wing`.
-    final modifier = _modifierOf(paramName);
+    final key = SearchQueryKey.parse(paramName);
+    final modifier = key.modifier;
 
     // searchPath is the original HTTP param name (e.g., "monitoring-program-name")
     // The search tables store this in the searchName column alongside the
     // FHIR expression path in searchPath. Queries match on either.
-    final searchPath = _nameOf(paramName);
+    //
+    // A chained key keeps its chain, because the reference branch parses the
+    // chain itself.
+    final searchPath = key.chain == null ? key.name : paramName;
+
+    // What the parameter IS, from the published definitions. This decides
+    // whether `gt` on the front of a value is a comparator or the first two
+    // letters of a name. Not having this fact is why the old code guessed from
+    // the shape of the value.
+    final declared = searchParameterFor(resourceType, key.name);
 
     // :missing applies to every parameter type, so it is answered before any
     // type detection runs. R4 search.html: "true" finds resources where the
@@ -1001,11 +983,56 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
 
+    // When the parameter is known, its declared type settles everything and
+    // nothing is inferred from the values at all.
+    if (declared != null && key.chain == null) {
+      switch (declared.type) {
+        case 'date':
+          return _searchDateParameter(resourceType, searchPath, paramValues);
+        case 'quantity':
+          return _searchQuantityParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+          );
+        case 'number':
+          return _searchNumberParameter(resourceType, searchPath, paramValues);
+        case 'uri':
+          return _searchUriParameter(resourceType, searchPath, paramValues);
+        case 'token':
+          return _searchTokenParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            modifier,
+          );
+        case 'string':
+          return _searchStringParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+            modifier,
+          );
+        case 'composite':
+          return _searchCompositeParameter(
+            resourceType,
+            searchPath,
+            paramValues,
+          );
+        case 'reference':
+          return _searchReferenceParameter(
+            resourceType,
+            paramName,
+            paramValues,
+            false,
+          );
+      }
+    }
+
+    // Unknown parameter, or a chained one the reference branch handles: fall
+    // back to inspecting the values, which is what this did for everything
+    // before the definitions were available.
     for (final val in paramValues) {
-      // Type detection has to see past the comparator: `gt1980-01-01` is a
-      // date, and matching it against the date pattern with the `gt` still on
-      // the front is why every comparator search fell through to string search
-      // and returned nothing.
       final valWithoutModifier = stripComparatorPrefix(val);
       final detectedModifier = valWithoutModifier == val ? null : 'prefix';
 
