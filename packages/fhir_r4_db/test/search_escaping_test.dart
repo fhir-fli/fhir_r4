@@ -12,10 +12,10 @@ import 'package:test/test.dart';
 /// `code=a\,b` asks for the single code `a,b`. Splitting raw does not merely
 /// miss a record, it returns the WRONG ones.
 ///
-/// Note where each separator is handled. The DAO splits on the pipe and on the
-/// dollar, because those are internal to a single value. Comma splitting
-/// happens further out, in whatever parses the query string, so the comma half
-/// of this escaping has to be applied there too.
+/// All three separators are handled here, in the database package. Leaving the
+/// comma to the caller meant every consumer had to implement OR and escaping
+/// itself, and a caller doing the obvious `split(',')` got the wrong records
+/// with nothing to reveal it.
 Future<void> main() async {
   group('splitting honours the escape', () {
     test("the spec's own example: a,b is two values, a\\,b is one", () {
@@ -103,13 +103,11 @@ Future<void> main() async {
       expect(await ids('name', r'Clinic\, North'), equals(['comma']));
     });
 
-    test('the DAO takes values already split, so a comma here is data',
-        () async {
-      // Comma OR-splitting happens in the REST layer that parses the query
-      // string, not here: this API takes a LIST of values already separated.
-      // So a comma reaching the DAO is part of the value, and "Clinic,Nothing"
-      // is a name no organisation has.
-      expect(await ids('name', 'Clinic,Nothing'), isEmpty);
+    test('the DAO does the comma split itself', () async {
+      // It used to expect values already separated, which left the caller to
+      // implement OR and escaping and get them wrong. "Clinic,Nothing" is now
+      // read as two OR values, and "Clinic" matches both organisations.
+      expect(await ids('name', 'Clinic,Nothing'), equals(['comma', 'plain']));
     });
   });
 }

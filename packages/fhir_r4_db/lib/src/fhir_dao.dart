@@ -418,9 +418,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
         // Handle special parameters
         if (paramName == '_id') {
-          // R4 3.1.1.4.19: a comma separates OR values, so a literal comma
-          // inside an id is written with a leading backslash.
-          final ids = paramValues.expand((v) => splitEscaped(v, ',')).toSet();
+          // Same two rules: each repetition is ANDed, each comma-separated
+          // value inside one is ORed. A resource has one id, so repeating
+          // _id with different values correctly yields nothing.
+          Set<String>? ids;
+          for (final repetition in paramValues) {
+            final orValues = splitEscaped(repetition, ',')
+                .map((v) => v.trim())
+                .where((v) => v.isNotEmpty)
+                .toSet();
+            ids = ids == null ? orValues : ids.intersection(orValues);
+          }
+          if (ids == null) {
+            continue;
+          }
           if (firstParam) {
             matchingIds = ids;
           } else {
@@ -506,11 +517,35 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         }
 
         // Determine parameter type and search accordingly
-        final paramIds = await _resolveSearchParameter(
-          resourceTypeString,
-          paramName,
-          paramValues,
-        );
+        // R4 3.1.1.4.17 gives the two separators different meanings, and a
+        // caller cannot express both through one flat list:
+        //
+        //   ?given=A&given=B   repeated  -> AND, "records that have BOTH"
+        //   ?given=A,B         comma     -> OR,  "records with EITHER"
+        //
+        // So ONE ELEMENT OF THIS LIST IS ONE REPETITION. Each is resolved on
+        // its own and the results intersected; the comma split inside an
+        // element produces the OR set. Passing the whole list to one call, as
+        // this used to, made every repeat behave as OR.
+        Set<String>? paramIds;
+        for (final repetition in paramValues) {
+          final orValues = splitEscaped(repetition, ',')
+              .map((v) => v.trim())
+              .where((v) => v.isNotEmpty)
+              .toList();
+          if (orValues.isEmpty) {
+            continue;
+          }
+          final ids = await _resolveSearchParameter(
+            resourceTypeString,
+            paramName,
+            orValues,
+          );
+          paramIds = paramIds == null ? ids : paramIds.intersection(ids);
+        }
+        if (paramIds == null) {
+          continue;
+        }
 
         if (firstParam) {
           matchingIds = paramIds;
