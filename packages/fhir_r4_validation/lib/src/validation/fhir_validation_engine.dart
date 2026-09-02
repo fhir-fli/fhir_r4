@@ -11,11 +11,13 @@ class FhirValidationEngine {
   Future<ValidationResults> validateFhirResource({
     required Resource structureToValidate,
     StructureDefinition? structureDefinition,
+    ResourceCache? resourceCache,
     Client? client,
   }) {
     return validateFhirMap(
       structureToValidate: structureToValidate.toJson(),
       structureDefinition: structureDefinition,
+      resourceCache: resourceCache,
       client: client,
     );
   }
@@ -25,6 +27,7 @@ class FhirValidationEngine {
     required String structureToValidate,
     Client? client,
     StructureDefinition? structureDefinition,
+    ResourceCache? resourceCache,
   }) async {
     // Only the decode belongs in the try. Validation itself used to sit in
     // here too, returned without await, so its exceptions escaped the catch
@@ -46,19 +49,32 @@ class FhirValidationEngine {
     return validateFhirMap(
       structureToValidate: resourceMap,
       structureDefinition: structureDefinition,
+      resourceCache: resourceCache,
       client: client,
     );
   }
 
   /// Validate a FHIR resource from a JSON map
+  /// Validate a FHIR resource from a JSON map.
+  ///
+  /// [resourceCache] is where every StructureDefinition, ValueSet, CodeSystem
+  /// and profile referenced by the resource is looked up. **Supply one.** The
+  /// default is a [CanonicalResourceCache], which is an empty in-memory map
+  /// that fetches nothing, so with the default this validates a resource of
+  /// type X by reporting "No StructureDefinition found for resourceType: X",
+  /// and a resource whose elements are bound to a value set throws
+  /// "Resource not found at `<url>`". A caller with a store of canonicals — a
+  /// server's own database, a package folder — passes a [ResourceCache] over
+  /// it and validation works offline.
   Future<ValidationResults> validateFhirMap({
     required Map<String, dynamic> structureToValidate,
     Client? client,
     StructureDefinition? structureDefinition,
+    ResourceCache? resourceCache,
   }) async {
     final type = structureToValidate['resourceType'] as String?;
     final results = ValidationResults();
-    final resourceCache = CanonicalResourceCache();
+    final cache = resourceCache ?? CanonicalResourceCache(client: client);
 
     if (type == null) {
       return results
@@ -66,7 +82,15 @@ class FhirValidationEngine {
     }
 
     // Fetch or use provided StructureDefinition
-    structureDefinition ??= await resourceCache.getStructureDefinition(type);
+    // A core type's StructureDefinition is published at
+    // http://hl7.org/fhir/StructureDefinition/<type> — that is the `url` on
+    // the definition itself, so it is the key a cache holds it under. Asking
+    // for the bare type name, which is what this used to do, missed every
+    // cache keyed by canonical URL. The bare name is still tried second, for
+    // a cache that indexes by type.
+    const base = 'http://hl7.org/fhir/StructureDefinition/';
+    structureDefinition ??= await cache.getStructureDefinition('$base$type') ??
+        await cache.getStructureDefinition(type);
 
     if (structureDefinition == null) {
       return results
@@ -82,7 +106,7 @@ class FhirValidationEngine {
       structureToValidate: structureToValidate,
       structureDefinition: structureDefinition,
       type: type,
-      resourceCache: resourceCache,
+      resourceCache: cache,
     );
   }
 
