@@ -1,6 +1,6 @@
 # fhir_r4_validation
 
-## [Unreleased]
+## [0.12.0]
 
 - **The validator could not resolve anything, and now a caller can give it a store.** `FhirValidationEngine` built its own empty in-memory `CanonicalResourceCache` per call and offered no way to supply one, so `validateFhirMap` on any resource answered *"No StructureDefinition found for resourceType: X"*, and a resource with a coded element threw *"Resource not found at `<url>`"*. `validateFhirResource`, `validateFhirString` and `validateFhirMap` now take an optional `resourceCache`, which is used for every StructureDefinition, ValueSet and CodeSystem lookup. The package's own tests never caught this because they call the inner `validateStructure` with a test cache directly.
 - **The base type is looked up by its canonical URL.** The engine asked its cache for the bare type name (`Patient`), which no cache keyed by `url` holds; a core type's definition is published at `http://hl7.org/fhir/StructureDefinition/<type>`. That URL is tried first and the bare name second.

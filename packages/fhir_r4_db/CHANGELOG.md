@@ -1,6 +1,6 @@
 # fhir_r4_db
 
-## [Unreleased]
+## [0.12.0]
 
 - **A save that cannot be indexed now fails instead of succeeding quietly.** `_updateSearchParameters` caught every exception, printed it and returned `false`, and `saveResource` ignored that `false` and returned the resource. A record could therefore be stored with no index rows while the caller was told the save had worked, and it was then invisible to every search — a wrong answer rather than an error. The failure propagates now.
 - **`saveResource` writes the resource, its history row and its index rows in one transaction**, so a failure part way through leaves the store as it was rather than leaving a resource nothing can find. A failed update keeps the previous version.
