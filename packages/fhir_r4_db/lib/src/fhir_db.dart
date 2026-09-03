@@ -37,12 +37,13 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 7;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
         onCreate: (m) async {
           await m.createAll();
+          await createValueIndexes();
         },
         onUpgrade: (m, from, to) async {
           if (from < 2) {
@@ -227,6 +228,81 @@ class FhirDb extends _$FhirDb {
               }
             }
           }
+          if (from < 7) {
+            await createValueIndexes();
+          }
         },
+        beforeOpen: ensurePlannerStatistics,
       );
+
+  /// Gives the query planner statistics, when it has none or the schema just
+  /// changed.
+  ///
+  /// Measured 2026-09-03 on 928,935 resources: the database had never been
+  /// ANALYZEd, so with no `sqlite_stat1` the planner chose the primary key for
+  /// `SELECT DISTINCT id ... WHERE reference_id_part = ?`, whose leading
+  /// column `resource_type` matched 2.9 million rows, and a 0.01s query took
+  /// 10.35s. After ANALYZE it uses the value index and a rare value returns
+  /// in under a millisecond. ANALYZE took 2.2s on that 5 GB database, and it
+  /// runs only on create, on upgrade, or when no statistics exist, so an
+  /// ordinary open pays nothing.
+  ///
+  /// Public because a subclass that overrides [migration] — fhirant does —
+  /// replaces this `beforeOpen` and has to call it from its own.
+  Future<void> ensurePlannerStatistics(OpeningDetails details) async {
+    final hasStats = await customSelect(
+      "SELECT 1 FROM sqlite_master WHERE type='table' "
+      "AND name='sqlite_stat1'",
+    ).get();
+    if (details.hadUpgrade || details.wasCreated || hasStats.isEmpty) {
+      await customStatement('ANALYZE');
+    }
+  }
+
+  /// Indexes on the VALUE columns of the search tables.
+  ///
+  /// Each search table's primary key is `(resource_type, id, search_path,
+  /// search_name, param_index)`, whose leading columns are what a search
+  /// PRODUCES, not what it filters on. Without these, `WHERE token_value = ?`
+  /// has no index to use and every search scans its whole resource type.
+  ///
+  /// fhirant has created exactly these since its first schema
+  /// (`fhirant_db.dart`, `_createIndexes`), which is why fhirant never showed
+  /// the problem. Any other consumer of this package got no indexes at all.
+  /// They belong here, with the tables. `IF NOT EXISTS` keeps the two in step
+  /// where both run. Public for the same reason as [ensurePlannerStatistics]:
+  /// a subclass with its own [migration] must call it from there.
+  Future<void> createValueIndexes() async {
+    const statements = [
+      ('idx_string_value', 'string_search_parameters', 'string_value'),
+      ('idx_token_value', 'token_search_parameters', 'token_value'),
+      ('idx_token_system', 'token_search_parameters', 'token_system'),
+      (
+        'idx_ref_type',
+        'reference_search_parameters',
+        'reference_resource_type'
+      ),
+      ('idx_ref_id', 'reference_search_parameters', 'reference_id_part'),
+      (
+        'idx_ref_identifier_sys',
+        'reference_search_parameters',
+        'identifier_system'
+      ),
+      (
+        'idx_ref_identifier_val',
+        'reference_search_parameters',
+        'identifier_value'
+      ),
+      ('idx_uri_value', 'uri_search_parameters', 'uri_value'),
+      ('idx_date_value', 'date_search_parameters', 'date_value'),
+      ('idx_number_value', 'number_search_parameters', 'number_value'),
+      ('idx_quantity_value', 'quantity_search_parameters', 'quantity_value'),
+      ('idx_special_value', 'special_search_parameters', 'special_value'),
+    ];
+    for (final (name, table, column) in statements) {
+      await customStatement(
+        'CREATE INDEX IF NOT EXISTS $name ON $table($column)',
+      );
+    }
+  }
 }

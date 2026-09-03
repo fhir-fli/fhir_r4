@@ -140,7 +140,7 @@ void main() {
     );
 
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(6));
+    expect(version.data.values.first, equals(7));
 
     await db.close();
   });
@@ -173,6 +173,68 @@ void main() {
       isTrue,
       reason: 'the column has to exist and be written after the upgrade',
     );
+    await db.close();
+  });
+
+  test('the value indexes exist after a fresh create and after an upgrade',
+      () async {
+    // The search tables' primary keys lead with resource_type and id, which a
+    // search PRODUCES rather than filters on. Without an index on each value
+    // column, `WHERE token_value = ?` scans the whole resource type. fhirant
+    // created these itself from its first schema, so it never showed the
+    // problem; any other consumer of this package got no indexes at all.
+    Future<Set<String>> indexesIn(FhirDb db) async {
+      final rows = await db
+          .customSelect(
+            "SELECT name FROM sqlite_master WHERE type = 'index' "
+            "AND name NOT LIKE 'sqlite_autoindex%'",
+          )
+          .get();
+      return rows.map((r) => r.read<String>('name')).toSet();
+    }
+
+    const expected = {
+      'idx_string_value',
+      'idx_token_value',
+      'idx_token_system',
+      'idx_ref_type',
+      'idx_ref_id',
+      'idx_ref_identifier_sys',
+      'idx_ref_identifier_val',
+      'idx_uri_value',
+      'idx_date_value',
+      'idx_number_value',
+      'idx_quantity_value',
+      'idx_special_value',
+    };
+
+    final fresh = FhirDb(NativeDatabase.memory());
+    await fresh.customSelect('SELECT 1').get();
+    expect(await indexesIn(fresh), containsAll(expected));
+    await fresh.close();
+
+    await createSchemaV4(dbFile);
+    final upgraded = FhirDb(NativeDatabase(dbFile));
+    await upgraded.customSelect('SELECT 1').get();
+    expect(await indexesIn(upgraded), containsAll(expected));
+    await upgraded.close();
+  });
+
+  test('the planner has statistics once the database is open', () async {
+    // A database that has never been ANALYZEd has no sqlite_stat1, and the
+    // planner then guesses. Measured 2026-09-03 on 928,935 resources: it
+    // picked the primary key for a DISTINCT-id reference query and turned
+    // 0.01s into 10.35s. beforeOpen runs ANALYZE when the statistics are
+    // missing, so the table has to exist after any open.
+    final db = FhirDb(NativeDatabase(dbFile));
+    await db.fhirDao.saveResource(Patient(id: 'p'.toFhirString));
+    final stat = await db
+        .customSelect(
+          "SELECT name FROM sqlite_master WHERE type = 'table' "
+          "AND name = 'sqlite_stat1'",
+        )
+        .get();
+    expect(stat, isNotEmpty, reason: 'ANALYZE never ran');
     await db.close();
   });
 

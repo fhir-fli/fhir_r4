@@ -2592,15 +2592,26 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         }
 
         query.where((tbl) => whereCondition);
-        // NOT converted to a selectOnly id-column read like the other
-        // resolvers. Measured 2026-09-03 on 928,935 resources:
-        // `subject=Patient/does-not-exist` returns 0 rows in 0.01s as it
-        // stands, and 10.35s with that conversion. Whatever it did to this
-        // query, it stopped using an index, and a thousandfold regression on
-        // the common case is not worth the marshalling saved.
-        final rows = await query.get();
+        // Only the id column is read; see _executeTokenQuery.
+        //
+        // This conversion regressed once — `subject=Patient/does-not-exist`
+        // went from 0.01s to 10.35s — and the cause was measured with
+        // EXPLAIN QUERY PLAN: with no sqlite_stat1, the planner chose the
+        // primary key for the DISTINCT-id shape, whose leading column
+        // resource_type matched 2.9 million rows. The database is ANALYZEd
+        // on open now (fhir_db.dart, beforeOpen), and with statistics the
+        // planner picks idx_ref_id for both shapes.
+        final idColumn = referenceSearchParameters.id;
+        final rows =
+            await (selectOnly(referenceSearchParameters, distinct: true)
+                  ..addColumns([idColumn])
+                  ..where(whereCondition))
+                .get();
         for (final row in rows) {
-          matchingIds.add(row.id);
+          final id = row.read(idColumn);
+          if (id != null) {
+            matchingIds.add(id);
+          }
         }
       }
     }
