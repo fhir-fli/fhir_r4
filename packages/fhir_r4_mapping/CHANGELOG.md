@@ -1,5 +1,9 @@
 # fhir_r4_mapping
 
+## [Unreleased]
+
+- **A map that leaves a required element unset now says so usefully.** `transformBuilder` ends in `result.build()`, which is `Type.fromJson(toJson())`, and `fromJson` dereferences the required elements — so an unset one surfaced as `Null check operator used on a null value`, naming neither the type nor the element, inside an OperationOutcome the caller could do nothing with. The failure now reports the target type and the elements the map actually did set, which is the list the missing one is absent from.
+
 ## [0.12.0]
 
 - No code changes; version aligned with the fhir_r4 0.12.0 family release

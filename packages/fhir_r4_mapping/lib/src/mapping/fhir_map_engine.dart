@@ -142,8 +142,24 @@ class FhirMapEngine {
 
       if (result == null) {
         throw FHIRException(message: 'No output found');
-      } else {
+      }
+      try {
         return result.build();
+      } catch (e) {
+        // `build()` is `Type.fromJson(toJson())`, and fromJson dereferences
+        // the required elements. A map that never set one therefore fails
+        // with a bare "Null check operator used on a null value", which names
+        // neither the type nor the element and is useless to whoever wrote the
+        // map. The builder's own JSON says what the map DID produce, so say
+        // that instead: the missing element is the one the type requires and
+        // this list lacks.
+        final produced = result.toJson().keys.toList()..sort();
+        throw FHIRException(
+          message: 'The map did not produce a valid '
+              '${result.runtimeType.toString().replaceAll('Builder', '')}: '
+              '$e. It set: ${produced.isEmpty ? 'nothing' : produced.join(', ')}. '
+              'An element the type requires is missing from that list.',
+        );
       }
     } catch (e, s) {
       return e is FHIRException
