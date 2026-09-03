@@ -1370,9 +1370,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       query.where((tbl) => whereCondition);
-      final rows = await query.get();
+      // Only the id column is read, not every column of every
+      // matching row; see _executeTokenQuery for the measurement.
+      final idColumn = stringSearchParameters.id;
+      final rows = await (selectOnly(stringSearchParameters, distinct: true)
+            ..addColumns([idColumn])
+            ..where(whereCondition))
+          .get();
       for (final row in rows) {
-        matchingIds.add(row.id);
+        final id = row.read(idColumn);
+        if (id != null) {
+          matchingIds.add(id);
+        }
       }
     }
 
@@ -1533,7 +1542,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
 
-    final query = select(tokenSearchParameters);
     var whereCondition = tokenSearchParameters.resourceType
             .equals(resourceType) &
         (tokenSearchParameters.searchName.equals(searchPath) |
@@ -1553,10 +1561,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           whereCondition & tokenSearchParameters.tokenValue.equals(tokenValue);
     }
 
-    query.where((tbl) => whereCondition);
-    final rows = await query.get();
+    // Only the id column is wanted, so only the id column is read. Selecting
+    // whole rows marshalled every column of every match — searchPath,
+    // searchName, tokenSystem, tokenValue, paramIndex, lastUpdated — to keep
+    // one string. On 928,935 MIMIC resources, `Observation?status=final`
+    // matches 813,513 rows, so that is 813,513 rows built and discarded.
+    final idColumn = tokenSearchParameters.id;
+    final rows = await (selectOnly(tokenSearchParameters, distinct: true)
+          ..addColumns([idColumn])
+          ..where(whereCondition))
+        .get();
     for (final row in rows) {
-      matchingIds.add(row.id);
+      final id = row.read(idColumn);
+      if (id != null) {
+        matchingIds.add(id);
+      }
     }
 
     return matchingIds;
@@ -1862,9 +1881,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       query.where((tbl) => whereCondition);
-      final rows = await query.get();
+      // Only the id column is read, not every column of every
+      // matching row; see _executeTokenQuery for the measurement.
+      final idColumn = dateSearchParameters.id;
+      final rows = await (selectOnly(dateSearchParameters, distinct: true)
+            ..addColumns([idColumn])
+            ..where(whereCondition))
+          .get();
       for (final row in rows) {
-        matchingIds.add(row.id);
+        final id = row.read(idColumn);
+        if (id != null) {
+          matchingIds.add(id);
+        }
       }
     }
 
@@ -2249,9 +2277,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       query.where((tbl) => whereCondition);
-      final rows = await query.get();
+      // Only the id column is read, not every column of every
+      // matching row; see _executeTokenQuery for the measurement.
+      final idColumn = numberSearchParameters.id;
+      final rows = await (selectOnly(numberSearchParameters, distinct: true)
+            ..addColumns([idColumn])
+            ..where(whereCondition))
+          .get();
       for (final row in rows) {
-        matchingIds.add(row.id);
+        final id = row.read(idColumn);
+        if (id != null) {
+          matchingIds.add(id);
+        }
       }
     }
     return matchingIds;
@@ -2355,9 +2392,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       query.where((tbl) => whereCondition);
-      final rows = await query.get();
+      // Only the id column is read, not every column of every
+      // matching row; see _executeTokenQuery for the measurement.
+      final idColumn = quantitySearchParameters.id;
+      final rows = await (selectOnly(quantitySearchParameters, distinct: true)
+            ..addColumns([idColumn])
+            ..where(whereCondition))
+          .get();
       for (final row in rows) {
-        matchingIds.add(row.id);
+        final id = row.read(idColumn);
+        if (id != null) {
+          matchingIds.add(id);
+        }
       }
     }
     return matchingIds;
@@ -2405,16 +2451,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           valueCondition = uriSearchParameters.uriValue.equals(searchValue);
         }
 
-        final query = select(uriSearchParameters)
-          ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceType) &
-                pathCondition &
-                valueCondition,
-          );
-        final rows = await query.get();
+        // Only the id column is read, not every column of every
+        // matching row; see _executeTokenQuery for the measurement.
+        final idColumn = uriSearchParameters.id;
+        final rows = await (selectOnly(uriSearchParameters, distinct: true)
+              ..addColumns([idColumn])
+              ..where(
+                uriSearchParameters.resourceType.equals(resourceType) &
+                    pathCondition &
+                    valueCondition,
+              ))
+            .get();
         for (final row in rows) {
-          matchingIds.add(row.id);
+          final id = row.read(idColumn);
+          if (id != null) {
+            matchingIds.add(id);
+          }
         }
       }
     }
@@ -2540,6 +2592,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         }
 
         query.where((tbl) => whereCondition);
+        // NOT converted to a selectOnly id-column read like the other
+        // resolvers. Measured 2026-09-03 on 928,935 resources:
+        // `subject=Patient/does-not-exist` returns 0 rows in 0.01s as it
+        // stands, and 10.35s with that conversion. Whatever it did to this
+        // query, it stopped using an index, and a thousandfold regression on
+        // the common case is not worth the marshalling saved.
         final rows = await query.get();
         for (final row in rows) {
           matchingIds.add(row.id);
