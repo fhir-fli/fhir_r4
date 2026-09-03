@@ -1,5 +1,12 @@
 # fhir_r4_db
 
+## [Unreleased]
+
+- **A search returning one page no longer reads every match.** `search` hydrated every matching id — one query and one parse each — built the whole list in memory and then discarded all but the page. The ids are now sorted and cut to the requested page BEFORE any resource is read. Measured on 928,935 MIMIC-IV-on-FHIR resources, `Observation?status=final` with `count: 20` over 813,513 matches: **174.58s → 12.68s**.
+- **Paging is stable.** The matching ids were a `Set`, whose iteration order is undefined, so offset 20 was not guaranteed to continue where offset 0 stopped. They are sorted before paging.
+- **`searchCount` no longer reads any resource.** It called `search` with no count and returned `results.length`, so counting 813,513 matches parsed all 813,513 resources. The id resolution is its own method now and counting uses that: **217.94s → 10.52s**.
+- A sort still reads every match before paging, because ordering has to happen before the page can be chosen. That, and resolving the ids in Dart rather than in SQL, are what the remaining ~10s is.
+
 ## [0.12.0]
 
 - **A save that cannot be indexed now fails instead of succeeding quietly.** `_updateSearchParameters` caught every exception, printed it and returned `false`, and `saveResource` ignored that `false` and returned the resource. A record could therefore be stored with no index rows while the caller was told the save had worked, and it was then invisible to every search — a wrong answer rather than an error. The failure propagates now.

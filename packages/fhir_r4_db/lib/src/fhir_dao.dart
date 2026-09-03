@@ -409,7 +409,81 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     List<String>? sort,
   }) async {
     final resourceTypeString = resourceType.toString();
+    final matchingIds = await _matchingIds(
+      resourceType: resourceType,
+      searchParameters: searchParameters,
+      hasParameters: hasParameters,
+    );
 
+    if (matchingIds.isEmpty) {
+      return [];
+    }
+
+    // Cut the page out of the ID set BEFORE reading any resource.
+    //
+    // This used to read every match — one query and one parse each — build the
+    // whole list in memory, and then throw away all but the page. Measured on
+    // 928,935 MIMIC resources: `Observation?status=final` with count=20 took
+    // **190.94 seconds**, because it read roughly 800,000 rows to return 20.
+    //
+    // `matchingIds` is a Set, so its iteration order is not a defined order to
+    // page over: offset 20 was not guaranteed to continue where offset 0 left
+    // off. The ids are sorted first, which makes paging stable and repeatable
+    // for a caller that walks the pages.
+    //
+    // A sort is the exception: `_sortResults` orders resources, so the page
+    // cannot be chosen until they are ordered. That path still reads all of
+    // them, and is the next thing to fix.
+    final ordered = matchingIds.toList()..sort();
+
+    if (sort != null && sort.isNotEmpty) {
+      final all = <fhir.Resource>[];
+      for (final id in ordered) {
+        final resource = await getResource(resourceType, id);
+        if (resource != null) {
+          all.add(resource);
+        }
+      }
+      await _sortResults(all, sort, resourceTypeString);
+      return _page(all, offset, count);
+    }
+
+    final page = _page(ordered, offset, count);
+    final results = <fhir.Resource>[];
+    for (final id in page) {
+      final resource = await getResource(resourceType, id);
+      if (resource != null) {
+        results.add(resource);
+      }
+    }
+    return results;
+  }
+
+  /// The requested slice of [items], given an offset and a count.
+  static List<T> _page<T>(List<T> items, int? offset, int? count) {
+    final start = (offset != null && offset > 0)
+        ? (offset > items.length ? items.length : offset)
+        : 0;
+    var end = items.length;
+    if (count != null && count > 0 && end - start > count) {
+      end = start + count;
+    }
+    return items.sublist(start, end);
+  }
+
+  /// The ids matching a search, without reading a single resource.
+  ///
+  /// Split out so `searchCount` can answer without hydrating: it used to call
+  /// `search` with no count and return `results.length`, which read and parsed
+  /// every match. Measured on 928,935 MIMIC resources, `Observation?status=
+  /// final`: 184.63s to count 813,513, against 10.54s for the same ids inside
+  /// `search`.
+  Future<Set<String>> _matchingIds({
+    required fhir.R4ResourceType resourceType,
+    Map<String, List<String>>? searchParameters,
+    List<HasParameter>? hasParameters,
+  }) async {
+    final resourceTypeString = resourceType.toString();
     var matchingIds = <String>{};
     var firstParam = true;
 
@@ -580,34 +654,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           .get();
       matchingIds = allRows.map((r) => r.id).toSet();
     }
-
-    if (matchingIds.isEmpty) {
-      return [];
-    }
-
-    // Retrieve matching resources
-    final results = <fhir.Resource>[];
-    for (final id in matchingIds) {
-      final resource = await getResource(resourceType, id);
-      if (resource != null) {
-        results.add(resource);
-      }
-    }
-
-    // Apply sorting
-    if (sort != null && sort.isNotEmpty) {
-      await _sortResults(results, sort, resourceTypeString);
-    }
-
-    // Apply pagination
-    if (offset != null && offset > 0) {
-      results.removeRange(0, offset > results.length ? results.length : offset);
-    }
-    if (count != null && count > 0 && results.length > count) {
-      results.removeRange(count, results.length);
-    }
-
-    return results;
+    return matchingIds;
   }
 
   /// Get count of resources matching search parameters.
@@ -622,12 +669,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       return getResourceCount(resourceType);
     }
 
-    final results = await search(
+    final ids = await _matchingIds(
       resourceType: resourceType,
       searchParameters: searchParameters,
       hasParameters: hasParameters,
     );
-    return results.length;
+    return ids.length;
   }
 
   // ──────────────────────────────────────────────────────────────────────────
