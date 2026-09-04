@@ -11,21 +11,30 @@ Future<void> main() async {
   late FhirDb db;
   late FhirDao dao;
 
+  /// Runs the search, and asserts which path ran: SQL paging whenever a
+  /// count was given, unless [general] says this shape is meant to fall
+  /// back. A right answer proves nothing about the path on its own.
   Future<List<String>> ids(
     Map<String, List<String>> params, {
     int? count,
     int? offset,
     List<String>? sort,
-  }) async =>
-      (await dao.search(
-        resourceType: R4ResourceType.Observation,
-        searchParameters: params,
-        count: count,
-        offset: offset,
-        sort: sort,
-      ))
-          .map((r) => r.id!.valueString!)
-          .toList();
+    bool general = false,
+  }) async {
+    final found = await dao.search(
+      resourceType: R4ResourceType.Observation,
+      searchParameters: params,
+      count: count,
+      offset: offset,
+      sort: sort,
+    );
+    expect(
+      dao.lastSearchPagedInSql,
+      count != null && !general,
+      reason: 'path for $params count=$count sort=$sort',
+    );
+    return found.map((r) => r.id!.valueString!).toList();
+  }
 
   setUp(() async {
     db = FhirDb(NativeDatabase.memory());
@@ -178,6 +187,70 @@ Future<void> main() async {
     );
   });
 
+  test('a comma is an OR inside one parameter, paged in SQL', () async {
+    // status=final,preliminary -> everything; code=B OR status=preliminary.
+    expect(
+      await ids(
+        {
+          'status': ['final,preliminary'],
+        },
+        count: 3,
+        offset: 27,
+      ),
+      ['o27', 'o28', 'o29'],
+    );
+    expect(
+      await ids(
+        {
+          'code': ['B'],
+          'status': ['preliminary,cancelled'],
+        },
+        count: 3,
+      ),
+      ['o21', 'o23', 'o25'],
+    );
+    // An escaped comma is one value, and it matches nothing here.
+    expect(
+      await ids(
+        {
+          'status': [r'final\,preliminary'],
+        },
+        count: 3,
+      ),
+      isEmpty,
+    );
+  });
+
+  test('a repeated parameter is an AND, paged in SQL', () async {
+    // code=A AND code=B: no observation has both.
+    expect(
+      await ids(
+        {
+          'code': ['A', 'B'],
+        },
+        count: 3,
+      ),
+      isEmpty,
+    );
+    // status=final AND status=final,preliminary: the even ids.
+    expect(
+      await ids(
+        {
+          'status': ['final', 'final,preliminary'],
+        },
+        count: 3,
+      ),
+      ['o00', 'o02', 'o04'],
+    );
+    // Agrees with the general path (no count, so no SQL paging).
+    expect(
+      await ids({
+        'code': ['A', 'B'],
+      }),
+      isEmpty,
+    );
+  });
+
   test('a date parameter pages in SQL with its prefix honoured', () async {
     // date gt 2020-01-20 -> o20..o29 -> 10 rows, paged 4 at a time.
     final page1 = await ids(
@@ -217,6 +290,7 @@ Future<void> main() async {
           'date': ['gtnot-a-date'],
         },
         count: 5,
+        general: true,
       ),
       isEmpty,
     );
@@ -264,6 +338,7 @@ Future<void> main() async {
         'value-string:exact': ['Alpha reading'],
       },
       count: 3,
+      general: true,
     );
     expect(exact, ['o00', 'o01', 'o02']);
   });
@@ -570,6 +645,7 @@ Future<void> main() async {
           'subject.name': ['anything'],
         },
         count: 5,
+        general: true,
       ),
       isEmpty,
     );

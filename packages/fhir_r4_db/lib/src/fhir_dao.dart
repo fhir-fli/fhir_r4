@@ -399,6 +399,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   // Search Operations
   // ──────────────────────────────────────────────────────────────────────────
 
+  /// Whether the last [search] was paged in SQL (true) or resolved its ids
+  /// on the general path (false). For tests: a search that gives the right
+  /// answer on either path proves nothing about which one ran.
+  @visibleForTesting
+  bool lastSearchPagedInSql = false;
+
   /// Search resources using search parameters.
   Future<List<fhir.Resource>> search({
     required fhir.R4ResourceType resourceType,
@@ -418,6 +424,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       count,
       offset,
     );
+    lastSearchPagedInSql = paged != null;
     if (paged != null) {
       final results = <fhir.Resource>[];
       for (final id in paged) {
@@ -532,10 +539,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     final parts = <_IndexCondition>[];
     for (final entry in (searchParameters ?? const {}).entries) {
-      if (entry.value.length != 1) return null;
-      final value = entry.value.single;
-      if (value.contains(',') || value.isEmpty) return null;
-
       final key = SearchQueryKey.parse(entry.key);
       if (key.qualifier != null) return null;
       if (key.name.startsWith('_')) return null;
@@ -543,19 +546,43 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final declared = searchParameterFor(resourceType, key.name);
       if (declared == null) return null;
 
-      // The first parameter is the outer select on its own table; every
-      // further one is a correlated EXISTS on an ALIAS of its table, so two
-      // parameters on the same table (status and code are both tokens) do
-      // not collide.
-      final part = _conditionFor(
-        resourceType,
-        key.name,
-        value,
-        declared,
-        aliasName: parts.isEmpty ? null : 'p${parts.length}',
-      );
-      if (part == null) return null;
-      parts.add(part);
+      // R4B 3.1.1.4.17: a repeated parameter is an AND, a comma inside one
+      // is an OR. Each repetition is one condition on its own (aliased)
+      // table; the comma-separated values inside it are ORed on that same
+      // table. The split honours FHIR's backslash escaping, so `a\,b` is
+      // one value.
+      for (final repetition in entry.value) {
+        final orValues = splitEscaped(repetition, ',')
+            .map((v) => v.trim())
+            .where((v) => v.isNotEmpty)
+            .toList();
+        if (orValues.isEmpty) return null;
+
+        // The first condition is the outer select on its own table; every
+        // further one is nested on an ALIAS of its table, so two conditions
+        // on the same table (status and code are both tokens) do not
+        // collide.
+        final aliasName = parts.isEmpty ? null : 'p${parts.length}';
+        _IndexCondition? combined;
+        for (final value in orValues) {
+          final one = _conditionFor(
+            resourceType,
+            key.name,
+            value,
+            declared,
+            aliasName: aliasName,
+          );
+          if (one == null) return null;
+          combined = combined == null
+              ? one
+              : _IndexCondition(
+                  combined.table,
+                  combined.idColumn,
+                  combined.condition | one.condition,
+                );
+        }
+        parts.add(combined!);
+      }
     }
 
     // Which parameter is the outer select, and how the others nest, is
