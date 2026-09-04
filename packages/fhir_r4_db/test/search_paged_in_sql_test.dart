@@ -38,6 +38,7 @@ Future<void> main() async {
           'resourceType': 'Observation',
           'id': 'o${i.toString().padLeft(2, '0')}',
           'status': i.isEven ? 'final' : 'preliminary',
+          'effectiveDateTime': '2020-01-${(i + 1).toString().padLeft(2, '0')}',
           'code': {
             'coding': [
               {'system': 'http://example.org', 'code': i < 20 ? 'A' : 'B'},
@@ -96,6 +97,50 @@ Future<void> main() async {
       count: 10,
     );
     expect(page, ['o20', 'o22', 'o24', 'o26', 'o28']);
+  });
+
+  test('a date parameter pages in SQL with its prefix honoured', () async {
+    // date gt 2020-01-20 -> o20..o29 -> 10 rows, paged 4 at a time.
+    final page1 = await ids(
+      {
+        'date': ['gt2020-01-20'],
+      },
+      count: 4,
+    );
+    final page3 = await ids(
+      {
+        'date': ['gt2020-01-20'],
+      },
+      count: 4,
+      offset: 8,
+    );
+    expect(page1, ['o20', 'o21', 'o22', 'o23']);
+    expect(page3, ['o28', 'o29']);
+  });
+
+  test('a token and a date parameter intersect across two tables', () async {
+    // final AND date gt 2020-01-20 -> even ids in 20..29 -> 5 rows.
+    final page = await ids(
+      {
+        'status': ['final'],
+        'date': ['gt2020-01-20'],
+      },
+      count: 10,
+    );
+    expect(page, ['o20', 'o22', 'o24', 'o26', 'o28']);
+  });
+
+  test('a date value that is not a date falls back and finds nothing',
+      () async {
+    expect(
+      await ids(
+        {
+          'date': ['gtnot-a-date'],
+        },
+        count: 5,
+      ),
+      isEmpty,
+    );
   });
 
   test('the SQL path and the general path agree', () async {

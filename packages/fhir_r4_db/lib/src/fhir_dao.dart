@@ -410,7 +410,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }) async {
     final resourceTypeString = resourceType.toString();
 
-    final paged = await _pagedTokenIds(
+    final paged = await _pagedIds(
       resourceTypeString,
       searchParameters,
       hasParameters,
@@ -491,22 +491,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return items.sublist(start, end);
   }
 
-  /// The page of ids, cut in SQL, for a search made only of plain token
-  /// parameters: any number of them, each one repetition, no modifier, no
-  /// comma, no `_has`, no `_sort`. Returns null for anything else, and the
-  /// general path runs.
+  /// The page of ids, cut in SQL, for a search made only of parameters this
+  /// path knows how to express as a typed WHERE: any number of them, each one
+  /// repetition, no modifier, no comma, no `_has`, no `_sort`. Returns null
+  /// for anything else, and the general path runs.
   ///
-  /// One parameter is a single select with `ORDER BY id LIMIT`. Each further
-  /// parameter becomes `id IN (SELECT id … WHERE …)` on the same select —
-  /// Drift's `isInQuery`, so it stays typed — and SQLite intersects them and
-  /// stops at the page. `status=final` alone took 46.71s on the published
-  /// 0.12.0 and ~5s after the earlier fixes; every remaining second was
-  /// SQLite handing 813,513 ids to Dart so Dart could keep 20. Measured
-  /// after this: 1.19s, of which 0.55s is SQLite finding the page.
+  /// The first parameter is the select; each further one becomes
+  /// `id IN (SELECT id FROM <its table> WHERE …)` on it through Drift's
+  /// `isInQuery`, so nothing is raw SQL and SQLite intersects the parameters
+  /// and stops at the page. `status=final` alone took 46.71s on the published
+  /// 0.12.0 and ~5s after the earlier fixes, every remaining second of it
+  /// SQLite handing 813,513 ids to Dart so Dart could keep 20; measured after
+  /// this, 1.12s, and `status=final AND code=227969` 0.73s.
   ///
-  /// Only token is here. The other types get the same treatment by adding a
-  /// condition builder each; a search mixing in one of them falls through.
-  Future<List<String>?> _pagedTokenIds(
+  /// Types covered: token, date. Each further type is one condition builder
+  /// added to [_conditionFor]; a search using a type not there falls through.
+  Future<List<String>?> _pagedIds(
     String resourceType,
     Map<String, List<String>>? searchParameters,
     List<HasParameter>? hasParameters,
@@ -519,7 +519,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (hasParameters != null && hasParameters.isNotEmpty) return null;
     if (searchParameters == null || searchParameters.isEmpty) return null;
 
-    final conditions = <Expression<bool>>[];
+    final parts = <_IndexCondition>[];
     for (final entry in searchParameters.entries) {
       if (entry.value.length != 1) return null;
       final value = entry.value.single;
@@ -530,28 +530,60 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       if (key.name.startsWith('_')) return null;
 
       final declared = searchParameterFor(resourceType, key.name);
-      if (declared == null || declared.type != 'token') return null;
+      if (declared == null) return null;
 
-      conditions.add(_tokenCondition(resourceType, key.name, value));
+      final part = _conditionFor(resourceType, key.name, value, declared);
+      if (part == null) return null;
+      parts.add(part);
     }
 
-    final idColumn = tokenSearchParameters.id;
-    var where = conditions.first;
-    for (final other in conditions.skip(1)) {
+    final first = parts.first;
+    var where = first.condition;
+    for (final other in parts.skip(1)) {
       where = where &
-          idColumn.isInQuery(
-            selectOnly(tokenSearchParameters, distinct: true)
-              ..addColumns([idColumn])
-              ..where(other),
+          first.idColumn.isInQuery(
+            selectOnly(other.table, distinct: true)
+              ..addColumns([other.idColumn])
+              ..where(other.condition),
           );
     }
-    final rows = await (selectOnly(tokenSearchParameters, distinct: true)
-          ..addColumns([idColumn])
+    final rows = await (selectOnly(first.table, distinct: true)
+          ..addColumns([first.idColumn])
           ..where(where)
-          ..orderBy([OrderingTerm.asc(idColumn)])
+          ..orderBy([OrderingTerm.asc(first.idColumn)])
           ..limit(count, offset: offset))
         .get();
-    return rows.map((r) => r.read(idColumn)).whereType<String>().toList();
+    return rows.map((r) => r.read(first.idColumn)).whereType<String>().toList();
+  }
+
+  /// One parameter's typed WHERE on its own index table, or null when this
+  /// path has no builder for the parameter's type or the value does not
+  /// parse for it.
+  _IndexCondition? _conditionFor(
+    String resourceType,
+    String name,
+    String value,
+    SearchParameterDefinition declared,
+  ) {
+    switch (declared.type) {
+      case 'token':
+        return _IndexCondition(
+          tokenSearchParameters,
+          tokenSearchParameters.id,
+          _tokenCondition(resourceType, name, value),
+        );
+      case 'date':
+        final (prefix, rest) = splitComparator(declared, value);
+        final condition = _dateCondition(resourceType, name, prefix, rest);
+        if (condition == null) return null;
+        return _IndexCondition(
+          dateSearchParameters,
+          dateSearchParameters.id,
+          condition,
+        );
+      default:
+        return null;
+    }
   }
 
   /// The ids matching a search, without reading a single resource.
@@ -1868,6 +1900,85 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return false;
   }
 
+  /// The WHERE for one date value with its comparator prefix, as a typed
+  /// expression, or null when the value is not a date. Shared by the resolver
+  /// and the SQL-paged path.
+  Expression<bool>? _dateCondition(
+    String resourceType,
+    String searchPath,
+    String? modifier,
+    String searchValue,
+  ) {
+    late DateTime searchDate;
+    try {
+      if (searchValue.contains('T')) {
+        searchDate = DateTime.parse(searchValue);
+      } else {
+        final dateParts = searchValue.split('-');
+        if (dateParts.length >= 3) {
+          searchDate = DateTime(
+            int.parse(dateParts[0]),
+            int.parse(dateParts[1]),
+            int.parse(dateParts[2]),
+          );
+        } else if (dateParts.length == 2) {
+          searchDate =
+              DateTime(int.parse(dateParts[0]), int.parse(dateParts[1]));
+        } else if (dateParts.length == 1) {
+          searchDate = DateTime(int.parse(dateParts[0]));
+        } else {
+          return null;
+        }
+      }
+    } catch (_) {
+      return null;
+    }
+
+    var whereCondition = dateSearchParameters.resourceType
+            .equals(resourceType) &
+        (dateSearchParameters.searchName.equals(searchPath) |
+            dateSearchParameters.searchPath.like('$resourceType.$searchPath') |
+            dateSearchParameters.searchPath
+                .like('$resourceType.%.$searchPath'));
+
+    switch (modifier) {
+      case 'gt':
+        whereCondition = whereCondition &
+            dateSearchParameters.dateValue.isBiggerThanValue(searchDate);
+      case 'lt':
+        whereCondition = whereCondition &
+            dateSearchParameters.dateValue.isSmallerThanValue(searchDate);
+      case 'ge':
+        whereCondition = whereCondition &
+            dateSearchParameters.dateValue.isBiggerOrEqualValue(searchDate);
+      case 'le':
+        whereCondition = whereCondition &
+            dateSearchParameters.dateValue.isSmallerOrEqualValue(searchDate);
+      case 'sa':
+        whereCondition = whereCondition &
+            dateSearchParameters.dateValue.isBiggerThanValue(searchDate);
+      case 'eb':
+        whereCondition = whereCondition &
+            dateSearchParameters.dateValue.isSmallerThanValue(searchDate);
+      case 'ap':
+        final dayBefore = searchDate.subtract(const Duration(days: 1));
+        final dayAfter = searchDate.add(const Duration(days: 1));
+        whereCondition = whereCondition &
+            (dateSearchParameters.dateValue.isBiggerOrEqualValue(dayBefore) &
+                dateSearchParameters.dateValue.isSmallerOrEqualValue(dayAfter));
+      case 'ne':
+        whereCondition = whereCondition &
+            dateSearchParameters.dateValue.equals(searchDate).not();
+      default:
+        // eq, and no prefix at all, which R4 makes the same thing: "eq" is
+        // the default.
+        whereCondition =
+            whereCondition & dateSearchParameters.dateValue.equals(searchDate);
+    }
+
+    return whereCondition;
+  }
+
   Future<Set<String>> _searchDateParameter(
     String resourceType,
     String searchPath,
@@ -1915,79 +2026,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         continue;
       }
 
-      late DateTime searchDate;
-      try {
-        if (searchValue.contains('T')) {
-          searchDate = DateTime.parse(searchValue);
-        } else {
-          final dateParts = searchValue.split('-');
-          if (dateParts.length >= 3) {
-            searchDate = DateTime(
-              int.parse(dateParts[0]),
-              int.parse(dateParts[1]),
-              int.parse(dateParts[2]),
-            );
-          } else if (dateParts.length == 2) {
-            searchDate =
-                DateTime(int.parse(dateParts[0]), int.parse(dateParts[1]));
-          } else if (dateParts.length == 1) {
-            searchDate = DateTime(int.parse(dateParts[0]));
-          } else {
-            continue;
-          }
-        }
-      } catch (_) {
+      final whereCondition =
+          _dateCondition(resourceType, searchPath, modifier, searchValue);
+      if (whereCondition == null) {
         continue;
       }
 
-      final query = select(dateSearchParameters);
-      var whereCondition =
-          dateSearchParameters.resourceType.equals(resourceType) &
-              (dateSearchParameters.searchName.equals(searchPath) |
-                  dateSearchParameters.searchPath
-                      .like('$resourceType.$searchPath') |
-                  dateSearchParameters.searchPath
-                      .like('$resourceType.%.$searchPath'));
-
-      switch (modifier) {
-        case 'gt':
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.isBiggerThanValue(searchDate);
-        case 'lt':
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.isSmallerThanValue(searchDate);
-        case 'ge':
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.isBiggerOrEqualValue(searchDate);
-        case 'le':
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.isSmallerOrEqualValue(searchDate);
-        case 'sa':
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.isBiggerThanValue(searchDate);
-        case 'eb':
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.isSmallerThanValue(searchDate);
-        case 'ap':
-          final dayBefore = searchDate.subtract(const Duration(days: 1));
-          final dayAfter = searchDate.add(const Duration(days: 1));
-          whereCondition = whereCondition &
-              (dateSearchParameters.dateValue.isBiggerOrEqualValue(dayBefore) &
-                  dateSearchParameters.dateValue
-                      .isSmallerOrEqualValue(dayAfter));
-        case 'ne':
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.equals(searchDate).not();
-        default:
-          // eq, and no prefix at all, which R4 makes the same thing: "eq" is
-          // the default.
-          whereCondition = whereCondition &
-              dateSearchParameters.dateValue.equals(searchDate);
-      }
-
-      query.where((tbl) => whereCondition);
-      // Only the id column is read, not every column of every
-      // matching row; see _executeTokenQuery for the measurement.
       final idColumn = dateSearchParameters.id;
       final rows = await (selectOnly(dateSearchParameters, distinct: true)
             ..addColumns([idColumn])
@@ -2998,4 +3042,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     return {};
   }
+}
+
+/// One search parameter expressed as a WHERE on its own index table.
+class _IndexCondition {
+  const _IndexCondition(this.table, this.idColumn, this.condition);
+
+  final TableInfo<Table, dynamic> table;
+  final GeneratedColumn<String> idColumn;
+  final Expression<bool> condition;
 }
