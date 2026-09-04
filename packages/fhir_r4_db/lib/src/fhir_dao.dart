@@ -1403,12 +1403,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           case 'below':
             // 3.1.1.4.10.1: `contenttype:below=text/xml` finds
             // `text/xml; charset=UTF-8`; "servers are only required to
-            // support :below on the base part of the mime type". A code's
-            // `:below` is subsumption (3.1.1.4.10), which needs the
+            // support :below on the base part of the mime type". Which
+            // parameters are mime types comes from the definitions: the
+            // element is bound to the mimetypes value set. On any other
+            // token `:below` is subsumption (3.1.1.4.10), which needs the
             // CodeSystem's hierarchy and is refused rather than answered
-            // as a plain match. A mime type has a `/`, a code does not.
+            // as a plain match. A value with no `/` is not a base part
+            // either; R4B describes no other form.
             final mime = unescapeValue(value);
-            if (!mime.contains('/')) {
+            if (!declared.mime || !mime.contains('/')) {
               throw UnsupportedSearchModifier(
                 parameter: name,
                 modifier: modifier,

@@ -1,4 +1,4 @@
-// ignore_for_file: require_trailing_commas, unnecessary_raw_strings
+// ignore_for_file: require_trailing_commas, unnecessary_raw_strings, lines_longer_than_80_chars
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from search-parameters.json by
 // fhir_generator/lib/src/generate_search_parameter_types.dart
@@ -16,6 +16,7 @@ class SearchParameterDefinition {
     this.type,
     this.comparators, {
     this.components = const [],
+    this.mime = false,
   });
 
   /// string | token | date | number | quantity | reference |
@@ -31,6 +32,14 @@ class SearchParameterDefinition {
   /// parameter it stands for and its expression relative to the
   /// composite's own element. Empty for every other type.
   final List<SearchComponent> components;
+
+  /// True for a token parameter whose element is bound to the
+  /// mimetypes value set (`Attachment.contentType`,
+  /// `CapabilityStatement.format`, ...). `:below` on such a
+  /// parameter is the mime-type search of search.html
+  /// "Searching MIME Types"; on any other token it is code
+  /// subsumption.
+  final bool mime;
 }
 
 /// One component of a composite search parameter.
@@ -234,7 +243,7 @@ const Map<String, Map<String, SearchParameterDefinition>> searchParameterTypes =
         'date', ['eq', 'ne', 'gt', 'ge', 'lt', 'le', 'sa', 'eb', 'ap']),
     'description': SearchParameterDefinition('string', []),
     'fhirversion': SearchParameterDefinition('token', []),
-    'format': SearchParameterDefinition('token', []),
+    'format': SearchParameterDefinition('token', [], mime: true),
     'guide': SearchParameterDefinition('reference', []),
     'jurisdiction': SearchParameterDefinition('token', []),
     'mode': SearchParameterDefinition('token', []),
@@ -785,7 +794,7 @@ const Map<String, Map<String, SearchParameterDefinition>> searchParameterTypes =
     'authenticator': SearchParameterDefinition('reference', []),
     'author': SearchParameterDefinition('reference', []),
     'category': SearchParameterDefinition('token', []),
-    'contenttype': SearchParameterDefinition('token', []),
+    'contenttype': SearchParameterDefinition('token', [], mime: true),
     'custodian': SearchParameterDefinition('reference', []),
     'date': SearchParameterDefinition(
         'date', ['eq', 'ne', 'gt', 'ge', 'lt', 'le', 'sa', 'eb', 'ap']),
@@ -1259,7 +1268,7 @@ const Map<String, Map<String, SearchParameterDefinition>> searchParameterTypes =
   },
   'Library': {
     'composed-of': SearchParameterDefinition('reference', []),
-    'content-type': SearchParameterDefinition('token', []),
+    'content-type': SearchParameterDefinition('token', [], mime: true),
     'context': SearchParameterDefinition('token', []),
     'context-quantity': SearchParameterDefinition(
         'quantity', ['eq', 'ne', 'gt', 'ge', 'lt', 'le', 'sa', 'eb', 'ap']),
@@ -2359,7 +2368,7 @@ const Map<String, Map<String, SearchParameterDefinition>> searchParameterTypes =
   'Subscription': {
     'contact': SearchParameterDefinition('token', []),
     'criteria': SearchParameterDefinition('string', []),
-    'payload': SearchParameterDefinition('token', []),
+    'payload': SearchParameterDefinition('token', [], mime: true),
     'status': SearchParameterDefinition('token', []),
     'type': SearchParameterDefinition('token', []),
     'url': SearchParameterDefinition('uri', []),

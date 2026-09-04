@@ -1208,10 +1208,21 @@ Future<void> main() async {
             .toList();
     expect(await docs('contenttype', 'text/xml'), ['xml']);
     expect(await docs('contenttype:below', 'text/xml'), ['xml', 'xmlc']);
-    // Without a `/` the value is a code, and :below on a code is
-    // subsumption, which is refused.
+    // R4B describes only the base part, so a value with no `/` is refused.
     await expectLater(
       docs('contenttype:below', 'text'),
+      throwsA(isA<UnsupportedSearchModifier>()),
+    );
+    // Whether a parameter is a mime type comes from its element's binding,
+    // not from the shape of the value: `code` is not, so `:below` on it is
+    // subsumption and refused even when the value looks like a mime type.
+    await expectLater(
+      ids(
+        {
+          'code:below': ['text/plain'],
+        },
+        count: 3,
+      ),
       throwsA(isA<UnsupportedSearchModifier>()),
     );
     for (final (id, version) in [
