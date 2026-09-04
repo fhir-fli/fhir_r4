@@ -1959,83 +1959,106 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return false;
   }
 
-  /// The WHERE for one date value with its comparator prefix, as a typed
-  /// expression, or null when the value is not a date. Shared by the resolver
-  /// and the SQL-paged path.
+  /// The WHERE for one date value with its prefix, or null when the value
+  /// is not a search date.
+  ///
+  /// R4B §3.1.1.4.7: the value "SHALL be populated from the left", "the
+  /// minutes SHALL be present if an hour is present", and "Time can consist
+  /// of hours and minutes with no seconds". That grammar is checked whole
+  /// before parsing, because the primitive parser is lenient at the tail —
+  /// `2013-1-4` parsed as the year 2013, which is a different search.
   Expression<bool>? _dateCondition(
     String resourceType,
     String searchPath,
     String? modifier,
     String searchValue,
   ) {
-    late DateTime searchDate;
-    try {
-      if (searchValue.contains('T')) {
-        searchDate = DateTime.parse(searchValue);
-      } else {
-        final dateParts = searchValue.split('-');
-        if (dateParts.length >= 3) {
-          searchDate = DateTime(
-            int.parse(dateParts[0]),
-            int.parse(dateParts[1]),
-            int.parse(dateParts[2]),
-          );
-        } else if (dateParts.length == 2) {
-          searchDate =
-              DateTime(int.parse(dateParts[0]), int.parse(dateParts[1]));
-        } else if (dateParts.length == 1) {
-          searchDate = DateTime(int.parse(dateParts[0]));
-        } else {
-          return null;
-        }
-      }
-    } catch (_) {
+    final range = searchDateRange(searchValue);
+    if (range == null) {
       return null;
     }
-
-    var whereCondition = dateSearchParameters.resourceType
-            .equals(resourceType) &
+    return dateSearchParameters.resourceType.equals(resourceType) &
         (dateSearchParameters.searchName.equals(searchPath) |
             dateSearchParameters.searchPath.like('$resourceType.$searchPath') |
             dateSearchParameters.searchPath
-                .like('$resourceType.%.$searchPath'));
+                .like('$resourceType.%.$searchPath')) &
+        _dateRangeCondition(
+          low: dateSearchParameters.dateValue,
+          high: dateSearchParameters.dateValueEnd,
+          prefix: modifier,
+          search: range,
+        );
+  }
 
-    switch (modifier) {
+  /// The comparison of a stored range `[low, high)` against a search range,
+  /// R4B §3.1.1.4.5 as applied to dates in §3.1.1.4.7. A null [low] is
+  /// "'less than' any actual date" and a null [high] "'greater than' any
+  /// actual date", which is how a Period with a missing bound is indexed.
+  ///
+  /// With the stored range `[L, H)` and the search range `[l, h)`:
+  ///
+  /// - `eq`: "the range of the search value fully contains the range of the
+  ///   target value": `L >= l AND H <= h`. A missing bound cannot be
+  ///   contained.
+  /// - `ne`: "does not fully contain": the complement.
+  /// - `gt`: "the range above the search value intersects (i.e. overlaps)
+  ///   with the range of the target value": `H > h`, or no upper bound.
+  /// - `lt`: the range below intersects: `L < l`, or no lower bound.
+  /// - `ge`: `gt` or `eq`. `le`: `lt` or `eq`.
+  /// - `sa`: "does not overlap … and the range above the search value
+  ///   contains the range of the target value": `L >= h`.
+  /// - `eb`: `H <= l`.
+  /// - `ap`: the search range widened by "10% of the gap between now and the
+  ///   date" on each side overlaps the target.
+  ///
+  /// Every worked example in §3.1.1.4.7 is a test: "from 21-Jan 2013
+  /// onwards" is a Period with no end, and `ge2013-03-14` includes it
+  /// "because that period may include times after 14-Mar 2013".
+  Expression<bool> _dateRangeCondition({
+    required Expression<DateTime> low,
+    required Expression<DateTime> high,
+    required String? prefix,
+    required ({DateTime low, DateTime high}) search,
+  }) {
+    final l = search.low;
+    final h = search.high;
+    final lowMissing = low.isNull();
+    final highMissing = high.isNull();
+    final contained = low.isNotNull() &
+        high.isNotNull() &
+        low.isBiggerOrEqualValue(l) &
+        high.isSmallerOrEqualValue(h);
+    final above = highMissing | high.isBiggerThanValue(h);
+    final below = lowMissing | low.isSmallerThanValue(l);
+    switch (prefix) {
       case 'gt':
-        whereCondition = whereCondition &
-            dateSearchParameters.dateValue.isBiggerThanValue(searchDate);
+        return above;
       case 'lt':
-        whereCondition = whereCondition &
-            dateSearchParameters.dateValue.isSmallerThanValue(searchDate);
+        return below;
       case 'ge':
-        whereCondition = whereCondition &
-            dateSearchParameters.dateValue.isBiggerOrEqualValue(searchDate);
+        return above | contained;
       case 'le':
-        whereCondition = whereCondition &
-            dateSearchParameters.dateValue.isSmallerOrEqualValue(searchDate);
+        return below | contained;
       case 'sa':
-        whereCondition = whereCondition &
-            dateSearchParameters.dateValue.isBiggerThanValue(searchDate);
+        return low.isNotNull() & low.isBiggerOrEqualValue(h);
       case 'eb':
-        whereCondition = whereCondition &
-            dateSearchParameters.dateValue.isSmallerThanValue(searchDate);
-      case 'ap':
-        final dayBefore = searchDate.subtract(const Duration(days: 1));
-        final dayAfter = searchDate.add(const Duration(days: 1));
-        whereCondition = whereCondition &
-            (dateSearchParameters.dateValue.isBiggerOrEqualValue(dayBefore) &
-                dateSearchParameters.dateValue.isSmallerOrEqualValue(dayAfter));
+        return high.isNotNull() & high.isSmallerOrEqualValue(l);
       case 'ne':
-        whereCondition = whereCondition &
-            dateSearchParameters.dateValue.equals(searchDate).not();
+        return contained.not();
+      case 'ap':
+        // "the recommended value for the approximation is 10% of the stated
+        // value (or for a date, 10% of the gap between now and the date)".
+        final gap = DateTime.now().difference(l).abs();
+        final margin = Duration(milliseconds: gap.inMilliseconds ~/ 10);
+        final widenedLow = l.subtract(margin);
+        final widenedHigh = h.add(margin);
+        return (lowMissing | low.isSmallerThanValue(widenedHigh)) &
+            (highMissing | high.isBiggerThanValue(widenedLow));
       default:
-        // eq, and no prefix at all, which R4 makes the same thing: "eq" is
-        // the default.
-        whereCondition =
-            whereCondition & dateSearchParameters.dateValue.equals(searchDate);
+        // eq, and no prefix at all: §3.1.1.4.5, "If no prefix is present,
+        // the prefix eq is assumed."
+        return contained;
     }
-
-    return whereCondition;
   }
 
   Future<Set<String>> _searchDateParameter(
@@ -2107,114 +2130,54 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return matchingIds;
   }
 
+  /// `_lastUpdated` reads `resources.last_updated`, an instant in
+  /// milliseconds, so the stored range is the point `[t, t + 1ms)`; the
+  /// prefix semantics are the same as for every other date parameter.
   Future<Set<String>> _searchLastUpdatedParameter(
     String resourceType,
     List<String> values,
   ) async {
     final matchingIds = <String>{};
-
     for (final value in values) {
-      String? modifier;
-      var dateValue = value;
-
-      const lastUpdatedModifiers = ['gt', 'lt', 'ge', 'le', 'ap', 'sa', 'eb'];
-      for (final mod in lastUpdatedModifiers) {
-        // Support both FHIR prefix format (gt2026-01-01) and legacy
-        // suffix format (2026-01-01:gt)
-        if (value.startsWith(mod)) {
-          modifier = mod;
-          dateValue = value.substring(mod.length);
-          break;
-        }
-        if (value.endsWith(':$mod')) {
-          modifier = mod;
-          dateValue = value.substring(0, value.length - mod.length - 1);
-          break;
-        }
-      }
-
-      DateTime? searchDate;
-      try {
-        if (dateValue.length == 4) {
-          searchDate = DateTime(int.parse(dateValue));
-        } else if (dateValue.length == 7) {
-          final parts = dateValue.split('-');
-          searchDate = DateTime(int.parse(parts[0]), int.parse(parts[1]));
-        } else if (dateValue.length == 10) {
-          final parts = dateValue.split('-');
-          searchDate = DateTime(
-            int.parse(parts[0]),
-            int.parse(parts[1]),
-            int.parse(parts[2]),
-          );
-        } else if (dateValue.contains('T')) {
-          searchDate = DateTime.parse(dateValue);
-        } else {
-          searchDate = DateTime.parse(dateValue);
-        }
-      } catch (_) {
+      final (prefix, rest) = splitComparator(
+        const SearchParameterDefinition('date', comparatorPrefixes),
+        value,
+      );
+      final condition = _lastUpdatedCondition(prefix, rest);
+      if (condition == null) {
         continue;
       }
-
-      final searchMillis = searchDate.millisecondsSinceEpoch;
-
-      final query = select(resources);
-      var whereCondition = resources.resourceType.equals(resourceType);
-
-      if (modifier == null || modifier.isEmpty) {
-        if (dateValue.length <= 10) {
-          final startOfDay =
-              DateTime(searchDate.year, searchDate.month, searchDate.day);
-          final endOfDay = startOfDay.add(const Duration(days: 1));
-          whereCondition = whereCondition &
-              (resources.lastUpdated.isBiggerOrEqualValue(
-                    startOfDay.millisecondsSinceEpoch,
-                  ) &
-                  resources.lastUpdated.isSmallerThanValue(
-                    endOfDay.millisecondsSinceEpoch,
-                  ));
-        } else {
-          whereCondition =
-              whereCondition & resources.lastUpdated.equals(searchMillis);
-        }
-      } else if (modifier == 'gt') {
-        whereCondition = whereCondition &
-            resources.lastUpdated.isBiggerThanValue(searchMillis);
-      } else if (modifier == 'lt') {
-        whereCondition = whereCondition &
-            resources.lastUpdated.isSmallerThanValue(searchMillis);
-      } else if (modifier == 'ge') {
-        whereCondition = whereCondition &
-            resources.lastUpdated.isBiggerOrEqualValue(searchMillis);
-      } else if (modifier == 'le') {
-        whereCondition = whereCondition &
-            resources.lastUpdated.isSmallerOrEqualValue(searchMillis);
-      } else if (modifier == 'ap') {
-        final startMillis =
-            searchDate.subtract(const Duration(days: 1)).millisecondsSinceEpoch;
-        final endMillis =
-            searchDate.add(const Duration(days: 1)).millisecondsSinceEpoch;
-        whereCondition = whereCondition &
-            (resources.lastUpdated.isBiggerOrEqualValue(startMillis) &
-                resources.lastUpdated.isSmallerOrEqualValue(endMillis));
-      } else if (modifier == 'sa') {
-        whereCondition = whereCondition &
-            resources.lastUpdated.isBiggerThanValue(searchMillis);
-      } else if (modifier == 'eb') {
-        whereCondition = whereCondition &
-            resources.lastUpdated.isSmallerThanValue(searchMillis);
-      } else {
-        continue;
-      }
-
-      query.where((tbl) => whereCondition);
-      final rows = await query.get();
+      final rows = await (selectOnly(resources)
+            ..addColumns([resources.id])
+            ..where(resources.resourceType.equals(resourceType) & condition))
+          .get();
       for (final row in rows) {
-        matchingIds.add(row.id);
+        matchingIds.add(row.read(resources.id)!);
       }
     }
-
     return matchingIds;
+  }
+
+  /// The WHERE on `resources.last_updated` for one `_lastUpdated` value, or
+  /// null when the value is not a search date.
+  Expression<bool>? _lastUpdatedCondition(String? prefix, String value) {
+    final range = searchDateRange(value);
+    if (range == null) {
+      return null;
+    }
+    // last_updated is integer milliseconds; the range comparison is written
+    // over DateTime expressions, so the point is lifted to one. SQLite
+    // stores a Drift DateTime as whole seconds, hence the division.
+    final instant =
+        resources.lastUpdated.dartCast<double>() / const Constant(1000);
+    final low = instant.dartCast<DateTime>();
+    final high = (instant + const Constant(1)).dartCast<DateTime>();
+    return _dateRangeCondition(
+      low: low,
+      high: high,
+      prefix: prefix,
+      search: range,
+    );
   }
 
   Future<Set<String>> _searchTagParameter(
@@ -3131,9 +3094,14 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           ))
         .get();
     if (dateRows.isNotEmpty) {
+      // Sorted as strings by the caller, so the number is zero-padded to a
+      // fixed width (13 digits of milliseconds reach the year 2286). A row
+      // with no lower bound is before any date and sorts first.
       return {
         for (final r in dateRows)
-          r.id: r.dateValue.millisecondsSinceEpoch.toString(),
+          r.id: r.dateValue == null
+              ? ''
+              : r.dateValue!.millisecondsSinceEpoch.toString().padLeft(15, '0'),
       };
     }
 

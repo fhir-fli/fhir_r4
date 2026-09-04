@@ -2404,8 +2404,14 @@ class $DateSearchParametersTable extends DateSearchParameters
       const VerificationMeta('dateValue');
   @override
   late final GeneratedColumn<DateTime> dateValue = GeneratedColumn<DateTime>(
-      'date_value', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      'date_value', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _dateValueEndMeta =
+      const VerificationMeta('dateValueEnd');
+  @override
+  late final GeneratedColumn<DateTime> dateValueEnd = GeneratedColumn<DateTime>(
+      'date_value_end', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         resourceType,
@@ -2415,7 +2421,8 @@ class $DateSearchParametersTable extends DateSearchParameters
         searchName,
         paramIndex,
         dateString,
-        dateValue
+        dateValue,
+        dateValueEnd
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2482,8 +2489,12 @@ class $DateSearchParametersTable extends DateSearchParameters
     if (data.containsKey('date_value')) {
       context.handle(_dateValueMeta,
           dateValue.isAcceptableOrUnknown(data['date_value']!, _dateValueMeta));
-    } else if (isInserting) {
-      context.missing(_dateValueMeta);
+    }
+    if (data.containsKey('date_value_end')) {
+      context.handle(
+          _dateValueEndMeta,
+          dateValueEnd.isAcceptableOrUnknown(
+              data['date_value_end']!, _dateValueEndMeta));
     }
     return context;
   }
@@ -2510,7 +2521,9 @@ class $DateSearchParametersTable extends DateSearchParameters
       dateString: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}date_string'])!,
       dateValue: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}date_value'])!,
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}date_value']),
+      dateValueEnd: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}date_value_end']),
     );
   }
 
@@ -2540,11 +2553,19 @@ class DateSearchParameter extends DataClass
   /// Index for multiple values from the same path
   final int paramIndex;
 
-  /// Original date/dateTime/instant string from the resource
+  /// Original date/dateTime/instant/Period/Timing value, as JSON text for the
+  /// complex types, for anyone who needs the value as written.
   final String dateString;
 
-  /// Parsed DateTime value for range comparisons
-  final DateTime dateValue;
+  /// The inclusive start of the value's range; null for a Period with no
+  /// start (before any date).
+  final DateTime? dateValue;
+
+  /// The EXCLUSIVE end of the value's range: the first instant after it. A
+  /// date `2013-01-10` ends at `2013-01-11T00:00`; a dateTime to the second
+  /// ends one second later. Null for a Period with no end (ongoing), which
+  /// is after any date.
+  final DateTime? dateValueEnd;
   const DateSearchParameter(
       {required this.resourceType,
       required this.id,
@@ -2553,7 +2574,8 @@ class DateSearchParameter extends DataClass
       required this.searchName,
       required this.paramIndex,
       required this.dateString,
-      required this.dateValue});
+      this.dateValue,
+      this.dateValueEnd});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -2564,7 +2586,12 @@ class DateSearchParameter extends DataClass
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['date_string'] = Variable<String>(dateString);
-    map['date_value'] = Variable<DateTime>(dateValue);
+    if (!nullToAbsent || dateValue != null) {
+      map['date_value'] = Variable<DateTime>(dateValue);
+    }
+    if (!nullToAbsent || dateValueEnd != null) {
+      map['date_value_end'] = Variable<DateTime>(dateValueEnd);
+    }
     return map;
   }
 
@@ -2577,7 +2604,12 @@ class DateSearchParameter extends DataClass
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       dateString: Value(dateString),
-      dateValue: Value(dateValue),
+      dateValue: dateValue == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dateValue),
+      dateValueEnd: dateValueEnd == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dateValueEnd),
     );
   }
 
@@ -2592,7 +2624,8 @@ class DateSearchParameter extends DataClass
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       dateString: serializer.fromJson<String>(json['dateString']),
-      dateValue: serializer.fromJson<DateTime>(json['dateValue']),
+      dateValue: serializer.fromJson<DateTime?>(json['dateValue']),
+      dateValueEnd: serializer.fromJson<DateTime?>(json['dateValueEnd']),
     );
   }
   @override
@@ -2606,7 +2639,8 @@ class DateSearchParameter extends DataClass
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'dateString': serializer.toJson<String>(dateString),
-      'dateValue': serializer.toJson<DateTime>(dateValue),
+      'dateValue': serializer.toJson<DateTime?>(dateValue),
+      'dateValueEnd': serializer.toJson<DateTime?>(dateValueEnd),
     };
   }
 
@@ -2618,7 +2652,8 @@ class DateSearchParameter extends DataClass
           String? searchName,
           int? paramIndex,
           String? dateString,
-          DateTime? dateValue}) =>
+          Value<DateTime?> dateValue = const Value.absent(),
+          Value<DateTime?> dateValueEnd = const Value.absent()}) =>
       DateSearchParameter(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
@@ -2627,7 +2662,9 @@ class DateSearchParameter extends DataClass
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         dateString: dateString ?? this.dateString,
-        dateValue: dateValue ?? this.dateValue,
+        dateValue: dateValue.present ? dateValue.value : this.dateValue,
+        dateValueEnd:
+            dateValueEnd.present ? dateValueEnd.value : this.dateValueEnd,
       );
   DateSearchParameter copyWithCompanion(DateSearchParametersCompanion data) {
     return DateSearchParameter(
@@ -2646,6 +2683,9 @@ class DateSearchParameter extends DataClass
       dateString:
           data.dateString.present ? data.dateString.value : this.dateString,
       dateValue: data.dateValue.present ? data.dateValue.value : this.dateValue,
+      dateValueEnd: data.dateValueEnd.present
+          ? data.dateValueEnd.value
+          : this.dateValueEnd,
     );
   }
 
@@ -2659,14 +2699,15 @@ class DateSearchParameter extends DataClass
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('dateString: $dateString, ')
-          ..write('dateValue: $dateValue')
+          ..write('dateValue: $dateValue, ')
+          ..write('dateValueEnd: $dateValueEnd')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, dateString, dateValue);
+      searchName, paramIndex, dateString, dateValue, dateValueEnd);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2678,7 +2719,8 @@ class DateSearchParameter extends DataClass
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.dateString == this.dateString &&
-          other.dateValue == this.dateValue);
+          other.dateValue == this.dateValue &&
+          other.dateValueEnd == this.dateValueEnd);
 }
 
 class DateSearchParametersCompanion
@@ -2690,7 +2732,8 @@ class DateSearchParametersCompanion
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> dateString;
-  final Value<DateTime> dateValue;
+  final Value<DateTime?> dateValue;
+  final Value<DateTime?> dateValueEnd;
   final Value<int> rowid;
   const DateSearchParametersCompanion({
     this.resourceType = const Value.absent(),
@@ -2701,6 +2744,7 @@ class DateSearchParametersCompanion
     this.paramIndex = const Value.absent(),
     this.dateString = const Value.absent(),
     this.dateValue = const Value.absent(),
+    this.dateValueEnd = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   DateSearchParametersCompanion.insert({
@@ -2711,15 +2755,15 @@ class DateSearchParametersCompanion
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String dateString,
-    required DateTime dateValue,
+    this.dateValue = const Value.absent(),
+    this.dateValueEnd = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
         searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
-        dateString = Value(dateString),
-        dateValue = Value(dateValue);
+        dateString = Value(dateString);
   static Insertable<DateSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
@@ -2729,6 +2773,7 @@ class DateSearchParametersCompanion
     Expression<int>? paramIndex,
     Expression<String>? dateString,
     Expression<DateTime>? dateValue,
+    Expression<DateTime>? dateValueEnd,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -2740,6 +2785,7 @@ class DateSearchParametersCompanion
       if (paramIndex != null) 'param_index': paramIndex,
       if (dateString != null) 'date_string': dateString,
       if (dateValue != null) 'date_value': dateValue,
+      if (dateValueEnd != null) 'date_value_end': dateValueEnd,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -2752,7 +2798,8 @@ class DateSearchParametersCompanion
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? dateString,
-      Value<DateTime>? dateValue,
+      Value<DateTime?>? dateValue,
+      Value<DateTime?>? dateValueEnd,
       Value<int>? rowid}) {
     return DateSearchParametersCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -2763,6 +2810,7 @@ class DateSearchParametersCompanion
       paramIndex: paramIndex ?? this.paramIndex,
       dateString: dateString ?? this.dateString,
       dateValue: dateValue ?? this.dateValue,
+      dateValueEnd: dateValueEnd ?? this.dateValueEnd,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -2794,6 +2842,9 @@ class DateSearchParametersCompanion
     if (dateValue.present) {
       map['date_value'] = Variable<DateTime>(dateValue.value);
     }
+    if (dateValueEnd.present) {
+      map['date_value_end'] = Variable<DateTime>(dateValueEnd.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -2811,6 +2862,7 @@ class DateSearchParametersCompanion
           ..write('paramIndex: $paramIndex, ')
           ..write('dateString: $dateString, ')
           ..write('dateValue: $dateValue, ')
+          ..write('dateValueEnd: $dateValueEnd, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -7097,7 +7149,8 @@ typedef $$DateSearchParametersTableCreateCompanionBuilder
   Value<String> searchName,
   required int paramIndex,
   required String dateString,
-  required DateTime dateValue,
+  Value<DateTime?> dateValue,
+  Value<DateTime?> dateValueEnd,
   Value<int> rowid,
 });
 typedef $$DateSearchParametersTableUpdateCompanionBuilder
@@ -7109,7 +7162,8 @@ typedef $$DateSearchParametersTableUpdateCompanionBuilder
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> dateString,
-  Value<DateTime> dateValue,
+  Value<DateTime?> dateValue,
+  Value<DateTime?> dateValueEnd,
   Value<int> rowid,
 });
 
@@ -7145,6 +7199,9 @@ class $$DateSearchParametersTableFilterComposer
 
   ColumnFilters<DateTime> get dateValue => $composableBuilder(
       column: $table.dateValue, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get dateValueEnd => $composableBuilder(
+      column: $table.dateValueEnd, builder: (column) => ColumnFilters(column));
 }
 
 class $$DateSearchParametersTableOrderingComposer
@@ -7180,6 +7237,10 @@ class $$DateSearchParametersTableOrderingComposer
 
   ColumnOrderings<DateTime> get dateValue => $composableBuilder(
       column: $table.dateValue, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get dateValueEnd => $composableBuilder(
+      column: $table.dateValueEnd,
+      builder: (column) => ColumnOrderings(column));
 }
 
 class $$DateSearchParametersTableAnnotationComposer
@@ -7214,6 +7275,9 @@ class $$DateSearchParametersTableAnnotationComposer
 
   GeneratedColumn<DateTime> get dateValue =>
       $composableBuilder(column: $table.dateValue, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get dateValueEnd => $composableBuilder(
+      column: $table.dateValueEnd, builder: (column) => column);
 }
 
 class $$DateSearchParametersTableTableManager extends RootTableManager<
@@ -7252,7 +7316,8 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> dateString = const Value.absent(),
-            Value<DateTime> dateValue = const Value.absent(),
+            Value<DateTime?> dateValue = const Value.absent(),
+            Value<DateTime?> dateValueEnd = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               DateSearchParametersCompanion(
@@ -7264,6 +7329,7 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             paramIndex: paramIndex,
             dateString: dateString,
             dateValue: dateValue,
+            dateValueEnd: dateValueEnd,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -7274,7 +7340,8 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String dateString,
-            required DateTime dateValue,
+            Value<DateTime?> dateValue = const Value.absent(),
+            Value<DateTime?> dateValueEnd = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               DateSearchParametersCompanion.insert(
@@ -7286,6 +7353,7 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             paramIndex: paramIndex,
             dateString: dateString,
             dateValue: dateValue,
+            dateValueEnd: dateValueEnd,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

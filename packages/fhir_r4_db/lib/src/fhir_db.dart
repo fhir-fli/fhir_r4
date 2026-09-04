@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 7;
+  int get schemaVersion => 8;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -231,9 +231,70 @@ class FhirDb extends _$FhirDb {
           if (from < 7) {
             await createValueIndexes();
           }
+          if (from < 8) {
+            await rebuildDateIndex();
+          }
         },
         beforeOpen: ensurePlannerStatistics,
       );
+
+  /// Recreates the date index as RANGES from the stored resources. Schema 8.
+  ///
+  /// Every date row is `[date_value, date_value_end)` now, and both bounds
+  /// are nullable; before this the table held one instant and only date,
+  /// dateTime and instant were indexed at all — a Period-valued parameter
+  /// (Encounter.date, every effectivePeriod, performedPeriod) wrote NO row,
+  /// so those searches silently returned nothing. Measured 2026-09-04 on the
+  /// MIMIC load: 637 Encounters, zero Encounter.date rows.
+  ///
+  /// The index is derived data: the table is dropped, recreated from the
+  /// current definition, and every resource's date parameters re-extracted.
+  /// The value indexes went with the table, so they are created again.
+  ///
+  /// Public because a subclass that overrides [migration] — fhirant does —
+  /// has to call it from its own upgrade at the version where it takes this
+  /// package's schema 8.
+  Future<void> rebuildDateIndex() async {
+    final m = createMigrator();
+    await m.deleteTable('date_search_parameters');
+    await m.createTable(dateSearchParameters);
+    // Paged through the resources table rather than read whole: on the
+    // 929k-resource MIMIC load that is 5 GB of JSON. Inserted in batches, one
+    // statement per batch rather than one per row.
+    const page = 500;
+    var offset = 0;
+    while (true) {
+      final stored = await customSelect(
+        'SELECT resource FROM resources ORDER BY resource_type, id '
+        'LIMIT $page OFFSET $offset',
+      ).get();
+      if (stored.isEmpty) {
+        break;
+      }
+      offset += stored.length;
+      final rows = <DateSearchParametersCompanion>[];
+      for (final row in stored) {
+        fhir.Resource resource;
+        try {
+          resource = fhir.Resource.fromJsonString(
+            row.data['resource']! as String,
+          );
+        } catch (_) {
+          // Only the parse is guarded; see the schema-6 rebuild.
+          continue;
+        }
+        rows.addAll(updateSearchParameters(resource).dateParams);
+      }
+      await batch(
+        (b) => b.insertAll(
+          dateSearchParameters,
+          rows,
+          mode: InsertMode.insertOrReplace,
+        ),
+      );
+    }
+    await createValueIndexes();
+  }
 
   /// Gives the query planner statistics, when it has none or the schema just
   /// changed.
@@ -295,6 +356,7 @@ class FhirDb extends _$FhirDb {
       ),
       ('idx_uri_value', 'uri_search_parameters', 'uri_value'),
       ('idx_date_value', 'date_search_parameters', 'date_value'),
+      ('idx_date_value_end', 'date_search_parameters', 'date_value_end'),
       ('idx_number_value', 'number_search_parameters', 'number_value'),
       ('idx_quantity_value', 'quantity_search_parameters', 'quantity_value'),
       ('idx_special_value', 'special_search_parameters', 'special_value'),

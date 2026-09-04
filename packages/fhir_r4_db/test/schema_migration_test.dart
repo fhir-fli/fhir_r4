@@ -140,7 +140,7 @@ void main() {
     );
 
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(7));
+    expect(version.data.values.first, equals(db.schemaVersion));
 
     await db.close();
   });
@@ -173,6 +173,69 @@ void main() {
       isTrue,
       reason: 'the column has to exist and be written after the upgrade',
     );
+    await db.close();
+  });
+
+  test('a version-7 database has its date index rebuilt as ranges', () async {
+    // Version 8 turns every date row into a range and indexes Period and
+    // Timing values for the first time. A version-7 database holds an
+    // Encounter whose period was never indexed at all, and an Observation
+    // whose date was indexed as a single instant. Both have to come back as
+    // ranges after the upgrade, from the stored resources alone.
+    final db7 = FhirDb(NativeDatabase(dbFile));
+    await db7.fhirDao.saveResource(
+      Encounter.fromJson({
+        'resourceType': 'Encounter',
+        'id': 'enc',
+        'status': 'finished',
+        'class': {'code': 'IMP'},
+        'period': {'start': '2013-01-14', 'end': '2013-01-16'},
+      }),
+    );
+    await db7.fhirDao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'obs',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'X'},
+          ],
+        },
+        'effectiveDateTime': '2013-01-14',
+      }),
+    );
+    // Walk the table back to the version-7 shape: one non-null instant and
+    // no end column, and no row for the Encounter, which version 7 never
+    // wrote. Then stamp the version.
+    await db7.customStatement(
+      "DELETE FROM date_search_parameters WHERE resource_type = 'Encounter'",
+    );
+    await db7.customStatement('DROP INDEX idx_date_value_end');
+    await db7.customStatement(
+      'ALTER TABLE date_search_parameters DROP COLUMN date_value_end',
+    );
+    await db7.customStatement('PRAGMA user_version = 7');
+    await db7.close();
+
+    final db = FhirDb(NativeDatabase(dbFile));
+    final rows = await db.fhirDao.select(db.dateSearchParameters).get();
+    final enc = rows.where((r) => r.id == 'enc').toList();
+    expect(enc, hasLength(1), reason: 'the Period is indexed now');
+    expect(enc.single.dateValue, DateTime(2013, 1, 14));
+    expect(enc.single.dateValueEnd, DateTime(2013, 1, 17));
+    final obs = rows.where((r) => r.id == 'obs' && r.searchName == 'date');
+    expect(obs.single.dateValueEnd, DateTime(2013, 1, 15));
+    // And the search that always returned nothing answers.
+    final found = await db.fhirDao.search(
+      resourceType: R4ResourceType.Encounter,
+      searchParameters: {
+        'date': ['2013-01'],
+      },
+    );
+    expect(found.map((r) => r.id!.valueString), ['enc']);
+    final version = await db.customSelect('PRAGMA user_version').getSingle();
+    expect(version.data.values.first, equals(8));
     await db.close();
   });
 
