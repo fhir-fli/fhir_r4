@@ -147,6 +147,37 @@ Future<void> main() async {
     expect(page, ['o20', 'o22', 'o24', 'o26', 'o28']);
   });
 
+  test('the smaller set is the outer select, whichever was given first',
+      () async {
+    // status=final is 15 rows and code=B is 10, so code is the outer here
+    // even though status came first — and it sits on an ALIAS of the same
+    // table the nested status condition uses. Both orders must agree with
+    // the general path and with each other.
+    final statusFirst = await ids(
+      {
+        'status': ['final'],
+        'code': ['B'],
+      },
+      count: 3,
+    );
+    final codeFirst = await ids(
+      {
+        'code': ['B'],
+        'status': ['final'],
+      },
+      count: 3,
+    );
+    expect(statusFirst, ['o20', 'o22', 'o24']);
+    expect(codeFirst, statusFirst);
+    expect(
+      await ids({
+        'status': ['final'],
+        'code': ['B'],
+      }),
+      ['o20', 'o22', 'o24', 'o26', 'o28'],
+    );
+  });
+
   test('a date parameter pages in SQL with its prefix honoured', () async {
     // date gt 2020-01-20 -> o20..o29 -> 10 rows, paged 4 at a time.
     final page1 = await ids(

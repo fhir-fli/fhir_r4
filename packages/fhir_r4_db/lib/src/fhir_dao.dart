@@ -533,20 +533,93 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final declared = searchParameterFor(resourceType, key.name);
       if (declared == null) return null;
 
-      final part = _conditionFor(resourceType, key.name, value, declared);
+      // The first parameter is the outer select on its own table; every
+      // further one is a correlated EXISTS on an ALIAS of its table, so two
+      // parameters on the same table (status and code are both tokens) do
+      // not collide.
+      final part = _conditionFor(
+        resourceType,
+        key.name,
+        value,
+        declared,
+        aliasName: parts.isEmpty ? null : 'p${parts.length}',
+      );
       if (part == null) return null;
       parts.add(part);
     }
 
-    final first = parts.first;
+    // Which parameter is the outer select, and how the others nest, is
+    // decided by SIZE, because SQLite cannot: sqlite_stat1 holds one average
+    // per index (idx_token_value: 25 rows per value) and this build has no
+    // STAT4, so the planner reads `status=final` as 25 rows when it is
+    // 813,513, and walks it through the value index followed by a sort that
+    // has to see every row before the LIMIT. Measured 2026-09-04 on the
+    // 929k-resource MIMIC load, 20 rows each:
+    //
+    //   status=final & code=227969   IN, status outer    0.63s
+    //                                EXISTS, code outer  0.15s
+    //                                EXISTS, status outer 3.89s
+    //   date=2137 & status=final     IN, date outer      2.19s
+    //                                EXISTS, date outer  0.00s
+    //                                EXISTS, status outer 4.52s
+    //   subject=Patient/x & code     IN, subject outer   0.06s
+    //                                EXISTS, code outer  0.16s
+    //
+    // `id IN (SELECT …)` has SQLite materialise the whole inner set first,
+    // so its cost is the inner's size; a correlated EXISTS probes the inner
+    // table's primary key once per outer row, so its cost is the outer's
+    // size. Each parameter is therefore probed for its row count, capped
+    // so the probe itself stays cheap (0.03–0.17s each at 100,000 on that
+    // load, counted inside SQLite). The smallest known set
+    // is the outer; a nested set that is known to be small is materialised
+    // (IN), one that is not is probed (EXISTS). When every set exceeds the
+    // cap nothing is known, and the parameters are taken in the order given
+    // with IN, whose cost is at least bounded by the inner sizes.
+    //
+    // The probe escalates, 2,000 then 100,000, so the common case pays
+    // almost nothing: one patient's records against one code is settled
+    // by the first stage in a few milliseconds, and only a query whose
+    // every parameter matches thousands of rows pays for the second.
+    var limit = _probeLimits.first;
+    final sized = <(_IndexCondition, int)>[];
+    if (parts.length > 1) {
+      for (final probeLimit in _probeLimits) {
+        limit = probeLimit;
+        sized.clear();
+        for (final part in parts) {
+          sized.add((part, await _probeSize(part, probeLimit)));
+        }
+        if (sized.any((s) => s.$2 < probeLimit)) {
+          break;
+        }
+      }
+    } else {
+      sized.add((parts.single, 0));
+    }
+    final allBig = sized.every((s) => s.$2 >= limit);
+    if (!allBig) {
+      sized.sort((a, b) => a.$2.compareTo(b.$2));
+    }
+    final first = sized.first.$1;
     var where = first.condition;
-    for (final other in parts.skip(1)) {
-      where = where &
-          first.idColumn.isInQuery(
-            selectOnly(other.table, distinct: true)
-              ..addColumns([other.idColumn])
-              ..where(other.condition),
-          );
+    for (final (other, size) in sized.skip(1)) {
+      if (size < limit) {
+        where = where &
+            first.idColumn.isInQuery(
+              selectOnly(other.table, distinct: true)
+                ..addColumns([other.idColumn])
+                ..where(other.condition),
+            );
+      } else {
+        where = where &
+            existsQuery(
+              selectOnly(other.table)
+                ..addColumns([const Constant(1)])
+                ..where(
+                  other.condition & other.idColumn.equalsExp(first.idColumn),
+                ),
+            );
+      }
     }
     final rows = await (selectOnly(first.table, distinct: true)
           ..addColumns([first.idColumn])
@@ -557,6 +630,29 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return rows.map((r) => r.read(first.idColumn)).whereType<String>().toList();
   }
 
+  /// Rows a condition matches, counted inside SQLite and capped at
+  /// [_probeLimit]: `SELECT count(*) FROM (SELECT id … LIMIT n)`. Not
+  /// DISTINCT, so a parameter indexed twice per resource counts double —
+  /// this ranks sets, it does not report them, and the plain count was
+  /// measured at a third of the DISTINCT one on the big sets.
+  Future<int> _probeSize(_IndexCondition part, int limit) async {
+    final limited = Subquery(
+      selectOnly(part.table)
+        ..addColumns([part.idColumn])
+        ..where(part.condition)
+        ..limit(limit),
+      'probe',
+    );
+    final count = countAll();
+    final row = await (selectOnly(limited)..addColumns([count])).getSingle();
+    return row.read(count) ?? 0;
+  }
+
+  /// The probe's stages. A set at or above the last one is "big" and its
+  /// exact size is not worth finding: the probe would cost as much as the
+  /// search (0.17s for 100,000 rows of the date index on the MIMIC load).
+  static const _probeLimits = [2000, 100000];
+
   /// One parameter's typed WHERE on its own index table, or null when this
   /// path has no builder for the parameter's type or the value does not
   /// parse for it.
@@ -564,62 +660,75 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String name,
     String value,
-    SearchParameterDefinition declared,
-  ) {
+    SearchParameterDefinition declared, {
+    String? aliasName,
+  }) {
     switch (declared.type) {
       case 'token':
+        final t = aliasName == null
+            ? tokenSearchParameters
+            : alias(tokenSearchParameters, aliasName);
         return _IndexCondition(
-          tokenSearchParameters,
-          tokenSearchParameters.id,
-          _tokenCondition(resourceType, name, value),
+          t,
+          t.id,
+          _tokenCondition(resourceType, name, value, on: t),
         );
       case 'reference':
         // A chain (`subject.name`) never reaches here: the key's qualifier
         // is rejected above. Only `Type/id` and bare ids do.
+        final t = aliasName == null
+            ? referenceSearchParameters
+            : alias(referenceSearchParameters, aliasName);
         return _IndexCondition(
-          referenceSearchParameters,
-          referenceSearchParameters.id,
-          _referenceCondition(resourceType, name, value),
+          t,
+          t.id,
+          _referenceCondition(resourceType, name, value, on: t),
         );
       case 'number':
         final (prefix, rest) = splitComparator(declared, value);
-        final condition = _numberCondition(resourceType, name, prefix, rest);
+        final t = aliasName == null
+            ? numberSearchParameters
+            : alias(numberSearchParameters, aliasName);
+        final condition =
+            _numberCondition(resourceType, name, prefix, rest, on: t);
         if (condition == null) return null;
-        return _IndexCondition(
-          numberSearchParameters,
-          numberSearchParameters.id,
-          condition,
-        );
+        return _IndexCondition(t, t.id, condition);
       case 'quantity':
         final (prefix, rest) = splitComparator(declared, value);
-        final condition = _quantityCondition(resourceType, name, prefix, rest);
+        final t = aliasName == null
+            ? quantitySearchParameters
+            : alias(quantitySearchParameters, aliasName);
+        final condition =
+            _quantityCondition(resourceType, name, prefix, rest, on: t);
         if (condition == null) return null;
-        return _IndexCondition(
-          quantitySearchParameters,
-          quantitySearchParameters.id,
-          condition,
-        );
+        return _IndexCondition(t, t.id, condition);
       case 'uri':
+        final t = aliasName == null
+            ? uriSearchParameters
+            : alias(uriSearchParameters, aliasName);
         return _IndexCondition(
-          uriSearchParameters,
-          uriSearchParameters.id,
-          _uriCondition(resourceType, name, value),
+          t,
+          t.id,
+          _uriCondition(resourceType, name, value, on: t),
         );
       case 'string':
+        final t = aliasName == null
+            ? stringSearchParameters
+            : alias(stringSearchParameters, aliasName);
         return _IndexCondition(
-          stringSearchParameters,
-          stringSearchParameters.id,
-          _stringCondition(resourceType, name, value),
+          t,
+          t.id,
+          _stringCondition(resourceType, name, value, on: t),
         );
       case 'date':
         final (prefix, rest) = splitComparator(declared, value);
-        final condition = _dateCondition(resourceType, name, prefix, rest);
+        final t = aliasName == null
+            ? dateSearchParameters
+            : alias(dateSearchParameters, aliasName);
+        final condition =
+            _dateCondition(resourceType, name, prefix, rest, on: t);
         if (condition == null) return null;
-        return _IndexCondition(
-          dateSearchParameters,
-          dateSearchParameters.id,
-          condition,
-        );
+        return _IndexCondition(t, t.id, condition);
       default:
         return null;
     }
@@ -1464,16 +1573,16 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   Expression<bool> _stringCondition(
     String resourceType,
     String searchPath,
-    String value,
-  ) {
+    String value, {
+    $StringSearchParametersTable? on,
+  }) {
+    final t = on ?? stringSearchParameters;
     final normalized = normalizeSearchString(unescapeValue(value)).trim();
-    return stringSearchParameters.resourceType.equals(resourceType) &
-        (stringSearchParameters.searchName.equals(searchPath) |
-            stringSearchParameters.searchPath
-                .like('$resourceType.$searchPath') |
-            stringSearchParameters.searchPath
-                .like('$resourceType.%.$searchPath')) &
-        stringSearchParameters.stringValue.like('$normalized%');
+    return t.resourceType.equals(resourceType) &
+        (t.searchName.equals(searchPath) |
+            t.searchPath.like('$resourceType.$searchPath') |
+            t.searchPath.like('$resourceType.%.$searchPath')) &
+        t.stringValue.like('$normalized%');
   }
 
   Future<Set<String>> _searchStringParameter(
@@ -1703,8 +1812,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   Expression<bool> _tokenCondition(
     String resourceType,
     String searchPath,
-    String searchValue,
-  ) {
+    String searchValue, {
+    $TokenSearchParametersTable? on,
+  }) {
+    final t = on ?? tokenSearchParameters;
     String? system;
     var tokenValue = searchValue;
 
@@ -1716,23 +1827,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
 
-    var whereCondition = tokenSearchParameters.resourceType
-            .equals(resourceType) &
-        (tokenSearchParameters.searchName.equals(searchPath) |
-            tokenSearchParameters.searchPath.like('$resourceType.$searchPath') |
-            tokenSearchParameters.searchPath
-                .like('$resourceType.%.$searchPath'));
+    var whereCondition = t.resourceType.equals(resourceType) &
+        (t.searchName.equals(searchPath) |
+            t.searchPath.like('$resourceType.$searchPath') |
+            t.searchPath.like('$resourceType.%.$searchPath'));
 
     if (system != null && system.isNotEmpty && tokenValue.isNotEmpty) {
       whereCondition = whereCondition &
-          tokenSearchParameters.tokenSystem.equals(system) &
-          tokenSearchParameters.tokenValue.equals(tokenValue);
+          t.tokenSystem.equals(system) &
+          t.tokenValue.equals(tokenValue);
     } else if (system != null && system.isNotEmpty) {
-      whereCondition =
-          whereCondition & tokenSearchParameters.tokenSystem.equals(system);
+      whereCondition = whereCondition & t.tokenSystem.equals(system);
     } else if (tokenValue.isNotEmpty) {
-      whereCondition =
-          whereCondition & tokenSearchParameters.tokenValue.equals(tokenValue);
+      whereCondition = whereCondition & t.tokenValue.equals(tokenValue);
     }
     return whereCondition;
   }
@@ -1971,20 +2078,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     String? modifier,
-    String searchValue,
-  ) {
+    String searchValue, {
+    $DateSearchParametersTable? on,
+  }) {
+    final t = on ?? dateSearchParameters;
     final range = searchDateRange(searchValue);
     if (range == null) {
       return null;
     }
-    return dateSearchParameters.resourceType.equals(resourceType) &
-        (dateSearchParameters.searchName.equals(searchPath) |
-            dateSearchParameters.searchPath.like('$resourceType.$searchPath') |
-            dateSearchParameters.searchPath
-                .like('$resourceType.%.$searchPath')) &
+    return t.resourceType.equals(resourceType) &
+        (t.searchName.equals(searchPath) |
+            t.searchPath.like('$resourceType.$searchPath') |
+            t.searchPath.like('$resourceType.%.$searchPath')) &
         _dateRangeCondition(
-          low: dateSearchParameters.dateValue,
-          high: dateSearchParameters.dateValueEnd,
+          low: t.dateValue,
+          high: t.dateValueEnd,
           prefix: modifier,
           search: range,
         );
@@ -2459,24 +2567,23 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     String? modifier,
-    String searchValue,
-  ) {
+    String searchValue, {
+    $NumberSearchParametersTable? on,
+  }) {
+    final t = on ?? numberSearchParameters;
     final numValue = double.tryParse(searchValue);
     if (numValue == null) {
       return null;
     }
 
-    final whereCondition =
-        numberSearchParameters.resourceType.equals(resourceType) &
-            (numberSearchParameters.searchName.equals(searchPath) |
-                numberSearchParameters.searchPath
-                    .like('$resourceType.$searchPath') |
-                numberSearchParameters.searchPath
-                    .like('$resourceType.%.$searchPath'));
+    final whereCondition = t.resourceType.equals(resourceType) &
+        (t.searchName.equals(searchPath) |
+            t.searchPath.like('$resourceType.$searchPath') |
+            t.searchPath.like('$resourceType.%.$searchPath'));
 
     return whereCondition &
         _numericPrefixCondition(
-          numberSearchParameters.numberValue,
+          t.numberValue,
           modifier,
           searchValue,
           numValue,
@@ -2529,8 +2636,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String resourceType,
     String searchPath,
     String? modifier,
-    String searchValue,
-  ) {
+    String searchValue, {
+    $QuantitySearchParametersTable? on,
+  }) {
+    final t = on ?? quantitySearchParameters;
     // R4B 3.1.1.4.11: `[prefix][number]|[system]|[code]`. The number comes
     // FIRST. This used to read a three-part value as `system|number|code`, so
     // the spec's own example `5.4|http://unitsofmeasure.org|mg` tried to parse
@@ -2552,32 +2661,26 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // segment of its path — which `value-quantity` never is, because its
     // path is `Observation.value.ofType(Quantity)`. That is why the row was
     // written correctly and the search still returned nothing.
-    var whereCondition =
-        quantitySearchParameters.resourceType.equals(resourceType) &
-            (quantitySearchParameters.searchName.equals(searchPath) |
-                quantitySearchParameters.searchPath
-                    .like('$resourceType.$searchPath') |
-                quantitySearchParameters.searchPath
-                    .like('$resourceType.%.$searchPath'));
+    var whereCondition = t.resourceType.equals(resourceType) &
+        (t.searchName.equals(searchPath) |
+            t.searchPath.like('$resourceType.$searchPath') |
+            t.searchPath.like('$resourceType.%.$searchPath'));
 
     if (system != null) {
       // System given: "a precise match is desired", on system and code.
-      whereCondition = whereCondition &
-          quantitySearchParameters.quantitySystem.equals(system);
+      whereCondition = whereCondition & t.quantitySystem.equals(system);
       if (code != null) {
-        whereCondition =
-            whereCondition & quantitySearchParameters.quantityCode.equals(code);
+        whereCondition = whereCondition & t.quantityCode.equals(code);
       }
     } else if (code != null) {
       // `5.4||mg`: "either the code (code) or the stated human unit (unit)".
       whereCondition = whereCondition &
-          (quantitySearchParameters.quantityCode.equals(code) |
-              quantitySearchParameters.quantityUnit.equals(code));
+          (t.quantityCode.equals(code) | t.quantityUnit.equals(code));
     }
 
     return whereCondition &
         _numericPrefixCondition(
-          quantitySearchParameters.quantityValue,
+          t.quantityValue,
           modifier,
           parts[0],
           numValue,
@@ -2630,13 +2733,16 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   Expression<bool> _uriCondition(
     String resourceType,
     String searchPath,
-    String value,
-  ) =>
-      uriSearchParameters.resourceType.equals(resourceType) &
-      (uriSearchParameters.searchName.equals(searchPath) |
-          uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
-          uriSearchParameters.searchPath.like('$resourceType.%.$searchPath')) &
-      uriSearchParameters.uriValue.equals(unescapeValue(value));
+    String value, {
+    $UriSearchParametersTable? on,
+  }) {
+    final t = on ?? uriSearchParameters;
+    return t.resourceType.equals(resourceType) &
+        (t.searchName.equals(searchPath) |
+            t.searchPath.like('$resourceType.$searchPath') |
+            t.searchPath.like('$resourceType.%.$searchPath')) &
+        t.uriValue.equals(unescapeValue(value));
+  }
 
   Future<Set<String>> _searchUriParameter(
     String resourceType,
@@ -2710,21 +2816,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   Expression<bool> _referenceCondition(
     String resourceType,
     String searchPath,
-    String value,
-  ) {
-    var where = referenceSearchParameters.resourceType.equals(resourceType) &
-        (referenceSearchParameters.searchName.equals(searchPath) |
-            referenceSearchParameters.searchPath
-                .like('$resourceType.$searchPath') |
-            referenceSearchParameters.searchPath
-                .like('$resourceType.%.$searchPath'));
+    String value, {
+    $ReferenceSearchParametersTable? on,
+  }) {
+    final t = on ?? referenceSearchParameters;
+    var where = t.resourceType.equals(resourceType) &
+        (t.searchName.equals(searchPath) |
+            t.searchPath.like('$resourceType.$searchPath') |
+            t.searchPath.like('$resourceType.%.$searchPath'));
     final parts = value.split('/');
     if (parts.length == 2) {
       where = where &
-          referenceSearchParameters.referenceResourceType.equals(parts[0]) &
-          referenceSearchParameters.referenceIdPart.equals(parts[1]);
+          t.referenceResourceType.equals(parts[0]) &
+          t.referenceIdPart.equals(parts[1]);
     } else {
-      where = where & referenceSearchParameters.referenceIdPart.equals(value);
+      where = where & t.referenceIdPart.equals(value);
     }
     return where;
   }
