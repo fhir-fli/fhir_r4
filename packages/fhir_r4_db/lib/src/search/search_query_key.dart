@@ -109,6 +109,43 @@ class UnsupportedSearchModifier implements Exception {
   String toString() => 'UnsupportedSearchModifier: $message';
 }
 
+/// Thrown when a search value is not syntactically valid for its
+/// parameter's type: a date that is not a date, a number that is not a
+/// number.
+///
+/// R4B 3.1.1.3: "Where the content of the parameter is syntactically
+/// incorrect, servers SHOULD return an error. However, where the issue is a
+/// logical condition (e.g. unknown subject or code), the server SHOULD
+/// process the search … with the result of returning an empty search set".
+/// So `code=loinc|1234-1` for an unknown code is an empty set, and
+/// `onset=23 May 2009` is this. It used to be an empty set too, which told
+/// the client there were no such records when the question had not been
+/// understood.
+class InvalidSearchValue implements Exception {
+  /// Creates the failure for [value] on [parameter].
+  const InvalidSearchValue({
+    required this.parameter,
+    required this.value,
+    required this.type,
+  });
+
+  /// The search parameter as the client wrote it.
+  final String parameter;
+
+  /// The value that does not parse.
+  final String value;
+
+  /// The parameter's declared search type.
+  final String type;
+
+  /// A message naming the value and what it had to be.
+  String get message =>
+      'The value "$value" is not a valid $type for "$parameter".';
+
+  @override
+  String toString() => 'InvalidSearchValue: $message';
+}
+
 /// The modifiers R4 allows, per search parameter type.
 ///
 /// This is NOT generated, and it cannot be: R4 core populates

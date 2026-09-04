@@ -419,17 +419,54 @@ Future<void> main() async {
     expect(page, ['o20', 'o22', 'o24', 'o26', 'o28']);
   });
 
-  test('a date value that is not a date falls back and finds nothing',
+  test('a date value that is not a date is an error, not an empty set',
       () async {
-    expect(
-      await ids(
+    // R4B 3.1.1.3: "Where the content of the parameter is syntactically
+    // incorrect, servers SHOULD return an error." It used to answer with an
+    // empty set, which says "no such records" for a question it had not
+    // understood.
+    await expectLater(
+      ids(
         {
           'date': ['gtnot-a-date'],
         },
         count: 5,
-        general: true,
       ),
-      isEmpty,
+      throwsA(isA<InvalidSearchValue>()),
+    );
+    await expectLater(
+      ids(
+        {
+          'date': ['23 May 2009'],
+        },
+      ),
+      throwsA(isA<InvalidSearchValue>()),
+    );
+  });
+
+  test('an unknown parameter is ignored, an empty one too', () async {
+    // 3.1.1.3: "servers SHOULD ignore unknown or unsupported parameters";
+    // "Empty parameters are not an error - they are just ignored". Both
+    // used to make the whole search return nothing.
+    expect(
+      await ids(
+        {
+          'no-such-parameter': ['x'],
+          'status': ['final'],
+        },
+        count: 2,
+      ),
+      ['o00', 'o02'],
+    );
+    expect(
+      await ids(
+        {
+          'code': [''],
+          'status': ['final'],
+        },
+        count: 2,
+      ),
+      ['o00', 'o02'],
     );
   });
 
@@ -1024,17 +1061,25 @@ Future<void> main() async {
     );
   });
 
-  test('a number value that is not a number falls back and finds nothing',
-      () async {
+  test('a number value that is not a number is an error', () async {
     await saveRisks();
-    expect(
-      await riskIds(
+    await expectLater(
+      riskIds(
         {
           'probability': ['high'],
         },
         count: 5,
       ),
-      isEmpty,
+      throwsA(isA<InvalidSearchValue>()),
+    );
+    await expectLater(
+      ids(
+        {
+          'component-value-quantity': ['heavy|http://unitsofmeasure.org|kg'],
+        },
+        count: 5,
+      ),
+      throwsA(isA<InvalidSearchValue>()),
     );
   });
 

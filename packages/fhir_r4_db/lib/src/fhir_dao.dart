@@ -547,12 +547,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       // table; the comma-separated values inside it are ORed on that same
       // table. The split honours FHIR's backslash escaping, so `a\,b` is
       // one value.
+      // R4B 3.1.1.3: "servers SHOULD ignore unknown or unsupported
+      // parameters"; a strict client asks the SERVER to refuse them, with
+      // `Prefer: handling=strict`, and that is where it is enforced. Nothing
+      // this build has no definition for was ever indexed, so there is
+      // nothing to search either way. This used to fall through to a path
+      // that guessed the type from the value's shape and returned nothing.
+      if (searchParameterFor(resourceType, key.name) == null) continue;
+
       for (final repetition in entry.value) {
         final orValues = splitEscaped(repetition, ',')
             .map((v) => v.trim())
             .where((v) => v.isNotEmpty)
             .toList();
-        if (orValues.isEmpty) return null;
+        // 3.1.1.3: "Empty parameters are not an error - they are just
+        // ignored by the server."
+        if (orValues.isEmpty) continue;
 
         // The first condition is the outer select on its own table; every
         // further one is nested on an ALIAS of its table, so two conditions
@@ -1115,7 +1125,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final (prefix, rest) = splitComparator(declared, value);
         condition = _lastUpdatedCondition(prefix, rest, on: r);
       }
-      if (condition == null) return null;
+      if (condition == null) {
+        throw InvalidSearchValue(parameter: name, value: value, type: 'date');
+      }
       return _IndexCondition(
         r,
         r.id,
@@ -1235,7 +1247,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final (prefix, rest) = splitComparator(declared, value);
         final condition =
             _numberCondition(resourceType, name, prefix, rest, on: t);
-        if (condition == null) return null;
+        if (condition == null) {
+          throw InvalidSearchValue(
+            parameter: name,
+            value: value,
+            type: 'number',
+          );
+        }
         return _IndexCondition(t, t.id, condition);
       case 'quantity':
         final t = aliasName == null
@@ -1249,7 +1267,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final (prefix, rest) = splitComparator(declared, value);
         final condition =
             _quantityCondition(resourceType, name, prefix, rest, on: t);
-        if (condition == null) return null;
+        if (condition == null) {
+          throw InvalidSearchValue(
+            parameter: name,
+            value: value,
+            type: 'quantity',
+          );
+        }
         return _IndexCondition(t, t.id, condition);
       case 'uri':
         final t = aliasName == null
@@ -1317,7 +1341,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final (prefix, rest) = splitComparator(declared, value);
         final condition =
             _dateCondition(resourceType, name, prefix, rest, on: t);
-        if (condition == null) return null;
+        if (condition == null) {
+          throw InvalidSearchValue(parameter: name, value: value, type: 'date');
+        }
         return _IndexCondition(t, t.id, condition);
       default:
         return null;
