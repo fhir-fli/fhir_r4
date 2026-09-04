@@ -593,7 +593,7 @@ Future<void> main() async {
     expect(sql, general);
   });
 
-  test('a sort falls back to the general path and still pages', () async {
+  test('a sort pages in SQL too: the page is the top of the ORDER', () async {
     final sorted = await ids(
       {
         'status': ['final'],
@@ -601,6 +601,17 @@ Future<void> main() async {
       count: 3,
       sort: ['-_id'],
     );
-    expect(sorted, hasLength(3));
+    expect(sorted, ['o28', 'o26', 'o24']);
+    expect(
+      await ids(
+        {
+          'status': ['final'],
+        },
+        count: 3,
+        offset: 3,
+        sort: ['-_id'],
+      ),
+      ['o22', 'o20', 'o18'],
+    );
   });
 }

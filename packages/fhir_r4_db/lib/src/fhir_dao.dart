@@ -451,9 +451,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // off. The ids are sorted first, which makes paging stable and repeatable
     // for a caller that walks the pages.
     //
-    // A sort is the exception: `_sortResults` orders resources, so the page
-    // cannot be chosen until they are ordered. That path still reads all of
-    // them, and is the next thing to fix.
+    // A sort on this path still reads every match, because the page cannot
+    // be chosen until the resources are ordered. This path is reached only
+    // for a search the SQL-paged path refuses (a modifier, a chain, `_has`,
+    // a comma, a repeated parameter); a plain sorted search is paged in SQL.
     final ordered = matchingIds.toList()..sort();
 
     if (sort != null && sort.isNotEmpty) {
@@ -507,6 +508,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// Types covered: token, date, string, reference, number, quantity,
   /// uri. Each further type is one condition builder
   /// added to [_conditionFor]; a search using a type not there falls through.
+  ///
+  /// A `_sort` is paged here too, as a LEFT JOIN per key with GROUP BY and
+  /// MIN/MAX; see [_sortKeyFor]. A search with no parameter at all selects
+  /// from the resources table.
   Future<List<String>?> _pagedIds(
     String resourceType,
     Map<String, List<String>>? searchParameters,
@@ -516,12 +521,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     int? offset,
   ) async {
     if (count == null || count <= 0) return null;
-    if (sort != null && sort.isNotEmpty) return null;
     if (hasParameters != null && hasParameters.isNotEmpty) return null;
-    if (searchParameters == null || searchParameters.isEmpty) return null;
+
+    final sortKeys = <_SortKey>[];
+    for (final (i, rule) in (sort ?? const <String>[]).indexed) {
+      final key = _sortKeyFor(resourceType, rule, 's$i');
+      if (key == null) return null;
+      sortKeys.add(key);
+    }
 
     final parts = <_IndexCondition>[];
-    for (final entry in searchParameters.entries) {
+    for (final entry in (searchParameters ?? const {}).entries) {
       if (entry.value.length != 1) return null;
       final value = entry.value.single;
       if (value.contains(',') || value.isEmpty) return null;
@@ -582,7 +592,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // every parameter matches thousands of rows pays for the second.
     var limit = _probeLimits.first;
     final sized = <(_IndexCondition, int)>[];
-    if (parts.length > 1) {
+    if (parts.isEmpty) {
+      // No parameter at all — `Observation?_count=20`, or a bare `_sort`:
+      // the outer select is the resources table itself.
+      sized.add(
+        (
+          _IndexCondition(
+            resources,
+            resources.id,
+            resources.resourceType.equals(resourceType),
+          ),
+          0,
+        ),
+      );
+    } else if (parts.length > 1) {
       for (final probeLimit in _probeLimits) {
         limit = probeLimit;
         sized.clear();
@@ -621,13 +644,160 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             );
       }
     }
-    final rows = await (selectOnly(first.table, distinct: true)
-          ..addColumns([first.idColumn])
-          ..where(where)
-          ..orderBy([OrderingTerm.asc(first.idColumn)])
-          ..limit(count, offset: offset))
-        .get();
+    if (sortKeys.isEmpty) {
+      final rows = await (selectOnly(first.table, distinct: true)
+            ..addColumns([first.idColumn])
+            ..where(where)
+            ..orderBy([OrderingTerm.asc(first.idColumn)])
+            ..limit(count, offset: offset))
+          .get();
+      return rows
+          .map((r) => r.read(first.idColumn))
+          .whereType<String>()
+          .toList();
+    }
+
+    // §3.1.1.5.1: "there can be multiple values for a given search parameter
+    // for a single resource. In this case, the sort is based on the item in
+    // the set of multiple parameters that comes earliest in the specified
+    // sort order" — so each sort key is a LEFT JOIN to its index table, the
+    // rows are grouped by id, and the key is MIN of the value ascending or
+    // MAX descending. A resource with no value for the key keeps its place
+    // in the result and sorts last (a LEFT JOIN, and NULLS LAST, which is
+    // not SQLite's default for ascending). Ties break on id so a page is
+    // stable. This used to read EVERY matching resource and sort in Dart.
+    final joined = selectOnly(first.table).join([
+      for (final key in sortKeys)
+        leftOuterJoin(
+          key.table,
+          key.on(first.idColumn),
+          useColumns: false,
+        ),
+    ])
+      ..addColumns([first.idColumn])
+      ..where(where)
+      ..groupBy([first.idColumn])
+      ..orderBy([
+        for (final key in sortKeys)
+          OrderingTerm(
+            expression: key.descending ? key.value.max() : key.value.min(),
+            mode: key.descending ? OrderingMode.desc : OrderingMode.asc,
+            nulls: NullsOrder.last,
+          ),
+        OrderingTerm.asc(first.idColumn),
+      ])
+      ..limit(count, offset: offset);
+    final rows = await joined.get();
     return rows.map((r) => r.read(first.idColumn)).whereType<String>().toList();
+  }
+
+  /// One `_sort` rule as a join to the table holding its value, or null when
+  /// the rule names nothing this path can sort by (a parameter of a type with
+  /// no value column, or an unknown parameter), which sends the search down
+  /// the general path.
+  ///
+  /// `_id` and `_lastUpdated` join the resources table. A string sorts on its
+  /// normalized column, which is lower-cased and accent-folded: §3.1.1.5.1,
+  /// "sorting SHOULD be performed on a case-insensitive basis. Accents may
+  /// either be ignored or sorted as per realm convention."
+  _SortKey? _sortKeyFor(String resourceType, String rule, String aliasName) {
+    final descending = rule.startsWith('-');
+    final name = descending ? rule.substring(1) : rule;
+    if (name.isEmpty) return null;
+
+    if (name == '_id' || name == '_lastUpdated') {
+      final r = alias(resources, aliasName);
+      return _SortKey(
+        table: r,
+        on: (id) => r.resourceType.equals(resourceType) & r.id.equalsExp(id),
+        value: name == '_id' ? r.id : r.lastUpdated,
+        descending: descending,
+      );
+    }
+
+    final declared = searchParameterFor(resourceType, name);
+    if (declared == null) return null;
+
+    Expression<bool> path(
+      GeneratedColumn<String> type,
+      GeneratedColumn<String> searchName,
+      GeneratedColumn<String> searchPath,
+      GeneratedColumn<String> id,
+      GeneratedColumn<String> outerId,
+    ) =>
+        type.equals(resourceType) &
+        id.equalsExp(outerId) &
+        (searchName.equals(name) |
+            searchPath.like('$resourceType.$name') |
+            searchPath.like('$resourceType.%.$name'));
+
+    switch (declared.type) {
+      case 'string':
+        final s = alias(stringSearchParameters, aliasName);
+        return _SortKey(
+          table: s,
+          on: (id) =>
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          value: s.stringValue,
+          descending: descending,
+        );
+      case 'token':
+        final s = alias(tokenSearchParameters, aliasName);
+        return _SortKey(
+          table: s,
+          on: (id) =>
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          value: s.tokenValue,
+          descending: descending,
+        );
+      case 'date':
+        final s = alias(dateSearchParameters, aliasName);
+        return _SortKey(
+          table: s,
+          on: (id) =>
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          value: s.dateValue,
+          descending: descending,
+        );
+      case 'number':
+        final s = alias(numberSearchParameters, aliasName);
+        return _SortKey(
+          table: s,
+          on: (id) =>
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          value: s.numberValue,
+          descending: descending,
+        );
+      case 'quantity':
+        final s = alias(quantitySearchParameters, aliasName);
+        return _SortKey(
+          table: s,
+          on: (id) =>
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          value: s.quantityValue,
+          descending: descending,
+        );
+      case 'reference':
+        final s = alias(referenceSearchParameters, aliasName);
+        return _SortKey(
+          table: s,
+          on: (id) =>
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          value: s.referenceValue,
+          descending: descending,
+        );
+      case 'uri':
+        final s = alias(uriSearchParameters, aliasName);
+        return _SortKey(
+          table: s,
+          on: (id) =>
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          value: s.uriValue,
+          descending: descending,
+        );
+      default:
+        return null;
+    }
   }
 
   /// Rows a condition matches, counted inside SQLite and capped at
@@ -3104,161 +3274,131 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   // Private: Sorting helper
   // ──────────────────────────────────────────────────────────────────────────
 
+  /// Orders hydrated resources for the general path, R4B §3.1.1.5.1.
+  ///
+  /// The keys come from the resources themselves, through the same extractor
+  /// that writes the index, so nothing is read back from the database (the
+  /// previous version queried each index table with `id IN (<every id>)`,
+  /// which SQLite caps at 32,766 variables, and compared numbers as
+  /// strings). "There can be multiple values for a given search parameter
+  /// for a single resource. In this case, the sort is based on the item in
+  /// the set of multiple parameters that comes earliest in the specified
+  /// sort order": the smallest value ascending, the largest descending. A
+  /// resource with no value sorts last; ties break on id.
   Future<void> _sortResults(
     List<fhir.Resource> results,
     List<String> sort,
     String resourceType,
   ) async {
-    // Pre-fetch sort values from search parameter tables for each sort field.
-    // Maps: sortField -> (resourceId -> sortValue)
-    final sortMaps = <String, Map<String, String>>{};
-
-    for (final sortParam in sort) {
-      final field =
-          sortParam.startsWith('-') ? sortParam.substring(1) : sortParam;
-      if (field == '_id' || field == '_lastUpdated') continue;
-
-      final ids = results.map((r) => r.id?.toString() ?? '').toSet();
-      if (ids.isEmpty) continue;
-
-      final valueMap = await _getSortValues(resourceType, field, ids);
-      sortMaps[field] = valueMap;
-    }
-
+    final rules = <(String name, bool descending, SearchParameterDefinition?)>[
+      for (final rule in sort)
+        if (rule.startsWith('-'))
+          (
+            rule.substring(1),
+            true,
+            searchParameterFor(resourceType, rule.substring(1))
+          )
+        else
+          (rule, false, searchParameterFor(resourceType, rule)),
+    ];
+    final keys = <String, List<Comparable<Object>?>>{
+      for (final r in results)
+        r.id?.valueString ?? '': [
+          for (final (name, descending, declared) in rules)
+            _sortKeyOf(r, name, descending, declared),
+        ],
+    };
     results.sort((a, b) {
-      for (final sortParam in sort) {
-        final descending = sortParam.startsWith('-');
-        final field = descending ? sortParam.substring(1) : sortParam;
-
-        var comparison = 0;
-        if (field == '_id') {
-          comparison = (a.id?.toString() ?? '').compareTo(
-            b.id?.toString() ?? '',
-          );
-        } else if (field == '_lastUpdated') {
-          final aDate = a.meta?.lastUpdated?.valueDateTime ?? DateTime(1970);
-          final bDate = b.meta?.lastUpdated?.valueDateTime ?? DateTime(1970);
-          comparison = aDate.compareTo(bDate);
-        } else {
-          final valueMap = sortMaps[field];
-          if (valueMap != null) {
-            final aVal = valueMap[a.id?.toString() ?? ''];
-            final bVal = valueMap[b.id?.toString() ?? ''];
-            if (aVal == null && bVal == null) {
-              comparison = 0;
-            } else if (aVal == null) {
-              comparison = 1; // nulls sort last
-            } else if (bVal == null) {
-              comparison = -1;
-            } else {
-              comparison = aVal.compareTo(bVal);
-            }
-          }
-        }
-
-        if (comparison != 0) {
-          return descending ? -comparison : comparison;
-        }
+      final ka = keys[a.id?.valueString ?? '']!;
+      final kb = keys[b.id?.valueString ?? '']!;
+      for (final (i, (_, descending, _)) in rules.indexed) {
+        final va = ka[i];
+        final vb = kb[i];
+        if (va == null && vb == null) continue;
+        if (va == null) return 1;
+        if (vb == null) return -1;
+        final c = va.compareTo(vb);
+        if (c != 0) return descending ? -c : c;
       }
-      return 0;
+      return (a.id?.valueString ?? '').compareTo(b.id?.valueString ?? '');
     });
   }
 
-  /// Look up sort values for a search parameter from the indexed tables.
-  /// Returns a map of resourceId -> sortable string value.
-  Future<Map<String, String>> _getSortValues(
-    String resourceType,
-    String paramName,
-    Set<String> ids,
-  ) async {
-    final idList = ids.toList();
-
-    // Try string search parameters (covers name, family, given, etc.)
-    final stringRows = await (select(stringSearchParameters)
-          ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceType) &
-                tbl.id.isIn(idList) &
-                (tbl.searchName.equals(paramName) |
-                    tbl.searchPath.equals(paramName)) &
-                tbl.paramIndex.equals(0),
-          ))
-        .get();
-    if (stringRows.isNotEmpty) {
-      return {for (final r in stringRows) r.id: r.stringValue};
+  /// One resource's key for one sort rule: the earliest of its values in the
+  /// rule's direction, typed so numbers and dates compare as themselves.
+  Comparable<Object>? _sortKeyOf(
+    fhir.Resource resource,
+    String name,
+    bool descending,
+    SearchParameterDefinition? declared,
+  ) {
+    if (name == '_id') return resource.id?.valueString;
+    if (name == '_lastUpdated') {
+      return resource.meta?.lastUpdated?.valueDateTime;
     }
-
-    // Try date search parameters (covers birthdate, date, etc.)
-    final dateRows = await (select(dateSearchParameters)
-          ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceType) &
-                tbl.id.isIn(idList) &
-                (tbl.searchName.equals(paramName) |
-                    tbl.searchPath.equals(paramName)) &
-                tbl.paramIndex.equals(0),
-          ))
-        .get();
-    if (dateRows.isNotEmpty) {
-      // Sorted as strings by the caller, so the number is zero-padded to a
-      // fixed width (13 digits of milliseconds reach the year 2286). A row
-      // with no lower bound is before any date and sorts first.
-      return {
-        for (final r in dateRows)
-          r.id: r.dateValue == null
-              ? ''
-              : r.dateValue!.millisecondsSinceEpoch.toString().padLeft(15, '0'),
-      };
+    if (declared == null) return null;
+    final resourceType = resource.resourceTypeString;
+    bool named(String searchName, String searchPath) =>
+        searchName == name ||
+        searchPath == '$resourceType.$name' ||
+        (searchPath.startsWith('$resourceType.') &&
+            searchPath.endsWith('.$name'));
+    final lists = extractSearchParameters(resource);
+    final values = <Comparable<Object>>[];
+    switch (declared.type) {
+      case 'string':
+        for (final p in lists.stringParams) {
+          if (named(p.searchName.value, p.searchPath.value)) {
+            values.add(p.stringValue.value);
+          }
+        }
+      case 'token':
+        for (final p in lists.tokenParams) {
+          if (named(p.searchName.value, p.searchPath.value)) {
+            values.add(p.tokenValue.value);
+          }
+        }
+      case 'date':
+        for (final p in lists.dateParams) {
+          if (named(p.searchName.value, p.searchPath.value)) {
+            final low = p.dateValue.value;
+            if (low != null) values.add(low);
+          }
+        }
+      case 'number':
+        for (final p in lists.numberParams) {
+          if (named(p.searchName.value, p.searchPath.value)) {
+            values.add(p.numberValue.value);
+          }
+        }
+      case 'quantity':
+        for (final p in lists.quantityParams) {
+          if (named(p.searchName.value, p.searchPath.value)) {
+            values.add(p.quantityValue.value);
+          }
+        }
+      case 'reference':
+        for (final p in lists.referenceParams) {
+          if (named(p.searchName.value, p.searchPath.value)) {
+            final v = p.referenceValue.value;
+            if (v != null) values.add(v);
+          }
+        }
+      case 'uri':
+        for (final p in lists.uriParams) {
+          if (named(p.searchName.value, p.searchPath.value)) {
+            values.add(p.uriValue.value);
+          }
+        }
+      default:
+        return null;
     }
-
-    // Try token search parameters (covers status, code, etc.)
-    final tokenRows = await (select(tokenSearchParameters)
-          ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceType) &
-                tbl.id.isIn(idList) &
-                (tbl.searchName.equals(paramName) |
-                    tbl.searchPath.equals(paramName)) &
-                tbl.paramIndex.equals(0),
-          ))
-        .get();
-    if (tokenRows.isNotEmpty) {
-      return {for (final r in tokenRows) r.id: r.tokenValue};
-    }
-
-    // Try number search parameters
-    final numberRows = await (select(numberSearchParameters)
-          ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceType) &
-                tbl.id.isIn(idList) &
-                (tbl.searchName.equals(paramName) |
-                    tbl.searchPath.equals(paramName)) &
-                tbl.paramIndex.equals(0),
-          ))
-        .get();
-    if (numberRows.isNotEmpty) {
-      return {for (final r in numberRows) r.id: r.numberValue.toString()};
-    }
-
-    // Try quantity search parameters
-    final quantityRows = await (select(quantitySearchParameters)
-          ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceType) &
-                tbl.id.isIn(idList) &
-                (tbl.searchName.equals(paramName) |
-                    tbl.searchPath.equals(paramName)) &
-                tbl.paramIndex.equals(0),
-          ))
-        .get();
-    if (quantityRows.isNotEmpty) {
-      return {
-        for (final r in quantityRows) r.id: r.quantityValue.toString(),
-      };
-    }
-
-    return {};
+    if (values.isEmpty) return null;
+    return values.reduce(
+      (a, b) => descending
+          ? (a.compareTo(b) >= 0 ? a : b)
+          : (a.compareTo(b) <= 0 ? a : b),
+    );
   }
 }
 
@@ -3269,4 +3409,20 @@ class _IndexCondition {
   final TableInfo<Table, dynamic> table;
   final GeneratedColumn<String> idColumn;
   final Expression<bool> condition;
+}
+
+/// One `_sort` rule: the (aliased) table holding the value, how it joins to
+/// the outer select's id, the value column, and the direction.
+class _SortKey {
+  const _SortKey({
+    required this.table,
+    required this.on,
+    required this.value,
+    required this.descending,
+  });
+
+  final TableInfo<Table, dynamic> table;
+  final Expression<bool> Function(GeneratedColumn<String> outerId) on;
+  final Expression<Object> value;
+  final bool descending;
 }
