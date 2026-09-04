@@ -526,8 +526,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     int? count,
     int? offset,
   ) async {
-    if (count == null || count <= 0) return null;
-    if (hasParameters != null && hasParameters.isNotEmpty) return null;
+    if (count != null && count <= 0) return null;
 
     final sortKeys = <_SortKey>[];
     for (final (i, rule) in (sort ?? const <String>[]).indexed) {
@@ -537,17 +536,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
 
     final parts = <_IndexCondition>[];
+    var aliases = 0;
+    String nextAlias() => 'p${++aliases}';
+
     for (final entry in (searchParameters ?? const {}).entries) {
       final key = SearchQueryKey.parse(entry.key);
-      // A chain (`subject.name`, `subject:Patient.name`) is resolved through
-      // another resource type and takes the general path.
-      if (key.chain != null) return null;
-      final modifier = key.modifier;
-
-      // `_tag`, `_profile`, `_security`, `_source`, `_id`, `_lastUpdated` are
-      // published against Resource (R4B 3.1.1.4.1), not against each type.
-      final declared = searchParameterFor(resourceType, key.name);
-      if (declared == null) return null;
 
       // R4B 3.1.1.4.17: a repeated parameter is an AND, a comma inside one
       // is an OR. Each repetition is one condition on its own (aliased)
@@ -565,16 +558,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // further one is nested on an ALIAS of its table, so two conditions
         // on the same table (status and code are both tokens) do not
         // collide.
-        final aliasName = parts.isEmpty ? null : 'p${parts.length}';
+        final aliasName = parts.isEmpty ? null : nextAlias();
         _IndexCondition? combined;
         for (final value in orValues) {
-          final one = await _conditionFor(
+          final one = await _conditionForKey(
             resourceType,
-            key.name,
+            key,
             value,
-            declared,
-            modifier: modifier,
             aliasName: aliasName,
+            nextAlias: nextAlias,
           );
           if (one == null) return null;
           combined = combined == null
@@ -588,6 +580,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         }
         parts.add(combined!);
       }
+    }
+
+    // `_has`, R4B 3.1.1.4.14: the source is what a reference on the target
+    // type points at, so the condition sits on the reference table and its
+    // "id" is the referenced id. Nested as any other part.
+    for (final has in hasParameters ?? const <HasParameter>[]) {
+      final part = await _hasCondition(
+        resourceType,
+        has,
+        aliasName: nextAlias(),
+        nextAlias: nextAlias,
+      );
+      if (part == null) return null;
+      parts.add(part);
     }
 
     // Which parameter is the outer select, and how the others nest, is
@@ -695,12 +701,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
 
     if (sortKeys.isEmpty) {
-      final rows = await (selectOnly(first.table, distinct: true)
-            ..addColumns([first.idColumn])
-            ..where(where)
-            ..orderBy([OrderingTerm.asc(first.idColumn)])
-            ..limit(count, offset: offset))
-          .get();
+      final statement = selectOnly(first.table, distinct: true)
+        ..addColumns([first.idColumn])
+        ..where(where)
+        ..orderBy([OrderingTerm.asc(first.idColumn)]);
+      // No count: every matching id, still in SQL. That is how the general
+      // path's job is done for any search this path can express; only a
+      // shape it cannot build goes back to the Dart set arithmetic.
+      if (count != null) {
+        statement.limit(count, offset: offset);
+      } else if (offset != null && offset > 0) {
+        statement.limit(-1, offset: offset);
+      }
+      final rows = await statement.get();
       return rows
           .map((r) => r.read(first.idColumn))
           .whereType<String>()
@@ -735,8 +748,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             nulls: NullsOrder.last,
           ),
         OrderingTerm.asc(first.idColumn),
-      ])
-      ..limit(count, offset: offset);
+      ]);
+    if (count != null) {
+      joined.limit(count, offset: offset);
+    } else if (offset != null && offset > 0) {
+      joined.limit(-1, offset: offset);
+    }
     final rows = await joined.get();
     return rows.map((r) => r.read(first.idColumn)).whereType<String>().toList();
   }
@@ -872,6 +889,180 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// exact size is not worth finding: the probe would cost as much as the
   /// search (0.17s for 100,000 rows of the date index on the MIMIC load).
   static const _probeLimits = [2000, 100000];
+
+  /// One parsed key's condition: a plain or modified parameter through
+  /// [_conditionFor], or a chain through [_chainCondition].
+  Future<_IndexCondition?> _conditionForKey(
+    String resourceType,
+    SearchQueryKey key,
+    String value, {
+    required String? aliasName,
+    required String Function() nextAlias,
+  }) async {
+    // `_tag`, `_profile`, `_security`, `_source`, `_id`, `_lastUpdated` are
+    // published against Resource (R4B 3.1.1.4.1), not against each type.
+    final declared = searchParameterFor(resourceType, key.name);
+    if (declared == null) return null;
+    if (key.chain != null) {
+      if (declared.type != 'reference') return null;
+      return _chainCondition(
+        resourceType,
+        key.name,
+        key.modifier,
+        key.chain!,
+        value,
+        aliasName: aliasName ?? nextAlias(),
+        nextAlias: nextAlias,
+      );
+    }
+    return _conditionFor(
+      resourceType,
+      key.name,
+      value,
+      declared,
+      modifier: key.modifier,
+      aliasName: aliasName,
+    );
+  }
+
+  /// A chained parameter, R4B 3.1.1.4.13: `subject.name=peter` selects the
+  /// resources whose `subject` references a resource whose `name` matches.
+  ///
+  /// The condition sits on the reference table: the reference row for
+  /// [refName], whose target is a resource of some type that satisfies the
+  /// rest of the chain, tested with a correlated EXISTS on that type's index
+  /// table joined on `(reference_resource_type, reference_id_part)`. With no
+  /// type constraint the candidates are every resource type that declares
+  /// the chained parameter, ORed; `subject:Patient.name` narrows them to one.
+  /// A longer chain (`subject.organization.name`) recurses one hop at a
+  /// time. A reference stored with no type (a bare id) cannot be followed
+  /// and does not match.
+  ///
+  /// The general path did this by reading EVERY reference row for the
+  /// parameter and running a full search on the target for each one.
+  Future<_IndexCondition?> _chainCondition(
+    String resourceType,
+    String refName,
+    String? typeConstraint,
+    String chain,
+    String value, {
+    required String aliasName,
+    required String Function() nextAlias,
+  }) async {
+    final c = alias(referenceSearchParameters, aliasName);
+    final path = c.resourceType.equals(resourceType) &
+        (c.searchName.equals(refName) |
+            c.searchPath.like('$resourceType.$refName') |
+            c.searchPath.like('$resourceType.%.$refName'));
+    final chainedKey = SearchQueryKey.parse(chain);
+    final candidates = typeConstraint != null
+        ? [typeConstraint]
+        : [
+            for (final type in searchParameterTypes.keys)
+              if (fhir.R4ResourceType.fromString(type) != null &&
+                  searchParameterFor(type, chainedKey.name) != null)
+                type,
+          ];
+    if (candidates.isEmpty) return null;
+    Expression<bool>? any;
+    for (final target in candidates) {
+      if (searchParameterFor(target, chainedKey.name) == null) {
+        // `subject:Group.family`: the constrained type has no such
+        // parameter, so nothing can match through it.
+        any = any ?? const Constant(false);
+        continue;
+      }
+      final inner = await _conditionForKey(
+        target,
+        chainedKey,
+        value,
+        aliasName: nextAlias(),
+        nextAlias: nextAlias,
+      );
+      // A candidate this path cannot express sends the whole search down
+      // the general path rather than quietly leaving that type out.
+      if (inner == null) return null;
+      final hop = c.referenceResourceType.equals(target) &
+          await _nest(inner, c.referenceIdPart);
+      any = any == null ? hop : any | hop;
+    }
+    return _IndexCondition(c, c.id, path & any!);
+  }
+
+  /// Nests [inner] on [correlate]: as `IN (SELECT id …)` when the inner set
+  /// is small enough to materialise cheaply (probed), else as a correlated
+  /// `EXISTS`, the same rule the top-level parameters use. A negated inner
+  /// is the complement. Measured 2026-09-04 on the MIMIC load: the chain
+  /// `subject.gender=female&code=…` as EXISTS-only was 2.9s, because every
+  /// probe of the reference table re-ran the target's EXISTS.
+  Future<Expression<bool>> _nest(
+    _IndexCondition inner,
+    Expression<String> correlate,
+  ) async {
+    final size = await _probeSize(inner, _probeLimits.last);
+    if (size < _probeLimits.last) {
+      final set = selectOnly(inner.table, distinct: true)
+        ..addColumns([inner.idColumn])
+        ..where(inner.condition);
+      final within = correlate.isInQuery(set);
+      return inner.negated ? within.not() : within;
+    }
+    final correlated = selectOnly(inner.table)
+      ..addColumns([const Constant(1)])
+      ..where(inner.condition & inner.idColumn.equalsExp(correlate));
+    return inner.negated ? notExistsQuery(correlated) : existsQuery(correlated);
+  }
+
+  /// A `_has` parameter, R4B 3.1.1.4.14: `Patient?_has:Observation:patient:
+  /// code=1234` selects the Patients that some Observation with code 1234
+  /// points at through its `patient` parameter.
+  ///
+  /// The condition sits on the reference table of the TARGET type: a row for
+  /// [HasParameter.referenceParam] on [HasParameter.targetType] whose target
+  /// is this resource type, and whose owning resource satisfies the search
+  /// parameter (or the nested `_has`), tested with a correlated EXISTS. Its
+  /// id column is the REFERENCED id, which is what makes it combine with the
+  /// other conditions on the source. The general path ignored the reference
+  /// parameter and accepted any reference from the target type to the source.
+  Future<_IndexCondition?> _hasCondition(
+    String resourceType,
+    HasParameter has, {
+    required String aliasName,
+    required String Function() nextAlias,
+  }) async {
+    if (fhir.R4ResourceType.fromString(has.targetType) == null) return null;
+    final h = alias(referenceSearchParameters, aliasName);
+    final target = has.targetType;
+    final refName = has.referenceParam;
+    final path = h.resourceType.equals(target) &
+        (h.searchName.equals(refName) |
+            h.searchPath.like('$target.$refName') |
+            h.searchPath.like('$target.%.$refName')) &
+        h.referenceResourceType.equals(resourceType);
+    final _IndexCondition? inner;
+    if (has.nested != null) {
+      inner = await _hasCondition(
+        target,
+        has.nested!,
+        aliasName: nextAlias(),
+        nextAlias: nextAlias,
+      );
+    } else {
+      inner = await _conditionForKey(
+        target,
+        SearchQueryKey.parse(has.searchParam),
+        has.value,
+        aliasName: nextAlias(),
+        nextAlias: nextAlias,
+      );
+    }
+    if (inner == null) return null;
+    return _IndexCondition(
+      h,
+      h.referenceIdPart,
+      path & await _nest(inner, h.id),
+    );
+  }
 
   /// One parameter's typed WHERE on its own index table, or null when this
   /// path has no builder for the parameter's type, the value does not parse
@@ -1146,6 +1337,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     List<HasParameter>? hasParameters,
   }) async {
     final resourceTypeString = resourceType.toString();
+
+    // One SQL statement when every part can be expressed as one; the Dart
+    // set arithmetic below is only for the shapes that cannot.
+    final inSql = await _pagedIds(
+      resourceTypeString,
+      searchParameters,
+      hasParameters,
+      null,
+      null,
+      null,
+    );
+    if (inSql != null) {
+      return inSql.toSet();
+    }
+
     var matchingIds = <String>{};
     var firstParam = true;
 

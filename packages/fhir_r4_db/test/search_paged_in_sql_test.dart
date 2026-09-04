@@ -11,9 +11,9 @@ Future<void> main() async {
   late FhirDb db;
   late FhirDao dao;
 
-  /// Runs the search, and asserts which path ran: SQL paging whenever a
-  /// count was given, unless [general] says this shape is meant to fall
-  /// back. A right answer proves nothing about the path on its own.
+  /// Runs the search, and asserts which path ran: SQL, with or without a
+  /// count, unless [general] says this shape is meant to fall back. A right
+  /// answer proves nothing about the path on its own.
   Future<List<String>> ids(
     Map<String, List<String>> params, {
     int? count,
@@ -30,7 +30,7 @@ Future<void> main() async {
     );
     expect(
       dao.lastSearchPagedInSql,
-      count != null && !general,
+      !general,
       reason: 'path for $params count=$count sort=$sort',
     );
     return found.map((r) => r.id!.valueString!).toList();
@@ -1066,20 +1066,188 @@ Future<void> main() async {
     expect(await vsIds('http://example.org/vs/ev'), isEmpty);
   });
 
-  test('a chained reference falls back to the general path', () async {
-    // subject.name would need the Patient; none is stored, so it finds
-    // nothing, but it must not throw and must not be answered by the SQL
-    // path as though the chain were a plain value.
+  /// Two patients and an organisation for the chains: p1 is Anna Smith at
+  /// Org A, p2 is Ben Jones at Org B. Observations o00..o14 point at p1,
+  /// o15..o29 at p2.
+  Future<void> saveChainTargets() async {
+    await dao.saveResource(
+      Organization.fromJson({
+        'resourceType': 'Organization',
+        'id': 'orgA',
+        'name': 'Alpha Clinic',
+      }),
+    );
+    await dao.saveResource(
+      Organization.fromJson({
+        'resourceType': 'Organization',
+        'id': 'orgB',
+        'name': 'Beta Hospital',
+      }),
+    );
+    await dao.saveResource(
+      Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'p1',
+        'name': [
+          {
+            'family': 'Smith',
+            'given': ['Anna'],
+          },
+        ],
+        'gender': 'female',
+        'managingOrganization': {'reference': 'Organization/orgA'},
+      }),
+    );
+    await dao.saveResource(
+      Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'p2',
+        'name': [
+          {
+            'family': 'Jones',
+            'given': ['Ben'],
+          },
+        ],
+        'gender': 'male',
+        'managingOrganization': {'reference': 'Organization/orgB'},
+      }),
+    );
+  }
+
+  test('a chained parameter pages in SQL, one hop', () async {
+    await saveChainTargets();
+    // subject.family=Jones -> p2 -> o15..o29.
     expect(
       await ids(
         {
-          'subject.name': ['anything'],
+          'subject.family': ['Jones'],
         },
-        count: 5,
-        general: true,
+        count: 3,
+      ),
+      ['o15', 'o16', 'o17'],
+    );
+    // Type-constrained, and a modifier inside the chain.
+    expect(
+      await ids(
+        {
+          'subject:Patient.family:exact': ['Smith'],
+          'status': ['final'],
+        },
+        count: 3,
+      ),
+      ['o00', 'o02', 'o04'],
+    );
+    expect(
+      await ids(
+        {
+          'subject:Group.family': ['Smith'],
+        },
+        count: 3,
       ),
       isEmpty,
     );
+    // The general path agrees.
+    expect(
+      await ids({
+        'subject.family': ['Jones'],
+      }),
+      hasLength(15),
+    );
+  });
+
+  test('a chained parameter pages in SQL, two hops', () async {
+    await saveChainTargets();
+    // subject.organization.name=Beta -> orgB -> p2 -> o15..o29.
+    expect(
+      await ids(
+        {
+          'subject.organization.name': ['Beta'],
+        },
+        count: 2,
+        offset: 13,
+      ),
+      ['o28', 'o29'],
+    );
+    expect(
+      await ids({
+        'subject.organization.name': ['Beta'],
+      }),
+      hasLength(15),
+    );
+  });
+
+  test('_has pages in SQL, honouring the reference parameter', () async {
+    await saveChainTargets();
+    Future<List<String>> patients(
+      Map<String, List<String>> params, {
+      int? count,
+    }) async {
+      final has = <HasParameter>[];
+      final plain = <String, List<String>>{};
+      for (final e in params.entries) {
+        final parsed = HasParameter.parse(e.key, e.value.single);
+        if (parsed != null) {
+          has.add(parsed);
+        } else {
+          plain[e.key] = e.value;
+        }
+      }
+      final found = await dao.search(
+        resourceType: R4ResourceType.Patient,
+        searchParameters: plain,
+        hasParameters: has,
+        count: count,
+      );
+      expect(dao.lastSearchPagedInSql, isTrue, reason: '$params');
+      return found.map((r) => r.id!.valueString!).toList();
+    }
+
+    // Patients with an Observation of code B: only p2's (o20..o29).
+    expect(
+      await patients(
+        {
+          '_has:Observation:subject:code': ['B'],
+        },
+        count: 5,
+      ),
+      ['p2'],
+    );
+    expect(
+      await patients(
+        {
+          '_has:Observation:subject:code': ['A'],
+          'gender': ['female'],
+        },
+        count: 5,
+      ),
+      ['p1'],
+    );
+    // The reference parameter matters: no Observation points at a patient
+    // through `performer`, so this is empty. (The general path ignored the
+    // reference parameter and would have answered p1 and p2.)
+    expect(
+      await patients(
+        {
+          '_has:Observation:performer:code': ['A'],
+        },
+        count: 5,
+      ),
+      isEmpty,
+    );
+    // Nested: Organizations that manage a Patient that has an Observation
+    // of code B.
+    final orgs = await dao.search(
+      resourceType: R4ResourceType.Organization,
+      hasParameters: [
+        HasParameter.parse(
+          '_has:Patient:organization:_has:Observation:subject:code',
+          'B',
+        )!,
+      ],
+      count: 5,
+    );
+    expect(dao.lastSearchPagedInSql, isTrue);
+    expect(orgs.map((r) => r.id!.valueString), ['orgB']);
   });
 
   test('the SQL path and the general path agree', () async {
