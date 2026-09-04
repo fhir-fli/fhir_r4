@@ -504,7 +504,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// SQLite handing 813,513 ids to Dart so Dart could keep 20; measured after
   /// this, 1.12s, and `status=final AND code=227969` 0.73s.
   ///
-  /// Types covered: token, date. Each further type is one condition builder
+  /// Types covered: token, date, string. Each further type is one condition builder
   /// added to [_conditionFor]; a search using a type not there falls through.
   Future<List<String>?> _pagedIds(
     String resourceType,
@@ -571,6 +571,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           tokenSearchParameters,
           tokenSearchParameters.id,
           _tokenCondition(resourceType, name, value),
+        );
+      case 'string':
+        return _IndexCondition(
+          stringSearchParameters,
+          stringSearchParameters.id,
+          _stringCondition(resourceType, name, value),
         );
       case 'date':
         final (prefix, rest) = splitComparator(declared, value);
@@ -1416,6 +1422,26 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   // ──────────────────────────────────────────────────────────────────────────
   // Private: Individual search parameter type handlers
   // ──────────────────────────────────────────────────────────────────────────
+
+  /// The WHERE for one plain string value — the default match, R4 3.1.1.4.8:
+  /// "equals or starts with the supplied parameter value, after both have
+  /// been normalized by case and combining characters". `:exact` and
+  /// `:contains` are not built here; the SQL-paged path admits no modifier,
+  /// so they take the general path.
+  Expression<bool> _stringCondition(
+    String resourceType,
+    String searchPath,
+    String value,
+  ) {
+    final normalized = normalizeSearchString(unescapeValue(value)).trim();
+    return stringSearchParameters.resourceType.equals(resourceType) &
+        (stringSearchParameters.searchName.equals(searchPath) |
+            stringSearchParameters.searchPath
+                .like('$resourceType.$searchPath') |
+            stringSearchParameters.searchPath
+                .like('$resourceType.%.$searchPath')) &
+        stringSearchParameters.stringValue.like('$normalized%');
+  }
 
   Future<Set<String>> _searchStringParameter(
     String resourceType,

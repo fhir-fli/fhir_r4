@@ -39,6 +39,7 @@ Future<void> main() async {
           'id': 'o${i.toString().padLeft(2, '0')}',
           'status': i.isEven ? 'final' : 'preliminary',
           'effectiveDateTime': '2020-01-${(i + 1).toString().padLeft(2, '0')}',
+          'valueString': i < 10 ? 'Alpha reading' : 'Beta reading',
           'code': {
             'coding': [
               {'system': 'http://example.org', 'code': i < 20 ? 'A' : 'B'},
@@ -141,6 +142,52 @@ Future<void> main() async {
       ),
       isEmpty,
     );
+  });
+
+  test('a string parameter pages in SQL with the starts-with default',
+      () async {
+    // value-string sw "alpha" -> o00..o09 -> 10 rows; case-insensitive.
+    final page = await ids(
+      {
+        'value-string': ['alpha'],
+      },
+      count: 4,
+      offset: 8,
+    );
+    expect(page, ['o08', 'o09']);
+    expect(
+      await ids(
+        {
+          'value-string': ['reading'],
+        },
+        count: 5,
+      ),
+      isEmpty,
+      reason: 'starts-with, not contains',
+    );
+  });
+
+  test('a string and a token parameter intersect', () async {
+    // "Beta" AND final -> even ids in 10..29 -> 10 rows.
+    final page = await ids(
+      {
+        'value-string': ['Beta'],
+        'status': ['final'],
+      },
+      count: 3,
+      offset: 6,
+    );
+    expect(page, ['o22', 'o24', 'o26']);
+  });
+
+  test('a string modifier falls back to the general path', () async {
+    final exact = await ids(
+      {
+        'value-string:exact': ['Alpha reading'],
+      },
+      count: 3,
+    );
+    expect(exact, ['o00', 'o01', 'o02']);
   });
 
   test('the SQL path and the general path agree', () async {
