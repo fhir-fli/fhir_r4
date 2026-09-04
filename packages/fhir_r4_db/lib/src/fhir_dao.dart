@@ -504,7 +504,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// SQLite handing 813,513 ids to Dart so Dart could keep 20; measured after
   /// this, 1.12s, and `status=final AND code=227969` 0.73s.
   ///
-  /// Types covered: token, date, string. Each further type is one condition builder
+  /// Types covered: token, date, string, reference, number, quantity,
+  /// uri. Each further type is one condition builder
   /// added to [_conditionFor]; a search using a type not there falls through.
   Future<List<String>?> _pagedIds(
     String resourceType,
@@ -571,6 +572,38 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           tokenSearchParameters,
           tokenSearchParameters.id,
           _tokenCondition(resourceType, name, value),
+        );
+      case 'reference':
+        // A chain (`subject.name`) never reaches here: the key's qualifier
+        // is rejected above. Only `Type/id` and bare ids do.
+        return _IndexCondition(
+          referenceSearchParameters,
+          referenceSearchParameters.id,
+          _referenceCondition(resourceType, name, value),
+        );
+      case 'number':
+        final (prefix, rest) = splitComparator(declared, value);
+        final condition = _numberCondition(resourceType, name, prefix, rest);
+        if (condition == null) return null;
+        return _IndexCondition(
+          numberSearchParameters,
+          numberSearchParameters.id,
+          condition,
+        );
+      case 'quantity':
+        final (prefix, rest) = splitComparator(declared, value);
+        final condition = _quantityCondition(resourceType, name, prefix, rest);
+        if (condition == null) return null;
+        return _IndexCondition(
+          quantitySearchParameters,
+          quantitySearchParameters.id,
+          condition,
+        );
+      case 'uri':
+        return _IndexCondition(
+          uriSearchParameters,
+          uriSearchParameters.id,
+          _uriCondition(resourceType, name, value),
         );
       case 'string':
         return _IndexCondition(
@@ -2385,6 +2418,61 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return allResourceIds.difference(idsWithParam);
   }
 
+  /// The WHERE for one number value with its comparator prefix, or null
+  /// when the value is not a number.
+  Expression<bool>? _numberCondition(
+    String resourceType,
+    String searchPath,
+    String? modifier,
+    String searchValue,
+  ) {
+    double? numValue;
+    try {
+      numValue = double.parse(searchValue);
+    } catch (_) {
+      return null;
+    }
+
+    var whereCondition =
+        numberSearchParameters.resourceType.equals(resourceType) &
+            (numberSearchParameters.searchName.equals(searchPath) |
+                numberSearchParameters.searchPath
+                    .like('$resourceType.$searchPath') |
+                numberSearchParameters.searchPath
+                    .like('$resourceType.%.$searchPath'));
+
+    switch (modifier) {
+      case 'gt':
+        whereCondition = whereCondition &
+            numberSearchParameters.numberValue.isBiggerThanValue(numValue);
+      case 'lt':
+        whereCondition = whereCondition &
+            numberSearchParameters.numberValue.isSmallerThanValue(numValue);
+      case 'ge':
+        whereCondition = whereCondition &
+            numberSearchParameters.numberValue.isBiggerOrEqualValue(numValue);
+      case 'le':
+        whereCondition = whereCondition &
+            numberSearchParameters.numberValue.isSmallerOrEqualValue(numValue);
+      case 'ap':
+        final range = numValue.abs() * 0.1;
+        whereCondition = whereCondition &
+            numberSearchParameters.numberValue
+                .isBiggerOrEqualValue(numValue - range) &
+            numberSearchParameters.numberValue
+                .isSmallerOrEqualValue(numValue + range);
+      case 'ne':
+        whereCondition = whereCondition &
+            numberSearchParameters.numberValue.equals(numValue).not();
+      default:
+        // eq, and no prefix at all: R4 makes eq the default.
+        whereCondition = whereCondition &
+            numberSearchParameters.numberValue.equals(numValue);
+    }
+
+    return whereCondition;
+  }
+
   Future<Set<String>> _searchNumberParameter(
     String resourceType,
     String searchPath,
@@ -2405,55 +2493,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         searchValue = rest;
       }
 
-      double? numValue;
-      try {
-        numValue = double.parse(searchValue);
-      } catch (_) {
+      final whereCondition =
+          _numberCondition(resourceType, searchPath, modifier, searchValue);
+      if (whereCondition == null) {
         continue;
       }
-
-      final query = select(numberSearchParameters);
-      var whereCondition =
-          numberSearchParameters.resourceType.equals(resourceType) &
-              (numberSearchParameters.searchName.equals(searchPath) |
-                  numberSearchParameters.searchPath
-                      .like('$resourceType.$searchPath') |
-                  numberSearchParameters.searchPath
-                      .like('$resourceType.%.$searchPath'));
-
-      switch (modifier) {
-        case 'gt':
-          whereCondition = whereCondition &
-              numberSearchParameters.numberValue.isBiggerThanValue(numValue);
-        case 'lt':
-          whereCondition = whereCondition &
-              numberSearchParameters.numberValue.isSmallerThanValue(numValue);
-        case 'ge':
-          whereCondition = whereCondition &
-              numberSearchParameters.numberValue.isBiggerOrEqualValue(numValue);
-        case 'le':
-          whereCondition = whereCondition &
-              numberSearchParameters.numberValue
-                  .isSmallerOrEqualValue(numValue);
-        case 'ap':
-          final range = numValue.abs() * 0.1;
-          whereCondition = whereCondition &
-              numberSearchParameters.numberValue
-                  .isBiggerOrEqualValue(numValue - range) &
-              numberSearchParameters.numberValue
-                  .isSmallerOrEqualValue(numValue + range);
-        case 'ne':
-          whereCondition = whereCondition &
-              numberSearchParameters.numberValue.equals(numValue).not();
-        default:
-          // eq, and no prefix at all: R4 makes eq the default.
-          whereCondition = whereCondition &
-              numberSearchParameters.numberValue.equals(numValue);
-      }
-
-      query.where((tbl) => whereCondition);
-      // Only the id column is read, not every column of every
-      // matching row; see _executeTokenQuery for the measurement.
       final idColumn = numberSearchParameters.id;
       final rows = await (selectOnly(numberSearchParameters, distinct: true)
             ..addColumns([idColumn])
@@ -2467,6 +2511,85 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
     return matchingIds;
+  }
+
+  /// The WHERE for one quantity value — `[prefix]number|system|code` — or
+  /// null when the number does not parse.
+  Expression<bool>? _quantityCondition(
+    String resourceType,
+    String searchPath,
+    String? modifier,
+    String searchValue,
+  ) {
+    // R4B 3.1.1.4.11: `[prefix][number]|[system]|[code]`. The number comes
+    // FIRST. This used to read a three-part value as `system|number|code`, so
+    // the spec's own example `5.4|http://unitsofmeasure.org|mg` tried to parse
+    // the URL as a number and matched nothing. The section defines three
+    // shapes — `5.4`, `5.4||mg`, `5.4|system|mg` — and no two-part one.
+    final parts = splitEscaped(searchValue, '|');
+    if (parts.length != 1 && parts.length != 3) {
+      return null;
+    }
+    final numValue = double.tryParse(parts[0]);
+    if (numValue == null) {
+      return null;
+    }
+    final system = parts.length == 3 && parts[1].isNotEmpty ? parts[1] : null;
+    final code = parts.length == 3 && parts[2].isNotEmpty ? parts[2] : null;
+
+    // searchName first, as every other matcher does. Without it a quantity
+    // parameter could only be found when its name happened to be the last
+    // segment of its path — which `value-quantity` never is, because its
+    // path is `Observation.value.ofType(Quantity)`. That is why the row was
+    // written correctly and the search still returned nothing.
+    var whereCondition =
+        quantitySearchParameters.resourceType.equals(resourceType) &
+            (quantitySearchParameters.searchName.equals(searchPath) |
+                quantitySearchParameters.searchPath
+                    .like('$resourceType.$searchPath') |
+                quantitySearchParameters.searchPath
+                    .like('$resourceType.%.$searchPath'));
+
+    if (system != null) {
+      // System given: "a precise match is desired", on system and code.
+      whereCondition = whereCondition &
+          quantitySearchParameters.quantitySystem.equals(system);
+      if (code != null) {
+        whereCondition =
+            whereCondition & quantitySearchParameters.quantityCode.equals(code);
+      }
+    } else if (code != null) {
+      // `5.4||mg`: "either the code (code) or the stated human unit (unit)".
+      whereCondition = whereCondition &
+          (quantitySearchParameters.quantityCode.equals(code) |
+              quantitySearchParameters.quantityUnit.equals(code));
+    }
+
+    switch (modifier) {
+      case 'gt':
+        whereCondition = whereCondition &
+            quantitySearchParameters.quantityValue.isBiggerThanValue(numValue);
+      case 'lt':
+        whereCondition = whereCondition &
+            quantitySearchParameters.quantityValue.isSmallerThanValue(numValue);
+      case 'ge':
+        whereCondition = whereCondition &
+            quantitySearchParameters.quantityValue
+                .isBiggerOrEqualValue(numValue);
+      case 'le':
+        whereCondition = whereCondition &
+            quantitySearchParameters.quantityValue
+                .isSmallerOrEqualValue(numValue);
+      case 'ne':
+        whereCondition = whereCondition &
+            quantitySearchParameters.quantityValue.equals(numValue).not();
+      default:
+        // eq, and no prefix at all: R4 makes eq the default.
+        whereCondition = whereCondition &
+            quantitySearchParameters.quantityValue.equals(numValue);
+    }
+
+    return whereCondition;
   }
 
   Future<Set<String>> _searchQuantityParameter(
@@ -2489,86 +2612,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         searchValue = rest;
       }
 
-      final parts = splitEscaped(searchValue, '|');
-      double? numValue;
-      String? system;
-      String? code;
-
-      if (parts.length == 3) {
-        system = parts[0].isEmpty ? null : parts[0];
-        try {
-          numValue = double.parse(parts[1]);
-        } catch (_) {
-          continue;
-        }
-        code = parts[2].isEmpty ? null : parts[2];
-      } else if (parts.length == 2) {
-        try {
-          numValue = double.parse(parts[0]);
-        } catch (_) {
-          continue;
-        }
-        code = parts[1].isEmpty ? null : parts[1];
-      } else {
-        try {
-          numValue = double.parse(parts[0]);
-        } catch (_) {
-          continue;
-        }
+      final whereCondition =
+          _quantityCondition(resourceType, searchPath, modifier, searchValue);
+      if (whereCondition == null) {
+        continue;
       }
-
-      final query = select(quantitySearchParameters);
-      // searchName first, as every other matcher does. Without it a quantity
-      // parameter could only be found when its name happened to be the last
-      // segment of its path — which `value-quantity` never is, because its
-      // path is `Observation.value.ofType(Quantity)`. That is why the row was
-      // written correctly and the search still returned nothing.
-      var whereCondition =
-          quantitySearchParameters.resourceType.equals(resourceType) &
-              (quantitySearchParameters.searchName.equals(searchPath) |
-                  quantitySearchParameters.searchPath
-                      .like('$resourceType.$searchPath') |
-                  quantitySearchParameters.searchPath
-                      .like('$resourceType.%.$searchPath'));
-
-      if (system != null) {
-        whereCondition = whereCondition &
-            quantitySearchParameters.quantitySystem.equals(system);
-      }
-      if (code != null) {
-        whereCondition =
-            whereCondition & quantitySearchParameters.quantityCode.equals(code);
-      }
-
-      switch (modifier) {
-        case 'gt':
-          whereCondition = whereCondition &
-              quantitySearchParameters.quantityValue
-                  .isBiggerThanValue(numValue);
-        case 'lt':
-          whereCondition = whereCondition &
-              quantitySearchParameters.quantityValue
-                  .isSmallerThanValue(numValue);
-        case 'ge':
-          whereCondition = whereCondition &
-              quantitySearchParameters.quantityValue
-                  .isBiggerOrEqualValue(numValue);
-        case 'le':
-          whereCondition = whereCondition &
-              quantitySearchParameters.quantityValue
-                  .isSmallerOrEqualValue(numValue);
-        case 'ne':
-          whereCondition = whereCondition &
-              quantitySearchParameters.quantityValue.equals(numValue).not();
-        default:
-          // eq, and no prefix at all: R4 makes eq the default.
-          whereCondition = whereCondition &
-              quantitySearchParameters.quantityValue.equals(numValue);
-      }
-
-      query.where((tbl) => whereCondition);
-      // Only the id column is read, not every column of every
-      // matching row; see _executeTokenQuery for the measurement.
       final idColumn = quantitySearchParameters.id;
       final rows = await (selectOnly(quantitySearchParameters, distinct: true)
             ..addColumns([idColumn])
@@ -2583,6 +2631,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
     return matchingIds;
   }
+
+  /// The WHERE for one plain uri value: exact match on the stored URI
+  /// (R4B 3.1.1.4.13 — "the search is case sensitive and accent sensitive",
+  /// with `:above` and `:below` as modifiers, which take the general path).
+  Expression<bool> _uriCondition(
+    String resourceType,
+    String searchPath,
+    String value,
+  ) =>
+      uriSearchParameters.resourceType.equals(resourceType) &
+      (uriSearchParameters.searchName.equals(searchPath) |
+          uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
+          uriSearchParameters.searchPath.like('$resourceType.%.$searchPath')) &
+      uriSearchParameters.uriValue.equals(unescapeValue(value));
 
   Future<Set<String>> _searchUriParameter(
     String resourceType,
@@ -2646,6 +2708,33 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
     return matchingIds;
+  }
+
+  /// The WHERE for one plain reference value, `Type/id` or a bare `id`, as a
+  /// typed expression. R4 3.1.1.4.12: `subject=Patient/23` names the type
+  /// and the id; a bare `23` matches any type with that id. `:identifier`
+  /// and the type-as-modifier form are modifiers, which the SQL-paged path
+  /// does not admit, so they take the general path.
+  Expression<bool> _referenceCondition(
+    String resourceType,
+    String searchPath,
+    String value,
+  ) {
+    var where = referenceSearchParameters.resourceType.equals(resourceType) &
+        (referenceSearchParameters.searchName.equals(searchPath) |
+            referenceSearchParameters.searchPath
+                .like('$resourceType.$searchPath') |
+            referenceSearchParameters.searchPath
+                .like('$resourceType.%.$searchPath'));
+    final parts = value.split('/');
+    if (parts.length == 2) {
+      where = where &
+          referenceSearchParameters.referenceResourceType.equals(parts[0]) &
+          referenceSearchParameters.referenceIdPart.equals(parts[1]);
+    } else {
+      where = where & referenceSearchParameters.referenceIdPart.equals(value);
+    }
+    return where;
   }
 
   Future<Set<String>> _searchReferenceParameter(

@@ -39,7 +39,23 @@ Future<void> main() async {
           'id': 'o${i.toString().padLeft(2, '0')}',
           'status': i.isEven ? 'final' : 'preliminary',
           'effectiveDateTime': '2020-01-${(i + 1).toString().padLeft(2, '0')}',
-          'valueString': i < 10 ? 'Alpha reading' : 'Beta reading',
+          if (i < 10) 'valueString': 'Alpha reading',
+          if (i >= 10) 'valueString': 'Beta reading',
+          'component': [
+            {
+              'code': {
+                'coding': [
+                  {'system': 'http://example.org', 'code': 'mass'},
+                ],
+              },
+              'valueQuantity': {
+                'value': i,
+                'system': 'http://unitsofmeasure.org',
+                'code': 'mg',
+              },
+            },
+          ],
+          'subject': {'reference': 'Patient/${i < 15 ? 'p1' : 'p2'}'},
           'code': {
             'coding': [
               {'system': 'http://example.org', 'code': i < 20 ? 'A' : 'B'},
@@ -51,6 +67,37 @@ Future<void> main() async {
   });
 
   tearDown(() => db.close());
+
+  Future<List<String>> riskIds(
+    Map<String, List<String>> params, {
+    int? count,
+    int? offset,
+  }) async =>
+      (await dao.search(
+        resourceType: R4ResourceType.RiskAssessment,
+        searchParameters: params,
+        count: count,
+        offset: offset,
+      ))
+          .map((r) => r.id!.valueString!)
+          .toList();
+
+  /// Ten risk assessments r0..r9 with probability 0.0, 0.1 … 0.9.
+  Future<void> saveRisks() async {
+    for (var i = 0; i < 10; i++) {
+      await dao.saveResource(
+        RiskAssessment.fromJson({
+          'resourceType': 'RiskAssessment',
+          'id': 'r$i',
+          'status': 'final',
+          'subject': {'reference': 'Patient/p1'},
+          'prediction': [
+            {'probabilityDecimal': i / 10},
+          ],
+        }),
+      );
+    }
+  }
 
   test('one token parameter pages in SQL and pages stably', () async {
     final page1 = await ids(
@@ -188,6 +235,218 @@ Future<void> main() async {
       count: 3,
     );
     expect(exact, ['o00', 'o01', 'o02']);
+  });
+
+  test('a reference parameter pages in SQL, Type/id and bare id', () async {
+    // subject=Patient/p2 -> o15..o29 -> 15 rows.
+    final typed = await ids(
+      {
+        'subject': ['Patient/p2'],
+      },
+      count: 4,
+      offset: 12,
+    );
+    expect(typed, ['o27', 'o28', 'o29']);
+    final bare = await ids(
+      {
+        'subject': ['p2'],
+      },
+      count: 2,
+    );
+    expect(bare, ['o15', 'o16']);
+  });
+
+  test('the query a client makes: subject AND code, paged in SQL', () async {
+    // Patient/p1 AND code B -> none: p1 holds o00..o14, B is o20..o29.
+    expect(
+      await ids(
+        {
+          'subject': ['Patient/p1'],
+          'code': ['http://example.org|B'],
+        },
+        count: 5,
+      ),
+      isEmpty,
+    );
+    // Patient/p2 AND code B AND final -> even ids in 20..29.
+    expect(
+      await ids(
+        {
+          'subject': ['Patient/p2'],
+          'code': ['http://example.org|B'],
+          'status': ['final'],
+        },
+        count: 10,
+      ),
+      ['o20', 'o22', 'o24', 'o26', 'o28'],
+    );
+  });
+
+  test('a quantity parameter pages in SQL with its prefix honoured', () async {
+    // component-value-quantity is the quantity parameter over the component.
+    const key = 'component-value-quantity';
+    expect(
+      await ids(
+        {
+          key: ['gt25|http://unitsofmeasure.org|mg'],
+        },
+        count: 3,
+      ),
+      ['o26', 'o27', 'o28'],
+    );
+    expect(
+      await ids(
+        {
+          key: ['gt25|http://unitsofmeasure.org|mg'],
+        },
+        count: 3,
+        offset: 3,
+      ),
+      ['o29'],
+    );
+    // A unit that no row carries matches nothing, so the system|code clauses
+    // are part of the WHERE and not dropped.
+    expect(
+      await ids(
+        {
+          key: ['gt25|http://unitsofmeasure.org|kg'],
+        },
+        count: 3,
+      ),
+      isEmpty,
+    );
+    // `5.4||mg`: the code OR the human unit. The rows carry code, not unit.
+    expect(
+      await ids(
+        {
+          key: ['ge28||mg'],
+        },
+        count: 5,
+      ),
+      ['o28', 'o29'],
+    );
+    // Value alone, no unit: le with a page.
+    expect(
+      await ids(
+        {
+          key: ['le2'],
+        },
+        count: 10,
+      ),
+      ['o00', 'o01', 'o02'],
+    );
+  });
+
+  test('a quantity and a token parameter intersect', () async {
+    expect(
+      await ids(
+        {
+          'component-value-quantity': ['ge20'],
+          'status': ['final'],
+        },
+        count: 3,
+      ),
+      ['o20', 'o22', 'o24'],
+    );
+  });
+
+  test('a number parameter pages in SQL with its prefix honoured', () async {
+    await saveRisks();
+    expect(
+      await riskIds(
+        {
+          'probability': ['gt0.55'],
+        },
+        count: 2,
+      ),
+      ['r6', 'r7'],
+    );
+    expect(
+      await riskIds(
+        {
+          'probability': ['gt0.55'],
+        },
+        count: 2,
+        offset: 2,
+      ),
+      ['r8', 'r9'],
+    );
+    expect(
+      await riskIds(
+        {
+          'probability': ['0.3'],
+        },
+        count: 5,
+      ),
+      ['r3'],
+    );
+    expect(
+      await riskIds(
+        {
+          'probability': ['lt0.2'],
+          'subject': ['Patient/p1'],
+        },
+        count: 5,
+      ),
+      ['r0', 'r1'],
+    );
+  });
+
+  test('a number value that is not a number falls back and finds nothing',
+      () async {
+    await saveRisks();
+    expect(
+      await riskIds(
+        {
+          'probability': ['high'],
+        },
+        count: 5,
+      ),
+      isEmpty,
+    );
+  });
+
+  test('a uri parameter pages in SQL, exact and case-sensitive', () async {
+    for (var i = 0; i < 6; i++) {
+      await dao.saveResource(
+        ValueSet.fromJson({
+          'resourceType': 'ValueSet',
+          'id': 'vs$i',
+          'status': 'active',
+          'url': 'http://example.org/vs/${i.isEven ? 'even' : 'odd'}',
+        }),
+      );
+    }
+    Future<List<String>> vsIds(String url, {int? offset}) async =>
+        (await dao.search(
+          resourceType: R4ResourceType.ValueSet,
+          searchParameters: {
+            'url': [url],
+          },
+          count: 2,
+          offset: offset,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+    expect(await vsIds('http://example.org/vs/even'), ['vs0', 'vs2']);
+    expect(await vsIds('http://example.org/vs/even', offset: 2), ['vs4']);
+    expect(await vsIds('http://example.org/vs/EVEN'), isEmpty);
+    expect(await vsIds('http://example.org/vs/ev'), isEmpty);
+  });
+
+  test('a chained reference falls back to the general path', () async {
+    // subject.name would need the Patient; none is stored, so it finds
+    // nothing, but it must not throw and must not be answered by the SQL
+    // path as though the chain were a plain value.
+    expect(
+      await ids(
+        {
+          'subject.name': ['anything'],
+        },
+        count: 5,
+      ),
+      isEmpty,
+    );
   });
 
   test('the SQL path and the general path agree', () async {
