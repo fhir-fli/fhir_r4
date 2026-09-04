@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- **`InsurancePlan?name=` is indexed.** Its expression is `name | alias`, with no resource prefix, and the generator dropped it silently; it was the one R4 search parameter with no extractor row. Generator `8b1f1ed`.
 - **A search returning one page no longer reads every match.** `search` hydrated every matching id — one query and one parse each — built the whole list in memory and then discarded all but the page. The ids are now sorted and cut to the requested page BEFORE any resource is read. Measured on 928,935 MIMIC-IV-on-FHIR resources, `Observation?status=final` with `count: 20` over 813,513 matches: **174.58s → 12.68s**.
 - **Paging is stable.** The matching ids were a `Set`, whose iteration order is undefined, so offset 20 was not guaranteed to continue where offset 0 stopped. They are sorted before paging.
 - **`searchCount` no longer reads any resource.** It called `search` with no count and returned `results.length`, so counting 813,513 matches parsed all 813,513 resources. The id resolution is its own method now and counting uses that: **217.94s → 10.52s**.
