@@ -398,6 +398,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   // Search Operations
   // ──────────────────────────────────────────────────────────────────────────
 
+  /// This server's base URL, e.g. `http://example.org/fhir`, when known.
+  ///
+  /// R4B 3.1.1.4.12: "A relative reference resolving to the same value as a
+  /// specified absolute URL, or vice versa, qualifies as a match" — which
+  /// needs the base to tell an absolute reference to THIS server from one to
+  /// another. With it set, `subject=Patient/123` matches a stored
+  /// `Patient/123` and a stored `<base>/Patient/123`, and
+  /// `subject=<base>/Patient/123` matches both too. Without it, a relative
+  /// search matches any absolute reference with that type and id (no base
+  /// to compare against), and an absolute search matches only its own
+  /// spelling. fhirant sets this from its configuration.
+  String? serverBaseUrl;
+
   /// Whether the last [search] was paged in SQL (true) or resolved its ids
   /// on the general path (false). For tests: a search that gives the right
   /// answer on either path proves nothing about which one ran.
@@ -1174,6 +1187,32 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               t.id,
               path & t.tokenDisplay.like('%${unescapeValue(value)}%'),
             );
+          case 'below':
+            // 3.1.1.4.10.1: `contenttype:below=text/xml` finds
+            // `text/xml; charset=UTF-8`; "servers are only required to
+            // support :below on the base part of the mime type". A code's
+            // `:below` is subsumption (3.1.1.4.10), which needs the
+            // CodeSystem's hierarchy and is refused rather than answered
+            // as a plain match. A mime type has a `/`, a code does not.
+            final mime = unescapeValue(value);
+            if (!mime.contains('/')) {
+              throw UnsupportedSearchModifier(
+                parameter: name,
+                modifier: modifier,
+                type: 'token',
+                allowed: modifiersByType['token'] ?? const {},
+              );
+            }
+            final withParameters = '$mime;';
+            return _IndexCondition(
+              t,
+              t.id,
+              path &
+                  (t.tokenValue.equals(mime) |
+                      t.tokenValue
+                          .substr(1, withParameters.length)
+                          .equals(withParameters)),
+            );
           case 'in':
           case 'not-in':
             final codes = await _getCodesFromValueSet(value);
@@ -1214,6 +1253,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final path = onPath(t.resourceType, t.searchName, t.searchPath);
         switch (modifier) {
           case null:
+            await _rejectAmbiguousBareId(resourceType, name, value);
             return _IndexCondition(
               t,
               t.id,
@@ -1231,6 +1271,30 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               where = where & t.identifierSystem.equals(parts[0]);
             }
             return _IndexCondition(t, t.id, where);
+          case 'below':
+            // 3.1.1.4.13: "The modifier :below is used with canonical
+            // references, to control whether the version is considered in
+            // the search": `definition:below=http://acme.com/p` matches
+            // `…|1.0`, `…|1.1`, `…|2.0`; `…|1` matches the first two. A
+            // resource hierarchy (3.1.1.4.14, `location:below=42`) is not
+            // implemented and is refused.
+            final canonical = unescapeValue(value);
+            if (!canonical.contains('://')) {
+              throw UnsupportedSearchModifier(
+                parameter: name,
+                modifier: modifier,
+                type: 'reference',
+                allowed: modifiersByType['reference'] ?? const {},
+              );
+            }
+            final prefix = canonical.contains('|') ? canonical : '$canonical|';
+            return _IndexCondition(
+              t,
+              t.id,
+              path &
+                  (t.referenceValue.equals(canonical) |
+                      t.referenceValue.substr(1, prefix.length).equals(prefix)),
+            );
           default:
             // A resource type: `subject:Patient=23` is `subject=Patient/23`.
             if (fhir.R4ResourceType.fromString(modifier) == null) return null;
@@ -3283,6 +3347,43 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// and the id; a bare `23` matches any type with that id. `:identifier`
   /// and the type-as-modifier form are modifiers, which the SQL-paged path
   /// does not admit, so they take the general path.
+  /// R4B 3.1.1.4.12: "Servers SHOULD reject a search where the logical id
+  /// refers to more than one matching resource across different types."
+  /// One indexed count of the types a bare id points at through this
+  /// parameter; throws [AmbiguousReference] when there is more than one.
+  Future<void> _rejectAmbiguousBareId(
+    String resourceType,
+    String searchPath,
+    String value,
+  ) async {
+    final unescaped = unescapeValue(value);
+    if (unescaped.contains('/')) return;
+    final t = referenceSearchParameters;
+    final rows = await (selectOnly(t, distinct: true)
+          ..addColumns([t.referenceResourceType])
+          ..where(
+            t.resourceType.equals(resourceType) &
+                (t.searchName.equals(searchPath) |
+                    t.searchPath.like('$resourceType.$searchPath') |
+                    t.searchPath.like('$resourceType.%.$searchPath')) &
+                t.referenceIdPart.equals(unescaped) &
+                t.referenceResourceType.isNotNull(),
+          ))
+        .get();
+    final types = rows
+        .map((r) => r.read(t.referenceResourceType))
+        .whereType<String>()
+        .toList()
+      ..sort();
+    if (types.length > 1) {
+      throw AmbiguousReference(
+        parameter: searchPath,
+        value: unescaped,
+        types: types,
+      );
+    }
+  }
+
   Expression<bool> _referenceCondition(
     String resourceType,
     String searchPath,
@@ -3294,7 +3395,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         (t.searchName.equals(searchPath) |
             t.searchPath.like('$resourceType.$searchPath') |
             t.searchPath.like('$resourceType.%.$searchPath'));
-    final unescaped = unescapeValue(value);
+    var unescaped = unescapeValue(value);
+    // 3.1.1.4.12: "A relative reference resolving to the same value as a
+    // specified absolute URL, or vice versa, qualifies as a match." With
+    // the server's base known, an absolute URL under it is the relative
+    // reference it resolves to, and a relative search also admits absolute
+    // references under that base and no other. Without it, a relative
+    // search admits any absolute reference with that type and id.
+    final base = serverBaseUrl;
+    final baseWithSlash =
+        base == null ? null : (base.endsWith('/') ? base : '$base/');
+    if (baseWithSlash != null && unescaped.startsWith(baseWithSlash)) {
+      final rest = unescaped.substring(baseWithSlash.length);
+      if (rest.split('/').length == 2) {
+        unescaped = rest;
+      }
+    }
     final parts = unescaped.split('/');
     if (unescaped.contains('://')) {
       // R4B 3.1.1.4.12, `[parameter]=[url]`: "a reference to a resource by
@@ -3319,8 +3435,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       where = where &
           t.referenceResourceType.equals(parts[0]) &
           t.referenceIdPart.equals(parts[1]);
+      if (base != null) {
+        where = where &
+            (t.referenceBaseUrl.isNull() |
+                t.referenceBaseUrl.equals(base) |
+                t.referenceBaseUrl.equals(baseWithSlash!));
+      }
     } else {
       where = where & t.referenceIdPart.equals(unescaped);
+      if (base != null) {
+        where = where &
+            (t.referenceBaseUrl.isNull() |
+                t.referenceBaseUrl.equals(base) |
+                t.referenceBaseUrl.equals(baseWithSlash!));
+      }
     }
     return where;
   }

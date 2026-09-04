@@ -738,9 +738,15 @@ Future<void> main() async {
   test('a modifier this server does not support is refused, not narrowed',
       () async {
     // R4B 3.1.1.4.4: "Server SHALL reject any search request that contains …
-    // a modifier that the server does not support". Token :below is code
-    // subsumption; it used to be answered as a plain code match.
-    for (final key in ['code:below', 'code:above', 'subject:below']) {
+    // a modifier that the server does not support". Token :above/:below on
+    // a code are subsumption and reference :above/:below on an id are
+    // hierarchies; both used to be answered as a plain match.
+    for (final key in [
+      'code:below',
+      'code:above',
+      'subject:below',
+      'subject:above',
+    ]) {
       await expectLater(
         ids(
           {
@@ -1090,6 +1096,218 @@ Future<void> main() async {
       ),
       ['img'],
     );
+  });
+
+  test(':below on a mime type and on a canonical reference', () async {
+    // 3.1.1.4.10.1: `contenttype:below=text/xml` finds "text/xml;
+    // charset=UTF-8"; 3.1.1.4.13: `:below=http://acme.com/p` matches
+    // `…|1.0`, `…|1.1`, `…|2.0`, and `…|1` the first two.
+    for (final (id, type) in [
+      ('xml', 'text/xml'),
+      ('xmlc', 'text/xml; charset=UTF-8'),
+      ('json', 'application/json'),
+    ]) {
+      await dao.saveResource(
+        DocumentReference.fromJson({
+          'resourceType': 'DocumentReference',
+          'id': id,
+          'status': 'current',
+          'content': [
+            {
+              'attachment': {'contentType': type},
+            },
+          ],
+        }),
+      );
+    }
+    Future<List<String>> docs(String key, String value) async =>
+        (await dao.search(
+          resourceType: R4ResourceType.DocumentReference,
+          searchParameters: {
+            key: [value],
+          },
+          count: 10,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+    expect(await docs('contenttype', 'text/xml'), ['xml']);
+    expect(await docs('contenttype:below', 'text/xml'), ['xml', 'xmlc']);
+    // Without a `/` the value is a code, and :below on a code is
+    // subsumption, which is refused.
+    await expectLater(
+      docs('contenttype:below', 'text'),
+      throwsA(isA<UnsupportedSearchModifier>()),
+    );
+    for (final (id, version) in [
+      ('d10', '1.0'),
+      ('d11', '1.1'),
+      ('d20', '2.0'),
+    ]) {
+      await dao.saveResource(
+        PlanDefinition.fromJson({
+          'resourceType': 'PlanDefinition',
+          'id': id,
+          'status': 'active',
+          'relatedArtifact': [
+            {
+              'type': 'depends-on',
+              'resource': 'http://acme.com/some-profile|$version',
+            },
+          ],
+        }),
+      );
+    }
+    Future<List<String>> plans(String key, String value) async =>
+        (await dao.search(
+          resourceType: R4ResourceType.PlanDefinition,
+          searchParameters: {
+            key: [value],
+          },
+          count: 10,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+    expect(
+      await plans('depends-on:below', 'http://acme.com/some-profile'),
+      ['d10', 'd11', 'd20'],
+    );
+    expect(
+      await plans('depends-on:below', 'http://acme.com/some-profile|1'),
+      ['d10', 'd11'],
+    );
+    expect(
+      await plans('depends-on', 'http://acme.com/some-profile|1.1'),
+      ['d11'],
+    );
+  });
+
+  test('a bare id that refers to more than one type is rejected', () async {
+    // 3.1.1.4.12: "Servers SHOULD reject a search where the logical id
+    // refers to more than one matching resource across different types."
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'grp',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'A'},
+          ],
+        },
+        'subject': {'reference': 'Group/p1'},
+      }),
+    );
+    await expectLater(
+      ids(
+        {
+          'subject': ['p1'],
+        },
+        count: 3,
+      ),
+      throwsA(isA<AmbiguousReference>()),
+    );
+    expect(
+      await ids(
+        {
+          'subject': ['Group/p1'],
+        },
+        count: 3,
+      ),
+      ['grp'],
+    );
+    expect(
+      await ids(
+        {
+          'subject': ['p2'],
+        },
+        count: 2,
+      ),
+      ['o15', 'o16'],
+      reason: 'one type only, so no ambiguity',
+    );
+  });
+
+  test(
+      'a relative and an absolute reference match each other under the '
+      'server base', () async {
+    // 3.1.1.4.12: "A relative reference resolving to the same value as a
+    // specified absolute URL, or vice versa, qualifies as a match."
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'here',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'A'},
+          ],
+        },
+        'subject': {'reference': 'http://example.org/fhir/Patient/p9'},
+      }),
+    );
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'elsewhere',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'A'},
+          ],
+        },
+        'subject': {'reference': 'http://other.example.org/fhir/Patient/p9'},
+      }),
+    );
+    // No base known: a relative search admits any absolute reference with
+    // that type and id.
+    expect(
+      await ids(
+        {
+          'subject': ['Patient/p9'],
+        },
+        count: 5,
+      ),
+      ['elsewhere', 'here'],
+    );
+    dao.serverBaseUrl = 'http://example.org/fhir';
+    expect(
+      await ids(
+        {
+          'subject': ['Patient/p9'],
+        },
+        count: 5,
+      ),
+      ['here'],
+    );
+    expect(
+      await ids(
+        {
+          'subject': ['http://example.org/fhir/Patient/p9'],
+        },
+        count: 5,
+      ),
+      ['here'],
+    );
+    expect(
+      await ids(
+        {
+          'subject': ['http://other.example.org/fhir/Patient/p9'],
+        },
+        count: 5,
+      ),
+      ['elsewhere'],
+    );
+    // A relative stored reference is found by the absolute search too.
+    expect(
+      await ids(
+        {
+          'subject': ['http://example.org/fhir/Patient/p2'],
+        },
+        count: 2,
+      ),
+      ['o15', 'o16'],
+    );
+    dao.serverBaseUrl = null;
   });
 
   test('modifiers the SQL path does not build fall back', () async {

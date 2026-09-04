@@ -158,21 +158,22 @@ void main() {
       for (final modifier in ['text', 'not', 'in', 'not-in', 'of-type']) {
         expect(isModifierAllowed('token', modifier), isTrue, reason: modifier);
       }
-      // Defined by R4B (code subsumption, 3.1.1.4.10) but not implemented
-      // here, so refused rather than answered as a plain match, which is
-      // what 3.1.1.4.4 SHALLs for an unsupported modifier.
-      for (final modifier in ['above', 'below']) {
-        expect(isModifierAllowed('token', modifier), isFalse, reason: modifier);
-        expect(
-          const UnsupportedSearchModifier(
-            parameter: 'code',
-            modifier: 'below',
-            type: 'token',
-            allowed: {},
-          ).message,
-          contains('does not support'),
-        );
-      }
+      // :above is code subsumption (3.1.1.4.10), not implemented here, so
+      // refused rather than answered as a plain match, which is what
+      // 3.1.1.4.4 SHALLs for an unsupported modifier. :below is admitted
+      // for a mime type's base (3.1.1.4.10.1) and refused for a code at the
+      // point of use.
+      expect(isModifierAllowed('token', 'above'), isFalse);
+      expect(isModifierAllowed('token', 'below'), isTrue);
+      expect(
+        const UnsupportedSearchModifier(
+          parameter: 'code',
+          modifier: 'above',
+          type: 'token',
+          allowed: {},
+        ).message,
+        contains('does not support'),
+      );
     });
 
     test('missing applies to every type except composite and special', () {

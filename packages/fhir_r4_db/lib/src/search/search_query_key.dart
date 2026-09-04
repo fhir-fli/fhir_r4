@@ -151,6 +151,42 @@ class InvalidSearchValue implements Exception {
   String toString() => 'InvalidSearchValue: $message';
 }
 
+/// Thrown when a reference searched by bare logical id matches resources of
+/// more than one type.
+///
+/// R4B 3.1.1.4.12: "Some references may point to more than one type of
+/// resource; e.g. subject: Reference(Patient|Group|Device|..). In these
+/// cases, multiple resources may have the same logical identifier. Servers
+/// SHOULD reject a search where the logical id refers to more than one
+/// matching resource across different types." The client says which with
+/// `[type]/[id]` or `[parameter]:[type]=[id]`.
+class AmbiguousReference implements Exception {
+  /// Creates the failure for [value] on [parameter], naming the [types].
+  const AmbiguousReference({
+    required this.parameter,
+    required this.value,
+    required this.types,
+  });
+
+  /// The search parameter as the client wrote it.
+  final String parameter;
+
+  /// The bare id searched for.
+  final String value;
+
+  /// The resource types that id refers to here.
+  final List<String> types;
+
+  /// A message naming the ambiguity and the way out.
+  String get message =>
+      'The id "$value" on "$parameter" refers to resources of more than one '
+      'type (${types.join(", ")}). Give the type: '
+      '$parameter=${types.first}/$value or $parameter:${types.first}=$value.';
+
+  @override
+  String toString() => 'AmbiguousReference: $message';
+}
+
 /// The modifiers R4 allows, per search parameter type.
 ///
 /// This is NOT generated, and it cannot be: R4 core populates
@@ -159,10 +195,10 @@ class InvalidSearchValue implements Exception {
 const modifiersByType = <String, Set<String>>{
   // ":missing ... applies to all parameter types except composite".
   'string': {'missing', 'exact', 'contains', 'text'},
-  'token': {'missing', 'text', 'not', 'in', 'not-in', 'of-type'},
+  'token': {'missing', 'text', 'not', 'in', 'not-in', 'of-type', 'below'},
   // A reference also takes ":[ResourceType]", which is not a fixed word and is
   // checked separately.
-  'reference': {'missing', 'identifier', 'type'},
+  'reference': {'missing', 'identifier', 'type', 'below'},
   'uri': {'missing', 'above', 'below'},
   'date': {'missing'},
   'number': {'missing'},
@@ -181,13 +217,17 @@ const modifiersByType = <String, Set<String>>{
 /// 3.1.1.4.4: "Server SHALL reject any search request that contains … a
 /// modifier that the server does not support for that parameter … using an
 /// HTTP 400 error with an OperationOutcome with a clear error message."
-/// Token `:above`/`:below` are code subsumption (3.1.1.4.10), which needs
-/// the CodeSystem's hierarchy; reference `:above`/`:below` are resource
-/// hierarchies (3.1.1.4.14). Before this both were listed as allowed and
-/// answered as a plain match — a narrower answer than asked for, silently.
+/// Token `:above` is code subsumption (3.1.1.4.10), which needs the
+/// CodeSystem's hierarchy; reference `:above` is a resource hierarchy
+/// (3.1.1.4.14). Before this both were listed as allowed and answered as a
+/// plain match — a narrower answer than asked for, silently. `:below` IS
+/// implemented for the two shapes the specification asks for without a
+/// hierarchy — a mime type's base (3.1.1.4.10.1) and a canonical's version
+/// prefix (3.1.1.4.13) — and refused for a code or a resource hierarchy at
+/// the point of use.
 const unsupportedModifiersByType = <String, Set<String>>{
-  'token': {'above', 'below'},
-  'reference': {'above', 'below'},
+  'token': {'above'},
+  'reference': {'above'},
 };
 
 /// The definition of [code] on [resourceType], or null when there is none.
