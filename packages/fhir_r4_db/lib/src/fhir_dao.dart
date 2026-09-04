@@ -842,7 +842,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           table: s,
           on: (id) =>
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
-          value: s.numberValue,
+          value: s.numberLow,
           descending: descending,
         );
       case 'quantity':
@@ -851,7 +851,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           table: s,
           on: (id) =>
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
-          value: s.quantityValue,
+          value: s.quantityLow,
           descending: descending,
         );
       case 'reference':
@@ -2948,75 +2948,86 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return allResourceIds.difference(idsWithParam);
   }
 
-  /// The comparison for one number or quantity value under its prefix,
-  /// R4B 3.1.1.4.5 and 3.1.1.4.6.
+  /// The comparison of a stored numeric range `[low, high)` against a search
+  /// value under its prefix, R4B 3.1.1.4.5 and 3.1.1.4.6.
   ///
-  /// A search value has an implicit range, half a unit of its last
-  /// significant digit either side: `100` is [99.5, 100.5), `100.00` is
-  /// [99.995, 100.005), `5.4` is [5.35, 5.45), `5.40e-3` is
-  /// [0.005395, 0.005405). 3.1.1.4.6: "the number of significant digits of
-  /// the implicit range is the number of digits specified in the search
-  /// parameter value, excluding leading zeros. So 100 and 1.00e2 both have
-  /// the same number of significant digits - three". The stored value is a
-  /// point, so:
+  /// Both sides are ranges. The search value's is half a unit of its last
+  /// significant digit either side ([implicitRange]: `100` is [99.5, 100.5),
+  /// `100.00` is [99.995, 100.005)); the stored value's was written at
+  /// extraction the same way, with an integer as a point and a Range as its
+  /// explicit bounds, either of which may be open (null). With the stored
+  /// `[L, H)` and the search `[l, h)`:
   ///
   /// - `eq` — "the range of the search value fully contains the range of the
-  ///   target value": `low <= v < high`. This used to be `v == value`, which
-  ///   3.1.1.4.6 rules out ("The way search parameters operate in resources
-  ///   is not the same as whether two numbers are equal to each other in a
-  ///   mathematical sense"): `probability=0.3` did not find 0.31.
+  ///   target value": `L >= l AND H <= h`. A missing bound cannot be
+  ///   contained. This used to be `v == value`.
   /// - `ne` — "does not fully contain": the complement.
   /// - `gt`, `lt`, `ge`, `le` — "the implicit precision of the number is
-  ///   ignored, and they are treated as if they have arbitrarily high
-  ///   precision": exact against `value`.
-  /// - `sa` — "the range above the search value contains the range of the
-  ///   target value" and they do not overlap: `v >= high`. `eb`: `v < low`.
-  ///   These two used to fall into `eq`, a wrong answer.
+  ///   ignored" for the SEARCH value, which is a point; the stored range
+  ///   still counts: `gt` is "the range above the search value intersects
+  ///   with the range of the target value", `H > value` (a decimal written
+  ///   `100.0` reaches above 100 and matches `gt100`; an integer 100 does
+  ///   not). `ge`/`le` add containment.
+  /// - `sa` — "does not overlap … and the range above the search value
+  ///   contains the range of the target value": `L >= h`. `eb`: `H <= l`.
   /// - `ap` — "the range of the search value overlaps with the range of the
-  ///   target value", with the recommended approximation of 10% of the
-  ///   stated value: the implicit range widened by that on each side.
+  ///   target value", with the recommended 10% of the stated value.
   ///
   /// ⚠️ One example in 3.1.1.4.6 does not follow its own rule: it gives
   /// `1e2` as "1 significant figures precision" with the range [95, 105),
   /// which is a two-figure range. By the rule as worded, one significant
   /// figure at the hundreds place is [50, 150), and that is what this does.
   /// HAPI uses exact matching for eq/ne ("per discussions with Grahame
-  /// Grieve", NumberPredicateBuilder.java) and Microsoft's server widens by
-  /// half a unit of the last DECIMAL place, so 1e2 is ±0.5 there. Neither
-  /// follows the text, so the text is what is implemented here.
+  /// Grieve", NumberPredicateBuilder.java) and a point comparison for
+  /// gt/lt; Microsoft's server widens by half a unit of the last DECIMAL
+  /// place. Neither follows the text, so the text is what is implemented.
   Expression<bool> _numericPrefixCondition(
-    GeneratedColumn<double> column,
+    GeneratedColumn<double> lowColumn,
+    GeneratedColumn<double> highColumn,
     String? prefix,
     String written,
     double value,
   ) {
     // The caller has parsed [written], so the range is never null.
     final (:low, :high) = implicitRange(written)!;
+    final lowMissing = lowColumn.isNull();
+    final highMissing = highColumn.isNull();
+    final contained = lowColumn.isNotNull() &
+        highColumn.isNotNull() &
+        lowColumn.isBiggerOrEqualValue(low) &
+        highColumn.isSmallerOrEqualValue(high);
+    // A point (integer) is stored with low == high; "above" a search point
+    // means the stored range has something greater than it.
+    final above = highMissing |
+        highColumn.isBiggerThanValue(value) |
+        (lowColumn.equalsExp(highColumn) & lowColumn.isBiggerThanValue(value));
+    final below = lowMissing | lowColumn.isSmallerThanValue(value);
     switch (prefix) {
       case 'gt':
-        return column.isBiggerThanValue(value);
+        return above;
       case 'lt':
-        return column.isSmallerThanValue(value);
+        return below;
       case 'ge':
-        return column.isBiggerOrEqualValue(value);
+        return above |
+            (lowColumn.isNotNull() & lowColumn.isBiggerOrEqualValue(value));
       case 'le':
-        return column.isSmallerOrEqualValue(value);
+        return below |
+            (highColumn.isNotNull() & highColumn.isSmallerOrEqualValue(value));
       case 'sa':
-        return column.isBiggerOrEqualValue(high);
+        return lowColumn.isNotNull() & lowColumn.isBiggerOrEqualValue(high);
       case 'eb':
-        return column.isSmallerThanValue(low);
+        return highColumn.isNotNull() & highColumn.isSmallerOrEqualValue(low);
       case 'ne':
-        return column.isSmallerThanValue(low) |
-            column.isBiggerOrEqualValue(high);
+        return contained.not();
       case 'ap':
         final approximation = value.abs() * 0.1;
-        return column.isBiggerOrEqualValue(low - approximation) &
-            column.isSmallerThanValue(high + approximation);
+        return (lowMissing |
+                lowColumn.isSmallerThanValue(high + approximation)) &
+            (highMissing | highColumn.isBiggerThanValue(low - approximation));
       default:
         // eq, and no prefix at all: 3.1.1.4.5, "If no prefix is present,
         // the prefix eq is assumed."
-        return column.isBiggerOrEqualValue(low) &
-            column.isSmallerThanValue(high);
+        return contained;
     }
   }
 
@@ -3042,7 +3053,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     return whereCondition &
         _numericPrefixCondition(
-          t.numberValue,
+          t.numberLow,
+          t.numberHigh,
           modifier,
           searchValue,
           numValue,
@@ -3139,7 +3151,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     return whereCondition &
         _numericPrefixCondition(
-          t.quantityValue,
+          t.quantityLow,
+          t.quantityHigh,
           modifier,
           parts[0],
           numValue,
@@ -3669,13 +3682,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       case 'number':
         for (final p in lists.numberParams) {
           if (named(p.searchName.value, p.searchPath.value)) {
-            values.add(p.numberValue.value);
+            final low = p.numberLow.value;
+            if (low != null) values.add(low);
           }
         }
       case 'quantity':
         for (final p in lists.quantityParams) {
           if (named(p.searchName.value, p.searchPath.value)) {
-            values.add(p.quantityValue.value);
+            final low = p.quantityLow.value;
+            if (low != null) values.add(low);
           }
         }
       case 'reference':

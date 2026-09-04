@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart'
-    show QuantitySearchParametersCompanion;
+    show QuantitySearchParametersCompanion, numberRange;
 
 /// Quantity Search Parameter Table
 class QuantitySearchParameters extends Table {
@@ -24,7 +24,17 @@ class QuantitySearchParameters extends Table {
   IntColumn get paramIndex => integer()();
 
   /// The numeric value part of the quantity
-  RealColumn get quantityValue => real()();
+  /// The value as a number, when the element has one (not a Range).
+  RealColumn get quantityValue => real().nullable()();
+
+  /// The inclusive low bound of the value's range: a Quantity covers half
+  /// a unit of its last significant digit either side (R4B 3.1.1.4.5); a
+  /// Range runs from its `low` (null when absent) to its `high`.
+  RealColumn get quantityLow => real().nullable()();
+
+  /// The exclusive high bound of the value's range, null for a Range with
+  /// no `high`.
+  RealColumn get quantityHigh => real().nullable()();
 
   /// Unit (optional)
   TextColumn get quantityUnit => text().nullable()();
@@ -62,8 +72,14 @@ extension QuantitySearchParametersExtension on fhir.FhirBase {
   }) {
     final fhirObject = this;
     final searchParameters = <QuantitySearchParametersCompanion>[];
-    if (fhirObject is fhir.Quantity) {
-      searchParameters.add(
+    QuantitySearchParametersCompanion row({
+      required double? value,
+      required double? low,
+      required double? high,
+      String? unit,
+      String? system,
+      String? code,
+    }) =>
         QuantitySearchParametersCompanion(
           resourceType: Value(resourceType),
           id: Value(id),
@@ -72,20 +88,69 @@ extension QuantitySearchParametersExtension on fhir.FhirBase {
           searchName: Value(searchName),
           paramIndex:
               paramIndex == null ? const Value.absent() : Value(paramIndex),
-          quantityValue: fhirObject.value?.valueNum != null
-              ? Value(fhirObject.value!.valueNum!.toDouble())
-              : const Value.absent(),
-          quantityUnit: fhirObject.unit?.valueString == null
-              ? const Value.absent()
-              : Value(fhirObject.unit!.valueString),
-          quantitySystem: fhirObject.system?.valueString == null
-              ? const Value.absent()
-              : Value(fhirObject.system.toString()),
-          quantityCode: fhirObject.code?.valueString == null
-              ? const Value.absent()
-              : Value(fhirObject.code!.valueString),
-        ),
-      );
+          quantityValue: Value(value),
+          quantityLow: Value(low),
+          quantityHigh: Value(high),
+          quantityUnit: Value(unit),
+          quantitySystem: Value(system),
+          quantityCode: Value(code),
+        );
+
+    // R4B 3.1.1.9's cross-map: a quantity parameter searches Quantity (and
+    // Age, Count, Distance, Duration, which extend it), Money and Range.
+    // Money and Range used to write no row at all.
+    switch (fhirObject) {
+      case final fhir.Quantity quantity:
+        final value = quantity.value;
+        if (value?.valueNum == null) return searchParameters;
+        final range = numberRange(value!);
+        searchParameters.add(
+          row(
+            value: value.valueNum!.toDouble(),
+            low: range.low,
+            high: range.high,
+            unit: quantity.unit?.valueString,
+            system: quantity.system?.valueString,
+            code: quantity.code?.valueString,
+          ),
+        );
+      case final fhir.Money money:
+        final value = money.value;
+        if (value?.valueNum == null) return searchParameters;
+        final range = numberRange(value!);
+        // The currency is the code, in the ISO 4217 system Money binds to.
+        searchParameters.add(
+          row(
+            value: value.valueNum!.toDouble(),
+            low: range.low,
+            high: range.high,
+            system: 'urn:iso:std:iso:4217',
+            code: money.currency?.valueString,
+          ),
+        );
+      case final fhir.Range range:
+        // 3.1.1.4.5: a Range is explicitly a range, "the upper or lower
+        // bound might not actually be specified"; a missing one is open.
+        final lowValue = range.low?.value;
+        final highValue = range.high?.value;
+        if (lowValue?.valueNum == null && highValue?.valueNum == null) {
+          return searchParameters;
+        }
+        final unitOf = range.low ?? range.high;
+        searchParameters.add(
+          row(
+            value: null,
+            low: lowValue?.valueNum == null ? null : numberRange(lowValue!).low,
+            high: highValue?.valueNum == null
+                ? null
+                : numberRange(highValue!).high,
+            unit: unitOf?.unit?.valueString,
+            system: unitOf?.system?.valueString,
+            code: unitOf?.code?.valueString,
+          ),
+        );
+      default:
+        break;
     }
     return searchParameters;
   }

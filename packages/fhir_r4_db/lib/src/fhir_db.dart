@@ -371,8 +371,10 @@ class FhirDb extends _$FhirDb {
       ('idx_uri_value', 'uri_search_parameters', 'uri_value'),
       ('idx_date_value', 'date_search_parameters', 'date_value'),
       ('idx_date_value_end', 'date_search_parameters', 'date_value_end'),
-      ('idx_number_value', 'number_search_parameters', 'number_value'),
-      ('idx_quantity_value', 'quantity_search_parameters', 'quantity_value'),
+      ('idx_number_low', 'number_search_parameters', 'number_low'),
+      ('idx_number_high', 'number_search_parameters', 'number_high'),
+      ('idx_quantity_low', 'quantity_search_parameters', 'quantity_low'),
+      ('idx_quantity_high', 'quantity_search_parameters', 'quantity_high'),
       ('idx_special_value', 'special_search_parameters', 'special_value'),
     ];
     for (final (name, table, column) in statements) {

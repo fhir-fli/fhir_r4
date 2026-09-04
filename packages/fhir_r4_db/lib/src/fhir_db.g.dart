@@ -2916,8 +2916,20 @@ class $NumberSearchParametersTable extends NumberSearchParameters
       const VerificationMeta('numberValue');
   @override
   late final GeneratedColumn<double> numberValue = GeneratedColumn<double>(
-      'number_value', aliasedName, false,
-      type: DriftSqlType.double, requiredDuringInsert: true);
+      'number_value', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _numberLowMeta =
+      const VerificationMeta('numberLow');
+  @override
+  late final GeneratedColumn<double> numberLow = GeneratedColumn<double>(
+      'number_low', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _numberHighMeta =
+      const VerificationMeta('numberHigh');
+  @override
+  late final GeneratedColumn<double> numberHigh = GeneratedColumn<double>(
+      'number_high', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         resourceType,
@@ -2926,7 +2938,9 @@ class $NumberSearchParametersTable extends NumberSearchParameters
         searchPath,
         searchName,
         paramIndex,
-        numberValue
+        numberValue,
+        numberLow,
+        numberHigh
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -2987,8 +3001,16 @@ class $NumberSearchParametersTable extends NumberSearchParameters
           _numberValueMeta,
           numberValue.isAcceptableOrUnknown(
               data['number_value']!, _numberValueMeta));
-    } else if (isInserting) {
-      context.missing(_numberValueMeta);
+    }
+    if (data.containsKey('number_low')) {
+      context.handle(_numberLowMeta,
+          numberLow.isAcceptableOrUnknown(data['number_low']!, _numberLowMeta));
+    }
+    if (data.containsKey('number_high')) {
+      context.handle(
+          _numberHighMeta,
+          numberHigh.isAcceptableOrUnknown(
+              data['number_high']!, _numberHighMeta));
     }
     return context;
   }
@@ -3013,7 +3035,11 @@ class $NumberSearchParametersTable extends NumberSearchParameters
       paramIndex: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}param_index'])!,
       numberValue: attachedDatabase.typeMapping
-          .read(DriftSqlType.double, data['${effectivePrefix}number_value'])!,
+          .read(DriftSqlType.double, data['${effectivePrefix}number_value']),
+      numberLow: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}number_low']),
+      numberHigh: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}number_high']),
     );
   }
 
@@ -3043,8 +3069,18 @@ class NumberSearchParameter extends DataClass
   /// Index for multiple values from the same path
   final int paramIndex;
 
-  /// The numeric value extracted from the resource
-  final double numberValue;
+  /// The value as a number, when the element is a single number.
+  final double? numberValue;
+
+  /// The inclusive low bound of the value's range. R4B 3.1.1.4.5: "Searches
+  /// are always performed on values that are implicitly or explicitly a
+  /// range"; a decimal covers half a unit of its last significant digit
+  /// either side (`2.0` is 1.95–2.05), an integer is a point.
+  final double? numberLow;
+
+  /// The exclusive high bound of the value's range; equal to [numberLow] for
+  /// a point.
+  final double? numberHigh;
   const NumberSearchParameter(
       {required this.resourceType,
       required this.id,
@@ -3052,7 +3088,9 @@ class NumberSearchParameter extends DataClass
       required this.searchPath,
       required this.searchName,
       required this.paramIndex,
-      required this.numberValue});
+      this.numberValue,
+      this.numberLow,
+      this.numberHigh});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -3062,7 +3100,15 @@ class NumberSearchParameter extends DataClass
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
-    map['number_value'] = Variable<double>(numberValue);
+    if (!nullToAbsent || numberValue != null) {
+      map['number_value'] = Variable<double>(numberValue);
+    }
+    if (!nullToAbsent || numberLow != null) {
+      map['number_low'] = Variable<double>(numberLow);
+    }
+    if (!nullToAbsent || numberHigh != null) {
+      map['number_high'] = Variable<double>(numberHigh);
+    }
     return map;
   }
 
@@ -3074,7 +3120,15 @@ class NumberSearchParameter extends DataClass
       searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
-      numberValue: Value(numberValue),
+      numberValue: numberValue == null && nullToAbsent
+          ? const Value.absent()
+          : Value(numberValue),
+      numberLow: numberLow == null && nullToAbsent
+          ? const Value.absent()
+          : Value(numberLow),
+      numberHigh: numberHigh == null && nullToAbsent
+          ? const Value.absent()
+          : Value(numberHigh),
     );
   }
 
@@ -3088,7 +3142,9 @@ class NumberSearchParameter extends DataClass
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
-      numberValue: serializer.fromJson<double>(json['numberValue']),
+      numberValue: serializer.fromJson<double?>(json['numberValue']),
+      numberLow: serializer.fromJson<double?>(json['numberLow']),
+      numberHigh: serializer.fromJson<double?>(json['numberHigh']),
     );
   }
   @override
@@ -3101,7 +3157,9 @@ class NumberSearchParameter extends DataClass
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
-      'numberValue': serializer.toJson<double>(numberValue),
+      'numberValue': serializer.toJson<double?>(numberValue),
+      'numberLow': serializer.toJson<double?>(numberLow),
+      'numberHigh': serializer.toJson<double?>(numberHigh),
     };
   }
 
@@ -3112,7 +3170,9 @@ class NumberSearchParameter extends DataClass
           String? searchPath,
           String? searchName,
           int? paramIndex,
-          double? numberValue}) =>
+          Value<double?> numberValue = const Value.absent(),
+          Value<double?> numberLow = const Value.absent(),
+          Value<double?> numberHigh = const Value.absent()}) =>
       NumberSearchParameter(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
@@ -3120,7 +3180,9 @@ class NumberSearchParameter extends DataClass
         searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
-        numberValue: numberValue ?? this.numberValue,
+        numberValue: numberValue.present ? numberValue.value : this.numberValue,
+        numberLow: numberLow.present ? numberLow.value : this.numberLow,
+        numberHigh: numberHigh.present ? numberHigh.value : this.numberHigh,
       );
   NumberSearchParameter copyWithCompanion(
       NumberSearchParametersCompanion data) {
@@ -3139,6 +3201,9 @@ class NumberSearchParameter extends DataClass
           data.paramIndex.present ? data.paramIndex.value : this.paramIndex,
       numberValue:
           data.numberValue.present ? data.numberValue.value : this.numberValue,
+      numberLow: data.numberLow.present ? data.numberLow.value : this.numberLow,
+      numberHigh:
+          data.numberHigh.present ? data.numberHigh.value : this.numberHigh,
     );
   }
 
@@ -3151,14 +3216,16 @@ class NumberSearchParameter extends DataClass
           ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
-          ..write('numberValue: $numberValue')
+          ..write('numberValue: $numberValue, ')
+          ..write('numberLow: $numberLow, ')
+          ..write('numberHigh: $numberHigh')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, numberValue);
+      searchName, paramIndex, numberValue, numberLow, numberHigh);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -3169,7 +3236,9 @@ class NumberSearchParameter extends DataClass
           other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
-          other.numberValue == this.numberValue);
+          other.numberValue == this.numberValue &&
+          other.numberLow == this.numberLow &&
+          other.numberHigh == this.numberHigh);
 }
 
 class NumberSearchParametersCompanion
@@ -3180,7 +3249,9 @@ class NumberSearchParametersCompanion
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
-  final Value<double> numberValue;
+  final Value<double?> numberValue;
+  final Value<double?> numberLow;
+  final Value<double?> numberHigh;
   final Value<int> rowid;
   const NumberSearchParametersCompanion({
     this.resourceType = const Value.absent(),
@@ -3190,6 +3261,8 @@ class NumberSearchParametersCompanion
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.numberValue = const Value.absent(),
+    this.numberLow = const Value.absent(),
+    this.numberHigh = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   NumberSearchParametersCompanion.insert({
@@ -3199,14 +3272,15 @@ class NumberSearchParametersCompanion
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
-    required double numberValue,
+    this.numberValue = const Value.absent(),
+    this.numberLow = const Value.absent(),
+    this.numberHigh = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
         searchPath = Value(searchPath),
-        paramIndex = Value(paramIndex),
-        numberValue = Value(numberValue);
+        paramIndex = Value(paramIndex);
   static Insertable<NumberSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
@@ -3215,6 +3289,8 @@ class NumberSearchParametersCompanion
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<double>? numberValue,
+    Expression<double>? numberLow,
+    Expression<double>? numberHigh,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -3225,6 +3301,8 @@ class NumberSearchParametersCompanion
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (numberValue != null) 'number_value': numberValue,
+      if (numberLow != null) 'number_low': numberLow,
+      if (numberHigh != null) 'number_high': numberHigh,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -3236,7 +3314,9 @@ class NumberSearchParametersCompanion
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
-      Value<double>? numberValue,
+      Value<double?>? numberValue,
+      Value<double?>? numberLow,
+      Value<double?>? numberHigh,
       Value<int>? rowid}) {
     return NumberSearchParametersCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -3246,6 +3326,8 @@ class NumberSearchParametersCompanion
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       numberValue: numberValue ?? this.numberValue,
+      numberLow: numberLow ?? this.numberLow,
+      numberHigh: numberHigh ?? this.numberHigh,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -3274,6 +3356,12 @@ class NumberSearchParametersCompanion
     if (numberValue.present) {
       map['number_value'] = Variable<double>(numberValue.value);
     }
+    if (numberLow.present) {
+      map['number_low'] = Variable<double>(numberLow.value);
+    }
+    if (numberHigh.present) {
+      map['number_high'] = Variable<double>(numberHigh.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -3290,6 +3378,8 @@ class NumberSearchParametersCompanion
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('numberValue: $numberValue, ')
+          ..write('numberLow: $numberLow, ')
+          ..write('numberHigh: $numberHigh, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -3343,8 +3433,20 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
       const VerificationMeta('quantityValue');
   @override
   late final GeneratedColumn<double> quantityValue = GeneratedColumn<double>(
-      'quantity_value', aliasedName, false,
-      type: DriftSqlType.double, requiredDuringInsert: true);
+      'quantity_value', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _quantityLowMeta =
+      const VerificationMeta('quantityLow');
+  @override
+  late final GeneratedColumn<double> quantityLow = GeneratedColumn<double>(
+      'quantity_low', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _quantityHighMeta =
+      const VerificationMeta('quantityHigh');
+  @override
+  late final GeneratedColumn<double> quantityHigh = GeneratedColumn<double>(
+      'quantity_high', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
   static const VerificationMeta _quantityUnitMeta =
       const VerificationMeta('quantityUnit');
   @override
@@ -3372,6 +3474,8 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
         searchName,
         paramIndex,
         quantityValue,
+        quantityLow,
+        quantityHigh,
         quantityUnit,
         quantitySystem,
         quantityCode
@@ -3435,8 +3539,18 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
           _quantityValueMeta,
           quantityValue.isAcceptableOrUnknown(
               data['quantity_value']!, _quantityValueMeta));
-    } else if (isInserting) {
-      context.missing(_quantityValueMeta);
+    }
+    if (data.containsKey('quantity_low')) {
+      context.handle(
+          _quantityLowMeta,
+          quantityLow.isAcceptableOrUnknown(
+              data['quantity_low']!, _quantityLowMeta));
+    }
+    if (data.containsKey('quantity_high')) {
+      context.handle(
+          _quantityHighMeta,
+          quantityHigh.isAcceptableOrUnknown(
+              data['quantity_high']!, _quantityHighMeta));
     }
     if (data.containsKey('quantity_unit')) {
       context.handle(
@@ -3480,7 +3594,11 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
       paramIndex: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}param_index'])!,
       quantityValue: attachedDatabase.typeMapping
-          .read(DriftSqlType.double, data['${effectivePrefix}quantity_value'])!,
+          .read(DriftSqlType.double, data['${effectivePrefix}quantity_value']),
+      quantityLow: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}quantity_low']),
+      quantityHigh: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}quantity_high']),
       quantityUnit: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}quantity_unit']),
       quantitySystem: attachedDatabase.typeMapping
@@ -3517,7 +3635,17 @@ class QuantitySearchParameter extends DataClass
   final int paramIndex;
 
   /// The numeric value part of the quantity
-  final double quantityValue;
+  /// The value as a number, when the element has one (not a Range).
+  final double? quantityValue;
+
+  /// The inclusive low bound of the value's range: a Quantity covers half
+  /// a unit of its last significant digit either side (R4B 3.1.1.4.5); a
+  /// Range runs from its `low` (null when absent) to its `high`.
+  final double? quantityLow;
+
+  /// The exclusive high bound of the value's range, null for a Range with
+  /// no `high`.
+  final double? quantityHigh;
 
   /// Unit (optional)
   final String? quantityUnit;
@@ -3534,7 +3662,9 @@ class QuantitySearchParameter extends DataClass
       required this.searchPath,
       required this.searchName,
       required this.paramIndex,
-      required this.quantityValue,
+      this.quantityValue,
+      this.quantityLow,
+      this.quantityHigh,
       this.quantityUnit,
       this.quantitySystem,
       this.quantityCode});
@@ -3547,7 +3677,15 @@ class QuantitySearchParameter extends DataClass
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
-    map['quantity_value'] = Variable<double>(quantityValue);
+    if (!nullToAbsent || quantityValue != null) {
+      map['quantity_value'] = Variable<double>(quantityValue);
+    }
+    if (!nullToAbsent || quantityLow != null) {
+      map['quantity_low'] = Variable<double>(quantityLow);
+    }
+    if (!nullToAbsent || quantityHigh != null) {
+      map['quantity_high'] = Variable<double>(quantityHigh);
+    }
     if (!nullToAbsent || quantityUnit != null) {
       map['quantity_unit'] = Variable<String>(quantityUnit);
     }
@@ -3568,7 +3706,15 @@ class QuantitySearchParameter extends DataClass
       searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
-      quantityValue: Value(quantityValue),
+      quantityValue: quantityValue == null && nullToAbsent
+          ? const Value.absent()
+          : Value(quantityValue),
+      quantityLow: quantityLow == null && nullToAbsent
+          ? const Value.absent()
+          : Value(quantityLow),
+      quantityHigh: quantityHigh == null && nullToAbsent
+          ? const Value.absent()
+          : Value(quantityHigh),
       quantityUnit: quantityUnit == null && nullToAbsent
           ? const Value.absent()
           : Value(quantityUnit),
@@ -3591,7 +3737,9 @@ class QuantitySearchParameter extends DataClass
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
-      quantityValue: serializer.fromJson<double>(json['quantityValue']),
+      quantityValue: serializer.fromJson<double?>(json['quantityValue']),
+      quantityLow: serializer.fromJson<double?>(json['quantityLow']),
+      quantityHigh: serializer.fromJson<double?>(json['quantityHigh']),
       quantityUnit: serializer.fromJson<String?>(json['quantityUnit']),
       quantitySystem: serializer.fromJson<String?>(json['quantitySystem']),
       quantityCode: serializer.fromJson<String?>(json['quantityCode']),
@@ -3607,7 +3755,9 @@ class QuantitySearchParameter extends DataClass
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
-      'quantityValue': serializer.toJson<double>(quantityValue),
+      'quantityValue': serializer.toJson<double?>(quantityValue),
+      'quantityLow': serializer.toJson<double?>(quantityLow),
+      'quantityHigh': serializer.toJson<double?>(quantityHigh),
       'quantityUnit': serializer.toJson<String?>(quantityUnit),
       'quantitySystem': serializer.toJson<String?>(quantitySystem),
       'quantityCode': serializer.toJson<String?>(quantityCode),
@@ -3621,7 +3771,9 @@ class QuantitySearchParameter extends DataClass
           String? searchPath,
           String? searchName,
           int? paramIndex,
-          double? quantityValue,
+          Value<double?> quantityValue = const Value.absent(),
+          Value<double?> quantityLow = const Value.absent(),
+          Value<double?> quantityHigh = const Value.absent(),
           Value<String?> quantityUnit = const Value.absent(),
           Value<String?> quantitySystem = const Value.absent(),
           Value<String?> quantityCode = const Value.absent()}) =>
@@ -3632,7 +3784,11 @@ class QuantitySearchParameter extends DataClass
         searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
-        quantityValue: quantityValue ?? this.quantityValue,
+        quantityValue:
+            quantityValue.present ? quantityValue.value : this.quantityValue,
+        quantityLow: quantityLow.present ? quantityLow.value : this.quantityLow,
+        quantityHigh:
+            quantityHigh.present ? quantityHigh.value : this.quantityHigh,
         quantityUnit:
             quantityUnit.present ? quantityUnit.value : this.quantityUnit,
         quantitySystem:
@@ -3658,6 +3814,11 @@ class QuantitySearchParameter extends DataClass
       quantityValue: data.quantityValue.present
           ? data.quantityValue.value
           : this.quantityValue,
+      quantityLow:
+          data.quantityLow.present ? data.quantityLow.value : this.quantityLow,
+      quantityHigh: data.quantityHigh.present
+          ? data.quantityHigh.value
+          : this.quantityHigh,
       quantityUnit: data.quantityUnit.present
           ? data.quantityUnit.value
           : this.quantityUnit,
@@ -3680,6 +3841,8 @@ class QuantitySearchParameter extends DataClass
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('quantityValue: $quantityValue, ')
+          ..write('quantityLow: $quantityLow, ')
+          ..write('quantityHigh: $quantityHigh, ')
           ..write('quantityUnit: $quantityUnit, ')
           ..write('quantitySystem: $quantitySystem, ')
           ..write('quantityCode: $quantityCode')
@@ -3696,6 +3859,8 @@ class QuantitySearchParameter extends DataClass
       searchName,
       paramIndex,
       quantityValue,
+      quantityLow,
+      quantityHigh,
       quantityUnit,
       quantitySystem,
       quantityCode);
@@ -3710,6 +3875,8 @@ class QuantitySearchParameter extends DataClass
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.quantityValue == this.quantityValue &&
+          other.quantityLow == this.quantityLow &&
+          other.quantityHigh == this.quantityHigh &&
           other.quantityUnit == this.quantityUnit &&
           other.quantitySystem == this.quantitySystem &&
           other.quantityCode == this.quantityCode);
@@ -3723,7 +3890,9 @@ class QuantitySearchParametersCompanion
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
-  final Value<double> quantityValue;
+  final Value<double?> quantityValue;
+  final Value<double?> quantityLow;
+  final Value<double?> quantityHigh;
   final Value<String?> quantityUnit;
   final Value<String?> quantitySystem;
   final Value<String?> quantityCode;
@@ -3736,6 +3905,8 @@ class QuantitySearchParametersCompanion
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.quantityValue = const Value.absent(),
+    this.quantityLow = const Value.absent(),
+    this.quantityHigh = const Value.absent(),
     this.quantityUnit = const Value.absent(),
     this.quantitySystem = const Value.absent(),
     this.quantityCode = const Value.absent(),
@@ -3748,7 +3919,9 @@ class QuantitySearchParametersCompanion
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
-    required double quantityValue,
+    this.quantityValue = const Value.absent(),
+    this.quantityLow = const Value.absent(),
+    this.quantityHigh = const Value.absent(),
     this.quantityUnit = const Value.absent(),
     this.quantitySystem = const Value.absent(),
     this.quantityCode = const Value.absent(),
@@ -3757,8 +3930,7 @@ class QuantitySearchParametersCompanion
         id = Value(id),
         lastUpdated = Value(lastUpdated),
         searchPath = Value(searchPath),
-        paramIndex = Value(paramIndex),
-        quantityValue = Value(quantityValue);
+        paramIndex = Value(paramIndex);
   static Insertable<QuantitySearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
@@ -3767,6 +3939,8 @@ class QuantitySearchParametersCompanion
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<double>? quantityValue,
+    Expression<double>? quantityLow,
+    Expression<double>? quantityHigh,
     Expression<String>? quantityUnit,
     Expression<String>? quantitySystem,
     Expression<String>? quantityCode,
@@ -3780,6 +3954,8 @@ class QuantitySearchParametersCompanion
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (quantityValue != null) 'quantity_value': quantityValue,
+      if (quantityLow != null) 'quantity_low': quantityLow,
+      if (quantityHigh != null) 'quantity_high': quantityHigh,
       if (quantityUnit != null) 'quantity_unit': quantityUnit,
       if (quantitySystem != null) 'quantity_system': quantitySystem,
       if (quantityCode != null) 'quantity_code': quantityCode,
@@ -3794,7 +3970,9 @@ class QuantitySearchParametersCompanion
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
-      Value<double>? quantityValue,
+      Value<double?>? quantityValue,
+      Value<double?>? quantityLow,
+      Value<double?>? quantityHigh,
       Value<String?>? quantityUnit,
       Value<String?>? quantitySystem,
       Value<String?>? quantityCode,
@@ -3807,6 +3985,8 @@ class QuantitySearchParametersCompanion
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       quantityValue: quantityValue ?? this.quantityValue,
+      quantityLow: quantityLow ?? this.quantityLow,
+      quantityHigh: quantityHigh ?? this.quantityHigh,
       quantityUnit: quantityUnit ?? this.quantityUnit,
       quantitySystem: quantitySystem ?? this.quantitySystem,
       quantityCode: quantityCode ?? this.quantityCode,
@@ -3838,6 +4018,12 @@ class QuantitySearchParametersCompanion
     if (quantityValue.present) {
       map['quantity_value'] = Variable<double>(quantityValue.value);
     }
+    if (quantityLow.present) {
+      map['quantity_low'] = Variable<double>(quantityLow.value);
+    }
+    if (quantityHigh.present) {
+      map['quantity_high'] = Variable<double>(quantityHigh.value);
+    }
     if (quantityUnit.present) {
       map['quantity_unit'] = Variable<String>(quantityUnit.value);
     }
@@ -3863,6 +4049,8 @@ class QuantitySearchParametersCompanion
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('quantityValue: $quantityValue, ')
+          ..write('quantityLow: $quantityLow, ')
+          ..write('quantityHigh: $quantityHigh, ')
           ..write('quantityUnit: $quantityUnit, ')
           ..write('quantitySystem: $quantitySystem, ')
           ..write('quantityCode: $quantityCode, ')
@@ -7388,7 +7576,9 @@ typedef $$NumberSearchParametersTableCreateCompanionBuilder
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
-  required double numberValue,
+  Value<double?> numberValue,
+  Value<double?> numberLow,
+  Value<double?> numberHigh,
   Value<int> rowid,
 });
 typedef $$NumberSearchParametersTableUpdateCompanionBuilder
@@ -7399,7 +7589,9 @@ typedef $$NumberSearchParametersTableUpdateCompanionBuilder
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
-  Value<double> numberValue,
+  Value<double?> numberValue,
+  Value<double?> numberLow,
+  Value<double?> numberHigh,
   Value<int> rowid,
 });
 
@@ -7432,6 +7624,12 @@ class $$NumberSearchParametersTableFilterComposer
 
   ColumnFilters<double> get numberValue => $composableBuilder(
       column: $table.numberValue, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get numberLow => $composableBuilder(
+      column: $table.numberLow, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get numberHigh => $composableBuilder(
+      column: $table.numberHigh, builder: (column) => ColumnFilters(column));
 }
 
 class $$NumberSearchParametersTableOrderingComposer
@@ -7464,6 +7662,12 @@ class $$NumberSearchParametersTableOrderingComposer
 
   ColumnOrderings<double> get numberValue => $composableBuilder(
       column: $table.numberValue, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get numberLow => $composableBuilder(
+      column: $table.numberLow, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get numberHigh => $composableBuilder(
+      column: $table.numberHigh, builder: (column) => ColumnOrderings(column));
 }
 
 class $$NumberSearchParametersTableAnnotationComposer
@@ -7495,6 +7699,12 @@ class $$NumberSearchParametersTableAnnotationComposer
 
   GeneratedColumn<double> get numberValue => $composableBuilder(
       column: $table.numberValue, builder: (column) => column);
+
+  GeneratedColumn<double> get numberLow =>
+      $composableBuilder(column: $table.numberLow, builder: (column) => column);
+
+  GeneratedColumn<double> get numberHigh => $composableBuilder(
+      column: $table.numberHigh, builder: (column) => column);
 }
 
 class $$NumberSearchParametersTableTableManager extends RootTableManager<
@@ -7534,7 +7744,9 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
-            Value<double> numberValue = const Value.absent(),
+            Value<double?> numberValue = const Value.absent(),
+            Value<double?> numberLow = const Value.absent(),
+            Value<double?> numberHigh = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               NumberSearchParametersCompanion(
@@ -7545,6 +7757,8 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             numberValue: numberValue,
+            numberLow: numberLow,
+            numberHigh: numberHigh,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -7554,7 +7768,9 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
-            required double numberValue,
+            Value<double?> numberValue = const Value.absent(),
+            Value<double?> numberLow = const Value.absent(),
+            Value<double?> numberHigh = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               NumberSearchParametersCompanion.insert(
@@ -7565,6 +7781,8 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             numberValue: numberValue,
+            numberLow: numberLow,
+            numberHigh: numberHigh,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0
@@ -7599,7 +7817,9 @@ typedef $$QuantitySearchParametersTableCreateCompanionBuilder
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
-  required double quantityValue,
+  Value<double?> quantityValue,
+  Value<double?> quantityLow,
+  Value<double?> quantityHigh,
   Value<String?> quantityUnit,
   Value<String?> quantitySystem,
   Value<String?> quantityCode,
@@ -7613,7 +7833,9 @@ typedef $$QuantitySearchParametersTableUpdateCompanionBuilder
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
-  Value<double> quantityValue,
+  Value<double?> quantityValue,
+  Value<double?> quantityLow,
+  Value<double?> quantityHigh,
   Value<String?> quantityUnit,
   Value<String?> quantitySystem,
   Value<String?> quantityCode,
@@ -7649,6 +7871,12 @@ class $$QuantitySearchParametersTableFilterComposer
 
   ColumnFilters<double> get quantityValue => $composableBuilder(
       column: $table.quantityValue, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get quantityLow => $composableBuilder(
+      column: $table.quantityLow, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get quantityHigh => $composableBuilder(
+      column: $table.quantityHigh, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get quantityUnit => $composableBuilder(
       column: $table.quantityUnit, builder: (column) => ColumnFilters(column));
@@ -7693,6 +7921,13 @@ class $$QuantitySearchParametersTableOrderingComposer
       column: $table.quantityValue,
       builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<double> get quantityLow => $composableBuilder(
+      column: $table.quantityLow, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get quantityHigh => $composableBuilder(
+      column: $table.quantityHigh,
+      builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get quantityUnit => $composableBuilder(
       column: $table.quantityUnit,
       builder: (column) => ColumnOrderings(column));
@@ -7735,6 +7970,12 @@ class $$QuantitySearchParametersTableAnnotationComposer
 
   GeneratedColumn<double> get quantityValue => $composableBuilder(
       column: $table.quantityValue, builder: (column) => column);
+
+  GeneratedColumn<double> get quantityLow => $composableBuilder(
+      column: $table.quantityLow, builder: (column) => column);
+
+  GeneratedColumn<double> get quantityHigh => $composableBuilder(
+      column: $table.quantityHigh, builder: (column) => column);
 
   GeneratedColumn<String> get quantityUnit => $composableBuilder(
       column: $table.quantityUnit, builder: (column) => column);
@@ -7783,7 +8024,9 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
-            Value<double> quantityValue = const Value.absent(),
+            Value<double?> quantityValue = const Value.absent(),
+            Value<double?> quantityLow = const Value.absent(),
+            Value<double?> quantityHigh = const Value.absent(),
             Value<String?> quantityUnit = const Value.absent(),
             Value<String?> quantitySystem = const Value.absent(),
             Value<String?> quantityCode = const Value.absent(),
@@ -7797,6 +8040,8 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             quantityValue: quantityValue,
+            quantityLow: quantityLow,
+            quantityHigh: quantityHigh,
             quantityUnit: quantityUnit,
             quantitySystem: quantitySystem,
             quantityCode: quantityCode,
@@ -7809,7 +8054,9 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
-            required double quantityValue,
+            Value<double?> quantityValue = const Value.absent(),
+            Value<double?> quantityLow = const Value.absent(),
+            Value<double?> quantityHigh = const Value.absent(),
             Value<String?> quantityUnit = const Value.absent(),
             Value<String?> quantitySystem = const Value.absent(),
             Value<String?> quantityCode = const Value.absent(),
@@ -7823,6 +8070,8 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             quantityValue: quantityValue,
+            quantityLow: quantityLow,
+            quantityHigh: quantityHigh,
             quantityUnit: quantityUnit,
             quantitySystem: quantitySystem,
             quantityCode: quantityCode,

@@ -246,8 +246,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'composed-of')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -353,8 +353,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'depends-on')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -389,8 +389,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'derived-from')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -492,8 +492,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'predecessor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -543,8 +543,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'successor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -10760,8 +10760,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'composed-of')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -10867,8 +10867,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'depends-on')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -10886,8 +10886,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'derived-from')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -10989,8 +10989,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'predecessor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -11040,8 +11040,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'successor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -15260,8 +15260,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'composed-of')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -15385,8 +15385,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'depends-on')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -15404,8 +15404,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'derived-from')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -15507,8 +15507,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'predecessor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -15558,8 +15558,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'successor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -16272,8 +16272,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'composed-of')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -16379,8 +16379,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'depends-on')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -16415,8 +16415,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'derived-from')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -16518,8 +16518,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'predecessor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -16569,8 +16569,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'successor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -22851,8 +22851,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'composed-of')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -22977,8 +22977,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'depends-on')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -23013,8 +23013,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'derived-from')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -23116,8 +23116,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'predecessor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -23167,8 +23167,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'successor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25435,8 +25435,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'composed-of')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25542,8 +25542,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'depends-on')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25578,8 +25578,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'derived-from')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25681,8 +25681,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'predecessor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25732,8 +25732,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'successor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25852,8 +25852,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'composed-of')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25959,8 +25959,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'depends-on')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -25995,8 +25995,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'derived-from')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -26098,8 +26098,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'predecessor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,
@@ -26149,8 +26149,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.relatedArtifact
               ?.where((e) => e.type?.valueString == 'successor')
               ?.map((e) => e?.resource)
-              ?.makeIterable<fhir.RelatedArtifact>() ??
-          <fhir.RelatedArtifact>[]) {
+              ?.makeIterable<fhir.FhirCanonical>() ??
+          <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
           entry.toReferenceSearchParameter(
             resourceType,

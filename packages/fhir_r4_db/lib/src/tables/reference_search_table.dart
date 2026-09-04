@@ -145,6 +145,43 @@ extension ReferenceSearchParametersExtension on fhir.FhirBase {
           ),
         );
 
+      // R4B 3.1.1.9's cross-map: a reference parameter also searches an
+      // element of type uri, and the R4B CodeableReference through its
+      // reference. Neither wrote a row before.
+      case final fhir.FhirUri uri:
+        final written = uri.valueString;
+        if (written == null) return results;
+        final referenceComponents = _parseReference(written);
+        results.add(
+          ReferenceSearchParametersCompanion(
+            resourceType: Value(resourceType),
+            id: Value(id),
+            lastUpdated: Value(lastUpdated),
+            searchPath: Value(searchPath),
+            searchName: Value(searchName),
+            paramIndex:
+                paramIndex == null ? const Value.absent() : Value(paramIndex),
+            referenceValue: Value(written),
+            referenceResourceType: Value(referenceComponents.resourceType),
+            referenceIdPart: Value(referenceComponents.id),
+            referenceVersion: Value(referenceComponents.version),
+            referenceBaseUrl: Value(referenceComponents.baseUrl),
+          ),
+        );
+        return results;
+
+      case final fhir.CodeableReference codeableReference:
+        final reference = codeableReference.reference;
+        if (reference == null) return results;
+        return reference.toReferenceSearchParameter(
+          resourceType,
+          id,
+          lastUpdated,
+          searchPath,
+          paramIndex,
+          searchName: searchName,
+        );
+
       default:
         return results;
     }

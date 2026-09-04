@@ -231,6 +231,61 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
         }
         return results;
 
+      // R4B 3.1.1.9's cross-map: token parameters also search ContactPoint
+      // (`Patient.telecom`, `phone`, `email`: 20 parameters), id, and the
+      // R4B CodeableReference through its concept. None of these wrote a
+      // row before, so `Patient?phone=` always returned nothing.
+      case final fhir.ContactPoint contactPoint:
+        if (contactPoint.value?.valueString != null) {
+          // 3.1.1.4.10: "For token parameters on elements of type
+          // ContactPoint ... only the [parameter]=[code] form is allowed",
+          // so no system. "At the discretion of the server, token searches
+          // on ContactPoint may use special handling, such as ignoring
+          // punctuation"; this stores the value as written.
+          results.add(
+            TokenSearchParametersCompanion(
+              resourceType: Value(resourceType),
+              id: Value(id),
+              lastUpdated: Value(lastUpdated),
+              searchPath: Value(searchPath),
+              searchName: Value(searchName),
+              paramIndex:
+                  paramIndex == null ? const Value.absent() : Value(paramIndex),
+              tokenValue: Value(contactPoint.value!.valueString!),
+            ),
+          );
+        }
+        return results;
+
+      case final fhir.FhirId idValue:
+        if (idValue.valueString != null) {
+          results.add(
+            TokenSearchParametersCompanion(
+              resourceType: Value(resourceType),
+              id: Value(id),
+              lastUpdated: Value(lastUpdated),
+              searchPath: Value(searchPath),
+              searchName: Value(searchName),
+              paramIndex:
+                  paramIndex == null ? const Value.absent() : Value(paramIndex),
+              tokenValue: Value(idValue.valueString!),
+            ),
+          );
+        }
+        return results;
+
+      case final fhir.CodeableReference codeableReference:
+        final concept = codeableReference.concept;
+        if (concept == null) return results;
+        return concept.toTokenSearchParameter(
+          resourceType,
+          id,
+          lastUpdated,
+          searchPath,
+          paramIndex,
+          searchName: searchName,
+        );
+
       default:
         return [];
     }

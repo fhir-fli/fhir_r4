@@ -314,8 +314,10 @@ void main() {
       'idx_ref_identifier_val',
       'idx_uri_value',
       'idx_date_value',
-      'idx_number_value',
-      'idx_quantity_value',
+      'idx_number_low',
+      'idx_number_high',
+      'idx_quantity_low',
+      'idx_quantity_high',
       'idx_special_value',
     };
 

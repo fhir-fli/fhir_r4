@@ -496,7 +496,37 @@ void main() {
       );
       expect(results.length, 1);
       expect(results.first.quantityValue.value, closeTo(98.6, 0.01));
-      expect(results.first.quantityUnit.present, false);
+      expect(results.first.quantityUnit.value, isNull);
+      // R4B 3.1.1.4.5: the stored value is a range too, half a unit of its
+      // last significant digit either side.
+      expect(results.first.quantityLow.value, closeTo(98.55, 1e-9));
+      expect(results.first.quantityHigh.value, closeTo(98.65, 1e-9));
+    });
+
+    test('extracts a Range as its explicit bounds, a Money as a quantity', () {
+      // R4B 3.1.1.9's cross-map: Range and Money are searched by quantity
+      // parameters. Neither wrote a row before.
+      final range = Range(
+        low: Quantity(value: FhirDecimal('1.0'), code: FhirCode('mg')),
+        high: Quantity(value: FhirDecimal('5.0'), code: FhirCode('mg')),
+      );
+      final rangeRows =
+          range.toQuantitySearchParameter(_rt, _id, _lu, _path, _idx);
+      expect(rangeRows.single.quantityValue.value, isNull);
+      expect(rangeRows.single.quantityLow.value, closeTo(0.95, 1e-9));
+      expect(rangeRows.single.quantityHigh.value, closeTo(5.05, 1e-9));
+      expect(rangeRows.single.quantityCode.value, 'mg');
+      final open = Range(low: Quantity(value: FhirDecimal('1.0')));
+      final openRows =
+          open.toQuantitySearchParameter(_rt, _id, _lu, _path, _idx);
+      expect(openRows.single.quantityHigh.value, isNull);
+      final money =
+          Money(value: FhirDecimal('12.50'), currency: FhirCode('USD'));
+      final moneyRows =
+          money.toQuantitySearchParameter(_rt, _id, _lu, _path, _idx);
+      expect(moneyRows.single.quantityValue.value, 12.5);
+      expect(moneyRows.single.quantityCode.value, 'USD');
+      expect(moneyRows.single.quantitySystem.value, 'urn:iso:std:iso:4217');
     });
 
     test('returns empty for non-Quantity type', () {
