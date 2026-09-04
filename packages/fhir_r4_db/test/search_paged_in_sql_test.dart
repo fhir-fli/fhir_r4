@@ -732,6 +732,21 @@ Future<void> main() async {
         },
       }),
     );
+    // 3.1.1.4.10: "the search functions as a normal string search", which
+    // 3.1.1.4.8 defines as equals-or-starts-with after normalization; R5
+    // spells it out for this modifier: codes "that start with or equal the
+    // string 'headache' (case-insensitive)". So "blood" and "blood pres"
+    // find "Blood Pressure" and "pressure" does not (it used to: the match
+    // was `LIKE %value%`, wider than asked).
+    expect(
+      await ids(
+        {
+          'code:text': ['blood pres'],
+        },
+        count: 3,
+      ),
+      ['shown'],
+    );
     expect(
       await ids(
         {
@@ -739,8 +754,35 @@ Future<void> main() async {
         },
         count: 3,
       ),
-      ['shown'],
-      reason: ':text is a case-insensitive partial match on the display',
+      isEmpty,
+      reason: ':text is a starts-with string search, not a contains',
+    );
+    // Accents fold like any string search: 3.1.1.4.8 "case and accent
+    // insensitive".
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'accent',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {
+              'system': 'http://example.org',
+              'code': 'Y',
+              'display': 'Céphalée de tension',
+            },
+          ],
+        },
+      }),
+    );
+    expect(
+      await ids(
+        {
+          'code:text': ['cephalee'],
+        },
+        count: 3,
+      ),
+      ['accent'],
     );
     // CodeableConcept.text is searched by :text and NOT by the code search.
     await dao.saveResource(

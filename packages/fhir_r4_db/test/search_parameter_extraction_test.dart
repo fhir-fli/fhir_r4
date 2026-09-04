@@ -170,7 +170,7 @@ void main() {
       expect(results.length, 1);
       expect(results.first.tokenSystem.value, 'http://loinc.org');
       expect(results.first.tokenValue.value, '12345-6');
-      expect(results.first.tokenDisplay.value, 'Hemoglobin');
+      expect(results.first.tokenDisplay.value, 'hemoglobin');
     });
 
     test('extracts CodeableConcept with multiple codings and text', () {
@@ -199,7 +199,8 @@ void main() {
       // portion of a CodeableConcept"), and the row carries no code, so a
       // code search cannot match it.
       expect(results[2].tokenValue.value, '');
-      expect(results[2].tokenDisplay.value, 'Hemoglobin test');
+      // Stored normalized, because `:text` is a string search.
+      expect(results[2].tokenDisplay.value, 'hemoglobin test');
     });
 
     test('extracts Identifier with system', () {

@@ -1395,10 +1395,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           case 'missing':
             return _IndexCondition(t, t.id, path, negated: value == 'true');
           case 'text':
+            // 3.1.1.4.10: "the search functions as a normal string search",
+            // and 3.1.1.4.8 says what that is: equals or starts with, after
+            // both sides are normalized. R5 spells it out for this very
+            // modifier: `code:text=headache` matches codes "that start with
+            // or equal the string 'headache' (case-insensitive)". The
+            // display is stored normalized (see the token table). This used
+            // to be `LIKE %value%`: wider than asked, and case-folded only
+            // for ASCII.
+            final normalized = normalizeSearchString(unescapeValue(value));
             return _IndexCondition(
               t,
               t.id,
-              path & t.tokenDisplay.like('%${unescapeValue(value)}%'),
+              path &
+                  t.tokenDisplay
+                      .substr(1, normalized.length)
+                      .equals(normalized),
             );
           case 'below':
             // 3.1.1.4.10.1: `contenttype:below=text/xml` finds
@@ -2931,7 +2943,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                 tbl.resourceType.equals(resourceType) &
                 (tbl.searchPath.like('$resourceType.$searchPath') |
                     tbl.searchPath.like('$resourceType.%.$searchPath')) &
-                tbl.tokenDisplay.like('%${searchValue.toLowerCase()}%'),
+                tbl.tokenDisplay
+                    .substr(1, normalizeSearchString(searchValue).length)
+                    .equals(normalizeSearchString(searchValue)),
           );
         final rows = await query.get();
         for (final row in rows) {
