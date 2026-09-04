@@ -342,6 +342,40 @@ void dateTimeTest() {
       );
     });
 
+    test('valueDateTime is the instant the offset denotes', () {
+      // 10:00 at +02:00 is 08:00Z; 10:00 at -05:00 is 15:00Z. Both used to
+      // come back as 10:00 in the machine's own zone, the offset discarded.
+      expect(
+        FhirDateTime.fromString('2013-01-14T10:00:00+02:00').valueDateTime,
+        DateTime.utc(2013, 1, 14, 8),
+      );
+      expect(
+        FhirDateTime.fromString('2013-01-14T10:00:00-05:00').valueDateTime,
+        DateTime.utc(2013, 1, 14, 15),
+      );
+      expect(
+        FhirDateTime.fromString('2013-01-14T10:00:00+05:30').valueDateTime,
+        DateTime.utc(2013, 1, 14, 4, 30),
+      );
+      expect(
+        FhirDateTime.fromString('2013-01-14T10:00:00Z').valueDateTime,
+        DateTime.utc(2013, 1, 14, 10),
+      );
+      expect(
+        FhirDateTime.fromString('2013-01-14T10:00:00+00:00').valueDateTime,
+        DateTime.utc(2013, 1, 14, 10),
+      );
+      // No offset: no instant of its own, so the local zone is assumed.
+      expect(
+        FhirDateTime.fromString('2013-01-14T10:00:00').valueDateTime,
+        DateTime(2013, 1, 14, 10),
+      );
+      expect(
+        FhirDateTime.fromString('2013-01-14').valueDateTime,
+        DateTime(2013, 1, 14),
+      );
+    });
+
     test('fractional timezone offsets are preserved', () {
       // Regression: value-string rendering hardcoded ':00' minutes, so
       // half/quarter-hour zones (+05:30 India, +05:45 Nepal) truncated to

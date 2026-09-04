@@ -183,9 +183,11 @@ void instantTest() {
       dateyyyyMMddTHHmmssSSSmmmFromUnits.valueString,
       equals(yyyyMMddTHHmmssSSSmmmEmptyTimeZoneString),
     );
+    // An instant carries an offset, so valueDateTime is in UTC; compare the
+    // moment, as the sibling tests do. DateTime == also compares the zone.
     expect(
-      dateyyyyMMddTHHmmssSSSmmmFromUnits.valueDateTime,
-      equals(yyyyMMddTHHmmssSSSmmmDateTime),
+      dateyyyyMMddTHHmmssSSSmmmFromUnits.valueDateTime?.toUtc(),
+      equals(yyyyMMddTHHmmssSSSmmmDateTime.toUtc()),
     );
     expect(
       dateyyyyMMddTHHmmssSSSmmmFromUnits.toJson()['value'],

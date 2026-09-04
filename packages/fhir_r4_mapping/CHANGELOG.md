@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- **`FhirDateTimeBaseBuilder.valueDateTime` honours the offset**, the same change as in the core package: a value with `Z` or an offset comes back in UTC at the instant it denotes; one without stays local.
 - **A map that leaves a required element unset now says so usefully.** `transformBuilder` ends in `result.build()`, which is `Type.fromJson(toJson())`, and `fromJson` dereferences the required elements — so an unset one surfaced as `Null check operator used on a null value`, naming neither the type nor the element, inside an OperationOutcome the caller could do nothing with. The failure now reports the target type and the elements the map actually did set, which is the list the missing one is absent from.
 
 ## [0.12.0]

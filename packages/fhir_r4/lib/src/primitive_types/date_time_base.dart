@@ -139,30 +139,55 @@ abstract class FhirDateTimeBase extends PrimitiveType
   @override
   String get fhirType => 'dateTimeBase';
 
-  /// Returns the value as a [DateTime] object.
-  DateTime? get valueDateTime => year == null
-      ? null
-      : isUtc
-          ? DateTime.utc(
-              year!,
-              month ?? 1,
-              day ?? 1,
-              hour ?? 0,
-              minute ?? 0,
-              second ?? 0,
-              millisecond ?? 0,
-              _convertMicrosecondToInt(microsecond),
-            )
-          : DateTime(
-              year!,
-              month ?? 1,
-              day ?? 1,
-              hour ?? 0,
-              minute ?? 0,
-              second ?? 0,
-              millisecond ?? 0,
-              _convertMicrosecondToInt(microsecond),
-            );
+  /// Returns the value as a [DateTime] object, at the instant the value
+  /// denotes.
+  ///
+  /// A value with `Z` or an explicit offset names an instant; it is returned
+  /// in UTC, as [DateTime.parse] does. `2013-01-14T10:00:00+02:00` is
+  /// 08:00Z. This used to build a LOCAL DateTime from the wall-clock
+  /// components and discard the offset, so that value was 10:00 in whatever
+  /// zone the machine ran in — right only where the machine's zone happened
+  /// to equal the offset. A value with no offset (every date, and a dateTime
+  /// written without one) has no instant of its own and is returned in the
+  /// machine's local zone, which is what R4B search §3.1.1.4.7 asks for:
+  /// "Where both search parameters and resource element date times do not
+  /// have time zones, the servers local time zone should be assumed."
+  DateTime? get valueDateTime {
+    if (year == null) {
+      return null;
+    }
+    final offsetHours = timeZoneOffset;
+    if (isUtc || offsetHours != null) {
+      final wallClock = DateTime.utc(
+        year!,
+        month ?? 1,
+        day ?? 1,
+        hour ?? 0,
+        minute ?? 0,
+        second ?? 0,
+        millisecond ?? 0,
+        _convertMicrosecondToInt(microsecond),
+      );
+      if (offsetHours == null || offsetHours == 0) {
+        return wallClock;
+      }
+      // +02:00 means the wall clock is two hours AHEAD of UTC.
+      return wallClock.subtract(
+        Duration(
+            microseconds: (offsetHours * Duration.microsecondsPerHour).round()),
+      );
+    }
+    return DateTime(
+      year!,
+      month ?? 1,
+      day ?? 1,
+      hour ?? 0,
+      minute ?? 0,
+      second ?? 0,
+      millisecond ?? 0,
+      _convertMicrosecondToInt(microsecond),
+    );
+  }
 
   @override
   String toString() => _formattedString.toString();

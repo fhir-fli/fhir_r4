@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [Unreleased]
+
+- **`FhirDateTimeBase.valueDateTime` is the instant the value denotes.** A value with `Z` or an explicit offset is returned in UTC, as `DateTime.parse` does: `2013-01-14T10:00:00+02:00` is 08:00Z. It used to build a local `DateTime` from the wall-clock components and discard the offset, so that value read 10:00 in whatever zone the machine ran in, and was right only where the machine's zone happened to equal the offset. Every date, and a dateTime written without an offset, has no instant of its own and is still returned in the local zone, which is what R4B search §3.1.1.4.7 asks for ("Where both search parameters and resource element date times do not have time zones, the servers local time zone should be assumed"). Found through `fhir_r4_db`, which indexes every date parameter from this value.
+
 ## [0.12.0]
 
 - No code changes; version aligned with the fhir_r4 0.12.0 family release
