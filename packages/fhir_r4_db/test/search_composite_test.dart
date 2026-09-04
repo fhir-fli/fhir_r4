@@ -354,6 +354,118 @@ Future<void> main() async {
     );
   });
 
+  test(
+      'a chain is evaluated inside contained resources; a plain search '
+      'does not return them', () async {
+    // R4B 3.1.1.5.5's example: "a MedicationRequest resource that has a
+    // contained Medication resource specifying a custom formulation that
+    // has ingredient with a itemCodeableConcept "abc" in
+    // "http://acme.com./medications". In this case, a search:
+    // MedicationRequest?medication.ingredient-code=abc will include the
+    // MedicationRequest resource in the results. However, this search:
+    // Medication?ingredient-code=abc will not include the contained
+    // Medication resource in the results".
+    await dao.saveResource(
+      MedicationRequest.fromJson({
+        'resourceType': 'MedicationRequest',
+        'id': '23',
+        'status': 'active',
+        'intent': 'order',
+        'subject': {'reference': 'Patient/p1'},
+        'contained': [
+          {
+            'resourceType': 'Medication',
+            'id': 'm1',
+            'ingredient': [
+              {
+                'itemCodeableConcept': {
+                  'coding': [
+                    {'system': 'http://acme.com/medications', 'code': 'abc'},
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+        'medicationReference': {'reference': '#m1'},
+      }),
+    );
+    await dao.saveResource(
+      Medication.fromJson({
+        'resourceType': 'Medication',
+        'id': 'standalone',
+        'ingredient': [
+          {
+            'itemCodeableConcept': {
+              'coding': [
+                {'system': 'http://acme.com/medications', 'code': 'xyz'},
+              ],
+            },
+          },
+        ],
+      }),
+    );
+    expect(
+      await find(
+        R4ResourceType.MedicationRequest,
+        'medication.ingredient-code',
+        'abc',
+      ),
+      ['23'],
+    );
+    expect(
+      await find(R4ResourceType.Medication, 'ingredient-code', 'abc'),
+      isEmpty,
+      reason: 'the contained Medication is not a search result of its own',
+    );
+    expect(
+      await find(R4ResourceType.Medication, 'ingredient-code', 'xyz'),
+      ['standalone'],
+    );
+    // Updating the container replaces the contained rows too.
+    await dao.saveResource(
+      MedicationRequest.fromJson({
+        'resourceType': 'MedicationRequest',
+        'id': '23',
+        'status': 'active',
+        'intent': 'order',
+        'subject': {'reference': 'Patient/p1'},
+        'contained': [
+          {
+            'resourceType': 'Medication',
+            'id': 'm1',
+            'ingredient': [
+              {
+                'itemCodeableConcept': {
+                  'coding': [
+                    {'system': 'http://acme.com/medications', 'code': 'def'},
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+        'medicationReference': {'reference': '#m1'},
+      }),
+    );
+    expect(
+      await find(
+        R4ResourceType.MedicationRequest,
+        'medication.ingredient-code',
+        'abc',
+      ),
+      isEmpty,
+    );
+    expect(
+      await find(
+        R4ResourceType.MedicationRequest,
+        'medication.ingredient-code',
+        'def',
+      ),
+      ['23'],
+    );
+  });
+
   test('a value with the wrong number of parts is an error', () async {
     await expectLater(
       find(R4ResourceType.Observation, 'code-value-quantity', 'just-one'),

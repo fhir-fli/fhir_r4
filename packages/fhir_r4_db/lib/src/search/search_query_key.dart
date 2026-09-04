@@ -235,7 +235,11 @@ SearchParameterDefinition? searchParameterFor(
   String resourceType,
   String code,
 ) =>
-    searchParameterTypes[resourceType]?[code] ??
+    // A contained resource's rows are filed under `#Type` (search
+    // §3.1.1.5.5); its parameters are the type's own.
+    searchParameterTypes[resourceType.startsWith('#')
+        ? resourceType.substring(1)
+        : resourceType]?[code] ??
     // `_id`, `_lastUpdated`, `_tag`, `_profile`, `_security`, `_source` and
     // the rest of R4B 3.1.1.4.1 are published against Resource and
     // DomainResource, not against each type.

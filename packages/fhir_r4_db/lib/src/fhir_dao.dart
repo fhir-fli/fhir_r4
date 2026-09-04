@@ -46,7 +46,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// to exercise what a save does when indexing cannot be completed.
   @visibleForTesting
   SearchParameterLists Function(fhir.Resource resource)
-      extractSearchParameters = updateSearchParameters;
+      extractSearchParameters = extractWithContained;
 
   /// Set to true to store versionId as a timestamp instead of an integer.
   bool versionIdAsTime = false;
@@ -539,8 +539,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     List<HasParameter>? hasParameters,
     List<String>? sort,
     int? count,
-    int? offset,
-  ) async {
+    int? offset, {
+    bool countOnly = false,
+  }) async {
     if (count != null && count <= 0) return null;
 
     final sortKeys = <_SortKey>[];
@@ -693,6 +694,74 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (!allBig) {
       sized.sort((a, b) => a.$2.compareTo(b.$2));
     }
+
+    // When every set is a fair share of the type, the cheapest outer is the
+    // resources table itself, walked in id order through its primary key
+    // with every part nested as EXISTS: the walk stops at the page, and it
+    // only has to pass 20 / (joint selectivity) rows to fill it. Measured
+    // 2026-09-04 on the MIMIC load, `date=2137&status=final` (60,056 and
+    // 813,513 of 813,540 Observations): the date-outer plan sorted 60k
+    // rows and ran the status EXISTS on each, 1.85s; a walk of the
+    // resources needs ~300 rows. The estimate treats a capped probe as the
+    // cap, which understates its share, so the walk is chosen only when
+    // even that pessimistic product keeps the expected walk short.
+    if (sized.length > 1 && sortKeys.isEmpty && count != null) {
+      final total = await getResourceCount(
+        fhir.R4ResourceType.fromString(resourceType) ??
+            fhir.R4ResourceType.Basic,
+      );
+      if (total > 0) {
+        var selectivity = 1.0;
+        for (final (_, size) in sized) {
+          selectivity *= size.clamp(1, total) / total;
+        }
+        final expectedWalk = (count + (offset ?? 0)) / selectivity;
+        // The alternative below walks the smallest set once, so the
+        // resources walk has to be shorter than that set to be worth it.
+        // `code=X` (2,000) with `status=final` expects an 8,000-row walk and
+        // keeps the 2,000-row outer.
+        final smallest = sized.map((s) => s.$2).reduce(math.min);
+        if (expectedWalk < math.min(20000, smallest)) {
+          final r = resources;
+          var walk = r.resourceType.equals(resourceType);
+          for (final (part, _) in sized) {
+            // `_id`, `_lastUpdated`, `_list` and `_content` are conditions on
+            // the resources table itself; nesting one would make it refer to
+            // the outer row.
+            if (part.table == r) {
+              walk = walk & part.condition;
+              continue;
+            }
+            walk = walk &
+                existsQuery(
+                  selectOnly(part.table)
+                    ..addColumns([const Constant(1)])
+                    ..where(part.condition & part.idColumn.equalsExp(r.id)),
+                );
+          }
+          for (final other in negated) {
+            if (other.table == r) {
+              walk = walk & other.condition.not();
+              continue;
+            }
+            walk = walk &
+                notExistsQuery(
+                  selectOnly(other.table)
+                    ..addColumns([const Constant(1)])
+                    ..where(other.condition & other.idColumn.equalsExp(r.id)),
+                );
+          }
+          final rows = await (selectOnly(r)
+                ..addColumns([r.id])
+                ..where(walk)
+                ..orderBy([OrderingTerm.asc(r.id)])
+                ..limit(count, offset: offset))
+              .get();
+          return rows.map((row) => row.read(r.id)).whereType<String>().toList();
+        }
+      }
+    }
+
     final first = sized.first.$1;
     var where = first.condition;
     for (final (other, size) in sized.skip(1)) {
@@ -723,6 +792,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                 other.condition & other.idColumn.equalsExp(first.idColumn),
               ),
           );
+    }
+
+    if (countOnly) {
+      // §3.1.1.5.2, Bundle.total: the number of matches, counted here
+      // rather than fetched. `count(DISTINCT id)` over the same WHERE.
+      final total = first.idColumn.count(distinct: true);
+      final row = await (selectOnly(first.table)
+            ..addColumns([total])
+            ..where(where))
+          .getSingle();
+      return [(row.read(total) ?? 0).toString()];
     }
 
     if (sortKeys.isEmpty) {
@@ -1035,19 +1115,24 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         any = any ?? const Constant(false);
         continue;
       }
-      final inner = await _conditionForKey(
-        target,
-        chainedKey,
-        value,
-        aliasName: nextAlias(),
-        nextAlias: nextAlias,
-      );
-      // A candidate this path cannot express sends the whole search down
-      // the general path rather than quietly leaving that type out.
-      if (inner == null) return null;
-      final hop = c.referenceResourceType.equals(target) &
-          await _nest(inner, c.referenceIdPart);
-      any = any == null ? hop : any | hop;
+      // §3.1.1.5.5: "A chained condition will be evaluated inside contained
+      // resources." A contained target's rows are filed under `#Type`, and
+      // the container's `#id` reference points at them (contained_index).
+      for (final rowType in [target, '#$target']) {
+        final inner = await _conditionForKey(
+          rowType,
+          chainedKey,
+          value,
+          aliasName: nextAlias(),
+          nextAlias: nextAlias,
+        );
+        // A candidate this path cannot express sends the whole search down
+        // the general path rather than quietly leaving that type out.
+        if (inner == null) return null;
+        final hop = c.referenceResourceType.equals(rowType) &
+            await _nest(inner, c.referenceIdPart);
+        any = any == null ? hop : any | hop;
+      }
     }
     return _IndexCondition(c, c.id, path & any!);
   }
@@ -1805,6 +1890,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final contained = low.isNotNull() &
             high.isNotNull() &
             low.isBiggerOrEqualValue(l) &
+            low.isSmallerThanValue(h) &
             high.isSmallerOrEqualValue(h);
         final above = highMissing | high.isBiggerThanValue(h);
         final below = lowMissing | low.isSmallerThanValue(l);
@@ -1993,6 +2079,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       return getResourceCount(resourceType);
     }
 
+    // One COUNT in SQL when the search can be expressed there; the id set
+    // only for the shapes that cannot. This used to fetch every matching
+    // id to take its length: 813,513 strings for status=final.
+    final counted = await _pagedIds(
+      resourceType.toString(),
+      searchParameters,
+      hasParameters,
+      null,
+      null,
+      null,
+      countOnly: true,
+    );
+    if (counted != null) {
+      return int.parse(counted.single);
+    }
     final ids = await _matchingIds(
       resourceType: resourceType,
       searchParameters: searchParameters,
@@ -2214,42 +2315,52 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }
 
   void _deleteSearchParams(Batch batch, String resourceType, String id) {
+    // The rows of this resource, and of anything contained in it, whose id
+    // is `<type>/<id>#<contained id>` under a `#Type`. A substr test rather
+    // than LIKE, since `_` in an id would be a wildcard.
+    final containedPrefix = '$resourceType/$id#';
+    Expression<bool> mine(
+      GeneratedColumn<String> type,
+      GeneratedColumn<String> rowId,
+    ) =>
+        (type.equals(resourceType) & rowId.equals(id)) |
+        rowId.substr(1, containedPrefix.length).equals(containedPrefix);
     batch
       ..deleteWhere(
         stringSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         tokenSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         referenceSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         dateSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         numberSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         quantitySearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         uriSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         compositeSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       )
       ..deleteWhere(
         specialSearchParameters,
-        (tbl) => tbl.resourceType.equals(resourceType) & tbl.id.equals(id),
+        (tbl) => mine(tbl.resourceType, tbl.id),
       );
   }
 
@@ -3199,9 +3310,16 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final h = search.high;
     final lowMissing = low.isNull();
     final highMissing = high.isNull();
+    // `low < h` is implied by `high <= h` for any real range, and is here
+    // for the planner: with only `low >= l` and `high <= h` SQLite chose the
+    // high-bound index and scanned everything before `h` — 1.8s to find
+    // 2,000 rows of one year on the MIMIC load — where a bounded range on
+    // the low-bound index is the year's rows and nothing else. It also
+    // shuts the one gap in the formula: a point at exactly `h`.
     final contained = low.isNotNull() &
         high.isNotNull() &
         low.isBiggerOrEqualValue(l) &
+        low.isSmallerThanValue(h) &
         high.isSmallerOrEqualValue(h);
     final above = highMissing | high.isBiggerThanValue(h);
     final below = lowMissing | low.isSmallerThanValue(l);
@@ -3446,9 +3564,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final (:low, :high) = implicitRange(written)!;
     final lowMissing = lowColumn.isNull();
     final highMissing = highColumn.isNull();
+    // `low < high` alongside `high <= high`: for the planner, as in
+    // _dateRangeCondition.
     final contained = lowColumn.isNotNull() &
         highColumn.isNotNull() &
         lowColumn.isBiggerOrEqualValue(low) &
+        lowColumn.isSmallerThanValue(high) &
         highColumn.isSmallerOrEqualValue(high);
     // A point (integer) is stored with low == high; "above" a search point
     // means the stored range has something greater than it.
