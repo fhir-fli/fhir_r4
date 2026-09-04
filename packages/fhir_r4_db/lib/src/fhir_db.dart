@@ -267,6 +267,12 @@ class FhirDb extends _$FhirDb {
       offset += stored.length;
       final tokens = <TokenSearchParametersCompanion>[];
       final uris = <UriSearchParametersCompanion>[];
+      final references = <ReferenceSearchParametersCompanion>[];
+      // `_profile` is a uri in R4B and a reference (a canonical, target
+      // StructureDefinition) in R5 and R6; the table follows the version's
+      // own definition, as the generated extractor does.
+      final profileIsReference =
+          searchParameterFor('Resource', '_profile')?.type == 'reference';
       for (final row in stored) {
         final Map<String, dynamic> json;
         try {
@@ -306,16 +312,30 @@ class FhirDb extends _$FhirDb {
         if (profiles is List) {
           for (final (i, item) in profiles.indexed) {
             if (item is! String) continue;
-            uris.addAll(
-              fhir.FhirCanonical(item).toUriSearchParameter(
-                resourceType,
-                id,
-                lastUpdated,
-                'Resource.meta.profile',
-                i,
-                searchName: '_profile',
-              ),
-            );
+            final canonical = fhir.FhirCanonical(item);
+            if (profileIsReference) {
+              references.addAll(
+                canonical.toReferenceSearchParameter(
+                  resourceType,
+                  id,
+                  lastUpdated,
+                  'Resource.meta.profile',
+                  i,
+                  searchName: '_profile',
+                ),
+              );
+            } else {
+              uris.addAll(
+                canonical.toUriSearchParameter(
+                  resourceType,
+                  id,
+                  lastUpdated,
+                  'Resource.meta.profile',
+                  i,
+                  searchName: '_profile',
+                ),
+              );
+            }
           }
         }
         final source = meta['source'];
@@ -342,6 +362,11 @@ class FhirDb extends _$FhirDb {
           ..insertAll(
             uriSearchParameters,
             uris,
+            mode: InsertMode.insertOrReplace,
+          )
+          ..insertAll(
+            referenceSearchParameters,
+            references,
             mode: InsertMode.insertOrReplace,
           );
       });

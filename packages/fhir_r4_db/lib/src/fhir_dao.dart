@@ -3021,13 +3021,33 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         (t.searchName.equals(searchPath) |
             t.searchPath.like('$resourceType.$searchPath') |
             t.searchPath.like('$resourceType.%.$searchPath'));
-    final parts = value.split('/');
-    if (parts.length == 2) {
+    final unescaped = unescapeValue(value);
+    final parts = unescaped.split('/');
+    if (unescaped.contains('://')) {
+      // R4B 3.1.1.4.12, `[parameter]=[url]`: "a reference to a resource by
+      // its absolute location, or by its canonical URL". The stored value
+      // as written, with the `[url]|[version]` form matching that exact
+      // string and the bare `[url]` also matching any version of it (R5
+      // 3.2.1.6.1.5: servers SHOULD read a `|[version]` as the business
+      // version, so a search without one is version-agnostic). This used
+      // to compare the whole URL against the id part, which never matched.
+      // A prefix test by substr rather than LIKE: LIKE has no escape
+      // character unless one is declared, and `_` (a wildcard) is common
+      // in URLs, so `us_core` would also match `us-core`.
+      final versioned = '$unescaped|';
+      where = where &
+          (t.referenceValue.equals(unescaped) |
+              (unescaped.contains('|')
+                  ? const Constant(false)
+                  : t.referenceValue
+                      .substr(1, versioned.length)
+                      .equals(versioned)));
+    } else if (parts.length == 2) {
       where = where &
           t.referenceResourceType.equals(parts[0]) &
           t.referenceIdPart.equals(parts[1]);
     } else {
-      where = where & t.referenceIdPart.equals(value);
+      where = where & t.referenceIdPart.equals(unescaped);
     }
     return where;
   }
@@ -3137,18 +3157,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           continue;
         }
 
-        if (value.contains('/')) {
-          final parts = value.split('/');
-          if (parts.length == 2) {
-            whereCondition = whereCondition &
-                referenceSearchParameters.referenceResourceType
-                    .equals(parts[0]) &
-                referenceSearchParameters.referenceIdPart.equals(parts[1]);
-          }
-        } else {
-          whereCondition = whereCondition &
-              referenceSearchParameters.referenceIdPart.equals(value);
-        }
+        // The same builder the SQL-paged path uses, so `Type/id`, a bare
+        // id and an absolute or canonical URL mean the same thing on both.
+        // Before this an absolute URL added NO condition at all, so
+        // `subject=http://server/Patient/23` returned every resource that
+        // had a subject.
+        whereCondition = _referenceCondition(resourceType, searchPath, value);
 
         query.where((tbl) => whereCondition);
         // Only the id column is read; see _executeTokenQuery.

@@ -708,6 +708,58 @@ Future<void> main() async {
     );
   });
 
+  test('an absolute or canonical URL reference matches as written', () async {
+    // R4B 3.1.1.4.12 `[parameter]=[url]`. Before this the general path added
+    // NO condition for a URL value, so it returned every resource with a
+    // subject, and the SQL path compared the URL to the id part.
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'abs',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'A'},
+          ],
+        },
+        'subject': {'reference': 'http://other.example.org/fhir/Patient/p9'},
+      }),
+    );
+    for (final count in [3, null]) {
+      expect(
+        await ids(
+          {
+            'subject': ['http://other.example.org/fhir/Patient/p9'],
+          },
+          count: count,
+        ),
+        ['abs'],
+        reason: 'count=$count',
+      );
+      expect(
+        await ids(
+          {
+            'subject': ['http://other.example.org/fhir/Patient/p1'],
+          },
+          count: count,
+        ),
+        isEmpty,
+        reason: 'count=$count',
+      );
+      // Type/id also matches an absolute reference to that type and id.
+      expect(
+        await ids(
+          {
+            'subject': ['Patient/p9'],
+          },
+          count: count,
+        ),
+        ['abs'],
+        reason: 'count=$count',
+      );
+    }
+  });
+
   test('modifiers the SQL path does not build fall back', () async {
     // :of-type reads the identifier's type from the resource in Dart.
     expect(
