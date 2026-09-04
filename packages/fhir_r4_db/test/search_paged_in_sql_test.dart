@@ -392,6 +392,101 @@ Future<void> main() async {
     );
   });
 
+  test('eq on a number is the implicit range, not equality', () async {
+    // R4B 3.1.1.4.6: `0.3` is [0.25, 0.35). Stored 0.31 and 0.34 are in it,
+    // 0.35 is not, and `0.30` narrows to [0.295, 0.305).
+    for (final (id, value) in [
+      ('n31', 0.31),
+      ('n34', 0.34),
+      ('n35', 0.35),
+      ('n25', 0.25),
+      ('n24', 0.249),
+      ('n30', 0.3),
+    ]) {
+      await dao.saveResource(
+        RiskAssessment.fromJson({
+          'resourceType': 'RiskAssessment',
+          'id': id,
+          'status': 'final',
+          'subject': {'reference': 'Patient/p1'},
+          'prediction': [
+            {'probabilityDecimal': value},
+          ],
+        }),
+      );
+    }
+    Future<List<String>> both(String value) async {
+      final paged = await riskIds(
+        {
+          'probability': [value],
+        },
+        count: 50,
+      );
+      final general = await riskIds({
+        'probability': [value],
+      });
+      expect(general..sort(), paged, reason: 'general path agrees for $value');
+      return paged;
+    }
+
+    expect(await both('0.3'), ['n25', 'n30', 'n31', 'n34']);
+    expect(await both('0.30'), ['n30']);
+    expect(await both('ne0.3'), ['n24', 'n35']);
+    expect(await both('sa0.3'), ['n35']);
+    expect(await both('eb0.3'), ['n24']);
+    // gt ignores the implicit precision: exactly above 0.3.
+    expect(await both('gt0.3'), ['n31', 'n34', 'n35']);
+    // ap: [0.25, 0.35) widened by 10% of 0.3 each side, [0.22, 0.38).
+    expect(await both('ap0.3'), ['n24', 'n25', 'n30', 'n31', 'n34', 'n35']);
+  });
+
+  test('eq on a quantity is the implicit range too', () async {
+    // 5.4 is [5.35, 5.45): the spec's own example, "5.4(+/-0.05) mg".
+    // 5.35 is the lower bound itself, and the bound `5.4 - 0.05` computed in
+    // floating point is above it; the range is built as decimals instead.
+    for (final (id, value) in [
+      ('q535', 5.35),
+      ('q536', 5.36),
+      ('q544', 5.44),
+      ('q545', 5.45),
+    ]) {
+      await dao.saveResource(
+        Observation.fromJson({
+          'resourceType': 'Observation',
+          'id': id,
+          'status': 'final',
+          'code': {
+            'coding': [
+              {'system': 'http://example.org', 'code': 'Z'},
+            ],
+          },
+          'valueQuantity': {
+            'value': value,
+            'system': 'http://unitsofmeasure.org',
+            'code': 'mg',
+          },
+        }),
+      );
+    }
+    expect(
+      await ids(
+        {
+          'value-quantity': ['5.4|http://unitsofmeasure.org|mg'],
+        },
+        count: 10,
+      ),
+      ['q535', 'q536', 'q544'],
+    );
+    expect(
+      await ids(
+        {
+          'value-quantity': ['5.4|http://unitsofmeasure.org|mg'],
+        },
+      ),
+      ['q535', 'q536', 'q544'],
+    );
+  });
+
   test('a number value that is not a number falls back and finds nothing',
       () async {
     await saveRisks();

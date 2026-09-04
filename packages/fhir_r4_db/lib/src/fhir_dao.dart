@@ -2418,6 +2418,78 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return allResourceIds.difference(idsWithParam);
   }
 
+  /// The comparison for one number or quantity value under its prefix,
+  /// R4B 3.1.1.4.5 and 3.1.1.4.6.
+  ///
+  /// A search value has an implicit range, half a unit of its last
+  /// significant digit either side: `100` is [99.5, 100.5), `100.00` is
+  /// [99.995, 100.005), `5.4` is [5.35, 5.45), `5.40e-3` is
+  /// [0.005395, 0.005405). 3.1.1.4.6: "the number of significant digits of
+  /// the implicit range is the number of digits specified in the search
+  /// parameter value, excluding leading zeros. So 100 and 1.00e2 both have
+  /// the same number of significant digits - three". The stored value is a
+  /// point, so:
+  ///
+  /// - `eq` — "the range of the search value fully contains the range of the
+  ///   target value": `low <= v < high`. This used to be `v == value`, which
+  ///   3.1.1.4.6 rules out ("The way search parameters operate in resources
+  ///   is not the same as whether two numbers are equal to each other in a
+  ///   mathematical sense"): `probability=0.3` did not find 0.31.
+  /// - `ne` — "does not fully contain": the complement.
+  /// - `gt`, `lt`, `ge`, `le` — "the implicit precision of the number is
+  ///   ignored, and they are treated as if they have arbitrarily high
+  ///   precision": exact against `value`.
+  /// - `sa` — "the range above the search value contains the range of the
+  ///   target value" and they do not overlap: `v >= high`. `eb`: `v < low`.
+  ///   These two used to fall into `eq`, a wrong answer.
+  /// - `ap` — "the range of the search value overlaps with the range of the
+  ///   target value", with the recommended approximation of 10% of the
+  ///   stated value: the implicit range widened by that on each side.
+  ///
+  /// ⚠️ One example in 3.1.1.4.6 does not follow its own rule: it gives
+  /// `1e2` as "1 significant figures precision" with the range [95, 105),
+  /// which is a two-figure range. By the rule as worded, one significant
+  /// figure at the hundreds place is [50, 150), and that is what this does.
+  /// HAPI uses exact matching for eq/ne ("per discussions with Grahame
+  /// Grieve", NumberPredicateBuilder.java) and Microsoft's server widens by
+  /// half a unit of the last DECIMAL place, so 1e2 is ±0.5 there. Neither
+  /// follows the text, so the text is what is implemented here.
+  Expression<bool> _numericPrefixCondition(
+    GeneratedColumn<double> column,
+    String? prefix,
+    String written,
+    double value,
+  ) {
+    // The caller has parsed [written], so the range is never null.
+    final (:low, :high) = implicitRange(written)!;
+    switch (prefix) {
+      case 'gt':
+        return column.isBiggerThanValue(value);
+      case 'lt':
+        return column.isSmallerThanValue(value);
+      case 'ge':
+        return column.isBiggerOrEqualValue(value);
+      case 'le':
+        return column.isSmallerOrEqualValue(value);
+      case 'sa':
+        return column.isBiggerOrEqualValue(high);
+      case 'eb':
+        return column.isSmallerThanValue(low);
+      case 'ne':
+        return column.isSmallerThanValue(low) |
+            column.isBiggerOrEqualValue(high);
+      case 'ap':
+        final approximation = value.abs() * 0.1;
+        return column.isBiggerOrEqualValue(low - approximation) &
+            column.isSmallerThanValue(high + approximation);
+      default:
+        // eq, and no prefix at all: 3.1.1.4.5, "If no prefix is present,
+        // the prefix eq is assumed."
+        return column.isBiggerOrEqualValue(low) &
+            column.isSmallerThanValue(high);
+    }
+  }
+
   /// The WHERE for one number value with its comparator prefix, or null
   /// when the value is not a number.
   Expression<bool>? _numberCondition(
@@ -2426,14 +2498,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String? modifier,
     String searchValue,
   ) {
-    double? numValue;
-    try {
-      numValue = double.parse(searchValue);
-    } catch (_) {
+    final numValue = double.tryParse(searchValue);
+    if (numValue == null) {
       return null;
     }
 
-    var whereCondition =
+    final whereCondition =
         numberSearchParameters.resourceType.equals(resourceType) &
             (numberSearchParameters.searchName.equals(searchPath) |
                 numberSearchParameters.searchPath
@@ -2441,36 +2511,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                 numberSearchParameters.searchPath
                     .like('$resourceType.%.$searchPath'));
 
-    switch (modifier) {
-      case 'gt':
-        whereCondition = whereCondition &
-            numberSearchParameters.numberValue.isBiggerThanValue(numValue);
-      case 'lt':
-        whereCondition = whereCondition &
-            numberSearchParameters.numberValue.isSmallerThanValue(numValue);
-      case 'ge':
-        whereCondition = whereCondition &
-            numberSearchParameters.numberValue.isBiggerOrEqualValue(numValue);
-      case 'le':
-        whereCondition = whereCondition &
-            numberSearchParameters.numberValue.isSmallerOrEqualValue(numValue);
-      case 'ap':
-        final range = numValue.abs() * 0.1;
-        whereCondition = whereCondition &
-            numberSearchParameters.numberValue
-                .isBiggerOrEqualValue(numValue - range) &
-            numberSearchParameters.numberValue
-                .isSmallerOrEqualValue(numValue + range);
-      case 'ne':
-        whereCondition = whereCondition &
-            numberSearchParameters.numberValue.equals(numValue).not();
-      default:
-        // eq, and no prefix at all: R4 makes eq the default.
-        whereCondition = whereCondition &
-            numberSearchParameters.numberValue.equals(numValue);
-    }
-
-    return whereCondition;
+    return whereCondition &
+        _numericPrefixCondition(
+          numberSearchParameters.numberValue,
+          modifier,
+          searchValue,
+          numValue,
+        );
   }
 
   Future<Set<String>> _searchNumberParameter(
@@ -2565,31 +2612,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               quantitySearchParameters.quantityUnit.equals(code));
     }
 
-    switch (modifier) {
-      case 'gt':
-        whereCondition = whereCondition &
-            quantitySearchParameters.quantityValue.isBiggerThanValue(numValue);
-      case 'lt':
-        whereCondition = whereCondition &
-            quantitySearchParameters.quantityValue.isSmallerThanValue(numValue);
-      case 'ge':
-        whereCondition = whereCondition &
-            quantitySearchParameters.quantityValue
-                .isBiggerOrEqualValue(numValue);
-      case 'le':
-        whereCondition = whereCondition &
-            quantitySearchParameters.quantityValue
-                .isSmallerOrEqualValue(numValue);
-      case 'ne':
-        whereCondition = whereCondition &
-            quantitySearchParameters.quantityValue.equals(numValue).not();
-      default:
-        // eq, and no prefix at all: R4 makes eq the default.
-        whereCondition = whereCondition &
-            quantitySearchParameters.quantityValue.equals(numValue);
-    }
-
-    return whereCondition;
+    return whereCondition &
+        _numericPrefixCondition(
+          quantitySearchParameters.quantityValue,
+          modifier,
+          parts[0],
+          numValue,
+        );
   }
 
   Future<Set<String>> _searchQuantityParameter(
