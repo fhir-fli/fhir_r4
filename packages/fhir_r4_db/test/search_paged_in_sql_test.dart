@@ -51,23 +51,39 @@ Future<void> main() async {
   tearDown(() => db.close());
 
   test('one token parameter pages in SQL and pages stably', () async {
-    final page1 = await ids({
-      'status': ['final']
-    }, count: 5);
-    final page2 = await ids({
-      'status': ['final']
-    }, count: 5, offset: 5);
-    final page3 = await ids({
-      'status': ['final']
-    }, count: 5, offset: 10);
+    final page1 = await ids(
+      {
+        'status': ['final'],
+      },
+      count: 5,
+    );
+    final page2 = await ids(
+      {
+        'status': ['final'],
+      },
+      count: 5,
+      offset: 5,
+    );
+    final page3 = await ids(
+      {
+        'status': ['final'],
+      },
+      count: 5,
+      offset: 10,
+    );
     expect(page1, ['o00', 'o02', 'o04', 'o06', 'o08']);
     expect(page2, ['o10', 'o12', 'o14', 'o16', 'o18']);
     expect(page3, ['o20', 'o22', 'o24', 'o26', 'o28']);
     expect(
-        await ids({
-          'status': ['final']
-        }, count: 5, offset: 15),
-        isEmpty);
+      await ids(
+        {
+          'status': ['final'],
+        },
+        count: 5,
+        offset: 15,
+      ),
+      isEmpty,
+    );
   });
 
   test('two token parameters intersect, not union', () async {
@@ -85,22 +101,29 @@ Future<void> main() async {
   test('the SQL path and the general path agree', () async {
     // A comma forces the general path; the same set without one takes the
     // SQL path. Both must give the same rows in the same order.
-    final general = await ids({
-      'status': ['final,final']
-    }, count: 7);
-    final sql = await ids({
-      'status': ['final']
-    }, count: 7);
+    final general = await ids(
+      {
+        'status': ['final,final'],
+      },
+      count: 7,
+    );
+    final sql = await ids(
+      {
+        'status': ['final'],
+      },
+      count: 7,
+    );
     expect(sql, general);
   });
 
   test('a sort falls back to the general path and still pages', () async {
     final sorted = await ids(
-        {
-          'status': ['final']
-        },
-        count: 3,
-        sort: ['-_id']);
+      {
+        'status': ['final'],
+      },
+      count: 3,
+      sort: ['-_id'],
+    );
     expect(sorted, hasLength(3));
   });
 }
