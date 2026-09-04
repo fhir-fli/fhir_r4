@@ -108,32 +108,9 @@ extension UriSearchParametersExtension on fhir.FhirBase {
     }
   }
 
-  /// Normalize URI for consistent searching.
-  String _normalizeUri(String input) {
-    var normalized =
-        input.endsWith('/') ? input.substring(0, input.length - 1) : input;
-
-    try {
-      final uri = Uri.parse(normalized);
-      if (uri.scheme.isNotEmpty && uri.host.isNotEmpty) {
-        normalized = '${uri.scheme.toLowerCase()}://${uri.host.toLowerCase()}';
-        if (uri.port != 80 && uri.port != 443 && uri.port != 0) {
-          normalized += ':${uri.port}';
-        }
-        if (uri.path.isNotEmpty) {
-          normalized += uri.path;
-        }
-        if (uri.query.isNotEmpty) {
-          normalized += '?${uri.query}';
-        }
-        if (uri.fragment.isNotEmpty) {
-          normalized += '#${uri.fragment}';
-        }
-      }
-    } catch (_) {
-      // If URI parsing fails, return with minimal normalization
-    }
-
-    return normalized;
-  }
+  /// The value as written. R4B 3.1.1.4.9: "matches are precise (e.g. case,
+  /// accent, and escape) sensitive, and the entire URI must match." This
+  /// used to lower-case the scheme and host and strip a trailing slash, so
+  /// a search for the value as written failed to match it.
+  String _normalizeUri(String input) => input;
 }

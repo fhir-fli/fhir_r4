@@ -72,21 +72,52 @@ extension StringSearchParametersExtension on fhir.FhirBase {
   }) {
     final results = <StringSearchParametersCompanion>[];
 
+    /// One row for [value], plus, for a name part, one row per word in it.
+    ///
+    /// R4B 3.1.1.4.8: "servers should search the parts of a family name
+    /// independently. E.g. searching either "Carreno" or "Quinones" should
+    /// match a family name of "Carreno Quinones"". A word row carries the
+    /// word as its search value and the WHOLE element as its exact value,
+    /// so the default starts-with search finds a name by any of its words
+    /// and `:exact` still needs the entire value. Only name parts are split:
+    /// an arbitrary string (`Observation.value`) keeps starts-with on the
+    /// whole, which is what the section defines for strings in general.
+    void addRows(String value, int index, {required bool nameParts}) {
+      final words = nameParts
+          ? _normalizeString(value).split(' ').where((w) => w.isNotEmpty)
+          : const <String>[];
+      final searchValues = [
+        _normalizeString(value),
+        ...words.skip(1),
+      ];
+      for (final (w, searchValue) in searchValues.indexed) {
+        results.add(
+          StringSearchParametersCompanion(
+            resourceType: Value(resourceType),
+            id: Value(id),
+            lastUpdated: Value(lastUpdated),
+            searchPath: Value(searchPath),
+            searchName: Value(searchName),
+            paramIndex: Value(index * 100 + w),
+            stringValue: Value(searchValue),
+            exactValue: Value(value),
+          ),
+        );
+      }
+    }
+
+    // `family`, `given`, `phonetic`: a FhirString that is a name part, told
+    // apart by its path. Structural, so case-sensitive on purpose.
+    final isNamePart = RegExp(r'\.name\.(family|given|prefix|suffix|text)$')
+        .hasMatch(searchPath);
+
     switch (this) {
       case final fhir.FhirString stringValue:
         if (stringValue.valueString != null) {
-          results.add(
-            StringSearchParametersCompanion(
-              resourceType: Value(resourceType),
-              id: Value(id),
-              lastUpdated: Value(lastUpdated),
-              searchPath: Value(searchPath),
-              searchName: Value(searchName),
-              paramIndex:
-                  paramIndex == null ? const Value.absent() : Value(paramIndex),
-              stringValue: Value(_normalizeString(stringValue.valueString!)),
-              exactValue: Value(stringValue.valueString!),
-            ),
+          addRows(
+            stringValue.valueString!,
+            paramIndex ?? 0,
+            nameParts: isNamePart,
           );
         }
         return results;
@@ -127,18 +158,7 @@ extension StringSearchParametersExtension on fhir.FhirBase {
         }
 
         for (var i = 0; i < nameParts.length; i++) {
-          results.add(
-            StringSearchParametersCompanion(
-              resourceType: Value(resourceType),
-              id: Value(id),
-              lastUpdated: Value(lastUpdated),
-              searchPath: Value(searchPath),
-              searchName: Value(searchName),
-              paramIndex: Value(paramIndex == null ? i : paramIndex * 100 + i),
-              stringValue: Value(_normalizeString(nameParts[i])),
-              exactValue: Value(nameParts[i]),
-            ),
-          );
+          addRows(nameParts[i], (paramIndex ?? 0) * 100 + i, nameParts: true);
         }
         return results;
 
@@ -232,19 +252,44 @@ extension StringSearchParametersExtension on fhir.FhirBase {
   String _normalizeString(String input) => normalizeSearchString(input);
 }
 
-/// Case- and accent-folds a string for the default and `:contains` searches.
+/// Folds a string for the default and `:contains` searches, R4B 3.1.1.4.8:
+/// "This search is insensitive to casing and included combining characters,
+/// like accents or other diacritical marks. Punctuation and non-significant
+/// whitespace (e.g. repeated space characters, tab vs space) should also be
+/// ignored."
 ///
-/// Public because BOTH sides have to fold identically: the value going into
-/// the index here, and the value coming in on a query. Fold one and not the
-/// other and an accented name becomes unfindable, which is exactly the bug
-/// this replaced.
+/// So: lower-cased; precomposed accented letters folded to their base by
+/// the table below; combining marks (U+0300–U+036F, the diacritics a
+/// decomposed `é` is written with) dropped; punctuation turned to a space;
+/// runs of whitespace collapsed to one space and the ends trimmed. Public because
+/// BOTH sides have to fold identically: the value going into the index and
+/// the value coming in on a query. Fold one and not the other and an
+/// accented name becomes unfindable.
 String normalizeSearchString(String input) {
   final buffer = StringBuffer();
   for (final rune in input.toLowerCase().runes) {
+    if (rune >= 0x300 && rune <= 0x36F) {
+      continue;
+    }
     buffer.write(_foldAccents[rune] ?? String.fromCharCode(rune));
   }
-  return buffer.toString();
+  // Punctuation becomes a space, not nothing, so `Jose-Maria` and
+  // `Jose Maria` fold alike and a name's words stay separable; the section
+  // leaves a phone number's dashes to the server's discretion ("a server
+  // might remove all spaces and - characters"), and this treats them the
+  // same as any other punctuation.
+  return buffer
+      .toString()
+      .replaceAll(_punctuation, ' ')
+      .replaceAll(_whitespaceRun, ' ')
+      .trim();
 }
+
+/// Unicode punctuation. Structural, so case-sensitive on purpose.
+final RegExp _punctuation = RegExp(r'\p{P}', unicode: true);
+
+/// One or more whitespace characters of any kind.
+final RegExp _whitespaceRun = RegExp(r'\s+');
 
 /// Lower-case accented letters mapped to their base letter.
 ///

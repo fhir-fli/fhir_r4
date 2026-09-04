@@ -1301,11 +1301,24 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           case 'missing':
             return _IndexCondition(t, t.id, path, negated: value == 'true');
           case 'below':
-            return _IndexCondition(
-              t,
-              t.id,
-              path & t.uriValue.like('${unescapeValue(value)}%'),
-            );
+          case 'above':
+            // 3.1.1.4.9: `:below` "the search term left-matches the value",
+            // `:above` "vice-versa"; "the :above and :below modifiers only
+            // apply to URLs, and not URNs such as OIDs", so a URN is matched
+            // whole. Prefix tests by substr/instr rather than LIKE, because
+            // `_` is common in URLs and is a LIKE wildcard.
+            final term = unescapeValue(value);
+            if (!_isUrl(term)) {
+              return _IndexCondition(t, t.id, path & t.uriValue.equals(term));
+            }
+            final prefix = modifier == 'below'
+                ? t.uriValue.substr(1, term.length).equals(term)
+                // instr(term, stored) = 1: the stored value starts the term.
+                : FunctionCallExpression<int>(
+                    'instr',
+                    [Constant<String>(term), t.uriValue],
+                  ).equals(1);
+            return _IndexCondition(t, t.id, path & prefix);
           default:
             return null;
         }
@@ -2171,7 +2184,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     $StringSearchParametersTable? on,
   }) {
     final t = on ?? stringSearchParameters;
-    final normalized = normalizeSearchString(unescapeValue(value)).trim();
+    final normalized = normalizeSearchString(unescapeValue(value));
+    // 3.1.1.4.8: "a field matches a string query if the value of the field
+    // equals or starts with the supplied parameter value, after both have
+    // been normalized". Name parts are also indexed word by word (see the
+    // string extractor), which is how "Quinones" finds "Carreno Quinones".
+    // LIKE's wildcards `%` and `_` are punctuation, which the normalisation
+    // drops from both sides, so none can reach the pattern.
     return t.resourceType.equals(resourceType) &
         (t.searchName.equals(searchPath) |
             t.searchPath.like('$resourceType.$searchPath') |
@@ -3167,6 +3186,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return matchingIds;
   }
 
+  /// Whether a uri search value is a URL (a scheme with an authority), as
+  /// opposed to a URN such as an OID, for 3.1.1.4.9's rule that `:above`
+  /// and `:below` apply only to URLs.
+  static bool _isUrl(String value) => value.contains('://');
+
   /// The WHERE for one plain uri value: exact match on the stored URI
   /// (R4B 3.1.1.4.13 — "the search is case sensitive and accent sensitive",
   /// with `:above` and `:below` as modifiers, which take the general path).
@@ -3177,11 +3201,31 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     $UriSearchParametersTable? on,
   }) {
     final t = on ?? uriSearchParameters;
-    return t.resourceType.equals(resourceType) &
+    final path = t.resourceType.equals(resourceType) &
         (t.searchName.equals(searchPath) |
             t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath')) &
-        t.uriValue.equals(unescapeValue(value));
+            t.searchPath.like('$resourceType.%.$searchPath'));
+    final unescaped = unescapeValue(value);
+    // 3.1.1.4.9: for the canonical URLs of the conformance and knowledge
+    // resources, "servers SHOULD support automatically detecting a
+    // |[version] portion as part of the search parameter, and interpreting
+    // that portion as a search on the version". A `|` splits off a version
+    // when the resource type has a `version` parameter; the version is then
+    // a token condition on the same resource.
+    final bar = unescaped.lastIndexOf('|');
+    if (bar > 0 && searchParameterFor(resourceType, 'version') != null) {
+      final url = unescaped.substring(0, bar);
+      final version = unescaped.substring(bar + 1);
+      final v = alias(tokenSearchParameters, '${t.aliasedName}v');
+      final versioned = selectOnly(v)
+        ..addColumns([const Constant(1)])
+        ..where(
+          _tokenCondition(resourceType, 'version', version, on: v) &
+              v.id.equalsExp(t.id),
+        );
+      return path & t.uriValue.equals(url) & existsQuery(versioned);
+    }
+    return path & t.uriValue.equals(unescaped);
   }
 
   Future<Set<String>> _searchUriParameter(
@@ -3190,58 +3234,31 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     List<String> values, [
     String? modifier,
   ]) async {
+    // The same conditions the SQL-paged path builds, so both paths mean
+    // the same thing (this one is reached only for shapes the paged path
+    // cannot build, which for a uri is none of its own modifiers).
     final matchingIds = <String>{};
+    final declared = searchParameterFor(resourceType, searchPath) ??
+        const SearchParameterDefinition('uri', []);
     for (final value in values) {
-      // :above and :below were already implemented here and already correct.
-      // They were simply unreachable: the modifier was read off the END of the
-      // value, so `url:below=http://x` never arrived and `url=http://x:below`
-      // did. The modifier now comes from the parameter name.
-      final searchValue = unescapeValue(value);
-
-      final pathCondition = uriSearchParameters.searchName.equals(searchPath) |
-          uriSearchParameters.searchPath.like('$resourceType.$searchPath') |
-          uriSearchParameters.searchPath.like('$resourceType.%.$searchPath');
-
-      if (modifier == 'above') {
-        // :above means stored URI is a parent/prefix of the search value
-        // i.e., searchValue.startsWith(storedUri)
-        // Can't express this directly in Drift's query builder, so fetch and
-        // filter in Dart.
-        final query = select(uriSearchParameters)
-          ..where(
-            (tbl) => tbl.resourceType.equals(resourceType) & pathCondition,
-          );
-        final rows = await query.get();
-        for (final row in rows) {
-          if (searchValue.startsWith(row.uriValue)) {
-            matchingIds.add(row.id);
-          }
-        }
-      } else {
-        Expression<bool> valueCondition;
-        if (modifier == 'below') {
-          // :below means stored URI starts with the search value (stored is more specific)
-          valueCondition = uriSearchParameters.uriValue.like('$searchValue%');
-        } else {
-          valueCondition = uriSearchParameters.uriValue.equals(searchValue);
-        }
-
-        // Only the id column is read, not every column of every
-        // matching row; see _executeTokenQuery for the measurement.
-        final idColumn = uriSearchParameters.id;
-        final rows = await (selectOnly(uriSearchParameters, distinct: true)
-              ..addColumns([idColumn])
-              ..where(
-                uriSearchParameters.resourceType.equals(resourceType) &
-                    pathCondition &
-                    valueCondition,
-              ))
-            .get();
-        for (final row in rows) {
-          final id = row.read(idColumn);
-          if (id != null) {
-            matchingIds.add(id);
-          }
+      final part = await _conditionFor(
+        resourceType,
+        searchPath,
+        value,
+        declared,
+        modifier: modifier,
+      );
+      if (part == null) {
+        continue;
+      }
+      final rows = await (selectOnly(part.table, distinct: true)
+            ..addColumns([part.idColumn])
+            ..where(part.condition))
+          .get();
+      for (final row in rows) {
+        final id = row.read(part.idColumn);
+        if (id != null) {
+          matchingIds.add(id);
         }
       }
     }

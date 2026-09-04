@@ -506,6 +506,53 @@ Future<void> main() async {
     expect(page, ['o22', 'o24', 'o26']);
   });
 
+  test(
+      'a string search folds case, accents, combining marks, punctuation '
+      'and whitespace, and a name is found by any of its words', () async {
+    // R4B 3.1.1.4.8, each clause of it.
+    await dao.saveResource(
+      Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'cq',
+        'name': [
+          {
+            'family': 'Carreno  Quinones',
+            'given': ['Jose-Maria', 'Rene\u0301'],
+          },
+        ],
+      }),
+    );
+    Future<List<String>> patients(String key, String value) async =>
+        (await dao.search(
+          resourceType: R4ResourceType.Patient,
+          searchParameters: {
+            key: [value],
+          },
+          count: 5,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+    // "searching either "Carreno" or "Quinones" should match a family name
+    // of "Carreno Quinones""
+    expect(await patients('family', 'Carreno'), ['cq']);
+    expect(await patients('family', 'Quinones'), ['cq']);
+    expect(await patients('family', 'quiñones'), ['cq']);
+    // "non-significant whitespace (e.g. repeated space characters, tab vs
+    // space) should also be ignored"
+    expect(await patients('family', 'Carreno Quinones'), ['cq']);
+    expect(await patients('family', 'Carreno\tQuinones'), ['cq']);
+    // "Punctuation ... should also be ignored"
+    expect(await patients('given', 'Jose Maria'), ['cq']);
+    expect(await patients('given', 'jose-maria'), ['cq']);
+    expect(await patients('given', 'Maria'), ['cq']);
+    // "included combining characters": e + U+0301 is é is e.
+    expect(await patients('given', 'rene'), ['cq']);
+    expect(await patients('given', 'René'), ['cq']);
+    // :exact still needs the entire value, as written.
+    expect(await patients('family:exact', 'Quinones'), isEmpty);
+    expect(await patients('family:exact', 'Carreno  Quinones'), ['cq']);
+  });
+
   test('string modifiers page in SQL: :exact and :contains', () async {
     expect(
       await ids(
@@ -707,7 +754,7 @@ Future<void> main() async {
     }
   });
 
-  test('uri :below pages in SQL; :above falls back', () async {
+  test('uri :below and :above page in SQL, for URLs only', () async {
     for (final (id, url) in [
       ('vs1', 'http://example.org/fhir/ValueSet/a'),
       ('vs2', 'http://example.org/fhir/ValueSet/b'),
@@ -740,13 +787,57 @@ Future<void> main() async {
 
     expect(await vs('url:below', 'http://example.org/fhir'), ['vs1', 'vs2']);
     expect(
-      await vs(
-        'url:above',
-        'http://example.org/fhir/ValueSet/a/x',
-        general: true,
-      ),
+      await vs('url:above', 'http://example.org/fhir/ValueSet/a/x'),
       ['vs1'],
     );
+    // 3.1.1.4.9: "the :above and :below modifiers only apply to URLs, and
+    // not URNs such as OIDs" — a URN is matched whole.
+    await dao.saveResource(
+      ValueSet.fromJson({
+        'resourceType': 'ValueSet',
+        'id': 'oid',
+        'status': 'active',
+        'url': 'urn:oid:1.2.3.4.5',
+      }),
+    );
+    expect(await vs('url:below', 'urn:oid:1.2.3'), isEmpty);
+    expect(await vs('url:below', 'urn:oid:1.2.3.4.5'), ['oid']);
+    expect(await vs('url', 'urn:oid:1.2.3.4.5'), ['oid']);
+    // "precise (e.g. case ...) sensitive": a different casing is a different
+    // URI.
+    expect(await vs('url', 'http://EXAMPLE.org/fhir/ValueSet/a'), isEmpty);
+  });
+
+  test('a uri with |version searches the version too', () async {
+    // 3.1.1.4.9: servers "SHOULD support automatically detecting a
+    // |[version] portion as part of the search parameter, and interpreting
+    // that portion as a search on the version".
+    for (final (id, version) in [('v1', '1.0'), ('v2', '2.0')]) {
+      await dao.saveResource(
+        ValueSet.fromJson({
+          'resourceType': 'ValueSet',
+          'id': id,
+          'status': 'active',
+          'url': 'http://example.org/fhir/ValueSet/versioned',
+          'version': version,
+        }),
+      );
+    }
+    Future<List<String>> vs(String value) async => (await dao.search(
+          resourceType: R4ResourceType.ValueSet,
+          searchParameters: {
+            'url': [value],
+          },
+          count: 10,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+    expect(
+      await vs('http://example.org/fhir/ValueSet/versioned'),
+      ['v1', 'v2'],
+    );
+    expect(await vs('http://example.org/fhir/ValueSet/versioned|2.0'), ['v2']);
+    expect(await vs('http://example.org/fhir/ValueSet/versioned|3.0'), isEmpty);
   });
 
   test('reference modifiers page in SQL: a type, and :identifier', () async {

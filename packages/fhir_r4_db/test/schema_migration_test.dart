@@ -275,9 +275,13 @@ void main() {
       ['tagged'],
     );
     expect(
-        await find(R4ResourceType.Observation, 'code:text', 'heart'), ['obs'],);
+      await find(R4ResourceType.Observation, 'code:text', 'heart'),
+      ['obs'],
+    );
     expect(
-        await find(R4ResourceType.Observation, 'code', 'Heart Rate'), isEmpty,);
+      await find(R4ResourceType.Observation, 'code', 'Heart Rate'),
+      isEmpty,
+    );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
     expect(version.data.values.first, equals(7));
     await db.close();

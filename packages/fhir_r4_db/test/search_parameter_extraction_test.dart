@@ -38,8 +38,10 @@ void main() {
         text: 'Dr John Q Smith Jr'.toFhirString,
       );
       final results = name.toStringSearchParameter(_rt, _id, _lu, _path, _idx);
-      // family + 2 given + 1 prefix + 1 suffix + 1 text = 6
-      expect(results.length, 6);
+      // family + 2 given + 1 prefix + 1 suffix + 1 text = 6 whole values,
+      // plus one row per further word of the text (R4B 3.1.1.4.8: "servers
+      // should search the parts of a family name independently"), 4 more.
+      expect(results.length, 10);
 
       final values = results.map((r) => r.stringValue.value).toList();
       expect(values, contains('smith'));
@@ -48,6 +50,35 @@ void main() {
       expect(values, contains('dr'));
       expect(values, contains('jr'));
       expect(values, contains('dr john q smith jr'));
+      // The word rows keep the whole element as their exact value.
+      final wordRow = results.firstWhere(
+        (r) => r.stringValue.value == 'smith' && r.exactValue.value != 'Smith',
+      );
+      expect(wordRow.exactValue.value, 'Dr John Q Smith Jr');
+    });
+
+    test('a family name is indexed by its words, other strings are not', () {
+      final family = 'Carreno Quinones'.toFhirString;
+      final rows = family.toStringSearchParameter(
+        _rt,
+        _id,
+        _lu,
+        'Patient.name.family',
+        _idx,
+      );
+      expect(
+        rows.map((r) => r.stringValue.value),
+        ['carreno quinones', 'quinones'],
+      );
+      expect(rows.map((r) => r.exactValue.value).toSet(), {'Carreno Quinones'});
+      final plain = 'Alpha reading'.toFhirString.toStringSearchParameter(
+            _rt,
+            _id,
+            _lu,
+            'Observation.value.ofType(string)',
+            _idx,
+          );
+      expect(plain.map((r) => r.stringValue.value), ['alpha reading']);
     });
 
     test('extracts HumanName with only family', () {
@@ -101,7 +132,11 @@ void main() {
       final results =
           cp.toStringSearchParameter(_rt, _id, _lu, 'Patient.telecom', _idx);
       expect(results.length, 1);
-      expect(results.first.stringValue.value, '555-1234');
+      // 3.1.1.4.8: punctuation is ignored; it folds to a space so that a
+      // hyphenated name's words stay separable. (The section leaves a phone
+      // number's dashes to the server: "might remove all spaces and -".)
+      expect(results.first.stringValue.value, '555 1234');
+      expect(results.first.exactValue.value, '555-1234');
     });
 
     test('returns empty for unsupported type', () {
@@ -502,16 +537,19 @@ void main() {
       expect(results.first.uriValue.value, contains('Patient'));
     });
 
-    test('normalizes trailing slash', () {
-      final uri = FhirUri('http://example.org/fhir/');
-      final results = uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
-      expect(results.first.uriValue.value, isNot(endsWith('/')));
-    });
-
-    test('normalizes scheme and host to lowercase', () {
-      final uri = FhirUri('HTTP://EXAMPLE.ORG/ValueSet/test');
-      final results = uri.toUriSearchParameter(_rt, _id, _lu, _path, _idx);
-      expect(results.first.uriValue.value, startsWith('http://example.org'));
+    test('a uri is stored as written', () {
+      // R4B 3.1.1.4.9: "matches are precise (e.g. case, accent, and escape)
+      // sensitive, and the entire URI must match". This used to lower-case
+      // the scheme and host and strip a trailing slash.
+      for (final written in [
+        'http://example.org/fhir/',
+        'HTTP://EXAMPLE.ORG/ValueSet/test',
+        'urn:oid:1.2.3.4.5',
+      ]) {
+        final results =
+            FhirUri(written).toUriSearchParameter(_rt, _id, _lu, _path, _idx);
+        expect(results.first.uriValue.value, written);
+      }
     });
 
     test('returns empty for unsupported type', () {
