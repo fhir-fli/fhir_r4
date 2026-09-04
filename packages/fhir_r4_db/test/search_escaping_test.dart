@@ -25,8 +25,22 @@ Future<void> main() async {
 
     test('a doubled backslash is one literal backslash', () {
       // "The parameter value xx\xx is illegal, and param=xx\\xx indicates a
-      // literal value of xx\xx."
-      expect(splitEscaped(r'xx\\xx', ','), equals([r'xx\xx']));
+      // literal value of xx\xx." The split carries the escape through
+      // (only its own separator's escape is consumed) and unescapeValue
+      // resolves it at the end.
+      expect(splitEscaped(r'xx\\xx', ','), equals([r'xx\\xx']));
+      expect(unescapeValue(r'xx\\xx'), r'xx\xx');
+      expect(() => unescapeValue(r'xx\xx'), throwsFormatException);
+      expect(() => unescapeValue(r'xx\'), throwsFormatException);
+    });
+
+    test('an escape of another separator survives the comma split', () {
+      // `code=a\|b` is the single code `a|b`; consuming the escape at the
+      // comma split used to hand `a|b` to the pipe split, which read it as
+      // system `a`, code `b`.
+      expect(splitEscaped(r'a\|b', ','), equals([r'a\|b']));
+      expect(splitEscaped(r'a\|b', '|'), equals(['a|b']));
+      expect(splitEscaped(r'x\$y,z', ','), equals([r'x\$y', 'z']));
     });
 
     test('an escaped pipe does not split a token', () {

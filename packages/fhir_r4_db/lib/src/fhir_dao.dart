@@ -937,6 +937,33 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         allowed: modifiersByType[declared.type] ?? const <String>{},
       );
     }
+    try {
+      return await _conditionForKeyUnchecked(
+        resourceType,
+        key,
+        value,
+        declared,
+        aliasName: aliasName,
+        nextAlias: nextAlias,
+      );
+    } on FormatException {
+      // 3.1.1.4.19: "The parameter value xx\xx is illegal".
+      throw InvalidSearchValue(
+        parameter: key.name,
+        value: value,
+        type: declared.type,
+      );
+    }
+  }
+
+  Future<_IndexCondition?> _conditionForKeyUnchecked(
+    String resourceType,
+    SearchQueryKey key,
+    String value,
+    SearchParameterDefinition declared, {
+    required String? aliasName,
+    required String Function() nextAlias,
+  }) async {
     if (key.chain != null) {
       if (declared.type != 'reference') return null;
       return _chainCondition(
@@ -1082,13 +1109,33 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         nextAlias: nextAlias,
       );
     } else {
-      inner = await _conditionForKey(
-        target,
-        SearchQueryKey.parse(has.searchParam),
-        has.value,
-        aliasName: nextAlias(),
-        nextAlias: nextAlias,
-      );
+      // 3.1.1.4.16: '"Or" searches are allowed (e.g. _has:Observation:
+      // patient:code=123,456)'. The comma splits with FHIR's escaping,
+      // as for any other parameter, and the values are ORed on one table.
+      final key = SearchQueryKey.parse(has.searchParam);
+      final aliasForAll = nextAlias();
+      _IndexCondition? combined;
+      for (final value in splitEscaped(has.value, ',')
+          .map((v) => v.trim())
+          .where((v) => v.isNotEmpty)) {
+        final one = await _conditionForKey(
+          target,
+          key,
+          value,
+          aliasName: aliasForAll,
+          nextAlias: nextAlias,
+        );
+        if (one == null) return null;
+        combined = combined == null
+            ? one
+            : _IndexCondition(
+                combined.table,
+                combined.idColumn,
+                combined.condition | one.condition,
+                negated: combined.negated,
+              );
+      }
+      inner = combined;
     }
     if (inner == null) return null;
     return _IndexCondition(
@@ -1135,6 +1182,85 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         (searchName.equals(name) |
             searchPath.like('$resourceType.$name') |
             searchPath.like('$resourceType.%.$name'));
+
+    // `_list`, R4B 3.1.1.4.22: "all Patient resources that are referenced
+    // from the list found at [base]/List/42 in List.entry.item" — a
+    // condition on the resources table: its id is referenced from that
+    // List's `item` rows, with this type. A functional list (`$current-
+    // allergies`) is not supported: 3.1.1.4.22 makes it optional ("a
+    // system can support"), and answering it with everything would be
+    // wrong, so it is refused.
+    if (name == '_list') {
+      if (modifier != null) return null;
+      final listId = unescapeValue(value);
+      if (listId.startsWith(r'$')) {
+        throw InvalidSearchValue(parameter: name, value: value, type: 'list');
+      }
+      final r = aliasName == null ? resources : alias(resources, aliasName);
+      final item = alias(referenceSearchParameters, '${r.aliasedName}l');
+      final items = selectOnly(item)
+        ..addColumns([const Constant(1)])
+        ..where(
+          item.resourceType.equals('List') &
+              item.id.equals(listId) &
+              item.searchName.equals('item') &
+              item.referenceResourceType.equals(resourceType) &
+              item.referenceIdPart.equalsExp(r.id),
+        );
+      return _IndexCondition(
+        r,
+        r.id,
+        r.resourceType.equals(resourceType) & existsQuery(items),
+      );
+    }
+
+    // `_content`, R4B 3.1.1.4.20: "search on … the entire content of the
+    // resource". The stored JSON is searched for every word of the value,
+    // each anywhere in it, case-insensitively. The section SHOULDs "a
+    // sophisticated search functionality of the type offered by typical
+    // text indexing services" — thesaurus, proximity, AND/OR — which this
+    // is not: it is the plain reading of "the word X in the content", and
+    // the value's own words are ANDed. It used to be ignored, which
+    // answered `_content=metastases` with every resource.
+    if (name == '_content') {
+      if (modifier != null) return null;
+      final r = aliasName == null ? resources : alias(resources, aliasName);
+      var where = r.resourceType.equals(resourceType);
+      final words =
+          unescapeValue(value).split(RegExp(r'\s+')).where((w) => w.isNotEmpty);
+      for (final word in words) {
+        // instr rather than LIKE: a word may hold LIKE's wildcards.
+        where = where &
+            FunctionCallExpression<int>(
+              'instr',
+              [
+                FunctionCallExpression<String>('lower', [r.resource]),
+                Constant<String>(word.toLowerCase()),
+              ],
+            ).isBiggerThanValue(0);
+      }
+      return _IndexCondition(r, r.id, where);
+    }
+
+    // `_text`, R4B 3.1.1.4.20: "search on the narrative of the resource".
+    // The narrative's text is indexed as a string row (`Resource.text.div`,
+    // tags stripped, folded like any string), and every word of the value
+    // must appear in it. The same plain reading as `_content`.
+    if (name == '_text') {
+      if (modifier != null) return null;
+      final t = aliasName == null
+          ? stringSearchParameters
+          : alias(stringSearchParameters, aliasName);
+      var where =
+          t.resourceType.equals(resourceType) & t.searchName.equals('_text');
+      final words = normalizeSearchString(unescapeValue(value))
+          .split(' ')
+          .where((w) => w.isNotEmpty);
+      for (final word in words) {
+        where = where & t.stringValue.like('%$word%');
+      }
+      return _IndexCondition(t, t.id, where);
+    }
 
     // `_id` and `_lastUpdated` are columns of the resources table, not
     // index rows. `_id:missing` and `_lastUpdated:missing` are meaningless

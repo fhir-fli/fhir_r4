@@ -11,6 +11,14 @@
 library;
 
 /// Splits [value] on [separator], treating a backslash as an escape.
+///
+/// Only the escape of THIS separator is consumed; every other escape
+/// (`\|`, `\$`, `\\`, and `\,` when splitting on `|`) is carried through
+/// unchanged for the next level, and [unescapeValue] removes the rest at
+/// the end. Consuming every escape at the first split — which this used to
+/// do — turned `code=a\|b` into `a|b` before the `|` split, which then read
+/// it as system `a`, code `b`: R4B 3.1.1.4.19 says it is the single code
+/// `a|b`.
 List<String> splitEscaped(String value, String separator) {
   final parts = <String>[];
   final current = StringBuffer();
@@ -18,9 +26,14 @@ List<String> splitEscaped(String value, String separator) {
   while (index < value.length) {
     final char = value[index];
     if (char == r'\' && index + 1 < value.length) {
-      // The backslash is consumed and whatever follows is data, whatever it
-      // is. `\\` yields one backslash; `\,` yields a comma that does not split.
-      current.write(value[index + 1]);
+      final next = value[index + 1];
+      if (next == separator) {
+        current.write(next);
+      } else {
+        current
+          ..write(char)
+          ..write(next);
+      }
       index += 2;
       continue;
     }
@@ -46,8 +59,20 @@ String unescapeValue(String value) {
   var index = 0;
   while (index < value.length) {
     final char = value[index];
-    if (char == r'\' && index + 1 < value.length) {
-      buffer.write(value[index + 1]);
+    if (char == r'\') {
+      // R4B 3.1.1.4.19: `$`, `,`, `|` and `\` itself are the characters a
+      // backslash may escape; "The parameter value xx\xx is illegal". A
+      // backslash before anything else, or at the end, is a malformed
+      // value, and the caller reports it as one.
+      final next = index + 1 < value.length ? value[index + 1] : null;
+      if (next == null || !r'$,|\'.contains(next)) {
+        throw FormatException(
+          r'A backslash may only escape $, comma, | or another backslash',
+          value,
+          index,
+        );
+      }
+      buffer.write(next);
       index += 2;
       continue;
     }

@@ -77,6 +77,54 @@ Future<void> main() async {
 
   tearDown(() => db.close());
 
+  /// Two patients and an organisation for the chains: p1 is Anna Smith at
+  /// Org A, p2 is Ben Jones at Org B. Observations o00..o14 point at p1,
+  /// o15..o29 at p2.
+  Future<void> saveChainTargets() async {
+    await dao.saveResource(
+      Organization.fromJson({
+        'resourceType': 'Organization',
+        'id': 'orgA',
+        'name': 'Alpha Clinic',
+      }),
+    );
+    await dao.saveResource(
+      Organization.fromJson({
+        'resourceType': 'Organization',
+        'id': 'orgB',
+        'name': 'Beta Hospital',
+      }),
+    );
+    await dao.saveResource(
+      Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'p1',
+        'name': [
+          {
+            'family': 'Smith',
+            'given': ['Anna'],
+          },
+        ],
+        'gender': 'female',
+        'managingOrganization': {'reference': 'Organization/orgA'},
+      }),
+    );
+    await dao.saveResource(
+      Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'p2',
+        'name': [
+          {
+            'family': 'Jones',
+            'given': ['Ben'],
+          },
+        ],
+        'gender': 'male',
+        'managingOrganization': {'reference': 'Organization/orgB'},
+      }),
+    );
+  }
+
   Future<List<String>> riskIds(
     Map<String, List<String>> params, {
     int? count,
@@ -1310,6 +1358,154 @@ Future<void> main() async {
     dao.serverBaseUrl = null;
   });
 
+  test('_has takes OR values', () async {
+    // 3.1.1.4.16: '"Or" searches are allowed (e.g.
+    // _has:Observation:patient:code=123,456)'.
+    await saveChainTargets();
+    final found = await dao.search(
+      resourceType: R4ResourceType.Patient,
+      hasParameters: [
+        HasParameter.parse('_has:Observation:subject:code', 'B,Z')!,
+      ],
+      count: 5,
+    );
+    expect(dao.lastSearchPagedInSql, isTrue);
+    expect(found.map((r) => r.id!.valueString), ['p2']);
+  });
+
+  test('a value and :missing=true on the same parameter is empty', () async {
+    // 3.1.1.4.18: "This query will always return an empty list, as no
+    // resource can satisfy both criteria at once".
+    expect(
+      await ids(
+        {
+          'status': ['final'],
+          'status:missing': ['true'],
+        },
+        count: 3,
+      ),
+      isEmpty,
+    );
+  });
+
+  test('_list selects the resources a List refers to', () async {
+    // 3.1.1.4.22: "all Patient resources that are referenced from the list
+    // found at [base]/List/42 in List.entry.item", combinable with other
+    // criteria: "_list=42&gender=female".
+    await saveChainTargets();
+    await dao.saveResource(
+      FhirList.fromJson({
+        'resourceType': 'List',
+        'id': '42',
+        'status': 'current',
+        'mode': 'working',
+        'entry': [
+          {
+            'item': {'reference': 'Patient/p1'},
+          },
+          {
+            'item': {'reference': 'Patient/p2'},
+          },
+          {
+            'item': {'reference': 'Organization/orgA'},
+          },
+        ],
+      }),
+    );
+    Future<List<String>> patients(Map<String, List<String>> params) async {
+      final found = await dao.search(
+        resourceType: R4ResourceType.Patient,
+        searchParameters: params,
+        count: 5,
+      );
+      expect(dao.lastSearchPagedInSql, isTrue, reason: '$params');
+      return found.map((r) => r.id!.valueString!).toList();
+    }
+
+    expect(
+      await patients({
+        '_list': ['42'],
+      }),
+      ['p1', 'p2'],
+    );
+    expect(
+      await patients({
+        '_list': ['42'],
+        'gender': ['female'],
+      }),
+      ['p1'],
+    );
+    expect(
+      await patients({
+        '_list': ['no-such-list'],
+      }),
+      isEmpty,
+    );
+    // A functional list is not supported and is refused, not answered
+    // with everything.
+    await expectLater(
+      patients({
+        '_list': [r'$current-allergies'],
+      }),
+      throwsA(isA<InvalidSearchValue>()),
+    );
+  });
+
+  test('_text searches the narrative and _content the whole resource',
+      () async {
+    // 3.1.1.4.20, the plain reading: every word of the value appears in
+    // the narrative (`_text`) or anywhere in the resource (`_content`).
+    await dao.saveResource(
+      Condition.fromJson({
+        'resourceType': 'Condition',
+        'id': 'mets',
+        'text': {
+          'status': 'generated',
+          'div': '<div xmlns="http://www.w3.org/1999/xhtml"><p>Liver '
+              'metastases, <b>bone</b> pain</p></div>',
+        },
+        'subject': {'reference': 'Patient/p1'},
+        'code': {'text': 'Secondary malignant neoplasm'},
+      }),
+    );
+    await dao.saveResource(
+      Condition.fromJson({
+        'resourceType': 'Condition',
+        'id': 'plain',
+        'subject': {'reference': 'Patient/p1'},
+        'code': {'text': 'Headache'},
+      }),
+    );
+    Future<List<String>> conditions(String key, String value) async {
+      final found = await dao.search(
+        resourceType: R4ResourceType.Condition,
+        searchParameters: {
+          key: [value],
+        },
+        count: 5,
+      );
+      expect(dao.lastSearchPagedInSql, isTrue, reason: '$key=$value');
+      return found.map((r) => r.id!.valueString!).toList();
+    }
+
+    expect(await conditions('_text', 'metastases'), ['mets']);
+    expect(await conditions('_text', 'liver METASTASES'), ['mets']);
+    expect(
+      await conditions('_text', 'bone'),
+      ['mets'],
+      reason: 'tags stripped',
+    );
+    expect(await conditions('_text', 'kidney'), isEmpty);
+    expect(
+      await conditions('_text', 'neoplasm'),
+      isEmpty,
+      reason: '_text is the narrative only',
+    );
+    expect(await conditions('_content', 'neoplasm'), ['mets']);
+    expect(await conditions('_content', 'Headache'), ['plain']);
+    expect(await conditions('_content', 'headache patient/p1'), ['plain']);
+  });
+
   test('modifiers the SQL path does not build fall back', () async {
     // :of-type reads the identifier's type from the resource in Dart.
     expect(
@@ -1648,54 +1844,6 @@ Future<void> main() async {
     expect(await vsIds('http://example.org/vs/EVEN'), isEmpty);
     expect(await vsIds('http://example.org/vs/ev'), isEmpty);
   });
-
-  /// Two patients and an organisation for the chains: p1 is Anna Smith at
-  /// Org A, p2 is Ben Jones at Org B. Observations o00..o14 point at p1,
-  /// o15..o29 at p2.
-  Future<void> saveChainTargets() async {
-    await dao.saveResource(
-      Organization.fromJson({
-        'resourceType': 'Organization',
-        'id': 'orgA',
-        'name': 'Alpha Clinic',
-      }),
-    );
-    await dao.saveResource(
-      Organization.fromJson({
-        'resourceType': 'Organization',
-        'id': 'orgB',
-        'name': 'Beta Hospital',
-      }),
-    );
-    await dao.saveResource(
-      Patient.fromJson({
-        'resourceType': 'Patient',
-        'id': 'p1',
-        'name': [
-          {
-            'family': 'Smith',
-            'given': ['Anna'],
-          },
-        ],
-        'gender': 'female',
-        'managingOrganization': {'reference': 'Organization/orgA'},
-      }),
-    );
-    await dao.saveResource(
-      Patient.fromJson({
-        'resourceType': 'Patient',
-        'id': 'p2',
-        'name': [
-          {
-            'family': 'Jones',
-            'given': ['Ben'],
-          },
-        ],
-        'gender': 'male',
-        'managingOrganization': {'reference': 'Organization/orgB'},
-      }),
-    );
-  }
 
   test('a chained parameter pages in SQL, one hop', () async {
     await saveChainTargets();

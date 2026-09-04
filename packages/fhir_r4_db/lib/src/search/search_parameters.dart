@@ -42,6 +42,22 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
   // The Resource.meta parameters, base Resource, so every type
   // carries them. Each goes to the table its own definition
   // declares for this version.
+  // Resource.text.div (string): the narrative, for _text.
+  if (resource is fhir.DomainResource &&
+      resource.text?.div?.valueString != null) {
+    searchParameterLists.stringParams.addAll(
+      fhir.FhirString(
+        resource.text!.div!.valueString!.replaceAll(RegExp('<[^>]+>'), ' '),
+      ).toStringSearchParameter(
+        resourceType,
+        id,
+        lastUpdated,
+        'Resource.text.div',
+        0,
+        searchName: '_text',
+      ),
+    );
+  }
   // Resource.meta.profile (uri)
   i = 0;
   for (final entry in resource.meta?.profile ?? <fhir.FhirCanonical>[]) {
