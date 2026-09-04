@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
@@ -39,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 9;
+  int get schemaVersion => 7;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -190,246 +188,31 @@ class FhirDb extends _$FhirDb {
               "ADD COLUMN exact_value TEXT NOT NULL DEFAULT ''",
             );
           }
-          if (from < 6) {
-            // Rebuild the string index from the resources.
-            //
-            // The index is DERIVED data: every value in it comes from a
-            // resource that is still sitting in `resources`. So there is
-            // nothing to preserve and nothing to lose, and leaving old rows
-            // with a null exact value would mean `:exact` silently ignored
-            // every record stored before the upgrade — a wrong answer rather
-            // than an error.
-            //
-            // The accent folding changed in the same version, so the
-            // normalized column is stale for every accented value too. Both
-            // are fixed by the same rebuild.
-            await customStatement('DELETE FROM string_search_parameters');
-            final stored = await customSelect(
-              'SELECT resource FROM resources',
-            ).get();
-            for (final row in stored) {
-              fhir.Resource resource;
-              try {
-                resource = fhir.Resource.fromJsonString(
-                  row.data['resource']! as String,
-                );
-              } catch (_) {
-                // A resource that will not parse cannot be indexed, and
-                // failing the upgrade over one bad row would keep the whole
-                // database shut. Only the PARSE is guarded: an insert that
-                // fails is a bug in this migration, and swallowing it would
-                // leave the index quietly empty.
-                continue;
-              }
-              for (final param
-                  in updateSearchParameters(resource).stringParams) {
-                await into(stringSearchParameters).insert(
-                  param,
-                  mode: InsertMode.insertOrReplace,
-                );
-              }
-            }
-          }
           if (from < 7) {
-            await createValueIndexes();
-          }
-          if (from < 8) {
-            await rebuildDateIndex();
-          }
-          if (from < 9) {
-            await indexMetaParameters();
+            // Everything the 0.12.0 → 0.13.0 release changed about the index,
+            // in one step, because the index is DERIVED data: every value in
+            // it comes from a resource still sitting in `resources`, so there
+            // is nothing to preserve and the only correct move is to throw it
+            // away and re-extract it. What changed since schema 6:
+            //
+            //   - string rows carry the value as written (exact_value) and a
+            //     new accent folding (schema 6 itself, on a rebuild path that
+            //     used to be separate);
+            //   - every date row is a range, and Period/Timing values are
+            //     indexed at all (Encounter.date had NO rows);
+            //   - the Resource.meta parameters are indexed (_tag, _profile,
+            //     _security, _source had NO rows);
+            //   - CodeableConcept.text is a display, not a code;
+            //   - value indexes on every index table.
+            //
+            // Measured 2026-09-04: rebuilding the date index alone was 126s
+            // and the meta rows 124s on 928,935 resources; the whole index is
+            // one parse of every resource, see the CHANGELOG for the number.
+            await rebuildSearchIndex();
           }
         },
         beforeOpen: ensurePlannerStatistics,
       );
-
-  /// Writes the `_tag`, `_security`, `_profile` and `_source` index rows for
-  /// every stored resource. Schema 9.
-  ///
-  /// These four are published against Resource, so the generated extractor
-  /// never wrote them, and `_tag=` was answered by decoding every stored
-  /// resource of the type in Dart. The extractor writes them on save now;
-  /// this fills them in for what is already stored, reading each resource's
-  /// `meta` from its JSON rather than parsing the whole resource.
-  ///
-  /// Public for a subclass that overrides [migration], as [rebuildDateIndex].
-  Future<void> indexMetaParameters() async {
-    const page = 500;
-    var offset = 0;
-    while (true) {
-      final stored = await customSelect(
-        'SELECT resource_type, id, last_updated, resource FROM resources '
-        'ORDER BY resource_type, id LIMIT $page OFFSET $offset',
-      ).get();
-      if (stored.isEmpty) {
-        break;
-      }
-      offset += stored.length;
-      final tokens = <TokenSearchParametersCompanion>[];
-      final uris = <UriSearchParametersCompanion>[];
-      final references = <ReferenceSearchParametersCompanion>[];
-      // `_profile` is a uri in R4B and a reference (a canonical, target
-      // StructureDefinition) in R5 and R6; the table follows the version's
-      // own definition, as the generated extractor does.
-      final profileIsReference =
-          searchParameterFor('Resource', '_profile')?.type == 'reference';
-      for (final row in stored) {
-        final Map<String, dynamic> json;
-        try {
-          json = jsonDecode(row.data['resource']! as String)
-              as Map<String, dynamic>;
-        } catch (_) {
-          continue;
-        }
-        final meta = json['meta'];
-        if (meta is! Map<String, dynamic>) {
-          continue;
-        }
-        final resourceType = row.data['resource_type']! as String;
-        final id = row.data['id']! as String;
-        final lastUpdated = row.data['last_updated']! as int;
-        void codings(String element, String searchName) {
-          final list = meta[element];
-          if (list is! List) return;
-          for (final (i, item) in list.indexed) {
-            if (item is! Map<String, dynamic>) continue;
-            tokens.addAll(
-              fhir.Coding.fromJson(item).toTokenSearchParameter(
-                resourceType,
-                id,
-                lastUpdated,
-                'Resource.meta.$element',
-                i,
-                searchName: searchName,
-              ),
-            );
-          }
-        }
-
-        codings('tag', '_tag');
-        codings('security', '_security');
-        final profiles = meta['profile'];
-        if (profiles is List) {
-          for (final (i, item) in profiles.indexed) {
-            if (item is! String) continue;
-            final canonical = fhir.FhirCanonical(item);
-            if (profileIsReference) {
-              references.addAll(
-                canonical.toReferenceSearchParameter(
-                  resourceType,
-                  id,
-                  lastUpdated,
-                  'Resource.meta.profile',
-                  i,
-                  searchName: '_profile',
-                ),
-              );
-            } else {
-              uris.addAll(
-                canonical.toUriSearchParameter(
-                  resourceType,
-                  id,
-                  lastUpdated,
-                  'Resource.meta.profile',
-                  i,
-                  searchName: '_profile',
-                ),
-              );
-            }
-          }
-        }
-        final source = meta['source'];
-        if (source is String) {
-          uris.addAll(
-            fhir.FhirUri(source).toUriSearchParameter(
-              resourceType,
-              id,
-              lastUpdated,
-              'Resource.meta.source',
-              0,
-              searchName: '_source',
-            ),
-          );
-        }
-      }
-      await batch((b) {
-        b
-          ..insertAll(
-            tokenSearchParameters,
-            tokens,
-            mode: InsertMode.insertOrReplace,
-          )
-          ..insertAll(
-            uriSearchParameters,
-            uris,
-            mode: InsertMode.insertOrReplace,
-          )
-          ..insertAll(
-            referenceSearchParameters,
-            references,
-            mode: InsertMode.insertOrReplace,
-          );
-      });
-    }
-  }
-
-  /// Recreates the date index as RANGES from the stored resources. Schema 8.
-  ///
-  /// Every date row is `[date_value, date_value_end)` now, and both bounds
-  /// are nullable; before this the table held one instant and only date,
-  /// dateTime and instant were indexed at all — a Period-valued parameter
-  /// (Encounter.date, every effectivePeriod, performedPeriod) wrote NO row,
-  /// so those searches silently returned nothing. Measured 2026-09-04 on the
-  /// MIMIC load: 637 Encounters, zero Encounter.date rows.
-  ///
-  /// The index is derived data: the table is dropped, recreated from the
-  /// current definition, and every resource's date parameters re-extracted.
-  /// The value indexes went with the table, so they are created again.
-  ///
-  /// Public because a subclass that overrides [migration] — fhirant does —
-  /// has to call it from its own upgrade at the version where it takes this
-  /// package's schema 8.
-  Future<void> rebuildDateIndex() async {
-    final m = createMigrator();
-    await m.deleteTable('date_search_parameters');
-    await m.createTable(dateSearchParameters);
-    // Paged through the resources table rather than read whole: on the
-    // 929k-resource MIMIC load that is 5 GB of JSON. Inserted in batches, one
-    // statement per batch rather than one per row.
-    const page = 500;
-    var offset = 0;
-    while (true) {
-      final stored = await customSelect(
-        'SELECT resource FROM resources ORDER BY resource_type, id '
-        'LIMIT $page OFFSET $offset',
-      ).get();
-      if (stored.isEmpty) {
-        break;
-      }
-      offset += stored.length;
-      final rows = <DateSearchParametersCompanion>[];
-      for (final row in stored) {
-        fhir.Resource resource;
-        try {
-          resource = fhir.Resource.fromJsonString(
-            row.data['resource']! as String,
-          );
-        } catch (_) {
-          // Only the parse is guarded; see the schema-6 rebuild.
-          continue;
-        }
-        rows.addAll(updateSearchParameters(resource).dateParams);
-      }
-      await batch(
-        (b) => b.insertAll(
-          dateSearchParameters,
-          rows,
-          mode: InsertMode.insertOrReplace,
-        ),
-      );
-    }
-    await createValueIndexes();
-  }
 
   /// Gives the query planner statistics, when it has none or the schema just
   /// changed.
@@ -453,6 +236,102 @@ class FhirDb extends _$FhirDb {
     if (details.hadUpgrade || details.wasCreated || hasStats.isEmpty) {
       await customStatement('ANALYZE');
     }
+  }
+
+  /// Drops every search index row and re-extracts all of them from the
+  /// stored resources, then recreates the value indexes and statistics.
+  ///
+  /// The index is derived data, so this is always safe and is the one
+  /// migration step for anything below schema 7. Public because a subclass
+  /// that overrides [migration] — fhirant does — has to call it from its own
+  /// upgrade at the version where it takes this package's schema 7. Also the
+  /// right call after a change to the generated extractor.
+  ///
+  /// Paged through the resources table rather than read whole (5 GB of JSON
+  /// on the MIMIC load); inserted in batches. A resource that will not parse
+  /// is skipped, so one bad row cannot keep a database shut; an insert that
+  /// fails is a bug here and is not swallowed.
+  Future<void> rebuildSearchIndex() async {
+    final m = createMigrator();
+    for (final table in <TableInfo<Table, dynamic>>[
+      stringSearchParameters,
+      tokenSearchParameters,
+      referenceSearchParameters,
+      dateSearchParameters,
+      numberSearchParameters,
+      quantitySearchParameters,
+      uriSearchParameters,
+      compositeSearchParameters,
+      specialSearchParameters,
+    ]) {
+      await m.deleteTable(table.actualTableName);
+      await m.createTable(table);
+    }
+    const page = 500;
+    var offset = 0;
+    while (true) {
+      final stored = await customSelect(
+        'SELECT resource FROM resources ORDER BY resource_type, id '
+        'LIMIT $page OFFSET $offset',
+      ).get();
+      if (stored.isEmpty) {
+        break;
+      }
+      offset += stored.length;
+      final lists = SearchParameterLists();
+      for (final row in stored) {
+        fhir.Resource resource;
+        try {
+          resource = fhir.Resource.fromJsonString(
+            row.data['resource']! as String,
+          );
+        } catch (_) {
+          continue;
+        }
+        final extracted = updateSearchParameters(resource);
+        lists
+          ..stringParams.addAll(extracted.stringParams)
+          ..tokenParams.addAll(extracted.tokenParams)
+          ..referenceParams.addAll(extracted.referenceParams)
+          ..dateParams.addAll(extracted.dateParams)
+          ..numberParams.addAll(extracted.numberParams)
+          ..quantityParams.addAll(extracted.quantityParams)
+          ..uriParams.addAll(extracted.uriParams)
+          ..compositeParams.addAll(extracted.compositeParams)
+          ..specialParams.addAll(extracted.specialParams);
+      }
+      await batch((b) {
+        const mode = InsertMode.insertOrReplace;
+        b
+          ..insertAll(stringSearchParameters, lists.stringParams, mode: mode)
+          ..insertAll(tokenSearchParameters, lists.tokenParams, mode: mode)
+          ..insertAll(
+            referenceSearchParameters,
+            lists.referenceParams,
+            mode: mode,
+          )
+          ..insertAll(dateSearchParameters, lists.dateParams, mode: mode)
+          ..insertAll(numberSearchParameters, lists.numberParams, mode: mode)
+          ..insertAll(
+            quantitySearchParameters,
+            lists.quantityParams,
+            mode: mode,
+          )
+          ..insertAll(uriSearchParameters, lists.uriParams, mode: mode)
+          ..insertAll(
+            compositeSearchParameters,
+            lists.compositeParams,
+            mode: mode,
+          )
+          ..insertAll(
+            specialSearchParameters,
+            lists.specialParams,
+            mode: mode,
+          );
+      });
+    }
+    await createValueIndexes();
+    await customStatement('ANALYZE');
   }
 
   /// Indexes on the VALUE columns of the search tables.

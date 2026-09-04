@@ -647,6 +647,64 @@ Future<void> main() async {
       ['shown'],
       reason: ':text is a case-insensitive partial match on the display',
     );
+    // CodeableConcept.text is searched by :text and NOT by the code search.
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'texted',
+        'status': 'final',
+        'code': {'text': 'Heart Rate'},
+      }),
+    );
+    expect(
+      await ids(
+        {
+          'code:text': ['heart'],
+        },
+        count: 3,
+      ),
+      ['texted'],
+    );
+    expect(
+      await ids(
+        {
+          'code': ['Heart Rate'],
+        },
+        count: 3,
+      ),
+      isEmpty,
+      reason: 'the default search "uses codes"; the text is not a code',
+    );
+    expect(
+      await ids(
+        {
+          'code:missing': ['false'],
+          'status': ['final'],
+        },
+        count: 40,
+      ),
+      contains('texted'),
+      reason: 'a text-only CodeableConcept still has a value for the parameter',
+    );
+  });
+
+  test('a modifier this server does not support is refused, not narrowed',
+      () async {
+    // R4B 3.1.1.4.4: "Server SHALL reject any search request that contains …
+    // a modifier that the server does not support". Token :below is code
+    // subsumption; it used to be answered as a plain code match.
+    for (final key in ['code:below', 'code:above', 'subject:below']) {
+      await expectLater(
+        ids(
+          {
+            key: ['A'],
+          },
+          count: 3,
+        ),
+        throwsA(isA<UnsupportedSearchModifier>()),
+        reason: key,
+      );
+    }
   });
 
   test('uri :below pages in SQL; :above falls back', () async {

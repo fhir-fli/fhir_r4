@@ -19,3 +19,16 @@ MIMIC-IV-on-FHIR demo unless stated.
 | 3.1.1.4.1 | `_content`, `_text`, `_list`, `_query`, `_type`, `_filter` | ⛔ `_filter` is fhirant's; `_text`/`_content` need full-text (see 3.1.1.4.20); `_list` 3.1.1.4.22; `_type` 3.1.1.4.24 | below |
 | 3.1.1.4.2 | "matches if any of the paths contain matching content" (multi-path parameters) | ✅ every path is a row with the same `searchName` | e.g. `combo-code` |
 | 3.1.1.4.2 | only `_id` is required; custom parameters allowed | ⚠️ a parameter not in the generated definitions is ignored (nothing indexes it). Custom SearchParameter support is a separate design item (memory `fhirant-search-indexing-gap`). | — |
+| 3.1.1.4.3 | number "SHALL be a number" | ✅ `InvalidSearchValue` otherwise | above |
+| 3.1.1.4.3 | string "case-insensitive and accent-insensitive. May match just the start" | ✅ normalized starts-with | "a string parameter pages in SQL with the starts-with default" |
+| 3.1.1.4.3 | token: text, display, code, code/codesystem; identifier label/system/key | ✅ codes and system\|code; `:text` on display and CodeableConcept.text; Identifier system\|value | "token modifiers page in SQL" |
+| 3.1.1.4.3 | reference: Reference or canonical | ✅ both extracted | — |
+| 3.1.1.4.4 | `:missing` all types except composite; `true` = element omitted or present with no @value | ✅ a primitive with no value writes no row | ":missing pages in SQL" |
+| 3.1.1.4.4 | string `:exact` "including casing and combining characters"; `:contains` anywhere, case/accent-insensitive | ✅ `exact_value` as written; `LIKE %v%` on the normalized column | "string modifiers page in SQL" |
+| 3.1.1.4.4 | token `:text` "text portion of a CodeableConcept or the display portion of a Coding" | ✅ (was: CodeableConcept.text written as a **code**, so `code=Heart Rate` matched and `:text` did not) | "token modifiers page in SQL" |
+| 3.1.1.4.4 | token `:in`, `:not-in` | ✅ over the stored ValueSet's expansion | general path tests |
+| 3.1.1.4.4 | token `:below`, `:above` (subsumption, 3.1.1.4.10) | ⛔ **refused** (`UnsupportedSearchModifier`), was answered as a plain match | "a modifier this server does not support is refused" |
+| 3.1.1.4.4 | reference `:[type]`, `:identifier` | ✅ | "reference modifiers page in SQL" |
+| 3.1.1.4.4 | reference `:above`, `:below` (hierarchies, 3.1.1.4.14) | ⛔ **refused**, was treated as a resource type named "above" | same |
+| 3.1.1.4.4 | uri `:below` (search term left-matches the value), `:above` (vice-versa) | ✅ `:below` in SQL; `:above` on the Dart path | "uri :below pages in SQL; :above falls back" |
+| 3.1.1.4.4 | "Server SHALL reject any search request … suffixed by a modifier that the server does not support" | ✅ thrown before building, both paths; fhirant maps to 400 | same |

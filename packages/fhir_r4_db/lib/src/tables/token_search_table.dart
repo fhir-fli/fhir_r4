@@ -152,6 +152,12 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
         }
 
         if (codeableConcept.text?.valueString != null) {
+          // R4B 3.1.1.4.4: `:text` "does a partial searches on the text
+          // portion of a CodeableConcept or the display portion of a
+          // Coding", "instead of the default search which uses codes". So the
+          // text is a DISPLAY, and the row carries no code: this used to
+          // write it as the token value, so `code=Blood pressure` matched a
+          // CodeableConcept by its text and `code:text=` could not find it.
           final textIndex = codeableConcept.coding?.length ?? 0;
           resultList.add(
             TokenSearchParametersCompanion(
@@ -163,7 +169,8 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
               paramIndex: Value(
                 paramIndex == null ? textIndex : paramIndex * 100 + textIndex,
               ),
-              tokenValue: Value(codeableConcept.text!.valueString!),
+              tokenValue: const Value(''),
+              tokenDisplay: Value(codeableConcept.text!.valueString),
             ),
           );
         }

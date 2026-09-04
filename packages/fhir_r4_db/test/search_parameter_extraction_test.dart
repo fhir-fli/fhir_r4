@@ -160,8 +160,11 @@ void main() {
       expect(results[0].tokenValue.value, '12345-6');
       expect(results[1].tokenSystem.value, 'http://snomed.info/sct');
       expect(results[1].tokenValue.value, '999999');
-      // text entry has no system
-      expect(results[2].tokenValue.value, 'Hemoglobin test');
+      // The text is a DISPLAY (R4B 3.1.1.4.4: `:text` searches "the text
+      // portion of a CodeableConcept"), and the row carries no code, so a
+      // code search cannot match it.
+      expect(results[2].tokenValue.value, '');
+      expect(results[2].tokenDisplay.value, 'Hemoglobin test');
     });
 
     test('extracts Identifier with system', () {

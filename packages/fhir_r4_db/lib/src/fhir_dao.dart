@@ -913,6 +913,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // published against Resource (R4B 3.1.1.4.1), not against each type.
     final declared = searchParameterFor(resourceType, key.name);
     if (declared == null) return null;
+    // 3.1.1.4.4, a SHALL: a modifier the type does not allow, or one this
+    // package does not implement, is refused rather than answered wrongly.
+    final modifier = key.modifier;
+    if (modifier != null && !isModifierAllowed(declared.type, modifier)) {
+      throw UnsupportedSearchModifier(
+        parameter: key.name,
+        modifier: modifier,
+        type: declared.type,
+        allowed: modifiersByType[declared.type] ?? const <String>{},
+      );
+    }
     if (key.chain != null) {
       if (declared.type != 'reference') return null;
       return _chainCondition(

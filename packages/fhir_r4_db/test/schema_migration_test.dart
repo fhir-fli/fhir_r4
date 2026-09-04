@@ -176,14 +176,15 @@ void main() {
     await db.close();
   });
 
-  test('a version-7 database has its date index rebuilt as ranges', () async {
-    // Version 8 turns every date row into a range and indexes Period and
-    // Timing values for the first time. A version-7 database holds an
-    // Encounter whose period was never indexed at all, and an Observation
-    // whose date was indexed as a single instant. Both have to come back as
-    // ranges after the upgrade, from the stored resources alone.
-    final db7 = FhirDb(NativeDatabase(dbFile));
-    await db7.fhirDao.saveResource(
+  test('a version-6 database (published 0.12.0) has its whole index rebuilt',
+      () async {
+    // Schema 7 is one step for everything 0.13.0 changed about the index:
+    // date rows as ranges with Period values indexed at all, the
+    // Resource.meta parameters indexed at all, CodeableConcept.text as a
+    // display rather than a code, value indexes. Save three resources, walk
+    // the database back to the version-6 shape, stamp it, reopen.
+    final db6 = FhirDb(NativeDatabase(dbFile));
+    await db6.fhirDao.saveResource(
       Encounter.fromJson({
         'resourceType': 'Encounter',
         'id': 'enc',
@@ -192,60 +193,7 @@ void main() {
         'period': {'start': '2013-01-14', 'end': '2013-01-16'},
       }),
     );
-    await db7.fhirDao.saveResource(
-      Observation.fromJson({
-        'resourceType': 'Observation',
-        'id': 'obs',
-        'status': 'final',
-        'code': {
-          'coding': [
-            {'system': 'http://example.org', 'code': 'X'},
-          ],
-        },
-        'effectiveDateTime': '2013-01-14',
-      }),
-    );
-    // Walk the table back to the version-7 shape: one non-null instant and
-    // no end column, and no row for the Encounter, which version 7 never
-    // wrote. Then stamp the version.
-    await db7.customStatement(
-      "DELETE FROM date_search_parameters WHERE resource_type = 'Encounter'",
-    );
-    await db7.customStatement('DROP INDEX idx_date_value_end');
-    await db7.customStatement(
-      'ALTER TABLE date_search_parameters DROP COLUMN date_value_end',
-    );
-    await db7.customStatement('PRAGMA user_version = 7');
-    await db7.close();
-
-    final db = FhirDb(NativeDatabase(dbFile));
-    final rows = await db.fhirDao.select(db.dateSearchParameters).get();
-    final enc = rows.where((r) => r.id == 'enc').toList();
-    expect(enc, hasLength(1), reason: 'the Period is indexed now');
-    expect(enc.single.dateValue, DateTime(2013, 1, 14));
-    expect(enc.single.dateValueEnd, DateTime(2013, 1, 17));
-    final obs = rows.where((r) => r.id == 'obs' && r.searchName == 'date');
-    expect(obs.single.dateValueEnd, DateTime(2013, 1, 15));
-    // And the search that always returned nothing answers.
-    final found = await db.fhirDao.search(
-      resourceType: R4ResourceType.Encounter,
-      searchParameters: {
-        'date': ['2013-01'],
-      },
-    );
-    expect(found.map((r) => r.id!.valueString), ['enc']);
-    final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(db.schemaVersion));
-    await db.close();
-  });
-
-  test('a version-8 database gains the meta index rows', () async {
-    // Before schema 9 the extractor wrote no rows for _tag, _security,
-    // _profile or _source. Save a tagged resource, delete those rows to get
-    // the version-8 state, stamp the version, reopen: the rows are back,
-    // from the stored JSON.
-    final db8 = FhirDb(NativeDatabase(dbFile));
-    await db8.fhirDao.saveResource(
+    await db6.fhirDao.saveResource(
       Patient.fromJson({
         'resourceType': 'Patient',
         'id': 'tagged',
@@ -258,20 +206,49 @@ void main() {
         },
       }),
     );
-    await db8.customStatement(
+    await db6.fhirDao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'obs',
+        'status': 'final',
+        'code': {'text': 'Heart Rate'},
+        'effectiveDateTime': '2013-01-14',
+      }),
+    );
+    // Version 6: no Period rows, no date_value_end, no meta rows, the text
+    // written as a token value, no value indexes.
+    await db6.customStatement(
+      "DELETE FROM date_search_parameters WHERE resource_type = 'Encounter'",
+    );
+    await db6.customStatement('DROP INDEX idx_date_value_end');
+    await db6.customStatement(
+      'ALTER TABLE date_search_parameters DROP COLUMN date_value_end',
+    );
+    await db6.customStatement(
       "DELETE FROM token_search_parameters WHERE search_name = '_tag'",
     );
-    await db8.customStatement(
+    await db6.customStatement(
       'DELETE FROM uri_search_parameters WHERE search_name IN '
       "('_profile', '_source')",
     );
-    await db8.customStatement('PRAGMA user_version = 8');
-    await db8.close();
+    await db6.customStatement(
+      "DELETE FROM reference_search_parameters WHERE search_name = '_profile'",
+    );
+    await db6.customStatement(
+      "UPDATE token_search_parameters SET token_value = 'Heart Rate', "
+      "token_display = NULL WHERE id = 'obs' AND search_name = 'code'",
+    );
+    await db6.customStatement('PRAGMA user_version = 6');
+    await db6.close();
 
     final db = FhirDb(NativeDatabase(dbFile));
-    Future<List<String>> find(String key, String value) async =>
+    Future<List<String>> find(
+      R4ResourceType type,
+      String key,
+      String value,
+    ) async =>
         (await db.fhirDao.search(
-          resourceType: R4ResourceType.Patient,
+          resourceType: type,
           searchParameters: {
             key: [value],
           },
@@ -279,14 +256,30 @@ void main() {
         ))
             .map((r) => r.id!.valueString!)
             .toList();
-    expect(await find('_tag', 'urgent'), ['tagged']);
+    final dates = await db.fhirDao.select(db.dateSearchParameters).get();
+    final enc = dates.where((r) => r.id == 'enc' && r.searchName == 'date');
+    expect(enc.single.dateValue, DateTime(2013, 1, 14));
+    expect(enc.single.dateValueEnd, DateTime(2013, 1, 17));
+    expect(await find(R4ResourceType.Encounter, 'date', '2013-01'), ['enc']);
+    expect(await find(R4ResourceType.Patient, '_tag', 'urgent'), ['tagged']);
     expect(
-      await find('_profile', 'http://example.org/StructureDefinition/p'),
+      await find(
+        R4ResourceType.Patient,
+        '_profile',
+        'http://example.org/StructureDefinition/p',
+      ),
       ['tagged'],
     );
-    expect(await find('_source', 'http://example.org/src'), ['tagged']);
+    expect(
+      await find(R4ResourceType.Patient, '_source', 'http://example.org/src'),
+      ['tagged'],
+    );
+    expect(
+        await find(R4ResourceType.Observation, 'code:text', 'heart'), ['obs'],);
+    expect(
+        await find(R4ResourceType.Observation, 'code', 'Heart Rate'), isEmpty,);
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(9));
+    expect(version.data.values.first, equals(7));
     await db.close();
   });
 

@@ -99,11 +99,16 @@ class UnsupportedSearchModifier implements Exception {
   final Set<String> allowed;
 
   /// A message naming what was asked for and what the type permits.
-  String get message =>
-      'The modifier ":$modifier" is not allowed on "$parameter", which is a '
-      '$type search parameter. '
-      '${allowed.isEmpty ? "That type takes no modifiers." : "Allowed: "
-          "${(allowed.toList()..sort()).map((m) => ":$m").join(", ")}."}';
+  String get message {
+    if (unsupportedModifiersByType[type]?.contains(modifier) ?? false) {
+      return 'The modifier ":$modifier" is defined for $type search '
+          'parameters but this server does not support it on "$parameter".';
+    }
+    return 'The modifier ":$modifier" is not allowed on "$parameter", which '
+        'is a $type search parameter. '
+        '${allowed.isEmpty ? "That type takes no modifiers." : "Allowed: "
+            "${(allowed.toList()..sort()).map((m) => ":$m").join(", ")}."}';
+  }
 
   @override
   String toString() => 'UnsupportedSearchModifier: $message';
@@ -154,19 +159,10 @@ class InvalidSearchValue implements Exception {
 const modifiersByType = <String, Set<String>>{
   // ":missing ... applies to all parameter types except composite".
   'string': {'missing', 'exact', 'contains', 'text'},
-  'token': {
-    'missing',
-    'text',
-    'not',
-    'above',
-    'below',
-    'in',
-    'not-in',
-    'of-type',
-  },
+  'token': {'missing', 'text', 'not', 'in', 'not-in', 'of-type'},
   // A reference also takes ":[ResourceType]", which is not a fixed word and is
   // checked separately.
-  'reference': {'missing', 'identifier', 'above', 'below', 'type'},
+  'reference': {'missing', 'identifier', 'type'},
   'uri': {'missing', 'above', 'below'},
   'date': {'missing'},
   'number': {'missing'},
@@ -177,6 +173,21 @@ const modifiersByType = <String, Set<String>>{
   'special': <String>{},
   // R4 3.1.1.4.17: "Modifiers are not used on composite parameters."
   'composite': <String>{},
+};
+
+/// Modifiers R4B defines for a type that this package does NOT implement,
+/// so a search using one is refused rather than answered wrongly.
+///
+/// 3.1.1.4.4: "Server SHALL reject any search request that contains … a
+/// modifier that the server does not support for that parameter … using an
+/// HTTP 400 error with an OperationOutcome with a clear error message."
+/// Token `:above`/`:below` are code subsumption (3.1.1.4.10), which needs
+/// the CodeSystem's hierarchy; reference `:above`/`:below` are resource
+/// hierarchies (3.1.1.4.14). Before this both were listed as allowed and
+/// answered as a plain match — a narrower answer than asked for, silently.
+const unsupportedModifiersByType = <String, Set<String>>{
+  'token': {'above', 'below'},
+  'reference': {'above', 'below'},
 };
 
 /// The definition of [code] on [resourceType], or null when there is none.

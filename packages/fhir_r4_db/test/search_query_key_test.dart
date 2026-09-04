@@ -155,16 +155,23 @@ void main() {
     });
 
     test('token takes its own set', () {
-      for (final modifier in [
-        'text',
-        'not',
-        'above',
-        'below',
-        'in',
-        'not-in',
-        'of-type',
-      ]) {
+      for (final modifier in ['text', 'not', 'in', 'not-in', 'of-type']) {
         expect(isModifierAllowed('token', modifier), isTrue, reason: modifier);
+      }
+      // Defined by R4B (code subsumption, 3.1.1.4.10) but not implemented
+      // here, so refused rather than answered as a plain match, which is
+      // what 3.1.1.4.4 SHALLs for an unsupported modifier.
+      for (final modifier in ['above', 'below']) {
+        expect(isModifierAllowed('token', modifier), isFalse, reason: modifier);
+        expect(
+          const UnsupportedSearchModifier(
+            parameter: 'code',
+            modifier: 'below',
+            type: 'token',
+            allowed: {},
+          ).message,
+          contains('does not support'),
+        );
       }
     });
 
