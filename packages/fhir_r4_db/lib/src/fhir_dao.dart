@@ -491,16 +491,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return items.sublist(start, end);
   }
 
-  /// The page of ids for the one shape SQL can page on its own: a single
-  /// token parameter with one repetition, no modifier, no comma, no `_has`,
-  /// no `_sort`. Returns null for anything else, and the general path runs.
+  /// The page of ids, cut in SQL, for a search made only of plain token
+  /// parameters: any number of them, each one repetition, no modifier, no
+  /// comma, no `_has`, no `_sort`. Returns null for anything else, and the
+  /// general path runs.
   ///
-  /// This is deliberately the narrowest useful case, not a general SQL
-  /// composition. `status=final` alone is the query that took 46.71s on the
-  /// published 0.12.0 and ~5s after the earlier fixes; every remaining second
-  /// of that was SQLite handing 813,513 ids to Dart so Dart could keep 20.
-  /// Widening this to several parameters means `INTERSECT` across the index
-  /// tables, and is the next step, not this one.
+  /// One parameter is a single select with `ORDER BY id LIMIT`. Each further
+  /// parameter becomes `id IN (SELECT id … WHERE …)` on the same select —
+  /// Drift's `isInQuery`, so it stays typed — and SQLite intersects them and
+  /// stops at the page. `status=final` alone took 46.71s on the published
+  /// 0.12.0 and ~5s after the earlier fixes; every remaining second was
+  /// SQLite handing 813,513 ids to Dart so Dart could keep 20. Measured
+  /// after this: 1.19s, of which 0.55s is SQLite finding the page.
+  ///
+  /// Only token is here. The other types get the same treatment by adding a
+  /// condition builder each; a search mixing in one of them falls through.
   Future<List<String>?> _pagedTokenIds(
     String resourceType,
     Map<String, List<String>>? searchParameters,
@@ -512,28 +517,41 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (count == null || count <= 0) return null;
     if (sort != null && sort.isNotEmpty) return null;
     if (hasParameters != null && hasParameters.isNotEmpty) return null;
-    if (searchParameters == null || searchParameters.length != 1) return null;
+    if (searchParameters == null || searchParameters.isEmpty) return null;
 
-    final entry = searchParameters.entries.single;
-    if (entry.value.length != 1) return null;
-    final value = entry.value.single;
-    if (value.contains(',') || value.isEmpty) return null;
+    final conditions = <Expression<bool>>[];
+    for (final entry in searchParameters.entries) {
+      if (entry.value.length != 1) return null;
+      final value = entry.value.single;
+      if (value.contains(',') || value.isEmpty) return null;
 
-    final key = SearchQueryKey.parse(entry.key);
-    if (key.qualifier != null) return null;
-    if (key.name.startsWith('_')) return null;
+      final key = SearchQueryKey.parse(entry.key);
+      if (key.qualifier != null) return null;
+      if (key.name.startsWith('_')) return null;
 
-    final declared = searchParameterFor(resourceType, key.name);
-    if (declared == null || declared.type != 'token') return null;
+      final declared = searchParameterFor(resourceType, key.name);
+      if (declared == null || declared.type != 'token') return null;
 
-    final ids = await _executeTokenQuery(
-      resourceType,
-      key.name,
-      value,
-      limit: count,
-      offset: offset,
-    );
-    return ids.toList();
+      conditions.add(_tokenCondition(resourceType, key.name, value));
+    }
+
+    final idColumn = tokenSearchParameters.id;
+    var where = conditions.first;
+    for (final other in conditions.skip(1)) {
+      where = where &
+          idColumn.isInQuery(
+            selectOnly(tokenSearchParameters, distinct: true)
+              ..addColumns([idColumn])
+              ..where(other),
+          );
+    }
+    final rows = await (selectOnly(tokenSearchParameters, distinct: true)
+          ..addColumns([idColumn])
+          ..where(where)
+          ..orderBy([OrderingTerm.asc(idColumn)])
+          ..limit(count, offset: offset))
+        .get();
+    return rows.map((r) => r.read(idColumn)).whereType<String>().toList();
   }
 
   /// The ids matching a search, without reading a single resource.
@@ -1589,15 +1607,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return matchingIds;
   }
 
-  Future<Set<String>> _executeTokenQuery(
+  /// The WHERE for one plain token value, as a typed expression, so it can be
+  /// run on its own or nested as `id IN (SELECT …)` inside another.
+  Expression<bool> _tokenCondition(
     String resourceType,
     String searchPath,
-    String searchValue, {
-    int? limit,
-    int? offset,
-  }) async {
-    final matchingIds = <String>{};
-
+    String searchValue,
+  ) {
     String? system;
     var tokenValue = searchValue;
 
@@ -1627,6 +1643,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       whereCondition =
           whereCondition & tokenSearchParameters.tokenValue.equals(tokenValue);
     }
+    return whereCondition;
+  }
+
+  Future<Set<String>> _executeTokenQuery(
+    String resourceType,
+    String searchPath,
+    String searchValue, {
+    int? limit,
+    int? offset,
+  }) async {
+    final matchingIds = <String>{};
+    final whereCondition =
+        _tokenCondition(resourceType, searchPath, searchValue);
 
     // Only the id column is wanted, so only the id column is read. Selecting
     // whole rows marshalled every column of every match — searchPath,
