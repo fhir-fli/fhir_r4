@@ -409,6 +409,26 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     List<String>? sort,
   }) async {
     final resourceTypeString = resourceType.toString();
+
+    final paged = await _pagedTokenIds(
+      resourceTypeString,
+      searchParameters,
+      hasParameters,
+      sort,
+      count,
+      offset,
+    );
+    if (paged != null) {
+      final results = <fhir.Resource>[];
+      for (final id in paged) {
+        final resource = await getResource(resourceType, id);
+        if (resource != null) {
+          results.add(resource);
+        }
+      }
+      return results;
+    }
+
     final matchingIds = await _matchingIds(
       resourceType: resourceType,
       searchParameters: searchParameters,
@@ -469,6 +489,51 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       end = start + count;
     }
     return items.sublist(start, end);
+  }
+
+  /// The page of ids for the one shape SQL can page on its own: a single
+  /// token parameter with one repetition, no modifier, no comma, no `_has`,
+  /// no `_sort`. Returns null for anything else, and the general path runs.
+  ///
+  /// This is deliberately the narrowest useful case, not a general SQL
+  /// composition. `status=final` alone is the query that took 46.71s on the
+  /// published 0.12.0 and ~5s after the earlier fixes; every remaining second
+  /// of that was SQLite handing 813,513 ids to Dart so Dart could keep 20.
+  /// Widening this to several parameters means `INTERSECT` across the index
+  /// tables, and is the next step, not this one.
+  Future<List<String>?> _pagedTokenIds(
+    String resourceType,
+    Map<String, List<String>>? searchParameters,
+    List<HasParameter>? hasParameters,
+    List<String>? sort,
+    int? count,
+    int? offset,
+  ) async {
+    if (count == null || count <= 0) return null;
+    if (sort != null && sort.isNotEmpty) return null;
+    if (hasParameters != null && hasParameters.isNotEmpty) return null;
+    if (searchParameters == null || searchParameters.length != 1) return null;
+
+    final entry = searchParameters.entries.single;
+    if (entry.value.length != 1) return null;
+    final value = entry.value.single;
+    if (value.contains(',') || value.isEmpty) return null;
+
+    final key = SearchQueryKey.parse(entry.key);
+    if (key.qualifier != null) return null;
+    if (key.name.startsWith('_')) return null;
+
+    final declared = searchParameterFor(resourceType, key.name);
+    if (declared == null || declared.type != 'token') return null;
+
+    final ids = await _executeTokenQuery(
+      resourceType,
+      key.name,
+      value,
+      limit: count,
+      offset: offset,
+    );
+    return ids.toList();
   }
 
   /// The ids matching a search, without reading a single resource.
@@ -1527,8 +1592,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   Future<Set<String>> _executeTokenQuery(
     String resourceType,
     String searchPath,
-    String searchValue,
-  ) async {
+    String searchValue, {
+    int? limit,
+    int? offset,
+  }) async {
     final matchingIds = <String>{};
 
     String? system;
@@ -1567,10 +1634,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // one string. On 928,935 MIMIC resources, `Observation?status=final`
     // matches 813,513 rows, so that is 813,513 rows built and discarded.
     final idColumn = tokenSearchParameters.id;
-    final rows = await (selectOnly(tokenSearchParameters, distinct: true)
-          ..addColumns([idColumn])
-          ..where(whereCondition))
-        .get();
+    final query = selectOnly(tokenSearchParameters, distinct: true)
+      ..addColumns([idColumn])
+      ..where(whereCondition);
+    if (limit != null) {
+      // The page is cut HERE, in SQL, when the caller can prove it is the
+      // whole answer. Measured on 928,935 resources, `status=final`,
+      // 813,513 matches: every id 3.77s; `ORDER BY id LIMIT 20` 0.55s. The
+      // ORDER BY is what makes offset 20 follow offset 0.
+      query
+        ..orderBy([OrderingTerm.asc(idColumn)])
+        ..limit(limit, offset: offset);
+    }
+    final rows = await query.get();
     for (final row in rows) {
       final id = row.read(idColumn);
       if (id != null) {
