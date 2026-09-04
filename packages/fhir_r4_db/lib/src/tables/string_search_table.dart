@@ -261,9 +261,9 @@ extension StringSearchParametersExtension on fhir.FhirBase {
 /// So: lower-cased; precomposed accented letters folded to their base by
 /// the table below; combining marks (U+0300–U+036F, the diacritics a
 /// decomposed `é` is written with) dropped; punctuation turned to a space;
-/// runs of whitespace collapsed to one space and the ends trimmed. Public because
-/// BOTH sides have to fold identically: the value going into the index and
-/// the value coming in on a query. Fold one and not the other and an
+/// runs of whitespace collapsed to one space and the ends trimmed. Public
+/// because BOTH sides have to fold identically: the value going into the
+/// index and the value coming in on a query. Fold one and not the other and an
 /// accented name becomes unfindable.
 String normalizeSearchString(String input) {
   final buffer = StringBuffer();
