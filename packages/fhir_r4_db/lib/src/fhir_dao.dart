@@ -540,8 +540,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final parts = <_IndexCondition>[];
     for (final entry in (searchParameters ?? const {}).entries) {
       final key = SearchQueryKey.parse(entry.key);
-      if (key.qualifier != null) return null;
+      // A chain (`subject.name`, `subject:Patient.name`) is resolved through
+      // another resource type and takes the general path.
+      if (key.chain != null) return null;
       if (key.name.startsWith('_')) return null;
+      final modifier = key.modifier;
 
       final declared = searchParameterFor(resourceType, key.name);
       if (declared == null) return null;
@@ -565,11 +568,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final aliasName = parts.isEmpty ? null : 'p${parts.length}';
         _IndexCondition? combined;
         for (final value in orValues) {
-          final one = _conditionFor(
+          final one = await _conditionFor(
             resourceType,
             key.name,
             value,
             declared,
+            modifier: modifier,
             aliasName: aliasName,
           );
           if (one == null) return null;
@@ -579,6 +583,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                   combined.table,
                   combined.idColumn,
                   combined.condition | one.condition,
+                  negated: combined.negated,
                 );
         }
         parts.add(combined!);
@@ -617,6 +622,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // almost nothing: one patient's records against one code is settled
     // by the first stage in a few milliseconds, and only a query whose
     // every parameter matches thousands of rows pays for the second.
+    // A negated condition (`:missing=true`, `:not`, `:not-in`) says what a
+    // resource must NOT have a row for. It cannot drive the select, so it
+    // is set aside and nested as NOT EXISTS on whatever the outer is; when
+    // nothing positive remains, the resources table is the outer.
+    final negated = parts.where((p) => p.negated).toList();
+    parts.removeWhere((p) => p.negated);
+
     var limit = _probeLimits.first;
     final sized = <(_IndexCondition, int)>[];
     if (parts.isEmpty) {
@@ -671,6 +683,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             );
       }
     }
+    for (final other in negated) {
+      where = where &
+          notExistsQuery(
+            selectOnly(other.table)
+              ..addColumns([const Constant(1)])
+              ..where(
+                other.condition & other.idColumn.equalsExp(first.idColumn),
+              ),
+          );
+    }
+
     if (sortKeys.isEmpty) {
       final rows = await (selectOnly(first.table, distinct: true)
             ..addColumns([first.idColumn])
@@ -851,50 +874,167 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   static const _probeLimits = [2000, 100000];
 
   /// One parameter's typed WHERE on its own index table, or null when this
-  /// path has no builder for the parameter's type or the value does not
-  /// parse for it.
-  _IndexCondition? _conditionFor(
+  /// path has no builder for the parameter's type, the value does not parse
+  /// for it, or the modifier is one the general path alone handles.
+  ///
+  /// Modifiers, R4B §3.1.1.4.4, by type:
+  /// - any type: `:missing`. `true` is negated (no row with this path);
+  ///   `false` is any row with this path.
+  /// - string: `:exact` on the value as written; `:contains` on the
+  ///   normalized value.
+  /// - token: `:text` on the display; `:not` is the plain match, negated;
+  ///   `:in` is an OR over the ValueSet's codes and `:not-in` that, negated
+  ///   (`:not-in` with an empty expansion excludes nothing). `:of-type` is
+  ///   not built: the index has no identifier type and the general path
+  ///   reads resources for it.
+  /// - reference: `:identifier` on `Reference.identifier`; a resource type
+  ///   as the modifier (`subject:Patient=23`) "has the same effect as
+  ///   subject=Patient/23" (§3.1.1.4.12).
+  /// - uri: `:below` is prefix; `:above` is not built (it needs the stored
+  ///   value as the prefix of the search value, which the general path does
+  ///   in Dart).
+  Future<_IndexCondition?> _conditionFor(
     String resourceType,
     String name,
     String value,
     SearchParameterDefinition declared, {
+    String? modifier,
     String? aliasName,
-  }) {
+  }) async {
+    Expression<bool> onPath(
+      GeneratedColumn<String> type,
+      GeneratedColumn<String> searchName,
+      GeneratedColumn<String> searchPath,
+    ) =>
+        type.equals(resourceType) &
+        (searchName.equals(name) |
+            searchPath.like('$resourceType.$name') |
+            searchPath.like('$resourceType.%.$name'));
+
     switch (declared.type) {
       case 'token':
         final t = aliasName == null
             ? tokenSearchParameters
             : alias(tokenSearchParameters, aliasName);
-        return _IndexCondition(
-          t,
-          t.id,
-          _tokenCondition(resourceType, name, value, on: t),
-        );
+        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        switch (modifier) {
+          case null:
+            return _IndexCondition(
+              t,
+              t.id,
+              _tokenCondition(resourceType, name, value, on: t),
+            );
+          case 'not':
+            return _IndexCondition(
+              t,
+              t.id,
+              _tokenCondition(resourceType, name, value, on: t),
+              negated: true,
+            );
+          case 'missing':
+            return _IndexCondition(t, t.id, path, negated: value == 'true');
+          case 'text':
+            return _IndexCondition(
+              t,
+              t.id,
+              path & t.tokenDisplay.like('%${unescapeValue(value)}%'),
+            );
+          case 'in':
+          case 'not-in':
+            final codes = await _getCodesFromValueSet(value);
+            if (codes.isEmpty) {
+              // `:in` an empty expansion matches nothing; `:not-in` excludes
+              // nothing. A condition no row satisfies does both when negated
+              // accordingly.
+              return _IndexCondition(
+                t,
+                t.id,
+                const Constant(false),
+                negated: modifier == 'not-in',
+              );
+            }
+            Expression<bool>? any;
+            for (final code in codes) {
+              final one = _tokenCondition(
+                resourceType,
+                name,
+                code.system != null ? '${code.system}|${code.code}' : code.code,
+                on: t,
+              );
+              any = any == null ? one : any | one;
+            }
+            return _IndexCondition(
+              t,
+              t.id,
+              any!,
+              negated: modifier == 'not-in',
+            );
+          default:
+            return null;
+        }
       case 'reference':
-        // A chain (`subject.name`) never reaches here: the key's qualifier
-        // is rejected above. Only `Type/id` and bare ids do.
         final t = aliasName == null
             ? referenceSearchParameters
             : alias(referenceSearchParameters, aliasName);
-        return _IndexCondition(
-          t,
-          t.id,
-          _referenceCondition(resourceType, name, value, on: t),
-        );
+        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        switch (modifier) {
+          case null:
+            return _IndexCondition(
+              t,
+              t.id,
+              _referenceCondition(resourceType, name, value, on: t),
+            );
+          case 'missing':
+            return _IndexCondition(t, t.id, path, negated: value == 'true');
+          case 'identifier':
+            final parts = splitEscaped(value, '|');
+            var where = path &
+                t.identifierValue.equals(
+                  parts.length > 1 ? parts[1] : unescapeValue(value),
+                );
+            if (parts.length > 1 && parts[0].isNotEmpty) {
+              where = where & t.identifierSystem.equals(parts[0]);
+            }
+            return _IndexCondition(t, t.id, where);
+          default:
+            // A resource type: `subject:Patient=23` is `subject=Patient/23`.
+            if (fhir.R4ResourceType.fromString(modifier) == null) return null;
+            if (value.contains('/')) return null;
+            return _IndexCondition(
+              t,
+              t.id,
+              _referenceCondition(
+                resourceType,
+                name,
+                '$modifier/${unescapeValue(value)}',
+                on: t,
+              ),
+            );
+        }
       case 'number':
-        final (prefix, rest) = splitComparator(declared, value);
         final t = aliasName == null
             ? numberSearchParameters
             : alias(numberSearchParameters, aliasName);
+        if (modifier == 'missing') {
+          final path = onPath(t.resourceType, t.searchName, t.searchPath);
+          return _IndexCondition(t, t.id, path, negated: value == 'true');
+        }
+        if (modifier != null) return null;
+        final (prefix, rest) = splitComparator(declared, value);
         final condition =
             _numberCondition(resourceType, name, prefix, rest, on: t);
         if (condition == null) return null;
         return _IndexCondition(t, t.id, condition);
       case 'quantity':
-        final (prefix, rest) = splitComparator(declared, value);
         final t = aliasName == null
             ? quantitySearchParameters
             : alias(quantitySearchParameters, aliasName);
+        if (modifier == 'missing') {
+          final path = onPath(t.resourceType, t.searchName, t.searchPath);
+          return _IndexCondition(t, t.id, path, negated: value == 'true');
+        }
+        if (modifier != null) return null;
+        final (prefix, rest) = splitComparator(declared, value);
         final condition =
             _quantityCondition(resourceType, name, prefix, rest, on: t);
         if (condition == null) return null;
@@ -903,25 +1043,66 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final t = aliasName == null
             ? uriSearchParameters
             : alias(uriSearchParameters, aliasName);
-        return _IndexCondition(
-          t,
-          t.id,
-          _uriCondition(resourceType, name, value, on: t),
-        );
+        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        switch (modifier) {
+          case null:
+            return _IndexCondition(
+              t,
+              t.id,
+              _uriCondition(resourceType, name, value, on: t),
+            );
+          case 'missing':
+            return _IndexCondition(t, t.id, path, negated: value == 'true');
+          case 'below':
+            return _IndexCondition(
+              t,
+              t.id,
+              path & t.uriValue.like('${unescapeValue(value)}%'),
+            );
+          default:
+            return null;
+        }
       case 'string':
         final t = aliasName == null
             ? stringSearchParameters
             : alias(stringSearchParameters, aliasName);
-        return _IndexCondition(
-          t,
-          t.id,
-          _stringCondition(resourceType, name, value, on: t),
-        );
+        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        switch (modifier) {
+          case null:
+            return _IndexCondition(
+              t,
+              t.id,
+              _stringCondition(resourceType, name, value, on: t),
+            );
+          case 'missing':
+            return _IndexCondition(t, t.id, path, negated: value == 'true');
+          case 'exact':
+            return _IndexCondition(
+              t,
+              t.id,
+              path & t.exactValue.equals(unescapeValue(value).trim()),
+            );
+          case 'contains':
+            final normalized =
+                normalizeSearchString(unescapeValue(value)).trim();
+            return _IndexCondition(
+              t,
+              t.id,
+              path & t.stringValue.like('%$normalized%'),
+            );
+          default:
+            return null;
+        }
       case 'date':
-        final (prefix, rest) = splitComparator(declared, value);
         final t = aliasName == null
             ? dateSearchParameters
             : alias(dateSearchParameters, aliasName);
+        if (modifier == 'missing') {
+          final path = onPath(t.resourceType, t.searchName, t.searchPath);
+          return _IndexCondition(t, t.id, path, negated: value == 'true');
+        }
+        if (modifier != null) return null;
+        final (prefix, rest) = splitComparator(declared, value);
         final condition =
             _dateCondition(resourceType, name, prefix, rest, on: t);
         if (condition == null) return null;
@@ -3431,11 +3612,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
 /// One search parameter expressed as a WHERE on its own index table.
 class _IndexCondition {
-  const _IndexCondition(this.table, this.idColumn, this.condition);
+  const _IndexCondition(
+    this.table,
+    this.idColumn,
+    this.condition, {
+    this.negated = false,
+  });
 
   final TableInfo<Table, dynamic> table;
   final GeneratedColumn<String> idColumn;
   final Expression<bool> condition;
+
+  /// True when the resource must have NO row matching [condition]:
+  /// `:missing=true`, `:not`, `:not-in`. Never the outer select; nested as
+  /// `NOT EXISTS`.
+  final bool negated;
 }
 
 /// One `_sort` rule: the (aliased) table holding the value, how it joins to
