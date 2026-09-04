@@ -251,6 +251,143 @@ Future<void> main() async {
     );
   });
 
+  test('_id and _lastUpdated page in SQL from the resources table', () async {
+    expect(
+      await ids(
+        {
+          '_id': ['o05,o07,zzz'],
+        },
+        count: 3,
+      ),
+      ['o05', 'o07'],
+    );
+    expect(
+      await ids(
+        {
+          '_id': ['o05'],
+          'status': ['final'],
+        },
+        count: 3,
+      ),
+      isEmpty,
+      reason: 'o05 is preliminary',
+    );
+    final year = DateTime.now().year.toString();
+    expect(
+      await ids(
+        {
+          '_lastUpdated': ['ge$year'],
+          'code': ['B'],
+        },
+        count: 2,
+      ),
+      ['o20', 'o21'],
+    );
+    expect(
+      await ids(
+        {
+          '_lastUpdated': ['lt$year'],
+        },
+        count: 2,
+      ),
+      isEmpty,
+    );
+  });
+
+  test('_tag, _security, _profile and _source page in SQL from the index',
+      () async {
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'tagged',
+        'meta': {
+          'tag': [
+            {'system': 'http://example.org/tags', 'code': 'urgent'},
+          ],
+          'security': [
+            {
+              'system': 'http://terminology.hl7.org/CodeSystem/v3-ActCode',
+              'code': 'HTEST',
+            },
+          ],
+          'profile': ['http://example.org/StructureDefinition/vitals'],
+          'source': 'http://example.org/source/monitor-7',
+        },
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'A'},
+          ],
+        },
+      }),
+    );
+    // Before schema 9 these were answered by decoding every stored resource
+    // of the type in Dart; now they are ordinary token and uri rows.
+    expect(
+      await ids(
+        {
+          '_tag': ['http://example.org/tags|urgent'],
+        },
+        count: 3,
+      ),
+      ['tagged'],
+    );
+    expect(
+      await ids(
+        {
+          '_tag': ['urgent'],
+          'code': ['A'],
+        },
+        count: 3,
+      ),
+      ['tagged'],
+    );
+    expect(
+      await ids(
+        {
+          '_security': ['HTEST'],
+        },
+        count: 3,
+      ),
+      ['tagged'],
+    );
+    expect(
+      await ids(
+        {
+          '_profile': ['http://example.org/StructureDefinition/vitals'],
+        },
+        count: 3,
+      ),
+      ['tagged'],
+    );
+    expect(
+      await ids(
+        {
+          '_source': ['http://example.org/source/monitor-7'],
+        },
+        count: 3,
+      ),
+      ['tagged'],
+    );
+    expect(
+      await ids(
+        {
+          '_tag:missing': ['true'],
+          'code': ['A'],
+        },
+        count: 2,
+      ),
+      ['o00', 'o01'],
+    );
+    // The general path agrees.
+    expect(
+      await ids({
+        '_tag': ['urgent'],
+      }),
+      ['tagged'],
+    );
+  });
+
   test('a date parameter pages in SQL with its prefix honoured', () async {
     // date gt 2020-01-20 -> o20..o29 -> 10 rows, paged 4 at a time.
     final page1 = await ids(

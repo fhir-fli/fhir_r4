@@ -147,7 +147,12 @@ SearchParameterDefinition? searchParameterFor(
   String resourceType,
   String code,
 ) =>
-    searchParameterTypes[resourceType]?[code];
+    searchParameterTypes[resourceType]?[code] ??
+    // `_id`, `_lastUpdated`, `_tag`, `_profile`, `_security`, `_source` and
+    // the rest of R4B 3.1.1.4.1 are published against Resource and
+    // DomainResource, not against each type.
+    searchParameterTypes['DomainResource']?[code] ??
+    searchParameterTypes['Resource']?[code];
 
 /// Whether [modifier] is allowed on a parameter of [type].
 ///

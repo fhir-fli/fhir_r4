@@ -1,5 +1,4 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_print
-import 'dart:convert';
 
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
@@ -543,9 +542,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       // A chain (`subject.name`, `subject:Patient.name`) is resolved through
       // another resource type and takes the general path.
       if (key.chain != null) return null;
-      if (key.name.startsWith('_')) return null;
       final modifier = key.modifier;
 
+      // `_tag`, `_profile`, `_security`, `_source`, `_id`, `_lastUpdated` are
+      // published against Resource (R4B 3.1.1.4.1), not against each type.
       final declared = searchParameterFor(resourceType, key.name);
       if (declared == null) return null;
 
@@ -911,6 +911,27 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             searchPath.like('$resourceType.$name') |
             searchPath.like('$resourceType.%.$name'));
 
+    // `_id` and `_lastUpdated` are columns of the resources table, not
+    // index rows. `_id:missing` and `_lastUpdated:missing` are meaningless
+    // (every resource has both) and take the general path.
+    if (name == '_id' || name == '_lastUpdated') {
+      if (modifier != null) return null;
+      final r = aliasName == null ? resources : alias(resources, aliasName);
+      final Expression<bool>? condition;
+      if (name == '_id') {
+        condition = r.id.equals(unescapeValue(value));
+      } else {
+        final (prefix, rest) = splitComparator(declared, value);
+        condition = _lastUpdatedCondition(prefix, rest, on: r);
+      }
+      if (condition == null) return null;
+      return _IndexCondition(
+        r,
+        r.id,
+        r.resourceType.equals(resourceType) & condition,
+      );
+    }
+
     switch (declared.type) {
       case 'token':
         final t = aliasName == null
@@ -1182,54 +1203,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             matchingIds = lastUpdatedIds;
           } else {
             matchingIds = matchingIds.intersection(lastUpdatedIds);
-          }
-          firstParam = false;
-          continue;
-        }
-
-        if (paramName == '_tag') {
-          final tagIds =
-              await _searchTagParameter(resourceTypeString, paramValues);
-          if (firstParam) {
-            matchingIds = tagIds;
-          } else {
-            matchingIds = matchingIds.intersection(tagIds);
-          }
-          firstParam = false;
-          continue;
-        }
-
-        if (paramName == '_profile') {
-          final profileIds =
-              await _searchProfileParameter(resourceTypeString, paramValues);
-          if (firstParam) {
-            matchingIds = profileIds;
-          } else {
-            matchingIds = matchingIds.intersection(profileIds);
-          }
-          firstParam = false;
-          continue;
-        }
-
-        if (paramName == '_security') {
-          final securityIds =
-              await _searchSecurityParameter(resourceTypeString, paramValues);
-          if (firstParam) {
-            matchingIds = securityIds;
-          } else {
-            matchingIds = matchingIds.intersection(securityIds);
-          }
-          firstParam = false;
-          continue;
-        }
-
-        if (paramName == '_source') {
-          final sourceIds =
-              await _searchSourceParameter(resourceTypeString, paramValues);
-          if (firstParam) {
-            matchingIds = sourceIds;
-          } else {
-            matchingIds = matchingIds.intersection(sourceIds);
           }
           firstParam = false;
           continue;
@@ -2646,7 +2619,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
   /// The WHERE on `resources.last_updated` for one `_lastUpdated` value, or
   /// null when the value is not a search date.
-  Expression<bool>? _lastUpdatedCondition(String? prefix, String value) {
+  Expression<bool>? _lastUpdatedCondition(
+    String? prefix,
+    String value, {
+    $ResourcesTable? on,
+  }) {
+    final r = on ?? resources;
     final range = searchDateRange(value);
     if (range == null) {
       return null;
@@ -2654,8 +2632,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // last_updated is integer milliseconds; the range comparison is written
     // over DateTime expressions, so the point is lifted to one. SQLite
     // stores a Drift DateTime as whole seconds, hence the division.
-    final instant =
-        resources.lastUpdated.dartCast<double>() / const Constant(1000);
+    final instant = r.lastUpdated.dartCast<double>() / const Constant(1000);
     final low = instant.dartCast<DateTime>();
     final high = (instant + const Constant(1)).dartCast<DateTime>();
     return _dateRangeCondition(
@@ -2664,164 +2641,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       prefix: prefix,
       search: range,
     );
-  }
-
-  Future<Set<String>> _searchTagParameter(
-    String resourceType,
-    List<String> values,
-  ) async {
-    final matchingIds = <String>{};
-    final allResources = await (select(resources)
-          ..where((tbl) => tbl.resourceType.equals(resourceType)))
-        .get();
-
-    for (final row in allResources) {
-      try {
-        final resourceJson = jsonDecode(row.resource) as Map<String, dynamic>;
-        final meta = resourceJson['meta'] as Map<String, dynamic>?;
-        if (meta == null) continue;
-        final tags = meta['tag'] as List<dynamic>?;
-        if (tags == null || tags.isEmpty) continue;
-
-        var matches = false;
-        for (final value in values) {
-          final parts = splitEscaped(value, '|');
-          final searchSystem = parts.length > 1 ? parts[0] : null;
-          final searchCode = parts.length > 1 ? parts[1] : parts[0];
-          for (final tag in tags) {
-            final tagMap = tag as Map<String, dynamic>;
-            final system = tagMap['system'] as String?;
-            final code = tagMap['code'] as String?;
-            if (searchSystem != null) {
-              if (system == searchSystem && code == searchCode) {
-                matches = true;
-                break;
-              }
-            } else {
-              if (code == searchCode) {
-                matches = true;
-                break;
-              }
-            }
-          }
-          if (matches) break;
-        }
-        if (matches) matchingIds.add(row.id);
-      } catch (_) {
-        continue;
-      }
-    }
-    return matchingIds;
-  }
-
-  Future<Set<String>> _searchProfileParameter(
-    String resourceType,
-    List<String> values,
-  ) async {
-    final matchingIds = <String>{};
-    final allResources = await (select(resources)
-          ..where((tbl) => tbl.resourceType.equals(resourceType)))
-        .get();
-
-    for (final row in allResources) {
-      try {
-        final resourceJson = jsonDecode(row.resource) as Map<String, dynamic>;
-        final meta = resourceJson['meta'] as Map<String, dynamic>?;
-        if (meta == null) continue;
-        final profiles = meta['profile'] as List<dynamic>?;
-        if (profiles == null || profiles.isEmpty) continue;
-
-        for (final value in values) {
-          for (final profile in profiles) {
-            final profileUri = profile is String ? profile : profile.toString();
-            if (profileUri == value || profileUri.contains(value)) {
-              matchingIds.add(row.id);
-              break;
-            }
-          }
-        }
-      } catch (_) {
-        continue;
-      }
-    }
-    return matchingIds;
-  }
-
-  Future<Set<String>> _searchSecurityParameter(
-    String resourceType,
-    List<String> values,
-  ) async {
-    final matchingIds = <String>{};
-    final allResources = await (select(resources)
-          ..where((tbl) => tbl.resourceType.equals(resourceType)))
-        .get();
-
-    for (final row in allResources) {
-      try {
-        final resourceJson = jsonDecode(row.resource) as Map<String, dynamic>;
-        final meta = resourceJson['meta'] as Map<String, dynamic>?;
-        if (meta == null) continue;
-        final securities = meta['security'] as List<dynamic>?;
-        if (securities == null || securities.isEmpty) continue;
-
-        var matches = false;
-        for (final value in values) {
-          final parts = splitEscaped(value, '|');
-          final searchSystem = parts.length > 1 ? parts[0] : null;
-          final searchCode = parts.length > 1 ? parts[1] : parts[0];
-          for (final security in securities) {
-            final securityMap = security as Map<String, dynamic>;
-            final system = securityMap['system'] as String?;
-            final code = securityMap['code'] as String?;
-            if (searchSystem != null) {
-              if (system == searchSystem && code == searchCode) {
-                matches = true;
-                break;
-              }
-            } else {
-              if (code == searchCode) {
-                matches = true;
-                break;
-              }
-            }
-          }
-          if (matches) break;
-        }
-        if (matches) matchingIds.add(row.id);
-      } catch (_) {
-        continue;
-      }
-    }
-    return matchingIds;
-  }
-
-  Future<Set<String>> _searchSourceParameter(
-    String resourceType,
-    List<String> values,
-  ) async {
-    final matchingIds = <String>{};
-    final allResources = await (select(resources)
-          ..where((tbl) => tbl.resourceType.equals(resourceType)))
-        .get();
-
-    for (final row in allResources) {
-      try {
-        final resourceJson = jsonDecode(row.resource) as Map<String, dynamic>;
-        final meta = resourceJson['meta'] as Map<String, dynamic>?;
-        if (meta == null) continue;
-        final source = meta['source'] as String?;
-        if (source == null) continue;
-        for (final value in values) {
-          if (source == value || source.contains(value)) {
-            matchingIds.add(row.id);
-            break;
-          }
-        }
-      } catch (_) {
-        continue;
-      }
-    }
-    return matchingIds;
   }
 
   Future<Set<String>> _searchMissingParameter(

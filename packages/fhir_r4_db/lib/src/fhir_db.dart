@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
@@ -37,7 +39,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 8;
+  int get schemaVersion => 9;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -234,9 +236,117 @@ class FhirDb extends _$FhirDb {
           if (from < 8) {
             await rebuildDateIndex();
           }
+          if (from < 9) {
+            await indexMetaParameters();
+          }
         },
         beforeOpen: ensurePlannerStatistics,
       );
+
+  /// Writes the `_tag`, `_security`, `_profile` and `_source` index rows for
+  /// every stored resource. Schema 9.
+  ///
+  /// These four are published against Resource, so the generated extractor
+  /// never wrote them, and `_tag=` was answered by decoding every stored
+  /// resource of the type in Dart. The extractor writes them on save now;
+  /// this fills them in for what is already stored, reading each resource's
+  /// `meta` from its JSON rather than parsing the whole resource.
+  ///
+  /// Public for a subclass that overrides [migration], as [rebuildDateIndex].
+  Future<void> indexMetaParameters() async {
+    const page = 500;
+    var offset = 0;
+    while (true) {
+      final stored = await customSelect(
+        'SELECT resource_type, id, last_updated, resource FROM resources '
+        'ORDER BY resource_type, id LIMIT $page OFFSET $offset',
+      ).get();
+      if (stored.isEmpty) {
+        break;
+      }
+      offset += stored.length;
+      final tokens = <TokenSearchParametersCompanion>[];
+      final uris = <UriSearchParametersCompanion>[];
+      for (final row in stored) {
+        final Map<String, dynamic> json;
+        try {
+          json = jsonDecode(row.data['resource']! as String)
+              as Map<String, dynamic>;
+        } catch (_) {
+          continue;
+        }
+        final meta = json['meta'];
+        if (meta is! Map<String, dynamic>) {
+          continue;
+        }
+        final resourceType = row.data['resource_type']! as String;
+        final id = row.data['id']! as String;
+        final lastUpdated = row.data['last_updated']! as int;
+        void codings(String element, String searchName) {
+          final list = meta[element];
+          if (list is! List) return;
+          for (final (i, item) in list.indexed) {
+            if (item is! Map<String, dynamic>) continue;
+            tokens.addAll(
+              fhir.Coding.fromJson(item).toTokenSearchParameter(
+                resourceType,
+                id,
+                lastUpdated,
+                'Resource.meta.$element',
+                i,
+                searchName: searchName,
+              ),
+            );
+          }
+        }
+
+        codings('tag', '_tag');
+        codings('security', '_security');
+        final profiles = meta['profile'];
+        if (profiles is List) {
+          for (final (i, item) in profiles.indexed) {
+            if (item is! String) continue;
+            uris.addAll(
+              fhir.FhirCanonical(item).toUriSearchParameter(
+                resourceType,
+                id,
+                lastUpdated,
+                'Resource.meta.profile',
+                i,
+                searchName: '_profile',
+              ),
+            );
+          }
+        }
+        final source = meta['source'];
+        if (source is String) {
+          uris.addAll(
+            fhir.FhirUri(source).toUriSearchParameter(
+              resourceType,
+              id,
+              lastUpdated,
+              'Resource.meta.source',
+              0,
+              searchName: '_source',
+            ),
+          );
+        }
+      }
+      await batch((b) {
+        b
+          ..insertAll(
+            tokenSearchParameters,
+            tokens,
+            mode: InsertMode.insertOrReplace,
+          )
+          ..insertAll(
+            uriSearchParameters,
+            uris,
+            mode: InsertMode.insertOrReplace,
+          );
+      });
+    }
+  }
 
   /// Recreates the date index as RANGES from the stored resources. Schema 8.
   ///

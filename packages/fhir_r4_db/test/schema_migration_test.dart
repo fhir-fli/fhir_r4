@@ -235,7 +235,58 @@ void main() {
     );
     expect(found.map((r) => r.id!.valueString), ['enc']);
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(8));
+    expect(version.data.values.first, equals(db.schemaVersion));
+    await db.close();
+  });
+
+  test('a version-8 database gains the meta index rows', () async {
+    // Before schema 9 the extractor wrote no rows for _tag, _security,
+    // _profile or _source. Save a tagged resource, delete those rows to get
+    // the version-8 state, stamp the version, reopen: the rows are back,
+    // from the stored JSON.
+    final db8 = FhirDb(NativeDatabase(dbFile));
+    await db8.fhirDao.saveResource(
+      Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'tagged',
+        'meta': {
+          'tag': [
+            {'system': 'http://example.org/tags', 'code': 'urgent'},
+          ],
+          'profile': ['http://example.org/StructureDefinition/p'],
+          'source': 'http://example.org/src',
+        },
+      }),
+    );
+    await db8.customStatement(
+      "DELETE FROM token_search_parameters WHERE search_name = '_tag'",
+    );
+    await db8.customStatement(
+      'DELETE FROM uri_search_parameters WHERE search_name IN '
+      "('_profile', '_source')",
+    );
+    await db8.customStatement('PRAGMA user_version = 8');
+    await db8.close();
+
+    final db = FhirDb(NativeDatabase(dbFile));
+    Future<List<String>> find(String key, String value) async =>
+        (await db.fhirDao.search(
+          resourceType: R4ResourceType.Patient,
+          searchParameters: {
+            key: [value],
+          },
+          count: 5,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+    expect(await find('_tag', 'urgent'), ['tagged']);
+    expect(
+      await find('_profile', 'http://example.org/StructureDefinition/p'),
+      ['tagged'],
+    );
+    expect(await find('_source', 'http://example.org/src'), ['tagged']);
+    final version = await db.customSelect('PRAGMA user_version').getSingle();
+    expect(version.data.values.first, equals(9));
     await db.close();
   });
 
