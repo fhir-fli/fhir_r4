@@ -781,6 +781,34 @@ Future<void> main() async {
       contains('texted'),
       reason: 'a text-only CodeableConcept still has a value for the parameter',
     );
+    // "either CodeableConcept.text, Coding.display, or Identifier.type.text"
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'mrn',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'A'},
+          ],
+        },
+        'identifier': [
+          {
+            'type': {'text': 'Placer order number'},
+            'value': 'ORD-1',
+          },
+        ],
+      }),
+    );
+    expect(
+      await ids(
+        {
+          'identifier:text': ['placer'],
+        },
+        count: 3,
+      ),
+      ['mrn'],
+    );
   });
 
   test('a modifier this server does not support is refused, not narrowed',

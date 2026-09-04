@@ -192,6 +192,8 @@ extension TokenSearchParametersExtension on fhir.FhirBase {
                   ? const Value.absent()
                   : Value(identifier.system!.valueString),
               tokenValue: Value(identifier.value!.valueString!),
+              // R4B 3.1.1.4.10: `:text` searches "Identifier.type.text".
+              tokenDisplay: Value(identifier.type?.text?.valueString),
             ),
           );
         }

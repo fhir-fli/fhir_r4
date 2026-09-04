@@ -4524,18 +4524,102 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
   late final GeneratedColumn<int> paramIndex = GeneratedColumn<int>(
       'param_index', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _component1Meta =
-      const VerificationMeta('component1');
+  static const VerificationMeta _c1TypeMeta = const VerificationMeta('c1Type');
   @override
-  late final GeneratedColumn<String> component1 = GeneratedColumn<String>(
-      'component1', aliasedName, false,
+  late final GeneratedColumn<String> c1Type = GeneratedColumn<String>(
+      'c1_type', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _component2Meta =
-      const VerificationMeta('component2');
+  static const VerificationMeta _c1SystemMeta =
+      const VerificationMeta('c1System');
   @override
-  late final GeneratedColumn<String> component2 = GeneratedColumn<String>(
-      'component2', aliasedName, false,
+  late final GeneratedColumn<String> c1System = GeneratedColumn<String>(
+      'c1_system', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c1ValueMeta =
+      const VerificationMeta('c1Value');
+  @override
+  late final GeneratedColumn<String> c1Value = GeneratedColumn<String>(
+      'c1_value', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c1RawMeta = const VerificationMeta('c1Raw');
+  @override
+  late final GeneratedColumn<String> c1Raw = GeneratedColumn<String>(
+      'c1_raw', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c1LowMeta = const VerificationMeta('c1Low');
+  @override
+  late final GeneratedColumn<double> c1Low = GeneratedColumn<double>(
+      'c1_low', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _c1HighMeta = const VerificationMeta('c1High');
+  @override
+  late final GeneratedColumn<double> c1High = GeneratedColumn<double>(
+      'c1_high', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _c2TypeMeta = const VerificationMeta('c2Type');
+  @override
+  late final GeneratedColumn<String> c2Type = GeneratedColumn<String>(
+      'c2_type', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _c2SystemMeta =
+      const VerificationMeta('c2System');
+  @override
+  late final GeneratedColumn<String> c2System = GeneratedColumn<String>(
+      'c2_system', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c2ValueMeta =
+      const VerificationMeta('c2Value');
+  @override
+  late final GeneratedColumn<String> c2Value = GeneratedColumn<String>(
+      'c2_value', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c2RawMeta = const VerificationMeta('c2Raw');
+  @override
+  late final GeneratedColumn<String> c2Raw = GeneratedColumn<String>(
+      'c2_raw', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c2LowMeta = const VerificationMeta('c2Low');
+  @override
+  late final GeneratedColumn<double> c2Low = GeneratedColumn<double>(
+      'c2_low', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _c2HighMeta = const VerificationMeta('c2High');
+  @override
+  late final GeneratedColumn<double> c2High = GeneratedColumn<double>(
+      'c2_high', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _c3TypeMeta = const VerificationMeta('c3Type');
+  @override
+  late final GeneratedColumn<String> c3Type = GeneratedColumn<String>(
+      'c3_type', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c3SystemMeta =
+      const VerificationMeta('c3System');
+  @override
+  late final GeneratedColumn<String> c3System = GeneratedColumn<String>(
+      'c3_system', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c3ValueMeta =
+      const VerificationMeta('c3Value');
+  @override
+  late final GeneratedColumn<String> c3Value = GeneratedColumn<String>(
+      'c3_value', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c3RawMeta = const VerificationMeta('c3Raw');
+  @override
+  late final GeneratedColumn<String> c3Raw = GeneratedColumn<String>(
+      'c3_raw', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _c3LowMeta = const VerificationMeta('c3Low');
+  @override
+  late final GeneratedColumn<double> c3Low = GeneratedColumn<double>(
+      'c3_low', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _c3HighMeta = const VerificationMeta('c3High');
+  @override
+  late final GeneratedColumn<double> c3High = GeneratedColumn<double>(
+      'c3_high', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         resourceType,
@@ -4544,8 +4628,24 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
         searchPath,
         searchName,
         paramIndex,
-        component1,
-        component2
+        c1Type,
+        c1System,
+        c1Value,
+        c1Raw,
+        c1Low,
+        c1High,
+        c2Type,
+        c2System,
+        c2Value,
+        c2Raw,
+        c2Low,
+        c2High,
+        c3Type,
+        c3System,
+        c3Value,
+        c3Raw,
+        c3Low,
+        c3High
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -4601,21 +4701,81 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
     } else if (isInserting) {
       context.missing(_paramIndexMeta);
     }
-    if (data.containsKey('component1')) {
-      context.handle(
-          _component1Meta,
-          component1.isAcceptableOrUnknown(
-              data['component1']!, _component1Meta));
+    if (data.containsKey('c1_type')) {
+      context.handle(_c1TypeMeta,
+          c1Type.isAcceptableOrUnknown(data['c1_type']!, _c1TypeMeta));
     } else if (isInserting) {
-      context.missing(_component1Meta);
+      context.missing(_c1TypeMeta);
     }
-    if (data.containsKey('component2')) {
+    if (data.containsKey('c1_system')) {
+      context.handle(_c1SystemMeta,
+          c1System.isAcceptableOrUnknown(data['c1_system']!, _c1SystemMeta));
+    }
+    if (data.containsKey('c1_value')) {
+      context.handle(_c1ValueMeta,
+          c1Value.isAcceptableOrUnknown(data['c1_value']!, _c1ValueMeta));
+    }
+    if (data.containsKey('c1_raw')) {
       context.handle(
-          _component2Meta,
-          component2.isAcceptableOrUnknown(
-              data['component2']!, _component2Meta));
+          _c1RawMeta, c1Raw.isAcceptableOrUnknown(data['c1_raw']!, _c1RawMeta));
+    }
+    if (data.containsKey('c1_low')) {
+      context.handle(
+          _c1LowMeta, c1Low.isAcceptableOrUnknown(data['c1_low']!, _c1LowMeta));
+    }
+    if (data.containsKey('c1_high')) {
+      context.handle(_c1HighMeta,
+          c1High.isAcceptableOrUnknown(data['c1_high']!, _c1HighMeta));
+    }
+    if (data.containsKey('c2_type')) {
+      context.handle(_c2TypeMeta,
+          c2Type.isAcceptableOrUnknown(data['c2_type']!, _c2TypeMeta));
     } else if (isInserting) {
-      context.missing(_component2Meta);
+      context.missing(_c2TypeMeta);
+    }
+    if (data.containsKey('c2_system')) {
+      context.handle(_c2SystemMeta,
+          c2System.isAcceptableOrUnknown(data['c2_system']!, _c2SystemMeta));
+    }
+    if (data.containsKey('c2_value')) {
+      context.handle(_c2ValueMeta,
+          c2Value.isAcceptableOrUnknown(data['c2_value']!, _c2ValueMeta));
+    }
+    if (data.containsKey('c2_raw')) {
+      context.handle(
+          _c2RawMeta, c2Raw.isAcceptableOrUnknown(data['c2_raw']!, _c2RawMeta));
+    }
+    if (data.containsKey('c2_low')) {
+      context.handle(
+          _c2LowMeta, c2Low.isAcceptableOrUnknown(data['c2_low']!, _c2LowMeta));
+    }
+    if (data.containsKey('c2_high')) {
+      context.handle(_c2HighMeta,
+          c2High.isAcceptableOrUnknown(data['c2_high']!, _c2HighMeta));
+    }
+    if (data.containsKey('c3_type')) {
+      context.handle(_c3TypeMeta,
+          c3Type.isAcceptableOrUnknown(data['c3_type']!, _c3TypeMeta));
+    }
+    if (data.containsKey('c3_system')) {
+      context.handle(_c3SystemMeta,
+          c3System.isAcceptableOrUnknown(data['c3_system']!, _c3SystemMeta));
+    }
+    if (data.containsKey('c3_value')) {
+      context.handle(_c3ValueMeta,
+          c3Value.isAcceptableOrUnknown(data['c3_value']!, _c3ValueMeta));
+    }
+    if (data.containsKey('c3_raw')) {
+      context.handle(
+          _c3RawMeta, c3Raw.isAcceptableOrUnknown(data['c3_raw']!, _c3RawMeta));
+    }
+    if (data.containsKey('c3_low')) {
+      context.handle(
+          _c3LowMeta, c3Low.isAcceptableOrUnknown(data['c3_low']!, _c3LowMeta));
+    }
+    if (data.containsKey('c3_high')) {
+      context.handle(_c3HighMeta,
+          c3High.isAcceptableOrUnknown(data['c3_high']!, _c3HighMeta));
     }
     return context;
   }
@@ -4640,10 +4800,42 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}param_index'])!,
-      component1: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}component1'])!,
-      component2: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}component2'])!,
+      c1Type: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c1_type'])!,
+      c1System: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c1_system']),
+      c1Value: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c1_value']),
+      c1Raw: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c1_raw']),
+      c1Low: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}c1_low']),
+      c1High: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}c1_high']),
+      c2Type: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c2_type'])!,
+      c2System: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c2_system']),
+      c2Value: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c2_value']),
+      c2Raw: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c2_raw']),
+      c2Low: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}c2_low']),
+      c2High: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}c2_high']),
+      c3Type: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c3_type']),
+      c3System: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c3_system']),
+      c3Value: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c3_value']),
+      c3Raw: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}c3_raw']),
+      c3Low: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}c3_low']),
+      c3High: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}c3_high']),
     );
   }
 
@@ -4664,20 +4856,70 @@ class CompositeSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
+  /// FHIRPath expression identifying the source element
   final String searchPath;
 
-  /// HTTP search parameter name (e.g., 'monitoring-program-name')
+  /// HTTP search parameter name (e.g., 'code-value-quantity')
   final String searchName;
 
-  /// Index for multiple values from the same path
+  /// Distinguishes the rows of one element and one parameter
   final int paramIndex;
 
-  /// First component of the composite value
-  final String component1;
+  /// Component 1: its type (token, quantity, number, date, string,
+  /// reference), then the same fields its own index table would hold.
+  final String c1Type;
 
-  /// Second component of the composite value
-  final String component2;
+  /// Token system, quantity system, reference resource type; else null.
+  final String? c1System;
+
+  /// Token code, quantity code, normalized string, reference id part.
+  final String? c1Value;
+
+  /// Reference as written, quantity unit; else null.
+  final String? c1Raw;
+
+  /// Inclusive low bound: number and quantity ranges, dates as seconds.
+  final double? c1Low;
+
+  /// Exclusive high bound; see [c1Low].
+  final double? c1High;
+
+  /// Component 2, as [c1Type].
+  final String c2Type;
+
+  /// As [c1System].
+  final String? c2System;
+
+  /// As [c1Value].
+  final String? c2Value;
+
+  /// As [c1Raw].
+  final String? c2Raw;
+
+  /// As [c1Low].
+  final double? c2Low;
+
+  /// As [c1High].
+  final double? c2High;
+
+  /// Component 3, present on four MolecularSequence parameters; null type
+  /// when the composite has two components.
+  final String? c3Type;
+
+  /// As [c1System].
+  final String? c3System;
+
+  /// As [c1Value].
+  final String? c3Value;
+
+  /// As [c1Raw].
+  final String? c3Raw;
+
+  /// As [c1Low].
+  final double? c3Low;
+
+  /// As [c1High].
+  final double? c3High;
   const CompositeSearchParameter(
       {required this.resourceType,
       required this.id,
@@ -4685,8 +4927,24 @@ class CompositeSearchParameter extends DataClass
       required this.searchPath,
       required this.searchName,
       required this.paramIndex,
-      required this.component1,
-      required this.component2});
+      required this.c1Type,
+      this.c1System,
+      this.c1Value,
+      this.c1Raw,
+      this.c1Low,
+      this.c1High,
+      required this.c2Type,
+      this.c2System,
+      this.c2Value,
+      this.c2Raw,
+      this.c2Low,
+      this.c2High,
+      this.c3Type,
+      this.c3System,
+      this.c3Value,
+      this.c3Raw,
+      this.c3Low,
+      this.c3High});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -4696,8 +4954,56 @@ class CompositeSearchParameter extends DataClass
     map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
-    map['component1'] = Variable<String>(component1);
-    map['component2'] = Variable<String>(component2);
+    map['c1_type'] = Variable<String>(c1Type);
+    if (!nullToAbsent || c1System != null) {
+      map['c1_system'] = Variable<String>(c1System);
+    }
+    if (!nullToAbsent || c1Value != null) {
+      map['c1_value'] = Variable<String>(c1Value);
+    }
+    if (!nullToAbsent || c1Raw != null) {
+      map['c1_raw'] = Variable<String>(c1Raw);
+    }
+    if (!nullToAbsent || c1Low != null) {
+      map['c1_low'] = Variable<double>(c1Low);
+    }
+    if (!nullToAbsent || c1High != null) {
+      map['c1_high'] = Variable<double>(c1High);
+    }
+    map['c2_type'] = Variable<String>(c2Type);
+    if (!nullToAbsent || c2System != null) {
+      map['c2_system'] = Variable<String>(c2System);
+    }
+    if (!nullToAbsent || c2Value != null) {
+      map['c2_value'] = Variable<String>(c2Value);
+    }
+    if (!nullToAbsent || c2Raw != null) {
+      map['c2_raw'] = Variable<String>(c2Raw);
+    }
+    if (!nullToAbsent || c2Low != null) {
+      map['c2_low'] = Variable<double>(c2Low);
+    }
+    if (!nullToAbsent || c2High != null) {
+      map['c2_high'] = Variable<double>(c2High);
+    }
+    if (!nullToAbsent || c3Type != null) {
+      map['c3_type'] = Variable<String>(c3Type);
+    }
+    if (!nullToAbsent || c3System != null) {
+      map['c3_system'] = Variable<String>(c3System);
+    }
+    if (!nullToAbsent || c3Value != null) {
+      map['c3_value'] = Variable<String>(c3Value);
+    }
+    if (!nullToAbsent || c3Raw != null) {
+      map['c3_raw'] = Variable<String>(c3Raw);
+    }
+    if (!nullToAbsent || c3Low != null) {
+      map['c3_low'] = Variable<double>(c3Low);
+    }
+    if (!nullToAbsent || c3High != null) {
+      map['c3_high'] = Variable<double>(c3High);
+    }
     return map;
   }
 
@@ -4709,8 +5015,46 @@ class CompositeSearchParameter extends DataClass
       searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
-      component1: Value(component1),
-      component2: Value(component2),
+      c1Type: Value(c1Type),
+      c1System: c1System == null && nullToAbsent
+          ? const Value.absent()
+          : Value(c1System),
+      c1Value: c1Value == null && nullToAbsent
+          ? const Value.absent()
+          : Value(c1Value),
+      c1Raw:
+          c1Raw == null && nullToAbsent ? const Value.absent() : Value(c1Raw),
+      c1Low:
+          c1Low == null && nullToAbsent ? const Value.absent() : Value(c1Low),
+      c1High:
+          c1High == null && nullToAbsent ? const Value.absent() : Value(c1High),
+      c2Type: Value(c2Type),
+      c2System: c2System == null && nullToAbsent
+          ? const Value.absent()
+          : Value(c2System),
+      c2Value: c2Value == null && nullToAbsent
+          ? const Value.absent()
+          : Value(c2Value),
+      c2Raw:
+          c2Raw == null && nullToAbsent ? const Value.absent() : Value(c2Raw),
+      c2Low:
+          c2Low == null && nullToAbsent ? const Value.absent() : Value(c2Low),
+      c2High:
+          c2High == null && nullToAbsent ? const Value.absent() : Value(c2High),
+      c3Type:
+          c3Type == null && nullToAbsent ? const Value.absent() : Value(c3Type),
+      c3System: c3System == null && nullToAbsent
+          ? const Value.absent()
+          : Value(c3System),
+      c3Value: c3Value == null && nullToAbsent
+          ? const Value.absent()
+          : Value(c3Value),
+      c3Raw:
+          c3Raw == null && nullToAbsent ? const Value.absent() : Value(c3Raw),
+      c3Low:
+          c3Low == null && nullToAbsent ? const Value.absent() : Value(c3Low),
+      c3High:
+          c3High == null && nullToAbsent ? const Value.absent() : Value(c3High),
     );
   }
 
@@ -4724,8 +5068,24 @@ class CompositeSearchParameter extends DataClass
       searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
-      component1: serializer.fromJson<String>(json['component1']),
-      component2: serializer.fromJson<String>(json['component2']),
+      c1Type: serializer.fromJson<String>(json['c1Type']),
+      c1System: serializer.fromJson<String?>(json['c1System']),
+      c1Value: serializer.fromJson<String?>(json['c1Value']),
+      c1Raw: serializer.fromJson<String?>(json['c1Raw']),
+      c1Low: serializer.fromJson<double?>(json['c1Low']),
+      c1High: serializer.fromJson<double?>(json['c1High']),
+      c2Type: serializer.fromJson<String>(json['c2Type']),
+      c2System: serializer.fromJson<String?>(json['c2System']),
+      c2Value: serializer.fromJson<String?>(json['c2Value']),
+      c2Raw: serializer.fromJson<String?>(json['c2Raw']),
+      c2Low: serializer.fromJson<double?>(json['c2Low']),
+      c2High: serializer.fromJson<double?>(json['c2High']),
+      c3Type: serializer.fromJson<String?>(json['c3Type']),
+      c3System: serializer.fromJson<String?>(json['c3System']),
+      c3Value: serializer.fromJson<String?>(json['c3Value']),
+      c3Raw: serializer.fromJson<String?>(json['c3Raw']),
+      c3Low: serializer.fromJson<double?>(json['c3Low']),
+      c3High: serializer.fromJson<double?>(json['c3High']),
     );
   }
   @override
@@ -4738,8 +5098,24 @@ class CompositeSearchParameter extends DataClass
       'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
-      'component1': serializer.toJson<String>(component1),
-      'component2': serializer.toJson<String>(component2),
+      'c1Type': serializer.toJson<String>(c1Type),
+      'c1System': serializer.toJson<String?>(c1System),
+      'c1Value': serializer.toJson<String?>(c1Value),
+      'c1Raw': serializer.toJson<String?>(c1Raw),
+      'c1Low': serializer.toJson<double?>(c1Low),
+      'c1High': serializer.toJson<double?>(c1High),
+      'c2Type': serializer.toJson<String>(c2Type),
+      'c2System': serializer.toJson<String?>(c2System),
+      'c2Value': serializer.toJson<String?>(c2Value),
+      'c2Raw': serializer.toJson<String?>(c2Raw),
+      'c2Low': serializer.toJson<double?>(c2Low),
+      'c2High': serializer.toJson<double?>(c2High),
+      'c3Type': serializer.toJson<String?>(c3Type),
+      'c3System': serializer.toJson<String?>(c3System),
+      'c3Value': serializer.toJson<String?>(c3Value),
+      'c3Raw': serializer.toJson<String?>(c3Raw),
+      'c3Low': serializer.toJson<double?>(c3Low),
+      'c3High': serializer.toJson<double?>(c3High),
     };
   }
 
@@ -4750,8 +5126,24 @@ class CompositeSearchParameter extends DataClass
           String? searchPath,
           String? searchName,
           int? paramIndex,
-          String? component1,
-          String? component2}) =>
+          String? c1Type,
+          Value<String?> c1System = const Value.absent(),
+          Value<String?> c1Value = const Value.absent(),
+          Value<String?> c1Raw = const Value.absent(),
+          Value<double?> c1Low = const Value.absent(),
+          Value<double?> c1High = const Value.absent(),
+          String? c2Type,
+          Value<String?> c2System = const Value.absent(),
+          Value<String?> c2Value = const Value.absent(),
+          Value<String?> c2Raw = const Value.absent(),
+          Value<double?> c2Low = const Value.absent(),
+          Value<double?> c2High = const Value.absent(),
+          Value<String?> c3Type = const Value.absent(),
+          Value<String?> c3System = const Value.absent(),
+          Value<String?> c3Value = const Value.absent(),
+          Value<String?> c3Raw = const Value.absent(),
+          Value<double?> c3Low = const Value.absent(),
+          Value<double?> c3High = const Value.absent()}) =>
       CompositeSearchParameter(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
@@ -4759,8 +5151,24 @@ class CompositeSearchParameter extends DataClass
         searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
-        component1: component1 ?? this.component1,
-        component2: component2 ?? this.component2,
+        c1Type: c1Type ?? this.c1Type,
+        c1System: c1System.present ? c1System.value : this.c1System,
+        c1Value: c1Value.present ? c1Value.value : this.c1Value,
+        c1Raw: c1Raw.present ? c1Raw.value : this.c1Raw,
+        c1Low: c1Low.present ? c1Low.value : this.c1Low,
+        c1High: c1High.present ? c1High.value : this.c1High,
+        c2Type: c2Type ?? this.c2Type,
+        c2System: c2System.present ? c2System.value : this.c2System,
+        c2Value: c2Value.present ? c2Value.value : this.c2Value,
+        c2Raw: c2Raw.present ? c2Raw.value : this.c2Raw,
+        c2Low: c2Low.present ? c2Low.value : this.c2Low,
+        c2High: c2High.present ? c2High.value : this.c2High,
+        c3Type: c3Type.present ? c3Type.value : this.c3Type,
+        c3System: c3System.present ? c3System.value : this.c3System,
+        c3Value: c3Value.present ? c3Value.value : this.c3Value,
+        c3Raw: c3Raw.present ? c3Raw.value : this.c3Raw,
+        c3Low: c3Low.present ? c3Low.value : this.c3Low,
+        c3High: c3High.present ? c3High.value : this.c3High,
       );
   CompositeSearchParameter copyWithCompanion(
       CompositeSearchParametersCompanion data) {
@@ -4777,10 +5185,24 @@ class CompositeSearchParameter extends DataClass
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
           data.paramIndex.present ? data.paramIndex.value : this.paramIndex,
-      component1:
-          data.component1.present ? data.component1.value : this.component1,
-      component2:
-          data.component2.present ? data.component2.value : this.component2,
+      c1Type: data.c1Type.present ? data.c1Type.value : this.c1Type,
+      c1System: data.c1System.present ? data.c1System.value : this.c1System,
+      c1Value: data.c1Value.present ? data.c1Value.value : this.c1Value,
+      c1Raw: data.c1Raw.present ? data.c1Raw.value : this.c1Raw,
+      c1Low: data.c1Low.present ? data.c1Low.value : this.c1Low,
+      c1High: data.c1High.present ? data.c1High.value : this.c1High,
+      c2Type: data.c2Type.present ? data.c2Type.value : this.c2Type,
+      c2System: data.c2System.present ? data.c2System.value : this.c2System,
+      c2Value: data.c2Value.present ? data.c2Value.value : this.c2Value,
+      c2Raw: data.c2Raw.present ? data.c2Raw.value : this.c2Raw,
+      c2Low: data.c2Low.present ? data.c2Low.value : this.c2Low,
+      c2High: data.c2High.present ? data.c2High.value : this.c2High,
+      c3Type: data.c3Type.present ? data.c3Type.value : this.c3Type,
+      c3System: data.c3System.present ? data.c3System.value : this.c3System,
+      c3Value: data.c3Value.present ? data.c3Value.value : this.c3Value,
+      c3Raw: data.c3Raw.present ? data.c3Raw.value : this.c3Raw,
+      c3Low: data.c3Low.present ? data.c3Low.value : this.c3Low,
+      c3High: data.c3High.present ? data.c3High.value : this.c3High,
     );
   }
 
@@ -4793,15 +5215,55 @@ class CompositeSearchParameter extends DataClass
           ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
-          ..write('component1: $component1, ')
-          ..write('component2: $component2')
+          ..write('c1Type: $c1Type, ')
+          ..write('c1System: $c1System, ')
+          ..write('c1Value: $c1Value, ')
+          ..write('c1Raw: $c1Raw, ')
+          ..write('c1Low: $c1Low, ')
+          ..write('c1High: $c1High, ')
+          ..write('c2Type: $c2Type, ')
+          ..write('c2System: $c2System, ')
+          ..write('c2Value: $c2Value, ')
+          ..write('c2Raw: $c2Raw, ')
+          ..write('c2Low: $c2Low, ')
+          ..write('c2High: $c2High, ')
+          ..write('c3Type: $c3Type, ')
+          ..write('c3System: $c3System, ')
+          ..write('c3Value: $c3Value, ')
+          ..write('c3Raw: $c3Raw, ')
+          ..write('c3Low: $c3Low, ')
+          ..write('c3High: $c3High')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, component1, component2);
+  int get hashCode => Object.hashAll([
+        resourceType,
+        id,
+        lastUpdated,
+        searchPath,
+        searchName,
+        paramIndex,
+        c1Type,
+        c1System,
+        c1Value,
+        c1Raw,
+        c1Low,
+        c1High,
+        c2Type,
+        c2System,
+        c2Value,
+        c2Raw,
+        c2Low,
+        c2High,
+        c3Type,
+        c3System,
+        c3Value,
+        c3Raw,
+        c3Low,
+        c3High
+      ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -4812,8 +5274,24 @@ class CompositeSearchParameter extends DataClass
           other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
-          other.component1 == this.component1 &&
-          other.component2 == this.component2);
+          other.c1Type == this.c1Type &&
+          other.c1System == this.c1System &&
+          other.c1Value == this.c1Value &&
+          other.c1Raw == this.c1Raw &&
+          other.c1Low == this.c1Low &&
+          other.c1High == this.c1High &&
+          other.c2Type == this.c2Type &&
+          other.c2System == this.c2System &&
+          other.c2Value == this.c2Value &&
+          other.c2Raw == this.c2Raw &&
+          other.c2Low == this.c2Low &&
+          other.c2High == this.c2High &&
+          other.c3Type == this.c3Type &&
+          other.c3System == this.c3System &&
+          other.c3Value == this.c3Value &&
+          other.c3Raw == this.c3Raw &&
+          other.c3Low == this.c3Low &&
+          other.c3High == this.c3High);
 }
 
 class CompositeSearchParametersCompanion
@@ -4824,8 +5302,24 @@ class CompositeSearchParametersCompanion
   final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
-  final Value<String> component1;
-  final Value<String> component2;
+  final Value<String> c1Type;
+  final Value<String?> c1System;
+  final Value<String?> c1Value;
+  final Value<String?> c1Raw;
+  final Value<double?> c1Low;
+  final Value<double?> c1High;
+  final Value<String> c2Type;
+  final Value<String?> c2System;
+  final Value<String?> c2Value;
+  final Value<String?> c2Raw;
+  final Value<double?> c2Low;
+  final Value<double?> c2High;
+  final Value<String?> c3Type;
+  final Value<String?> c3System;
+  final Value<String?> c3Value;
+  final Value<String?> c3Raw;
+  final Value<double?> c3Low;
+  final Value<double?> c3High;
   final Value<int> rowid;
   const CompositeSearchParametersCompanion({
     this.resourceType = const Value.absent(),
@@ -4834,8 +5328,24 @@ class CompositeSearchParametersCompanion
     this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
-    this.component1 = const Value.absent(),
-    this.component2 = const Value.absent(),
+    this.c1Type = const Value.absent(),
+    this.c1System = const Value.absent(),
+    this.c1Value = const Value.absent(),
+    this.c1Raw = const Value.absent(),
+    this.c1Low = const Value.absent(),
+    this.c1High = const Value.absent(),
+    this.c2Type = const Value.absent(),
+    this.c2System = const Value.absent(),
+    this.c2Value = const Value.absent(),
+    this.c2Raw = const Value.absent(),
+    this.c2Low = const Value.absent(),
+    this.c2High = const Value.absent(),
+    this.c3Type = const Value.absent(),
+    this.c3System = const Value.absent(),
+    this.c3Value = const Value.absent(),
+    this.c3Raw = const Value.absent(),
+    this.c3Low = const Value.absent(),
+    this.c3High = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   CompositeSearchParametersCompanion.insert({
@@ -4845,16 +5355,32 @@ class CompositeSearchParametersCompanion
     required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
-    required String component1,
-    required String component2,
+    required String c1Type,
+    this.c1System = const Value.absent(),
+    this.c1Value = const Value.absent(),
+    this.c1Raw = const Value.absent(),
+    this.c1Low = const Value.absent(),
+    this.c1High = const Value.absent(),
+    required String c2Type,
+    this.c2System = const Value.absent(),
+    this.c2Value = const Value.absent(),
+    this.c2Raw = const Value.absent(),
+    this.c2Low = const Value.absent(),
+    this.c2High = const Value.absent(),
+    this.c3Type = const Value.absent(),
+    this.c3System = const Value.absent(),
+    this.c3Value = const Value.absent(),
+    this.c3Raw = const Value.absent(),
+    this.c3Low = const Value.absent(),
+    this.c3High = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
         searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
-        component1 = Value(component1),
-        component2 = Value(component2);
+        c1Type = Value(c1Type),
+        c2Type = Value(c2Type);
   static Insertable<CompositeSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
@@ -4862,8 +5388,24 @@ class CompositeSearchParametersCompanion
     Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
-    Expression<String>? component1,
-    Expression<String>? component2,
+    Expression<String>? c1Type,
+    Expression<String>? c1System,
+    Expression<String>? c1Value,
+    Expression<String>? c1Raw,
+    Expression<double>? c1Low,
+    Expression<double>? c1High,
+    Expression<String>? c2Type,
+    Expression<String>? c2System,
+    Expression<String>? c2Value,
+    Expression<String>? c2Raw,
+    Expression<double>? c2Low,
+    Expression<double>? c2High,
+    Expression<String>? c3Type,
+    Expression<String>? c3System,
+    Expression<String>? c3Value,
+    Expression<String>? c3Raw,
+    Expression<double>? c3Low,
+    Expression<double>? c3High,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -4873,8 +5415,24 @@ class CompositeSearchParametersCompanion
       if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
-      if (component1 != null) 'component1': component1,
-      if (component2 != null) 'component2': component2,
+      if (c1Type != null) 'c1_type': c1Type,
+      if (c1System != null) 'c1_system': c1System,
+      if (c1Value != null) 'c1_value': c1Value,
+      if (c1Raw != null) 'c1_raw': c1Raw,
+      if (c1Low != null) 'c1_low': c1Low,
+      if (c1High != null) 'c1_high': c1High,
+      if (c2Type != null) 'c2_type': c2Type,
+      if (c2System != null) 'c2_system': c2System,
+      if (c2Value != null) 'c2_value': c2Value,
+      if (c2Raw != null) 'c2_raw': c2Raw,
+      if (c2Low != null) 'c2_low': c2Low,
+      if (c2High != null) 'c2_high': c2High,
+      if (c3Type != null) 'c3_type': c3Type,
+      if (c3System != null) 'c3_system': c3System,
+      if (c3Value != null) 'c3_value': c3Value,
+      if (c3Raw != null) 'c3_raw': c3Raw,
+      if (c3Low != null) 'c3_low': c3Low,
+      if (c3High != null) 'c3_high': c3High,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -4886,8 +5444,24 @@ class CompositeSearchParametersCompanion
       Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
-      Value<String>? component1,
-      Value<String>? component2,
+      Value<String>? c1Type,
+      Value<String?>? c1System,
+      Value<String?>? c1Value,
+      Value<String?>? c1Raw,
+      Value<double?>? c1Low,
+      Value<double?>? c1High,
+      Value<String>? c2Type,
+      Value<String?>? c2System,
+      Value<String?>? c2Value,
+      Value<String?>? c2Raw,
+      Value<double?>? c2Low,
+      Value<double?>? c2High,
+      Value<String?>? c3Type,
+      Value<String?>? c3System,
+      Value<String?>? c3Value,
+      Value<String?>? c3Raw,
+      Value<double?>? c3Low,
+      Value<double?>? c3High,
       Value<int>? rowid}) {
     return CompositeSearchParametersCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -4896,8 +5470,24 @@ class CompositeSearchParametersCompanion
       searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
-      component1: component1 ?? this.component1,
-      component2: component2 ?? this.component2,
+      c1Type: c1Type ?? this.c1Type,
+      c1System: c1System ?? this.c1System,
+      c1Value: c1Value ?? this.c1Value,
+      c1Raw: c1Raw ?? this.c1Raw,
+      c1Low: c1Low ?? this.c1Low,
+      c1High: c1High ?? this.c1High,
+      c2Type: c2Type ?? this.c2Type,
+      c2System: c2System ?? this.c2System,
+      c2Value: c2Value ?? this.c2Value,
+      c2Raw: c2Raw ?? this.c2Raw,
+      c2Low: c2Low ?? this.c2Low,
+      c2High: c2High ?? this.c2High,
+      c3Type: c3Type ?? this.c3Type,
+      c3System: c3System ?? this.c3System,
+      c3Value: c3Value ?? this.c3Value,
+      c3Raw: c3Raw ?? this.c3Raw,
+      c3Low: c3Low ?? this.c3Low,
+      c3High: c3High ?? this.c3High,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -4923,11 +5513,59 @@ class CompositeSearchParametersCompanion
     if (paramIndex.present) {
       map['param_index'] = Variable<int>(paramIndex.value);
     }
-    if (component1.present) {
-      map['component1'] = Variable<String>(component1.value);
+    if (c1Type.present) {
+      map['c1_type'] = Variable<String>(c1Type.value);
     }
-    if (component2.present) {
-      map['component2'] = Variable<String>(component2.value);
+    if (c1System.present) {
+      map['c1_system'] = Variable<String>(c1System.value);
+    }
+    if (c1Value.present) {
+      map['c1_value'] = Variable<String>(c1Value.value);
+    }
+    if (c1Raw.present) {
+      map['c1_raw'] = Variable<String>(c1Raw.value);
+    }
+    if (c1Low.present) {
+      map['c1_low'] = Variable<double>(c1Low.value);
+    }
+    if (c1High.present) {
+      map['c1_high'] = Variable<double>(c1High.value);
+    }
+    if (c2Type.present) {
+      map['c2_type'] = Variable<String>(c2Type.value);
+    }
+    if (c2System.present) {
+      map['c2_system'] = Variable<String>(c2System.value);
+    }
+    if (c2Value.present) {
+      map['c2_value'] = Variable<String>(c2Value.value);
+    }
+    if (c2Raw.present) {
+      map['c2_raw'] = Variable<String>(c2Raw.value);
+    }
+    if (c2Low.present) {
+      map['c2_low'] = Variable<double>(c2Low.value);
+    }
+    if (c2High.present) {
+      map['c2_high'] = Variable<double>(c2High.value);
+    }
+    if (c3Type.present) {
+      map['c3_type'] = Variable<String>(c3Type.value);
+    }
+    if (c3System.present) {
+      map['c3_system'] = Variable<String>(c3System.value);
+    }
+    if (c3Value.present) {
+      map['c3_value'] = Variable<String>(c3Value.value);
+    }
+    if (c3Raw.present) {
+      map['c3_raw'] = Variable<String>(c3Raw.value);
+    }
+    if (c3Low.present) {
+      map['c3_low'] = Variable<double>(c3Low.value);
+    }
+    if (c3High.present) {
+      map['c3_high'] = Variable<double>(c3High.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -4944,8 +5582,24 @@ class CompositeSearchParametersCompanion
           ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
-          ..write('component1: $component1, ')
-          ..write('component2: $component2, ')
+          ..write('c1Type: $c1Type, ')
+          ..write('c1System: $c1System, ')
+          ..write('c1Value: $c1Value, ')
+          ..write('c1Raw: $c1Raw, ')
+          ..write('c1Low: $c1Low, ')
+          ..write('c1High: $c1High, ')
+          ..write('c2Type: $c2Type, ')
+          ..write('c2System: $c2System, ')
+          ..write('c2Value: $c2Value, ')
+          ..write('c2Raw: $c2Raw, ')
+          ..write('c2Low: $c2Low, ')
+          ..write('c2High: $c2High, ')
+          ..write('c3Type: $c3Type, ')
+          ..write('c3System: $c3System, ')
+          ..write('c3Value: $c3Value, ')
+          ..write('c3Raw: $c3Raw, ')
+          ..write('c3Low: $c3Low, ')
+          ..write('c3High: $c3High, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -5001,6 +5655,18 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
   late final GeneratedColumn<String> specialValue = GeneratedColumn<String>(
       'special_value', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _latitudeMeta =
+      const VerificationMeta('latitude');
+  @override
+  late final GeneratedColumn<double> latitude = GeneratedColumn<double>(
+      'latitude', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _longitudeMeta =
+      const VerificationMeta('longitude');
+  @override
+  late final GeneratedColumn<double> longitude = GeneratedColumn<double>(
+      'longitude', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         resourceType,
@@ -5009,7 +5675,9 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
         searchPath,
         searchName,
         paramIndex,
-        specialValue
+        specialValue,
+        latitude,
+        longitude
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -5073,6 +5741,14 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
     } else if (isInserting) {
       context.missing(_specialValueMeta);
     }
+    if (data.containsKey('latitude')) {
+      context.handle(_latitudeMeta,
+          latitude.isAcceptableOrUnknown(data['latitude']!, _latitudeMeta));
+    }
+    if (data.containsKey('longitude')) {
+      context.handle(_longitudeMeta,
+          longitude.isAcceptableOrUnknown(data['longitude']!, _longitudeMeta));
+    }
     return context;
   }
 
@@ -5097,6 +5773,10 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
           .read(DriftSqlType.int, data['${effectivePrefix}param_index'])!,
       specialValue: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}special_value'])!,
+      latitude: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}latitude']),
+      longitude: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}longitude']),
     );
   }
 
@@ -5128,6 +5808,12 @@ class SpecialSearchParameter extends DataClass
 
   /// A generic storage column for special search parameters
   final String specialValue;
+
+  /// `Location.position.latitude`, for `near` (R4B 3.1.1.4.21).
+  final double? latitude;
+
+  /// `Location.position.longitude`, for `near`.
+  final double? longitude;
   const SpecialSearchParameter(
       {required this.resourceType,
       required this.id,
@@ -5135,7 +5821,9 @@ class SpecialSearchParameter extends DataClass
       required this.searchPath,
       required this.searchName,
       required this.paramIndex,
-      required this.specialValue});
+      required this.specialValue,
+      this.latitude,
+      this.longitude});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -5146,6 +5834,12 @@ class SpecialSearchParameter extends DataClass
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['special_value'] = Variable<String>(specialValue);
+    if (!nullToAbsent || latitude != null) {
+      map['latitude'] = Variable<double>(latitude);
+    }
+    if (!nullToAbsent || longitude != null) {
+      map['longitude'] = Variable<double>(longitude);
+    }
     return map;
   }
 
@@ -5158,6 +5852,12 @@ class SpecialSearchParameter extends DataClass
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       specialValue: Value(specialValue),
+      latitude: latitude == null && nullToAbsent
+          ? const Value.absent()
+          : Value(latitude),
+      longitude: longitude == null && nullToAbsent
+          ? const Value.absent()
+          : Value(longitude),
     );
   }
 
@@ -5172,6 +5872,8 @@ class SpecialSearchParameter extends DataClass
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       specialValue: serializer.fromJson<String>(json['specialValue']),
+      latitude: serializer.fromJson<double?>(json['latitude']),
+      longitude: serializer.fromJson<double?>(json['longitude']),
     );
   }
   @override
@@ -5185,6 +5887,8 @@ class SpecialSearchParameter extends DataClass
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'specialValue': serializer.toJson<String>(specialValue),
+      'latitude': serializer.toJson<double?>(latitude),
+      'longitude': serializer.toJson<double?>(longitude),
     };
   }
 
@@ -5195,7 +5899,9 @@ class SpecialSearchParameter extends DataClass
           String? searchPath,
           String? searchName,
           int? paramIndex,
-          String? specialValue}) =>
+          String? specialValue,
+          Value<double?> latitude = const Value.absent(),
+          Value<double?> longitude = const Value.absent()}) =>
       SpecialSearchParameter(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
@@ -5204,6 +5910,8 @@ class SpecialSearchParameter extends DataClass
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         specialValue: specialValue ?? this.specialValue,
+        latitude: latitude.present ? latitude.value : this.latitude,
+        longitude: longitude.present ? longitude.value : this.longitude,
       );
   SpecialSearchParameter copyWithCompanion(
       SpecialSearchParametersCompanion data) {
@@ -5223,6 +5931,8 @@ class SpecialSearchParameter extends DataClass
       specialValue: data.specialValue.present
           ? data.specialValue.value
           : this.specialValue,
+      latitude: data.latitude.present ? data.latitude.value : this.latitude,
+      longitude: data.longitude.present ? data.longitude.value : this.longitude,
     );
   }
 
@@ -5235,14 +5945,16 @@ class SpecialSearchParameter extends DataClass
           ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
-          ..write('specialValue: $specialValue')
+          ..write('specialValue: $specialValue, ')
+          ..write('latitude: $latitude, ')
+          ..write('longitude: $longitude')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, specialValue);
+      searchName, paramIndex, specialValue, latitude, longitude);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -5253,7 +5965,9 @@ class SpecialSearchParameter extends DataClass
           other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
-          other.specialValue == this.specialValue);
+          other.specialValue == this.specialValue &&
+          other.latitude == this.latitude &&
+          other.longitude == this.longitude);
 }
 
 class SpecialSearchParametersCompanion
@@ -5265,6 +5979,8 @@ class SpecialSearchParametersCompanion
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> specialValue;
+  final Value<double?> latitude;
+  final Value<double?> longitude;
   final Value<int> rowid;
   const SpecialSearchParametersCompanion({
     this.resourceType = const Value.absent(),
@@ -5274,6 +5990,8 @@ class SpecialSearchParametersCompanion
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.specialValue = const Value.absent(),
+    this.latitude = const Value.absent(),
+    this.longitude = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   SpecialSearchParametersCompanion.insert({
@@ -5284,6 +6002,8 @@ class SpecialSearchParametersCompanion
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String specialValue,
+    this.latitude = const Value.absent(),
+    this.longitude = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
@@ -5299,6 +6019,8 @@ class SpecialSearchParametersCompanion
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? specialValue,
+    Expression<double>? latitude,
+    Expression<double>? longitude,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -5309,6 +6031,8 @@ class SpecialSearchParametersCompanion
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (specialValue != null) 'special_value': specialValue,
+      if (latitude != null) 'latitude': latitude,
+      if (longitude != null) 'longitude': longitude,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -5321,6 +6045,8 @@ class SpecialSearchParametersCompanion
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? specialValue,
+      Value<double?>? latitude,
+      Value<double?>? longitude,
       Value<int>? rowid}) {
     return SpecialSearchParametersCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -5330,6 +6056,8 @@ class SpecialSearchParametersCompanion
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       specialValue: specialValue ?? this.specialValue,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -5358,6 +6086,12 @@ class SpecialSearchParametersCompanion
     if (specialValue.present) {
       map['special_value'] = Variable<String>(specialValue.value);
     }
+    if (latitude.present) {
+      map['latitude'] = Variable<double>(latitude.value);
+    }
+    if (longitude.present) {
+      map['longitude'] = Variable<double>(longitude.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -5374,6 +6108,8 @@ class SpecialSearchParametersCompanion
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('specialValue: $specialValue, ')
+          ..write('latitude: $latitude, ')
+          ..write('longitude: $longitude, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -8316,8 +9052,24 @@ typedef $$CompositeSearchParametersTableCreateCompanionBuilder
   required String searchPath,
   Value<String> searchName,
   required int paramIndex,
-  required String component1,
-  required String component2,
+  required String c1Type,
+  Value<String?> c1System,
+  Value<String?> c1Value,
+  Value<String?> c1Raw,
+  Value<double?> c1Low,
+  Value<double?> c1High,
+  required String c2Type,
+  Value<String?> c2System,
+  Value<String?> c2Value,
+  Value<String?> c2Raw,
+  Value<double?> c2Low,
+  Value<double?> c2High,
+  Value<String?> c3Type,
+  Value<String?> c3System,
+  Value<String?> c3Value,
+  Value<String?> c3Raw,
+  Value<double?> c3Low,
+  Value<double?> c3High,
   Value<int> rowid,
 });
 typedef $$CompositeSearchParametersTableUpdateCompanionBuilder
@@ -8328,8 +9080,24 @@ typedef $$CompositeSearchParametersTableUpdateCompanionBuilder
   Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
-  Value<String> component1,
-  Value<String> component2,
+  Value<String> c1Type,
+  Value<String?> c1System,
+  Value<String?> c1Value,
+  Value<String?> c1Raw,
+  Value<double?> c1Low,
+  Value<double?> c1High,
+  Value<String> c2Type,
+  Value<String?> c2System,
+  Value<String?> c2Value,
+  Value<String?> c2Raw,
+  Value<double?> c2Low,
+  Value<double?> c2High,
+  Value<String?> c3Type,
+  Value<String?> c3System,
+  Value<String?> c3Value,
+  Value<String?> c3Raw,
+  Value<double?> c3Low,
+  Value<double?> c3High,
   Value<int> rowid,
 });
 
@@ -8360,11 +9128,59 @@ class $$CompositeSearchParametersTableFilterComposer
   ColumnFilters<int> get paramIndex => $composableBuilder(
       column: $table.paramIndex, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get component1 => $composableBuilder(
-      column: $table.component1, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get c1Type => $composableBuilder(
+      column: $table.c1Type, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get component2 => $composableBuilder(
-      column: $table.component2, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get c1System => $composableBuilder(
+      column: $table.c1System, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c1Value => $composableBuilder(
+      column: $table.c1Value, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c1Raw => $composableBuilder(
+      column: $table.c1Raw, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get c1Low => $composableBuilder(
+      column: $table.c1Low, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get c1High => $composableBuilder(
+      column: $table.c1High, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c2Type => $composableBuilder(
+      column: $table.c2Type, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c2System => $composableBuilder(
+      column: $table.c2System, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c2Value => $composableBuilder(
+      column: $table.c2Value, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c2Raw => $composableBuilder(
+      column: $table.c2Raw, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get c2Low => $composableBuilder(
+      column: $table.c2Low, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get c2High => $composableBuilder(
+      column: $table.c2High, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c3Type => $composableBuilder(
+      column: $table.c3Type, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c3System => $composableBuilder(
+      column: $table.c3System, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c3Value => $composableBuilder(
+      column: $table.c3Value, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get c3Raw => $composableBuilder(
+      column: $table.c3Raw, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get c3Low => $composableBuilder(
+      column: $table.c3Low, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get c3High => $composableBuilder(
+      column: $table.c3High, builder: (column) => ColumnFilters(column));
 }
 
 class $$CompositeSearchParametersTableOrderingComposer
@@ -8395,11 +9211,59 @@ class $$CompositeSearchParametersTableOrderingComposer
   ColumnOrderings<int> get paramIndex => $composableBuilder(
       column: $table.paramIndex, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get component1 => $composableBuilder(
-      column: $table.component1, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get c1Type => $composableBuilder(
+      column: $table.c1Type, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get component2 => $composableBuilder(
-      column: $table.component2, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get c1System => $composableBuilder(
+      column: $table.c1System, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c1Value => $composableBuilder(
+      column: $table.c1Value, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c1Raw => $composableBuilder(
+      column: $table.c1Raw, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get c1Low => $composableBuilder(
+      column: $table.c1Low, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get c1High => $composableBuilder(
+      column: $table.c1High, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c2Type => $composableBuilder(
+      column: $table.c2Type, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c2System => $composableBuilder(
+      column: $table.c2System, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c2Value => $composableBuilder(
+      column: $table.c2Value, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c2Raw => $composableBuilder(
+      column: $table.c2Raw, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get c2Low => $composableBuilder(
+      column: $table.c2Low, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get c2High => $composableBuilder(
+      column: $table.c2High, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c3Type => $composableBuilder(
+      column: $table.c3Type, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c3System => $composableBuilder(
+      column: $table.c3System, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c3Value => $composableBuilder(
+      column: $table.c3Value, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get c3Raw => $composableBuilder(
+      column: $table.c3Raw, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get c3Low => $composableBuilder(
+      column: $table.c3Low, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get c3High => $composableBuilder(
+      column: $table.c3High, builder: (column) => ColumnOrderings(column));
 }
 
 class $$CompositeSearchParametersTableAnnotationComposer
@@ -8429,11 +9293,59 @@ class $$CompositeSearchParametersTableAnnotationComposer
   GeneratedColumn<int> get paramIndex => $composableBuilder(
       column: $table.paramIndex, builder: (column) => column);
 
-  GeneratedColumn<String> get component1 => $composableBuilder(
-      column: $table.component1, builder: (column) => column);
+  GeneratedColumn<String> get c1Type =>
+      $composableBuilder(column: $table.c1Type, builder: (column) => column);
 
-  GeneratedColumn<String> get component2 => $composableBuilder(
-      column: $table.component2, builder: (column) => column);
+  GeneratedColumn<String> get c1System =>
+      $composableBuilder(column: $table.c1System, builder: (column) => column);
+
+  GeneratedColumn<String> get c1Value =>
+      $composableBuilder(column: $table.c1Value, builder: (column) => column);
+
+  GeneratedColumn<String> get c1Raw =>
+      $composableBuilder(column: $table.c1Raw, builder: (column) => column);
+
+  GeneratedColumn<double> get c1Low =>
+      $composableBuilder(column: $table.c1Low, builder: (column) => column);
+
+  GeneratedColumn<double> get c1High =>
+      $composableBuilder(column: $table.c1High, builder: (column) => column);
+
+  GeneratedColumn<String> get c2Type =>
+      $composableBuilder(column: $table.c2Type, builder: (column) => column);
+
+  GeneratedColumn<String> get c2System =>
+      $composableBuilder(column: $table.c2System, builder: (column) => column);
+
+  GeneratedColumn<String> get c2Value =>
+      $composableBuilder(column: $table.c2Value, builder: (column) => column);
+
+  GeneratedColumn<String> get c2Raw =>
+      $composableBuilder(column: $table.c2Raw, builder: (column) => column);
+
+  GeneratedColumn<double> get c2Low =>
+      $composableBuilder(column: $table.c2Low, builder: (column) => column);
+
+  GeneratedColumn<double> get c2High =>
+      $composableBuilder(column: $table.c2High, builder: (column) => column);
+
+  GeneratedColumn<String> get c3Type =>
+      $composableBuilder(column: $table.c3Type, builder: (column) => column);
+
+  GeneratedColumn<String> get c3System =>
+      $composableBuilder(column: $table.c3System, builder: (column) => column);
+
+  GeneratedColumn<String> get c3Value =>
+      $composableBuilder(column: $table.c3Value, builder: (column) => column);
+
+  GeneratedColumn<String> get c3Raw =>
+      $composableBuilder(column: $table.c3Raw, builder: (column) => column);
+
+  GeneratedColumn<double> get c3Low =>
+      $composableBuilder(column: $table.c3Low, builder: (column) => column);
+
+  GeneratedColumn<double> get c3High =>
+      $composableBuilder(column: $table.c3High, builder: (column) => column);
 }
 
 class $$CompositeSearchParametersTableTableManager extends RootTableManager<
@@ -8473,8 +9385,24 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
-            Value<String> component1 = const Value.absent(),
-            Value<String> component2 = const Value.absent(),
+            Value<String> c1Type = const Value.absent(),
+            Value<String?> c1System = const Value.absent(),
+            Value<String?> c1Value = const Value.absent(),
+            Value<String?> c1Raw = const Value.absent(),
+            Value<double?> c1Low = const Value.absent(),
+            Value<double?> c1High = const Value.absent(),
+            Value<String> c2Type = const Value.absent(),
+            Value<String?> c2System = const Value.absent(),
+            Value<String?> c2Value = const Value.absent(),
+            Value<String?> c2Raw = const Value.absent(),
+            Value<double?> c2Low = const Value.absent(),
+            Value<double?> c2High = const Value.absent(),
+            Value<String?> c3Type = const Value.absent(),
+            Value<String?> c3System = const Value.absent(),
+            Value<String?> c3Value = const Value.absent(),
+            Value<String?> c3Raw = const Value.absent(),
+            Value<double?> c3Low = const Value.absent(),
+            Value<double?> c3High = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               CompositeSearchParametersCompanion(
@@ -8484,8 +9412,24 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
-            component1: component1,
-            component2: component2,
+            c1Type: c1Type,
+            c1System: c1System,
+            c1Value: c1Value,
+            c1Raw: c1Raw,
+            c1Low: c1Low,
+            c1High: c1High,
+            c2Type: c2Type,
+            c2System: c2System,
+            c2Value: c2Value,
+            c2Raw: c2Raw,
+            c2Low: c2Low,
+            c2High: c2High,
+            c3Type: c3Type,
+            c3System: c3System,
+            c3Value: c3Value,
+            c3Raw: c3Raw,
+            c3Low: c3Low,
+            c3High: c3High,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -8495,8 +9439,24 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
-            required String component1,
-            required String component2,
+            required String c1Type,
+            Value<String?> c1System = const Value.absent(),
+            Value<String?> c1Value = const Value.absent(),
+            Value<String?> c1Raw = const Value.absent(),
+            Value<double?> c1Low = const Value.absent(),
+            Value<double?> c1High = const Value.absent(),
+            required String c2Type,
+            Value<String?> c2System = const Value.absent(),
+            Value<String?> c2Value = const Value.absent(),
+            Value<String?> c2Raw = const Value.absent(),
+            Value<double?> c2Low = const Value.absent(),
+            Value<double?> c2High = const Value.absent(),
+            Value<String?> c3Type = const Value.absent(),
+            Value<String?> c3System = const Value.absent(),
+            Value<String?> c3Value = const Value.absent(),
+            Value<String?> c3Raw = const Value.absent(),
+            Value<double?> c3Low = const Value.absent(),
+            Value<double?> c3High = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               CompositeSearchParametersCompanion.insert(
@@ -8506,8 +9466,24 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
-            component1: component1,
-            component2: component2,
+            c1Type: c1Type,
+            c1System: c1System,
+            c1Value: c1Value,
+            c1Raw: c1Raw,
+            c1Low: c1Low,
+            c1High: c1High,
+            c2Type: c2Type,
+            c2System: c2System,
+            c2Value: c2Value,
+            c2Raw: c2Raw,
+            c2Low: c2Low,
+            c2High: c2High,
+            c3Type: c3Type,
+            c3System: c3System,
+            c3Value: c3Value,
+            c3Raw: c3Raw,
+            c3Low: c3Low,
+            c3High: c3High,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0
@@ -8543,6 +9519,8 @@ typedef $$SpecialSearchParametersTableCreateCompanionBuilder
   Value<String> searchName,
   required int paramIndex,
   required String specialValue,
+  Value<double?> latitude,
+  Value<double?> longitude,
   Value<int> rowid,
 });
 typedef $$SpecialSearchParametersTableUpdateCompanionBuilder
@@ -8554,6 +9532,8 @@ typedef $$SpecialSearchParametersTableUpdateCompanionBuilder
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> specialValue,
+  Value<double?> latitude,
+  Value<double?> longitude,
   Value<int> rowid,
 });
 
@@ -8586,6 +9566,12 @@ class $$SpecialSearchParametersTableFilterComposer
 
   ColumnFilters<String> get specialValue => $composableBuilder(
       column: $table.specialValue, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get latitude => $composableBuilder(
+      column: $table.latitude, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get longitude => $composableBuilder(
+      column: $table.longitude, builder: (column) => ColumnFilters(column));
 }
 
 class $$SpecialSearchParametersTableOrderingComposer
@@ -8619,6 +9605,12 @@ class $$SpecialSearchParametersTableOrderingComposer
   ColumnOrderings<String> get specialValue => $composableBuilder(
       column: $table.specialValue,
       builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get latitude => $composableBuilder(
+      column: $table.latitude, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get longitude => $composableBuilder(
+      column: $table.longitude, builder: (column) => ColumnOrderings(column));
 }
 
 class $$SpecialSearchParametersTableAnnotationComposer
@@ -8650,6 +9642,12 @@ class $$SpecialSearchParametersTableAnnotationComposer
 
   GeneratedColumn<String> get specialValue => $composableBuilder(
       column: $table.specialValue, builder: (column) => column);
+
+  GeneratedColumn<double> get latitude =>
+      $composableBuilder(column: $table.latitude, builder: (column) => column);
+
+  GeneratedColumn<double> get longitude =>
+      $composableBuilder(column: $table.longitude, builder: (column) => column);
 }
 
 class $$SpecialSearchParametersTableTableManager extends RootTableManager<
@@ -8690,6 +9688,8 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> specialValue = const Value.absent(),
+            Value<double?> latitude = const Value.absent(),
+            Value<double?> longitude = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               SpecialSearchParametersCompanion(
@@ -8700,6 +9700,8 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             specialValue: specialValue,
+            latitude: latitude,
+            longitude: longitude,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -8710,6 +9712,8 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String specialValue,
+            Value<double?> latitude = const Value.absent(),
+            Value<double?> longitude = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               SpecialSearchParametersCompanion.insert(
@@ -8720,6 +9724,8 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             searchName: searchName,
             paramIndex: paramIndex,
             specialValue: specialValue,
+            latitude: latitude,
+            longitude: longitude,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

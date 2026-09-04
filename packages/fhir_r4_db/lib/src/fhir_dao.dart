@@ -1,5 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_print
 
+import 'dart:math' as math;
+
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_db/fhir_r4_db.dart';
@@ -1559,8 +1561,270 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           throw InvalidSearchValue(parameter: name, value: value, type: 'date');
         }
         return _IndexCondition(t, t.id, condition);
+      case 'special':
+        // 3.1.1.4.21: "the general modifiers and comparators do not apply,
+        // except as stated in the description". The one special parameter
+        // this package answers is Location's `near`.
+        if (modifier != null || name != 'near') return null;
+        final t = aliasName == null
+            ? specialSearchParameters
+            : alias(specialSearchParameters, aliasName);
+        return _IndexCondition(
+          t,
+          t.id,
+          _nearCondition(resourceType, name, value, t),
+        );
+      case 'composite':
+        // 3.1.1.4.17: "Modifiers are not used on composite parameters."
+        if (modifier != null) return null;
+        final t = aliasName == null
+            ? compositeSearchParameters
+            : alias(compositeSearchParameters, aliasName);
+        return _IndexCondition(
+          t,
+          t.id,
+          _compositeCondition(resourceType, name, value, declared, t),
+        );
       default:
         return null;
+    }
+  }
+
+  /// Location `near`: "[latitude]|[longitude]|[distance]|[units] (using the
+  /// WGS84 datum) … If the units are omitted, then kms should be assumed.
+  /// If the distance is omitted, then the server can use its own discretion
+  /// as to what distances should be considered near (and units are
+  /// irrelevant) … Servers may search using various techniques that might
+  /// have differing accuracies, depending on implementation efficiency."
+  ///
+  /// The distance is the equirectangular approximation, which needs only
+  /// multiplication and so runs in SQL (this SQLite build has no
+  /// trigonometric functions): with `k` kilometres per degree of latitude
+  /// and `cos(latitude)` of the search point taken in Dart,
+  /// `(Δlat·k)² + (Δlong·k·cos φ)² <= distance²`. It is within a few
+  /// percent of the great-circle distance for anything under a few hundred
+  /// kilometres, which is the "differing accuracies" the definition allows.
+  /// With no distance given, 10 km — the discretion the definition grants,
+  /// written here so it can be argued with.
+  Expression<bool> _nearCondition(
+    String resourceType,
+    String name,
+    String value,
+    $SpecialSearchParametersTable t,
+  ) {
+    final parts = splitEscaped(value, '|').map(unescapeValue).toList();
+    if (parts.length < 2 || parts.length > 4) {
+      throw InvalidSearchValue(parameter: name, value: value, type: 'special');
+    }
+    final latitude = double.tryParse(parts[0]);
+    final longitude = double.tryParse(parts[1]);
+    final distance = parts.length > 2 && parts[2].isNotEmpty
+        ? double.tryParse(parts[2])
+        : 10.0;
+    if (latitude == null ||
+        longitude == null ||
+        distance == null ||
+        latitude.abs() > 90 ||
+        longitude.abs() > 180) {
+      throw InvalidSearchValue(parameter: name, value: value, type: 'special');
+    }
+    final units = parts.length > 3 && parts[3].isNotEmpty ? parts[3] : 'km';
+    final kilometres = switch (units) {
+      'km' => distance,
+      'm' => distance / 1000,
+      'mi' || 'mi_i' || '[mi_i]' || 'mi_us' || '[mi_us]' => distance * 1.609344,
+      _ => throw InvalidSearchValue(
+          parameter: name,
+          value: value,
+          type: 'special',
+        ),
+    };
+    const kmPerDegree = 111.32;
+    final cosLatitude = math.cos(latitude * math.pi / 180);
+    final dLat =
+        (t.latitude - Constant(latitude)) * const Constant(kmPerDegree);
+    final dLong = (t.longitude - Constant(longitude)) *
+        Constant(kmPerDegree * cosLatitude);
+    return t.resourceType.equals(resourceType) &
+        t.searchName.equals(name) &
+        t.latitude.isNotNull() &
+        t.longitude.isNotNull() &
+        (dLat * dLat + dLong * dLong)
+            .isSmallerOrEqualValue(kilometres * kilometres);
+  }
+
+  /// A composite value, R4B 3.1.1.4.17: components "joined … with a $",
+  /// matched against the slots of one row, which is one element, so the
+  /// parts hold of the same element. Each slot's condition is its own
+  /// type's rule over the slot columns, the same rules as the type's own
+  /// table.
+  Expression<bool> _compositeCondition(
+    String resourceType,
+    String name,
+    String value,
+    SearchParameterDefinition declared,
+    $CompositeSearchParametersTable t,
+  ) {
+    final parts = splitEscaped(value, r'$');
+    if (parts.length != declared.components.length) {
+      throw InvalidSearchValue(
+        parameter: name,
+        value: value,
+        type: 'composite',
+      );
+    }
+    var where = t.resourceType.equals(resourceType) & t.searchName.equals(name);
+    for (final (i, component) in declared.components.indexed) {
+      final slot = switch (i) {
+        0 => (t.c1Type, t.c1System, t.c1Value, t.c1Raw, t.c1Low, t.c1High),
+        1 => (t.c2Type, t.c2System, t.c2Value, t.c2Raw, t.c2Low, t.c2High),
+        _ => (t.c3Type, t.c3System, t.c3Value, t.c3Raw, t.c3Low, t.c3High),
+      };
+      where = where &
+          _componentCondition(
+            name,
+            component,
+            parts[i],
+            type: slot.$1,
+            system: slot.$2,
+            value: slot.$3,
+            raw: slot.$4,
+            low: slot.$5,
+            high: slot.$6,
+          );
+    }
+    return where;
+  }
+
+  /// One component's condition over its slot columns.
+  Expression<bool> _componentCondition(
+    String name,
+    SearchComponent component,
+    String part, {
+    required GeneratedColumn<String> type,
+    required GeneratedColumn<String> system,
+    required GeneratedColumn<String> value,
+    required GeneratedColumn<String> raw,
+    required GeneratedColumn<double> low,
+    required GeneratedColumn<double> high,
+  }) {
+    final typed = type.equals(component.type);
+    switch (component.type) {
+      case 'token':
+        // 3.1.1.4.10's four forms.
+        final pieces = splitEscaped(part, '|');
+        if (pieces.length == 1) {
+          return typed & value.equals(unescapeValue(pieces[0]));
+        }
+        final sys = unescapeValue(pieces[0]);
+        final code = unescapeValue(pieces[1]);
+        if (sys.isEmpty) return typed & value.equals(code) & system.isNull();
+        if (code.isEmpty) return typed & system.equals(sys);
+        return typed & system.equals(sys) & value.equals(code);
+      case 'string':
+        return typed &
+            value.like('${normalizeSearchString(unescapeValue(part))}%');
+      case 'uri':
+        return typed & value.equals(unescapeValue(part));
+      case 'reference':
+        final unescaped = unescapeValue(part);
+        if (unescaped.contains('://')) {
+          return typed & raw.equals(unescaped);
+        }
+        final pieces = unescaped.split('/');
+        if (pieces.length == 2) {
+          return typed & system.equals(pieces[0]) & value.equals(pieces[1]);
+        }
+        return typed & value.equals(unescaped);
+      case 'number':
+        const definition = SearchParameterDefinition(
+          'number',
+          comparatorPrefixes,
+        );
+        final (prefix, rest) = splitComparator(definition, part);
+        final number = double.tryParse(rest);
+        if (number == null) {
+          throw InvalidSearchValue(
+            parameter: name,
+            value: part,
+            type: 'number',
+          );
+        }
+        return typed & _numericPrefixCondition(low, high, prefix, rest, number);
+      case 'quantity':
+        const definition = SearchParameterDefinition(
+          'quantity',
+          comparatorPrefixes,
+        );
+        final (prefix, rest) = splitComparator(definition, part);
+        final pieces = splitEscaped(rest, '|');
+        if (pieces.length != 1 && pieces.length != 3) {
+          throw InvalidSearchValue(
+            parameter: name,
+            value: part,
+            type: 'quantity',
+          );
+        }
+        final number = double.tryParse(pieces[0]);
+        if (number == null) {
+          throw InvalidSearchValue(
+            parameter: name,
+            value: part,
+            type: 'quantity',
+          );
+        }
+        var where = typed &
+            _numericPrefixCondition(low, high, prefix, pieces[0], number);
+        if (pieces.length == 3) {
+          final sys = pieces[1];
+          final code = pieces[2];
+          if (sys.isNotEmpty) {
+            where = where & system.equals(sys);
+            if (code.isNotEmpty) where = where & value.equals(code);
+          } else if (code.isNotEmpty) {
+            // `5.4||mg`: the code or the human unit.
+            where = where & (value.equals(code) | raw.equals(code));
+          }
+        }
+        return where;
+      case 'date':
+        const definition = SearchParameterDefinition(
+          'date',
+          comparatorPrefixes,
+        );
+        final (prefix, rest) = splitComparator(definition, part);
+        final range = searchDateRange(rest);
+        if (range == null) {
+          throw InvalidSearchValue(parameter: name, value: part, type: 'date');
+        }
+        // The date-range rules of _dateRangeCondition, over seconds.
+        final l = range.low.millisecondsSinceEpoch / 1000;
+        final h = range.high.millisecondsSinceEpoch / 1000;
+        final lowMissing = low.isNull();
+        final highMissing = high.isNull();
+        final contained = low.isNotNull() &
+            high.isNotNull() &
+            low.isBiggerOrEqualValue(l) &
+            high.isSmallerOrEqualValue(h);
+        final above = highMissing | high.isBiggerThanValue(h);
+        final below = lowMissing | low.isSmallerThanValue(l);
+        final dateWhere = switch (prefix) {
+          'gt' => above,
+          'lt' => below,
+          'ge' => above | contained,
+          'le' => below | contained,
+          'sa' => low.isNotNull() & low.isBiggerOrEqualValue(h),
+          'eb' => high.isNotNull() & high.isSmallerOrEqualValue(l),
+          'ne' => contained.not(),
+          _ => contained,
+        };
+        return typed & dateWhere;
+      default:
+        throw InvalidSearchValue(
+          parameter: name,
+          value: part,
+          type: component.type,
+        );
     }
   }
 
@@ -3724,35 +3988,31 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String compositeParamName,
     List<String> values,
   ) async {
+    // The same condition the SQL-paged path builds. This used to split the
+    // parameter NAME on `-` to guess its components (`code-value-quantity`
+    // → code, value, quantity) and intersect resource-level matches, which
+    // is neither the right components nor the same-element rule.
     final matchingIds = <String>{};
-    final paramParts = compositeParamName.split('-');
-    if (paramParts.length < 2) return matchingIds;
-
+    final declared = searchParameterFor(resourceType, compositeParamName);
+    if (declared == null || declared.components.isEmpty) return matchingIds;
     for (final value in values) {
-      final valueParts = value.split(r'$');
-      if (valueParts.length != paramParts.length) continue;
-
-      final componentResults = <Set<String>>[];
-      for (var i = 0; i < paramParts.length; i++) {
-        final componentParam = paramParts[i];
-        final componentValue = valueParts[i];
-        final ids = await _resolveSearchParameter(
-          resourceType,
-          componentParam,
-          [componentValue],
-        );
-        componentResults.add(ids);
-      }
-
-      if (componentResults.isNotEmpty) {
-        var intersection = componentResults.first;
-        for (var i = 1; i < componentResults.length; i++) {
-          intersection = intersection.intersection(componentResults[i]);
-        }
-        matchingIds.addAll(intersection);
+      final rows = await (selectOnly(compositeSearchParameters, distinct: true)
+            ..addColumns([compositeSearchParameters.id])
+            ..where(
+              _compositeCondition(
+                resourceType,
+                compositeParamName,
+                value,
+                declared,
+                compositeSearchParameters,
+              ),
+            ))
+          .get();
+      for (final row in rows) {
+        final id = row.read(compositeSearchParameters.id);
+        if (id != null) matchingIds.add(id);
       }
     }
-
     return matchingIds;
   }
 

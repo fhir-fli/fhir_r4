@@ -651,6 +651,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ActivityDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -668,6 +669,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ActivityDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -2727,6 +2729,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'CapabilityStatement.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -2744,6 +2747,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'CapabilityStatement.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -3766,6 +3770,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ChargeItemDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -3783,6 +3788,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ChargeItemDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -4054,6 +4060,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Citation.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -4071,6 +4078,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Citation.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -5193,6 +5201,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'CodeSystem.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -5210,6 +5219,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'CodeSystem.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -6038,6 +6048,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'CompartmentDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -6055,6 +6066,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'CompartmentDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -6637,6 +6649,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ConceptMap.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -6654,6 +6667,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ConceptMap.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -9994,6 +10008,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'DocumentReference.relatesTo',
             i,
             searchName: 'relationship',
+            root: resource,
           ),
         );
         i++;
@@ -11148,6 +11163,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'EventDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -11165,6 +11181,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'EventDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -11386,6 +11403,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Evidence.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -11403,6 +11421,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Evidence.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -11559,6 +11578,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'EvidenceReport.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -11576,6 +11596,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'EvidenceReport.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -11813,6 +11834,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'EvidenceVariable.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -11830,6 +11852,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'EvidenceVariable.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -12051,6 +12074,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ExampleScenario.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -12068,6 +12092,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ExampleScenario.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -12979,6 +13004,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'GraphDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -12996,6 +13022,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'GraphDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -13203,6 +13230,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Group.characteristic',
             i,
             searchName: 'characteristic-value',
+            root: resource,
           ),
         );
         i++;
@@ -14561,6 +14589,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ImplementationGuide.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -14578,6 +14607,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ImplementationGuide.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -15682,6 +15712,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Library.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -15699,6 +15730,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Library.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -16677,6 +16709,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Measure.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -16694,6 +16727,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Measure.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -18839,6 +18873,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'MessageDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -18856,6 +18891,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'MessageDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -19353,6 +19389,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'MolecularSequence.variant',
             i,
             searchName: 'chromosome-variant-coordinate',
+            root: resource,
           ),
         );
         i++;
@@ -19370,6 +19407,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'MolecularSequence.referenceSeq',
             i,
             searchName: 'chromosome-window-coordinate',
+            root: resource,
           ),
         );
         i++;
@@ -19387,6 +19425,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'MolecularSequence.variant',
             i,
             searchName: 'referenceseqid-variant-coordinate',
+            root: resource,
           ),
         );
         i++;
@@ -19404,6 +19443,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'MolecularSequence.referenceSeq',
             i,
             searchName: 'referenceseqid-window-coordinate',
+            root: resource,
           ),
         );
         i++;
@@ -19593,6 +19633,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'NamingSystem.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -19610,6 +19651,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'NamingSystem.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -20668,6 +20710,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation',
             i,
             searchName: 'code-value-concept',
+            root: resource,
           ),
         );
         i++;
@@ -20684,6 +20727,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation',
             i,
             searchName: 'code-value-date',
+            root: resource,
           ),
         );
         i++;
@@ -20700,6 +20744,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation',
             i,
             searchName: 'code-value-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -20716,6 +20761,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation',
             i,
             searchName: 'code-value-string',
+            root: resource,
           ),
         );
         i++;
@@ -20732,6 +20778,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation',
             i,
             searchName: 'combo-code-value-concept',
+            root: resource,
           ),
         );
         i++;
@@ -20749,6 +20796,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation.component',
             i,
             searchName: 'combo-code-value-concept',
+            root: resource,
           ),
         );
         i++;
@@ -20765,6 +20813,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation',
             i,
             searchName: 'combo-code-value-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -20782,6 +20831,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation.component',
             i,
             searchName: 'combo-code-value-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -20799,6 +20849,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation.component',
             i,
             searchName: 'component-code-value-concept',
+            root: resource,
           ),
         );
         i++;
@@ -20816,6 +20867,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Observation.component',
             i,
             searchName: 'component-code-value-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -21053,6 +21105,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'OperationDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -21070,6 +21123,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'OperationDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -23291,6 +23345,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'PlanDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -23308,6 +23363,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'PlanDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -24591,6 +24647,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Questionnaire.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -24608,6 +24665,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'Questionnaire.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -25840,6 +25898,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ResearchDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -25857,6 +25916,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ResearchDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -26257,6 +26317,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ResearchElementDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -26274,6 +26335,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ResearchElementDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -27103,6 +27165,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'SearchParameter.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -27120,6 +27183,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'SearchParameter.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -28205,6 +28269,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'StructureDefinition.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -28222,6 +28287,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'StructureDefinition.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -28703,6 +28769,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'StructureMap.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -28720,6 +28787,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'StructureMap.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -30008,6 +30076,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'TerminologyCapabilities.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -30025,6 +30094,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'TerminologyCapabilities.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -30398,6 +30468,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'TestScript.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -30415,6 +30486,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'TestScript.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;
@@ -30652,6 +30724,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ValueSet.useContext',
             i,
             searchName: 'context-type-quantity',
+            root: resource,
           ),
         );
         i++;
@@ -30669,6 +30742,7 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             'ValueSet.useContext',
             i,
             searchName: 'context-type-value',
+            root: resource,
           ),
         );
         i++;

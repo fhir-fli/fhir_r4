@@ -26,6 +26,12 @@ class SpecialSearchParameters extends Table {
   /// A generic storage column for special search parameters
   TextColumn get specialValue => text()();
 
+  /// `Location.position.latitude`, for `near` (R4B 3.1.1.4.21).
+  RealColumn get latitude => real().nullable()();
+
+  /// `Location.position.longitude`, for `near`.
+  RealColumn get longitude => real().nullable()();
+
   @override
 
   /// searchName is part of the key: one FHIR path can back more than one
@@ -51,6 +57,28 @@ extension SpecialSearchParametersExtension on fhir.FhirBase {
     int? paramIndex, {
     String searchName = '',
   }) {
-    return <SpecialSearchParametersCompanion>[];
+    // R4B 3.1.1.4.21 lists two special parameters, `_filter` (the server's)
+    // and `near` on Location. `near` reads Location.position: the latitude
+    // and longitude are kept as numbers so the distance test can run in
+    // SQL. This used to write nothing, so `Location?near=` found nothing.
+    final position = this;
+    if (position is! fhir.LocationPosition) return const [];
+    final latitude = position.latitude.valueNum?.toDouble();
+    final longitude = position.longitude.valueNum?.toDouble();
+    if (latitude == null || longitude == null) return const [];
+    return [
+      SpecialSearchParametersCompanion(
+        resourceType: Value(resourceType),
+        id: Value(id),
+        lastUpdated: Value(lastUpdated),
+        searchPath: Value(searchPath),
+        searchName: Value(searchName),
+        paramIndex:
+            paramIndex == null ? const Value.absent() : Value(paramIndex),
+        specialValue: Value('$latitude|$longitude'),
+        latitude: Value(latitude),
+        longitude: Value(longitude),
+      ),
+    ];
   }
 }
