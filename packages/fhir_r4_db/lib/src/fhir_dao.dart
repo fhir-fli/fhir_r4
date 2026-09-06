@@ -427,6 +427,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     int? count,
     int? offset,
     List<String>? sort,
+    CompartmentScope? compartment,
   }) async {
     final resourceTypeString = resourceType.toString();
 
@@ -437,6 +438,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       sort,
       count,
       offset,
+      compartment: compartment,
     );
     lastSearchPagedInSql = paged != null;
     if (paged != null) {
@@ -454,6 +456,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       resourceType: resourceType,
       searchParameters: searchParameters,
       hasParameters: hasParameters,
+      compartment: compartment,
     );
 
     if (matchingIds.isEmpty) {
@@ -541,6 +544,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     int? count,
     int? offset, {
     bool countOnly = false,
+    CompartmentScope? compartment,
   }) async {
     if (count != null && count <= 0) return null;
 
@@ -619,6 +623,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         nextAlias: nextAlias,
       );
       if (part == null) return null;
+      parts.add(part);
+    }
+
+    // The compartment context, search.html 3.1.1.2: `Patient/[id]/[type]`
+    // is a search over the resources of [type] that are in that Patient's
+    // compartment, ANDed with whatever else the query says. One condition
+    // on the reference table (or, for the focal type, on the resources
+    // table); a type the compartment does not include is an empty result,
+    // not a fallback.
+    if (compartment != null) {
+      final part = await _compartmentCondition(
+        resourceType,
+        compartment,
+        aliasName: nextAlias(),
+      );
+      if (part == null) return countOnly ? const ['0'] : const [];
       parts.add(part);
     }
 
@@ -1940,6 +1960,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     required fhir.R4ResourceType resourceType,
     Map<String, List<String>>? searchParameters,
     List<HasParameter>? hasParameters,
+    CompartmentScope? compartment,
   }) async {
     final resourceTypeString = resourceType.toString();
 
@@ -1952,6 +1973,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       null,
       null,
       null,
+      compartment: compartment,
     );
     if (inSql != null) {
       return inSql.toSet();
@@ -2079,6 +2101,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           .get();
       matchingIds = allRows.map((r) => r.id).toSet();
     }
+    // The compartment context ANDs with everything above (3.1.1.2).
+    if (compartment != null) {
+      matchingIds = matchingIds.intersection(
+        await _compartmentMemberIds(resourceTypeString, compartment),
+      );
+    }
     return matchingIds;
   }
 
@@ -2087,10 +2115,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     required fhir.R4ResourceType resourceType,
     Map<String, List<String>>? searchParameters,
     List<HasParameter>? hasParameters,
+    CompartmentScope? compartment,
   }) async {
     final hasSearch = searchParameters != null && searchParameters.isNotEmpty;
     final hasHas = hasParameters != null && hasParameters.isNotEmpty;
-    if (!hasSearch && !hasHas) {
+    if (!hasSearch && !hasHas && compartment == null) {
       return getResourceCount(resourceType);
     }
 
@@ -2105,6 +2134,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       null,
       null,
       countOnly: true,
+      compartment: compartment,
     );
     if (counted != null) {
       return int.parse(counted.single);
@@ -2113,8 +2143,143 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       resourceType: resourceType,
       searchParameters: searchParameters,
       hasParameters: hasParameters,
+      compartment: compartment,
     );
     return ids.length;
+  }
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // Compartments
+  // ──────────────────────────────────────────────────────────────────────────
+
+  /// Every resource in [scope]'s compartment, by resource type.
+  ///
+  /// compartmentdefinition.html: a resource is in a compartment instance
+  /// when one of the search parameters the definition names for its type
+  /// points at the focal resource. The focal resource is in its own
+  /// compartment. [types] restricts the answer to those types; [since]
+  /// keeps only resources last updated at or after it (the `_since` of
+  /// `$everything`, "Resources updated after this period will be included").
+  /// One indexed query per member type; nothing is read but ids.
+  Future<Map<String, Set<String>>> compartmentMembers(
+    CompartmentScope scope, {
+    Iterable<String>? types,
+    DateTime? since,
+  }) async {
+    final members = compartmentDefinitions[scope.type];
+    if (members == null) return const {};
+    final wanted = types?.toSet();
+    final result = <String, Set<String>>{};
+
+    if (wanted == null || wanted.contains(scope.type)) {
+      final focal = resources.resourceType.equals(scope.type) &
+          resources.id.equals(scope.id) &
+          (since == null
+              ? const Constant(true)
+              : resources.lastUpdated
+                  .isBiggerOrEqualValue(since.millisecondsSinceEpoch));
+      final row = await (selectOnly(resources)
+            ..addColumns([resources.id])
+            ..where(focal))
+          .getSingleOrNull();
+      if (row != null) {
+        result[scope.type] = {scope.id};
+      }
+    }
+    for (final type in members.keys) {
+      if (wanted != null && !wanted.contains(type)) continue;
+      final ids = await _compartmentMemberIds(
+        type,
+        scope,
+        since: since,
+        includeFocal: false,
+      );
+      if (ids.isEmpty) continue;
+      (result[type] ??= <String>{}).addAll(ids);
+    }
+    return result;
+  }
+
+  /// The ids of [resourceType] resources in [scope]'s compartment through
+  /// the compartment's parameters for that type. With [includeFocal], the
+  /// focal resource's own id is added when [resourceType] is the focal type
+  /// (it may also be a member through a parameter: a Patient through another
+  /// Patient's `link`); [compartmentMembers] adds it itself, after checking
+  /// the resource exists and satisfies `since`.
+  Future<Set<String>> _compartmentMemberIds(
+    String resourceType,
+    CompartmentScope scope, {
+    DateTime? since,
+    bool includeFocal = true,
+  }) async {
+    final ids = <String>{};
+    if (includeFocal && resourceType == scope.type) {
+      ids.add(scope.id);
+    }
+    final byParam = _compartmentParamCondition(resourceType, scope);
+    if (byParam == null) return ids;
+    var where = byParam;
+    if (since != null) {
+      where = where &
+          referenceSearchParameters.lastUpdated
+              .isBiggerOrEqualValue(since.millisecondsSinceEpoch);
+    }
+    final rows = await (selectOnly(referenceSearchParameters, distinct: true)
+          ..addColumns([referenceSearchParameters.id])
+          ..where(where))
+        .get();
+    ids.addAll(rows.map((r) => r.read(referenceSearchParameters.id)!));
+    return ids;
+  }
+
+  /// The WHERE on [on] (the reference table or an alias of it) selecting the
+  /// rows through which a [resourceType] is in [scope]'s compartment, or null
+  /// when the compartment includes no such type.
+  Expression<bool>? _compartmentParamCondition(
+    String resourceType,
+    CompartmentScope scope, {
+    $ReferenceSearchParametersTable? on,
+  }) {
+    final params = compartmentDefinitions[scope.type]?[resourceType];
+    if (params == null) return null;
+    final t = on ?? referenceSearchParameters;
+    Expression<bool>? byParam;
+    for (final p in params) {
+      final one = t.searchName.equals(p) |
+          t.searchPath.like('$resourceType.$p') |
+          t.searchPath.like('$resourceType.%.$p');
+      byParam = byParam == null ? one : (byParam | one);
+    }
+    return t.resourceType.equals(resourceType) &
+        byParam! &
+        t.referenceResourceType.equals(scope.type) &
+        t.referenceIdPart.equals(scope.id);
+  }
+
+  /// The compartment context as one part of a SQL-paged search: for a member
+  /// type, a condition on an alias of the reference table; for the focal
+  /// type, the focal id plus any of its type pointing at it, on an alias of
+  /// the resources table. Null when the compartment does not include
+  /// [resourceType] at all.
+  Future<_IndexCondition?> _compartmentCondition(
+    String resourceType,
+    CompartmentScope scope, {
+    required String aliasName,
+  }) async {
+    if (!compartmentDefinitions.containsKey(scope.type)) return null;
+    if (resourceType == scope.type) {
+      final ids = await _compartmentMemberIds(resourceType, scope);
+      final r = alias(resources, aliasName);
+      return _IndexCondition(
+        r,
+        r.id,
+        r.resourceType.equals(resourceType) & r.id.isIn(ids),
+      );
+    }
+    final t = alias(referenceSearchParameters, aliasName);
+    final where = _compartmentParamCondition(resourceType, scope, on: t);
+    if (where == null) return null;
+    return _IndexCondition(t, t.id, where);
   }
 
   // ──────────────────────────────────────────────────────────────────────────
