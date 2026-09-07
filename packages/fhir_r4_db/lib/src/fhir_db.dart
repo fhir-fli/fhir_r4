@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 8;
+  int get schemaVersion => 9;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -218,6 +218,18 @@ class FhirDb extends _$FhirDb {
             // below 7 the columns some of these indexes cover do not exist
             // until the rebuild has run.
             await createValueIndexes();
+          }
+          if (from < 9) {
+            // The string index rows of Address and ContactPoint values moved
+            // onto the whole-value convention (param_index a multiple of
+            // 100, see StringSearchParameters.paramIndex) that `_sort` now
+            // uses to leave the per-word rows of a name out of the order.
+            // Rows written before this step sit on the old numbers and a
+            // sort would skip them, so the index is re-extracted from the
+            // stored resources, as schema 7 did: derived data, nothing to
+            // keep. Measured 2026-09-04 (fhirant_db's schema-14 step): 467s
+            // for the 5 GB MIMIC load, paged.
+            await rebuildSearchIndex();
           }
         },
         beforeOpen: ensurePlannerStatistics,

@@ -1,5 +1,6 @@
 // ignore_for_file: lines_longer_than_80_chars, avoid_print
 
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:drift/drift.dart';
@@ -72,61 +73,47 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }
 
   /// Save a single FHIR resource (insert or update).
-  Future<fhir.Resource> saveResource(fhir.Resource resource) async {
+  ///
+  /// The stored version is read and the new one written in ONE transaction,
+  /// and Drift runs this database's transactions one at a time, so two
+  /// concurrent saves of one resource are versions n+1 and n+2 with both in
+  /// history. The read used to happen outside the transaction: both saves
+  /// read n, both wrote n+1, and the second overwrote the first's history
+  /// row (fhirant REVIEW-2026-09-06 finding 30).
+  ///
+  /// [ifMatchVersion] is the version the caller believes is stored (HTTP
+  /// `If-Match`). When it is given and differs from what is stored, or the
+  /// resource does not exist, [VersionConflict] is thrown from inside that
+  /// same transaction and nothing is written. Checked by the caller before
+  /// the save, a second writer can land between the check and the write.
+  Future<fhir.Resource> saveResource(
+    fhir.Resource resource, {
+    String? ifMatchVersion,
+  }) async {
     final withId = resource.newIdIfNoId();
+    final id = withId.id!.valueString!;
 
-    // Look up the existing resource's meta so version counting works correctly.
-    fhir.FhirMeta? oldMeta;
-    if (!versionIdAsTime) {
-      final existing = await getResource(
-        withId.resourceType,
-        withId.id!.valueString!,
-      );
-      if (existing?.meta != null) {
-        // Only use old meta if the versionId is a valid integer;
-        // otherwise (e.g. a timestamp from versionIdAsTime mode) start fresh.
-        final vid = existing!.meta!.versionId?.toString();
-        if (vid != null && int.tryParse(vid) != null) {
-          oldMeta = existing.meta;
-        }
+    final newResource = await transaction(() async {
+      final existing = await getResource(withId.resourceType, id);
+      final currentVersion = existing?.meta?.versionId?.valueString;
+      if (ifMatchVersion != null && currentVersion != ifMatchVersion) {
+        throw VersionConflict(
+          expected: ifMatchVersion,
+          actual: currentVersion,
+        );
       }
-    }
-
-    final newResource = withId.updateVersion(
-      oldMeta: oldMeta,
-      versionIdAsTime: versionIdAsTime,
-    );
-
-    // The row and its index rows go in together. Separately, a failure part
-    // way through left a resource stored that no search could find, and the
-    // caller was handed the resource as though it had worked.
-    await transaction(() async {
-      await into(resources).insertOnConflictUpdate(
-        ResourcesCompanion(
-          resourceType: Value(resource.resourceType.toString()),
-          id: Value(newResource.id!.valueString!),
-          resource: Value(newResource.toJsonString()),
-          lastUpdated: Value(
-            newResource
-                .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
-          ),
-        ),
+      final updated = withId.updateVersion(
+        oldMeta: _countableMeta(existing?.meta),
+        versionIdAsTime: versionIdAsTime,
       );
-
-      await into(resourcesHistory).insertOnConflictUpdate(
-        ResourcesHistoryCompanion(
-          resourceType: Value(resource.resourceType.toString()),
-          id: Value(newResource.id!.valueString!),
-          versionId: Value(newResource.meta?.versionId?.toString() ?? '1'),
-          resource: Value(newResource.toJsonString()),
-          lastUpdated: Value(
-            newResource
-                .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
-          ),
-        ),
-      );
-
-      await _updateSearchParameters(newResource);
+      // The row, its history row and its index rows go in together. A
+      // failure part way used to leave a resource stored that no search
+      // could find, with the caller told it had worked.
+      final (current, history) = _rowsFor(updated);
+      await into(resources).insertOnConflictUpdate(current);
+      await into(resourcesHistory).insertOnConflictUpdate(history);
+      await _updateSearchParameters(updated);
+      return updated;
     });
 
     if (storeForSync) {
@@ -136,50 +123,48 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return newResource;
   }
 
-  /// Save multiple FHIR resources in a single batch.
+  /// Save many resources as one transaction.
+  ///
+  /// Every row and every index row commits together or not at all: a failure
+  /// part way (an index row that will not insert, a resource that will not
+  /// serialize) returns false and leaves the database as it was. The rows
+  /// and the index rows used to be two separate batches, so an indexing
+  /// failure left the resources stored and unsearchable behind the `false`
+  /// (fhirant REVIEW-2026-09-06 finding 27).
+  ///
+  /// Versions continue from what is stored, as [saveResource]'s do: the
+  /// stored meta of every resource in the batch is read first, one query per
+  /// resource type ([_storedMetas]), and a resource that appears twice in one
+  /// batch is two versions. Every bulk save used to write version 1 and
+  /// overwrite history version 1 (finding 28).
   Future<bool> saveResources(List<fhir.Resource> resourcesList) async {
+    if (resourcesList.isEmpty) return true;
     try {
       final newResources = <fhir.Resource>[];
-      await batch((batch) {
-        final resourceCompanions = <ResourcesCompanion>[];
-        final historyCompanions = <ResourcesHistoryCompanion>[];
-
-        for (final resource in resourcesList) {
-          final newResource = resource
-              .newIdIfNoId()
-              .updateVersion(versionIdAsTime: versionIdAsTime);
-          newResources.add(newResource);
-          resourceCompanions.add(
-            ResourcesCompanion(
-              resourceType: Value(resource.resourceType.toString()),
-              id: Value(newResource.id!.valueString!),
-              resource: Value(newResource.toJsonString()),
-              lastUpdated: Value(
-                newResource
-                    .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
-              ),
-            ),
+      await transaction(() async {
+        final withIds = [for (final r in resourcesList) r.newIdIfNoId()];
+        final metas = await _storedMetas(withIds);
+        final currentRows = <ResourcesCompanion>[];
+        final historyRows = <ResourcesHistoryCompanion>[];
+        for (final resource in withIds) {
+          final key = '${resource.resourceType}/${resource.id!.valueString!}';
+          final updated = resource.updateVersion(
+            oldMeta: _countableMeta(metas[key]),
+            versionIdAsTime: versionIdAsTime,
           );
-          historyCompanions.add(
-            ResourcesHistoryCompanion(
-              resourceType: Value(resource.resourceType.toString()),
-              id: Value(newResource.id!.valueString!),
-              versionId: Value(newResource.meta?.versionId?.toString() ?? '1'),
-              resource: Value(newResource.toJsonString()),
-              lastUpdated: Value(
-                newResource
-                    .meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch,
-              ),
-            ),
-          );
+          metas[key] = updated.meta;
+          newResources.add(updated);
+          final (current, history) = _rowsFor(updated);
+          currentRows.add(current);
+          historyRows.add(history);
         }
-
-        batch
-          ..insertAllOnConflictUpdate(resources, resourceCompanions)
-          ..insertAllOnConflictUpdate(resourcesHistory, historyCompanions);
+        await batch(
+          (b) => b
+            ..insertAllOnConflictUpdate(resources, currentRows)
+            ..insertAllOnConflictUpdate(resourcesHistory, historyRows),
+        );
+        await _updateSearchParametersBulk(newResources);
       });
-
-      await _updateSearchParametersBulk(newResources);
 
       if (storeForSync) {
         for (final r in newResources) {
@@ -202,113 +187,152 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
   }
 
-  /// Delete a resource by type and id.
-  ///
-  /// Creates a tombstone entry in the history table (a version with no
-  /// resource content, marked as deleted) before removing the resource
-  /// from the current table.
-  Future<bool> deleteResource(
-    fhir.R4ResourceType resourceType,
-    String id,
-  ) async {
-    final resourceTypeString = resourceType.toString();
+  /// The stored meta when its version can be counted on from: an integer,
+  /// not a timestamp. Null starts the count at 1, and is what
+  /// [versionIdAsTime] always gets.
+  fhir.FhirMeta? _countableMeta(fhir.FhirMeta? stored) {
+    if (versionIdAsTime || stored == null) return null;
+    final vid = stored.versionId?.valueString;
+    if (vid == null || int.tryParse(vid) == null) return null;
+    return stored;
+  }
 
-    // Determine the next version number from the current resource
-    final existing = await getResource(resourceType, id);
-    if (existing == null) return false;
-
-    final currentVersion = existing.meta?.versionId?.toString();
-    final nextVersion =
-        currentVersion != null && int.tryParse(currentVersion) != null
-            ? (int.parse(currentVersion) + 1).toString()
-            : DateTime.now().toUtc().millisecondsSinceEpoch.toString();
-
-    final now = DateTime.now().toUtc();
-
-    // Write a tombstone entry to history — minimal JSON marking the deletion
-    await into(resourcesHistory).insertOnConflictUpdate(
-      ResourcesHistoryCompanion(
-        resourceType: Value(resourceTypeString),
+  /// The current-version row and the history row of one versioned resource,
+  /// serialized once.
+  (ResourcesCompanion, ResourcesHistoryCompanion) _rowsFor(fhir.Resource r) {
+    final type = r.resourceType.toString();
+    final id = r.id!.valueString!;
+    final json = r.toJsonString();
+    final lastUpdated =
+        r.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch;
+    return (
+      ResourcesCompanion(
+        resourceType: Value(type),
         id: Value(id),
-        versionId: Value(nextVersion),
-        resource: Value('{"resourceType":"$resourceTypeString","id":"$id",'
-            '"meta":{"versionId":"$nextVersion",'
-            '"lastUpdated":"${now.toIso8601String()}",'
-            '"tag":[{"system":"http://terminology.hl7.org/CodeSystem/v3-ObservationValue",'
-            '"code":"DELETED"}]}}'),
-        lastUpdated: Value(
-          now.millisecondsSinceEpoch,
-        ),
+        resource: Value(json),
+        lastUpdated: Value(lastUpdated),
+      ),
+      ResourcesHistoryCompanion(
+        resourceType: Value(type),
+        id: Value(id),
+        versionId: Value(r.meta?.versionId?.toString() ?? '1'),
+        resource: Value(json),
+        lastUpdated: Value(lastUpdated),
       ),
     );
+  }
 
-    // Remove from current resources table
-    final count = await (delete(resources)
-          ..where(
-            (tbl) =>
-                tbl.resourceType.equals(resourceTypeString) & tbl.id.equals(id),
-          ))
-        .go();
-
-    // Clean up search parameter indexes
-    if (count > 0) {
-      await (delete(stringSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(tokenSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(referenceSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(dateSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(numberSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(quantitySearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(uriSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(compositeSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
-      await (delete(specialSearchParameters)
-            ..where(
-              (t) =>
-                  t.resourceType.equals(resourceTypeString) & t.id.equals(id),
-            ))
-          .go();
+  /// The stored `meta` of each of [resourcesList] that already exists, keyed
+  /// `Type/id`; one query per resource type, ids in chunks of 500.
+  /// `json_extract` takes the one element out of the stored JSON, so no
+  /// resource is parsed. Empty under [versionIdAsTime], which does not count
+  /// from the stored version.
+  Future<Map<String, fhir.FhirMeta?>> _storedMetas(
+    List<fhir.Resource> resourcesList,
+  ) async {
+    final metas = <String, fhir.FhirMeta?>{};
+    if (versionIdAsTime) return metas;
+    final idsByType = <String, Set<String>>{};
+    for (final r in resourcesList) {
+      idsByType
+          .putIfAbsent(r.resourceType.toString(), () => {})
+          .add(r.id!.valueString!);
     }
+    const chunk = 500;
+    for (final MapEntry(key: type, value: ids) in idsByType.entries) {
+      final all = ids.toList();
+      for (var i = 0; i < all.length; i += chunk) {
+        final slice = all.sublist(i, math.min(i + chunk, all.length));
+        final placeholders = List.filled(slice.length, '?').join(', ');
+        final rows = await customSelect(
+          r"SELECT id, json_extract(resource, '$.meta') AS meta "
+          'FROM resources WHERE resource_type = ? AND id IN ($placeholders)',
+          variables: [
+            Variable<String>(type),
+            for (final id in slice) Variable<String>(id),
+          ],
+          readsFrom: {resources},
+        ).get();
+        for (final row in rows) {
+          final json = row.readNullable<String>('meta');
+          metas['$type/${row.read<String>('id')}'] = json == null
+              ? null
+              : fhir.FhirMeta.fromJson(
+                  jsonDecode(json) as Map<String, dynamic>,
+                );
+        }
+      }
+    }
+    return metas;
+  }
 
-    return count > 0;
+  /// Delete a resource by type and id.
+  ///
+  /// One transaction: a tombstone (a version with no content, tagged
+  /// DELETED) goes into history, the current row is removed, and the index
+  /// rows of the resource AND of anything it contained go with it through
+  /// [_deleteSearchParams]. The contained rows used to be left behind
+  /// (fhirant REVIEW-2026-09-06 finding 29) and the tombstone was built by
+  /// string interpolation (finding 31).
+  ///
+  /// [ifMatchVersion] as for [saveResource]: a mismatch is a
+  /// [VersionConflict] and nothing is written. Returns false, and writes no
+  /// tombstone, when there is nothing to delete.
+  Future<bool> deleteResource(
+    fhir.R4ResourceType resourceType,
+    String id, {
+    String? ifMatchVersion,
+  }) async {
+    final resourceTypeString = resourceType.toString();
+    return transaction(() async {
+      final existing = await getResource(resourceType, id);
+      final currentVersion = existing?.meta?.versionId?.valueString;
+      if (ifMatchVersion != null && currentVersion != ifMatchVersion) {
+        throw VersionConflict(
+          expected: ifMatchVersion,
+          actual: currentVersion,
+        );
+      }
+      if (existing == null) return false;
+
+      final nextVersion =
+          currentVersion != null && int.tryParse(currentVersion) != null
+              ? (int.parse(currentVersion) + 1).toString()
+              : DateTime.now().toUtc().millisecondsSinceEpoch.toString();
+      final now = DateTime.now().toUtc();
+
+      await into(resourcesHistory).insertOnConflictUpdate(
+        ResourcesHistoryCompanion(
+          resourceType: Value(resourceTypeString),
+          id: Value(id),
+          versionId: Value(nextVersion),
+          resource: Value(
+            jsonEncode({
+              'resourceType': resourceTypeString,
+              'id': id,
+              'meta': {
+                'versionId': nextVersion,
+                'lastUpdated': now.toIso8601String(),
+                'tag': [
+                  {'system': HistoryEntry.deletedTagSystem, 'code': 'DELETED'},
+                ],
+              },
+            }),
+          ),
+          lastUpdated: Value(now.millisecondsSinceEpoch),
+        ),
+      );
+
+      final count = await (delete(resources)
+            ..where(
+              (tbl) =>
+                  tbl.resourceType.equals(resourceTypeString) &
+                  tbl.id.equals(id),
+            ))
+          .go();
+      await batch((b) => _deleteSearchParams(b, resourceTypeString, id));
+      return count > 0;
+    });
   }
 
   /// Retrieve all resources of a given type.
@@ -371,25 +395,58 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return resourceTypes;
   }
 
-  /// Retrieve the history of a specific resource.
+  /// The versions of one resource that still parse as resources, newest
+  /// first. A delete's tombstone is not one of them; use [getHistory] to see
+  /// deletes.
+  ///
+  /// The tombstone used to be handed to `Resource.fromJsonString` with the
+  /// rest, which throws for any type with a required element (an
+  /// Observation's `status`), so the history of a deleted Observation could
+  /// not be read at all.
   Future<List<fhir.Resource>> getResourceHistory(
     fhir.R4ResourceType resourceType,
     String id,
-  ) async {
+  ) async =>
+      [
+        for (final entry in await getHistory(resourceType, id))
+          if (entry.resource != null) entry.resource!,
+      ];
+
+  /// Every version of one resource, newest first, deletes included as
+  /// tombstone entries ([HistoryEntry.deleted], no resource).
+  ///
+  /// [since] keeps the versions written after that instant (`_since`); [at]
+  /// returns the one version that was current at that instant (`_at`), or
+  /// nothing if the resource did not exist yet.
+  Future<List<HistoryEntry>> getHistory(
+    fhir.R4ResourceType resourceType,
+    String id, {
+    DateTime? since,
+    DateTime? at,
+  }) async {
     final resourceTypeString = resourceType.toString();
     final query = select(resourcesHistory)
-      ..where(
-        (tbl) =>
-            tbl.resourceType.equals(resourceTypeString) & tbl.id.equals(id),
-      )
+      ..where((tbl) {
+        var cond =
+            tbl.resourceType.equals(resourceTypeString) & tbl.id.equals(id);
+        if (at != null) {
+          cond = cond &
+              tbl.lastUpdated.isSmallerOrEqualValue(at.millisecondsSinceEpoch);
+        } else if (since != null) {
+          cond = cond &
+              tbl.lastUpdated.isBiggerThanValue(since.millisecondsSinceEpoch);
+        }
+        return cond;
+      })
       ..orderBy([
         (tbl) => OrderingTerm.desc(tbl.lastUpdated),
         (tbl) => OrderingTerm.desc(tbl.versionId),
       ]);
+    if (at != null) {
+      query.limit(1);
+    }
     final rows = await query.get();
-    return rows
-        .map((row) => fhir.Resource.fromJsonString(row.resource))
-        .toList();
+    return [for (final row in rows) HistoryEntry.fromRow(row)];
   }
 
   /// Check if a resource exists.
@@ -933,20 +990,32 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     switch (declared.type) {
       case 'string':
+        // Whole values only. A name part is also indexed one row per word
+        // so a search finds it by any word; those rows are an indexing
+        // device, not values of the parameter, and sorting on them put
+        // family "Zeta Alpha" before "Beta" (fhirant REVIEW-2026-09-06
+        // finding 19). Whole rows are the multiples of 100 in param_index,
+        // see StringSearchParameters.paramIndex.
         final s = alias(stringSearchParameters, aliasName);
         return _SortKey(
           table: s,
           on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id) &
+              _wholeValueRow(s),
           value: s.stringValue,
           descending: descending,
         );
       case 'token':
+        // A CodeableConcept's text is indexed as a row with an empty code
+        // for `:text`. It is not a code value: R4B 3.1.1.5.1, "A search
+        // result that has no value for a sort parameter sorts last", and
+        // an empty string sorted first (finding 20).
         final s = alias(tokenSearchParameters, aliasName);
         return _SortKey(
           table: s,
           on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+              path(s.resourceType, s.searchName, s.searchPath, s.id, id) &
+              s.tokenValue.isNotValue(''),
           value: s.tokenValue,
           descending: descending,
         );
@@ -2552,8 +2621,16 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     List<fhir.Resource> resourcesList,
   ) async {
     {
+      // A resource that appears twice in one batch is stored once, as its
+      // last copy, so its index rows are extracted from that copy alone:
+      // extracting both copies inserted the same primary key twice.
+      final last = <String, fhir.Resource>{
+        for (final r in resourcesList)
+          '${r.resourceType}/${r.id!.valueString!}': r,
+      };
+      final stored = last.values.toList();
       final searchParameterLists = SearchParameterLists();
-      for (final resource in resourcesList) {
+      for (final resource in stored) {
         final searchParams = extractSearchParameters(resource);
         searchParameterLists.stringParams.addAll(searchParams.stringParams);
         searchParameterLists.tokenParams.addAll(searchParams.tokenParams);
@@ -2569,7 +2646,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
 
       await batch((batch) {
-        for (final resource in resourcesList) {
+        for (final resource in stored) {
           _deleteSearchParams(
             batch,
             resource.resourceType.toString(),
@@ -3278,11 +3355,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final t = on ?? tokenSearchParameters;
     String? system;
     var tokenValue = searchValue;
+    // A pipe with nothing before it is its own form. R4B search.html
+    // 3.1.1.4.10 (read whole 2026-09-07): "[parameter]=|[code]: the value of
+    // [code] matches a Coding.code or Identifier.value, and the
+    // Coding/Identifier has no system property". Not the same as a bare
+    // code, which matches under any system.
+    var noSystem = false;
 
     if (searchValue.contains('|')) {
       final parts = splitEscaped(searchValue, '|');
       if (parts.length == 2) {
-        system = parts[0].isEmpty ? null : parts[0];
+        if (parts[0].isEmpty) {
+          noSystem = true;
+        } else {
+          system = parts[0];
+        }
         tokenValue = parts[1];
       }
     }
@@ -3300,6 +3387,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       whereCondition = whereCondition & t.tokenSystem.equals(system);
     } else if (tokenValue.isNotEmpty) {
       whereCondition = whereCondition & t.tokenValue.equals(tokenValue);
+      if (noSystem) {
+        whereCondition = whereCondition & t.tokenSystem.isNull();
+      }
     }
     return whereCondition;
   }
@@ -4557,6 +4647,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
   /// One resource's key for one sort rule: the earliest of its values in the
   /// rule's direction, typed so numbers and dates compare as themselves.
+  /// The string rows that hold a whole value of their parameter, as
+  /// opposed to one word of it: `param_index % 100 == 0`, the convention
+  /// StringSearchParameters.paramIndex documents. Raw SQL because drift has
+  /// no modulo operator; the alias is the one the join gave the table.
+  Expression<bool> _wholeValueRow($StringSearchParametersTable s) =>
+      CustomExpression<bool>('"${s.aliasedName}"."param_index" % 100 = 0');
+
   Comparable<Object>? _sortKeyOf(
     fhir.Resource resource,
     String name,
@@ -4578,14 +4675,18 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final values = <Comparable<Object>>[];
     switch (declared.type) {
       case 'string':
+        // Whole values only, as in _sortKeyFor.
         for (final p in lists.stringParams) {
-          if (named(p.searchName.value, p.searchPath.value)) {
+          if (named(p.searchName.value, p.searchPath.value) &&
+              p.paramIndex.value % 100 == 0) {
             values.add(p.stringValue.value);
           }
         }
       case 'token':
+        // Coded rows only, as in _sortKeyFor.
         for (final p in lists.tokenParams) {
-          if (named(p.searchName.value, p.searchPath.value)) {
+          if (named(p.searchName.value, p.searchPath.value) &&
+              p.tokenValue.value.isNotEmpty) {
             values.add(p.tokenValue.value);
           }
         }
@@ -4668,4 +4769,85 @@ class _SortKey {
   final Expression<bool> Function(GeneratedColumn<String> outerId) on;
   final Expression<Object> value;
   final bool descending;
+}
+
+/// Thrown by [FhirDao.saveResource] and [FhirDao.deleteResource] when the
+/// caller's [expected] version (HTTP `If-Match`) is not the stored one.
+/// [actual] is the stored version, or null when the resource does not exist.
+/// Nothing was written.
+class VersionConflict implements Exception {
+  /// Creates the conflict between [expected] and [actual].
+  const VersionConflict({required this.expected, required this.actual});
+
+  /// The version the caller required.
+  final String expected;
+
+  /// The version stored, or null when there is no such resource.
+  final String? actual;
+
+  @override
+  String toString() =>
+      'VersionConflict: expected version $expected, stored ${actual ?? 'none'}';
+}
+
+/// One row of a resource's history: a version of the resource, or the
+/// tombstone a delete leaves (`deleted`, with no resource).
+class HistoryEntry {
+  /// Creates one history entry.
+  const HistoryEntry({
+    required this.resourceType,
+    required this.id,
+    required this.versionId,
+    required this.lastUpdated,
+    required this.deleted,
+    required this.resource,
+  });
+
+  /// Reads one `resources_history` row. A tombstone is recognised by the
+  /// DELETED tag the delete wrote (`meta.tag`, v3-ObservationValue); its JSON
+  /// is a skeleton with no content, so it is not parsed as the resource
+  /// type. Any other row is the resource at that version.
+  factory HistoryEntry.fromRow(ResourcesHistoryData row) {
+    final json = jsonDecode(row.resource) as Map<String, dynamic>;
+    final meta = json['meta'];
+    final tags = meta is Map<String, dynamic> ? meta['tag'] : null;
+    final deleted = tags is List &&
+        tags.any(
+          (t) =>
+              t is Map<String, dynamic> &&
+              t['code'] == 'DELETED' &&
+              t['system'] == deletedTagSystem,
+        );
+    return HistoryEntry(
+      resourceType: row.resourceType,
+      id: row.id,
+      versionId: row.versionId,
+      lastUpdated:
+          DateTime.fromMillisecondsSinceEpoch(row.lastUpdated, isUtc: true),
+      deleted: deleted,
+      resource: deleted ? null : fhir.Resource.fromJson(json),
+    );
+  }
+
+  /// The system of the tag a tombstone carries.
+  static const deletedTagSystem =
+      'http://terminology.hl7.org/CodeSystem/v3-ObservationValue';
+
+  /// The resource type.
+  final String resourceType;
+
+  /// The logical id.
+  final String id;
+
+  /// The version this row is.
+  final String versionId;
+
+  /// When this version was written.
+  final DateTime lastUpdated;
+
+  /// True for the tombstone a delete wrote.
+  final bool deleted;
+
+  /// The resource at this version; null when [deleted].
+  final fhir.Resource? resource;
 }

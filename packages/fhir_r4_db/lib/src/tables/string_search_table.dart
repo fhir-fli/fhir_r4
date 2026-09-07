@@ -20,7 +20,14 @@ class StringSearchParameters extends Table {
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   TextColumn get searchName => text().withDefault(const Constant(''))();
 
-  /// Index for multiple values from the same path
+  /// Index for multiple values from the same path.
+  ///
+  /// Convention, relied on by `_sort`: a row holding a WHOLE value of the
+  /// parameter has a multiple of 100 here; the rows holding one word of a
+  /// name part (see [StringSearchParametersExtension.toStringSearchParameter])
+  /// have that multiple plus the word's position, 1..99. Every branch below
+  /// keeps to it, so a sort can take the whole rows with `% 100 = 0` and no
+  /// flag column is needed.
   IntColumn get paramIndex => integer()();
 
   /// Normalized string value for case- and accent-insensitive searches.
@@ -205,7 +212,8 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
               searchName: Value(searchName),
-              paramIndex: Value(paramIndex == null ? i : paramIndex * 100 + i),
+              // Whole values, on the multiples of 100 (see paramIndex).
+              paramIndex: Value(((paramIndex ?? 0) * 100 + i) * 100),
               stringValue: Value(_normalizeString(addressParts[i])),
               exactValue: Value(addressParts[i]),
             ),
@@ -222,8 +230,8 @@ extension StringSearchParametersExtension on fhir.FhirBase {
               lastUpdated: Value(lastUpdated),
               searchPath: Value(searchPath),
               searchName: Value(searchName),
-              paramIndex:
-                  paramIndex == null ? const Value.absent() : Value(paramIndex),
+              // A whole value, on a multiple of 100 (see paramIndex).
+              paramIndex: Value((paramIndex ?? 0) * 100),
               stringValue:
                   Value(_normalizeString(contactPoint.value!.valueString!)),
               exactValue: Value(contactPoint.value!.valueString!),

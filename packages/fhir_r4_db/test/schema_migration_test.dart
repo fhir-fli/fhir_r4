@@ -462,7 +462,60 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(8));
+    expect(version.data.values.first, equals(9));
+    await db.close();
+  });
+
+  test('a version-8 database has its search index rebuilt', () async {
+    // Schema 9 moved Address and ContactPoint string rows onto the
+    // whole-value param_index convention that `_sort` relies on; rows on
+    // the old numbers would be left out of a sort, so the index is
+    // re-extracted. Observable here: the string rows are emptied by hand,
+    // the version stamped back to 8, and the reopen brings them back.
+    final dir = await Directory.systemTemp.createTemp('fhir_db_v8_');
+    addTearDown(() => dir.delete(recursive: true));
+    final file = File('${dir.path}/db.sqlite');
+    final db8 = FhirDb(NativeDatabase(file));
+    await db8.fhirDao.saveResource(
+      Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'v8',
+        'address': [
+          {
+            'line': ['Zeta Street', 'Alpha Building'],
+            'city': 'Middle',
+          },
+        ],
+      }),
+    );
+    await db8.customStatement('DELETE FROM string_search_parameters');
+    await db8.customStatement('PRAGMA user_version = 8');
+    await db8.close();
+
+    final db = FhirDb(NativeDatabase(file));
+    final rows = await db
+        .customSelect(
+          'SELECT param_index FROM string_search_parameters '
+          "WHERE search_name = 'address' ORDER BY param_index",
+        )
+        .get();
+    expect(
+      rows.map((r) => r.read<int>('param_index')).toList(),
+      [0, 100, 200],
+      reason: 'three whole values, each on a multiple of 100',
+    );
+    expect(
+      (await db.fhirDao.search(
+        resourceType: R4ResourceType.Patient,
+        searchParameters: {
+          'address': <String>['Alpha'],
+        },
+      ))
+          .length,
+      1,
+    );
+    final version = await db.customSelect('PRAGMA user_version').getSingle();
+    expect(version.data.values.first, equals(9));
     await db.close();
   });
 }

@@ -189,54 +189,65 @@ extension ReferenceSearchParametersExtension on fhir.FhirBase {
     return results;
   }
 
-  /// Attempts to parse a reference/canonical string into sub-components.
+  /// Parses a literal reference into base URL, type, id and version.
+  ///
+  /// R4B references.html "Literal References" (read 2026-09-07) gives the
+  /// shape as a regex: an optional `(http|https)://` base of one or more
+  /// path segments, then `[type]/[id]`, then optionally
+  /// `(\/_history\/[A-Za-z0-9\-\.]{1,64})?`. So the version suffix comes off
+  /// first, whatever the rest is, and the base is everything before the LAST
+  /// `/[type]/[id]`. An absolute versioned reference used to be split on its
+  /// last two segments and indexed as type `_history`, id `[vid]`, and a
+  /// base path that happened to contain the type name was cut at the first
+  /// occurrence (fhirant REVIEW-2026-09-06 finding 18).
   ReferenceComponents _parseReference(String? referenceString) {
     if (referenceString == null || referenceString.isEmpty) {
       return ReferenceComponents();
     }
 
-    // Absolute URLs: "http://example.org/Patient/123"
-    if (referenceString.startsWith('http')) {
-      final uri = Uri.parse(referenceString);
-      final pathSegments = uri.pathSegments;
-      if (pathSegments.length >= 2) {
-        return ReferenceComponents(
-          baseUrl:
-              '${uri.scheme}://${uri.authority}${uri.path.substring(0, uri.path.indexOf(pathSegments[pathSegments.length - 2]))}',
-          resourceType: pathSegments[pathSegments.length - 2],
-          id: pathSegments[pathSegments.length - 1],
-        );
-      }
+    String? version;
+    var rest = referenceString;
+    const historyMarker = '/_history/';
+    final h = rest.indexOf(historyMarker);
+    if (h >= 0) {
+      final v = rest.substring(h + historyMarker.length);
+      version = v.isEmpty ? null : v;
+      rest = rest.substring(0, h);
     }
 
-    // Versioned references: "Patient/123/_history/1"
-    if (referenceString.contains('/_history/')) {
-      final parts = referenceString.split('/_history/');
-      final version = parts.length > 1 ? parts[1] : null;
-      final resourceParts = parts[0].split('/');
-      if (resourceParts.length >= 2) {
+    // Absolute URLs: "http://example.org/fhir/Patient/123"
+    if (rest.startsWith('http://') || rest.startsWith('https://')) {
+      final uri = Uri.tryParse(rest);
+      if (uri == null) return ReferenceComponents();
+      final pathSegments = uri.pathSegments.where((s) => s.isNotEmpty).toList();
+      if (pathSegments.length >= 2) {
+        final type = pathSegments[pathSegments.length - 2];
+        final id = pathSegments[pathSegments.length - 1];
+        final cut = uri.path.lastIndexOf('/$type/$id');
         return ReferenceComponents(
-          resourceType: resourceParts[resourceParts.length - 2],
-          id: resourceParts[resourceParts.length - 1],
+          baseUrl: '${uri.scheme}://${uri.authority}'
+              '${uri.path.substring(0, cut + 1)}',
+          resourceType: type,
+          id: id,
           version: version,
         );
       }
+      return ReferenceComponents();
     }
 
-    // Simple references: "Patient/123"
-    final parts = referenceString.split('/');
+    // Relative references: "Patient/123"
+    final parts = rest.split('/');
     if (parts.length == 2) {
       return ReferenceComponents(
         resourceType: parts[0],
         id: parts[1],
+        version: version,
       );
     }
 
     // ID-only references
-    if (!referenceString.contains('/')) {
-      return ReferenceComponents(
-        id: referenceString,
-      );
+    if (!rest.contains('/')) {
+      return ReferenceComponents(id: rest, version: version);
     }
 
     return ReferenceComponents();
