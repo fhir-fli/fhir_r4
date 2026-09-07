@@ -453,4 +453,117 @@ Future<void> main() async {
       );
     });
   });
+
+  group('meta on update (found while fixing the set)', () {
+    Patient withMeta(Map<String, dynamic> meta) => Patient.fromJson({
+          'resourceType': 'Patient',
+          'id': 'm',
+          'meta': meta,
+        });
+    Map<String, dynamic> coding(String code) =>
+        {'system': 'http://s', 'code': code};
+    List<String> codes(List<Coding>? l) =>
+        [for (final c in l ?? const <Coding>[]) c.code!.valueString!];
+
+    test(
+        'profile and source are as submitted; versionId and lastUpdated '
+        "are the server's", () async {
+      await dao.saveResource(
+        withMeta({
+          'profile': ['http://p/1'],
+          'source': 'urn:a',
+        }),
+      );
+      final saved = await dao.saveResource(
+        withMeta({
+          'profile': ['http://p/2'],
+          'source': 'urn:b',
+          'versionId': '99',
+          'lastUpdated': '2001-01-01T00:00:00Z',
+        }),
+      );
+      expect(saved.meta!.versionId!.valueString, '2');
+      expect(saved.meta!.lastUpdated!.valueDateTime!.year, greaterThan(2001));
+      expect(
+        saved.meta!.profile!.map((p) => p.valueString).toList(),
+        ['http://p/2'],
+      );
+      expect(saved.meta!.source!.valueString, 'urn:b');
+      final stored = await dao.getResource(R4ResourceType.Patient, 'm');
+      expect(stored!.meta!.toJson(), saved.meta!.toJson());
+    });
+
+    test('tags and security labels are merged by system+code', () async {
+      await dao.saveResource(
+        withMeta({
+          'tag': [coding('a')],
+          'security': [coding('x')],
+        }),
+      );
+      final saved = await dao.saveResource(
+        withMeta({
+          'tag': [coding('b'), coding('a')],
+          'security': [coding('y')],
+        }),
+      );
+      expect(codes(saved.meta!.tag), ['b', 'a']);
+      expect(codes(saved.meta!.security), ['x', 'y']);
+      final again = await dao.saveResource(withMeta({}));
+      expect(codes(again.meta!.tag), ['b', 'a']);
+      expect(codes(again.meta!.security), ['x', 'y']);
+      expect(again.meta!.versionId!.valueString, '3');
+    });
+
+    test('mergeTags: false writes the submitted labels exactly', () async {
+      await dao.saveResource(
+        withMeta({
+          'tag': [coding('a'), coding('b')],
+        }),
+      );
+      final saved = await dao.saveResource(
+        withMeta({
+          'tag': [coding('a')],
+        }),
+        mergeTags: false,
+      );
+      expect(codes(saved.meta!.tag), ['a']);
+      final stored = await dao.getResource(R4ResourceType.Patient, 'm');
+      expect(codes(stored!.meta!.tag), ['a']);
+    });
+
+    test('saveResources merges the same way', () async {
+      await dao.saveResource(
+        withMeta({
+          'tag': [coding('a')],
+        }),
+      );
+      expect(
+        await dao.saveResources([
+          withMeta({
+            'tag': [coding('b')],
+            'profile': ['http://p/3'],
+          }),
+        ]),
+        isTrue,
+      );
+      final stored = await dao.getResource(R4ResourceType.Patient, 'm');
+      expect(codes(stored!.meta!.tag), ['a', 'b']);
+      expect(stored.meta!.profile!.single.valueString, 'http://p/3');
+      expect(stored.meta!.versionId!.valueString, '2');
+    });
+
+    test('a first save keeps everything submitted but the server fields',
+        () async {
+      final saved = await dao.saveResource(
+        withMeta({
+          'versionId': '7',
+          'profile': ['http://p/1'],
+          'tag': [coding('a')],
+        }),
+      );
+      expect(saved.meta!.versionId!.valueString, '1');
+      expect(saved.meta!.profile!.single.valueString, 'http://p/1');
+      expect(codes(saved.meta!.tag), ['a']);
+    });
+  });
 }

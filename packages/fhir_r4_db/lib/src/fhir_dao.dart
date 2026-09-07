@@ -86,9 +86,14 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// resource does not exist, [VersionConflict] is thrown from inside that
   /// same transaction and nothing is written. Checked by the caller before
   /// the save, a second writer can land between the check and the write.
+  ///
+  /// The meta written is the submitted one with the server's versionId and
+  /// lastUpdated, and, with [mergeTags], the stored tags and security labels
+  /// kept alongside the submitted ones; see [_nextMeta].
   Future<fhir.Resource> saveResource(
     fhir.Resource resource, {
     String? ifMatchVersion,
+    bool mergeTags = true,
   }) async {
     final withId = resource.newIdIfNoId();
     final id = withId.id!.valueString!;
@@ -102,9 +107,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           actual: currentVersion,
         );
       }
-      final updated = withId.updateVersion(
-        oldMeta: _countableMeta(existing?.meta),
-        versionIdAsTime: versionIdAsTime,
+      final updated = withId.copyWith(
+        meta: _nextMeta(withId.meta, existing?.meta, mergeTags: mergeTags),
       );
       // The row, its history row and its index rows go in together. A
       // failure part way used to leave a resource stored that no search
@@ -148,9 +152,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final historyRows = <ResourcesHistoryCompanion>[];
         for (final resource in withIds) {
           final key = '${resource.resourceType}/${resource.id!.valueString!}';
-          final updated = resource.updateVersion(
-            oldMeta: _countableMeta(metas[key]),
-            versionIdAsTime: versionIdAsTime,
+          final updated = resource.copyWith(
+            meta: _nextMeta(resource.meta, metas[key], mergeTags: true),
           );
           metas[key] = updated.meta;
           newResources.add(updated);
@@ -187,14 +190,73 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
   }
 
-  /// The stored meta when its version can be counted on from: an integer,
-  /// not a timestamp. Null starts the count at 1, and is what
-  /// [versionIdAsTime] always gets.
-  fhir.FhirMeta? _countableMeta(fhir.FhirMeta? stored) {
-    if (versionIdAsTime || stored == null) return null;
-    final vid = stored.versionId?.valueString;
-    if (vid == null || int.tryParse(vid) == null) return null;
-    return stored;
+  /// The meta a new version is written with.
+  ///
+  /// R4B http.html "update" (read 2026-09-07): "If the request body includes
+  /// a meta, the server SHALL ignore the provided versionId and lastUpdated
+  /// values. If the server supports versions, it SHALL populate the
+  /// meta.versionId and meta.lastUpdated with the new correct values.
+  /// Servers are allowed to review and alter the other metadata values, but
+  /// SHOULD refrain from doing so (see metadata description for further
+  /// information)". That description, resource.html 2.26.3.9 "Updates to
+  /// Tags, Profiles, and Security Labels" (read 2026-09-07): "When a
+  /// resource is updated (e.g. on the RESTful interface), servers generally
+  /// follow this pattern: Merge existing and new tags / Replace existing
+  /// profile tags with new profile tags / Merge existing and new security
+  /// labels".
+  ///
+  /// So: the submitted meta, with versionId counted on from the stored
+  /// integer version (1 for a first save; a timestamp under
+  /// [versionIdAsTime]) and lastUpdated now; profile and source as
+  /// submitted; and, with [mergeTags], every stored tag and security label
+  /// the submission does not repeat (system+code) kept ahead of the
+  /// submitted ones. `$meta-delete` saves with `mergeTags: false` so the
+  /// labels it removed stay removed.
+  ///
+  /// Before this the STORED meta was kept whole and the submitted one
+  /// dropped, so a PUT could not add a profile or a tag and `$meta-add`
+  /// wrote nothing (probed 2026-09-07 during fhirant REVIEW-2026-09-06).
+  fhir.FhirMeta _nextMeta(
+    fhir.FhirMeta? submitted,
+    fhir.FhirMeta? stored, {
+    required bool mergeTags,
+  }) {
+    final storedVersion = stored?.versionId?.valueString;
+    final countFrom = !versionIdAsTime &&
+            storedVersion != null &&
+            int.tryParse(storedVersion) != null
+        ? stored
+        : null;
+    final stamped = fhir.updateFhirMetaVersion(countFrom, versionIdAsTime);
+    var meta = (submitted ?? const fhir.FhirMeta()).copyWith(
+      versionId: stamped.versionId,
+      lastUpdated: stamped.lastUpdated,
+    );
+    if (mergeTags && stored != null) {
+      meta = meta.copyWith(
+        tag: _mergeCodings(stored.tag, meta.tag),
+        security: _mergeCodings(stored.security, meta.security),
+      );
+    }
+    return meta;
+  }
+
+  /// [stored] codings the [submitted] ones do not repeat (system+code),
+  /// then the submitted ones; null when there are none at all.
+  List<fhir.Coding>? _mergeCodings(
+    List<fhir.Coding>? stored,
+    List<fhir.Coding>? submitted,
+  ) {
+    if (stored == null || stored.isEmpty) return submitted;
+    String key(fhir.Coding c) =>
+        '${c.system?.valueString}|${c.code?.valueString}';
+    final submittedKeys = {
+      for (final c in submitted ?? const <fhir.Coding>[]) key(c),
+    };
+    return [
+      ...stored.where((c) => !submittedKeys.contains(key(c))),
+      ...?submitted,
+    ];
   }
 
   /// The current-version row and the history row of one versioned resource,
