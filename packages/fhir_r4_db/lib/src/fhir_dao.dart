@@ -2149,6 +2149,80 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }
 
   // ──────────────────────────────────────────────────────────────────────────
+  // _include: the targets a resource's reference parameters point at
+  // ──────────────────────────────────────────────────────────────────────────
+
+  /// The targets of the reference search parameter [parameter] on the
+  /// [resourceType] resources [ids], as `(type, id)` pairs, from the
+  /// reference index; every reference parameter's targets when [parameter]
+  /// is null (`_include=[type]:*`); only targets of [targetType] when given.
+  ///
+  /// R4B search.html 3.1.1.5.4, read whole 2026-09-06: "Both _include and
+  /// _revinclude are based on search parameters, rather than paths in the
+  /// resource, since joins, such as chaining, are already done by search
+  /// parameter." and "If there is no reference, or no matching resource,
+  /// the resource cannot be retrieved (e.g. on a different server), then the
+  /// resource is omitted, and no error is returned." So a row with no parsed
+  /// type or id (identifier-only, display-only) contributes nothing, an
+  /// absolute reference under a base that is not [serverBaseUrl] is another
+  /// server's and contributes nothing (when the base is unknown it is
+  /// admitted, as the reference search does), and whether a target exists
+  /// locally is the caller's read.
+  Future<Set<(String, String)>> referenceTargets(
+    String resourceType,
+    Iterable<String> ids, {
+    String? parameter,
+    String? targetType,
+  }) async {
+    final t = referenceSearchParameters;
+    final base = serverBaseUrl;
+    final baseNoSlash = base == null
+        ? null
+        : (base.endsWith('/') ? base.substring(0, base.length - 1) : base);
+    final targets = <(String, String)>{};
+    final all = ids.toList();
+    // Well under SQLite's 32,766 host parameters per statement.
+    const chunk = 500;
+    for (var i = 0; i < all.length; i += chunk) {
+      final part = all.sublist(i, (i + chunk).clamp(0, all.length));
+      var where = t.resourceType.equals(resourceType) &
+          t.id.isIn(part) &
+          t.referenceResourceType.isNotNull() &
+          t.referenceIdPart.isNotNull();
+      if (parameter != null) {
+        where = where &
+            (t.searchName.equals(parameter) |
+                t.searchPath.like('$resourceType.$parameter') |
+                t.searchPath.like('$resourceType.%.$parameter'));
+      }
+      if (targetType != null) {
+        where = where & t.referenceResourceType.equals(targetType);
+      }
+      final rows = await (selectOnly(t, distinct: true)
+            ..addColumns([
+              t.referenceResourceType,
+              t.referenceIdPart,
+              t.referenceBaseUrl,
+            ])
+            ..where(where))
+          .get();
+      for (final row in rows) {
+        final rowBase = row.read(t.referenceBaseUrl);
+        if (rowBase != null && baseNoSlash != null) {
+          final normalized = rowBase.endsWith('/')
+              ? rowBase.substring(0, rowBase.length - 1)
+              : rowBase;
+          if (normalized != baseNoSlash) continue;
+        }
+        targets.add(
+          (row.read(t.referenceResourceType)!, row.read(t.referenceIdPart)!),
+        );
+      }
+    }
+    return targets;
+  }
+
+  // ──────────────────────────────────────────────────────────────────────────
   // Compartments
   // ──────────────────────────────────────────────────────────────────────────
 
