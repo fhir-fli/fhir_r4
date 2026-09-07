@@ -2154,10 +2154,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
   /// Every resource in [scope]'s compartment, by resource type.
   ///
-  /// compartmentdefinition.html: a resource is in a compartment instance
-  /// when one of the search parameters the definition names for its type
+  /// CompartmentDefinition.resource.param: "The name of a search parameter
+  /// that represents the link to the compartment. More than one may be
+  /// listed because a resource may be linked to a compartment in more than
+  /// one way". A resource is in the instance when one of those parameters
   /// points at the focal resource. The focal resource is in its own
-  /// compartment. [types] restricts the answer to those types; [since]
+  /// compartment: compartmentdefinition.html, "the identity of the
+  /// compartment is the same as the patient"; and "When a patient is linked
+  /// to another patient, all the records associated with the linked patient
+  /// are in the compartment associated with the target of the link". [types] restricts the answer to those types; [since]
   /// keeps only resources last updated at or after it (the `_since` of
   /// `$everything`, "Resources updated after this period will be included").
   /// One indexed query per member type; nothing is read but ids.

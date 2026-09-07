@@ -1,0 +1,741 @@
+// ignore_for_file: lines_longer_than_80_chars
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// Generated from profiles-resources.json by
+// fhir_generator/lib/src/generate_element_summary.dart
+
+/// Which of a resource's top-level elements are summary,
+/// mandatory and modifier elements, by JSON name.
+///
+/// From `ElementDefinition.isSummary`, `.min` and
+/// `.isModifier` on the resource's StructureDefinition. A
+/// choice element is expanded to its JSON names, one per
+/// type (`valueQuantity`, `valueString`, ...). Search
+/// 3.1.1.5.8 (`_summary`) and 3.1.1.5.9 (`_elements`) are
+/// answered from this.
+class ResourceElementSummary {
+  /// Creates the three sets for one resource type.
+  const ResourceElementSummary({
+    required this.summary,
+    required this.mandatory,
+    required this.modifier,
+  });
+
+  /// Elements marked `isSummary`.
+  final Set<String> summary;
+
+  /// Elements with `min` of 1 or more.
+  final Set<String> mandatory;
+
+  /// Elements marked `isModifier`.
+  final Set<String> modifier;
+}
+
+/// The summary, mandatory and modifier elements of every
+/// resource type, by resource type name.
+const Map<String, ResourceElementSummary> resourceElementSummary = {
+  'Account': ResourceElementSummary(
+    summary: {'coverage', 'description', 'id', 'identifier', 'implicitRules', 'meta', 'name', 'owner', 'servicePeriod', 'status', 'subject', 'type'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ActivityDefinition': ResourceElementSummary(
+    summary: {'code', 'contact', 'date', 'description', 'doNotPerform', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'kind', 'meta', 'name', 'publisher', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'doNotPerform', 'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'AdministrableProductDefinition': ResourceElementSummary(
+    summary: {'administrableDoseForm', 'device', 'formOf', 'id', 'identifier', 'implicitRules', 'ingredient', 'meta', 'producedFrom', 'property', 'routeOfAdministration', 'status', 'unitOfPresentation'},
+    mandatory: {'routeOfAdministration', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'AdverseEvent': ResourceElementSummary(
+    summary: {'actuality', 'category', 'contributor', 'date', 'detected', 'encounter', 'event', 'id', 'identifier', 'implicitRules', 'location', 'meta', 'outcome', 'recordedDate', 'recorder', 'referenceDocument', 'resultingCondition', 'seriousness', 'severity', 'study', 'subject', 'subjectMedicalHistory', 'suspectEntity'},
+    mandatory: {'actuality', 'subject'},
+    modifier: {'actuality', 'implicitRules', 'modifierExtension'},
+  ),
+  'AllergyIntolerance': ResourceElementSummary(
+    summary: {'asserter', 'category', 'clinicalStatus', 'code', 'criticality', 'id', 'identifier', 'implicitRules', 'meta', 'patient', 'type', 'verificationStatus'},
+    mandatory: {'patient'},
+    modifier: {'clinicalStatus', 'implicitRules', 'modifierExtension', 'verificationStatus'},
+  ),
+  'Appointment': ResourceElementSummary(
+    summary: {'appointmentType', 'cancelationReason', 'end', 'id', 'identifier', 'implicitRules', 'meta', 'reasonCode', 'serviceCategory', 'serviceType', 'specialty', 'start', 'status'},
+    mandatory: {'participant', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'AppointmentResponse': ResourceElementSummary(
+    summary: {'actor', 'appointment', 'id', 'identifier', 'implicitRules', 'meta', 'participantStatus', 'participantType'},
+    mandatory: {'appointment', 'participantStatus'},
+    modifier: {'implicitRules', 'modifierExtension', 'participantStatus'},
+  ),
+  'AuditEvent': ResourceElementSummary(
+    summary: {'action', 'id', 'implicitRules', 'meta', 'outcome', 'outcomeDesc', 'purposeOfEvent', 'recorded', 'subtype', 'type'},
+    mandatory: {'agent', 'recorded', 'source', 'type'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'Basic': ResourceElementSummary(
+    summary: {'author', 'code', 'created', 'id', 'identifier', 'implicitRules', 'meta', 'subject'},
+    mandatory: {'code'},
+    modifier: {'code', 'implicitRules', 'modifierExtension'},
+  ),
+  'Binary': ResourceElementSummary(
+    summary: {'contentType', 'id', 'implicitRules', 'meta', 'securityContext'},
+    mandatory: {'contentType'},
+    modifier: {'implicitRules'},
+  ),
+  'BiologicallyDerivedProduct': ResourceElementSummary(
+    summary: {'id', 'identifier', 'implicitRules', 'meta'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'BodyStructure': ResourceElementSummary(
+    summary: {'active', 'description', 'id', 'identifier', 'implicitRules', 'location', 'meta', 'morphology', 'patient'},
+    mandatory: {'patient'},
+    modifier: {'active', 'implicitRules', 'modifierExtension'},
+  ),
+  'Bundle': ResourceElementSummary(
+    summary: {'entry', 'id', 'identifier', 'implicitRules', 'link', 'meta', 'signature', 'timestamp', 'total', 'type'},
+    mandatory: {'type'},
+    modifier: {'implicitRules'},
+  ),
+  'CapabilityStatement': ResourceElementSummary(
+    summary: {'contact', 'date', 'document', 'experimental', 'fhirVersion', 'format', 'id', 'implementation', 'implementationGuide', 'implicitRules', 'imports', 'instantiates', 'jurisdiction', 'kind', 'messaging', 'meta', 'name', 'patchFormat', 'publisher', 'rest', 'software', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'date', 'fhirVersion', 'format', 'kind', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'CarePlan': ResourceElementSummary(
+    summary: {'addresses', 'author', 'basedOn', 'category', 'created', 'description', 'encounter', 'id', 'identifier', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'intent', 'meta', 'partOf', 'period', 'replaces', 'status', 'subject', 'title'},
+    mandatory: {'intent', 'status', 'subject'},
+    modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
+  ),
+  'CareTeam': ResourceElementSummary(
+    summary: {'category', 'encounter', 'id', 'identifier', 'implicitRules', 'managingOrganization', 'meta', 'name', 'period', 'status', 'subject'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'CatalogEntry': ResourceElementSummary(
+    summary: {'id', 'identifier', 'implicitRules', 'meta', 'orderable', 'referencedItem'},
+    mandatory: {'orderable', 'referencedItem'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'ChargeItem': ResourceElementSummary(
+    summary: {'account', 'bodysite', 'code', 'context', 'enteredDate', 'enterer', 'id', 'identifier', 'implicitRules', 'meta', 'occurrenceDateTime', 'occurrencePeriod', 'occurrenceTiming', 'quantity', 'status', 'subject'},
+    mandatory: {'code', 'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ChargeItemDefinition': ResourceElementSummary(
+    summary: {'code', 'contact', 'date', 'derivedFromUri', 'description', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'partOf', 'publisher', 'replaces', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status', 'url'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Citation': ResourceElementSummary(
+    summary: {'contact', 'date', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Claim': ResourceElementSummary(
+    summary: {'billablePeriod', 'created', 'id', 'implicitRules', 'insurance', 'insurer', 'meta', 'patient', 'priority', 'provider', 'status', 'type', 'use'},
+    mandatory: {'created', 'insurance', 'patient', 'priority', 'provider', 'status', 'type', 'use'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ClaimResponse': ResourceElementSummary(
+    summary: {'created', 'id', 'implicitRules', 'insurer', 'meta', 'outcome', 'patient', 'request', 'status', 'total', 'type', 'use'},
+    mandatory: {'created', 'insurer', 'outcome', 'patient', 'status', 'type', 'use'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ClinicalImpression': ResourceElementSummary(
+    summary: {'assessor', 'code', 'date', 'description', 'effectiveDateTime', 'effectivePeriod', 'encounter', 'id', 'identifier', 'implicitRules', 'meta', 'problem', 'status', 'subject'},
+    mandatory: {'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ClinicalUseDefinition': ResourceElementSummary(
+    summary: {'category', 'contraindication', 'id', 'identifier', 'implicitRules', 'indication', 'interaction', 'meta', 'population', 'status', 'subject', 'type', 'undesirableEffect', 'warning'},
+    mandatory: {'type'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'CodeSystem': ResourceElementSummary(
+    summary: {'caseSensitive', 'compositional', 'contact', 'content', 'count', 'date', 'experimental', 'filter', 'hierarchyMeaning', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'property', 'publisher', 'status', 'supplements', 'title', 'url', 'useContext', 'valueSet', 'version', 'versionNeeded'},
+    mandatory: {'content', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Communication': ResourceElementSummary(
+    summary: {'basedOn', 'encounter', 'id', 'identifier', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'meta', 'partOf', 'priority', 'reasonCode', 'reasonReference', 'status', 'statusReason', 'subject'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'CommunicationRequest': ResourceElementSummary(
+    summary: {'authoredOn', 'basedOn', 'doNotPerform', 'encounter', 'groupIdentifier', 'id', 'identifier', 'implicitRules', 'meta', 'occurrenceDateTime', 'occurrencePeriod', 'priority', 'reasonCode', 'reasonReference', 'replaces', 'requester', 'sender', 'status'},
+    mandatory: {'status'},
+    modifier: {'doNotPerform', 'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'CompartmentDefinition': ResourceElementSummary(
+    summary: {'code', 'contact', 'date', 'experimental', 'id', 'implicitRules', 'meta', 'name', 'publisher', 'resource', 'search', 'status', 'url', 'useContext', 'version'},
+    mandatory: {'code', 'name', 'search', 'status', 'url'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Composition': ResourceElementSummary(
+    summary: {'author', 'category', 'confidentiality', 'custodian', 'date', 'encounter', 'event', 'id', 'identifier', 'implicitRules', 'meta', 'status', 'subject', 'title', 'type'},
+    mandatory: {'author', 'date', 'status', 'title', 'type'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ConceptMap': ResourceElementSummary(
+    summary: {'contact', 'date', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'sourceCanonical', 'sourceUri', 'status', 'targetCanonical', 'targetUri', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Condition': ResourceElementSummary(
+    summary: {'asserter', 'bodySite', 'clinicalStatus', 'code', 'encounter', 'id', 'identifier', 'implicitRules', 'meta', 'onsetAge', 'onsetDateTime', 'onsetPeriod', 'onsetRange', 'onsetString', 'recordedDate', 'recorder', 'subject', 'verificationStatus'},
+    mandatory: {'subject'},
+    modifier: {'clinicalStatus', 'implicitRules', 'modifierExtension', 'verificationStatus'},
+  ),
+  'Consent': ResourceElementSummary(
+    summary: {'category', 'dateTime', 'id', 'identifier', 'implicitRules', 'meta', 'organization', 'patient', 'performer', 'policyRule', 'provision', 'scope', 'sourceAttachment', 'sourceReference', 'status', 'verification'},
+    mandatory: {'category', 'scope', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'scope', 'status'},
+  ),
+  'Contract': ResourceElementSummary(
+    summary: {'applies', 'id', 'identifier', 'implicitRules', 'issued', 'meta', 'name', 'status', 'subType', 'subject', 'title', 'type', 'version'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Coverage': ResourceElementSummary(
+    summary: {'beneficiary', 'dependent', 'id', 'identifier', 'implicitRules', 'meta', 'network', 'order', 'payor', 'period', 'policyHolder', 'status', 'subscriber', 'subscriberId', 'type'},
+    mandatory: {'beneficiary', 'payor', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'CoverageEligibilityRequest': ResourceElementSummary(
+    summary: {'created', 'id', 'implicitRules', 'insurer', 'meta', 'patient', 'purpose', 'status'},
+    mandatory: {'created', 'insurer', 'patient', 'purpose', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'CoverageEligibilityResponse': ResourceElementSummary(
+    summary: {'created', 'id', 'implicitRules', 'insurer', 'meta', 'outcome', 'patient', 'purpose', 'request', 'status'},
+    mandatory: {'created', 'insurer', 'outcome', 'patient', 'purpose', 'request', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'DetectedIssue': ResourceElementSummary(
+    summary: {'author', 'code', 'id', 'identifiedDateTime', 'identifiedPeriod', 'identifier', 'implicated', 'implicitRules', 'meta', 'patient', 'severity', 'status'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Device': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'meta', 'safety', 'status', 'udiCarrier'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'DeviceDefinition': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'meta', 'parentDevice', 'safety'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'DeviceMetric': ResourceElementSummary(
+    summary: {'calibration', 'category', 'color', 'id', 'identifier', 'implicitRules', 'measurementPeriod', 'meta', 'operationalStatus', 'parent', 'source', 'type', 'unit'},
+    mandatory: {'category', 'type'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'DeviceRequest': ResourceElementSummary(
+    summary: {'authoredOn', 'basedOn', 'codeCodeableConcept', 'codeReference', 'encounter', 'groupIdentifier', 'id', 'identifier', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'intent', 'meta', 'occurrenceDateTime', 'occurrencePeriod', 'occurrenceTiming', 'performer', 'performerType', 'priorRequest', 'priority', 'reasonCode', 'reasonReference', 'requester', 'status', 'subject'},
+    mandatory: {'codeCodeableConcept', 'codeReference', 'intent', 'subject'},
+    modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
+  ),
+  'DeviceUseStatement': ResourceElementSummary(
+    summary: {'basedOn', 'bodySite', 'derivedFrom', 'device', 'id', 'identifier', 'implicitRules', 'meta', 'reasonCode', 'reasonReference', 'recordedOn', 'source', 'status', 'subject', 'timingDateTime', 'timingPeriod', 'timingTiming'},
+    mandatory: {'device', 'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'DiagnosticReport': ResourceElementSummary(
+    summary: {'category', 'code', 'effectiveDateTime', 'effectivePeriod', 'encounter', 'id', 'identifier', 'implicitRules', 'issued', 'media', 'meta', 'performer', 'resultsInterpreter', 'status', 'subject'},
+    mandatory: {'code', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'DocumentManifest': ResourceElementSummary(
+    summary: {'author', 'content', 'description', 'id', 'identifier', 'implicitRules', 'masterIdentifier', 'meta', 'status', 'subject', 'type'},
+    mandatory: {'content', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'DocumentReference': ResourceElementSummary(
+    summary: {'author', 'category', 'content', 'context', 'date', 'description', 'docStatus', 'id', 'identifier', 'implicitRules', 'masterIdentifier', 'meta', 'relatesTo', 'securityLabel', 'status', 'subject', 'type'},
+    mandatory: {'content', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Encounter': ResourceElementSummary(
+    summary: {'appointment', 'class', 'diagnosis', 'episodeOfCare', 'id', 'identifier', 'implicitRules', 'meta', 'participant', 'reasonCode', 'reasonReference', 'serviceType', 'status', 'subject', 'type'},
+    mandatory: {'class', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Endpoint': ResourceElementSummary(
+    summary: {'address', 'connectionType', 'id', 'identifier', 'implicitRules', 'managingOrganization', 'meta', 'name', 'payloadMimeType', 'payloadType', 'period', 'status'},
+    mandatory: {'address', 'connectionType', 'payloadType', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'EnrollmentRequest': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'meta', 'status'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'EnrollmentResponse': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'meta', 'status'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'EpisodeOfCare': ResourceElementSummary(
+    summary: {'diagnosis', 'id', 'implicitRules', 'managingOrganization', 'meta', 'patient', 'period', 'status', 'type'},
+    mandatory: {'patient', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'EventDefinition': ResourceElementSummary(
+    summary: {'approvalDate', 'contact', 'date', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'lastReviewDate', 'meta', 'name', 'publisher', 'status', 'title', 'trigger', 'url', 'useContext', 'version'},
+    mandatory: {'status', 'trigger'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Evidence': ResourceElementSummary(
+    summary: {'author', 'contact', 'date', 'endorser', 'id', 'identifier', 'implicitRules', 'meta', 'publisher', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status', 'variableDefinition'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'EvidenceReport': ResourceElementSummary(
+    summary: {'author', 'contact', 'endorser', 'id', 'identifier', 'implicitRules', 'meta', 'publisher', 'relatedIdentifier', 'status', 'subject', 'url', 'useContext'},
+    mandatory: {'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'EvidenceVariable': ResourceElementSummary(
+    summary: {'characteristic', 'contact', 'date', 'description', 'handling', 'id', 'identifier', 'implicitRules', 'meta', 'name', 'publisher', 'shortTitle', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ExampleScenario': ResourceElementSummary(
+    summary: {'contact', 'date', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ExplanationOfBenefit': ResourceElementSummary(
+    summary: {'billablePeriod', 'created', 'id', 'implicitRules', 'insurance', 'insurer', 'meta', 'outcome', 'patient', 'provider', 'status', 'total', 'type', 'use'},
+    mandatory: {'created', 'insurance', 'insurer', 'outcome', 'patient', 'provider', 'status', 'type', 'use'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'FamilyMemberHistory': ResourceElementSummary(
+    summary: {'ageAge', 'ageRange', 'ageString', 'dataAbsentReason', 'date', 'deceasedAge', 'deceasedBoolean', 'deceasedDate', 'deceasedRange', 'deceasedString', 'estimatedAge', 'id', 'identifier', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'meta', 'name', 'patient', 'reasonCode', 'reasonReference', 'relationship', 'sex', 'status'},
+    mandatory: {'patient', 'relationship', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Flag': ResourceElementSummary(
+    summary: {'author', 'category', 'code', 'encounter', 'id', 'identifier', 'implicitRules', 'meta', 'period', 'status', 'subject'},
+    mandatory: {'code', 'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Goal': ResourceElementSummary(
+    summary: {'achievementStatus', 'category', 'description', 'expressedBy', 'id', 'implicitRules', 'lifecycleStatus', 'meta', 'priority', 'startCodeableConcept', 'startDate', 'statusDate', 'subject'},
+    mandatory: {'description', 'lifecycleStatus', 'subject'},
+    modifier: {'implicitRules', 'lifecycleStatus', 'modifierExtension'},
+  ),
+  'GraphDefinition': ResourceElementSummary(
+    summary: {'contact', 'date', 'experimental', 'id', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'start', 'status', 'url', 'useContext', 'version'},
+    mandatory: {'name', 'start', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Group': ResourceElementSummary(
+    summary: {'active', 'actual', 'code', 'id', 'identifier', 'implicitRules', 'managingEntity', 'meta', 'name', 'quantity', 'type'},
+    mandatory: {'actual', 'type'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'GuidanceResponse': ResourceElementSummary(
+    summary: {'id', 'identifier', 'implicitRules', 'meta', 'moduleCanonical', 'moduleCodeableConcept', 'moduleUri', 'requestIdentifier', 'status'},
+    mandatory: {'moduleCanonical', 'moduleCodeableConcept', 'moduleUri', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'HealthcareService': ResourceElementSummary(
+    summary: {'active', 'category', 'comment', 'id', 'identifier', 'implicitRules', 'location', 'meta', 'name', 'photo', 'providedBy', 'specialty', 'type'},
+    mandatory: {},
+    modifier: {'active', 'implicitRules', 'modifierExtension'},
+  ),
+  'ImagingStudy': ResourceElementSummary(
+    summary: {'basedOn', 'description', 'encounter', 'endpoint', 'id', 'identifier', 'implicitRules', 'interpreter', 'location', 'meta', 'modality', 'note', 'numberOfInstances', 'numberOfSeries', 'procedureCode', 'procedureReference', 'reasonCode', 'reasonReference', 'referrer', 'series', 'started', 'status', 'subject'},
+    mandatory: {'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Immunization': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'isSubpotent', 'meta', 'note', 'occurrenceDateTime', 'occurrenceString', 'patient', 'performer', 'primarySource', 'status', 'vaccineCode'},
+    mandatory: {'occurrenceDateTime', 'occurrenceString', 'patient', 'status', 'vaccineCode'},
+    modifier: {'implicitRules', 'isSubpotent', 'modifierExtension', 'status'},
+  ),
+  'ImmunizationEvaluation': ResourceElementSummary(
+    summary: {'doseStatus', 'id', 'immunizationEvent', 'implicitRules', 'meta', 'patient', 'status', 'targetDisease'},
+    mandatory: {'doseStatus', 'immunizationEvent', 'patient', 'status', 'targetDisease'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ImmunizationRecommendation': ResourceElementSummary(
+    summary: {'date', 'id', 'identifier', 'implicitRules', 'meta', 'patient', 'recommendation'},
+    mandatory: {'date', 'patient', 'recommendation'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'ImplementationGuide': ResourceElementSummary(
+    summary: {'contact', 'date', 'dependsOn', 'experimental', 'fhirVersion', 'global', 'id', 'implicitRules', 'jurisdiction', 'license', 'meta', 'name', 'packageId', 'publisher', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'fhirVersion', 'name', 'packageId', 'status', 'url'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Ingredient': ResourceElementSummary(
+    summary: {'allergenicIndicator', 'for', 'function', 'id', 'identifier', 'implicitRules', 'manufacturer', 'meta', 'role', 'status', 'substance'},
+    mandatory: {'role', 'status', 'substance'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'InsurancePlan': ResourceElementSummary(
+    summary: {'administeredBy', 'coverageArea', 'id', 'identifier', 'implicitRules', 'meta', 'name', 'ownedBy', 'status', 'type'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Invoice': ResourceElementSummary(
+    summary: {'date', 'id', 'identifier', 'implicitRules', 'meta', 'recipient', 'status', 'subject', 'totalGross', 'totalNet', 'type'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Library': ResourceElementSummary(
+    summary: {'contact', 'content', 'date', 'description', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'title', 'type', 'url', 'useContext', 'version'},
+    mandatory: {'status', 'type'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Linkage': ResourceElementSummary(
+    summary: {'active', 'author', 'id', 'implicitRules', 'item', 'meta'},
+    mandatory: {'item'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'List': ResourceElementSummary(
+    summary: {'code', 'date', 'id', 'implicitRules', 'meta', 'mode', 'source', 'status', 'subject', 'title'},
+    mandatory: {'mode', 'status'},
+    modifier: {'implicitRules', 'mode', 'modifierExtension', 'status'},
+  ),
+  'Location': ResourceElementSummary(
+    summary: {'description', 'id', 'identifier', 'implicitRules', 'managingOrganization', 'meta', 'mode', 'name', 'operationalStatus', 'physicalType', 'status', 'type'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ManufacturedItemDefinition': ResourceElementSummary(
+    summary: {'id', 'identifier', 'implicitRules', 'ingredient', 'manufacturedDoseForm', 'manufacturer', 'meta', 'property', 'status', 'unitOfPresentation'},
+    mandatory: {'manufacturedDoseForm', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Measure': ResourceElementSummary(
+    summary: {'clinicalRecommendationStatement', 'compositeScoring', 'contact', 'date', 'definition', 'description', 'disclaimer', 'effectivePeriod', 'experimental', 'guidance', 'id', 'identifier', 'implicitRules', 'improvementNotation', 'jurisdiction', 'meta', 'name', 'publisher', 'rateAggregation', 'rationale', 'riskAdjustment', 'scoring', 'status', 'title', 'type', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MeasureReport': ResourceElementSummary(
+    summary: {'date', 'id', 'identifier', 'implicitRules', 'improvementNotation', 'measure', 'meta', 'period', 'reporter', 'status', 'subject', 'type'},
+    mandatory: {'measure', 'period', 'status', 'type'},
+    modifier: {'implicitRules', 'improvementNotation', 'modifierExtension', 'status'},
+  ),
+  'Media': ResourceElementSummary(
+    summary: {'basedOn', 'bodySite', 'content', 'createdDateTime', 'createdPeriod', 'device', 'deviceName', 'duration', 'encounter', 'frames', 'height', 'id', 'identifier', 'implicitRules', 'issued', 'meta', 'modality', 'operator', 'partOf', 'reasonCode', 'status', 'subject', 'type', 'view', 'width'},
+    mandatory: {'content', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Medication': ResourceElementSummary(
+    summary: {'amount', 'code', 'id', 'identifier', 'implicitRules', 'manufacturer', 'meta', 'status'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MedicationAdministration': ResourceElementSummary(
+    summary: {'effectiveDateTime', 'effectivePeriod', 'id', 'implicitRules', 'instantiates', 'medicationCodeableConcept', 'medicationReference', 'meta', 'partOf', 'performer', 'status', 'subject'},
+    mandatory: {'effectiveDateTime', 'effectivePeriod', 'medicationCodeableConcept', 'medicationReference', 'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MedicationDispense': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'medicationCodeableConcept', 'medicationReference', 'meta', 'status', 'subject', 'whenPrepared'},
+    mandatory: {'medicationCodeableConcept', 'medicationReference', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MedicationKnowledge': ResourceElementSummary(
+    summary: {'amount', 'code', 'id', 'implicitRules', 'manufacturer', 'meta', 'status', 'synonym'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MedicationRequest': ResourceElementSummary(
+    summary: {'authoredOn', 'basedOn', 'doNotPerform', 'groupIdentifier', 'id', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'intent', 'medicationCodeableConcept', 'medicationReference', 'meta', 'performerType', 'priority', 'reportedBoolean', 'reportedReference', 'requester', 'status', 'subject'},
+    mandatory: {'intent', 'medicationCodeableConcept', 'medicationReference', 'status', 'subject'},
+    modifier: {'doNotPerform', 'implicitRules', 'intent', 'modifierExtension', 'status'},
+  ),
+  'MedicationStatement': ResourceElementSummary(
+    summary: {'basedOn', 'category', 'context', 'dateAsserted', 'effectiveDateTime', 'effectivePeriod', 'id', 'identifier', 'implicitRules', 'medicationCodeableConcept', 'medicationReference', 'meta', 'partOf', 'status', 'subject'},
+    mandatory: {'medicationCodeableConcept', 'medicationReference', 'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MedicinalProductDefinition': ResourceElementSummary(
+    summary: {'additionalMonitoringIndicator', 'attachedDocument', 'characteristic', 'classification', 'clinicalTrial', 'code', 'combinedPharmaceuticalDoseForm', 'contact', 'crossReference', 'description', 'domain', 'id', 'identifier', 'implicitRules', 'impurity', 'indication', 'ingredient', 'legalStatusOfSupply', 'marketingStatus', 'masterFile', 'meta', 'name', 'operation', 'packagedMedicinalProduct', 'pediatricUseIndicator', 'route', 'specialMeasures', 'status', 'statusDate', 'type', 'version'},
+    mandatory: {'name'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MessageDefinition': ResourceElementSummary(
+    summary: {'base', 'category', 'contact', 'date', 'description', 'eventCoding', 'eventUri', 'experimental', 'focus', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'parent', 'publisher', 'purpose', 'replaces', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'date', 'eventCoding', 'eventUri', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'MessageHeader': ResourceElementSummary(
+    summary: {'author', 'definition', 'destination', 'enterer', 'eventCoding', 'eventUri', 'focus', 'id', 'implicitRules', 'meta', 'reason', 'response', 'responsible', 'sender', 'source'},
+    mandatory: {'eventCoding', 'eventUri', 'source'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'MolecularSequence': ResourceElementSummary(
+    summary: {'coordinateSystem', 'device', 'id', 'identifier', 'implicitRules', 'meta', 'observedSeq', 'patient', 'performer', 'pointer', 'quality', 'quantity', 'readCoverage', 'referenceSeq', 'repository', 'specimen', 'structureVariant', 'type', 'variant'},
+    mandatory: {'coordinateSystem'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'NamingSystem': ResourceElementSummary(
+    summary: {'contact', 'date', 'id', 'implicitRules', 'jurisdiction', 'kind', 'meta', 'name', 'publisher', 'status', 'uniqueId', 'useContext'},
+    mandatory: {'date', 'kind', 'name', 'status', 'uniqueId'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'NutritionOrder': ResourceElementSummary(
+    summary: {'dateTime', 'id', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'intent', 'meta', 'orderer', 'patient', 'status'},
+    mandatory: {'dateTime', 'intent', 'patient', 'status'},
+    modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
+  ),
+  'NutritionProduct': ResourceElementSummary(
+    summary: {'category', 'code', 'id', 'implicitRules', 'manufacturer', 'meta', 'nutrient', 'status'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Observation': ResourceElementSummary(
+    summary: {'basedOn', 'code', 'component', 'derivedFrom', 'effectiveDateTime', 'effectiveInstant', 'effectivePeriod', 'effectiveTiming', 'encounter', 'focus', 'hasMember', 'id', 'identifier', 'implicitRules', 'issued', 'meta', 'partOf', 'performer', 'status', 'subject', 'valueBoolean', 'valueCodeableConcept', 'valueDateTime', 'valueInteger', 'valuePeriod', 'valueQuantity', 'valueRange', 'valueRatio', 'valueSampledData', 'valueString', 'valueTime'},
+    mandatory: {'code', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ObservationDefinition': ResourceElementSummary(
+    summary: {'category', 'code', 'id', 'identifier', 'implicitRules', 'meta'},
+    mandatory: {'code'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'OperationDefinition': ResourceElementSummary(
+    summary: {'affectsState', 'base', 'code', 'contact', 'date', 'experimental', 'id', 'implicitRules', 'instance', 'jurisdiction', 'kind', 'meta', 'name', 'publisher', 'resource', 'status', 'system', 'title', 'type', 'url', 'useContext', 'version'},
+    mandatory: {'code', 'instance', 'kind', 'name', 'status', 'system', 'type'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'OperationOutcome': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'issue', 'meta'},
+    mandatory: {'issue'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'Organization': ResourceElementSummary(
+    summary: {'active', 'id', 'identifier', 'implicitRules', 'meta', 'name', 'partOf', 'type'},
+    mandatory: {},
+    modifier: {'active', 'implicitRules', 'modifierExtension'},
+  ),
+  'OrganizationAffiliation': ResourceElementSummary(
+    summary: {'active', 'code', 'id', 'identifier', 'implicitRules', 'location', 'meta', 'network', 'organization', 'participatingOrganization', 'period', 'specialty', 'telecom'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'PackagedProductDefinition': ResourceElementSummary(
+    summary: {'characteristic', 'containedItemQuantity', 'copackagedIndicator', 'description', 'id', 'identifier', 'implicitRules', 'legalStatusOfSupply', 'manufacturer', 'marketingStatus', 'meta', 'name', 'package', 'packageFor', 'status', 'statusDate', 'type'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Parameters': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'meta', 'parameter'},
+    mandatory: {},
+    modifier: {'implicitRules'},
+  ),
+  'Patient': ResourceElementSummary(
+    summary: {'active', 'address', 'birthDate', 'deceasedBoolean', 'deceasedDateTime', 'gender', 'id', 'identifier', 'implicitRules', 'link', 'managingOrganization', 'meta', 'name', 'telecom'},
+    mandatory: {},
+    modifier: {'active', 'deceasedBoolean', 'deceasedDateTime', 'implicitRules', 'link', 'modifierExtension'},
+  ),
+  'PaymentNotice': ResourceElementSummary(
+    summary: {'amount', 'created', 'id', 'implicitRules', 'meta', 'payment', 'recipient', 'status'},
+    mandatory: {'amount', 'created', 'payment', 'recipient', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'PaymentReconciliation': ResourceElementSummary(
+    summary: {'created', 'id', 'implicitRules', 'meta', 'paymentAmount', 'paymentDate', 'paymentIssuer', 'period', 'status'},
+    mandatory: {'created', 'paymentAmount', 'paymentDate', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Person': ResourceElementSummary(
+    summary: {'active', 'birthDate', 'gender', 'id', 'implicitRules', 'managingOrganization', 'meta', 'name', 'telecom'},
+    mandatory: {},
+    modifier: {'active', 'implicitRules', 'modifierExtension'},
+  ),
+  'PlanDefinition': ResourceElementSummary(
+    summary: {'contact', 'date', 'description', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'title', 'type', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Practitioner': ResourceElementSummary(
+    summary: {'active', 'address', 'birthDate', 'gender', 'id', 'identifier', 'implicitRules', 'meta', 'name', 'telecom'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'PractitionerRole': ResourceElementSummary(
+    summary: {'active', 'code', 'id', 'identifier', 'implicitRules', 'location', 'meta', 'organization', 'period', 'practitioner', 'specialty', 'telecom'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'Procedure': ResourceElementSummary(
+    summary: {'asserter', 'basedOn', 'bodySite', 'category', 'code', 'encounter', 'id', 'identifier', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'location', 'meta', 'outcome', 'partOf', 'performedAge', 'performedDateTime', 'performedPeriod', 'performedRange', 'performedString', 'performer', 'reasonCode', 'reasonReference', 'recorder', 'status', 'statusReason', 'subject'},
+    mandatory: {'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Provenance': ResourceElementSummary(
+    summary: {'id', 'implicitRules', 'meta', 'recorded', 'target'},
+    mandatory: {'agent', 'recorded', 'target'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'Questionnaire': ResourceElementSummary(
+    summary: {'code', 'contact', 'date', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'subjectType', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'QuestionnaireResponse': ResourceElementSummary(
+    summary: {'author', 'authored', 'basedOn', 'encounter', 'id', 'identifier', 'implicitRules', 'meta', 'partOf', 'questionnaire', 'source', 'status', 'subject'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'RegulatedAuthorization': ResourceElementSummary(
+    summary: {'basis', 'case', 'description', 'holder', 'id', 'identifier', 'implicitRules', 'indication', 'intendedUse', 'meta', 'region', 'regulator', 'status', 'statusDate', 'subject', 'type', 'validityPeriod'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'RelatedPerson': ResourceElementSummary(
+    summary: {'active', 'address', 'birthDate', 'gender', 'id', 'identifier', 'implicitRules', 'meta', 'name', 'patient', 'relationship', 'telecom'},
+    mandatory: {'patient'},
+    modifier: {'active', 'implicitRules', 'modifierExtension'},
+  ),
+  'RequestGroup': ResourceElementSummary(
+    summary: {'code', 'groupIdentifier', 'id', 'identifier', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'intent', 'meta', 'priority', 'status'},
+    mandatory: {'intent', 'status'},
+    modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
+  ),
+  'ResearchDefinition': ResourceElementSummary(
+    summary: {'contact', 'date', 'description', 'effectivePeriod', 'experimental', 'exposure', 'exposureAlternative', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'outcome', 'population', 'publisher', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'population', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ResearchElementDefinition': ResourceElementSummary(
+    summary: {'characteristic', 'contact', 'date', 'description', 'effectivePeriod', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'shortTitle', 'status', 'title', 'type', 'url', 'useContext', 'version'},
+    mandatory: {'characteristic', 'status', 'type'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ResearchStudy': ResourceElementSummary(
+    summary: {'category', 'condition', 'contact', 'enrollment', 'focus', 'id', 'identifier', 'implicitRules', 'keyword', 'location', 'meta', 'partOf', 'period', 'phase', 'primaryPurposeType', 'principalInvestigator', 'protocol', 'reasonStopped', 'site', 'sponsor', 'status', 'title'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ResearchSubject': ResourceElementSummary(
+    summary: {'id', 'identifier', 'implicitRules', 'individual', 'meta', 'period', 'status', 'study'},
+    mandatory: {'individual', 'status', 'study'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'RiskAssessment': ResourceElementSummary(
+    summary: {'code', 'condition', 'encounter', 'id', 'identifier', 'implicitRules', 'meta', 'method', 'occurrenceDateTime', 'occurrencePeriod', 'performer', 'status', 'subject'},
+    mandatory: {'status', 'subject'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'Schedule': ResourceElementSummary(
+    summary: {'active', 'actor', 'id', 'identifier', 'implicitRules', 'meta', 'planningHorizon', 'serviceCategory', 'serviceType', 'specialty'},
+    mandatory: {'actor'},
+    modifier: {'active', 'implicitRules', 'modifierExtension'},
+  ),
+  'SearchParameter': ResourceElementSummary(
+    summary: {'base', 'code', 'contact', 'date', 'description', 'experimental', 'id', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'type', 'url', 'useContext', 'version'},
+    mandatory: {'base', 'code', 'description', 'name', 'status', 'type', 'url'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ServiceRequest': ResourceElementSummary(
+    summary: {'asNeededBoolean', 'asNeededCodeableConcept', 'authoredOn', 'basedOn', 'bodySite', 'category', 'code', 'doNotPerform', 'encounter', 'id', 'identifier', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'intent', 'locationCode', 'locationReference', 'meta', 'occurrenceDateTime', 'occurrencePeriod', 'occurrenceTiming', 'orderDetail', 'patientInstruction', 'performer', 'performerType', 'priority', 'quantityQuantity', 'quantityRange', 'quantityRatio', 'reasonCode', 'reasonReference', 'replaces', 'requester', 'requisition', 'specimen', 'status', 'subject'},
+    mandatory: {'intent', 'status', 'subject'},
+    modifier: {'doNotPerform', 'implicitRules', 'intent', 'modifierExtension', 'status'},
+  ),
+  'Slot': ResourceElementSummary(
+    summary: {'appointmentType', 'end', 'id', 'identifier', 'implicitRules', 'meta', 'schedule', 'serviceCategory', 'serviceType', 'specialty', 'start', 'status'},
+    mandatory: {'end', 'schedule', 'start', 'status'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'Specimen': ResourceElementSummary(
+    summary: {'accessionIdentifier', 'condition', 'id', 'identifier', 'implicitRules', 'meta', 'receivedTime', 'status', 'subject', 'type'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'SpecimenDefinition': ResourceElementSummary(
+    summary: {'collection', 'id', 'identifier', 'implicitRules', 'meta', 'patientPreparation', 'timeAspect', 'typeCollected'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'StructureDefinition': ResourceElementSummary(
+    summary: {'abstract', 'baseDefinition', 'contact', 'context', 'contextInvariant', 'date', 'derivation', 'experimental', 'fhirVersion', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'keyword', 'kind', 'meta', 'name', 'publisher', 'status', 'title', 'type', 'url', 'useContext', 'version'},
+    mandatory: {'abstract', 'kind', 'name', 'status', 'type', 'url'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'StructureMap': ResourceElementSummary(
+    summary: {'contact', 'date', 'experimental', 'group', 'id', 'identifier', 'implicitRules', 'import', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'structure', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'group', 'name', 'status', 'url'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Subscription': ResourceElementSummary(
+    summary: {'channel', 'contact', 'criteria', 'end', 'error', 'id', 'implicitRules', 'meta', 'reason', 'status'},
+    mandatory: {'channel', 'criteria', 'reason', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'SubscriptionStatus': ResourceElementSummary(
+    summary: {'error', 'eventsSinceSubscriptionStart', 'id', 'implicitRules', 'meta', 'status', 'subscription', 'topic', 'type'},
+    mandatory: {'subscription', 'type'},
+    modifier: {'implicitRules', 'modifierExtension', 'type'},
+  ),
+  'SubscriptionTopic': ResourceElementSummary(
+    summary: {'canFilterBy', 'contact', 'date', 'derivedFrom', 'effectivePeriod', 'eventTrigger', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'notificationShape', 'publisher', 'resourceTrigger', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status', 'url'},
+    modifier: {'experimental', 'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Substance': ResourceElementSummary(
+    summary: {'category', 'code', 'description', 'id', 'identifier', 'implicitRules', 'ingredient', 'instance', 'meta', 'status'},
+    mandatory: {'code'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'SubstanceDefinition': ResourceElementSummary(
+    summary: {'classification', 'code', 'description', 'domain', 'grade', 'id', 'identifier', 'implicitRules', 'informationSource', 'manufacturer', 'meta', 'moiety', 'molecularWeight', 'name', 'note', 'property', 'relationship', 'sourceMaterial', 'status', 'structure', 'supplier', 'version'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'SupplyDelivery': ResourceElementSummary(
+    summary: {'basedOn', 'id', 'implicitRules', 'meta', 'occurrenceDateTime', 'occurrencePeriod', 'occurrenceTiming', 'partOf', 'status'},
+    mandatory: {},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'SupplyRequest': ResourceElementSummary(
+    summary: {'authoredOn', 'category', 'id', 'identifier', 'implicitRules', 'itemCodeableConcept', 'itemReference', 'meta', 'occurrenceDateTime', 'occurrencePeriod', 'occurrenceTiming', 'priority', 'quantity', 'requester', 'status', 'supplier'},
+    mandatory: {'itemCodeableConcept', 'itemReference', 'quantity'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'Task': ResourceElementSummary(
+    summary: {'basedOn', 'businessStatus', 'code', 'description', 'encounter', 'executionPeriod', 'focus', 'for', 'groupIdentifier', 'id', 'implicitRules', 'instantiatesCanonical', 'instantiatesUri', 'intent', 'lastModified', 'location', 'meta', 'owner', 'partOf', 'requester', 'status', 'statusReason'},
+    mandatory: {'intent', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'TerminologyCapabilities': ResourceElementSummary(
+    summary: {'contact', 'copyright', 'date', 'experimental', 'id', 'implementation', 'implicitRules', 'jurisdiction', 'kind', 'lockedDate', 'meta', 'name', 'publisher', 'software', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'date', 'kind', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'TestReport': ResourceElementSummary(
+    summary: {'id', 'identifier', 'implicitRules', 'issued', 'meta', 'name', 'result', 'score', 'status', 'testScript', 'tester'},
+    mandatory: {'result', 'status', 'testScript'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'TestScript': ResourceElementSummary(
+    summary: {'contact', 'date', 'experimental', 'id', 'identifier', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'name', 'status', 'url'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'ValueSet': ResourceElementSummary(
+    summary: {'contact', 'date', 'experimental', 'id', 'identifier', 'immutable', 'implicitRules', 'jurisdiction', 'meta', 'name', 'publisher', 'status', 'title', 'url', 'useContext', 'version'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+  'VerificationResult': ResourceElementSummary(
+    summary: {'failureAction', 'id', 'implicitRules', 'meta', 'need', 'status', 'statusDate', 'target', 'targetLocation', 'validationProcess', 'validationType'},
+    mandatory: {'status'},
+    modifier: {'implicitRules', 'modifierExtension'},
+  ),
+  'VisionPrescription': ResourceElementSummary(
+    summary: {'created', 'dateWritten', 'id', 'implicitRules', 'lensSpecification', 'meta', 'patient', 'prescriber', 'status'},
+    mandatory: {'created', 'dateWritten', 'lensSpecification', 'patient', 'prescriber', 'status'},
+    modifier: {'implicitRules', 'modifierExtension', 'status'},
+  ),
+};

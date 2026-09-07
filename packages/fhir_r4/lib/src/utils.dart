@@ -7,6 +7,7 @@ export 'utils/generate_id.dart';
 export 'utils/json_parser.dart';
 export 'utils/parse_primitive_list.dart';
 export 'utils/pretty_print.dart';
+export 'utils/resource_element_summary.dart';
 export 'utils/resource_from_json.dart';
 export 'utils/resource_new_id.dart';
 export 'utils/resource_new_version.dart';
