@@ -223,28 +223,65 @@ class FhirDb extends _$FhirDb {
         beforeOpen: ensurePlannerStatistics,
       );
 
-  /// Gives the query planner statistics, when it has none or the schema just
-  /// changed.
+  /// Gives the query planner statistics that match the data, on every open.
   ///
   /// Measured 2026-09-03 on 928,935 resources: the database had never been
   /// ANALYZEd, so with no `sqlite_stat1` the planner chose the primary key for
   /// `SELECT DISTINCT id ... WHERE reference_id_part = ?`, whose leading
   /// column `resource_type` matched 2.9 million rows, and a 0.01s query took
-  /// 10.35s. After ANALYZE it uses the value index and a rare value returns
-  /// in under a millisecond. ANALYZE took 2.2s on that 5 GB database, and it
-  /// runs only on create, on upgrade, or when no statistics exist, so an
-  /// ordinary open pays nothing.
+  /// 10.35s. The first fix ran ANALYZE on create, on upgrade, or when the
+  /// statistics table was missing. That was not enough: measured 2026-09-06,
+  /// a database created empty and then loaded with the same 928,935 resources
+  /// had a `sqlite_stat1` table with rows only for three empty indexes,
+  /// because ANALYZE on empty tables writes nothing, and it was never run
+  /// again; `status=final AND code` took 58s where the analysed database
+  /// answered it in 0.23s. ANALYZE afterwards took 5.9s and fixed every
+  /// number.
+  ///
+  /// So statistics are refreshed the way SQLite documents (lang_analyze.html,
+  /// "Automatically Running ANALYZE"): "if the application keeps a single
+  /// database connection open for a long time, then it should run "PRAGMA
+  /// optimize=0x10002" when the connection is first opened and run "PRAGMA
+  /// optimize;" periodically thereafter". `PRAGMA optimize` "will
+  /// occasionally do so either for tables that have never before been
+  /// analyzed, or for tables that have grown significantly since they were
+  /// last analyzed" (pragma.html: "One or more indexes on the table lack
+  /// entries in the sqlite_stat1 table" or "The number of rows in the table
+  /// has increased or decreased by 10-fold since the last time ANALYZE was
+  /// run on the table", SQLite 3.46.0 and later). The 0x10000 bit "causes all
+  /// tables to be examined, even tables that have not been queried during the
+  /// current connection". [optimizePlannerStatistics] is the periodic call,
+  /// also run after every bulk save.
+  ///
+  /// `PRAGMA analysis_limit=1000` bounds what ANALYZE reads per index: "Values
+  /// of N between 100 and 1000 are recommended", and the approximate
+  /// statistics "are usually close enough". An upgrade still runs a full
+  /// ANALYZE, since a rebuild changes every table at once.
   ///
   /// Public because a subclass that overrides [migration] — fhirant does —
   /// replaces this `beforeOpen` and has to call it from its own.
   Future<void> ensurePlannerStatistics(OpeningDetails details) async {
-    final hasStats = await customSelect(
-      "SELECT 1 FROM sqlite_master WHERE type='table' "
-      "AND name='sqlite_stat1'",
-    ).get();
-    if (details.hadUpgrade || details.wasCreated || hasStats.isEmpty) {
+    await customStatement('PRAGMA analysis_limit=1000');
+    if (details.hadUpgrade) {
       await customStatement('ANALYZE');
+      return;
     }
+    await optimizePlannerStatistics(allTables: true);
+  }
+
+  /// Refreshes planner statistics for the tables that need it, and no others.
+  ///
+  /// `PRAGMA optimize`, which runs ANALYZE only where statistics are missing
+  /// or the table has grown or shrunk 10-fold (see [ensurePlannerStatistics]
+  /// for the documentation this follows). With [allTables] every table is
+  /// examined, not only those the planner has consulted on this connection:
+  /// the form for an open, or right after a bulk load on a connection that
+  /// has not searched yet. Cheap when nothing needs doing, so a server can
+  /// call it on a timer and before it closes.
+  Future<void> optimizePlannerStatistics({bool allTables = false}) async {
+    await customStatement(
+      allTables ? 'PRAGMA optimize=0x10002' : 'PRAGMA optimize',
+    );
   }
 
   /// Drops every search index row and re-extracts all of them from the

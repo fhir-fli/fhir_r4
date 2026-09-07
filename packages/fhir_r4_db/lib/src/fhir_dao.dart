@@ -187,6 +187,14 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         }
       }
 
+      // A bulk save is how a table grows by orders of magnitude between
+      // opens. Statistics gathered when the tables were empty (or 10-fold
+      // smaller) send the planner down the wrong index; measured 2026-09-06,
+      // 58s for a 0.23s query. `PRAGMA optimize` runs ANALYZE only when that
+      // has happened, so on the many batches of one load almost every call
+      // is a no-op. See FhirDb.ensurePlannerStatistics.
+      await customStatement('PRAGMA optimize=0x10002');
+
       return true;
     } catch (e) {
       print('Error in saveResources: $e');
@@ -418,19 +426,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// answer on either path proves nothing about which one ran.
   @visibleForTesting
   bool lastSearchPagedInSql = false;
-
-  /// Whether the last sorted [search] was answered by walking the sort key's
-  /// own index in order (true) or by the grouped join (false). For tests, as
-  /// [lastSearchPagedInSql]: both give the same order, so the order alone
-  /// proves nothing about which plan ran.
-  @visibleForTesting
-  bool lastSortWalkedIndex = false;
-
-  /// Whether [_sortIndexWalk] may be chosen at all. For A/B measurement
-  /// (fhirant's perf_search `--no-sort-walk`): the same build, the same
-  /// database, one variable.
-  @visibleForTesting
-  bool sortIndexWalkEnabled = true;
 
   /// Search resources using search parameters.
   Future<List<fhir.Resource>> search({
@@ -858,25 +853,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           .toList();
     }
 
-    // One key over a big set: walk the key's own index in order instead of
-    // grouping every match. Decided by an estimate of both costs; see
-    // [_sortIndexWalk].
-    lastSortWalkedIndex = false;
-    if (sortIndexWalkEnabled && sortKeys.length == 1 && count != null) {
-      final walked = await _sortIndexWalk(
-        resourceType,
-        sortKeys.single,
-        sized,
-        negated,
-        count,
-        offset ?? 0,
-      );
-      if (walked != null) {
-        lastSortWalkedIndex = true;
-        return walked;
-      }
-    }
-
     // §3.1.1.5.1: "there can be multiple values for a given search parameter
     // for a single resource. In this case, the sort is based on the item in
     // the set of multiple parameters that comes earliest in the specified
@@ -915,156 +891,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return rows.map((r) => r.read(first.idColumn)).whereType<String>().toList();
   }
 
-  /// A sorted page answered by walking the sort key's own index in order.
-  ///
-  /// The grouped join (below) has SQLite build a group per matching resource
-  /// and sort all of them before the LIMIT: for `status=final&_sort=-date`
-  /// that is 813,513 groups to hand back 20 ids. Walking the date index in
-  /// value order, keeping the first appearance of each id (its MAX when
-  /// descending, its MIN when ascending, which is the value §3.1.1.5.1 sorts
-  /// by, quoted at the grouped join), and probing each row's resource against
-  /// the search's parts with EXISTS, touches about `(offset + count) /
-  /// selectivity` index rows instead. That is cheaper only while the parts
-  /// match a fair share of the type: for a rare `code` the walk would read
-  /// the whole date index to find twenty hits, so the grouped join is kept
-  /// when the estimate says so. The estimate treats a capped probe as the
-  /// cap, the same pessimism as the resources walk.
-  ///
-  /// Resources with no value for the key sort last, as NULLS LAST does in the
-  /// grouped join: once the index is exhausted, the remaining matches without
-  /// a key row follow in id order. Ties within a value break on id, as in the
-  /// grouped join. Returns null when the grouped join is the better plan, or
-  /// when the key is `_id`/`_lastUpdated` (no index table to walk), or when a
-  /// part sits on the resources table itself.
-  Future<List<String>?> _sortIndexWalk(
-    String resourceType,
-    _SortKey key,
-    List<(_IndexCondition, int)> sized,
-    List<_IndexCondition> negated,
-    int count,
-    int offset,
-  ) async {
-    final keyWhere = key.where;
-    final keyId = key.idColumn;
-    if (keyWhere == null || keyId == null) return null;
-    if (sized.any((p) => p.$1.table == resources)) return null;
-
-    // Sizes. A single part is not probed by the caller; probe it here, once,
-    // capped at the larger probe limit.
-    final parts = <(_IndexCondition, int)>[];
-    for (final (part, size) in sized) {
-      parts.add(
-        (part, size > 0 ? size : await _probeSize(part, _probeLimits.last)),
-      );
-    }
-    final total = await getResourceCount(
-      fhir.R4ResourceType.fromString(resourceType) ?? fhir.R4ResourceType.Basic,
-    );
-    if (total == 0) return null;
-    var selectivity = 1.0;
-    var smallest = total;
-    for (final (_, size) in parts) {
-      selectivity *= size.clamp(1, total) / total;
-      smallest = math.min(smallest, size);
-    }
-    final expectedWalk = (offset + count) / selectivity;
-    // The grouped join sorts `smallest` groups (the caller's outer select is
-    // the smallest set); the walk probes about `expectedWalk` index rows.
-    if (expectedWalk >= smallest) return null;
-
-    final k = key.table;
-    var where = keyWhere & key.value.isNotNull();
-    for (final (part, _) in parts) {
-      where = where &
-          existsQuery(
-            selectOnly(part.table)
-              ..addColumns([const Constant(1)])
-              ..where(part.condition & part.idColumn.equalsExp(keyId)),
-          );
-    }
-    for (final other in negated) {
-      where = where &
-          notExistsQuery(
-            selectOnly(other.table)
-              ..addColumns([const Constant(1)])
-              ..where(other.condition & other.idColumn.equalsExp(keyId)),
-          );
-    }
-
-    // Read the index in order, in chunks, keeping the first appearance of
-    // each id; skip `offset` distinct ids, collect `count`.
-    final seen = <String>{};
-    final page = <String>[];
-    var skipped = 0;
-    var rowOffset = 0;
-    final chunk = math.max(200, (offset + count) * 2);
-    while (page.length < count) {
-      final rows = await (selectOnly(k)
-            ..addColumns([keyId])
-            ..where(where)
-            ..orderBy([
-              OrderingTerm(
-                expression: key.value,
-                mode: key.descending ? OrderingMode.desc : OrderingMode.asc,
-              ),
-              OrderingTerm.asc(keyId),
-            ])
-            ..limit(chunk, offset: rowOffset))
-          .get();
-      if (rows.isEmpty) break;
-      rowOffset += rows.length;
-      for (final row in rows) {
-        final id = row.read(keyId);
-        if (id == null || !seen.add(id)) continue;
-        if (skipped < offset) {
-          skipped++;
-          continue;
-        }
-        page.add(id);
-        if (page.length == count) break;
-      }
-      if (rows.length < chunk) break;
-    }
-    if (page.length == count) return page;
-
-    // NULLS LAST: the matches with no row for the key, in id order.
-    final first = parts.first.$1;
-    var tail = first.condition &
-        notExistsQuery(
-          selectOnly(k)
-            ..addColumns([const Constant(1)])
-            ..where(keyWhere & keyId.equalsExp(first.idColumn)),
-        );
-    for (final (other, _) in parts.skip(1)) {
-      tail = tail &
-          existsQuery(
-            selectOnly(other.table)
-              ..addColumns([const Constant(1)])
-              ..where(
-                other.condition & other.idColumn.equalsExp(first.idColumn),
-              ),
-          );
-    }
-    for (final other in negated) {
-      tail = tail &
-          notExistsQuery(
-            selectOnly(other.table)
-              ..addColumns([const Constant(1)])
-              ..where(
-                other.condition & other.idColumn.equalsExp(first.idColumn),
-              ),
-          );
-    }
-    final rows = await (selectOnly(first.table, distinct: true)
-          ..addColumns([first.idColumn])
-          ..where(tail)
-          ..orderBy([OrderingTerm.asc(first.idColumn)])
-          ..limit(count - page.length, offset: offset - skipped))
-        .get();
-    page.addAll(rows.map((r) => r.read(first.idColumn)).whereType<String>());
-    return page;
-  }
-
   /// One `_sort` rule as a join to the table holding its value, or null when
   /// the rule names nothing this path can sort by (a parameter of a type with
   /// no value column, or an unknown parameter), which sends the search down
@@ -1092,16 +918,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final declared = searchParameterFor(resourceType, name);
     if (declared == null) return null;
 
-    Expression<bool> own(
-      GeneratedColumn<String> type,
-      GeneratedColumn<String> searchName,
-      GeneratedColumn<String> searchPath,
-    ) =>
-        type.equals(resourceType) &
-        (searchName.equals(name) |
-            searchPath.like('$resourceType.$name') |
-            searchPath.like('$resourceType.%.$name'));
-
     Expression<bool> path(
       GeneratedColumn<String> type,
       GeneratedColumn<String> searchName,
@@ -1109,7 +925,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       GeneratedColumn<String> id,
       GeneratedColumn<String> outerId,
     ) =>
-        own(type, searchName, searchPath) & id.equalsExp(outerId);
+        type.equals(resourceType) &
+        id.equalsExp(outerId) &
+        (searchName.equals(name) |
+            searchPath.like('$resourceType.$name') |
+            searchPath.like('$resourceType.%.$name'));
 
     switch (declared.type) {
       case 'string':
@@ -1120,8 +940,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
           value: s.stringValue,
           descending: descending,
-          where: own(s.resourceType, s.searchName, s.searchPath),
-          idColumn: s.id,
         );
       case 'token':
         final s = alias(tokenSearchParameters, aliasName);
@@ -1131,8 +949,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
           value: s.tokenValue,
           descending: descending,
-          where: own(s.resourceType, s.searchName, s.searchPath),
-          idColumn: s.id,
         );
       case 'date':
         final s = alias(dateSearchParameters, aliasName);
@@ -1142,8 +958,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
           value: s.dateValue,
           descending: descending,
-          where: own(s.resourceType, s.searchName, s.searchPath),
-          idColumn: s.id,
         );
       case 'number':
         final s = alias(numberSearchParameters, aliasName);
@@ -1153,8 +967,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
           value: s.numberLow,
           descending: descending,
-          where: own(s.resourceType, s.searchName, s.searchPath),
-          idColumn: s.id,
         );
       case 'quantity':
         final s = alias(quantitySearchParameters, aliasName);
@@ -1164,8 +976,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
           value: s.quantityLow,
           descending: descending,
-          where: own(s.resourceType, s.searchName, s.searchPath),
-          idColumn: s.id,
         );
       case 'reference':
         final s = alias(referenceSearchParameters, aliasName);
@@ -1175,8 +985,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
           value: s.referenceValue,
           descending: descending,
-          where: own(s.resourceType, s.searchName, s.searchPath),
-          idColumn: s.id,
         );
       case 'uri':
         final s = alias(uriSearchParameters, aliasName);
@@ -1186,8 +994,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path(s.resourceType, s.searchName, s.searchPath, s.id, id),
           value: s.uriValue,
           descending: descending,
-          where: own(s.resourceType, s.searchName, s.searchPath),
-          idColumn: s.id,
         );
       default:
         return null;
@@ -4856,20 +4662,10 @@ class _SortKey {
     required this.on,
     required this.value,
     required this.descending,
-    this.where,
-    this.idColumn,
   });
 
   final TableInfo<Table, dynamic> table;
   final Expression<bool> Function(GeneratedColumn<String> outerId) on;
   final Expression<Object> value;
   final bool descending;
-
-  /// The key's rows for this resource type and parameter, without the join
-  /// to an outer id: what a walk of the key's own index selects. Null for
-  /// `_id` and `_lastUpdated`, which sort the resources table itself.
-  final Expression<bool>? where;
-
-  /// The key table's id column, for the walk. Null with [where].
-  final GeneratedColumn<String>? idColumn;
 }
