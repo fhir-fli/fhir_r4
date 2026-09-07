@@ -283,7 +283,7 @@ void main() {
       isEmpty,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(7));
+    expect(version.data.values.first, equals(db.schemaVersion));
     await db.close();
   });
 
@@ -417,6 +417,52 @@ void main() {
     );
     expect(found.length, equals(1));
 
+    await db.close();
+  });
+  test('a version-7 database gains the contained-row partial indexes',
+      () async {
+    // Schema 8 adds a partial index on id per index table for the rows of
+    // contained resources, so re-saving a container deletes them through an
+    // index instead of scanning every table. A 7 has the tables and columns
+    // already; the step only creates the indexes, no rebuild.
+    final dir = await Directory.systemTemp.createTemp('fhir_db_v7_');
+    addTearDown(() => dir.delete(recursive: true));
+    final file = File('${dir.path}/db.sqlite');
+    final db7 = FhirDb(NativeDatabase(file));
+    await db7.fhirDao.saveResource(
+      Patient.fromJson({'resourceType': 'Patient', 'id': 'v7'}),
+    );
+    for (final table in [
+      'string_search_parameters',
+      'token_search_parameters',
+      'date_search_parameters',
+    ]) {
+      await db7.customStatement('DROP INDEX IF EXISTS idx_${table}_contained');
+    }
+    await db7.customStatement('PRAGMA user_version = 7');
+    await db7.close();
+
+    final db = FhirDb(NativeDatabase(file));
+    final indexes = await db
+        .customSelect(
+          "SELECT name FROM sqlite_master WHERE type = 'index' "
+          "AND name LIKE '%_contained'",
+        )
+        .get();
+    expect(indexes.length, 9);
+    // The stored resource is untouched and still searchable.
+    expect(
+      (await db.fhirDao.search(
+        resourceType: R4ResourceType.Patient,
+        searchParameters: {
+          '_id': <String>['v7'],
+        },
+      ))
+          .length,
+      1,
+    );
+    final version = await db.customSelect('PRAGMA user_version').getSingle();
+    expect(version.data.values.first, equals(8));
     await db.close();
   });
 }

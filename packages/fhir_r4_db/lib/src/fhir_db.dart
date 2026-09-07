@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 7;
+  int get schemaVersion => 8;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -210,6 +210,15 @@ class FhirDb extends _$FhirDb {
             // one parse of every resource, see the CHANGELOG for the number.
             await rebuildSearchIndex();
           }
+          if (from < 8) {
+            // The partial indexes on `id` for contained rows
+            // (createValueIndexes). Without them the contained-row half of
+            // every save's delete scanned every index table; see
+            // _deleteSearchParams. After the schema-7 step: on a database
+            // below 7 the columns some of these indexes cover do not exist
+            // until the rebuild has run.
+            await createValueIndexes();
+          }
         },
         beforeOpen: ensurePlannerStatistics,
       );
@@ -380,6 +389,30 @@ class FhirDb extends _$FhirDb {
     for (final (name, table, column) in statements) {
       await customStatement(
         'CREATE INDEX IF NOT EXISTS $name ON $table($column)',
+      );
+    }
+    // Contained resources' rows are filed under `#Type` with an id of
+    // `<container type>/<container id>#<contained id>` (search §3.1.1.5.5,
+    // contained_index.dart). Deleting them when the container is re-saved is
+    // a range on id among the `#`-typed rows, and the primary key leads with
+    // resource_type, so it cannot serve that; these partial indexes do. On a
+    // database with no contained resources they are empty and cost nothing.
+    // The WHERE here is the WHERE the delete uses, which is what lets SQLite
+    // apply a partial index.
+    for (final table in <String>[
+      'string_search_parameters',
+      'token_search_parameters',
+      'reference_search_parameters',
+      'date_search_parameters',
+      'number_search_parameters',
+      'quantity_search_parameters',
+      'uri_search_parameters',
+      'composite_search_parameters',
+      'special_search_parameters',
+    ]) {
+      await customStatement(
+        'CREATE INDEX IF NOT EXISTS idx_${table}_contained '
+        "ON $table(id) WHERE resource_type LIKE '#%'",
       );
     }
   }
