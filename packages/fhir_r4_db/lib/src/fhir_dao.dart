@@ -2655,16 +2655,14 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           continue;
         }
 
-        // Universal :missing handler
-        if (paramValues.length == 1 && paramValues[0].endsWith(':missing')) {
-          final missingIds =
-              await _searchMissingParameter(resourceTypeString, paramName);
-          if (firstParam) {
-            matchingIds = missingIds;
-          } else {
-            matchingIds = matchingIds.intersection(missingIds);
-          }
-          firstParam = false;
+        // R4B 3.1.1.3: "servers SHOULD ignore unknown or unsupported
+        // parameters"; nothing this build has no definition for was ever
+        // indexed, so there is nothing to search. The SQL-paged path skips
+        // them the same way; a strict client's refusal happens in the
+        // server. A chained key is the reference branch's to resolve.
+        final parsedKey = SearchQueryKey.parse(paramName);
+        if (parsedKey.chain == null &&
+            searchParameterFor(resourceTypeString, parsedKey.name) == null) {
           continue;
         }
 
@@ -3391,41 +3389,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       return all.difference(absent);
     }
 
-    var isDateParam = false;
-    var isTokenParam = false;
-    var isNumberParam = false;
-    var isQuantityParam = false;
-    var isUriParam = false;
-    var isReferenceParam = false;
-    var isCompositeParam = false;
-
-    // Check for composite parameter (value contains $)
-    for (final val in paramValues) {
-      if (val.contains(r'$') && paramName.contains('-')) {
-        isCompositeParam = true;
-        break;
-      }
-    }
-
-    // Check for reference chaining (paramName contains '.')
-    // Supports type-constrained chaining: subject:Patient.name=Smith
-    final isChainedReference = paramName.contains('.');
-
-    // Check if value looks like a reference
-    if (!isDateParam &&
-        !isNumberParam &&
-        !isQuantityParam &&
-        !isTokenParam &&
-        !isUriParam) {
-      for (final val in paramValues) {
-        final valWithoutModifier = val.split(':')[0];
-        if (RegExp(r'^[A-Z][a-zA-Z]+/[^/]+$').hasMatch(valWithoutModifier)) {
-          isReferenceParam = true;
-          break;
-        }
-      }
-    }
-
     // When the parameter is known, its declared type settles everything and
     // nothing is inferred from the values at all.
     if (declared != null && key.chain == null) {
@@ -3489,137 +3452,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
 
-    // Unknown parameter, or a chained one the reference branch handles: fall
-    // back to inspecting the values, which is what this did for everything
-    // before the definitions were available.
-    for (final val in paramValues) {
-      final valWithoutModifier = stripComparatorPrefix(val);
-      final detectedModifier = valWithoutModifier == val ? null : 'prefix';
-
-      // Check for token or quantity (contains |)
-      if (valWithoutModifier.contains('|')) {
-        final parts = splitEscaped(valWithoutModifier, '|');
-        var foundNumeric = false;
-        if (parts.length == 2) {
-          try {
-            double.parse(parts[0]);
-            foundNumeric = true;
-          } catch (_) {}
-        } else if (parts.length == 3) {
-          try {
-            double.parse(parts[1]);
-            foundNumeric = true;
-          } catch (_) {}
-        }
-        if (foundNumeric) {
-          isQuantityParam = true;
-        } else {
-          isTokenParam = true;
-        }
-      } else if (val.contains('|') && !valWithoutModifier.contains('|')) {
-        isTokenParam = true;
-      }
-
-      if (detectedModifier == 'prefix') {
-        final datePattern = RegExp(r'^\d{4}(-\d{2})?(-\d{2})?(T.*)?$');
-        if (datePattern.hasMatch(valWithoutModifier)) {
-          isDateParam = true;
-        } else {
-          try {
-            double.parse(valWithoutModifier);
-            if (paramName.toLowerCase().contains('quantity') ||
-                paramName.toLowerCase().contains('value')) {
-              isQuantityParam = true;
-            } else {
-              isNumberParam = true;
-            }
-          } catch (_) {}
-        }
-      }
-
-      if (!isDateParam && !isNumberParam && !isQuantityParam) {
-        final datePattern = RegExp(r'^\d{4}(-\d{2})?(-\d{2})?(T.*)?$');
-        if (datePattern.hasMatch(valWithoutModifier)) {
-          isDateParam = true;
-        }
-      }
-
-      if (!isDateParam &&
-          !isNumberParam &&
-          !isQuantityParam &&
-          !isTokenParam &&
-          !isUriParam) {
-        if (valWithoutModifier.startsWith('http://') ||
-            valWithoutModifier.startsWith('https://') ||
-            valWithoutModifier.startsWith('urn:') ||
-            valWithoutModifier.startsWith('file://')) {
-          isUriParam = true;
-        }
-      }
-
-      if (!isDateParam && !isNumberParam && !isQuantityParam && !isTokenParam) {
-        try {
-          double.parse(valWithoutModifier);
-          if (paramName.toLowerCase().contains('quantity') ||
-              paramName.toLowerCase().contains('value')) {
-            isQuantityParam = true;
-          } else {
-            isNumberParam = true;
-          }
-        } catch (_) {}
-      }
-    }
-
-    if (isDateParam) {
-      return _searchDateParameter(resourceType, searchPath, paramValues, null);
-    } else if (isQuantityParam) {
-      return _searchQuantityParameter(
-        resourceType,
-        searchPath,
-        paramValues,
-        null,
-      );
-    } else if (isNumberParam) {
-      return _searchNumberParameter(
-        resourceType,
-        searchPath,
-        paramValues,
-        null,
-      );
-    } else if (isUriParam) {
-      return _searchUriParameter(resourceType, searchPath, paramValues);
-    } else if (isTokenParam) {
-      return _searchTokenParameter(
-        resourceType,
-        searchPath,
-        paramValues,
-        modifier,
-      );
-    } else if (isCompositeParam) {
-      return _searchCompositeParameter(resourceType, searchPath, paramValues);
-    } else if (isReferenceParam || isChainedReference) {
+    // A chained key: the reference branch parses the chain against the
+    // target type's parameters. Nothing else reaches here: a parameter with
+    // no definition is skipped by the caller. The 250-line branch that
+    // guessed a type from the shape of the values (a pipe, a leading digit,
+    // an http prefix) stood here until 2026-09-08 (fhirant
+    // REVIEW-2026-09-06 finding 26).
+    if (key.chain != null || paramName.contains('.')) {
       return _searchReferenceParameter(
         resourceType,
         paramName,
         paramValues,
-        isChainedReference,
-      );
-    } else {
-      // Default: try string and token search tables
-      final stringIds = await _searchStringParameter(
-        resourceType,
-        searchPath,
-        paramValues,
+        true,
         modifier,
       );
-      final tokenIds = await _searchTokenParameter(
-        resourceType,
-        searchPath,
-        paramValues,
-        modifier,
-      );
-      return stringIds.union(tokenIds);
     }
+    return <String>{};
   }
 
   // ──────────────────────────────────────────────────────────────────────────
@@ -4009,7 +3857,28 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       return codes;
     }
 
-    // 2. Expand from compose.include
+    // 2. Expand from compose.include. What this store cannot evaluate is
+    // refused, not answered from the parts it can (fhirant REVIEW-2026-09-06
+    // finding 24).
+    final compose = valueSet.compose;
+    if (compose != null) {
+      for (final include in compose.include) {
+        if (include.filter != null && include.filter!.isNotEmpty) {
+          throw UnsupportedValueSetCompose(valueSetUrl, 'include.filter');
+        }
+        if (include.valueSet != null && include.valueSet!.isNotEmpty) {
+          throw UnsupportedValueSetCompose(valueSetUrl, 'include.valueSet');
+        }
+      }
+      for (final exclude in compose.exclude ?? const <fhir.ValueSetInclude>[]) {
+        if (exclude.filter != null && exclude.filter!.isNotEmpty) {
+          throw UnsupportedValueSetCompose(valueSetUrl, 'exclude.filter');
+        }
+        if (exclude.valueSet != null && exclude.valueSet!.isNotEmpty) {
+          throw UnsupportedValueSetCompose(valueSetUrl, 'exclude.valueSet');
+        }
+      }
+    }
     if (valueSet.compose?.include != null) {
       for (final include in valueSet.compose!.include) {
         final includeSystem = include.system?.valueString;
@@ -4041,6 +3910,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             }
           }
         }
+      }
+    }
+
+    // 3. compose.exclude concept lists take their codes back out. These
+    // used to be ignored, so an excluded code still matched `:in`.
+    for (final exclude in compose?.exclude ?? const <fhir.ValueSetInclude>[]) {
+      final excludeSystem = exclude.system?.valueString;
+      for (final c in exclude.concept ?? const <fhir.ValueSetConcept>[]) {
+        codes.removeWhere(
+          (entry) =>
+              entry.code == c.code.valueString &&
+              (excludeSystem == null || entry.system == excludeSystem),
+        );
       }
     }
 

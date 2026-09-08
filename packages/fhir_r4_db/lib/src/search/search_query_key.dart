@@ -279,3 +279,27 @@ bool isModifierAllowed(String type, String modifier) {
   }
   return (null, value);
 }
+
+/// A ValueSet whose `compose` uses what this store does not implement
+/// (`include.filter`, `include.valueSet`, and the same on `exclude`), met
+/// by `:in` or `:not-in`. Answering from the parts it does implement would
+/// be a wrong answer, so it is refused, as an unsupported modifier is
+/// (fhirant REVIEW-2026-09-06 finding 24).
+class UnsupportedValueSetCompose implements Exception {
+  /// Creates the refusal for [valueSet], naming the [element] not implemented.
+  const UnsupportedValueSetCompose(this.valueSet, this.element);
+
+  /// The ValueSet's url as searched.
+  final String valueSet;
+
+  /// The compose element this store does not implement.
+  final String element;
+
+  /// What the client is told.
+  String get message => 'ValueSet $valueSet uses compose.$element, which '
+      'this server does not implement; :in and :not-in cannot be answered '
+      'against it.';
+
+  @override
+  String toString() => message;
+}
