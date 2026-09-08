@@ -649,12 +649,14 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     Map<String, List<String>>? searchParameters,
     List<HasParameter>? hasParameters,
     CompartmentScope? compartment,
+    Set<String>? ids,
   }) =>
       _matchingIds(
         resourceType: resourceType,
         searchParameters: searchParameters ?? const {},
         hasParameters: hasParameters,
         compartment: compartment,
+        only: ids,
       );
 
   /// Above this many comma-separated `_id` values in one repetition, the
@@ -669,6 +671,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   static const maxIdListInSql = 500;
 
   /// Search resources using search parameters.
+  ///
+  /// [ids], when given, restricts the result to those ids, ANDed with every
+  /// other condition. They are ids the caller took from this store's own
+  /// index (fhirant's `_filter` result), so they are not checked for
+  /// existence; a set small enough to bind is one more part of the SQL
+  /// statement, a larger one is intersected on the set path. fhirant used
+  /// to join them into one comma-separated `_id` value, whose string,
+  /// re-parse and existence check cost 14 of the 19.8 s of a `_filter` over
+  /// 813k Observations (fhirant REVIEW-2026-09-06 row 38).
   Future<List<fhir.Resource>> search({
     required fhir.R4ResourceType resourceType,
     Map<String, List<String>>? searchParameters,
@@ -677,6 +688,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     int? offset,
     List<String>? sort,
     CompartmentScope? compartment,
+    Set<String>? ids,
   }) async {
     final resourceTypeString = resourceType.toString();
 
@@ -688,6 +700,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       count,
       offset,
       compartment: compartment,
+      only: ids,
     );
     lastSearchPagedInSql = paged != null;
     if (paged != null) {
@@ -699,6 +712,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       searchParameters: searchParameters,
       hasParameters: hasParameters,
       compartment: compartment,
+      only: ids,
     );
 
     if (matchingIds.isEmpty) {
@@ -793,6 +807,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     int? offset, {
     bool countOnly = false,
     CompartmentScope? compartment,
+    Set<String>? only,
   }) async {
     if (count != null && count <= 0) return null;
 
@@ -890,6 +905,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       );
       if (part == null) return countOnly ? const ['0'] : const [];
       parts.add(part);
+    }
+
+    // The caller's own id set, ANDed with everything else. Small enough to
+    // bind, it is one more part, on the resources table; larger, the set
+    // path intersects it in Dart (_matchingIds), which is what a `_filter`
+    // over most of a type needs.
+    if (only != null) {
+      if (only.length > maxIdListInSql) return null;
+      final r = parts.isEmpty ? resources : alias(resources, nextAlias());
+      parts.add(
+        _IndexCondition(
+          r,
+          r.id,
+          r.resourceType.equals(resourceType) & r.id.isIn(only.toList()),
+        ),
+      );
     }
 
     // Which parameter is the outer select, and how the others nest, is
@@ -2632,6 +2663,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     Map<String, List<String>>? searchParameters,
     List<HasParameter>? hasParameters,
     CompartmentScope? compartment,
+    Set<String>? only,
   }) async {
     final resourceTypeString = resourceType.toString();
 
@@ -2645,6 +2677,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       null,
       null,
       compartment: compartment,
+      only: only,
     );
     if (inSql != null) {
       return inSql.toSet();
@@ -2652,6 +2685,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     var matchingIds = <String>{};
     var firstParam = true;
+
+    // The caller's ids are from this store's own index; they exist, so the
+    // set is the starting point as it stands.
+    if (only != null) {
+      matchingIds = Set<String>.of(only);
+      firstParam = false;
+    }
 
     // Process _has parameters first (reverse chaining)
     if (hasParameters != null && hasParameters.isNotEmpty) {
@@ -2791,11 +2831,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     Map<String, List<String>>? searchParameters,
     List<HasParameter>? hasParameters,
     CompartmentScope? compartment,
+    Set<String>? ids,
   }) async {
     final hasSearch = searchParameters != null && searchParameters.isNotEmpty;
     final hasHas = hasParameters != null && hasParameters.isNotEmpty;
     if (!hasSearch && !hasHas && compartment == null) {
-      return getResourceCount(resourceType);
+      // The caller's ids exist (see [search]); alone, they are the count.
+      return ids?.length ?? await getResourceCount(resourceType);
     }
 
     // One COUNT in SQL when the search can be expressed there; the id set
@@ -2810,17 +2852,19 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       null,
       countOnly: true,
       compartment: compartment,
+      only: ids,
     );
     if (counted != null) {
       return int.parse(counted.single);
     }
-    final ids = await _matchingIds(
+    final matching = await _matchingIds(
       resourceType: resourceType,
       searchParameters: searchParameters,
       hasParameters: hasParameters,
       compartment: compartment,
+      only: ids,
     );
-    return ids.length;
+    return matching.length;
   }
 
   // ──────────────────────────────────────────────────────────────────────────

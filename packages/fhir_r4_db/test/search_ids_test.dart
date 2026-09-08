@@ -136,6 +136,69 @@ void main() {
     );
   });
 
+  test("ids: the caller's set restricts the search on both paths", () async {
+    final few = {'p01', 'p02', 'p03', 'p04'};
+    final small = await dao.search(
+      resourceType: fhir.R4ResourceType.Patient,
+      searchParameters: {
+        'gender': ['female'],
+      },
+      ids: few,
+      count: 20,
+    );
+    expect(dao.lastSearchPagedInSql, isTrue);
+    expect(small.map((r) => r.id!.valueString), ['p01', 'p03']);
+    final many = {
+      for (var i = 0; i < FhirDao.maxIdListInSql + 50; i++)
+        'p${i.toString().padLeft(2, '0')}',
+    };
+    final large = await dao.search(
+      resourceType: fhir.R4ResourceType.Patient,
+      searchParameters: {
+        'gender': ['female'],
+      },
+      ids: many,
+      count: 3,
+    );
+    expect(dao.lastSearchPagedInSql, isFalse);
+    expect(large.map((r) => r.id!.valueString), ['p01', 'p03', 'p05']);
+    expect(
+      await dao.searchCount(
+        resourceType: fhir.R4ResourceType.Patient,
+        ids: {'p00', 'p01'},
+      ),
+      2,
+    );
+    expect(
+      await dao.searchCount(
+        resourceType: fhir.R4ResourceType.Patient,
+        searchParameters: {
+          'active': ['true'],
+        },
+        ids: many,
+      ),
+      10,
+    );
+    expect(
+      await dao.searchIds(
+        resourceType: fhir.R4ResourceType.Patient,
+        searchParameters: {
+          'active': ['true'],
+        },
+        ids: few,
+      ),
+      {'p03'},
+    );
+    // Alone, on the set path: paged in id order.
+    final alone = await dao.search(
+      resourceType: fhir.R4ResourceType.Patient,
+      ids: many,
+      count: 2,
+      offset: 1,
+    );
+    expect(alone.map((r) => r.id!.valueString), ['p01', 'p02']);
+  });
+
   test('a short _id list keeps the SQL path', () async {
     await dao.search(
       resourceType: fhir.R4ResourceType.Patient,
