@@ -354,8 +354,8 @@ class FhirDb extends _$FhirDb {
   /// upgrade at the version where it takes this package's schema 7. Also the
   /// right call after a change to the generated extractor.
   ///
-  /// Paged through the resources table rather than read whole (5 GB of JSON
-  /// on the MIMIC load); inserted in batches. A resource that will not parse
+  /// Paged through the resources table by keyset rather than read whole
+  /// (5 GB of JSON on the MIMIC load); inserted in batches. A resource that will not parse
   /// is skipped, so one bad row cannot keep a database shut; an insert that
   /// fails is a bug here and is not swallowed.
   Future<void> rebuildSearchIndex() async {
@@ -374,17 +374,30 @@ class FhirDb extends _$FhirDb {
       await m.deleteTable(table.actualTableName);
       await m.createTable(table);
     }
+    // Keyset over the primary key: each page starts where the last ended,
+    // so the walk is linear. `LIMIT/OFFSET` had SQLite skip every earlier
+    // row again for each page, a quadratic walk (fhirant REVIEW-2026-09-06
+    // §4.6/§6.1; the paging alone measured on the 929k copy in
+    // fhirant `rebuild_paging.tsv`).
     const page = 500;
-    var offset = 0;
+    var lastType = '';
+    var lastId = '';
     while (true) {
       final stored = await customSelect(
-        'SELECT resource FROM resources ORDER BY resource_type, id '
-        'LIMIT $page OFFSET $offset',
+        'SELECT resource_type, id, resource FROM resources '
+        'WHERE (resource_type, id) > (?, ?) '
+        'ORDER BY resource_type, id LIMIT $page',
+        variables: [
+          Variable.withString(lastType),
+          Variable.withString(lastId),
+        ],
+        readsFrom: {resources},
       ).get();
       if (stored.isEmpty) {
         break;
       }
-      offset += stored.length;
+      lastType = stored.last.read<String>('resource_type');
+      lastId = stored.last.read<String>('id');
       final lists = SearchParameterLists();
       for (final row in stored) {
         fhir.Resource resource;
