@@ -280,4 +280,115 @@ void main() {
       );
     });
   });
+
+  group('one parameter: the page shape is chosen by the size probe', () {
+    // 2,500 Observations: above the first probe stage (2,000), so a broad
+    // filter goes through the fetch-sort-page path with a real second
+    // probe, and a narrow one through it with the first.
+    setUp(() async {
+      await dao.saveResources([
+        for (var i = 0; i < 2500; i++)
+          Observation.fromJson({
+            'resourceType': 'Observation',
+            'id': 'o${i.toString().padLeft(4, '0')}',
+            'status': i % 5 == 0 ? 'amended' : 'final',
+            'code': {'text': 'x'},
+            'effectiveDateTime':
+                '2020-01-${(i % 28 + 1).toString().padLeft(2, '0')}',
+          }),
+      ]);
+    });
+
+    test('a broad range pages in id order with an offset', () async {
+      final page = await dao.search(
+        resourceType: R4ResourceType.Observation,
+        searchParameters: {
+          'date': ['ge2019-01-01'],
+        },
+        count: 20,
+        offset: 10,
+      );
+      expect(
+        page.map((r) => r.id!.valueString).toList(),
+        [for (var i = 10; i < 30; i++) 'o${i.toString().padLeft(4, '0')}'],
+      );
+    });
+
+    test('a narrow range, and one matching nothing', () async {
+      final narrow = await dao.search(
+        resourceType: R4ResourceType.Observation,
+        searchParameters: {
+          'date': ['2020-01-28'],
+        },
+        count: 100,
+      );
+      expect(narrow, hasLength(2500 ~/ 28));
+      expect(
+        narrow.map((r) => r.id!.valueString).toList(),
+        [
+          for (var i = 27; i < 2500; i += 28)
+            'o${i.toString().padLeft(4, '0')}',
+        ],
+      );
+      expect(
+        await dao.search(
+          resourceType: R4ResourceType.Observation,
+          searchParameters: {
+            'date': ['ge2999-01-01'],
+          },
+          count: 20,
+        ),
+        isEmpty,
+      );
+    });
+
+    test('_lastUpdated, a resources-table part, the same way', () async {
+      final page = await dao.search(
+        resourceType: R4ResourceType.Observation,
+        searchParameters: {
+          '_lastUpdated': ['ge2000-01-01'],
+        },
+        count: 5,
+        offset: 2495,
+      );
+      expect(
+        page.map((r) => r.id!.valueString).toList(),
+        ['o2495', 'o2496', 'o2497', 'o2498', 'o2499'],
+      );
+      expect(
+        await dao.search(
+          resourceType: R4ResourceType.Observation,
+          searchParameters: {
+            '_lastUpdated': ['ge2999-01-01'],
+          },
+          count: 20,
+        ),
+        isEmpty,
+      );
+      expect(
+        await dao.searchCount(
+          resourceType: R4ResourceType.Observation,
+          searchParameters: {
+            '_lastUpdated': ['ge2000-01-01'],
+          },
+        ),
+        2500,
+      );
+    });
+
+    test('a negated part still applies on the fetch path', () async {
+      final page = await dao.search(
+        resourceType: R4ResourceType.Observation,
+        searchParameters: {
+          'date': ['ge2019-01-01'],
+          'status:not': ['final'],
+        },
+        count: 3,
+      );
+      expect(
+        page.map((r) => r.id!.valueString).toList(),
+        ['o0000', 'o0005', 'o0010'],
+      );
+    });
+  });
 }

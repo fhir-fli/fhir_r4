@@ -733,6 +733,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                   combined.idColumn,
                   combined.condition | one.condition,
                   negated: combined.negated,
+                  ranged: combined.ranged || one.ranged,
                 );
         }
         parts.add(combined!);
@@ -823,7 +824,14 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           0,
         ),
       );
-    } else if (parts.length > 1) {
+    } else if (parts.length == 1 && !parts.single.ranged) {
+      // One equality part: the covering index hands its ids over in id
+      // order and the page cuts in SQL, nothing to decide and nothing to
+      // probe.
+      sized.add((parts.single, 0));
+    } else {
+      // Every part is sized, a single ranged one too: its size chooses the
+      // page shape below.
       for (final probeLimit in _probeLimits) {
         limit = probeLimit;
         sized.clear();
@@ -834,8 +842,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           break;
         }
       }
-    } else {
-      sized.add((parts.single, 0));
     }
     final allBig = sized.every((s) => s.$2 >= limit);
     if (!allBig) {
@@ -852,59 +858,75 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // resources needs ~300 rows. The estimate treats a capped probe as the
     // cap, which understates its share, so the walk is chosen only when
     // even that pessimistic product keeps the expected walk short.
-    if (sized.length > 1 && sortKeys.isEmpty && count != null) {
-      final total = await getResourceCount(
-        fhir.R4ResourceType.fromString(resourceType) ??
-            fhir.R4ResourceType.Basic,
-      );
-      if (total > 0) {
-        var selectivity = 1.0;
-        for (final (_, size) in sized) {
-          selectivity *= size.clamp(1, total) / total;
-        }
-        final expectedWalk = (count + (offset ?? 0)) / selectivity;
-        // The alternative below walks the smallest set once, so the
-        // resources walk has to be shorter than that set to be worth it.
-        // `code=X` (2,000) with `status=final` expects an 8,000-row walk and
-        // keeps the 2,000-row outer.
-        final smallest = sized.map((s) => s.$2).reduce(math.min);
-        if (expectedWalk < math.min(20000, smallest)) {
-          final r = resources;
-          var walk = r.resourceType.equals(resourceType);
-          for (final (part, _) in sized) {
-            // `_id`, `_lastUpdated`, `_list` and `_content` are conditions on
-            // the resources table itself; nesting one would make it refer to
-            // the outer row.
-            if (part.table == r) {
-              walk = walk & part.condition;
-              continue;
-            }
-            walk = walk &
-                existsQuery(
-                  selectOnly(part.table)
-                    ..addColumns([const Constant(1)])
-                    ..where(part.condition & part.idColumn.equalsExp(r.id)),
-                );
-          }
-          for (final other in negated) {
-            if (other.table == r) {
-              walk = walk & other.condition.not();
-              continue;
-            }
-            walk = walk &
-                notExistsQuery(
-                  selectOnly(other.table)
-                    ..addColumns([const Constant(1)])
-                    ..where(other.condition & other.idColumn.equalsExp(r.id)),
-                );
-          }
-          final rows = await (selectOnly(r)
-                ..addColumns([r.id])
-                ..where(walk)
-                ..orderBy([OrderingTerm.asc(r.id)])
-                ..limit(count, offset: offset))
+    if (sortKeys.isEmpty && count != null && parts.isNotEmpty) {
+      if (sized.length == 1 && sized.single.$1.ranged) {
+        // One RANGE parameter (an equality part keeps the SQL page below:
+        // its covering index is already in id order and stops at the
+        // page; measured 2026-09-07, `subject=<patient>` 15 ms that way
+        // against 600 ms fetched whole). A range's page comes one of two
+        // ways, chosen by the size the probe found:
+        //
+        // - under the probe's ceiling (100,000 ids): every id it matches,
+        //   read through the part's own index in whatever order that gives,
+        //   sorted and cut to the page here. `SELECT DISTINCT id … ORDER BY
+        //   id LIMIT` in SQL left the choice to the planner, which for a
+        //   broad range took the covering index and sorted 800,000 entries
+        //   in a temporary B-tree (`date=ge2150`, 25 ms → 764 ms after
+        //   schema 10), and for a sparse `_lastUpdated` read the type in
+        //   key order testing every row (10.4 s to return nothing). Both
+        //   measured 2026-09-07 on 929k, schema10_ab.tsv;
+        // - at or above it, the resources table walked in id order with the
+        //   part as an EXISTS probe per row (or its predicate, kept off the
+        //   index, when the part is the resources table itself): a set that
+        //   large is at least a tenth of the type, so the first page is
+        //   found within a few hundred rows.
+        final (part, size) = sized.single;
+        if (size < limit) {
+          final rows = await (selectOnly(part.table, distinct: true)
+                ..addColumns([part.idColumn])
+                ..where(_withNegated(part, negated)))
               .get();
-          return rows.map((row) => row.read(r.id)).whereType<String>().toList();
+          final all = rows
+              .map((r) => r.read(part.idColumn))
+              .whereType<String>()
+              .toList()
+            ..sort();
+          return _page(all, offset, count);
+        }
+        return _walkResourcesInIdOrder(
+          resourceType,
+          sized,
+          negated,
+          count,
+          offset,
+        );
+      }
+      if (sized.length > 1) {
+        // Several parts: walk the resources table when the parts together
+        // keep enough of the type that the page is found within a few
+        // hundred rows. The type count is one index scan (929k rows,
+        // ~100 ms on the MIMIC load), which is why it is not taken for a
+        // single part.
+        final total = await getResourceCount(
+          fhir.R4ResourceType.fromString(resourceType) ??
+              fhir.R4ResourceType.Basic,
+        );
+        if (total > 0) {
+          var selectivity = 1.0;
+          for (final (_, size) in sized) {
+            selectivity *= size.clamp(1, total) / total;
+          }
+          final expectedWalk = (count + (offset ?? 0)) / selectivity;
+          final smallest = sized.map((s) => s.$2).reduce(math.min);
+          if (expectedWalk < math.min(20000, smallest)) {
+            return _walkResourcesInIdOrder(
+              resourceType,
+              sized,
+              negated,
+              count,
+              offset,
+            );
+          }
         }
       }
     }
@@ -1019,6 +1041,74 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// normalized column, which is lower-cased and accent-folded: §3.1.1.5.1,
   /// "sorting SHOULD be performed on a case-insensitive basis. Accents may
   /// either be ignored or sorted as per realm convention."
+  /// [part]'s condition with every negated part as a NOT EXISTS on its id.
+  Expression<bool> _withNegated(
+    _IndexCondition part,
+    List<_IndexCondition> negated,
+  ) {
+    var where = part.condition;
+    for (final other in negated) {
+      where = where &
+          notExistsQuery(
+            selectOnly(other.table)
+              ..addColumns([const Constant(1)])
+              ..where(
+                other.condition & other.idColumn.equalsExp(part.idColumn),
+              ),
+          );
+    }
+    return where;
+  }
+
+  /// The resources table read in id order, each row kept when every sized
+  /// part has a row for it (EXISTS) and no negated part does; the page cut
+  /// in SQL. Right when the parts keep most of the type, so the page is
+  /// found within a few hundred rows; the callers decide that.
+  Future<List<String>> _walkResourcesInIdOrder(
+    String resourceType,
+    List<(_IndexCondition, int)> sized,
+    List<_IndexCondition> negated,
+    int count,
+    int? offset,
+  ) async {
+    final r = resources;
+    var walk = r.resourceType.equals(resourceType);
+    for (final (part, _) in sized) {
+      // `_id`, `_lastUpdated`, `_list` and `_content` are conditions on
+      // the resources table itself; nesting one would make it refer to
+      // the outer row.
+      if (part.table == r) {
+        walk = walk & (part.walkCondition ?? part.condition);
+        continue;
+      }
+      walk = walk &
+          existsQuery(
+            selectOnly(part.table)
+              ..addColumns([const Constant(1)])
+              ..where(part.condition & part.idColumn.equalsExp(r.id)),
+          );
+    }
+    for (final other in negated) {
+      if (other.table == r) {
+        walk = walk & (other.walkCondition ?? other.condition).not();
+        continue;
+      }
+      walk = walk &
+          notExistsQuery(
+            selectOnly(other.table)
+              ..addColumns([const Constant(1)])
+              ..where(other.condition & other.idColumn.equalsExp(r.id)),
+          );
+    }
+    final rows = await (selectOnly(r)
+          ..addColumns([r.id])
+          ..where(walk)
+          ..orderBy([OrderingTerm.asc(r.id)])
+          ..limit(count, offset: offset))
+        .get();
+    return rows.map((row) => row.read(r.id)).whereType<String>().toList();
+  }
+
   _SortKey? _sortKeyFor(String resourceType, String rule, String aliasName) {
     final descending = rule.startsWith('-');
     final name = descending ? rule.substring(1) : rule;
@@ -1366,6 +1456,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                 combined.idColumn,
                 combined.condition | one.condition,
                 negated: combined.negated,
+                ranged: combined.ranged || one.ranged,
               );
       }
       inner = combined;
@@ -1498,11 +1589,14 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       if (modifier != null) return null;
       final r = aliasName == null ? resources : alias(resources, aliasName);
       final Expression<bool>? condition;
+      Expression<bool>? walkCondition;
       if (name == '_id') {
         condition = r.id.equals(unescapeValue(value));
       } else {
         final (prefix, rest) = splitComparator(declared, value);
         condition = _lastUpdatedCondition(prefix, rest, on: r);
+        walkCondition =
+            _lastUpdatedCondition(prefix, rest, on: r, offIndex: true);
       }
       if (condition == null) {
         throw InvalidSearchValue(parameter: name, value: value, type: 'date');
@@ -1511,6 +1605,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         r,
         r.id,
         r.resourceType.equals(resourceType) & condition,
+        walkCondition: walkCondition == null
+            ? null
+            : r.resourceType.equals(resourceType) & walkCondition,
+        ranged: name == '_lastUpdated',
       );
     }
 
@@ -1703,6 +1801,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             type: 'number',
           );
         }
+        // Not `ranged`: a number or quantity prefix is an OR over the low
+        // and high columns with their NULL bounds, which no single index
+        // range serves, so the probe the ranged shape starts with scanned
+        // the parameter's rows: `value-quantity=gt100` measured 18 ms as a
+        // plain page and 1.2 s through the probe (2026-09-07,
+        // schema10_ab.tsv). A sargable numeric range is a follow-up.
         return _IndexCondition(t, t.id, condition);
       case 'quantity':
         final t = aliasName == null
@@ -1723,6 +1827,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             type: 'quantity',
           );
         }
+        // Not `ranged`: a number or quantity prefix is an OR over the low
+        // and high columns with their NULL bounds, which no single index
+        // range serves, so the probe the ranged shape starts with scanned
+        // the parameter's rows: `value-quantity=gt100` measured 18 ms as a
+        // plain page and 1.2 s through the probe (2026-09-07,
+        // schema10_ab.tsv). A sargable numeric range is a follow-up.
         return _IndexCondition(t, t.id, condition);
       case 'uri':
         final t = aliasName == null
@@ -1771,6 +1881,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               t,
               t.id,
               _stringCondition(resourceType, name, value, on: t),
+              ranged: true,
             );
           case 'missing':
             return _IndexCondition(t, t.id, path, negated: value == 'true');
@@ -1811,7 +1922,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         if (condition == null) {
           throw InvalidSearchValue(parameter: name, value: value, type: 'date');
         }
-        return _IndexCondition(t, t.id, condition);
+        return _IndexCondition(t, t.id, condition, ranged: true);
       case 'special':
         // 3.1.1.4.21: "the general modifiers and comparators do not apply,
         // except as stated in the description". The one special parameter
@@ -3893,13 +4004,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String? prefix,
     String value, {
     $ResourcesTable? on,
+    bool offIndex = false,
   }) {
     final r = on ?? resources;
     final range = searchDateRange(value);
     if (range == null) {
       return null;
     }
-    return _lastUpdatedRange(r.lastUpdated, prefix, range);
+    // Unary plus keeps a term off every index (SQLite, "The SQLite Query
+    // Optimizer Overview", read 2026-09-07: "the unary + operator ...
+    // prevents the term from constraining an index"), for the walk in id
+    // order; see _IndexCondition.walkCondition.
+    final column = offIndex
+        ? CustomExpression<int>('+"${r.aliasedName}"."last_updated"')
+        : r.lastUpdated;
+    return _lastUpdatedRange(column, prefix, range);
   }
 
   /// [_dateRangeCondition] for `resources.last_updated`, epoch milliseconds.
@@ -3917,20 +4036,25 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final l = search.low.millisecondsSinceEpoch;
     final h = search.high.millisecondsSinceEpoch;
     const second = 1000;
-    // low = lu, high = lu + second; neither is ever null.
+    // low = lu, high = lu + second; neither is ever null. Each prefix is
+    // ONE range on the column, so the index can serve it: `ge` is
+    // above-or-contained, and since above is `lu > h - second` and
+    // contained is `l <= lu <= h - second` their union is `lu >= l` (or,
+    // for a search narrower than a second, `lu > h - second`); `le`
+    // likewise. Written as an OR of the two, the planner could use no
+    // index and read the whole type: `_lastUpdated=ge<future>` measured
+    // 10.4 s on 929k with nothing to return (schema10_ab.tsv, before).
     final contained =
         lu.isBiggerOrEqualValue(l) & lu.isSmallerOrEqualValue(h - second);
-    final above = lu.isBiggerThanValue(h - second);
-    final below = lu.isSmallerThanValue(l);
     switch (prefix) {
       case 'gt':
-        return above;
+        return lu.isBiggerThanValue(h - second);
       case 'lt':
-        return below;
+        return lu.isSmallerThanValue(l);
       case 'ge':
-        return above | contained;
+        return lu.isBiggerOrEqualValue(math.min(l, h - second + 1));
       case 'le':
-        return below | contained;
+        return lu.isSmallerOrEqualValue(math.max(l - 1, h - second));
       case 'sa':
         return lu.isBiggerOrEqualValue(h);
       case 'eb':
@@ -4818,11 +4942,29 @@ class _IndexCondition {
     this.idColumn,
     this.condition, {
     this.negated = false,
+    this.walkCondition,
+    this.ranged = false,
   });
 
   final TableInfo<Table, dynamic> table;
   final GeneratedColumn<String> idColumn;
   final Expression<bool> condition;
+
+  /// The condition as written for a walk of the resources table in id
+  /// order, when that differs from [condition]: a `_lastUpdated` range with
+  /// its column kept off the index (`+last_updated`), so the planner reads
+  /// the primary key in order and tests each row instead of ranging the
+  /// (resource_type, last_updated) index and sorting the result. Null when
+  /// the two are the same.
+  final Expression<bool>? walkCondition;
+
+  /// True when the condition is a RANGE on the covering index's value
+  /// column (a date, number or quantity prefix, `_lastUpdated`, a string
+  /// starts-with). Read through that index the ids come in value order, not
+  /// id order, so `ORDER BY id LIMIT` costs a sort of every match; an
+  /// equality (a token, a reference target, `:exact`) comes out of the same
+  /// index already in id order and stops at the page. See _pagedIds.
+  final bool ranged;
 
   /// True when the resource must have NO row matching [condition]:
   /// `:missing=true`, `:not`, `:not-in`. Never the outer select; nested as
