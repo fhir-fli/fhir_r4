@@ -177,7 +177,17 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// resource type ([_storedMetas]), and a resource that appears twice in one
   /// batch is two versions. Every bulk save used to write version 1 and
   /// overwrite history version 1 (finding 28).
-  Future<bool> saveResources(List<fhir.Resource> resourcesList) async {
+  ///
+  /// [recordHistory] false writes no history row for a resource the store
+  /// did not hold, its first version. A resource that is already stored
+  /// gets its history row as always, so anything that has ever changed
+  /// keeps a complete history. fhirant's specification load is the caller:
+  /// 4,212 conformance resources whose first version was a second 48 MB
+  /// copy of the same JSON (fhirant REVIEW-2026-09-06 §6.1).
+  Future<bool> saveResources(
+    List<fhir.Resource> resourcesList, {
+    bool recordHistory = true,
+  }) async {
     if (resourcesList.isEmpty) return true;
     try {
       final newResources = <fhir.Resource>[];
@@ -188,6 +198,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final historyRows = <ResourcesHistoryCompanion>[];
         for (final resource in withIds) {
           final key = '${resource.resourceType}/${resource.id!.valueString!}';
+          final stored = metas[key] != null;
           final updated = resource.copyWith(
             meta: _nextMeta(resource.meta, metas[key], mergeTags: true),
           );
@@ -195,7 +206,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           newResources.add(updated);
           final (current, history) = _rowsFor(updated);
           currentRows.add(current);
-          historyRows.add(history);
+          if (recordHistory || stored) historyRows.add(history);
         }
         await batch(
           (b) => b

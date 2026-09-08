@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- **`saveResources(recordHistory: false)` writes no history row for a resource's first version.** A resource the store already holds gets its history row as always. fhirant's specification load is the caller: 4,212 conformance resources whose first version was a second 48 MB copy of the same JSON in `resources_history` (fhirant REVIEW-2026-09-06 §6.1).
+
 - **`search`, `searchCount` and `searchIds` take `ids`, the caller's own id set**, ANDed with every other condition: one more part of the SQL statement when it can be bound (≤ 500), intersected on the set path otherwise, and never checked for existence (they are ids from this store's own index). fhirant's `_filter` used to hand its result back as one comma-separated `_id` value; the string, its re-parse and the existence check cost 14 of the 19.8 s of a `_filter` over 813k Observations (fhirant REVIEW-2026-09-06 row 38).
 
 - **Schema 12: date prefixes are one index range each.** An open Period bound is stored as `beforeAnyDate` (0001-01-01) or `afterAnyDate` (9999-12-31) instead of NULL (new rows, and existing rows by `storeOpenDateBoundsAsSentinels` on upgrade, which also converts the composite table's open slots), and `_dateRangeCondition` and the composite date branch write each prefix as one comparison on one bound with at most a residual test, as the numeric ranges do since schema 11. `date_range_test.dart` runs every prefix at several values against the old NULL-OR form as SQL over the same rows. With complete statistics `count date=ge2150` on the 929k MIMIC copy had gone through the owner index, 1,269 ms; see the measurement in fhirant `numeric_range_bench.tsv`.

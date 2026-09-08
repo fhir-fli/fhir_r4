@@ -282,6 +282,23 @@ Future<void> main() async {
       );
     });
 
+    test('recordHistory: false writes no first-version history row',
+        () async {
+      final p = Patient.fromJson({'resourceType': 'Patient', 'id': 'spec'});
+      expect(await dao.saveResources([p], recordHistory: false), isTrue);
+      final stored = await dao.getResource(R4ResourceType.Patient, 'spec');
+      expect(stored!.meta!.versionId!.valueString, '1');
+      expect(
+        await dao.getResourceHistory(R4ResourceType.Patient, 'spec'),
+        isEmpty,
+      );
+      // A resource the store already holds keeps its history either way.
+      expect(await dao.saveResources([p], recordHistory: false), isTrue);
+      final history =
+          await dao.getResourceHistory(R4ResourceType.Patient, 'spec');
+      expect(history.map((r) => r.meta!.versionId!.valueString), ['2']);
+    });
+
     test('is atomic: an indexing failure stores no resource', () async {
       dao.extractSearchParameters = (_) => throw StateError('index failed');
       final ok = await dao.saveResources([
