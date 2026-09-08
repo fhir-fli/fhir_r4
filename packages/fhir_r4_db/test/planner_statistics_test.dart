@@ -81,7 +81,24 @@ Future<void> main() async {
     );
     final limit =
         await second.customSelect('PRAGMA analysis_limit').getSingle();
-    expect(limit.data.values.first, 1000);
+    expect(limit.data.values.first, FhirDb.analysisLimit);
+  });
+
+  test('analyzeFully reads every row and leaves the periodic limit behind',
+      () async {
+    final db = FhirDb(NativeDatabase.memory());
+    addTearDown(db.close);
+    await db.fhirDao.saveResources(
+      [for (var i = 0; i < 200; i++) Observation.fromJson(observation(i))],
+    );
+    await db.customStatement('DELETE FROM sqlite_stat1');
+    await db.analyzeFully();
+    expect(
+      await statsOf(db, 'token_search_parameters'),
+      contains('idx_token_search_parameters_value_cover'),
+    );
+    final limit = await db.customSelect('PRAGMA analysis_limit').getSingle();
+    expect(limit.data.values.first, FhirDb.analysisLimit);
   });
 
   test('optimizePlannerStatistics is callable and cheap when nothing changed',

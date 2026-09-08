@@ -281,20 +281,53 @@ class FhirDb extends _$FhirDb {
   /// current connection". [optimizePlannerStatistics] is the periodic call,
   /// also run after every bulk save.
   ///
-  /// `PRAGMA analysis_limit=1000` bounds what ANALYZE reads per index: "Values
-  /// of N between 100 and 1000 are recommended", and the approximate
-  /// statistics "are usually close enough". An upgrade still runs a full
-  /// ANALYZE, since a rebuild changes every table at once.
+  /// `PRAGMA analysis_limit` bounds what ANALYZE reads per index. Quoted
+  /// verbatim from sqlite.org/pragma.html, read whole 2026-09-08: "The
+  /// results of analysis are not as good when only part of each index is
+  /// examined, but the results are usually good enough. Setting N to 100 or
+  /// 1000 allows the ANALYZE command to run quickly, even on enormous
+  /// database files." and "If the limit is zero, then the analysis limit is
+  /// disabled and the ANALYZE command will examine all rows of each index."
+  /// (Two sentences this comment used to attribute to that page are not on
+  /// it.) Measured 2026-09-08 on the 929k MIMIC copy, 1000 was not good
+  /// enough here: the token table's system index and value index came out
+  /// alike (`1001 501 501` for both), so `code=http://loinc.org|8867-4` was
+  /// planned through the SYSTEM index (every LOINC-coded row) and its count
+  /// took 37 ms; at 10,000 the value index reads as 10 rows per value
+  /// against 1,429 per system, the planner takes it, and the count is 7 ms.
+  /// ANALYZE of the whole copy: 35 ms at 1,000, 65 ms at 10,000, 8.4 s
+  /// unlimited. So the periodic refresh runs at 10,000, and the one-off
+  /// refreshes after an upgrade or a rebuild ([analyzeFully]) run unlimited,
+  /// since each follows work that took far longer. The upgrade's ANALYZE
+  /// used to run under the 1,000 limit too, so it was never the full one
+  /// its comment promised.
   ///
   /// Public because a subclass that overrides [migration] — fhirant does —
   /// replaces this `beforeOpen` and has to call it from its own.
   Future<void> ensurePlannerStatistics(OpeningDetails details) async {
-    await customStatement('PRAGMA analysis_limit=1000');
+    await customStatement('PRAGMA analysis_limit=$analysisLimit');
     if (details.hadUpgrade) {
-      await customStatement('ANALYZE');
+      await analyzeFully();
       return;
     }
     await optimizePlannerStatistics(allTables: true);
+  }
+
+  /// Rows ANALYZE reads per index on the periodic refresh; see
+  /// [ensurePlannerStatistics] for the measurement behind the number.
+  static const int analysisLimit = 10000;
+
+  /// A complete ANALYZE, every row of every index, leaving the connection's
+  /// limit at [analysisLimit] afterwards. For the moments that rewrite whole
+  /// tables (an upgrade, a rebuild, a restore): 8.4 s on the 929k MIMIC
+  /// copy, against the 1,000 s the rebuild before it takes.
+  Future<void> analyzeFully() async {
+    await customStatement('PRAGMA analysis_limit=0');
+    try {
+      await customStatement('ANALYZE');
+    } finally {
+      await customStatement('PRAGMA analysis_limit=$analysisLimit');
+    }
   }
 
   /// Refreshes planner statistics for the tables that need it, and no others.
@@ -388,7 +421,7 @@ class FhirDb extends _$FhirDb {
       });
     }
     await createValueIndexes();
-    await customStatement('ANALYZE');
+    await analyzeFully();
   }
 
   /// The indexes every search table is read and written through.
