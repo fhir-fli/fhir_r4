@@ -3,16 +3,24 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_db/fhir_r4_db.dart' hide Resource;
 import 'package:test/test.dart';
 
-/// `_sort`, R4B §3.1.1.5.1, on both paths: the SQL-paged one (plain
-/// parameters) and the general one (forced here with a `:missing` modifier,
-/// which the SQL path does not admit). Both must give the same order.
-Future<void> main() async {
+/// `_sort`, R4B §3.1.1.5.1, on every path: the SQL-paged one in both its
+/// shapes (the index walk and the grouped join, forced each way through
+/// `preferSortWalk`, and the one the sizes choose) and the general one
+/// (forced with a `:missing` modifier, which the SQL path does not admit).
+/// All must give the same order.
+void main() {
+  group('the shape the sizes choose', () => defineSortTests(null));
+  group('forced: the index walk', () => defineSortTests(true));
+  group('forced: the grouped join', () => defineSortTests(false));
+}
+
+void defineSortTests(bool? preferWalk) {
   late FhirDb db;
   late FhirDao dao;
 
   setUp(() async {
     db = FhirDb(NativeDatabase.memory());
-    dao = db.fhirDao;
+    dao = db.fhirDao..preferSortWalk = preferWalk;
     // Five observations. Two carry TWO dates (a Period is one value; these
     // use component-value-quantity for a repeating numeric instead) and
     // one has no quantity at all.
@@ -53,14 +61,18 @@ Future<void> main() async {
   tearDown(() => db.close());
 
   /// The SQL path: plain parameters only.
-  Future<List<String>> sql(List<String> sort, {int? offset}) async =>
+  Future<List<String>> sql(
+    List<String> sort, {
+    int? offset,
+    int count = 10,
+  }) async =>
       (await dao.search(
         resourceType: R4ResourceType.Observation,
         searchParameters: {
           'code': ['X'],
         },
         sort: sort,
-        count: 10,
+        count: count,
         offset: offset,
       ))
           .map((r) => r.id!.valueString!)
@@ -162,5 +174,42 @@ Future<void> main() async {
       count: 10,
     );
     expect(ordered.map((r) => r.id!.valueString), ['p2', 'p3', 'p1']);
+  });
+
+  test('a page that begins in, or runs into, the no-value tail', () async {
+    // component-value-quantity: a 1, c 2, b 3, e 4 have values; d has none
+    // and sorts last. A page of two from offset 3 spans the last valued
+    // resource and the tail; a page from offset 4 begins in the tail.
+    const key = 'component-value-quantity';
+    expect(await sql([key], offset: 3, count: 2), ['e', 'd']);
+    expect(await sql([key], offset: 4, count: 2), ['d']);
+    expect(await sql([key], offset: 5, count: 2), isEmpty);
+    expect(await sql(['-$key'], offset: 4, count: 2), ['d']);
+  });
+
+  test(
+      'a negated part and a compartment-free sort agree with the general '
+      'path', () async {
+    Future<List<String>> notFinal(List<String> sort) async => (await dao.search(
+          resourceType: R4ResourceType.Observation,
+          searchParameters: {
+            'code': ['X'],
+            'status:not': ['final'],
+          },
+          sort: sort,
+          count: 10,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+    expect(await notFinal(['date']), ['c']);
+    expect(await notFinal(['-date']), ['c']);
+  });
+
+  test('a repeated value is one row of the order', () async {
+    // a carries 5.0 and 1.0: once, at its earliest value, never twice.
+    const key = 'component-value-quantity';
+    final all = await sql([key]);
+    expect(all.where((id) => id == 'a').length, 1);
+    expect(all, ['a', 'c', 'b', 'e', 'd']);
   });
 }

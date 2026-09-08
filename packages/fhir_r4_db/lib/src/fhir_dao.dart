@@ -52,6 +52,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// Set to true to store versionId as a timestamp instead of an integer.
   bool versionIdAsTime = false;
 
+  /// Forces the shape of a one-key sorted search: true the index walk,
+  /// false the grouped join, null (production) whichever the filter's size
+  /// calls for. Both shapes must give the same order; the sort tests run
+  /// every case three ways.
+  @visibleForTesting
+  bool? preferSortWalk;
+
   // ──────────────────────────────────────────────────────────────────────────
   // CRUD Operations
   // ──────────────────────────────────────────────────────────────────────────
@@ -676,8 +683,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (count != null && count <= 0) return null;
 
     final sortKeys = <_SortKey>[];
-    for (final (i, rule) in (sort ?? const <String>[]).indexed) {
-      final key = _sortKeyFor(resourceType, rule, 's$i');
+    for (final rule in sort ?? const <String>[]) {
+      final key = _sortKeyFor(resourceType, rule);
       if (key == null) return null;
       sortKeys.add(key);
     }
@@ -824,10 +831,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           0,
         ),
       );
-    } else if (parts.length == 1 && !parts.single.ranged) {
+    } else if (parts.length == 1 &&
+        (sortKeys.isNotEmpty || !parts.single.ranged)) {
       // One equality part: the covering index hands its ids over in id
       // order and the page cuts in SQL, nothing to decide and nothing to
-      // probe.
+      // probe. With a sort, the shape is decided by sampling the sort
+      // order (_sortWalkPays), not by the part's size.
       sized.add((parts.single, 0));
     } else {
       // Every part is sized, a single ranged one too: its size chooses the
@@ -997,17 +1006,47 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // §3.1.1.5.1: "there can be multiple values for a given search parameter
     // for a single resource. In this case, the sort is based on the item in
     // the set of multiple parameters that comes earliest in the specified
-    // sort order" — so each sort key is a LEFT JOIN to its index table, the
-    // rows are grouped by id, and the key is MIN of the value ascending or
-    // MAX descending. A resource with no value for the key keeps its place
-    // in the result and sorts last (a LEFT JOIN, and NULLS LAST, which is
-    // not SQLite's default for ascending). Ties break on id so a page is
-    // stable. This used to read EVERY matching resource and sort in Dart.
+    // sort order", and "A search result that has no value for a sort
+    // parameter sorts last". Two shapes give that order:
+    //
+    // - ONE key, and the filter keeps at least half the type (or there is
+    //   no filter): the key's covering index is walked in value order and
+    //   each row kept when every part has a row for its id; the page is the
+    //   first `count` kept. Measured 2026-09-06 on 929k MIMIC resources,
+    //   `status=final&_sort=-date` (813k of 813.5k): 0 ms as a walk, 5.5 s
+    //   as the join below, which sorts the whole filtered set. Resources
+    //   with no value come after, from the resources table, only when the
+    //   page reaches them.
+    // - otherwise each key is a LEFT JOIN to its index table, the rows are
+    //   grouped by id, and the key is MIN of the value ascending or MAX
+    //   descending, NULLS LAST, ties on id. For the 48,554-record patient
+    //   this is 0.2-0.3 s where a walk read most of the type's dates
+    //   (2.3 s): the walk stops early only when what it walks mostly
+    //   matches. This used to read EVERY matching resource and sort in
+    //   Dart.
+    if (sortKeys.length == 1 &&
+        count != null &&
+        (preferSortWalk ??
+            parts.isEmpty ||
+                await _sortWalkPays(sortKeys.single, sized, negated))) {
+      return _walkSortedPage(
+        resourceType: resourceType,
+        key: sortKeys.single,
+        sized: parts.isEmpty ? const [] : sized,
+        negated: negated,
+        count: count,
+        offset: offset,
+      );
+    }
+
+    final sources = [
+      for (final (i, key) in sortKeys.indexed) key.source('s$i'),
+    ];
     final joined = selectOnly(first.table).join([
-      for (final key in sortKeys)
+      for (final src in sources)
         leftOuterJoin(
-          key.table,
-          key.on(first.idColumn),
+          src.table,
+          src.filter & src.idColumn.equalsExp(first.idColumn),
           useColumns: false,
         ),
     ])
@@ -1015,9 +1054,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       ..where(where)
       ..groupBy([first.idColumn])
       ..orderBy([
-        for (final key in sortKeys)
+        for (final (i, key) in sortKeys.indexed)
           OrderingTerm(
-            expression: key.descending ? key.value.max() : key.value.min(),
+            expression: key.descending
+                ? sources[i].value.max()
+                : sources[i].value.min(),
             mode: key.descending ? OrderingMode.desc : OrderingMode.asc,
             nulls: NullsOrder.last,
           ),
@@ -1030,6 +1071,170 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     }
     final rows = await joined.get();
     return rows.map((r) => r.read(first.idColumn)).whereType<String>().toList();
+  }
+
+  /// Whether a walk of the sort key's index beats the grouped join.
+  ///
+  /// The walk reads the sort order from its front and keeps the rows the
+  /// filter accepts, so what decides its cost is how dense the accepted
+  /// rows are AT THE FRONT of that order, clustering included: the 48,554
+  /// records of one patient are 5 % of the type but sit in one band of
+  /// dates, and a walk from the newest date read most of the type before
+  /// reaching them (2.3 s, REVIEW-2026-09-06 §4.5), where 813k `final`
+  /// Observations are everywhere and the walk stops within a page. So the
+  /// first [_sortSample] rows of the order are read with the filter as a
+  /// column, and the walk is chosen when at least a quarter of them pass:
+  /// a page of 20 is then within a few hundred rows, deeper pages within
+  /// four times their offset. A count of the type and a probe of the
+  /// filter to half of it, tried first, decided the same cases for ~200 ms
+  /// on the MIMIC load; this is 200 index rows.
+  Future<bool> _sortWalkPays(
+    _SortKey key,
+    List<(_IndexCondition, int)> sized,
+    List<_IndexCondition> negated,
+  ) async {
+    final w = key.source('ws');
+    final ok = _partsHold(w.idColumn, sized, negated);
+    final sample = selectOnly(w.table)
+      ..addColumns([ok])
+      ..where(w.filter & w.value.isNotNull())
+      ..orderBy([
+        OrderingTerm(
+          expression: w.value,
+          mode: key.descending ? OrderingMode.desc : OrderingMode.asc,
+        ),
+      ])
+      ..limit(_sortSample);
+    final rows = await sample.get();
+    if (rows.isEmpty) return true;
+    final hits = rows.where((r) => r.read(ok) ?? false).length;
+    return hits * 4 >= rows.length;
+  }
+
+  /// Rows read from the front of the sort order to decide the shape.
+  static const _sortSample = 200;
+
+  /// Every part has a row for [id] (EXISTS) and no negated part does.
+  Expression<bool> _partsHold(
+    GeneratedColumn<String> id,
+    List<(_IndexCondition, int)> sized,
+    List<_IndexCondition> negated,
+  ) {
+    Expression<bool> where = const Constant(true);
+    for (final (part, _) in sized) {
+      where = where &
+          existsQuery(
+            selectOnly(part.table)
+              ..addColumns([const Constant(1)])
+              ..where(part.condition & part.idColumn.equalsExp(id)),
+          );
+    }
+    for (final other in negated) {
+      where = where &
+          notExistsQuery(
+            selectOnly(other.table)
+              ..addColumns([const Constant(1)])
+              ..where(other.condition & other.idColumn.equalsExp(id)),
+          );
+    }
+    return where;
+  }
+
+  /// The sorted page as a walk of the key's index in value order.
+  ///
+  /// Each row is kept when it is its resource's earliest row for the key in
+  /// the sort direction (no duplicates; ties on rowid), every filter part
+  /// has a row for the id (EXISTS) and no negated part does. Rows with no
+  /// value are skipped; the resources that have no value at all for the key
+  /// are appended from the resources table, in id order, when the page runs
+  /// past the last valued one. For a key on the resources table (`_id`,
+  /// `_lastUpdated`) there is one row per resource and nothing missing, so
+  /// the walk is the whole answer.
+  Future<List<String>> _walkSortedPage({
+    required String resourceType,
+    required _SortKey key,
+    required List<(_IndexCondition, int)> sized,
+    required List<_IndexCondition> negated,
+    required int count,
+    required int? offset,
+  }) async {
+    final w = key.source('w');
+    Expression<bool> partsHold(GeneratedColumn<String> id) =>
+        _partsHold(id, sized, negated);
+
+    var where = w.filter & partsHold(w.idColumn);
+    if (!key.onResources) {
+      final e = key.source('we');
+      final earlier = key.descending
+          ? e.value.isBiggerThan(w.value)
+          : e.value.isSmallerThan(w.value);
+      final sameValueEarlierRow = e.value.equalsExp(w.value) &
+          CustomExpression<bool>(
+            '"${e.table.aliasedName}"."rowid" < "${w.table.aliasedName}"."rowid"',
+          );
+      where = where &
+          w.value.isNotNull() &
+          notExistsQuery(
+            selectOnly(e.table)
+              ..addColumns([const Constant(1)])
+              ..where(
+                e.filter &
+                    e.idColumn.equalsExp(w.idColumn) &
+                    e.value.isNotNull() &
+                    (earlier | sameValueEarlierRow),
+              ),
+          );
+    }
+    final walk = selectOnly(w.table)
+      ..addColumns([w.idColumn])
+      ..where(where)
+      ..orderBy([
+        OrderingTerm(
+          expression: w.value,
+          mode: key.descending ? OrderingMode.desc : OrderingMode.asc,
+        ),
+        OrderingTerm.asc(w.idColumn),
+      ])
+      ..limit(count, offset: offset);
+    final ids = (await walk.get())
+        .map((r) => r.read(w.idColumn))
+        .whereType<String>()
+        .toList();
+    if (ids.length == count || key.onResources) return ids;
+
+    // The tail: resources with no value for the key, in id order. When the
+    // page begins inside the tail, how many valued resources the offset
+    // skipped is the walk's full count.
+    var tailOffset = 0;
+    if (ids.isEmpty && (offset ?? 0) > 0) {
+      final all = countAll();
+      final row = await (selectOnly(w.table)
+            ..addColumns([all])
+            ..where(where))
+          .getSingle();
+      tailOffset = math.max(0, (offset ?? 0) - (row.read(all) ?? 0));
+    }
+    final r = alias(resources, 'wr');
+    final v = key.source('wv');
+    final tail = selectOnly(r)
+      ..addColumns([r.id])
+      ..where(
+        r.resourceType.equals(resourceType) &
+            partsHold(r.id) &
+            notExistsQuery(
+              selectOnly(v.table)
+                ..addColumns([const Constant(1)])
+                ..where(
+                  v.filter & v.idColumn.equalsExp(r.id) & v.value.isNotNull(),
+                ),
+            ),
+      )
+      ..orderBy([OrderingTerm.asc(r.id)])
+      ..limit(count - ids.length, offset: tailOffset);
+    ids.addAll(
+      (await tail.get()).map((row) => row.read(r.id)).whereType<String>(),
+    );
+    return ids;
   }
 
   /// One `_sort` rule as a join to the table holding its value, or null when
@@ -1109,34 +1314,37 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return rows.map((row) => row.read(r.id)).whereType<String>().toList();
   }
 
-  _SortKey? _sortKeyFor(String resourceType, String rule, String aliasName) {
+  _SortKey? _sortKeyFor(String resourceType, String rule) {
     final descending = rule.startsWith('-');
     final name = descending ? rule.substring(1) : rule;
     if (name.isEmpty) return null;
 
     if (name == '_id' || name == '_lastUpdated') {
-      final r = alias(resources, aliasName);
       return _SortKey(
-        table: r,
-        on: (id) => r.resourceType.equals(resourceType) & r.id.equalsExp(id),
-        value: name == '_id' ? r.id : r.lastUpdated,
+        source: (aliasName) {
+          final r = alias(resources, aliasName);
+          return _SortSource(
+            table: r,
+            filter: r.resourceType.equals(resourceType),
+            idColumn: r.id,
+            value: name == '_id' ? r.id : r.lastUpdated,
+          );
+        },
         descending: descending,
+        onResources: true,
       );
     }
 
     final declared = searchParameterFor(resourceType, name);
     if (declared == null) return null;
 
-    Expression<bool> path(
+    Expression<bool> named(
       GeneratedColumn<String> type,
       GeneratedColumn<String> searchName,
-      GeneratedColumn<String> id,
-      GeneratedColumn<String> outerId,
     ) =>
-        type.equals(resourceType) &
-        id.equalsExp(outerId) &
-        searchName.equals(name);
+        type.equals(resourceType) & searchName.equals(name);
 
+    _SortSource Function(String)? source;
     switch (declared.type) {
       case 'string':
         // Whole values only. A name part is also indexed one row per word
@@ -1145,71 +1353,84 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // family "Zeta Alpha" before "Beta" (fhirant REVIEW-2026-09-06
         // finding 19). Whole rows are the multiples of 100 in param_index,
         // see StringSearchParameters.paramIndex.
-        final s = alias(stringSearchParameters, aliasName);
-        return _SortKey(
-          table: s,
-          on: (id) =>
-              path(s.resourceType, s.searchName, s.id, id) & _wholeValueRow(s),
-          value: s.stringValue,
-          descending: descending,
-        );
+        source = (aliasName) {
+          final t = alias(stringSearchParameters, aliasName);
+          return _SortSource(
+            table: t,
+            filter: named(t.resourceType, t.searchName) & _wholeValueRow(t),
+            idColumn: t.id,
+            value: t.stringValue,
+          );
+        };
       case 'token':
         // A CodeableConcept's text is indexed as a row with an empty code
         // for `:text`. It is not a code value: R4B 3.1.1.5.1, "A search
         // result that has no value for a sort parameter sorts last", and
         // an empty string sorted first (finding 20).
-        final s = alias(tokenSearchParameters, aliasName);
-        return _SortKey(
-          table: s,
-          on: (id) =>
-              path(s.resourceType, s.searchName, s.id, id) &
-              s.tokenValue.isNotValue(''),
-          value: s.tokenValue,
-          descending: descending,
-        );
+        source = (aliasName) {
+          final t = alias(tokenSearchParameters, aliasName);
+          return _SortSource(
+            table: t,
+            filter: named(t.resourceType, t.searchName) &
+                t.tokenValue.isNotValue(''),
+            idColumn: t.id,
+            value: t.tokenValue,
+          );
+        };
       case 'date':
-        final s = alias(dateSearchParameters, aliasName);
-        return _SortKey(
-          table: s,
-          on: (id) => path(s.resourceType, s.searchName, s.id, id),
-          value: s.dateValue,
-          descending: descending,
-        );
+        source = (aliasName) {
+          final t = alias(dateSearchParameters, aliasName);
+          return _SortSource(
+            table: t,
+            filter: named(t.resourceType, t.searchName),
+            idColumn: t.id,
+            value: t.dateValue,
+          );
+        };
       case 'number':
-        final s = alias(numberSearchParameters, aliasName);
-        return _SortKey(
-          table: s,
-          on: (id) => path(s.resourceType, s.searchName, s.id, id),
-          value: s.numberLow,
-          descending: descending,
-        );
+        source = (aliasName) {
+          final t = alias(numberSearchParameters, aliasName);
+          return _SortSource(
+            table: t,
+            filter: named(t.resourceType, t.searchName),
+            idColumn: t.id,
+            value: t.numberLow,
+          );
+        };
       case 'quantity':
-        final s = alias(quantitySearchParameters, aliasName);
-        return _SortKey(
-          table: s,
-          on: (id) => path(s.resourceType, s.searchName, s.id, id),
-          value: s.quantityLow,
-          descending: descending,
-        );
+        source = (aliasName) {
+          final t = alias(quantitySearchParameters, aliasName);
+          return _SortSource(
+            table: t,
+            filter: named(t.resourceType, t.searchName),
+            idColumn: t.id,
+            value: t.quantityLow,
+          );
+        };
       case 'reference':
-        final s = alias(referenceSearchParameters, aliasName);
-        return _SortKey(
-          table: s,
-          on: (id) => path(s.resourceType, s.searchName, s.id, id),
-          value: s.referenceValue,
-          descending: descending,
-        );
+        source = (aliasName) {
+          final t = alias(referenceSearchParameters, aliasName);
+          return _SortSource(
+            table: t,
+            filter: named(t.resourceType, t.searchName),
+            idColumn: t.id,
+            value: t.referenceValue,
+          );
+        };
       case 'uri':
-        final s = alias(uriSearchParameters, aliasName);
-        return _SortKey(
-          table: s,
-          on: (id) => path(s.resourceType, s.searchName, s.id, id),
-          value: s.uriValue,
-          descending: descending,
-        );
+        source = (aliasName) {
+          final t = alias(uriSearchParameters, aliasName);
+          return _SortSource(
+            table: t,
+            filter: named(t.resourceType, t.searchName),
+            idColumn: t.id,
+            value: t.uriValue,
+          );
+        };
       default:
         return null;
     }
+    return _SortKey(source: source, descending: descending, onResources: false);
   }
 
   /// Rows a condition matches, counted inside SQLite and capped at
@@ -4972,20 +5193,39 @@ class _IndexCondition {
   final bool negated;
 }
 
-/// One `_sort` rule: the (aliased) table holding the value, how it joins to
-/// the outer select's id, the value column, and the direction.
+/// One `_sort` rule: where its values live, in any alias, and the
+/// direction.
 class _SortKey {
   const _SortKey({
-    required this.table,
-    required this.on,
-    required this.value,
+    required this.source,
     required this.descending,
+    required this.onResources,
+  });
+
+  /// The key's rows as a fresh alias of their table: the filter that picks
+  /// them (resource type, parameter name, whole-value or coded rows), the
+  /// id column, the value column.
+  final _SortSource Function(String alias) source;
+  final bool descending;
+
+  /// True for `_id` and `_lastUpdated`, whose table is `resources`: one row
+  /// per resource, never missing, never repeated.
+  final bool onResources;
+}
+
+/// A sort key's rows in one alias.
+class _SortSource {
+  const _SortSource({
+    required this.table,
+    required this.filter,
+    required this.idColumn,
+    required this.value,
   });
 
   final TableInfo<Table, dynamic> table;
-  final Expression<bool> Function(GeneratedColumn<String> outerId) on;
-  final Expression<Object> value;
-  final bool descending;
+  final Expression<bool> filter;
+  final GeneratedColumn<String> idColumn;
+  final Expression<Comparable<dynamic>> value;
 }
 
 /// Thrown by [FhirDao.saveResource] and [FhirDao.deleteResource] when the
