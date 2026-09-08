@@ -605,6 +605,40 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   @visibleForTesting
   bool lastSearchPagedInSql = false;
 
+  /// The ids of every resource [searchParameters], [hasParameters] and
+  /// [compartment] match, and nothing else read. The same conditions as
+  /// [search] — one SQL statement when every part can be expressed as one,
+  /// set arithmetic otherwise — without the page or the hydration. With no
+  /// parameters, every id of the type.
+  ///
+  /// For a caller that needs the set and not the resources: fhirant's
+  /// `_filter` evaluated each leaf by reading every matching resource to
+  /// take its id, and `not(...)` read the whole type (fhirant
+  /// REVIEW-2026-09-06 finding 38).
+  Future<Set<String>> searchIds({
+    required fhir.R4ResourceType resourceType,
+    Map<String, List<String>>? searchParameters,
+    List<HasParameter>? hasParameters,
+    CompartmentScope? compartment,
+  }) =>
+      _matchingIds(
+        resourceType: resourceType,
+        searchParameters: searchParameters ?? const {},
+        hasParameters: hasParameters,
+        compartment: compartment,
+      );
+
+  /// Above this many comma-separated `_id` values in one repetition, the
+  /// search takes the set path rather than SQL. In SQL each value is one
+  /// bound `id = ?` in an OR chain, so a list of tens of thousands of ids (a
+  /// `_filter` result joined back as `_id`) built a statement of that many
+  /// variables; the set path keeps the list as a Dart set, intersects it
+  /// with the other conditions, and pages the sorted ids before reading any
+  /// resource. Measured 2026-09-08 with a 40,000-value list on an in-memory
+  /// store: the SQL path threw `Stack Overflow` after 387 ms building the OR
+  /// expression; the set path answers the same two matches in 187 ms.
+  static const maxIdListInSql = 500;
+
   /// Search resources using search parameters.
   Future<List<fhir.Resource>> search({
     required fhir.R4ResourceType resourceType,
@@ -769,6 +803,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // 3.1.1.3: "Empty parameters are not an error - they are just
         // ignored by the server."
         if (orValues.isEmpty) continue;
+        if (key.name == '_id' && orValues.length > maxIdListInSql) return null;
 
         // The first condition is the outer select on its own table; every
         // further one is nested on an ALIAS of its table, so two conditions
@@ -2474,6 +2509,32 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// every match. Measured on 928,935 MIMIC resources, `Observation?status=
   /// final`: 184.63s to count 813,513, against 10.54s for the same ids inside
   /// `search`.
+  /// Those of [ids] that exist as a [resourceType] resource, read in
+  /// `IN (...)` chunks of [maxIdListInSql].
+  Future<Set<String>> _existingIds(
+    String resourceType,
+    Set<String> ids,
+  ) async {
+    final found = <String>{};
+    final list = ids.toList();
+    for (var i = 0; i < list.length; i += maxIdListInSql) {
+      final end =
+          i + maxIdListInSql > list.length ? list.length : i + maxIdListInSql;
+      final chunk = list.sublist(i, end);
+      final rows = await (selectOnly(resources)
+            ..addColumns([resources.id])
+            ..where(
+              resources.resourceType.equals(resourceType) &
+                  resources.id.isIn(chunk),
+            ))
+          .get();
+      for (final row in rows) {
+        found.add(row.read(resources.id)!);
+      }
+    }
+    return found;
+  }
+
   Future<Set<String>> _matchingIds({
     required fhir.R4ResourceType resourceType,
     Map<String, List<String>>? searchParameters,
@@ -2536,6 +2597,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           if (ids == null) {
             continue;
           }
+          // Only ids that exist as this type: the values are the client's
+          // words, not rows. Taken as matches unchecked, a list of absent
+          // ids counted toward the total and filled the sorted page with
+          // ids no resource has, so the page came back empty while the
+          // total said otherwise.
+          ids = await _existingIds(resourceTypeString, ids);
           if (firstParam) {
             matchingIds = ids;
           } else {
