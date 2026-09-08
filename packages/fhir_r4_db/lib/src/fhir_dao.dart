@@ -79,6 +79,35 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return fhir.Resource.fromJsonString(resourceRow.resource);
   }
 
+  /// The [resourceType] resources with these [ids] that exist, in id order,
+  /// read in `IN (...)` chunks of [maxIdListInSql]. One statement per chunk
+  /// where a loop over [getResource] was one per id: fhirant's `_include`
+  /// read each target that way (REVIEW-2026-09-06 finding 39).
+  Future<List<fhir.Resource>> getResources(
+    fhir.R4ResourceType resourceType,
+    Iterable<String> ids,
+  ) async {
+    final resourceTypeString = resourceType.toString();
+    final list = ids.toSet().toList()..sort();
+    final found = <fhir.Resource>[];
+    for (var i = 0; i < list.length; i += maxIdListInSql) {
+      final end =
+          i + maxIdListInSql > list.length ? list.length : i + maxIdListInSql;
+      final rows = await (select(resources)
+            ..where(
+              (tbl) =>
+                  tbl.resourceType.equals(resourceTypeString) &
+                  tbl.id.isIn(list.sublist(i, end)),
+            )
+            ..orderBy([(tbl) => OrderingTerm.asc(tbl.id)]))
+          .get();
+      for (final row in rows) {
+        found.add(fhir.Resource.fromJsonString(row.resource));
+      }
+    }
+    return found;
+  }
+
   /// Save a single FHIR resource (insert or update).
   ///
   /// The stored version is read and the new one written in ONE transaction,

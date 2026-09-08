@@ -92,6 +92,23 @@ void main() {
     );
   });
 
+  test('getResources: the existing ones, in id order, across a chunk',
+      () async {
+    final ids = [
+      for (var i = 0; i < FhirDao.maxIdListInSql + 10; i++) 'absent$i',
+      'p29',
+      'p02',
+      'p02',
+      'p11',
+    ];
+    final got = await dao.getResources(fhir.R4ResourceType.Patient, ids);
+    expect(got.map((r) => r.id!.valueString), ['p02', 'p11', 'p29']);
+    expect(
+      await dao.getResources(fhir.R4ResourceType.Observation, ['p02']),
+      isEmpty,
+    );
+  });
+
   test('a short _id list keeps the SQL path', () async {
     await dao.search(
       resourceType: fhir.R4ResourceType.Patient,
