@@ -691,14 +691,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     );
     lastSearchPagedInSql = paged != null;
     if (paged != null) {
-      final results = <fhir.Resource>[];
-      for (final id in paged) {
-        final resource = await getResource(resourceType, id);
-        if (resource != null) {
-          results.add(resource);
-        }
-      }
-      return results;
+      return _hydrate(resourceType, paged);
     }
 
     final matchingIds = await _matchingIds(
@@ -731,26 +724,32 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final ordered = matchingIds.toList()..sort();
 
     if (sort != null && sort.isNotEmpty) {
-      final all = <fhir.Resource>[];
-      for (final id in ordered) {
-        final resource = await getResource(resourceType, id);
-        if (resource != null) {
-          all.add(resource);
-        }
-      }
+      final all = await _hydrate(resourceType, ordered);
       await _sortResults(all, sort, resourceTypeString);
       return _page(all, offset, count);
     }
 
-    final page = _page(ordered, offset, count);
-    final results = <fhir.Resource>[];
-    for (final id in page) {
-      final resource = await getResource(resourceType, id);
-      if (resource != null) {
-        results.add(resource);
-      }
-    }
-    return results;
+    return _hydrate(resourceType, _page(ordered, offset, count));
+  }
+
+  /// The resources for [ids], in the order given, those that exist. One
+  /// `IN (...)` read per 500 ids ([getResources]) where this was one read
+  /// per id: the 20 single reads that hydrated a page measured 30-50 ms cold
+  /// and 23-26 ms warm on the 929k MIMIC copy against 11-24 ms as one read
+  /// (fhirant REVIEW-2026-09-06 §4.6/§6.1, `hydration_probe.tsv`).
+  Future<List<fhir.Resource>> _hydrate(
+    fhir.R4ResourceType resourceType,
+    List<String> ids,
+  ) async {
+    if (ids.isEmpty) return [];
+    final byId = <String, fhir.Resource>{
+      for (final r in await getResources(resourceType, ids))
+        r.id!.valueString!: r,
+    };
+    return [
+      for (final id in ids)
+        if (byId[id] case final r?) r,
+    ];
   }
 
   /// The requested slice of [items], given an offset and a count.
@@ -1022,10 +1021,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         //   the probe's first stage.
         final (part, size) = sized.single;
         if (size < limit) {
-          final rows = await (selectOnly(part.table, distinct: true)
-                ..addColumns([part.idColumn])
-                ..where(_withNegated(part, negated)))
-              .get();
+          final whole = selectOnly(part.table, distinct: true)
+            ..addColumns([part.idColumn])
+            ..where(_withNegated(part, negated));
+          if (part.orderHint case final hint?) {
+            whole.orderBy([OrderingTerm.asc(hint)]);
+          }
+          final rows = await whole.get();
           final all = rows
               .map((r) => r.read(part.idColumn))
               .whereType<String>()
@@ -1105,12 +1107,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
     if (countOnly) {
       // §3.1.1.5.2, Bundle.total: the number of matches, counted here
-      // rather than fetched. `count(DISTINCT id)` over the same WHERE.
-      final total = first.idColumn.count(distinct: true);
-      final row = await (selectOnly(first.table)
-            ..addColumns([total])
-            ..where(where))
-          .getSingle();
+      // rather than fetched: `count(*)` over `SELECT DISTINCT id … WHERE`,
+      // the distinct ids ordered by the outer part's bound column when it
+      // is a range, for the planner (see _IndexCondition.orderHint: with
+      // complete statistics `count date=ge2150` went through the owner
+      // index at 1,421 ms against 321 ms through the date index).
+      final distinctIds = selectOnly(first.table, distinct: true)
+        ..addColumns([first.idColumn])
+        ..where(where);
+      if (first.orderHint case final hint?) {
+        distinctIds.orderBy([OrderingTerm.asc(hint)]);
+      }
+      final matches = Subquery(distinctIds, 'matches');
+      final total = countAll();
+      final row = await (selectOnly(matches)..addColumns([total])).getSingle();
       return [(row.read(total) ?? 0).toString()];
     }
 
@@ -1587,6 +1597,20 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// search (0.17s for 100,000 rows of the date index on the MIMIC load).
   static const _probeLimits = [2000, 100000];
 
+  /// The bound column a range [prefix] leads on, for [_IndexCondition.orderHint]:
+  /// what `_numericPrefixCondition` and `_dateRangeCondition` compare first.
+  /// `ne` is not a range and gets none.
+  Expression<Object>? _rangeHint(
+    String? prefix,
+    Expression<Object> low,
+    Expression<Object> high,
+  ) =>
+      switch (prefix) {
+        'gt' || 'ge' || 'eb' => high,
+        'ne' => null,
+        _ => low,
+      };
+
   /// One parsed key's condition: a plain or modified parameter through
   /// [_conditionFor], or a chain through [_chainCondition].
   Future<_IndexCondition?> _conditionForKey(
@@ -1961,6 +1985,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             ? null
             : r.resourceType.equals(resourceType) & walkCondition,
         ranged: name == '_lastUpdated',
+        orderHint: name == '_lastUpdated' ? r.lastUpdated : null,
       );
     }
 
@@ -2153,6 +2178,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             type: 'number',
           );
         }
+        final hint = _rangeHint(prefix, t.numberLow, t.numberHigh);
         // `ranged`: since schema 11 a number or quantity prefix is one range
         // on a bound's covering index (open bounds are stored as
         // ±infinity), so it is sized and paged like a date range. Before
@@ -2161,7 +2187,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // gt100` 1.2 s through the probe, 2026-09-07) and which read every
         // row of the parameter for a sparse range or a count (134 ms for
         // 6 matches on 813k rows, 2026-09-08, numeric_range_bench.tsv).
-        return _IndexCondition(t, t.id, condition, ranged: true);
+        return _IndexCondition(
+          t,
+          t.id,
+          condition,
+          ranged: true,
+          orderHint: hint,
+        );
       case 'quantity':
         final t = aliasName == null
             ? quantitySearchParameters
@@ -2181,6 +2213,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             type: 'quantity',
           );
         }
+        final hint = _rangeHint(prefix, t.quantityLow, t.quantityHigh);
         // `ranged`: since schema 11 a number or quantity prefix is one range
         // on a bound's covering index (open bounds are stored as
         // ±infinity), so it is sized and paged like a date range. Before
@@ -2189,7 +2222,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // gt100` 1.2 s through the probe, 2026-09-07) and which read every
         // row of the parameter for a sparse range or a count (134 ms for
         // 6 matches on 813k rows, 2026-09-08, numeric_range_bench.tsv).
-        return _IndexCondition(t, t.id, condition, ranged: true);
+        return _IndexCondition(
+          t,
+          t.id,
+          condition,
+          ranged: true,
+          orderHint: hint,
+        );
       case 'uri':
         final t = aliasName == null
             ? uriSearchParameters
@@ -2238,6 +2277,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               t.id,
               _stringCondition(resourceType, name, value, on: t),
               ranged: true,
+              orderHint: t.stringValue,
             );
           case 'missing':
             return _IndexCondition(t, t.id, path, negated: value == 'true');
@@ -2278,7 +2318,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         if (condition == null) {
           throw InvalidSearchValue(parameter: name, value: value, type: 'date');
         }
-        return _IndexCondition(t, t.id, condition, ranged: true);
+        return _IndexCondition(
+          t,
+          t.id,
+          condition,
+          ranged: true,
+          orderHint: _rangeHint(prefix, t.dateValue, t.dateValueEnd),
+        );
       case 'special':
         // 3.1.1.4.21: "the general modifiers and comparators do not apply,
         // except as stated in the description". The one special parameter
@@ -4705,10 +4751,13 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       if (part == null) {
         continue;
       }
-      final rows = await (selectOnly(part.table, distinct: true)
-            ..addColumns([part.idColumn])
-            ..where(part.condition))
-          .get();
+      final whole = selectOnly(part.table, distinct: true)
+        ..addColumns([part.idColumn])
+        ..where(part.condition);
+      if (part.orderHint case final hint?) {
+        whole.orderBy([OrderingTerm.asc(hint)]);
+      }
+      final rows = await whole.get();
       for (final row in rows) {
         final id = row.read(part.idColumn);
         if (id != null) {
@@ -5222,7 +5271,19 @@ class _IndexCondition {
     this.negated = false,
     this.walkCondition,
     this.ranged = false,
+    this.orderHint,
   });
+
+  /// The value column of a ranged part's covering index, when the part is
+  /// read whole: `ORDER BY` it. The order is not wanted (the ids are sorted
+  /// afterwards); it steers the planner to that index. Measured 2026-09-08
+  /// on the 929k MIMIC copy with complete statistics: `SELECT DISTINCT id
+  /// … WHERE quantity_high > 99999` (6 rows) planned through the OWNER
+  /// index, every row of the parameter, 259 ms; with `ORDER BY
+  /// quantity_high` it planned through the high-bound index, 0 ms. Under
+  /// the approximate statistics of a 1,000-row ANALYZE the planner had
+  /// taken the covering index unaided, which is how this stayed hidden.
+  final Expression<Object>? orderHint;
 
   final TableInfo<Table, dynamic> table;
   final GeneratedColumn<String> idColumn;

@@ -355,9 +355,9 @@ class FhirDb extends _$FhirDb {
   /// right call after a change to the generated extractor.
   ///
   /// Paged through the resources table by keyset rather than read whole
-  /// (5 GB of JSON on the MIMIC load); inserted in batches. A resource that will not parse
-  /// is skipped, so one bad row cannot keep a database shut; an insert that
-  /// fails is a bug here and is not swallowed.
+  /// (5 GB of JSON on the MIMIC load); inserted in batches. A resource that
+  /// will not parse is skipped, so one bad row cannot keep a database shut;
+  /// an insert that fails is a bug here and is not swallowed.
   Future<void> rebuildSearchIndex() async {
     final m = createMigrator();
     for (final table in <TableInfo<Table, dynamic>>[

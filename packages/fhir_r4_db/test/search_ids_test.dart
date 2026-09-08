@@ -109,6 +109,33 @@ void main() {
     );
   });
 
+  test('a page keeps its order through the batched hydration', () async {
+    final asc = await dao.search(
+      resourceType: fhir.R4ResourceType.Patient,
+      searchParameters: {
+        'gender': ['female'],
+      },
+      sort: ['_id'],
+      count: 5,
+    );
+    expect(
+      asc.map((r) => r.id!.valueString),
+      ['p01', 'p03', 'p05', 'p07', 'p09'],
+    );
+    final desc = await dao.search(
+      resourceType: fhir.R4ResourceType.Patient,
+      searchParameters: {
+        'gender': ['female'],
+      },
+      sort: ['-_id'],
+      count: 5,
+    );
+    expect(
+      desc.map((r) => r.id!.valueString),
+      ['p29', 'p27', 'p25', 'p23', 'p21'],
+    );
+  });
+
   test('a short _id list keeps the SQL path', () async {
     await dao.search(
       resourceType: fhir.R4ResourceType.Patient,
