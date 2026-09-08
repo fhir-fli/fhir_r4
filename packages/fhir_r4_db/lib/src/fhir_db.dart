@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 10;
+  int get schemaVersion => 11;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -243,6 +243,9 @@ class FhirDb extends _$FhirDb {
             // re-extracted once, not three times.
             await dropLegacyValueIndexes();
             await rebuildSearchIndex();
+          }
+          if (from < 11) {
+            await storeOpenBoundsAsInfinity();
           }
         },
         beforeOpen: ensurePlannerStatistics,
@@ -479,6 +482,26 @@ class FhirDb extends _$FhirDb {
     'composite_search_parameters',
     'special_search_parameters',
   ];
+
+  /// Schema 11: an open bound in the number and quantity index tables (a
+  /// Range with no `low` or no `high`) becomes -infinity / +infinity
+  /// instead of NULL, so a number or quantity prefix is one range on the
+  /// bound's covering index rather than an OR the planner can only scan
+  /// (fhirant REVIEW-2026-09-06 §6.1). New rows are written that way; this
+  /// converts what is stored. `1e999` is how SQLite spells infinity in SQL.
+  Future<void> storeOpenBoundsAsInfinity() async {
+    for (final (table, low, high) in const [
+      ('number_search_parameters', 'number_low', 'number_high'),
+      ('quantity_search_parameters', 'quantity_low', 'quantity_high'),
+    ]) {
+      await customStatement(
+        'UPDATE $table SET $low = -1e999 WHERE $low IS NULL',
+      );
+      await customStatement(
+        'UPDATE $table SET $high = 1e999 WHERE $high IS NULL',
+      );
+    }
+  }
 
   /// Drops the single-column value indexes of schemas 7-9, which the
   /// covering composites of [createValueIndexes] replace. Public for a

@@ -947,6 +947,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           0,
         ),
       );
+    } else if (countOnly && parts.length == 1) {
+      // A count of one part is one `count(DISTINCT id)` over its condition
+      // whatever its size; probing first only added the probe (a count of
+      // `value-quantity=le5` on 813k rows measured 133 ms as the count alone
+      // and 277 ms with the probe, 2026-09-08, numeric_range_bench.tsv).
+      sized.add((parts.single, 0));
     } else if (parts.length == 1 &&
         (sortKeys.isNotEmpty || !parts.single.ranged)) {
       // One equality part: the covering index hands its ids over in id
@@ -966,6 +972,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         if (sized.any((s) => s.$2 < probeLimit)) {
           break;
         }
+        // A single range needs only the first stage: at or above 2,000
+        // ids it is walked, whatever its exact size (see below), and the
+        // second stage cost as much as the walk.
+        if (parts.length == 1 && sortKeys.isEmpty) break;
       }
     }
     final allBig = sized.every((s) => s.$2 >= limit);
@@ -989,22 +999,27 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         // its covering index is already in id order and stops at the
         // page; measured 2026-09-07, `subject=<patient>` 15 ms that way
         // against 600 ms fetched whole). A range's page comes one of two
-        // ways, chosen by the size the probe found:
+        // ways, chosen by the size the first probe stage found:
         //
-        // - under the probe's ceiling (100,000 ids): every id it matches,
-        //   read through the part's own index in whatever order that gives,
-        //   sorted and cut to the page here. `SELECT DISTINCT id … ORDER BY
-        //   id LIMIT` in SQL left the choice to the planner, which for a
-        //   broad range took the covering index and sorted 800,000 entries
-        //   in a temporary B-tree (`date=ge2150`, 25 ms → 764 ms after
-        //   schema 10), and for a sparse `_lastUpdated` read the type in
-        //   key order testing every row (10.4 s to return nothing). Both
-        //   measured 2026-09-07 on 929k, schema10_ab.tsv;
-        // - at or above it, the resources table walked in id order with the
-        //   part as an EXISTS probe per row (or its predicate, kept off the
-        //   index, when the part is the resources table itself): a set that
-        //   large is at least a tenth of the type, so the first page is
-        //   found within a few hundred rows.
+        // - under 2,000 ids: every id it matches, read through the part's
+        //   own index in whatever order that gives, sorted and cut to the
+        //   page here. `SELECT DISTINCT id … ORDER BY id LIMIT` in SQL left
+        //   the choice to the planner, which for a broad range took the
+        //   covering index and sorted 800,000 entries in a temporary B-tree
+        //   (`date=ge2150`, 25 ms → 764 ms after schema 10), and for a
+        //   sparse `_lastUpdated` read the type in key order testing every
+        //   row (10.4 s to return nothing). Both measured 2026-09-07 on
+        //   929k, schema10_ab.tsv;
+        // - at or above 2,000: the resources table walked in id order with
+        //   the part as an EXISTS probe per row (or its predicate, kept off
+        //   the index, when the part is the resources table itself). The
+        //   ceiling was 100,000 until 2026-09-08: fetching a dense set whole
+        //   paid for every id it did not page (`value-quantity=gt100`,
+        //   56,519 of 813,540 Observations: 55 ms in SQL and 480 ms with
+        //   the Dart sort, against 2 ms walked; numeric_range_bench.tsv).
+        //   The walk costs about `count / share` rows, so it wins once the
+        //   set is a few thousand: sqrt(20 × 813k) ≈ 4,000, and 2,000 is
+        //   the probe's first stage.
         final (part, size) = sized.single;
         if (size < limit) {
           final rows = await (selectOnly(part.table, distinct: true)
@@ -2138,13 +2153,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             type: 'number',
           );
         }
-        // Not `ranged`: a number or quantity prefix is an OR over the low
-        // and high columns with their NULL bounds, which no single index
-        // range serves, so the probe the ranged shape starts with scanned
-        // the parameter's rows: `value-quantity=gt100` measured 18 ms as a
-        // plain page and 1.2 s through the probe (2026-09-07,
-        // schema10_ab.tsv). A sargable numeric range is a follow-up.
-        return _IndexCondition(t, t.id, condition);
+        // `ranged`: since schema 11 a number or quantity prefix is one range
+        // on a bound's covering index (open bounds are stored as
+        // ±infinity), so it is sized and paged like a date range. Before
+        // that it was an OR over the two bounds with their NULL
+        // alternatives, which the probe could only scan (`value-quantity=
+        // gt100` 1.2 s through the probe, 2026-09-07) and which read every
+        // row of the parameter for a sparse range or a count (134 ms for
+        // 6 matches on 813k rows, 2026-09-08, numeric_range_bench.tsv).
+        return _IndexCondition(t, t.id, condition, ranged: true);
       case 'quantity':
         final t = aliasName == null
             ? quantitySearchParameters
@@ -2164,13 +2181,15 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             type: 'quantity',
           );
         }
-        // Not `ranged`: a number or quantity prefix is an OR over the low
-        // and high columns with their NULL bounds, which no single index
-        // range serves, so the probe the ranged shape starts with scanned
-        // the parameter's rows: `value-quantity=gt100` measured 18 ms as a
-        // plain page and 1.2 s through the probe (2026-09-07,
-        // schema10_ab.tsv). A sargable numeric range is a follow-up.
-        return _IndexCondition(t, t.id, condition);
+        // `ranged`: since schema 11 a number or quantity prefix is one range
+        // on a bound's covering index (open bounds are stored as
+        // ±infinity), so it is sized and paged like a date range. Before
+        // that it was an OR over the two bounds with their NULL
+        // alternatives, which the probe could only scan (`value-quantity=
+        // gt100` 1.2 s through the probe, 2026-09-07) and which read every
+        // row of the parameter for a sparse range or a count (134 ms for
+        // 6 matches on 813k rows, 2026-09-08, numeric_range_bench.tsv).
+        return _IndexCondition(t, t.id, condition, ranged: true);
       case 'uri':
         final t = aliasName == null
             ? uriSearchParameters
@@ -4407,46 +4426,54 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   ) {
     // The caller has parsed [written], so the range is never null.
     final (:low, :high) = implicitRange(written)!;
-    final lowMissing = lowColumn.isNull();
-    final highMissing = highColumn.isNull();
-    // `low < high` alongside `high <= high`: for the planner, as in
-    // _dateRangeCondition.
-    final contained = lowColumn.isNotNull() &
-        highColumn.isNotNull() &
-        lowColumn.isBiggerOrEqualValue(low) &
+    // Every stored row has both bounds: an open bound (a Range with no
+    // `low` or no `high`) is stored as -infinity or +infinity since schema
+    // 11, so no prefix needs an `IS NULL` alternative. Each prefix below is
+    // ONE range on one bound's covering index, plus at most a residual test
+    // on the other bound, which is what lets the planner seek instead of
+    // scanning every row of the parameter (fhirant REVIEW-2026-09-06 §6.1).
+    // The answers are the ones the NULL-OR form gave; the residuals close
+    // the two cases where a single comparison would differ:
+    //
+    //   ge: `high > v` misses only a point exactly at v (low = high = v),
+    //       which `high >= v` admits; that also admits a decimal range
+    //       ending exactly at v (low < v = high), which the old form did
+    //       not, so that row is filtered back out.
+    //   le: the mirror image on `low`.
+    //
+    // A point (an integer, a Range with low = high) is stored with
+    // low == high; "above" a search point means the stored range has
+    // something greater than it, which for a point is `high > v`.
+    final contained = lowColumn.isBiggerOrEqualValue(low) &
         lowColumn.isSmallerThanValue(high) &
         highColumn.isSmallerOrEqualValue(high);
-    // A point (integer) is stored with low == high; "above" a search point
-    // means the stored range has something greater than it.
-    final above = highMissing |
-        highColumn.isBiggerThanValue(value) |
-        (lowColumn.equalsExp(highColumn) & lowColumn.isBiggerThanValue(value));
-    final below = lowMissing | lowColumn.isSmallerThanValue(value);
     switch (prefix) {
       case 'gt':
-        return above;
+        return highColumn.isBiggerThanValue(value);
       case 'lt':
-        return below;
+        return lowColumn.isSmallerThanValue(value);
       case 'ge':
-        return above |
-            (lowColumn.isNotNull() & lowColumn.isBiggerOrEqualValue(value));
+        return highColumn.isBiggerOrEqualValue(value) &
+            (highColumn.isBiggerThanValue(value) |
+                lowColumn.isBiggerOrEqualValue(value));
       case 'le':
-        return below |
-            (highColumn.isNotNull() & highColumn.isSmallerOrEqualValue(value));
+        return lowColumn.isSmallerOrEqualValue(value) &
+            (lowColumn.isSmallerThanValue(value) |
+                highColumn.isSmallerOrEqualValue(value));
       case 'sa':
-        return lowColumn.isNotNull() & lowColumn.isBiggerOrEqualValue(high);
+        return lowColumn.isBiggerOrEqualValue(high);
       case 'eb':
-        return highColumn.isNotNull() & highColumn.isSmallerOrEqualValue(low);
+        return highColumn.isSmallerOrEqualValue(low);
       case 'ne':
         return contained.not();
       case 'ap':
         final approximation = value.abs() * 0.1;
-        return (lowMissing |
-                lowColumn.isSmallerThanValue(high + approximation)) &
-            (highMissing | highColumn.isBiggerThanValue(low - approximation));
+        return lowColumn.isSmallerThanValue(high + approximation) &
+            highColumn.isBiggerThanValue(low - approximation);
       default:
-        // eq, and no prefix at all: 3.1.1.4.5, "If no prefix is present,
-        // the prefix eq is assumed."
+        // eq, and no prefix at all. Quoted verbatim from R4B search.html
+        // 3.1.1.4.5, read whole 2026-09-08: "If no prefix is present, the
+        // prefix eq is assumed."
         return contained;
     }
   }

@@ -95,8 +95,7 @@ Future<void> main() async {
     );
   });
 
-  test('a target type narrows a parameter with several target types',
-      () async {
+  test('a target type narrows a parameter with several target types', () async {
     expect(
       await dao.referenceTargets(
         'Observation',
@@ -126,7 +125,8 @@ Future<void> main() async {
     );
   });
 
-  test('an absolute reference to another server is not ours once the base '
+  test(
+      'an absolute reference to another server is not ours once the base '
       'is known', () async {
     // With no base configured the store cannot tell, and admits it (the
     // reference search does the same).

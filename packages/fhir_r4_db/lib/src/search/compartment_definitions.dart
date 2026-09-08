@@ -29,7 +29,12 @@ const Map<String, Map<String, List<String>>> compartmentDefinitions = {
     'DiagnosticReport': ['subject'],
     'DocumentManifest': ['author', 'subject'],
     'DocumentReference': ['author', 'subject'],
-    'ExplanationOfBenefit': ['detail-udi', 'item-udi', 'procedure-udi', 'subdetail-udi'],
+    'ExplanationOfBenefit': [
+      'detail-udi',
+      'item-udi',
+      'procedure-udi',
+      'subdetail-udi'
+    ],
     'Flag': ['author'],
     'Group': ['member'],
     'Invoice': ['participant'],

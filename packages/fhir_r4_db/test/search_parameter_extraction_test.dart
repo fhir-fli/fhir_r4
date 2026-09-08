@@ -520,7 +520,7 @@ void main() {
       final open = Range(low: Quantity(value: FhirDecimal('1.0')));
       final openRows =
           open.toQuantitySearchParameter(_rt, _id, _lu, _path, _idx);
-      expect(openRows.single.quantityHigh.value, isNull);
+      expect(openRows.single.quantityHigh.value, double.infinity);
       final money =
           Money(value: FhirDecimal('12.50'), currency: FhirCode('USD'));
       final moneyRows =

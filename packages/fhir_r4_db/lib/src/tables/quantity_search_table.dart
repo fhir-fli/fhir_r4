@@ -26,11 +26,13 @@ class QuantitySearchParameters extends Table {
 
   /// The inclusive low bound of the value's range: a Quantity covers half
   /// a unit of its last significant digit either side (R4B 3.1.1.4.5); a
-  /// Range runs from its `low` (null when absent) to its `high`.
+  /// Range runs from its `low` to its `high`. A Range with no `low` is
+  /// stored as -infinity (schema 11; it was NULL, which made every prefix
+  /// an OR the index could not seek).
   RealColumn get quantityLow => real().nullable()();
 
-  /// The exclusive high bound of the value's range, null for a Range with
-  /// no `high`.
+  /// The exclusive high bound of the value's range; +infinity for a Range
+  /// with no `high` (schema 11).
   RealColumn get quantityHigh => real().nullable()();
 
   /// Unit (optional)
@@ -86,8 +88,10 @@ extension QuantitySearchParametersExtension on fhir.FhirBase {
           paramIndex:
               paramIndex == null ? const Value.absent() : Value(paramIndex),
           quantityValue: Value(value),
-          quantityLow: Value(low),
-          quantityHigh: Value(high),
+          // An open bound is stored as infinity, never NULL, so every
+          // prefix is one index range (FhirDao._numericPrefixCondition).
+          quantityLow: Value(low ?? double.negativeInfinity),
+          quantityHigh: Value(high ?? double.infinity),
           quantityUnit: Value(unit),
           quantitySystem: Value(system),
           quantityCode: Value(code),
