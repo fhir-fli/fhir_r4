@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- **Schema 12: date prefixes are one index range each.** An open Period bound is stored as `beforeAnyDate` (0001-01-01) or `afterAnyDate` (9999-12-31) instead of NULL (new rows, and existing rows by `storeOpenDateBoundsAsSentinels` on upgrade, which also converts the composite table's open slots), and `_dateRangeCondition` and the composite date branch write each prefix as one comparison on one bound with at most a residual test, as the numeric ranges do since schema 11. `date_range_test.dart` runs every prefix at several values against the old NULL-OR form as SQL over the same rows. With complete statistics `count date=ge2150` on the 929k MIMIC copy had gone through the owner index, 1,269 ms; see the measurement in fhirant `numeric_range_bench.tsv`.
+
 - **A ranged part read whole is `ORDER BY` its bound column**, which steers the planner to that covering index: with complete statistics `SELECT DISTINCT id … WHERE quantity_high > 99999` (6 rows) had gone through the owner index, every row of the parameter (259 ms on the 929k MIMIC copy); ordered by the bound it takes the high-bound index (0 ms). The ids are sorted afterwards as before; the order is for the planner.
 - **A search page is hydrated in one `IN (...)` read** (`getResources`, in the page's order) instead of one `getResource` per id, on both the SQL-paged and the general path. The 20 single reads behind a page measured 30-50 ms cold and 23-26 ms warm on the 929k MIMIC copy against 11-24 ms as one read (fhirant REVIEW-2026-09-06 §4.6/§6.1).
 

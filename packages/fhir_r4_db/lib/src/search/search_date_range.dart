@@ -36,3 +36,17 @@ final RegExp _searchDate = RegExp(
   }
   return dateTimeRange(parsed);
 }
+
+/// The stored start of a Period with no start: earlier than any date a
+/// resource carries. Since schema 12 an open bound is stored as this
+/// instant rather than NULL, so every date prefix is one range on a bound's
+/// covering index (fhirant REVIEW-2026-09-06 §6.1). R4B search.html
+/// 3.1.1.4.7, read whole 2026-09-08, on a Period without a lower bound: it
+/// "is 'less than' any actual date". Year 1, the earliest a FHIR date can
+/// name.
+final DateTime beforeAnyDate = DateTime.utc(1);
+
+/// The stored end of a Period with no end: later than any date a resource
+/// carries ("'greater than' any actual date", same section). The last day
+/// of year 9999, the latest a FHIR date can name.
+final DateTime afterAnyDate = DateTime.utc(9999, 12, 31);

@@ -477,7 +477,7 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(11));
+    expect(version.data.values.first, equals(12));
     await db.close();
   });
 
@@ -530,9 +530,54 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(11));
+    expect(version.data.values.first, equals(12));
     await db.close();
   });
+  test('a version-11 database stores its open date bounds as sentinels',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('fhir_db_v11_');
+    addTearDown(() => dir.delete(recursive: true));
+    final file = File('${dir.path}/db.sqlite');
+    final db11 = FhirDb(NativeDatabase(file));
+    await db11.fhirDao.saveResource(
+      Patient.fromJson({'resourceType': 'Patient', 'id': 'v11'}),
+    );
+    await db11.customStatement(
+      'INSERT INTO date_search_parameters (resource_type, id, last_updated, '
+      'search_name, param_index, date_string, date_value, date_value_end) '
+      "VALUES ('Observation', 'open', 0, 'date', 0, '{}', 1358726400, NULL)",
+    );
+    await db11.customStatement(
+      'INSERT INTO composite_search_parameters (resource_type, id, '
+      'last_updated, search_name, param_index, c1_type, c1_low, c1_high, '
+      "c2_type, c2_low, c2_high) VALUES ('Observation', 'open', 0, "
+      "'code-value-date', 0, 'token', NULL, NULL, 'date', NULL, 1358726400)",
+    );
+    await db11.customStatement('PRAGMA user_version = 11');
+    await db11.close();
+
+    final db = FhirDb(NativeDatabase(file));
+    final row = await db
+        .customSelect(
+          'SELECT date_value AS l, date_value_end AS h FROM '
+          "date_search_parameters WHERE id = 'open'",
+        )
+        .getSingle();
+    expect(row.read<int>('l'), 1358726400);
+    expect(row.read<int>('h'), 253402214400);
+    final composite = await db
+        .customSelect(
+          'SELECT c1_low AS a, c1_high AS b, c2_low AS c, c2_high AS d FROM '
+          "composite_search_parameters WHERE id = 'open'",
+        )
+        .getSingle();
+    expect(composite.read<double>('a'), double.negativeInfinity);
+    expect(composite.read<double>('b'), double.infinity);
+    expect(composite.read<double>('c'), -62135596800);
+    expect(composite.read<double>('d'), 1358726400);
+    await db.close();
+  });
+
   test('a version-10 database stores its open bounds as infinity', () async {
     // Schema 11: a Range with no low or no high used to leave the bound
     // NULL; reopening converts every NULL bound and the row is then found
@@ -566,7 +611,7 @@ void main() {
       await db.customSelect('PRAGMA user_version').getSingle().then(
             (r) => r.read<int>('user_version'),
           ),
-      11,
+      12,
     );
     await db.close();
   });
@@ -643,7 +688,7 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(11));
+    expect(version.data.values.first, equals(12));
     await db.close();
   });
 }

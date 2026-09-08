@@ -2564,25 +2564,23 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         if (range == null) {
           throw InvalidSearchValue(parameter: name, value: part, type: 'date');
         }
-        // The date-range rules of _dateRangeCondition, over seconds.
+        // The date-range rules of _dateRangeCondition, over seconds; open
+        // bounds are the sentinels (schema 12), so each prefix is one
+        // range.
         final l = range.low.millisecondsSinceEpoch / 1000;
         final h = range.high.millisecondsSinceEpoch / 1000;
-        final lowMissing = low.isNull();
-        final highMissing = high.isNull();
-        final contained = low.isNotNull() &
-            high.isNotNull() &
-            low.isBiggerOrEqualValue(l) &
+        final contained = low.isBiggerOrEqualValue(l) &
             low.isSmallerThanValue(h) &
             high.isSmallerOrEqualValue(h);
-        final above = highMissing | high.isBiggerThanValue(h);
-        final below = lowMissing | low.isSmallerThanValue(l);
         final dateWhere = switch (prefix) {
-          'gt' => above,
-          'lt' => below,
-          'ge' => above | contained,
-          'le' => below | contained,
-          'sa' => low.isNotNull() & low.isBiggerOrEqualValue(h),
-          'eb' => high.isNotNull() & high.isSmallerOrEqualValue(l),
+          'gt' => high.isBiggerThanValue(h),
+          'lt' => low.isSmallerThanValue(l),
+          'ge' => high.isBiggerOrEqualValue(l) &
+              (high.isBiggerThanValue(h) | low.isBiggerOrEqualValue(l)),
+          'le' => low.isSmallerThanValue(h) &
+              (low.isSmallerThanValue(l) | high.isSmallerOrEqualValue(h)),
+          'sa' => low.isBiggerOrEqualValue(h),
+          'eb' => high.isSmallerOrEqualValue(l),
           'ne' => contained.not(),
           _ => contained,
         };
@@ -4143,9 +4141,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }
 
   /// The comparison of a stored range `[low, high)` against a search range,
-  /// R4B §3.1.1.4.5 as applied to dates in §3.1.1.4.7. A null [low] is
-  /// "'less than' any actual date" and a null [high] "'greater than' any
-  /// actual date", which is how a Period with a missing bound is indexed.
+  /// R4B §3.1.1.4.5 as applied to dates in §3.1.1.4.7. A Period with a
+  /// missing bound is indexed with `beforeAnyDate` ("'less than' any actual
+  /// date") or `afterAnyDate` ("'greater than' any actual date").
   ///
   /// With the stored range `[L, H)` and the search range `[l, h)`:
   ///
@@ -4174,34 +4172,38 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }) {
     final l = search.low;
     final h = search.high;
-    final lowMissing = low.isNull();
-    final highMissing = high.isNull();
-    // `low < h` is implied by `high <= h` for any real range, and is here
-    // for the planner: with only `low >= l` and `high <= h` SQLite chose the
-    // high-bound index and scanned everything before `h` — 1.8s to find
-    // 2,000 rows of one year on the MIMIC load — where a bounded range on
-    // the low-bound index is the year's rows and nothing else. It also
-    // shuts the one gap in the formula: a point at exactly `h`.
-    final contained = low.isNotNull() &
-        high.isNotNull() &
-        low.isBiggerOrEqualValue(l) &
+    // Every stored row has both bounds since schema 12: an open Period
+    // bound is `beforeAnyDate` or `afterAnyDate`, never NULL, so no prefix
+    // needs an `IS NULL` alternative and each is ONE range on one bound's
+    // covering index plus at most a residual test on the other, the same
+    // shape as _numericPrefixCondition. The answers are the ones the
+    // NULL-OR form gave (`date_range_test.dart` runs that form as SQL over
+    // the same rows): `ge` is `above OR contained` = `H > h OR (L >= l AND
+    // L < h AND H <= h)`, which is `H >= l AND (H > h OR L >= l)` because a
+    // stored range has H > L; `le` is the mirror on L.
+    //
+    // `low < h` alongside `high <= h` in `contained`: for the planner, as
+    // before (with only `low >= l` and `high <= h` SQLite chose the
+    // high-bound index and scanned everything before `h`, 1.8 s to find
+    // 2,000 rows of one year on the MIMIC load).
+    final contained = low.isBiggerOrEqualValue(l) &
         low.isSmallerThanValue(h) &
         high.isSmallerOrEqualValue(h);
-    final above = highMissing | high.isBiggerThanValue(h);
-    final below = lowMissing | low.isSmallerThanValue(l);
     switch (prefix) {
       case 'gt':
-        return above;
+        return high.isBiggerThanValue(h);
       case 'lt':
-        return below;
+        return low.isSmallerThanValue(l);
       case 'ge':
-        return above | contained;
+        return high.isBiggerOrEqualValue(l) &
+            (high.isBiggerThanValue(h) | low.isBiggerOrEqualValue(l));
       case 'le':
-        return below | contained;
+        return low.isSmallerThanValue(h) &
+            (low.isSmallerThanValue(l) | high.isSmallerOrEqualValue(h));
       case 'sa':
-        return low.isNotNull() & low.isBiggerOrEqualValue(h);
+        return low.isBiggerOrEqualValue(h);
       case 'eb':
-        return high.isNotNull() & high.isSmallerOrEqualValue(l);
+        return high.isSmallerOrEqualValue(l);
       case 'ne':
         return contained.not();
       case 'ap':
@@ -4211,11 +4213,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final margin = Duration(milliseconds: gap.inMilliseconds ~/ 10);
         final widenedLow = l.subtract(margin);
         final widenedHigh = h.add(margin);
-        return (lowMissing | low.isSmallerThanValue(widenedHigh)) &
-            (highMissing | high.isBiggerThanValue(widenedLow));
+        return low.isSmallerThanValue(widenedHigh) &
+            high.isBiggerThanValue(widenedLow);
       default:
-        // eq, and no prefix at all: §3.1.1.4.5, "If no prefix is present,
-        // the prefix eq is assumed."
+        // eq, and no prefix at all. Quoted verbatim from R4B search.html
+        // 3.1.1.4.5, read whole 2026-09-08: "If no prefix is present, the
+        // prefix eq is assumed."
         return contained;
     }
   }

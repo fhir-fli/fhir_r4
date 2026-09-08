@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 11;
+  int get schemaVersion => 12;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -246,6 +246,9 @@ class FhirDb extends _$FhirDb {
           }
           if (from < 11) {
             await storeOpenBoundsAsInfinity();
+          }
+          if (from < 12) {
+            await storeOpenDateBoundsAsSentinels();
           }
         },
         beforeOpen: ensurePlannerStatistics,
@@ -545,6 +548,40 @@ class FhirDb extends _$FhirDb {
       );
       await customStatement(
         'UPDATE $table SET $high = 1e999 WHERE $high IS NULL',
+      );
+    }
+  }
+
+  /// Schema 12: an open bound in the date index table (a Period with no
+  /// start or no end) becomes `beforeAnyDate` / `afterAnyDate` instead of
+  /// NULL, and the composite table's date slots the same in seconds, its
+  /// number and quantity slots ±infinity, so a date prefix is one range on
+  /// the bound's covering index (fhirant REVIEW-2026-09-06 §6.1: with
+  /// complete statistics `count date=ge2150` went through the owner index,
+  /// 1,269 ms against 321 ms). The seconds are the two sentinels'
+  /// `millisecondsSinceEpoch ~/ 1000`: 0001-01-01T00:00Z and
+  /// 9999-12-31T00:00Z.
+  Future<void> storeOpenDateBoundsAsSentinels() async {
+    const start = -62135596800;
+    const end = 253402214400;
+    await customStatement(
+      'UPDATE date_search_parameters SET date_value = $start '
+      'WHERE date_value IS NULL',
+    );
+    await customStatement(
+      'UPDATE date_search_parameters SET date_value_end = $end '
+      'WHERE date_value_end IS NULL',
+    );
+    for (final n in const [1, 2, 3]) {
+      await customStatement(
+        'UPDATE composite_search_parameters SET c${n}_low = CASE c${n}_type '
+        "WHEN 'date' THEN $start ELSE -1e999 END "
+        'WHERE c${n}_low IS NULL AND c${n}_type IS NOT NULL',
+      );
+      await customStatement(
+        'UPDATE composite_search_parameters SET c${n}_high = CASE c${n}_type '
+        "WHEN 'date' THEN $end ELSE 1e999 END "
+        'WHERE c${n}_high IS NULL AND c${n}_type IS NOT NULL',
       );
     }
   }

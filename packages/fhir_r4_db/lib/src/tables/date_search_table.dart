@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
-import 'package:fhir_r4_db/fhir_r4_db.dart' show DateSearchParametersCompanion;
+import 'package:fhir_r4_db/fhir_r4_db.dart'
+    show DateSearchParametersCompanion, afterAnyDate, beforeAnyDate;
 
 /// Date Search Parameter Table.
 ///
@@ -10,8 +11,8 @@ import 'package:fhir_r4_db/fhir_r4_db.dart' show DateSearchParametersCompanion;
 /// 2013"; a Period is "explicit, though the upper or lower bound might not
 /// actually be specified in resources"; and for a Timing "only the outer
 /// limits matter". A missing lower bound "is 'less than' any actual date",
-/// a missing upper bound "'greater than' any actual date" — those are the
-/// nulls.
+/// a missing upper bound "'greater than' any actual date" — those are
+/// [beforeAnyDate] and [afterAnyDate].
 class DateSearchParameters extends Table {
   /// FHIR resource type name
   TextColumn get resourceType => text()();
@@ -32,14 +33,15 @@ class DateSearchParameters extends Table {
   /// complex types, for anyone who needs the value as written.
   TextColumn get dateString => text()();
 
-  /// The inclusive start of the value's range; null for a Period with no
-  /// start (before any date).
+  /// The inclusive start of the value's range; [beforeAnyDate] for a Period
+  /// with no start (schema 12; it was NULL, which made every prefix an OR
+  /// the index could not seek).
   DateTimeColumn get dateValue => dateTime().nullable()();
 
   /// The EXCLUSIVE end of the value's range: the first instant after it. A
   /// date `2013-01-10` ends at `2013-01-11T00:00`; a dateTime to the second
-  /// ends one second later. Null for a Period with no end (ongoing), which
-  /// is after any date.
+  /// ends one second later. [afterAnyDate] for a Period with no end
+  /// (ongoing), schema 12.
   DateTimeColumn get dateValueEnd => dateTime().nullable()();
 
   /// No declared key: a rowid table. The key used to be
@@ -123,8 +125,10 @@ extension DateSearchParametersExtension on fhir.FhirBase {
           paramIndex:
               paramIndex == null ? const Value.absent() : Value(paramIndex),
           dateString: Value(written),
-          dateValue: Value(low),
-          dateValueEnd: Value(high),
+          // An open bound is stored as its sentinel, never NULL, so every
+          // prefix is one index range (FhirDao._dateRangeCondition).
+          dateValue: Value(low ?? beforeAnyDate),
+          dateValueEnd: Value(high ?? afterAnyDate),
         );
 
     switch (this) {
