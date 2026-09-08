@@ -36,9 +36,10 @@ void main() {
   ///
   /// Rather than hand-writing DDL for nine tables, this creates the real
   /// current schema and walks the index tables back: same tables, same
-  /// columns, `search_name` removed from the primary key, `user_version` set
-  /// to 4. Hand-written DDL would only prove the migration works against
-  /// whatever I typed.
+  /// columns plus the `search_path` column schema 10 dropped, the version-4
+  /// key `(resource_type, id, search_path, param_index)` (schema 10 has no
+  /// declared key), `user_version` set to 4. Hand-written DDL would only
+  /// prove the migration works against whatever I typed.
   Future<void> createSchemaV4(File file) async {
     final db = FhirDb(NativeDatabase(file));
     // Force the schema to be created before reading it back.
@@ -60,10 +61,14 @@ void main() {
     for (final row in tables) {
       final name = row.data['name']! as String;
       final sql = row.data['sql']! as String;
-      // Only the primary-key clause spells it `"search_name",` — in the
-      // column list it is `"search_name" TEXT ...`.
-      var v4Sql = sql.replaceFirst('"search_name", ', '');
-      expect(v4Sql, isNot(equals(sql)), reason: 'PK rewrite failed for $name');
+      var v4Sql = sql.replaceFirst(
+        '"search_name" TEXT',
+        '"search_path" TEXT NOT NULL, "search_name" TEXT',
+      );
+      expect(v4Sql, isNot(equals(sql)), reason: 'no search_name in $name');
+      expect(v4Sql, endsWith(')'), reason: name);
+      v4Sql = '${v4Sql.substring(0, v4Sql.length - 1)}, PRIMARY KEY '
+          '("resource_type", "id", "search_path", "param_index"))';
       // A real version-4 database has no exact_value: that column arrived
       // with schema 6, when `:exact` needed the value as written rather than
       // the normalized one. Leaving it in would make the fixture a database
@@ -155,6 +160,10 @@ void main() {
     final upgraded = FhirDb(NativeDatabase(dbFile));
     await upgraded.customSelect('SELECT 1').get();
     await upgraded.customStatement('PRAGMA user_version = 5');
+    // The covering index on exact_value has to go before the column can.
+    await upgraded.customStatement(
+      'DROP INDEX IF EXISTS idx_string_search_parameters_exact_cover',
+    );
     await upgraded.customStatement(
       'ALTER TABLE string_search_parameters DROP COLUMN exact_value',
     );
@@ -220,7 +229,9 @@ void main() {
     await db6.customStatement(
       "DELETE FROM date_search_parameters WHERE resource_type = 'Encounter'",
     );
-    await db6.customStatement('DROP INDEX idx_date_value_end');
+    await db6.customStatement(
+      'DROP INDEX IF EXISTS idx_date_search_parameters_high_cover',
+    );
     await db6.customStatement(
       'ALTER TABLE date_search_parameters DROP COLUMN date_value_end',
     );
@@ -289,11 +300,11 @@ void main() {
 
   test('the value indexes exist after a fresh create and after an upgrade',
       () async {
-    // The search tables' primary keys lead with resource_type and id, which a
-    // search PRODUCES rather than filters on. Without an index on each value
-    // column, `WHERE token_value = ?` scans the whole resource type. fhirant
-    // created these itself from its first schema, so it never showed the
-    // problem; any other consumer of this package got no indexes at all.
+    // Schema 10: a covering composite per value column, an owner index and
+    // a contained-row partial index per table, and (resource_type,
+    // last_updated) on resources and resources_history. fhirant created the
+    // earlier single-column set itself from its first schema, so it never
+    // showed their absence; any other consumer of this package got none.
     Future<Set<String>> indexesIn(FhirDb db) async {
       final rows = await db
           .customSelect(
@@ -304,21 +315,27 @@ void main() {
       return rows.map((r) => r.read<String>('name')).toSet();
     }
 
-    const expected = {
-      'idx_string_value',
-      'idx_token_value',
-      'idx_token_system',
-      'idx_ref_type',
-      'idx_ref_id',
-      'idx_ref_identifier_sys',
-      'idx_ref_identifier_val',
-      'idx_uri_value',
-      'idx_date_value',
-      'idx_number_low',
-      'idx_number_high',
-      'idx_quantity_low',
-      'idx_quantity_high',
-      'idx_special_value',
+    final expected = {
+      'idx_string_search_parameters_value_cover',
+      'idx_string_search_parameters_exact_cover',
+      'idx_token_search_parameters_value_cover',
+      'idx_token_search_parameters_system_cover',
+      'idx_reference_search_parameters_target_cover',
+      'idx_reference_search_parameters_value_cover',
+      'idx_reference_search_parameters_identifier_cover',
+      'idx_date_search_parameters_low_cover',
+      'idx_date_search_parameters_high_cover',
+      'idx_number_search_parameters_low_cover',
+      'idx_number_search_parameters_high_cover',
+      'idx_quantity_search_parameters_low_cover',
+      'idx_quantity_search_parameters_high_cover',
+      'idx_uri_search_parameters_value_cover',
+      'idx_composite_search_parameters_values_cover',
+      'idx_special_search_parameters_value_cover',
+      for (final table in FhirDb.searchTableNames) 'idx_${table}_owner',
+      for (final table in FhirDb.searchTableNames) 'idx_${table}_contained',
+      'idx_resources_type_updated',
+      'idx_resources_history_type_updated',
     };
 
     final fresh = FhirDb(NativeDatabase.memory());
@@ -366,7 +383,6 @@ void main() {
             resourceType: 'Observation',
             id: 'obs-1',
             lastUpdated: 0,
-            searchPath: 'Observation.code',
             searchName: const Value('code'),
             paramIndex: 0,
             stringValue: 'weight',
@@ -377,7 +393,6 @@ void main() {
             resourceType: 'Observation',
             id: 'obs-1',
             lastUpdated: 0,
-            searchPath: 'Observation.code',
             searchName: const Value('combo-code'),
             paramIndex: 0,
             stringValue: 'weight',
@@ -462,7 +477,7 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(9));
+    expect(version.data.values.first, equals(10));
     await db.close();
   });
 
@@ -515,7 +530,82 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(9));
+    expect(version.data.values.first, equals(10));
+    await db.close();
+  });
+  test('a version-9 database loses search_path, its key and the old indexes',
+      () async {
+    // Walk a current database back to the schema-9 shape: search_path on an
+    // index table, one of the single-column indexes, the version stamp.
+    // Reopening must re-extract the tables without the column and with the
+    // covering indexes, and the resource must still be found.
+    final dir = await Directory.systemTemp.createTemp('fhir_db_v9_');
+    addTearDown(() => dir.delete(recursive: true));
+    final file = File('${dir.path}/db.sqlite');
+    final db9 = FhirDb(NativeDatabase(file));
+    await db9.fhirDao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'v9',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://s', 'code': 'c9'},
+          ],
+        },
+      }),
+    );
+    await db9.customStatement(
+      'ALTER TABLE token_search_parameters '
+      "ADD COLUMN search_path TEXT NOT NULL DEFAULT ''",
+    );
+    await db9.customStatement(
+      'CREATE INDEX idx_token_value ON token_search_parameters(token_value)',
+    );
+    await db9.customStatement('PRAGMA user_version = 9');
+    await db9.close();
+
+    final db = FhirDb(NativeDatabase(file));
+    final columns = await db
+        .customSelect('PRAGMA table_info(token_search_parameters)')
+        .get();
+    expect(
+      columns.map((c) => c.read<String>('name')),
+      isNot(contains('search_path')),
+    );
+    final indexes = (await db
+            .customSelect(
+              "SELECT name FROM sqlite_master WHERE type = 'index' "
+              "AND tbl_name = 'token_search_parameters'",
+            )
+            .get())
+        .map((r) => r.read<String>('name'))
+        .toSet();
+    expect(indexes, isNot(contains('idx_token_value')));
+    expect(
+      indexes,
+      containsAll([
+        'idx_token_search_parameters_value_cover',
+        'idx_token_search_parameters_owner',
+      ]),
+    );
+    expect(
+      indexes.where((i) => i.startsWith('sqlite_autoindex')),
+      isEmpty,
+      reason: 'no declared key, so no key index',
+    );
+    expect(
+      (await db.fhirDao.search(
+        resourceType: R4ResourceType.Observation,
+        searchParameters: {
+          'code': <String>['http://s|c9'],
+        },
+      ))
+          .length,
+      1,
+    );
+    final version = await db.customSelect('PRAGMA user_version').getSingle();
+    expect(version.data.values.first, equals(10));
     await db.close();
   });
 }

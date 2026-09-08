@@ -45,16 +45,18 @@ Future<void> main() async {
     addTearDown(db.close);
     expect(
       await statsOf(db, 'token_search_parameters'),
-      isNot(contains('idx_token_value')),
+      isNot(contains('idx_token_search_parameters_value_cover')),
       reason: 'ANALYZE on empty tables writes no row for a value index',
     );
     await db.fhirDao.saveResources(
       [for (var i = 0; i < 2000; i++) Observation.fromJson(observation(i))],
     );
     final stats = await statsOf(db, 'token_search_parameters');
-    expect(stats, contains('idx_token_value'));
+    expect(stats, contains('idx_token_search_parameters_value_cover'));
     // stat is "<rows> <avg rows per distinct value>": the row count is real.
-    final rows = int.parse(stats['idx_token_value']!.split(' ').first);
+    final rows = int.parse(
+      stats['idx_token_search_parameters_value_cover']!.split(' ').first,
+    );
     expect(rows, greaterThan(1000));
   });
 
@@ -75,7 +77,7 @@ Future<void> main() async {
     await second.customSelect('SELECT 1').get();
     expect(
       await statsOf(second, 'token_search_parameters'),
-      contains('idx_token_value'),
+      contains('idx_token_search_parameters_value_cover'),
     );
     final limit =
         await second.customSelect('PRAGMA analysis_limit').getSingle();

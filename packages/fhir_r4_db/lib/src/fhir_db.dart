@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 9;
+  int get schemaVersion => 10;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -208,7 +208,7 @@ class FhirDb extends _$FhirDb {
             // Measured 2026-09-04: rebuilding the date index alone was 126s
             // and the meta rows 124s on 928,935 resources; the whole index is
             // one parse of every resource, see the CHANGELOG for the number.
-            await rebuildSearchIndex();
+            // Re-extracted below, once, by the schema-10 step.
           }
           if (from < 8) {
             // The partial indexes on `id` for contained rows
@@ -216,8 +216,8 @@ class FhirDb extends _$FhirDb {
             // every save's delete scanned every index table; see
             // _deleteSearchParams. After the schema-7 step: on a database
             // below 7 the columns some of these indexes cover do not exist
-            // until the rebuild has run.
-            await createValueIndexes();
+            // until the rebuild has run. Created below, by the schema-10
+            // rebuild, on the tables in their current shape.
           }
           if (from < 9) {
             // The string index rows of Address and ContactPoint values moved
@@ -228,7 +228,20 @@ class FhirDb extends _$FhirDb {
             // sort would skip them, so the index is re-extracted from the
             // stored resources, as schema 7 did: derived data, nothing to
             // keep. Measured 2026-09-04 (fhirant_db's schema-14 step): 467s
-            // for the 5 GB MIMIC load, paged.
+            // for the 5 GB MIMIC load, paged. Re-extracted below, once, by
+            // the schema-10 step.
+          }
+          if (from < 10) {
+            // The index tables lose search_path and their five-column key,
+            // the single-column value indexes give way to covering
+            // composites, and resources gains (resource_type,
+            // last_updated): REVIEW-2026-09-06 §4, measured in its §4.5. The
+            // tables are dropped and re-extracted in the new shape (derived
+            // data); the old indexes on them go with them, and are dropped
+            // by name too in case a table was not rebuilt. This one rebuild
+            // serves the 7, 9 and 10 steps: a database below 7 is
+            // re-extracted once, not three times.
+            await dropLegacyValueIndexes();
             await rebuildSearchIndex();
           }
         },
@@ -359,110 +372,136 @@ class FhirDb extends _$FhirDb {
           ..specialParams.addAll(extracted.specialParams);
       }
       await batch((b) {
-        const mode = InsertMode.insertOrReplace;
         b
-          ..insertAll(stringSearchParameters, lists.stringParams, mode: mode)
-          ..insertAll(tokenSearchParameters, lists.tokenParams, mode: mode)
-          ..insertAll(
-            referenceSearchParameters,
-            lists.referenceParams,
-            mode: mode,
-          )
-          ..insertAll(dateSearchParameters, lists.dateParams, mode: mode)
-          ..insertAll(numberSearchParameters, lists.numberParams, mode: mode)
-          ..insertAll(
-            quantitySearchParameters,
-            lists.quantityParams,
-            mode: mode,
-          )
-          ..insertAll(uriSearchParameters, lists.uriParams, mode: mode)
-          ..insertAll(
-            compositeSearchParameters,
-            lists.compositeParams,
-            mode: mode,
-          )
-          ..insertAll(
-            specialSearchParameters,
-            lists.specialParams,
-            mode: mode,
-          );
+          ..insertAll(stringSearchParameters, lists.stringParams)
+          ..insertAll(tokenSearchParameters, lists.tokenParams)
+          ..insertAll(referenceSearchParameters, lists.referenceParams)
+          ..insertAll(dateSearchParameters, lists.dateParams)
+          ..insertAll(numberSearchParameters, lists.numberParams)
+          ..insertAll(quantitySearchParameters, lists.quantityParams)
+          ..insertAll(uriSearchParameters, lists.uriParams)
+          ..insertAll(compositeSearchParameters, lists.compositeParams)
+          ..insertAll(specialSearchParameters, lists.specialParams);
       });
     }
     await createValueIndexes();
     await customStatement('ANALYZE');
   }
 
-  /// Indexes on the VALUE columns of the search tables.
+  /// The indexes every search table is read and written through.
   ///
-  /// Each search table's primary key is `(resource_type, id, search_path,
-  /// search_name, param_index)`, whose leading columns are what a search
-  /// PRODUCES, not what it filters on. Without these, `WHERE token_value = ?`
-  /// has no index to use and every search scans its whole resource type.
+  /// Each index table is a rowid table with no declared key. Per table:
   ///
-  /// fhirant has created exactly these since its first schema
-  /// (`fhirant_db.dart`, `_createIndexes`), which is why fhirant never showed
-  /// the problem. Any other consumer of this package got no indexes at all.
-  /// They belong here, with the tables. `IF NOT EXISTS` keeps the two in step
-  /// where both run. Public for the same reason as [ensurePlannerStatistics]:
-  /// a subclass with its own [migration] must call it from there.
+  /// - an OWNER index `(resource_type, id)`, what a re-index deletes by and
+  ///   what an `EXISTS … WHERE id = ?` probe seeks on;
+  /// - COVERING composites `(resource_type, search_name, <value…>, id)`, one
+  ///   per value column a search filters or sorts on. A single-parameter
+  ///   search answers from the index alone, a sort can walk it in order,
+  ///   and `DISTINCT id` needs no temporary B-tree. Measured 2026-09-06 on
+  ///   929k MIMIC resources (REVIEW-2026-09-06 §4.5): a token page 100 ms →
+  ///   6 ms, `_lastUpdated` and the type page 6.4 s → 0 ms, the sort walk
+  ///   for `status=final&_sort=-date` 12.9 s → 0 ms;
+  /// - the partial index on `id` for contained rows (`#`-typed), the range a
+  ///   container's re-save deletes by.
+  ///
+  /// `resources` and `resources_history` each get `(resource_type,
+  /// last_updated)`: the type page, `_lastUpdated`, `_since` and export
+  /// sorted or filtered every row of the type without it.
+  ///
+  /// `IF NOT EXISTS` keeps create and upgrade in step. Public for the same
+  /// reason as [ensurePlannerStatistics]: a subclass with its own
+  /// [migration] must call it from there.
   Future<void> createValueIndexes() async {
-    const statements = [
-      ('idx_string_value', 'string_search_parameters', 'string_value'),
-      ('idx_token_value', 'token_search_parameters', 'token_value'),
-      ('idx_token_system', 'token_search_parameters', 'token_system'),
+    const covers = [
+      ('string_search_parameters', 'value', 'string_value'),
+      ('string_search_parameters', 'exact', 'exact_value'),
+      ('token_search_parameters', 'value', 'token_value'),
+      ('token_search_parameters', 'system', 'token_system'),
       (
-        'idx_ref_type',
         'reference_search_parameters',
-        'reference_resource_type'
+        'target',
+        'reference_resource_type, reference_id_part'
       ),
-      ('idx_ref_id', 'reference_search_parameters', 'reference_id_part'),
-      (
-        'idx_ref_identifier_sys',
-        'reference_search_parameters',
-        'identifier_system'
-      ),
-      (
-        'idx_ref_identifier_val',
-        'reference_search_parameters',
-        'identifier_value'
-      ),
-      ('idx_uri_value', 'uri_search_parameters', 'uri_value'),
-      ('idx_date_value', 'date_search_parameters', 'date_value'),
-      ('idx_date_value_end', 'date_search_parameters', 'date_value_end'),
-      ('idx_number_low', 'number_search_parameters', 'number_low'),
-      ('idx_number_high', 'number_search_parameters', 'number_high'),
-      ('idx_quantity_low', 'quantity_search_parameters', 'quantity_low'),
-      ('idx_quantity_high', 'quantity_search_parameters', 'quantity_high'),
-      ('idx_special_value', 'special_search_parameters', 'special_value'),
+      ('reference_search_parameters', 'value', 'reference_value'),
+      ('reference_search_parameters', 'identifier', 'identifier_value'),
+      ('date_search_parameters', 'low', 'date_value'),
+      ('date_search_parameters', 'high', 'date_value_end'),
+      ('number_search_parameters', 'low', 'number_low'),
+      ('number_search_parameters', 'high', 'number_high'),
+      ('quantity_search_parameters', 'low', 'quantity_low'),
+      ('quantity_search_parameters', 'high', 'quantity_high'),
+      ('uri_search_parameters', 'value', 'uri_value'),
+      ('composite_search_parameters', 'values', 'c1_value, c2_value'),
+      ('special_search_parameters', 'value', 'special_value'),
     ];
-    for (final (name, table, column) in statements) {
+    for (final (table, tag, columns) in covers) {
       await customStatement(
-        'CREATE INDEX IF NOT EXISTS $name ON $table($column)',
+        'CREATE INDEX IF NOT EXISTS idx_${table}_${tag}_cover '
+        'ON $table(resource_type, search_name, $columns, id)',
       );
     }
-    // Contained resources' rows are filed under `#Type` with an id of
-    // `<container type>/<container id>#<contained id>` (search §3.1.1.5.5,
-    // contained_index.dart). Deleting them when the container is re-saved is
-    // a range on id among the `#`-typed rows, and the primary key leads with
-    // resource_type, so it cannot serve that; these partial indexes do. On a
-    // database with no contained resources they are empty and cost nothing.
-    // The WHERE here is the WHERE the delete uses, which is what lets SQLite
-    // apply a partial index.
-    for (final table in <String>[
-      'string_search_parameters',
-      'token_search_parameters',
-      'reference_search_parameters',
-      'date_search_parameters',
-      'number_search_parameters',
-      'quantity_search_parameters',
-      'uri_search_parameters',
-      'composite_search_parameters',
-      'special_search_parameters',
-    ]) {
+    for (final table in searchTableNames) {
+      await customStatement(
+        'CREATE INDEX IF NOT EXISTS idx_${table}_owner '
+        'ON $table(resource_type, id)',
+      );
+      // Contained resources' rows are filed under `#Type` with an id of
+      // `<container type>/<container id>#<contained id>` (search §3.1.1.5.5,
+      // contained_index.dart). Deleting them when the container is re-saved
+      // is a range on id among the `#`-typed rows; the owner index leads
+      // with resource_type and cannot serve that. The WHERE here is the
+      // WHERE the delete uses, which is what lets SQLite apply a partial
+      // index. Empty, and free, on a database with no contained resources.
       await customStatement(
         'CREATE INDEX IF NOT EXISTS idx_${table}_contained '
         "ON $table(id) WHERE resource_type LIKE '#%'",
       );
+    }
+    await customStatement(
+      'CREATE INDEX IF NOT EXISTS idx_resources_type_updated '
+      'ON resources(resource_type, last_updated)',
+    );
+    await customStatement(
+      'CREATE INDEX IF NOT EXISTS idx_resources_history_type_updated '
+      'ON resources_history(resource_type, last_updated)',
+    );
+  }
+
+  /// The nine search index tables, by SQL name.
+  static const searchTableNames = [
+    'string_search_parameters',
+    'token_search_parameters',
+    'reference_search_parameters',
+    'date_search_parameters',
+    'number_search_parameters',
+    'quantity_search_parameters',
+    'uri_search_parameters',
+    'composite_search_parameters',
+    'special_search_parameters',
+  ];
+
+  /// Drops the single-column value indexes of schemas 7-9, which the
+  /// covering composites of [createValueIndexes] replace. Public for a
+  /// subclass's own migration, as [createValueIndexes] is.
+  Future<void> dropLegacyValueIndexes() async {
+    for (final name in const [
+      'idx_string_value',
+      'idx_token_value',
+      'idx_token_system',
+      'idx_ref_type',
+      'idx_ref_id',
+      'idx_ref_identifier_sys',
+      'idx_ref_identifier_val',
+      'idx_uri_value',
+      'idx_date_value',
+      'idx_date_value_end',
+      'idx_number_low',
+      'idx_number_high',
+      'idx_quantity_low',
+      'idx_quantity_high',
+      'idx_special_value',
+    ]) {
+      await customStatement('DROP INDEX IF EXISTS $name');
     }
   }
 }

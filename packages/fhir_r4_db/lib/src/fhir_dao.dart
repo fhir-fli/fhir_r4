@@ -1040,15 +1040,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     Expression<bool> path(
       GeneratedColumn<String> type,
       GeneratedColumn<String> searchName,
-      GeneratedColumn<String> searchPath,
       GeneratedColumn<String> id,
       GeneratedColumn<String> outerId,
     ) =>
         type.equals(resourceType) &
         id.equalsExp(outerId) &
-        (searchName.equals(name) |
-            searchPath.like('$resourceType.$name') |
-            searchPath.like('$resourceType.%.$name'));
+        searchName.equals(name);
 
     switch (declared.type) {
       case 'string':
@@ -1062,8 +1059,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         return _SortKey(
           table: s,
           on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id) &
-              _wholeValueRow(s),
+              path(s.resourceType, s.searchName, s.id, id) & _wholeValueRow(s),
           value: s.stringValue,
           descending: descending,
         );
@@ -1076,7 +1072,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         return _SortKey(
           table: s,
           on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id) &
+              path(s.resourceType, s.searchName, s.id, id) &
               s.tokenValue.isNotValue(''),
           value: s.tokenValue,
           descending: descending,
@@ -1085,8 +1081,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final s = alias(dateSearchParameters, aliasName);
         return _SortKey(
           table: s,
-          on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          on: (id) => path(s.resourceType, s.searchName, s.id, id),
           value: s.dateValue,
           descending: descending,
         );
@@ -1094,8 +1089,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final s = alias(numberSearchParameters, aliasName);
         return _SortKey(
           table: s,
-          on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          on: (id) => path(s.resourceType, s.searchName, s.id, id),
           value: s.numberLow,
           descending: descending,
         );
@@ -1103,8 +1097,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final s = alias(quantitySearchParameters, aliasName);
         return _SortKey(
           table: s,
-          on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          on: (id) => path(s.resourceType, s.searchName, s.id, id),
           value: s.quantityLow,
           descending: descending,
         );
@@ -1112,8 +1105,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final s = alias(referenceSearchParameters, aliasName);
         return _SortKey(
           table: s,
-          on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          on: (id) => path(s.resourceType, s.searchName, s.id, id),
           value: s.referenceValue,
           descending: descending,
         );
@@ -1121,8 +1113,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final s = alias(uriSearchParameters, aliasName);
         return _SortKey(
           table: s,
-          on: (id) =>
-              path(s.resourceType, s.searchName, s.searchPath, s.id, id),
+          on: (id) => path(s.resourceType, s.searchName, s.id, id),
           value: s.uriValue,
           descending: descending,
         );
@@ -1252,10 +1243,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     required String Function() nextAlias,
   }) async {
     final c = alias(referenceSearchParameters, aliasName);
-    final path = c.resourceType.equals(resourceType) &
-        (c.searchName.equals(refName) |
-            c.searchPath.like('$resourceType.$refName') |
-            c.searchPath.like('$resourceType.%.$refName'));
+    final path =
+        c.resourceType.equals(resourceType) & c.searchName.equals(refName);
     final chainedKey = SearchQueryKey.parse(chain);
     final candidates = typeConstraint != null
         ? [typeConstraint]
@@ -1342,9 +1331,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final target = has.targetType;
     final refName = has.referenceParam;
     final path = h.resourceType.equals(target) &
-        (h.searchName.equals(refName) |
-            h.searchPath.like('$target.$refName') |
-            h.searchPath.like('$target.%.$refName')) &
+        h.searchName.equals(refName) &
         h.referenceResourceType.equals(resourceType);
     final _IndexCondition? inner;
     if (has.nested != null) {
@@ -1422,12 +1409,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     Expression<bool> onPath(
       GeneratedColumn<String> type,
       GeneratedColumn<String> searchName,
-      GeneratedColumn<String> searchPath,
     ) =>
-        type.equals(resourceType) &
-        (searchName.equals(name) |
-            searchPath.like('$resourceType.$name') |
-            searchPath.like('$resourceType.%.$name'));
+        type.equals(resourceType) & searchName.equals(name);
 
     // `_list`, R4B 3.1.1.4.22: "all Patient resources that are referenced
     // from the list found at [base]/List/42 in List.entry.item" — a
@@ -1536,7 +1519,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final t = aliasName == null
             ? tokenSearchParameters
             : alias(tokenSearchParameters, aliasName);
-        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        final path = onPath(t.resourceType, t.searchName);
         switch (modifier) {
           case null:
             return _IndexCondition(
@@ -1554,6 +1537,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           case 'missing':
             return _IndexCondition(t, t.id, path, negated: value == 'true');
           case 'text':
+            // A prefix match on the display, `substr(token_display, 1, n) =
+            // ?`, which no index serves: every token row of the resource
+            // type under this parameter's name is read (the covering index
+            // narrows it to those). REVIEW-2026-09-06 §4.2.
             // 3.1.1.4.10: "the search functions as a normal string search",
             // and 3.1.1.4.8 says what that is: equals or starts with, after
             // both sides are normalized. R5 spells it out for this very
@@ -1637,7 +1624,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final t = aliasName == null
             ? referenceSearchParameters
             : alias(referenceSearchParameters, aliasName);
-        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        final path = onPath(t.resourceType, t.searchName);
         switch (modifier) {
           case null:
             await _rejectAmbiguousBareId(resourceType, name, value);
@@ -1702,7 +1689,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             ? numberSearchParameters
             : alias(numberSearchParameters, aliasName);
         if (modifier == 'missing') {
-          final path = onPath(t.resourceType, t.searchName, t.searchPath);
+          final path = onPath(t.resourceType, t.searchName);
           return _IndexCondition(t, t.id, path, negated: value == 'true');
         }
         if (modifier != null) return null;
@@ -1722,7 +1709,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             ? quantitySearchParameters
             : alias(quantitySearchParameters, aliasName);
         if (modifier == 'missing') {
-          final path = onPath(t.resourceType, t.searchName, t.searchPath);
+          final path = onPath(t.resourceType, t.searchName);
           return _IndexCondition(t, t.id, path, negated: value == 'true');
         }
         if (modifier != null) return null;
@@ -1741,7 +1728,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final t = aliasName == null
             ? uriSearchParameters
             : alias(uriSearchParameters, aliasName);
-        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        final path = onPath(t.resourceType, t.searchName);
         switch (modifier) {
           case null:
             return _IndexCondition(
@@ -1777,7 +1764,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final t = aliasName == null
             ? stringSearchParameters
             : alias(stringSearchParameters, aliasName);
-        final path = onPath(t.resourceType, t.searchName, t.searchPath);
+        final path = onPath(t.resourceType, t.searchName);
         switch (modifier) {
           case null:
             return _IndexCondition(
@@ -1794,6 +1781,11 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
               path & t.exactValue.equals(unescapeValue(value).trim()),
             );
           case 'contains':
+            // `LIKE '%x%'` can use no index by construction: every string
+            // row of the resource type under this parameter's name is read
+            // (the covering index narrows it to those). The default
+            // starts-with search is a range instead, see [startsWith].
+            // REVIEW-2026-09-06 §4.2.
             final normalized =
                 normalizeSearchString(unescapeValue(value)).trim();
             return _IndexCondition(
@@ -1809,7 +1801,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             ? dateSearchParameters
             : alias(dateSearchParameters, aliasName);
         if (modifier == 'missing') {
-          final path = onPath(t.resourceType, t.searchName, t.searchPath);
+          final path = onPath(t.resourceType, t.searchName);
           return _IndexCondition(t, t.id, path, negated: value == 'true');
         }
         if (modifier != null) return null;
@@ -1982,7 +1974,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         return typed & system.equals(sys) & value.equals(code);
       case 'string':
         return typed &
-            value.like('${normalizeSearchString(unescapeValue(part))}%');
+            FhirDao.startsWith(
+              value,
+              normalizeSearchString(unescapeValue(part)),
+            );
       case 'uri':
         return typed & value.equals(unescapeValue(part));
       case 'reference':
@@ -2329,10 +2324,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           t.referenceResourceType.isNotNull() &
           t.referenceIdPart.isNotNull();
       if (parameter != null) {
-        where = where &
-            (t.searchName.equals(parameter) |
-                t.searchPath.like('$resourceType.$parameter') |
-                t.searchPath.like('$resourceType.%.$parameter'));
+        where = where & t.searchName.equals(parameter);
       }
       if (targetType != null) {
         where = where & t.referenceResourceType.equals(targetType);
@@ -2463,9 +2455,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final t = on ?? referenceSearchParameters;
     Expression<bool>? byParam;
     for (final p in params) {
-      final one = t.searchName.equals(p) |
-          t.searchPath.like('$resourceType.$p') |
-          t.searchPath.like('$resourceType.%.$p');
+      final one = t.searchName.equals(p);
       byParam = byParam == null ? one : (byParam | one);
     }
     return t.resourceType.equals(resourceType) &
@@ -3176,10 +3166,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // LIKE's wildcards `%` and `_` are punctuation, which the normalisation
     // drops from both sides, so none can reach the pattern.
     return t.resourceType.equals(resourceType) &
-        (t.searchName.equals(searchPath) |
-            t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath')) &
-        t.stringValue.like('$normalized%');
+        t.searchName.equals(searchPath) &
+        FhirDao.startsWith(t.stringValue, normalized);
   }
 
   Future<Set<String>> _searchStringParameter(
@@ -3207,11 +3195,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       final query = select(stringSearchParameters);
       var whereCondition =
           stringSearchParameters.resourceType.equals(resourceType) &
-              (stringSearchParameters.searchName.equals(searchPath) |
-                  stringSearchParameters.searchPath
-                      .like('$resourceType.$searchPath') |
-                  stringSearchParameters.searchPath
-                      .like('$resourceType.%.$searchPath'));
+              stringSearchParameters.searchName.equals(searchPath);
 
       if (modifier == 'exact') {
         // R4 3.1.1.4.4: ":exact returns results that match the entire supplied
@@ -3233,10 +3217,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                   ..addColumns([stringSearchParameters.id])
                   ..where(
                     stringSearchParameters.resourceType.equals(resourceType) &
-                        (stringSearchParameters.searchPath
-                                .like('$resourceType.$searchPath') |
-                            stringSearchParameters.searchPath
-                                .like('$resourceType.%.$searchPath')),
+                        stringSearchParameters.searchName.equals(searchPath),
                   ))
                 .get())
             .map((r) => r.read(stringSearchParameters.id)!)
@@ -3246,7 +3227,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       } else {
         // Default string search is "starts with" per FHIR spec
         whereCondition = whereCondition &
-            stringSearchParameters.stringValue.like('$normalizedValue%');
+            FhirDao.startsWith(
+              stringSearchParameters.stringValue,
+              normalizedValue,
+            );
       }
 
       query.where((tbl) => whereCondition);
@@ -3345,8 +3329,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           ..where(
             (tbl) =>
                 tbl.resourceType.equals(resourceType) &
-                (tbl.searchPath.like('$resourceType.$searchPath') |
-                    tbl.searchPath.like('$resourceType.%.$searchPath')) &
+                tbl.searchName.equals(searchPath) &
                 tbl.tokenDisplay
                     .substr(1, normalizeSearchString(searchValue).length)
                     .equals(normalizeSearchString(searchValue)),
@@ -3406,6 +3389,32 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return matchingIds;
   }
 
+  /// `column` starts with [prefix], written as a range the covering index
+  /// can serve: `>= prefix AND < next(prefix)`, where next is the prefix with
+  /// its last code point incremented (a trailing U+10FFFF, which cannot be
+  /// incremented, is dropped first; a result in the surrogate range is
+  /// stepped over). SQLite compares TEXT bytewise in UTF-8, whose byte order
+  /// is code-point order, so the range holds exactly the strings with that
+  /// prefix. `LIKE 'prefix%'` planned as a read of every string row of the
+  /// resource type (measured 2026-09-06, REVIEW-2026-09-06 §4.2): SQLite's
+  /// LIKE optimization needs `case_sensitive_like` or a NOCASE column and
+  /// neither is set. A `%` or `_` in the prefix was also a wildcard there;
+  /// here it is a character.
+  @visibleForTesting
+  static Expression<bool> startsWith(Expression<String> column, String prefix) {
+    if (prefix.isEmpty) return const Constant<bool>(true);
+    final lower = column.isBiggerOrEqualValue(prefix);
+    final runes = prefix.runes.toList();
+    while (runes.isNotEmpty && runes.last >= 0x10FFFF) {
+      runes.removeLast();
+    }
+    if (runes.isEmpty) return lower;
+    var last = runes.last + 1;
+    if (last >= 0xD800 && last <= 0xDFFF) last = 0xE000;
+    runes[runes.length - 1] = last;
+    return lower & column.isSmallerThanValue(String.fromCharCodes(runes));
+  }
+
   /// The WHERE for one plain token value, as a typed expression, so it can be
   /// run on its own or nested as `id IN (SELECT …)` inside another.
   Expression<bool> _tokenCondition(
@@ -3436,10 +3445,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
 
-    var whereCondition = t.resourceType.equals(resourceType) &
-        (t.searchName.equals(searchPath) |
-            t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath'));
+    var whereCondition =
+        t.resourceType.equals(resourceType) & t.searchName.equals(searchPath);
 
     if (system != null && system.isNotEmpty && tokenValue.isNotEmpty) {
       whereCondition = whereCondition &
@@ -3699,9 +3706,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       return null;
     }
     return t.resourceType.equals(resourceType) &
-        (t.searchName.equals(searchPath) |
-            t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath')) &
+        t.searchName.equals(searchPath) &
         _dateRangeCondition(
           low: t.dateValue,
           high: t.dateValueEnd,
@@ -3823,10 +3828,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
                   ..addColumns([dateSearchParameters.id])
                   ..where(
                     dateSearchParameters.resourceType.equals(resourceType) &
-                        (dateSearchParameters.searchPath
-                                .like('$resourceType.$searchPath') |
-                            dateSearchParameters.searchPath
-                                .like('$resourceType.%.$searchPath')),
+                        dateSearchParameters.searchName.equals(searchPath),
                   ))
                 .get())
             .map((r) => r.read(dateSearchParameters.id)!)
@@ -3897,18 +3899,52 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (range == null) {
       return null;
     }
-    // last_updated is integer milliseconds; the range comparison is written
-    // over DateTime expressions, so the point is lifted to one. SQLite
-    // stores a Drift DateTime as whole seconds, hence the division.
-    final instant = r.lastUpdated.dartCast<double>() / const Constant(1000);
-    final low = instant.dartCast<DateTime>();
-    final high = (instant + const Constant(1)).dartCast<DateTime>();
-    return _dateRangeCondition(
-      low: low,
-      high: high,
-      prefix: prefix,
-      search: range,
-    );
+    return _lastUpdatedRange(r.lastUpdated, prefix, range);
+  }
+
+  /// [_dateRangeCondition] for `resources.last_updated`, epoch milliseconds.
+  /// The stored instant's range is [lu, lu + 1 s) as before, but every
+  /// comparison is written on the raw column with the second moved onto the
+  /// constant, so the `(resource_type, last_updated)` index serves it. The
+  /// earlier form cast the column to a DateTime in SQL, which no index can
+  /// serve: `_lastUpdated=ge…` read every row of the type (6.4 s on 929k,
+  /// REVIEW-2026-09-06 §4.3).
+  Expression<bool> _lastUpdatedRange(
+    Expression<int> lu,
+    String? prefix,
+    ({DateTime low, DateTime high}) search,
+  ) {
+    final l = search.low.millisecondsSinceEpoch;
+    final h = search.high.millisecondsSinceEpoch;
+    const second = 1000;
+    // low = lu, high = lu + second; neither is ever null.
+    final contained =
+        lu.isBiggerOrEqualValue(l) & lu.isSmallerOrEqualValue(h - second);
+    final above = lu.isBiggerThanValue(h - second);
+    final below = lu.isSmallerThanValue(l);
+    switch (prefix) {
+      case 'gt':
+        return above;
+      case 'lt':
+        return below;
+      case 'ge':
+        return above | contained;
+      case 'le':
+        return below | contained;
+      case 'sa':
+        return lu.isBiggerOrEqualValue(h);
+      case 'eb':
+        return lu.isSmallerOrEqualValue(l - second);
+      case 'ne':
+        return contained.not();
+      case 'ap':
+        final gap = DateTime.now().difference(search.low).abs();
+        final margin = gap.inMilliseconds ~/ 10;
+        return lu.isSmallerThanValue(h + margin) &
+            lu.isBiggerThanValue(l - margin - second);
+      default:
+        return contained;
+    }
   }
 
   Future<Set<String>> _searchMissingParameter(
@@ -4055,10 +4091,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       return null;
     }
 
-    final whereCondition = t.resourceType.equals(resourceType) &
-        (t.searchName.equals(searchPath) |
-            t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath'));
+    final whereCondition =
+        t.resourceType.equals(resourceType) & t.searchName.equals(searchPath);
 
     return whereCondition &
         _numericPrefixCondition(
@@ -4141,10 +4175,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     // segment of its path — which `value-quantity` never is, because its
     // path is `Observation.value.ofType(Quantity)`. That is why the row was
     // written correctly and the search still returned nothing.
-    var whereCondition = t.resourceType.equals(resourceType) &
-        (t.searchName.equals(searchPath) |
-            t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath'));
+    var whereCondition =
+        t.resourceType.equals(resourceType) & t.searchName.equals(searchPath);
 
     if (system != null) {
       // System given: "a precise match is desired", on system and code.
@@ -4223,10 +4255,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     $UriSearchParametersTable? on,
   }) {
     final t = on ?? uriSearchParameters;
-    final path = t.resourceType.equals(resourceType) &
-        (t.searchName.equals(searchPath) |
-            t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath'));
+    final path =
+        t.resourceType.equals(resourceType) & t.searchName.equals(searchPath);
     final unescaped = unescapeValue(value);
     // 3.1.1.4.9: for the canonical URLs of the conformance and knowledge
     // resources, "servers SHOULD support automatically detecting a
@@ -4308,9 +4338,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           ..addColumns([t.referenceResourceType])
           ..where(
             t.resourceType.equals(resourceType) &
-                (t.searchName.equals(searchPath) |
-                    t.searchPath.like('$resourceType.$searchPath') |
-                    t.searchPath.like('$resourceType.%.$searchPath')) &
+                t.searchName.equals(searchPath) &
                 t.referenceIdPart.equals(unescaped) &
                 t.referenceResourceType.isNotNull(),
           ))
@@ -4336,10 +4364,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     $ReferenceSearchParametersTable? on,
   }) {
     final t = on ?? referenceSearchParameters;
-    var where = t.resourceType.equals(resourceType) &
-        (t.searchName.equals(searchPath) |
-            t.searchPath.like('$resourceType.$searchPath') |
-            t.searchPath.like('$resourceType.%.$searchPath'));
+    var where =
+        t.resourceType.equals(resourceType) & t.searchName.equals(searchPath);
     var unescaped = unescapeValue(value);
     // 3.1.1.4.12: "A relative reference resolving to the same value as a
     // specified absolute URL, or vice versa, qualifies as a match." With
@@ -4427,9 +4453,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         ..where(
           (tbl) =>
               tbl.resourceType.equals(resourceType) &
-              (tbl.searchName.equals(refParam) |
-                  tbl.searchPath.like('$resourceType.$refParam') |
-                  tbl.searchPath.like('$resourceType.%.$refParam')),
+              tbl.searchName.equals(refParam),
         );
       final refRows = await refQuery.get();
 
@@ -4458,11 +4482,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final query = select(referenceSearchParameters);
         var whereCondition =
             referenceSearchParameters.resourceType.equals(resourceType) &
-                (referenceSearchParameters.searchName.equals(searchPath) |
-                    referenceSearchParameters.searchPath
-                        .like('$resourceType.$searchPath') |
-                    referenceSearchParameters.searchPath
-                        .like('$resourceType.%.$searchPath'));
+                referenceSearchParameters.searchName.equals(searchPath);
 
         // R4 3.1.1.4.12: ":identifier allows for searching by the identifier
         // rather than the literal reference ... the search value works as a
@@ -4727,62 +4747,55 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       return resource.meta?.lastUpdated?.valueDateTime;
     }
     if (declared == null) return null;
-    final resourceType = resource.resourceTypeString;
-    bool named(String searchName, String searchPath) =>
-        searchName == name ||
-        searchPath == '$resourceType.$name' ||
-        (searchPath.startsWith('$resourceType.') &&
-            searchPath.endsWith('.$name'));
+    bool named(String searchName) => searchName == name;
     final lists = extractSearchParameters(resource);
     final values = <Comparable<Object>>[];
     switch (declared.type) {
       case 'string':
         // Whole values only, as in _sortKeyFor.
         for (final p in lists.stringParams) {
-          if (named(p.searchName.value, p.searchPath.value) &&
-              p.paramIndex.value % 100 == 0) {
+          if (named(p.searchName.value) && p.paramIndex.value % 100 == 0) {
             values.add(p.stringValue.value);
           }
         }
       case 'token':
         // Coded rows only, as in _sortKeyFor.
         for (final p in lists.tokenParams) {
-          if (named(p.searchName.value, p.searchPath.value) &&
-              p.tokenValue.value.isNotEmpty) {
+          if (named(p.searchName.value) && p.tokenValue.value.isNotEmpty) {
             values.add(p.tokenValue.value);
           }
         }
       case 'date':
         for (final p in lists.dateParams) {
-          if (named(p.searchName.value, p.searchPath.value)) {
+          if (named(p.searchName.value)) {
             final low = p.dateValue.value;
             if (low != null) values.add(low);
           }
         }
       case 'number':
         for (final p in lists.numberParams) {
-          if (named(p.searchName.value, p.searchPath.value)) {
+          if (named(p.searchName.value)) {
             final low = p.numberLow.value;
             if (low != null) values.add(low);
           }
         }
       case 'quantity':
         for (final p in lists.quantityParams) {
-          if (named(p.searchName.value, p.searchPath.value)) {
+          if (named(p.searchName.value)) {
             final low = p.quantityLow.value;
             if (low != null) values.add(low);
           }
         }
       case 'reference':
         for (final p in lists.referenceParams) {
-          if (named(p.searchName.value, p.searchPath.value)) {
+          if (named(p.searchName.value)) {
             final v = p.referenceValue.value;
             if (v != null) values.add(v);
           }
         }
       case 'uri':
         for (final p in lists.uriParams) {
-          if (named(p.searchName.value, p.searchPath.value)) {
+          if (named(p.searchName.value)) {
             values.add(p.uriValue.value);
           }
         }

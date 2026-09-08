@@ -22,9 +22,6 @@ class CompositeSearchParameters extends Table {
   /// When the resource was last updated
   IntColumn get lastUpdated => integer()();
 
-  /// FHIRPath expression identifying the source element
-  TextColumn get searchPath => text()();
-
   /// HTTP search parameter name (e.g., 'code-value-quantity')
   TextColumn get searchName => text().withDefault(const Constant(''))();
 
@@ -87,15 +84,16 @@ class CompositeSearchParameters extends Table {
   /// As [c1High].
   RealColumn get c3High => real().nullable()();
 
-  @override
-
-  /// searchName is part of the key: one FHIR path can back more than one
-  /// search parameter — Observation.code serves both `code` and
-  /// `combo-code` — and without it the second one collides with the first
-  /// on insert, so only one of them could ever be indexed.
-  @override
-  Set<Column> get primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  /// No declared key: a rowid table. The key used to be
+  /// `(resource_type, id, search_path, search_name, param_index)`, which
+  /// stored the FHIRPath of every row in a second copy inside a unique
+  /// index that no search read (measured 2026-09-06 on 929k MIMIC
+  /// resources: 1.16 GB of key indexes across the nine tables, REVIEW
+  /// §4.4-4.5). What a search reads is the covering indexes and what a
+  /// re-index deletes by is the owner index, both in
+  /// `FhirDb.createValueIndexes`. Two rows that only differed in their path
+  /// (Observation.code and Observation.component.code under `combo-code`)
+  /// are simply two rows.
 }
 
 /// One component's value, reduced to the slot columns.
@@ -263,7 +261,6 @@ extension CompositeSearchParametersExtension on fhir.FhirBase {
           resourceType: Value(resourceType),
           id: Value(id),
           lastUpdated: Value(lastUpdated),
-          searchPath: Value(searchPath),
           searchName: Value(searchName),
           paramIndex: Value((paramIndex ?? 0) * 1000 + n),
           c1Type: Value(c1.type),

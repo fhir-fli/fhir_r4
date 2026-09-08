@@ -640,12 +640,6 @@ class $StringSearchParametersTable extends StringSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -679,7 +673,6 @@ class $StringSearchParametersTable extends StringSearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         stringValue,
@@ -717,14 +710,6 @@ class $StringSearchParametersTable extends StringSearchParameters
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
     }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
-    }
     if (data.containsKey('search_name')) {
       context.handle(
           _searchNameMeta,
@@ -757,8 +742,7 @@ class $StringSearchParametersTable extends StringSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   StringSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -769,8 +753,6 @@ class $StringSearchParametersTable extends StringSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -799,13 +781,17 @@ class StringSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
-  /// Index for multiple values from the same path
+  /// Index for multiple values from the same path.
+  ///
+  /// Convention, relied on by `_sort`: a row holding a WHOLE value of the
+  /// parameter has a multiple of 100 here; the rows holding one word of a
+  /// name part (see [StringSearchParametersExtension.toStringSearchParameter])
+  /// have that multiple plus the word's position, 1..99. Every branch below
+  /// keeps to it, so a sort can take the whole rows with `% 100 = 0` and no
+  /// flag column is needed.
   final int paramIndex;
 
   /// Normalized string value for case- and accent-insensitive searches.
@@ -834,7 +820,6 @@ class StringSearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       required this.stringValue,
@@ -845,7 +830,6 @@ class StringSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['string_value'] = Variable<String>(stringValue);
@@ -858,7 +842,6 @@ class StringSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       stringValue: Value(stringValue),
@@ -873,7 +856,6 @@ class StringSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       stringValue: serializer.fromJson<String>(json['stringValue']),
@@ -887,7 +869,6 @@ class StringSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'stringValue': serializer.toJson<String>(stringValue),
@@ -899,7 +880,6 @@ class StringSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           String? stringValue,
@@ -908,7 +888,6 @@ class StringSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         stringValue: stringValue ?? this.stringValue,
@@ -923,8 +902,6 @@ class StringSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -942,7 +919,6 @@ class StringSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('stringValue: $stringValue, ')
@@ -952,8 +928,8 @@ class StringSearchParameter extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, stringValue, exactValue);
+  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchName,
+      paramIndex, stringValue, exactValue);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -961,7 +937,6 @@ class StringSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.stringValue == this.stringValue &&
@@ -973,7 +948,6 @@ class StringSearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> stringValue;
@@ -983,7 +957,6 @@ class StringSearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.stringValue = const Value.absent(),
@@ -994,7 +967,6 @@ class StringSearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String stringValue,
@@ -1003,14 +975,12 @@ class StringSearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
         stringValue = Value(stringValue);
   static Insertable<StringSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? stringValue,
@@ -1021,7 +991,6 @@ class StringSearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (stringValue != null) 'string_value': stringValue,
@@ -1034,7 +1003,6 @@ class StringSearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? stringValue,
@@ -1044,7 +1012,6 @@ class StringSearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       stringValue: stringValue ?? this.stringValue,
@@ -1064,9 +1031,6 @@ class StringSearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -1092,7 +1056,6 @@ class StringSearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('stringValue: $stringValue, ')
@@ -1126,12 +1089,6 @@ class $TokenSearchParametersTable extends TokenSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -1169,7 +1126,6 @@ class $TokenSearchParametersTable extends TokenSearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         tokenSystem,
@@ -1207,14 +1163,6 @@ class $TokenSearchParametersTable extends TokenSearchParameters
               data['last_updated']!, _lastUpdatedMeta));
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
-    }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
     }
     if (data.containsKey('search_name')) {
       context.handle(
@@ -1254,8 +1202,7 @@ class $TokenSearchParametersTable extends TokenSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   TokenSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -1266,8 +1213,6 @@ class $TokenSearchParametersTable extends TokenSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -1298,9 +1243,6 @@ class TokenSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
@@ -1313,13 +1255,15 @@ class TokenSearchParameter extends DataClass
   /// The value (code or identifier)
   final String tokenValue;
 
-  /// Optional display value for human-readable searches
+  /// The text associated with the code — CodeableConcept.text,
+  /// Coding.display or Identifier.type.text — stored NORMALIZED (folded
+  /// like the string index), because `:text` "functions as a normal string
+  /// search" (§3.1.1.4.10): case- and accent-insensitive, starts-with.
   final String? tokenDisplay;
   const TokenSearchParameter(
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       this.tokenSystem,
@@ -1331,7 +1275,6 @@ class TokenSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     if (!nullToAbsent || tokenSystem != null) {
@@ -1349,7 +1292,6 @@ class TokenSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       tokenSystem: tokenSystem == null && nullToAbsent
@@ -1369,7 +1311,6 @@ class TokenSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       tokenSystem: serializer.fromJson<String?>(json['tokenSystem']),
@@ -1384,7 +1325,6 @@ class TokenSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'tokenSystem': serializer.toJson<String?>(tokenSystem),
@@ -1397,7 +1337,6 @@ class TokenSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           Value<String?> tokenSystem = const Value.absent(),
@@ -1407,7 +1346,6 @@ class TokenSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         tokenSystem: tokenSystem.present ? tokenSystem.value : this.tokenSystem,
@@ -1423,8 +1361,6 @@ class TokenSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -1445,7 +1381,6 @@ class TokenSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('tokenSystem: $tokenSystem, ')
@@ -1456,8 +1391,8 @@ class TokenSearchParameter extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, tokenSystem, tokenValue, tokenDisplay);
+  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchName,
+      paramIndex, tokenSystem, tokenValue, tokenDisplay);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1465,7 +1400,6 @@ class TokenSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.tokenSystem == this.tokenSystem &&
@@ -1478,7 +1412,6 @@ class TokenSearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String?> tokenSystem;
@@ -1489,7 +1422,6 @@ class TokenSearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.tokenSystem = const Value.absent(),
@@ -1501,7 +1433,6 @@ class TokenSearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     this.tokenSystem = const Value.absent(),
@@ -1511,14 +1442,12 @@ class TokenSearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
         tokenValue = Value(tokenValue);
   static Insertable<TokenSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? tokenSystem,
@@ -1530,7 +1459,6 @@ class TokenSearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (tokenSystem != null) 'token_system': tokenSystem,
@@ -1544,7 +1472,6 @@ class TokenSearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String?>? tokenSystem,
@@ -1555,7 +1482,6 @@ class TokenSearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       tokenSystem: tokenSystem ?? this.tokenSystem,
@@ -1576,9 +1502,6 @@ class TokenSearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -1607,7 +1530,6 @@ class TokenSearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('tokenSystem: $tokenSystem, ')
@@ -1642,12 +1564,6 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -1709,7 +1625,6 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         referenceValue,
@@ -1751,14 +1666,6 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
               data['last_updated']!, _lastUpdatedMeta));
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
-    }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
     }
     if (data.containsKey('search_name')) {
       context.handle(
@@ -1820,8 +1727,7 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   ReferenceSearchParameter map(Map<String, dynamic> data,
       {String? tablePrefix}) {
@@ -1833,8 +1739,6 @@ class $ReferenceSearchParametersTable extends ReferenceSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -1874,9 +1778,6 @@ class ReferenceSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
@@ -1908,7 +1809,6 @@ class ReferenceSearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       this.referenceValue,
@@ -1924,7 +1824,6 @@ class ReferenceSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     if (!nullToAbsent || referenceValue != null) {
@@ -1956,7 +1855,6 @@ class ReferenceSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       referenceValue: referenceValue == null && nullToAbsent
@@ -1990,7 +1888,6 @@ class ReferenceSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       referenceValue: serializer.fromJson<String?>(json['referenceValue']),
@@ -2010,7 +1907,6 @@ class ReferenceSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'referenceValue': serializer.toJson<String?>(referenceValue),
@@ -2028,7 +1924,6 @@ class ReferenceSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           Value<String?> referenceValue = const Value.absent(),
@@ -2042,7 +1937,6 @@ class ReferenceSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         referenceValue:
@@ -2075,8 +1969,6 @@ class ReferenceSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -2111,7 +2003,6 @@ class ReferenceSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('referenceValue: $referenceValue, ')
@@ -2130,7 +2021,6 @@ class ReferenceSearchParameter extends DataClass
       resourceType,
       id,
       lastUpdated,
-      searchPath,
       searchName,
       paramIndex,
       referenceValue,
@@ -2147,7 +2037,6 @@ class ReferenceSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.referenceValue == this.referenceValue &&
@@ -2164,7 +2053,6 @@ class ReferenceSearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String?> referenceValue;
@@ -2179,7 +2067,6 @@ class ReferenceSearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.referenceValue = const Value.absent(),
@@ -2195,7 +2082,6 @@ class ReferenceSearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     this.referenceValue = const Value.absent(),
@@ -2209,13 +2095,11 @@ class ReferenceSearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex);
   static Insertable<ReferenceSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? referenceValue,
@@ -2231,7 +2115,6 @@ class ReferenceSearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (referenceValue != null) 'reference_value': referenceValue,
@@ -2250,7 +2133,6 @@ class ReferenceSearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String?>? referenceValue,
@@ -2265,7 +2147,6 @@ class ReferenceSearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       referenceValue: referenceValue ?? this.referenceValue,
@@ -2291,9 +2172,6 @@ class ReferenceSearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -2335,7 +2213,6 @@ class ReferenceSearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('referenceValue: $referenceValue, ')
@@ -2374,12 +2251,6 @@ class $DateSearchParametersTable extends DateSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -2417,7 +2288,6 @@ class $DateSearchParametersTable extends DateSearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         dateString,
@@ -2456,14 +2326,6 @@ class $DateSearchParametersTable extends DateSearchParameters
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
     }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
-    }
     if (data.containsKey('search_name')) {
       context.handle(
           _searchNameMeta,
@@ -2500,8 +2362,7 @@ class $DateSearchParametersTable extends DateSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   DateSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -2512,8 +2373,6 @@ class $DateSearchParametersTable extends DateSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -2544,9 +2403,6 @@ class DateSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
@@ -2570,7 +2426,6 @@ class DateSearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       required this.dateString,
@@ -2582,7 +2437,6 @@ class DateSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['date_string'] = Variable<String>(dateString);
@@ -2600,7 +2454,6 @@ class DateSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       dateString: Value(dateString),
@@ -2620,7 +2473,6 @@ class DateSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       dateString: serializer.fromJson<String>(json['dateString']),
@@ -2635,7 +2487,6 @@ class DateSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'dateString': serializer.toJson<String>(dateString),
@@ -2648,7 +2499,6 @@ class DateSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           String? dateString,
@@ -2658,7 +2508,6 @@ class DateSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         dateString: dateString ?? this.dateString,
@@ -2674,8 +2523,6 @@ class DateSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -2695,7 +2542,6 @@ class DateSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('dateString: $dateString, ')
@@ -2706,8 +2552,8 @@ class DateSearchParameter extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, dateString, dateValue, dateValueEnd);
+  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchName,
+      paramIndex, dateString, dateValue, dateValueEnd);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2715,7 +2561,6 @@ class DateSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.dateString == this.dateString &&
@@ -2728,7 +2573,6 @@ class DateSearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> dateString;
@@ -2739,7 +2583,6 @@ class DateSearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.dateString = const Value.absent(),
@@ -2751,7 +2594,6 @@ class DateSearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String dateString,
@@ -2761,14 +2603,12 @@ class DateSearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
         dateString = Value(dateString);
   static Insertable<DateSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? dateString,
@@ -2780,7 +2620,6 @@ class DateSearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (dateString != null) 'date_string': dateString,
@@ -2794,7 +2633,6 @@ class DateSearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? dateString,
@@ -2805,7 +2643,6 @@ class DateSearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       dateString: dateString ?? this.dateString,
@@ -2826,9 +2663,6 @@ class DateSearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -2857,7 +2691,6 @@ class DateSearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('dateString: $dateString, ')
@@ -2892,12 +2725,6 @@ class $NumberSearchParametersTable extends NumberSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -2935,7 +2762,6 @@ class $NumberSearchParametersTable extends NumberSearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         numberValue,
@@ -2974,14 +2800,6 @@ class $NumberSearchParametersTable extends NumberSearchParameters
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
     }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
-    }
     if (data.containsKey('search_name')) {
       context.handle(
           _searchNameMeta,
@@ -3016,8 +2834,7 @@ class $NumberSearchParametersTable extends NumberSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   NumberSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -3028,8 +2845,6 @@ class $NumberSearchParametersTable extends NumberSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -3060,9 +2875,6 @@ class NumberSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
@@ -3085,7 +2897,6 @@ class NumberSearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       this.numberValue,
@@ -3097,7 +2908,6 @@ class NumberSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     if (!nullToAbsent || numberValue != null) {
@@ -3117,7 +2927,6 @@ class NumberSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       numberValue: numberValue == null && nullToAbsent
@@ -3139,7 +2948,6 @@ class NumberSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       numberValue: serializer.fromJson<double?>(json['numberValue']),
@@ -3154,7 +2962,6 @@ class NumberSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'numberValue': serializer.toJson<double?>(numberValue),
@@ -3167,7 +2974,6 @@ class NumberSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           Value<double?> numberValue = const Value.absent(),
@@ -3177,7 +2983,6 @@ class NumberSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         numberValue: numberValue.present ? numberValue.value : this.numberValue,
@@ -3193,8 +2998,6 @@ class NumberSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -3213,7 +3016,6 @@ class NumberSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('numberValue: $numberValue, ')
@@ -3224,8 +3026,8 @@ class NumberSearchParameter extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, numberValue, numberLow, numberHigh);
+  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchName,
+      paramIndex, numberValue, numberLow, numberHigh);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -3233,7 +3035,6 @@ class NumberSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.numberValue == this.numberValue &&
@@ -3246,7 +3047,6 @@ class NumberSearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<double?> numberValue;
@@ -3257,7 +3057,6 @@ class NumberSearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.numberValue = const Value.absent(),
@@ -3269,7 +3068,6 @@ class NumberSearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     this.numberValue = const Value.absent(),
@@ -3279,13 +3077,11 @@ class NumberSearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex);
   static Insertable<NumberSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<double>? numberValue,
@@ -3297,7 +3093,6 @@ class NumberSearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (numberValue != null) 'number_value': numberValue,
@@ -3311,7 +3106,6 @@ class NumberSearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<double?>? numberValue,
@@ -3322,7 +3116,6 @@ class NumberSearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       numberValue: numberValue ?? this.numberValue,
@@ -3343,9 +3136,6 @@ class NumberSearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -3374,7 +3164,6 @@ class NumberSearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('numberValue: $numberValue, ')
@@ -3409,12 +3198,6 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -3470,7 +3253,6 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         quantityValue,
@@ -3511,14 +3293,6 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
               data['last_updated']!, _lastUpdatedMeta));
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
-    }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
     }
     if (data.containsKey('search_name')) {
       context.handle(
@@ -3574,8 +3348,7 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   QuantitySearchParameter map(Map<String, dynamic> data,
       {String? tablePrefix}) {
@@ -3587,8 +3360,6 @@ class $QuantitySearchParametersTable extends QuantitySearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -3625,9 +3396,6 @@ class QuantitySearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
@@ -3659,7 +3427,6 @@ class QuantitySearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       this.quantityValue,
@@ -3674,7 +3441,6 @@ class QuantitySearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     if (!nullToAbsent || quantityValue != null) {
@@ -3703,7 +3469,6 @@ class QuantitySearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       quantityValue: quantityValue == null && nullToAbsent
@@ -3734,7 +3499,6 @@ class QuantitySearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       quantityValue: serializer.fromJson<double?>(json['quantityValue']),
@@ -3752,7 +3516,6 @@ class QuantitySearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'quantityValue': serializer.toJson<double?>(quantityValue),
@@ -3768,7 +3531,6 @@ class QuantitySearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           Value<double?> quantityValue = const Value.absent(),
@@ -3781,7 +3543,6 @@ class QuantitySearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         quantityValue:
@@ -3805,8 +3566,6 @@ class QuantitySearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -3837,7 +3596,6 @@ class QuantitySearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('quantityValue: $quantityValue, ')
@@ -3855,7 +3613,6 @@ class QuantitySearchParameter extends DataClass
       resourceType,
       id,
       lastUpdated,
-      searchPath,
       searchName,
       paramIndex,
       quantityValue,
@@ -3871,7 +3628,6 @@ class QuantitySearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.quantityValue == this.quantityValue &&
@@ -3887,7 +3643,6 @@ class QuantitySearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<double?> quantityValue;
@@ -3901,7 +3656,6 @@ class QuantitySearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.quantityValue = const Value.absent(),
@@ -3916,7 +3670,6 @@ class QuantitySearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     this.quantityValue = const Value.absent(),
@@ -3929,13 +3682,11 @@ class QuantitySearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex);
   static Insertable<QuantitySearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<double>? quantityValue,
@@ -3950,7 +3701,6 @@ class QuantitySearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (quantityValue != null) 'quantity_value': quantityValue,
@@ -3967,7 +3717,6 @@ class QuantitySearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<double?>? quantityValue,
@@ -3981,7 +3730,6 @@ class QuantitySearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       quantityValue: quantityValue ?? this.quantityValue,
@@ -4005,9 +3753,6 @@ class QuantitySearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -4045,7 +3790,6 @@ class QuantitySearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('quantityValue: $quantityValue, ')
@@ -4083,12 +3827,6 @@ class $UriSearchParametersTable extends UriSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -4110,15 +3848,8 @@ class $UriSearchParametersTable extends UriSearchParameters
       'uri_value', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns => [
-        resourceType,
-        id,
-        lastUpdated,
-        searchPath,
-        searchName,
-        paramIndex,
-        uriValue
-      ];
+  List<GeneratedColumn> get $columns =>
+      [resourceType, id, lastUpdated, searchName, paramIndex, uriValue];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -4150,14 +3881,6 @@ class $UriSearchParametersTable extends UriSearchParameters
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
     }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
-    }
     if (data.containsKey('search_name')) {
       context.handle(
           _searchNameMeta,
@@ -4182,8 +3905,7 @@ class $UriSearchParametersTable extends UriSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   UriSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -4194,8 +3916,6 @@ class $UriSearchParametersTable extends UriSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -4222,9 +3942,6 @@ class UriSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
@@ -4237,7 +3954,6 @@ class UriSearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       required this.uriValue});
@@ -4247,7 +3963,6 @@ class UriSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['uri_value'] = Variable<String>(uriValue);
@@ -4259,7 +3974,6 @@ class UriSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       uriValue: Value(uriValue),
@@ -4273,7 +3987,6 @@ class UriSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       uriValue: serializer.fromJson<String>(json['uriValue']),
@@ -4286,7 +3999,6 @@ class UriSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'uriValue': serializer.toJson<String>(uriValue),
@@ -4297,7 +4009,6 @@ class UriSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           String? uriValue}) =>
@@ -4305,7 +4016,6 @@ class UriSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         uriValue: uriValue ?? this.uriValue,
@@ -4318,8 +4028,6 @@ class UriSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -4334,7 +4042,6 @@ class UriSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('uriValue: $uriValue')
@@ -4343,8 +4050,8 @@ class UriSearchParameter extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, uriValue);
+  int get hashCode => Object.hash(
+      resourceType, id, lastUpdated, searchName, paramIndex, uriValue);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -4352,7 +4059,6 @@ class UriSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.uriValue == this.uriValue);
@@ -4362,7 +4068,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> uriValue;
@@ -4371,7 +4076,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.uriValue = const Value.absent(),
@@ -4381,7 +4085,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String uriValue,
@@ -4389,14 +4092,12 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
         uriValue = Value(uriValue);
   static Insertable<UriSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? uriValue,
@@ -4406,7 +4107,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (uriValue != null) 'uri_value': uriValue,
@@ -4418,7 +4118,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? uriValue,
@@ -4427,7 +4126,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       uriValue: uriValue ?? this.uriValue,
@@ -4446,9 +4144,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -4471,7 +4166,6 @@ class UriSearchParametersCompanion extends UpdateCompanion<UriSearchParameter> {
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('uriValue: $uriValue, ')
@@ -4504,12 +4198,6 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -4625,7 +4313,6 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         c1Type,
@@ -4678,14 +4365,6 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
               data['last_updated']!, _lastUpdatedMeta));
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
-    }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
     }
     if (data.containsKey('search_name')) {
       context.handle(
@@ -4781,8 +4460,7 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   CompositeSearchParameter map(Map<String, dynamic> data,
       {String? tablePrefix}) {
@@ -4794,8 +4472,6 @@ class $CompositeSearchParametersTable extends CompositeSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -4855,9 +4531,6 @@ class CompositeSearchParameter extends DataClass
 
   /// When the resource was last updated
   final int lastUpdated;
-
-  /// FHIRPath expression identifying the source element
-  final String searchPath;
 
   /// HTTP search parameter name (e.g., 'code-value-quantity')
   final String searchName;
@@ -4924,7 +4597,6 @@ class CompositeSearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       required this.c1Type,
@@ -4951,7 +4623,6 @@ class CompositeSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['c1_type'] = Variable<String>(c1Type);
@@ -5012,7 +4683,6 @@ class CompositeSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       c1Type: Value(c1Type),
@@ -5065,7 +4735,6 @@ class CompositeSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       c1Type: serializer.fromJson<String>(json['c1Type']),
@@ -5095,7 +4764,6 @@ class CompositeSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'c1Type': serializer.toJson<String>(c1Type),
@@ -5123,7 +4791,6 @@ class CompositeSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           String? c1Type,
@@ -5148,7 +4815,6 @@ class CompositeSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         c1Type: c1Type ?? this.c1Type,
@@ -5179,8 +4845,6 @@ class CompositeSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -5212,7 +4876,6 @@ class CompositeSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('c1Type: $c1Type, ')
@@ -5242,7 +4905,6 @@ class CompositeSearchParameter extends DataClass
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         c1Type,
@@ -5271,7 +4933,6 @@ class CompositeSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.c1Type == this.c1Type &&
@@ -5299,7 +4960,6 @@ class CompositeSearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> c1Type;
@@ -5325,7 +4985,6 @@ class CompositeSearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.c1Type = const Value.absent(),
@@ -5352,7 +5011,6 @@ class CompositeSearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String c1Type,
@@ -5377,7 +5035,6 @@ class CompositeSearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
         c1Type = Value(c1Type),
         c2Type = Value(c2Type);
@@ -5385,7 +5042,6 @@ class CompositeSearchParametersCompanion
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? c1Type,
@@ -5412,7 +5068,6 @@ class CompositeSearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (c1Type != null) 'c1_type': c1Type,
@@ -5441,7 +5096,6 @@ class CompositeSearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? c1Type,
@@ -5467,7 +5121,6 @@ class CompositeSearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       c1Type: c1Type ?? this.c1Type,
@@ -5503,9 +5156,6 @@ class CompositeSearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -5579,7 +5229,6 @@ class CompositeSearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('c1Type: $c1Type, ')
@@ -5629,12 +5278,6 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _searchPathMeta =
-      const VerificationMeta('searchPath');
-  @override
-  late final GeneratedColumn<String> searchPath = GeneratedColumn<String>(
-      'search_path', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _searchNameMeta =
       const VerificationMeta('searchName');
   @override
@@ -5672,7 +5315,6 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
         resourceType,
         id,
         lastUpdated,
-        searchPath,
         searchName,
         paramIndex,
         specialValue,
@@ -5711,14 +5353,6 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
     }
-    if (data.containsKey('search_path')) {
-      context.handle(
-          _searchPathMeta,
-          searchPath.isAcceptableOrUnknown(
-              data['search_path']!, _searchPathMeta));
-    } else if (isInserting) {
-      context.missing(_searchPathMeta);
-    }
     if (data.containsKey('search_name')) {
       context.handle(
           _searchNameMeta,
@@ -5753,8 +5387,7 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey =>
-      {resourceType, id, searchPath, searchName, paramIndex};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
   SpecialSearchParameter map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -5765,8 +5398,6 @@ class $SpecialSearchParametersTable extends SpecialSearchParameters
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
-      searchPath: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}search_path'])!,
       searchName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}search_name'])!,
       paramIndex: attachedDatabase.typeMapping
@@ -5797,9 +5428,6 @@ class SpecialSearchParameter extends DataClass
   /// When the resource was last updated
   final int lastUpdated;
 
-  /// FHIRPath expression identifying the source field
-  final String searchPath;
-
   /// HTTP search parameter name (e.g., 'monitoring-program-name')
   final String searchName;
 
@@ -5818,7 +5446,6 @@ class SpecialSearchParameter extends DataClass
       {required this.resourceType,
       required this.id,
       required this.lastUpdated,
-      required this.searchPath,
       required this.searchName,
       required this.paramIndex,
       required this.specialValue,
@@ -5830,7 +5457,6 @@ class SpecialSearchParameter extends DataClass
     map['resource_type'] = Variable<String>(resourceType);
     map['id'] = Variable<String>(id);
     map['last_updated'] = Variable<int>(lastUpdated);
-    map['search_path'] = Variable<String>(searchPath);
     map['search_name'] = Variable<String>(searchName);
     map['param_index'] = Variable<int>(paramIndex);
     map['special_value'] = Variable<String>(specialValue);
@@ -5848,7 +5474,6 @@ class SpecialSearchParameter extends DataClass
       resourceType: Value(resourceType),
       id: Value(id),
       lastUpdated: Value(lastUpdated),
-      searchPath: Value(searchPath),
       searchName: Value(searchName),
       paramIndex: Value(paramIndex),
       specialValue: Value(specialValue),
@@ -5868,7 +5493,6 @@ class SpecialSearchParameter extends DataClass
       resourceType: serializer.fromJson<String>(json['resourceType']),
       id: serializer.fromJson<String>(json['id']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
-      searchPath: serializer.fromJson<String>(json['searchPath']),
       searchName: serializer.fromJson<String>(json['searchName']),
       paramIndex: serializer.fromJson<int>(json['paramIndex']),
       specialValue: serializer.fromJson<String>(json['specialValue']),
@@ -5883,7 +5507,6 @@ class SpecialSearchParameter extends DataClass
       'resourceType': serializer.toJson<String>(resourceType),
       'id': serializer.toJson<String>(id),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
-      'searchPath': serializer.toJson<String>(searchPath),
       'searchName': serializer.toJson<String>(searchName),
       'paramIndex': serializer.toJson<int>(paramIndex),
       'specialValue': serializer.toJson<String>(specialValue),
@@ -5896,7 +5519,6 @@ class SpecialSearchParameter extends DataClass
           {String? resourceType,
           String? id,
           int? lastUpdated,
-          String? searchPath,
           String? searchName,
           int? paramIndex,
           String? specialValue,
@@ -5906,7 +5528,6 @@ class SpecialSearchParameter extends DataClass
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         lastUpdated: lastUpdated ?? this.lastUpdated,
-        searchPath: searchPath ?? this.searchPath,
         searchName: searchName ?? this.searchName,
         paramIndex: paramIndex ?? this.paramIndex,
         specialValue: specialValue ?? this.specialValue,
@@ -5922,8 +5543,6 @@ class SpecialSearchParameter extends DataClass
       id: data.id.present ? data.id.value : this.id,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
-      searchPath:
-          data.searchPath.present ? data.searchPath.value : this.searchPath,
       searchName:
           data.searchName.present ? data.searchName.value : this.searchName,
       paramIndex:
@@ -5942,7 +5561,6 @@ class SpecialSearchParameter extends DataClass
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('specialValue: $specialValue, ')
@@ -5953,8 +5571,8 @@ class SpecialSearchParameter extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchPath,
-      searchName, paramIndex, specialValue, latitude, longitude);
+  int get hashCode => Object.hash(resourceType, id, lastUpdated, searchName,
+      paramIndex, specialValue, latitude, longitude);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -5962,7 +5580,6 @@ class SpecialSearchParameter extends DataClass
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.lastUpdated == this.lastUpdated &&
-          other.searchPath == this.searchPath &&
           other.searchName == this.searchName &&
           other.paramIndex == this.paramIndex &&
           other.specialValue == this.specialValue &&
@@ -5975,7 +5592,6 @@ class SpecialSearchParametersCompanion
   final Value<String> resourceType;
   final Value<String> id;
   final Value<int> lastUpdated;
-  final Value<String> searchPath;
   final Value<String> searchName;
   final Value<int> paramIndex;
   final Value<String> specialValue;
@@ -5986,7 +5602,6 @@ class SpecialSearchParametersCompanion
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.lastUpdated = const Value.absent(),
-    this.searchPath = const Value.absent(),
     this.searchName = const Value.absent(),
     this.paramIndex = const Value.absent(),
     this.specialValue = const Value.absent(),
@@ -5998,7 +5613,6 @@ class SpecialSearchParametersCompanion
     required String resourceType,
     required String id,
     required int lastUpdated,
-    required String searchPath,
     this.searchName = const Value.absent(),
     required int paramIndex,
     required String specialValue,
@@ -6008,14 +5622,12 @@ class SpecialSearchParametersCompanion
   })  : resourceType = Value(resourceType),
         id = Value(id),
         lastUpdated = Value(lastUpdated),
-        searchPath = Value(searchPath),
         paramIndex = Value(paramIndex),
         specialValue = Value(specialValue);
   static Insertable<SpecialSearchParameter> custom({
     Expression<String>? resourceType,
     Expression<String>? id,
     Expression<int>? lastUpdated,
-    Expression<String>? searchPath,
     Expression<String>? searchName,
     Expression<int>? paramIndex,
     Expression<String>? specialValue,
@@ -6027,7 +5639,6 @@ class SpecialSearchParametersCompanion
       if (resourceType != null) 'resource_type': resourceType,
       if (id != null) 'id': id,
       if (lastUpdated != null) 'last_updated': lastUpdated,
-      if (searchPath != null) 'search_path': searchPath,
       if (searchName != null) 'search_name': searchName,
       if (paramIndex != null) 'param_index': paramIndex,
       if (specialValue != null) 'special_value': specialValue,
@@ -6041,7 +5652,6 @@ class SpecialSearchParametersCompanion
       {Value<String>? resourceType,
       Value<String>? id,
       Value<int>? lastUpdated,
-      Value<String>? searchPath,
       Value<String>? searchName,
       Value<int>? paramIndex,
       Value<String>? specialValue,
@@ -6052,7 +5662,6 @@ class SpecialSearchParametersCompanion
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      searchPath: searchPath ?? this.searchPath,
       searchName: searchName ?? this.searchName,
       paramIndex: paramIndex ?? this.paramIndex,
       specialValue: specialValue ?? this.specialValue,
@@ -6073,9 +5682,6 @@ class SpecialSearchParametersCompanion
     }
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
-    }
-    if (searchPath.present) {
-      map['search_path'] = Variable<String>(searchPath.value);
     }
     if (searchName.present) {
       map['search_name'] = Variable<String>(searchName.value);
@@ -6104,7 +5710,6 @@ class SpecialSearchParametersCompanion
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('lastUpdated: $lastUpdated, ')
-          ..write('searchPath: $searchPath, ')
           ..write('searchName: $searchName, ')
           ..write('paramIndex: $paramIndex, ')
           ..write('specialValue: $specialValue, ')
@@ -7286,7 +6891,6 @@ typedef $$StringSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   required String stringValue,
@@ -7298,7 +6902,6 @@ typedef $$StringSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> stringValue,
@@ -7323,9 +6926,6 @@ class $$StringSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -7359,9 +6959,6 @@ class $$StringSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -7392,9 +6989,6 @@ class $$StringSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -7443,7 +7037,6 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> stringValue = const Value.absent(),
@@ -7454,7 +7047,6 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             stringValue: stringValue,
@@ -7465,7 +7057,6 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String stringValue,
@@ -7476,7 +7067,6 @@ class $$StringSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             stringValue: stringValue,
@@ -7512,7 +7102,6 @@ typedef $$TokenSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   Value<String?> tokenSystem,
@@ -7525,7 +7114,6 @@ typedef $$TokenSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String?> tokenSystem,
@@ -7551,9 +7139,6 @@ class $$TokenSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -7590,9 +7175,6 @@ class $$TokenSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -7627,9 +7209,6 @@ class $$TokenSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -7681,7 +7260,6 @@ class $$TokenSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String?> tokenSystem = const Value.absent(),
@@ -7693,7 +7271,6 @@ class $$TokenSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             tokenSystem: tokenSystem,
@@ -7705,7 +7282,6 @@ class $$TokenSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             Value<String?> tokenSystem = const Value.absent(),
@@ -7717,7 +7293,6 @@ class $$TokenSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             tokenSystem: tokenSystem,
@@ -7754,7 +7329,6 @@ typedef $$ReferenceSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   Value<String?> referenceValue,
@@ -7771,7 +7345,6 @@ typedef $$ReferenceSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String?> referenceValue,
@@ -7801,9 +7374,6 @@ class $$ReferenceSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -7859,9 +7429,6 @@ class $$ReferenceSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -7914,9 +7481,6 @@ class $$ReferenceSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -7980,7 +7544,6 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String?> referenceValue = const Value.absent(),
@@ -7996,7 +7559,6 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             referenceValue: referenceValue,
@@ -8012,7 +7574,6 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             Value<String?> referenceValue = const Value.absent(),
@@ -8028,7 +7589,6 @@ class $$ReferenceSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             referenceValue: referenceValue,
@@ -8069,7 +7629,6 @@ typedef $$DateSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   required String dateString,
@@ -8082,7 +7641,6 @@ typedef $$DateSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> dateString,
@@ -8108,9 +7666,6 @@ class $$DateSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -8147,9 +7702,6 @@ class $$DateSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -8184,9 +7736,6 @@ class $$DateSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -8236,7 +7785,6 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> dateString = const Value.absent(),
@@ -8248,7 +7796,6 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             dateString: dateString,
@@ -8260,7 +7807,6 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String dateString,
@@ -8272,7 +7818,6 @@ class $$DateSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             dateString: dateString,
@@ -8309,7 +7854,6 @@ typedef $$NumberSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   Value<double?> numberValue,
@@ -8322,7 +7866,6 @@ typedef $$NumberSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<double?> numberValue,
@@ -8348,9 +7891,6 @@ class $$NumberSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -8387,9 +7927,6 @@ class $$NumberSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -8423,9 +7960,6 @@ class $$NumberSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -8477,7 +8011,6 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<double?> numberValue = const Value.absent(),
@@ -8489,7 +8022,6 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             numberValue: numberValue,
@@ -8501,7 +8033,6 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             Value<double?> numberValue = const Value.absent(),
@@ -8513,7 +8044,6 @@ class $$NumberSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             numberValue: numberValue,
@@ -8550,7 +8080,6 @@ typedef $$QuantitySearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   Value<double?> quantityValue,
@@ -8566,7 +8095,6 @@ typedef $$QuantitySearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<double?> quantityValue,
@@ -8595,9 +8123,6 @@ class $$QuantitySearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -8643,9 +8168,6 @@ class $$QuantitySearchParametersTableOrderingComposer
 
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
-
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
@@ -8694,9 +8216,6 @@ class $$QuantitySearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -8757,7 +8276,6 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<double?> quantityValue = const Value.absent(),
@@ -8772,7 +8290,6 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             quantityValue: quantityValue,
@@ -8787,7 +8304,6 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             Value<double?> quantityValue = const Value.absent(),
@@ -8802,7 +8318,6 @@ class $$QuantitySearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             quantityValue: quantityValue,
@@ -8842,7 +8357,6 @@ typedef $$UriSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   required String uriValue,
@@ -8853,7 +8367,6 @@ typedef $$UriSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> uriValue,
@@ -8877,9 +8390,6 @@ class $$UriSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -8910,9 +8420,6 @@ class $$UriSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -8940,9 +8447,6 @@ class $$UriSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -8986,7 +8490,6 @@ class $$UriSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> uriValue = const Value.absent(),
@@ -8996,7 +8499,6 @@ class $$UriSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             uriValue: uriValue,
@@ -9006,7 +8508,6 @@ class $$UriSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String uriValue,
@@ -9016,7 +8517,6 @@ class $$UriSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             uriValue: uriValue,
@@ -9049,7 +8549,6 @@ typedef $$CompositeSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   required String c1Type,
@@ -9077,7 +8576,6 @@ typedef $$CompositeSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> c1Type,
@@ -9118,9 +8616,6 @@ class $$CompositeSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -9202,9 +8697,6 @@ class $$CompositeSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -9283,9 +8775,6 @@ class $$CompositeSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -9382,7 +8871,6 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> c1Type = const Value.absent(),
@@ -9409,7 +8897,6 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             c1Type: c1Type,
@@ -9436,7 +8923,6 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String c1Type,
@@ -9463,7 +8949,6 @@ class $$CompositeSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             c1Type: c1Type,
@@ -9515,7 +9000,6 @@ typedef $$SpecialSearchParametersTableCreateCompanionBuilder
   required String resourceType,
   required String id,
   required int lastUpdated,
-  required String searchPath,
   Value<String> searchName,
   required int paramIndex,
   required String specialValue,
@@ -9528,7 +9012,6 @@ typedef $$SpecialSearchParametersTableUpdateCompanionBuilder
   Value<String> resourceType,
   Value<String> id,
   Value<int> lastUpdated,
-  Value<String> searchPath,
   Value<String> searchName,
   Value<int> paramIndex,
   Value<String> specialValue,
@@ -9554,9 +9037,6 @@ class $$SpecialSearchParametersTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
-
-  ColumnFilters<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnFilters(column));
@@ -9593,9 +9073,6 @@ class $$SpecialSearchParametersTableOrderingComposer
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => ColumnOrderings(column));
-
   ColumnOrderings<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => ColumnOrderings(column));
 
@@ -9630,9 +9107,6 @@ class $$SpecialSearchParametersTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
-
-  GeneratedColumn<String> get searchPath => $composableBuilder(
-      column: $table.searchPath, builder: (column) => column);
 
   GeneratedColumn<String> get searchName => $composableBuilder(
       column: $table.searchName, builder: (column) => column);
@@ -9684,7 +9158,6 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             Value<String> resourceType = const Value.absent(),
             Value<String> id = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
-            Value<String> searchPath = const Value.absent(),
             Value<String> searchName = const Value.absent(),
             Value<int> paramIndex = const Value.absent(),
             Value<String> specialValue = const Value.absent(),
@@ -9696,7 +9169,6 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             specialValue: specialValue,
@@ -9708,7 +9180,6 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             required String resourceType,
             required String id,
             required int lastUpdated,
-            required String searchPath,
             Value<String> searchName = const Value.absent(),
             required int paramIndex,
             required String specialValue,
@@ -9720,7 +9191,6 @@ class $$SpecialSearchParametersTableTableManager extends RootTableManager<
             resourceType: resourceType,
             id: id,
             lastUpdated: lastUpdated,
-            searchPath: searchPath,
             searchName: searchName,
             paramIndex: paramIndex,
             specialValue: specialValue,
