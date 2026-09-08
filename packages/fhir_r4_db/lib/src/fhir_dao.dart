@@ -486,36 +486,88 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   ///
   /// [since] keeps the versions written after that instant (`_since`); [at]
   /// returns the one version that was current at that instant (`_at`), or
-  /// nothing if the resource did not exist yet.
+  /// nothing if the resource did not exist yet. [count] and [offset] cut the
+  /// page in SQL; [countHistory] gives the total. Reading and parsing the
+  /// whole history to page it in Dart is what this replaces (fhirant
+  /// REVIEW-2026-09-06 finding 36).
   Future<List<HistoryEntry>> getHistory(
     fhir.R4ResourceType resourceType,
     String id, {
     DateTime? since,
     DateTime? at,
+    int? count,
+    int? offset,
   }) async {
-    final resourceTypeString = resourceType.toString();
     final query = select(resourcesHistory)
-      ..where((tbl) {
-        var cond =
-            tbl.resourceType.equals(resourceTypeString) & tbl.id.equals(id);
-        if (at != null) {
-          cond = cond &
-              tbl.lastUpdated.isSmallerOrEqualValue(at.millisecondsSinceEpoch);
-        } else if (since != null) {
-          cond = cond &
-              tbl.lastUpdated.isBiggerThanValue(since.millisecondsSinceEpoch);
-        }
-        return cond;
-      })
+      ..where((tbl) => _historyOf(tbl, resourceType.toString(), id, since, at))
       ..orderBy([
         (tbl) => OrderingTerm.desc(tbl.lastUpdated),
         (tbl) => OrderingTerm.desc(tbl.versionId),
       ]);
     if (at != null) {
       query.limit(1);
+    } else if (count != null) {
+      query.limit(count, offset: offset);
+    } else if (offset != null && offset > 0) {
+      query.limit(-1, offset: offset);
     }
     final rows = await query.get();
     return [for (final row in rows) HistoryEntry.fromRow(row)];
+  }
+
+  /// How many versions [getHistory] would return without a page.
+  Future<int> countHistory(
+    fhir.R4ResourceType resourceType,
+    String id, {
+    DateTime? since,
+    DateTime? at,
+  }) async {
+    if (at != null) {
+      return (await getHistory(resourceType, id, at: at)).length;
+    }
+    final h = resourcesHistory;
+    final total = h.id.count();
+    final row = await (selectOnly(h)
+          ..addColumns([total])
+          ..where(_historyOf(h, resourceType.toString(), id, since, at)))
+        .getSingle();
+    return row.read(total) ?? 0;
+  }
+
+  /// One version of one resource, by its key, or null. A tombstone is an
+  /// entry with [HistoryEntry.deleted] set.
+  Future<HistoryEntry?> getVersion(
+    fhir.R4ResourceType resourceType,
+    String id,
+    String versionId,
+  ) async {
+    final row = await (select(resourcesHistory)
+          ..where(
+            (tbl) =>
+                tbl.resourceType.equals(resourceType.toString()) &
+                tbl.id.equals(id) &
+                tbl.versionId.equals(versionId),
+          ))
+        .getSingleOrNull();
+    return row == null ? null : HistoryEntry.fromRow(row);
+  }
+
+  Expression<bool> _historyOf(
+    $ResourcesHistoryTable tbl,
+    String resourceType,
+    String id,
+    DateTime? since,
+    DateTime? at,
+  ) {
+    var cond = tbl.resourceType.equals(resourceType) & tbl.id.equals(id);
+    if (at != null) {
+      cond = cond &
+          tbl.lastUpdated.isSmallerOrEqualValue(at.millisecondsSinceEpoch);
+    } else if (since != null) {
+      cond = cond &
+          tbl.lastUpdated.isBiggerThanValue(since.millisecondsSinceEpoch);
+    }
+    return cond;
   }
 
   /// Check if a resource exists.

@@ -366,6 +366,70 @@ Future<void> main() async {
     });
   });
 
+  group('history paged and counted in SQL, a version by key (finding 36)', () {
+    final p = Patient.fromJson({'resourceType': 'Patient', 'id': 'h'});
+    setUp(() async {
+      for (var i = 0; i < 5; i++) {
+        await dao.saveResource(p);
+      }
+      await dao.deleteResource(R4ResourceType.Patient, 'h');
+    });
+
+    test('a page of the history, newest first, and the total', () async {
+      final page = await dao.getHistory(
+        R4ResourceType.Patient,
+        'h',
+        count: 2,
+        offset: 1,
+      );
+      expect(page.map((e) => e.versionId).toList(), ['5', '4']);
+      expect(await dao.countHistory(R4ResourceType.Patient, 'h'), 6);
+      final last = await dao.getHistory(
+        R4ResourceType.Patient,
+        'h',
+        count: 4,
+        offset: 4,
+      );
+      expect(last.map((e) => e.versionId).toList(), ['2', '1']);
+    });
+
+    test('one version by key, including the tombstone', () async {
+      final v3 = await dao.getVersion(R4ResourceType.Patient, 'h', '3');
+      expect(v3!.resource!.meta!.versionId!.valueString, '3');
+      expect(v3.deleted, isFalse);
+      final v6 = await dao.getVersion(R4ResourceType.Patient, 'h', '6');
+      expect(v6!.deleted, isTrue);
+      expect(v6.resource, isNull);
+      expect(await dao.getVersion(R4ResourceType.Patient, 'h', '7'), isNull);
+    });
+
+    test('_since and _at page and count the same way', () async {
+      final all = await dao.getHistory(R4ResourceType.Patient, 'h');
+      final since = all[3].lastUpdated;
+      final after =
+          await dao.getHistory(R4ResourceType.Patient, 'h', since: since);
+      expect(
+        after.length,
+        await dao.countHistory(R4ResourceType.Patient, 'h', since: since),
+      );
+      expect(after.every((e) => e.lastUpdated.isAfter(since)), isTrue);
+      final at = await dao.getHistory(
+        R4ResourceType.Patient,
+        'h',
+        at: all.first.lastUpdated,
+      );
+      expect(at, hasLength(1));
+      expect(
+        await dao.countHistory(
+          R4ResourceType.Patient,
+          'h',
+          at: all.first.lastUpdated,
+        ),
+        1,
+      );
+    });
+  });
+
   group('version check inside the write (finding 30)', () {
     final p = Patient.fromJson({'resourceType': 'Patient', 'id': 'cas'});
 
