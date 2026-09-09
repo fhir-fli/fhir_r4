@@ -134,7 +134,7 @@ void main() {
       'INSERT INTO resources_history (resource_type, id, version_id, '
       "resource, last_updated, deleted) VALUES ('Patient', 'old', '2', "
       "'{\"resourceType\":\"Patient\",\"id\":\"old\","
-      "\"meta\":{\"versionId\":\"2\",\"tag\":[{\"system\":"
+      '"meta":{"versionId":"2","tag":[{"system":'
       "\"${HistoryEntry.deletedTagSystem}\",\"code\":\"DELETED\"}]}}', "
       '1, 0)',
     );
@@ -142,7 +142,7 @@ void main() {
       'INSERT INTO resources_history (resource_type, id, version_id, '
       "resource, last_updated, deleted) VALUES ('Patient', 'alive', '1', "
       "'{\"resourceType\":\"Patient\",\"id\":\"alive\","
-      "\"meta\":{\"versionId\":\"1\",\"tag\":[{\"system\":"
+      '"meta":{"versionId":"1","tag":[{"system":'
       "\"http://example.org\",\"code\":\"DELETED\"}]}}', "
       '1, 0)',
     );

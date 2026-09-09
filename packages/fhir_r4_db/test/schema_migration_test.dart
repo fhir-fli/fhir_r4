@@ -611,7 +611,7 @@ void main() {
       await db.customSelect('PRAGMA user_version').getSingle().then(
             (r) => r.read<int>('user_version'),
           ),
-      12,
+      db.schemaVersion,
     );
     await db.close();
   });
