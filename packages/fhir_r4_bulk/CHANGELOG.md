@@ -1,5 +1,10 @@
 # fhir_r4_bulk
 
+## [Unreleased]
+
+- **Streaming NDJSON: `NdjsonStream.lines` (from a byte stream, chunked anyhow), `resources`, `encode` and `write` (to a sink, flushing every N lines).** The list-shaped `FhirBulk` helpers stay; they hold a whole file, which a server export cannot (fhirant REVIEW-2026-09-06 finding 34: 813k Observations as a list 5.1 GB, streamed 741 MB).
+- **Bulk Data Access IG 2.0.0 models a client and a server both read**: `BulkExportKickoff` (from a query map or a POSTed `Parameters`; repeated and comma-delimited values are one list, as export.html requires), `TypeFilter`, `BulkExportFile`, `BulkExportManifest` (checked against export.html's own example response body), `bulkOutputFormats`. The client now reads the complete-status body through `BulkExportManifest`.
+
 ## [0.12.0]
 
 - No code changes; version aligned with the fhir_r4 0.12.0 family release

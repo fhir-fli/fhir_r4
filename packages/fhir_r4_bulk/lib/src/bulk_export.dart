@@ -337,6 +337,12 @@ abstract class BulkRequest {
       );
     }
 
+    // The `output` array of the complete-status manifest, item by item
+    // through BulkExportFile. Item by item rather than the whole body
+    // through BulkExportManifest, whose required fields (transactionTime,
+    // request, requiresAccessToken, error) a client has no use for here and
+    // some servers leave out; a file item without a url is reported and the
+    // rest are still fetched.
     final output = decoded['output'] as List<dynamic>? ?? <dynamic>[];
     if (output.isEmpty) {
       // no resources
@@ -347,7 +353,10 @@ abstract class BulkRequest {
     final httpClient = client ?? Client();
 
     for (final dynamic item in output) {
-      if (item is! Map<String, dynamic>) {
+      final BulkExportFile file;
+      try {
+        file = BulkExportFile.fromJson(item as Map<String, dynamic>);
+      } catch (e) {
         results.addAll(
           _operationOutcome(
             'Invalid output item in final response',
@@ -356,14 +365,8 @@ abstract class BulkRequest {
         );
         continue;
       }
-      final url = item['url'];
-      if (url == null || url.toString().isEmpty) {
-        results.addAll(
-          _operationOutcome('Missing or empty "url" in output array.'),
-        );
-        continue;
-      }
-      final uri = Uri.tryParse(url.toString());
+      final url = file.url;
+      final uri = Uri.tryParse(url);
       if (uri == null) {
         results.addAll(_operationOutcome('Invalid URL: $url'));
         continue;
