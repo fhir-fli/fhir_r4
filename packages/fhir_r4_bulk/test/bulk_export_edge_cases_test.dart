@@ -124,8 +124,8 @@ void main() {
     });
 
     test(
-        '_since with an offset is percent-encoded (fhirant REVIEW-2026-09-08 row 41)',
-        () async {
+        '_since with an offset is percent-encoded '
+        '(fhirant REVIEW-2026-09-08 row 41)', () async {
       String? capturedUrl;
       final mockClient = MockClient((request) async {
         capturedUrl = request.url.toString();
