@@ -282,8 +282,7 @@ Future<void> main() async {
       );
     });
 
-    test('recordHistory: false writes no first-version history row',
-        () async {
+    test('recordHistory: false writes no first-version history row', () async {
       final p = Patient.fromJson({'resourceType': 'Patient', 'id': 'spec'});
       expect(await dao.saveResources([p], recordHistory: false), isTrue);
       final stored = await dao.getResource(R4ResourceType.Patient, 'spec');

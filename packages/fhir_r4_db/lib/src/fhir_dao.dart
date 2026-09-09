@@ -4469,14 +4469,16 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       compositeSearchParameters,
       specialSearchParameters,
     ]) {
+      // By name, on the owner index. This used to select on `search_path`,
+      // a column no index table has had since schema 10, so any `:missing`
+      // that reached this path was a SQL error and the server's 500
+      // (fhirant REVIEW-2026-09-08 row 33).
       final rows = await customSelect(
         'SELECT DISTINCT id FROM ${table.entityName} '
-        'WHERE resource_type = ? AND ( '
-        'search_path LIKE ? OR search_path LIKE ?)',
+        'WHERE resource_type = ? AND search_name = ?',
         variables: [
           Variable.withString(resourceType),
-          Variable.withString('$resourceType.$paramName'),
-          Variable.withString('$resourceType.%.$paramName'),
+          Variable.withString(paramName),
         ],
         readsFrom: {table},
       ).get();

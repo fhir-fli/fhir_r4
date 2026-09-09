@@ -49,7 +49,10 @@ Future<void> main() async {
         'resourceType': 'Patient',
         'id': 'p1-linked',
         'link': [
-          {'other': {'reference': 'Patient/p1'}, 'type': 'seealso'},
+          {
+            'other': {'reference': 'Patient/p1'},
+            'type': 'seealso'
+          },
         ],
       }),
     );
@@ -128,26 +131,34 @@ Future<void> main() async {
 
   test('the compartment ANDs with the query', () async {
     expect(
-      await ids(R4ResourceType.Observation, params: {'code': ['B']}),
+      await ids(R4ResourceType.Observation, params: {
+        'code': ['B']
+      }),
       ['o-performer'],
     );
     expect(dao.lastSearchPagedInSql, isTrue);
     // A parameter that matches outside the compartment finds nothing inside.
     expect(
-      await ids(R4ResourceType.Observation, params: {'_id': ['o-other']}),
+      await ids(R4ResourceType.Observation, params: {
+        '_id': ['o-other']
+      }),
       isEmpty,
     );
   });
 
   test('a comma, which takes the general path, is still scoped', () async {
     expect(
-      await ids(R4ResourceType.Observation, params: {'code': ['A,B']}),
+      await ids(R4ResourceType.Observation, params: {
+        'code': ['A,B']
+      }),
       ['o-both', 'o-performer', 'o-subject'],
     );
     expect(
       await ids(
         R4ResourceType.Observation,
-        params: {'code:not': ['B']},
+        params: {
+          'code:not': ['B']
+        },
       ),
       ['o-both', 'o-subject'],
     );
@@ -156,7 +167,9 @@ Future<void> main() async {
   test('the focal type: the focal resource and any linked to it', () async {
     expect(await ids(R4ResourceType.Patient), ['p1', 'p1-linked']);
     expect(
-      await ids(R4ResourceType.Patient, params: {'_id': ['p1-linked']}),
+      await ids(R4ResourceType.Patient, params: {
+        '_id': ['p1-linked']
+      }),
       ['p1-linked'],
     );
   });
@@ -205,7 +218,9 @@ Future<void> main() async {
     expect(
       await dao.searchCount(
         resourceType: R4ResourceType.Observation,
-        searchParameters: {'code': ['B']},
+        searchParameters: {
+          'code': ['B']
+        },
         compartment: p1,
       ),
       1,
@@ -213,7 +228,9 @@ Future<void> main() async {
     expect(
       await dao.searchCount(
         resourceType: R4ResourceType.Observation,
-        searchParameters: {'code': ['A,B']},
+        searchParameters: {
+          'code': ['A,B']
+        },
         compartment: p1,
       ),
       3,
@@ -250,8 +267,7 @@ Future<void> main() async {
   test('compartmentMembers honours types and since', () async {
     final only = await dao.compartmentMembers(p1, types: ['Encounter']);
     expect(only.keys, ['Encounter']);
-    final future =
-        await dao.compartmentMembers(p1, since: DateTime(2200));
+    final future = await dao.compartmentMembers(p1, since: DateTime(2200));
     expect(future, isEmpty, reason: 'nothing was updated after 2200');
     final past = await dao.compartmentMembers(p1, since: DateTime(2000));
     expect(past['Observation'], hasLength(3));

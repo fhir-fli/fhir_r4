@@ -411,7 +411,13 @@ class FhirDb extends _$FhirDb {
         } catch (_) {
           continue;
         }
-        final extracted = updateSearchParameters(resource);
+        // The same extractor `FhirDao.saveResource` indexes with: the
+        // resource's own rows AND the `#Type` rows of what it contains. The
+        // rebuild used `updateSearchParameters` alone, so every schema
+        // upgrade that rebuilt dropped the contained rows and a chained
+        // search into a contained resource answered nothing until the
+        // container was re-saved (fhirant REVIEW-2026-09-08 row 34).
+        final extracted = extractWithContained(resource);
         lists
           ..stringParams.addAll(extracted.stringParams)
           ..tokenParams.addAll(extracted.tokenParams)
