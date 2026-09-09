@@ -88,4 +88,73 @@ void main() {
     expect(await ids('true'), ['b']);
     expect(await ids('false'), ['a']);
   });
+
+  test(
+      'row 36: a live resource carrying the tombstone tag is not deleted, '
+      'a deleted one is', () async {
+    await db.fhirDao.saveResource(
+      fhir.Patient(
+        id: 'tagged'.toFhirString,
+        meta: fhir.FhirMeta(
+          tag: [
+            fhir.Coding(
+              system: fhir.FhirUri(HistoryEntry.deletedTagSystem),
+              code: fhir.FhirCode('DELETED'),
+            ),
+          ],
+        ),
+      ),
+    );
+    final live =
+        await db.fhirDao.getHistory(fhir.R4ResourceType.Patient, 'tagged');
+    expect(live.single.deleted, isFalse);
+    expect(live.single.resource, isNotNull);
+
+    await db.fhirDao.saveResource(fhir.Patient(id: 'gone'.toFhirString));
+    await db.fhirDao.deleteResource(fhir.R4ResourceType.Patient, 'gone');
+    final versions =
+        await db.fhirDao.getHistory(fhir.R4ResourceType.Patient, 'gone');
+    expect(versions.first.deleted, isTrue);
+    expect(versions.first.resource, isNull);
+    expect(versions.last.deleted, isFalse);
+    final flag = await db
+        .customSelect(
+          "SELECT deleted FROM resources_history WHERE id = 'gone' "
+          'ORDER BY version_id',
+        )
+        .get();
+    expect(flag.map((r) => r.read<bool>('deleted')).toList(), [false, true]);
+  });
+
+  test('row 36: the upgrade back-fills the flag from the old tombstone JSON',
+      () async {
+    // A tombstone written before schema 13: the tag in the JSON and the
+    // flag at its default. The migration step sets the flag from the tag.
+    await db.customStatement(
+      'INSERT INTO resources_history (resource_type, id, version_id, '
+      "resource, last_updated, deleted) VALUES ('Patient', 'old', '2', "
+      "'{\"resourceType\":\"Patient\",\"id\":\"old\","
+      "\"meta\":{\"versionId\":\"2\",\"tag\":[{\"system\":"
+      "\"${HistoryEntry.deletedTagSystem}\",\"code\":\"DELETED\"}]}}', "
+      '1, 0)',
+    );
+    await db.customStatement(
+      'INSERT INTO resources_history (resource_type, id, version_id, '
+      "resource, last_updated, deleted) VALUES ('Patient', 'alive', '1', "
+      "'{\"resourceType\":\"Patient\",\"id\":\"alive\","
+      "\"meta\":{\"versionId\":\"1\",\"tag\":[{\"system\":"
+      "\"http://example.org\",\"code\":\"DELETED\"}]}}', "
+      '1, 0)',
+    );
+    await db.addHistoryDeletedColumn();
+    final rows = await db
+        .customSelect(
+          'SELECT id, deleted FROM resources_history ORDER BY id',
+        )
+        .get();
+    expect(
+      {for (final r in rows) r.read<String>('id'): r.read<bool>('deleted')},
+      {'alive': false, 'old': true},
+    );
+  });
 }

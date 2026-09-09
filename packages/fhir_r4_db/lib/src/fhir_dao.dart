@@ -429,6 +429,7 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
             }),
           ),
           lastUpdated: Value(now.millisecondsSinceEpoch),
+          deleted: const Value(true),
         ),
       );
 
@@ -5438,21 +5439,17 @@ class HistoryEntry {
     required this.resource,
   });
 
-  /// Reads one `resources_history` row. A tombstone is recognised by the
-  /// DELETED tag the delete wrote (`meta.tag`, v3-ObservationValue); its JSON
-  /// is a skeleton with no content, so it is not parsed as the resource
-  /// type. Any other row is the resource at that version.
+  /// Reads one `resources_history` row. A tombstone is the row's own
+  /// `deleted` flag (schema 13); its JSON is a skeleton with no content, so
+  /// it is not parsed as the resource type. Any other row is the resource
+  /// at that version. The tombstone JSON still carries the DELETED tag for
+  /// a reader of the raw table, but a tag in a live resource no longer
+  /// makes it read as deleted (fhirant REVIEW-2026-09-08 row 36).
   factory HistoryEntry.fromRow(ResourcesHistoryData row) {
-    final json = jsonDecode(row.resource) as Map<String, dynamic>;
-    final meta = json['meta'];
-    final tags = meta is Map<String, dynamic> ? meta['tag'] : null;
-    final deleted = tags is List &&
-        tags.any(
-          (t) =>
-              t is Map<String, dynamic> &&
-              t['code'] == 'DELETED' &&
-              t['system'] == deletedTagSystem,
-        );
+    final deleted = row.deleted;
+    final json = deleted
+        ? const <String, dynamic>{}
+        : jsonDecode(row.resource) as Map<String, dynamic>;
     return HistoryEntry(
       resourceType: row.resourceType,
       id: row.id,

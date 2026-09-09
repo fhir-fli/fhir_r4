@@ -477,7 +477,7 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(12));
+    expect(version.data.values.first, equals(db.schemaVersion));
     await db.close();
   });
 
@@ -530,7 +530,7 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(12));
+    expect(version.data.values.first, equals(db.schemaVersion));
     await db.close();
   });
   test('a version-11 database stores its open date bounds as sentinels',
@@ -688,7 +688,7 @@ void main() {
       1,
     );
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.data.values.first, equals(12));
+    expect(version.data.values.first, equals(db.schemaVersion));
     await db.close();
   });
 }

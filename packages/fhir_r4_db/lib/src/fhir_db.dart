@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 12;
+  int get schemaVersion => 13;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -250,9 +250,38 @@ class FhirDb extends _$FhirDb {
           if (from < 12) {
             await storeOpenDateBoundsAsSentinels();
           }
+          if (from < 13) {
+            await addHistoryDeletedColumn();
+          }
         },
         beforeOpen: ensurePlannerStatistics,
       );
+
+  /// Schema 13: `resources_history.deleted`, the tombstone flag as its own
+  /// column, back-filled from the tombstone JSON every delete wrote until
+  /// now (`meta.tag` v3-ObservationValue|DELETED, read exactly with json1
+  /// rather than by substring). Public for the same reason as
+  /// [createValueIndexes]: a subclass with its own [migration] calls it from
+  /// there. Guarded, so a database created at this schema and stamped back
+  /// (the upgrade tests do that) is not altered twice.
+  Future<void> addHistoryDeletedColumn() async {
+    final columns =
+        await customSelect('PRAGMA table_info(resources_history)').get();
+    if (!columns.any((c) => c.read<String>('name') == 'deleted')) {
+      await customStatement(
+        'ALTER TABLE resources_history ADD COLUMN deleted INTEGER NOT NULL '
+        'DEFAULT 0',
+      );
+    }
+    await customStatement(
+      'UPDATE resources_history SET deleted = 1 WHERE deleted = 0 '
+      "AND resource LIKE '%DELETED%' AND EXISTS ( "
+      r"SELECT 1 FROM json_each(resources_history.resource, '$.meta.tag') t "
+      r"WHERE json_extract(t.value, '$.code') = 'DELETED' "
+      r"AND json_extract(t.value, '$.system') = "
+      "'http://terminology.hl7.org/CodeSystem/v3-ObservationValue')",
+    );
+  }
 
   /// Gives the query planner statistics that match the data, on every open.
   ///

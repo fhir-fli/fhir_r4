@@ -324,9 +324,19 @@ class $ResourcesHistoryTable extends ResourcesHistory
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _deletedMeta =
+      const VerificationMeta('deleted');
+  @override
+  late final GeneratedColumn<bool> deleted = GeneratedColumn<bool>(
+      'deleted', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("deleted" IN (0, 1))'),
+      defaultValue: const Constant(false));
   @override
   List<GeneratedColumn> get $columns =>
-      [resourceType, id, versionId, resource, lastUpdated];
+      [resourceType, id, versionId, resource, lastUpdated, deleted];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -371,6 +381,10 @@ class $ResourcesHistoryTable extends ResourcesHistory
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
     }
+    if (data.containsKey('deleted')) {
+      context.handle(_deletedMeta,
+          deleted.isAcceptableOrUnknown(data['deleted']!, _deletedMeta));
+    }
     return context;
   }
 
@@ -390,6 +404,8 @@ class $ResourcesHistoryTable extends ResourcesHistory
           .read(DriftSqlType.string, data['${effectivePrefix}resource'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
+      deleted: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}deleted'])!,
     );
   }
 
@@ -415,12 +431,20 @@ class ResourcesHistoryData extends DataClass
 
   /// When this version was last updated
   final int lastUpdated;
+
+  /// True for the tombstone a delete writes; false for a version of the
+  /// resource. Its own column (schema 13): a tombstone used to be told
+  /// apart by a `meta.tag` in the JSON, which is a client-writable field, so
+  /// a live resource stored carrying that tag read as deleted
+  /// (fhirant REVIEW-2026-09-08 row 36).
+  final bool deleted;
   const ResourcesHistoryData(
       {required this.resourceType,
       required this.id,
       required this.versionId,
       required this.resource,
-      required this.lastUpdated});
+      required this.lastUpdated,
+      required this.deleted});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -429,6 +453,7 @@ class ResourcesHistoryData extends DataClass
     map['version_id'] = Variable<String>(versionId);
     map['resource'] = Variable<String>(resource);
     map['last_updated'] = Variable<int>(lastUpdated);
+    map['deleted'] = Variable<bool>(deleted);
     return map;
   }
 
@@ -439,6 +464,7 @@ class ResourcesHistoryData extends DataClass
       versionId: Value(versionId),
       resource: Value(resource),
       lastUpdated: Value(lastUpdated),
+      deleted: Value(deleted),
     );
   }
 
@@ -451,6 +477,7 @@ class ResourcesHistoryData extends DataClass
       versionId: serializer.fromJson<String>(json['versionId']),
       resource: serializer.fromJson<String>(json['resource']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
+      deleted: serializer.fromJson<bool>(json['deleted']),
     );
   }
   @override
@@ -462,6 +489,7 @@ class ResourcesHistoryData extends DataClass
       'versionId': serializer.toJson<String>(versionId),
       'resource': serializer.toJson<String>(resource),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
+      'deleted': serializer.toJson<bool>(deleted),
     };
   }
 
@@ -470,13 +498,15 @@ class ResourcesHistoryData extends DataClass
           String? id,
           String? versionId,
           String? resource,
-          int? lastUpdated}) =>
+          int? lastUpdated,
+          bool? deleted}) =>
       ResourcesHistoryData(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         versionId: versionId ?? this.versionId,
         resource: resource ?? this.resource,
         lastUpdated: lastUpdated ?? this.lastUpdated,
+        deleted: deleted ?? this.deleted,
       );
   ResourcesHistoryData copyWithCompanion(ResourcesHistoryCompanion data) {
     return ResourcesHistoryData(
@@ -488,6 +518,7 @@ class ResourcesHistoryData extends DataClass
       resource: data.resource.present ? data.resource.value : this.resource,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
+      deleted: data.deleted.present ? data.deleted.value : this.deleted,
     );
   }
 
@@ -498,14 +529,15 @@ class ResourcesHistoryData extends DataClass
           ..write('id: $id, ')
           ..write('versionId: $versionId, ')
           ..write('resource: $resource, ')
-          ..write('lastUpdated: $lastUpdated')
+          ..write('lastUpdated: $lastUpdated, ')
+          ..write('deleted: $deleted')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode =>
-      Object.hash(resourceType, id, versionId, resource, lastUpdated);
+      Object.hash(resourceType, id, versionId, resource, lastUpdated, deleted);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -514,7 +546,8 @@ class ResourcesHistoryData extends DataClass
           other.id == this.id &&
           other.versionId == this.versionId &&
           other.resource == this.resource &&
-          other.lastUpdated == this.lastUpdated);
+          other.lastUpdated == this.lastUpdated &&
+          other.deleted == this.deleted);
 }
 
 class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
@@ -523,6 +556,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
   final Value<String> versionId;
   final Value<String> resource;
   final Value<int> lastUpdated;
+  final Value<bool> deleted;
   final Value<int> rowid;
   const ResourcesHistoryCompanion({
     this.resourceType = const Value.absent(),
@@ -530,6 +564,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
     this.versionId = const Value.absent(),
     this.resource = const Value.absent(),
     this.lastUpdated = const Value.absent(),
+    this.deleted = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ResourcesHistoryCompanion.insert({
@@ -538,6 +573,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
     required String versionId,
     required String resource,
     required int lastUpdated,
+    this.deleted = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
@@ -550,6 +586,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
     Expression<String>? versionId,
     Expression<String>? resource,
     Expression<int>? lastUpdated,
+    Expression<bool>? deleted,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -558,6 +595,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
       if (versionId != null) 'version_id': versionId,
       if (resource != null) 'resource': resource,
       if (lastUpdated != null) 'last_updated': lastUpdated,
+      if (deleted != null) 'deleted': deleted,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -568,6 +606,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
       Value<String>? versionId,
       Value<String>? resource,
       Value<int>? lastUpdated,
+      Value<bool>? deleted,
       Value<int>? rowid}) {
     return ResourcesHistoryCompanion(
       resourceType: resourceType ?? this.resourceType,
@@ -575,6 +614,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
       versionId: versionId ?? this.versionId,
       resource: resource ?? this.resource,
       lastUpdated: lastUpdated ?? this.lastUpdated,
+      deleted: deleted ?? this.deleted,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -597,6 +637,9 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
     }
+    if (deleted.present) {
+      map['deleted'] = Variable<bool>(deleted.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -611,6 +654,7 @@ class ResourcesHistoryCompanion extends UpdateCompanion<ResourcesHistoryData> {
           ..write('versionId: $versionId, ')
           ..write('resource: $resource, ')
           ..write('lastUpdated: $lastUpdated, ')
+          ..write('deleted: $deleted, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -2413,14 +2457,15 @@ class DateSearchParameter extends DataClass
   /// complex types, for anyone who needs the value as written.
   final String dateString;
 
-  /// The inclusive start of the value's range; null for a Period with no
-  /// start (before any date).
+  /// The inclusive start of the value's range; [beforeAnyDate] for a Period
+  /// with no start (schema 12; it was NULL, which made every prefix an OR
+  /// the index could not seek).
   final DateTime? dateValue;
 
   /// The EXCLUSIVE end of the value's range: the first instant after it. A
   /// date `2013-01-10` ends at `2013-01-11T00:00`; a dateTime to the second
-  /// ends one second later. Null for a Period with no end (ongoing), which
-  /// is after any date.
+  /// ends one second later. [afterAnyDate] for a Period with no end
+  /// (ongoing), schema 12.
   final DateTime? dateValueEnd;
   const DateSearchParameter(
       {required this.resourceType,
@@ -3408,11 +3453,13 @@ class QuantitySearchParameter extends DataClass
 
   /// The inclusive low bound of the value's range: a Quantity covers half
   /// a unit of its last significant digit either side (R4B 3.1.1.4.5); a
-  /// Range runs from its `low` (null when absent) to its `high`.
+  /// Range runs from its `low` to its `high`. A Range with no `low` is
+  /// stored as -infinity (schema 11; it was NULL, which made every prefix
+  /// an OR the index could not seek).
   final double? quantityLow;
 
-  /// The exclusive high bound of the value's range, null for a Range with
-  /// no `high`.
+  /// The exclusive high bound of the value's range; +infinity for a Range
+  /// with no `high` (schema 11).
   final double? quantityHigh;
 
   /// Unit (optional)
@@ -6719,6 +6766,7 @@ typedef $$ResourcesHistoryTableCreateCompanionBuilder
   required String versionId,
   required String resource,
   required int lastUpdated,
+  Value<bool> deleted,
   Value<int> rowid,
 });
 typedef $$ResourcesHistoryTableUpdateCompanionBuilder
@@ -6728,6 +6776,7 @@ typedef $$ResourcesHistoryTableUpdateCompanionBuilder
   Value<String> versionId,
   Value<String> resource,
   Value<int> lastUpdated,
+  Value<bool> deleted,
   Value<int> rowid,
 });
 
@@ -6754,6 +6803,9 @@ class $$ResourcesHistoryTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get deleted => $composableBuilder(
+      column: $table.deleted, builder: (column) => ColumnFilters(column));
 }
 
 class $$ResourcesHistoryTableOrderingComposer
@@ -6780,6 +6832,9 @@ class $$ResourcesHistoryTableOrderingComposer
 
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get deleted => $composableBuilder(
+      column: $table.deleted, builder: (column) => ColumnOrderings(column));
 }
 
 class $$ResourcesHistoryTableAnnotationComposer
@@ -6805,6 +6860,9 @@ class $$ResourcesHistoryTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
+
+  GeneratedColumn<bool> get deleted =>
+      $composableBuilder(column: $table.deleted, builder: (column) => column);
 }
 
 class $$ResourcesHistoryTableTableManager extends RootTableManager<
@@ -6838,6 +6896,7 @@ class $$ResourcesHistoryTableTableManager extends RootTableManager<
             Value<String> versionId = const Value.absent(),
             Value<String> resource = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
+            Value<bool> deleted = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesHistoryCompanion(
@@ -6846,6 +6905,7 @@ class $$ResourcesHistoryTableTableManager extends RootTableManager<
             versionId: versionId,
             resource: resource,
             lastUpdated: lastUpdated,
+            deleted: deleted,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -6854,6 +6914,7 @@ class $$ResourcesHistoryTableTableManager extends RootTableManager<
             required String versionId,
             required String resource,
             required int lastUpdated,
+            Value<bool> deleted = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesHistoryCompanion.insert(
@@ -6862,6 +6923,7 @@ class $$ResourcesHistoryTableTableManager extends RootTableManager<
             versionId: versionId,
             resource: resource,
             lastUpdated: lastUpdated,
+            deleted: deleted,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

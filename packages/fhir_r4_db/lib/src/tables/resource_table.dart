@@ -35,6 +35,13 @@ class ResourcesHistory extends Table {
   /// When this version was last updated
   IntColumn get lastUpdated => integer()();
 
+  /// True for the tombstone a delete writes; false for a version of the
+  /// resource. Its own column (schema 13): a tombstone used to be told
+  /// apart by a `meta.tag` in the JSON, which is a client-writable field, so
+  /// a live resource stored carrying that tag read as deleted
+  /// (fhirant REVIEW-2026-09-08 row 36).
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
+
   @override
   Set<Column> get primaryKey => {resourceType, id, versionId};
 }
