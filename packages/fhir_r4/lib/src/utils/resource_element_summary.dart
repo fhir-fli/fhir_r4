@@ -1,4 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from profiles-resources.json by
 // fhir_generator/lib/src/generate_element_summary.dart
@@ -46,7 +45,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'servicePeriod',
       'status',
       'subject',
-      'type'
+      'type',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -72,7 +71,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'doNotPerform', 'implicitRules', 'modifierExtension', 'status'},
@@ -91,7 +90,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'property',
       'routeOfAdministration',
       'status',
-      'unitOfPresentation'
+      'unitOfPresentation',
     },
     mandatory: {'routeOfAdministration', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -120,7 +119,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'study',
       'subject',
       'subjectMedicalHistory',
-      'suspectEntity'
+      'suspectEntity',
     },
     mandatory: {'actuality', 'subject'},
     modifier: {'actuality', 'implicitRules', 'modifierExtension'},
@@ -138,14 +137,14 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'patient',
       'type',
-      'verificationStatus'
+      'verificationStatus',
     },
     mandatory: {'patient'},
     modifier: {
       'clinicalStatus',
       'implicitRules',
       'modifierExtension',
-      'verificationStatus'
+      'verificationStatus',
     },
   ),
   'Appointment': ResourceElementSummary(
@@ -162,7 +161,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'serviceType',
       'specialty',
       'start',
-      'status'
+      'status',
     },
     mandatory: {'participant', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -176,7 +175,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'implicitRules',
       'meta',
       'participantStatus',
-      'participantType'
+      'participantType',
     },
     mandatory: {'appointment', 'participantStatus'},
     modifier: {'implicitRules', 'modifierExtension', 'participantStatus'},
@@ -192,7 +191,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'purposeOfEvent',
       'recorded',
       'subtype',
-      'type'
+      'type',
     },
     mandatory: {'agent', 'recorded', 'source', 'type'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -206,7 +205,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'identifier',
       'implicitRules',
       'meta',
-      'subject'
+      'subject',
     },
     mandatory: {'code'},
     modifier: {'code', 'implicitRules', 'modifierExtension'},
@@ -231,7 +230,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'location',
       'meta',
       'morphology',
-      'patient'
+      'patient',
     },
     mandatory: {'patient'},
     modifier: {'active', 'implicitRules', 'modifierExtension'},
@@ -247,7 +246,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'signature',
       'timestamp',
       'total',
-      'type'
+      'type',
     },
     mandatory: {'type'},
     modifier: {'implicitRules'},
@@ -279,7 +278,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'date', 'fhirVersion', 'format', 'kind', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -305,7 +304,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'replaces',
       'status',
       'subject',
-      'title'
+      'title',
     },
     mandatory: {'intent', 'status', 'subject'},
     modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
@@ -322,7 +321,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'name',
       'period',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -334,7 +333,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'implicitRules',
       'meta',
       'orderable',
-      'referencedItem'
+      'referencedItem',
     },
     mandatory: {'orderable', 'referencedItem'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -356,7 +355,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'occurrenceTiming',
       'quantity',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'code', 'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -382,7 +381,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status', 'url'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -404,7 +403,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -423,7 +422,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'provider',
       'status',
       'type',
-      'use'
+      'use',
     },
     mandatory: {
       'created',
@@ -433,7 +432,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'provider',
       'status',
       'type',
-      'use'
+      'use',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -450,7 +449,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'total',
       'type',
-      'use'
+      'use',
     },
     mandatory: {
       'created',
@@ -459,7 +458,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'patient',
       'status',
       'type',
-      'use'
+      'use',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -478,7 +477,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'problem',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -498,7 +497,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'subject',
       'type',
       'undesirableEffect',
-      'warning'
+      'warning',
     },
     mandatory: {'type'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -529,7 +528,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'useContext',
       'valueSet',
       'version',
-      'versionNeeded'
+      'versionNeeded',
     },
     mandatory: {'content', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -550,7 +549,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'reasonReference',
       'status',
       'statusReason',
-      'subject'
+      'subject',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -574,7 +573,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'replaces',
       'requester',
       'sender',
-      'status'
+      'status',
     },
     mandatory: {'status'},
     modifier: {'doNotPerform', 'implicitRules', 'modifierExtension', 'status'},
@@ -595,7 +594,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'code', 'name', 'search', 'status', 'url'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -616,7 +615,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'subject',
       'title',
-      'type'
+      'type',
     },
     mandatory: {'author', 'date', 'status', 'title', 'type'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -641,7 +640,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -665,14 +664,14 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'recordedDate',
       'recorder',
       'subject',
-      'verificationStatus'
+      'verificationStatus',
     },
     mandatory: {'subject'},
     modifier: {
       'clinicalStatus',
       'implicitRules',
       'modifierExtension',
-      'verificationStatus'
+      'verificationStatus',
     },
   ),
   'Consent': ResourceElementSummary(
@@ -692,7 +691,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'sourceAttachment',
       'sourceReference',
       'status',
-      'verification'
+      'verification',
     },
     mandatory: {'category', 'scope', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'scope', 'status'},
@@ -711,7 +710,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'subject',
       'title',
       'type',
-      'version'
+      'version',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -732,7 +731,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'subscriber',
       'subscriberId',
-      'type'
+      'type',
     },
     mandatory: {'beneficiary', 'payor', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -746,7 +745,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'patient',
       'purpose',
-      'status'
+      'status',
     },
     mandatory: {'created', 'insurer', 'patient', 'purpose', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -762,7 +761,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'patient',
       'purpose',
       'request',
-      'status'
+      'status',
     },
     mandatory: {
       'created',
@@ -771,7 +770,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'patient',
       'purpose',
       'request',
-      'status'
+      'status',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -788,7 +787,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'patient',
       'severity',
-      'status'
+      'status',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -817,7 +816,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'parent',
       'source',
       'type',
-      'unit'
+      'unit',
     },
     mandatory: {'category', 'type'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -848,7 +847,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'reasonReference',
       'requester',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'codeCodeableConcept', 'codeReference', 'intent', 'subject'},
     modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
@@ -871,7 +870,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'subject',
       'timingDateTime',
       'timingPeriod',
-      'timingTiming'
+      'timingTiming',
     },
     mandatory: {'device', 'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -892,7 +891,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'performer',
       'resultsInterpreter',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'code', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -909,7 +908,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'status',
       'subject',
-      'type'
+      'type',
     },
     mandatory: {'content', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -932,7 +931,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'securityLabel',
       'status',
       'subject',
-      'type'
+      'type',
     },
     mandatory: {'content', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -953,7 +952,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'serviceType',
       'status',
       'subject',
-      'type'
+      'type',
     },
     mandatory: {'class', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -971,7 +970,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'payloadMimeType',
       'payloadType',
       'period',
-      'status'
+      'status',
     },
     mandatory: {'address', 'connectionType', 'payloadType', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -996,7 +995,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'patient',
       'period',
       'status',
-      'type'
+      'type',
     },
     mandatory: {'patient', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1021,7 +1020,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'trigger',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status', 'trigger'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1041,7 +1040,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status', 'variableDefinition'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1060,7 +1059,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'subject',
       'url',
-      'useContext'
+      'useContext',
     },
     mandatory: {'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1083,7 +1082,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1103,7 +1102,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1123,7 +1122,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'total',
       'type',
-      'use'
+      'use',
     },
     mandatory: {
       'created',
@@ -1134,7 +1133,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'provider',
       'status',
       'type',
-      'use'
+      'use',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -1163,7 +1162,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'reasonReference',
       'relationship',
       'sex',
-      'status'
+      'status',
     },
     mandatory: {'patient', 'relationship', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1180,7 +1179,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'period',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'code', 'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1199,7 +1198,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'startCodeableConcept',
       'startDate',
       'statusDate',
-      'subject'
+      'subject',
     },
     mandatory: {'description', 'lifecycleStatus', 'subject'},
     modifier: {'implicitRules', 'lifecycleStatus', 'modifierExtension'},
@@ -1219,7 +1218,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'name', 'start', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1236,7 +1235,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'name',
       'quantity',
-      'type'
+      'type',
     },
     mandatory: {'actual', 'type'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -1251,13 +1250,13 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'moduleCodeableConcept',
       'moduleUri',
       'requestIdentifier',
-      'status'
+      'status',
     },
     mandatory: {
       'moduleCanonical',
       'moduleCodeableConcept',
       'moduleUri',
-      'status'
+      'status',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -1275,7 +1274,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'photo',
       'providedBy',
       'specialty',
-      'type'
+      'type',
     },
     mandatory: {},
     modifier: {'active', 'implicitRules', 'modifierExtension'},
@@ -1304,7 +1303,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'series',
       'started',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1322,14 +1321,14 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'performer',
       'primarySource',
       'status',
-      'vaccineCode'
+      'vaccineCode',
     },
     mandatory: {
       'occurrenceDateTime',
       'occurrenceString',
       'patient',
       'status',
-      'vaccineCode'
+      'vaccineCode',
     },
     modifier: {'implicitRules', 'isSubpotent', 'modifierExtension', 'status'},
   ),
@@ -1342,14 +1341,14 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'patient',
       'status',
-      'targetDisease'
+      'targetDisease',
     },
     mandatory: {
       'doseStatus',
       'immunizationEvent',
       'patient',
       'status',
-      'targetDisease'
+      'targetDisease',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -1361,7 +1360,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'implicitRules',
       'meta',
       'patient',
-      'recommendation'
+      'recommendation',
     },
     mandatory: {'date', 'patient', 'recommendation'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -1386,7 +1385,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'fhirVersion', 'name', 'packageId', 'status', 'url'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1403,7 +1402,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'role',
       'status',
-      'substance'
+      'substance',
     },
     mandatory: {'role', 'status', 'substance'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1419,7 +1418,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'name',
       'ownedBy',
       'status',
-      'type'
+      'type',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1436,7 +1435,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'subject',
       'totalGross',
       'totalNet',
-      'type'
+      'type',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1461,7 +1460,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'type',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status', 'type'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1482,7 +1481,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'source',
       'status',
       'subject',
-      'title'
+      'title',
     },
     mandatory: {'mode', 'status'},
     modifier: {'implicitRules', 'mode', 'modifierExtension', 'status'},
@@ -1500,7 +1499,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'operationalStatus',
       'physicalType',
       'status',
-      'type'
+      'type',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1516,7 +1515,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'property',
       'status',
-      'unitOfPresentation'
+      'unitOfPresentation',
     },
     mandatory: {'manufacturedDoseForm', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1550,7 +1549,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'type',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1568,14 +1567,14 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'reporter',
       'status',
       'subject',
-      'type'
+      'type',
     },
     mandatory: {'measure', 'period', 'status', 'type'},
     modifier: {
       'implicitRules',
       'improvementNotation',
       'modifierExtension',
-      'status'
+      'status',
     },
   ),
   'Media': ResourceElementSummary(
@@ -1604,7 +1603,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'subject',
       'type',
       'view',
-      'width'
+      'width',
     },
     mandatory: {'content', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1618,7 +1617,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'implicitRules',
       'manufacturer',
       'meta',
-      'status'
+      'status',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1636,7 +1635,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'partOf',
       'performer',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {
       'effectiveDateTime',
@@ -1644,7 +1643,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'medicationCodeableConcept',
       'medicationReference',
       'status',
-      'subject'
+      'subject',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -1657,7 +1656,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'status',
       'subject',
-      'whenPrepared'
+      'whenPrepared',
     },
     mandatory: {'medicationCodeableConcept', 'medicationReference', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1671,7 +1670,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'manufacturer',
       'meta',
       'status',
-      'synonym'
+      'synonym',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1696,21 +1695,21 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'reportedReference',
       'requester',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {
       'intent',
       'medicationCodeableConcept',
       'medicationReference',
       'status',
-      'subject'
+      'subject',
     },
     modifier: {
       'doNotPerform',
       'implicitRules',
       'intent',
       'modifierExtension',
-      'status'
+      'status',
     },
   ),
   'MedicationStatement': ResourceElementSummary(
@@ -1729,13 +1728,13 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'partOf',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {
       'medicationCodeableConcept',
       'medicationReference',
       'status',
-      'subject'
+      'subject',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
@@ -1771,7 +1770,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'statusDate',
       'type',
-      'version'
+      'version',
     },
     mandatory: {'name'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1801,7 +1800,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'date', 'eventCoding', 'eventUri', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1822,7 +1821,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'response',
       'responsible',
       'sender',
-      'source'
+      'source',
     },
     mandatory: {'eventCoding', 'eventUri', 'source'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -1847,7 +1846,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'specimen',
       'structureVariant',
       'type',
-      'variant'
+      'variant',
     },
     mandatory: {'coordinateSystem'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -1865,7 +1864,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'publisher',
       'status',
       'uniqueId',
-      'useContext'
+      'useContext',
     },
     mandatory: {'date', 'kind', 'name', 'status', 'uniqueId'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1881,7 +1880,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'orderer',
       'patient',
-      'status'
+      'status',
     },
     mandatory: {'dateTime', 'intent', 'patient', 'status'},
     modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
@@ -1895,7 +1894,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'manufacturer',
       'meta',
       'nutrient',
-      'status'
+      'status',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1932,7 +1931,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'valueRatio',
       'valueSampledData',
       'valueString',
-      'valueTime'
+      'valueTime',
     },
     mandatory: {'code', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1965,7 +1964,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'type',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'code', 'instance', 'kind', 'name', 'status', 'system', 'type'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -1984,7 +1983,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'name',
       'partOf',
-      'type'
+      'type',
     },
     mandatory: {},
     modifier: {'active', 'implicitRules', 'modifierExtension'},
@@ -2003,7 +2002,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'participatingOrganization',
       'period',
       'specialty',
-      'telecom'
+      'telecom',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2026,7 +2025,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'packageFor',
       'status',
       'statusDate',
-      'type'
+      'type',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2051,7 +2050,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'managingOrganization',
       'meta',
       'name',
-      'telecom'
+      'telecom',
     },
     mandatory: {},
     modifier: {
@@ -2060,7 +2059,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'deceasedDateTime',
       'implicitRules',
       'link',
-      'modifierExtension'
+      'modifierExtension',
     },
   ),
   'PaymentNotice': ResourceElementSummary(
@@ -2072,7 +2071,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'payment',
       'recipient',
-      'status'
+      'status',
     },
     mandatory: {'amount', 'created', 'payment', 'recipient', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2087,7 +2086,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'paymentDate',
       'paymentIssuer',
       'period',
-      'status'
+      'status',
     },
     mandatory: {'created', 'paymentAmount', 'paymentDate', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2102,7 +2101,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'managingOrganization',
       'meta',
       'name',
-      'telecom'
+      'telecom',
     },
     mandatory: {},
     modifier: {'active', 'implicitRules', 'modifierExtension'},
@@ -2126,7 +2125,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'type',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2142,7 +2141,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'implicitRules',
       'meta',
       'name',
-      'telecom'
+      'telecom',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2160,7 +2159,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'period',
       'practitioner',
       'specialty',
-      'telecom'
+      'telecom',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2193,7 +2192,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'recorder',
       'status',
       'statusReason',
-      'subject'
+      'subject',
     },
     mandatory: {'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2222,7 +2221,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2241,7 +2240,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'questionnaire',
       'source',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2264,7 +2263,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'statusDate',
       'subject',
       'type',
-      'validityPeriod'
+      'validityPeriod',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2282,7 +2281,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'name',
       'patient',
       'relationship',
-      'telecom'
+      'telecom',
     },
     mandatory: {'patient'},
     modifier: {'active', 'implicitRules', 'modifierExtension'},
@@ -2299,7 +2298,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'intent',
       'meta',
       'priority',
-      'status'
+      'status',
     },
     mandatory: {'intent', 'status'},
     modifier: {'implicitRules', 'intent', 'modifierExtension', 'status'},
@@ -2326,7 +2325,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'population', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2352,7 +2351,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'type',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'characteristic', 'status', 'type'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2380,7 +2379,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'site',
       'sponsor',
       'status',
-      'title'
+      'title',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2394,7 +2393,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'period',
       'status',
-      'study'
+      'study',
     },
     mandatory: {'individual', 'status', 'study'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2413,7 +2412,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'occurrencePeriod',
       'performer',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'status', 'subject'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2429,7 +2428,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'planningHorizon',
       'serviceCategory',
       'serviceType',
-      'specialty'
+      'specialty',
     },
     mandatory: {'actor'},
     modifier: {'active', 'implicitRules', 'modifierExtension'},
@@ -2452,7 +2451,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'type',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'base', 'code', 'description', 'name', 'status', 'type', 'url'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2495,7 +2494,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'requisition',
       'specimen',
       'status',
-      'subject'
+      'subject',
     },
     mandatory: {'intent', 'status', 'subject'},
     modifier: {
@@ -2503,7 +2502,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'implicitRules',
       'intent',
       'modifierExtension',
-      'status'
+      'status',
     },
   ),
   'Slot': ResourceElementSummary(
@@ -2519,7 +2518,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'serviceType',
       'specialty',
       'start',
-      'status'
+      'status',
     },
     mandatory: {'end', 'schedule', 'start', 'status'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2535,7 +2534,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'receivedTime',
       'status',
       'subject',
-      'type'
+      'type',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2549,7 +2548,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'patientPreparation',
       'timeAspect',
-      'typeCollected'
+      'typeCollected',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2579,7 +2578,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'type',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'abstract', 'kind', 'name', 'status', 'type', 'url'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2603,7 +2602,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'group', 'name', 'status', 'url'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2619,7 +2618,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'implicitRules',
       'meta',
       'reason',
-      'status'
+      'status',
     },
     mandatory: {'channel', 'criteria', 'reason', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2634,7 +2633,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'subscription',
       'topic',
-      'type'
+      'type',
     },
     mandatory: {'subscription', 'type'},
     modifier: {'implicitRules', 'modifierExtension', 'type'},
@@ -2660,7 +2659,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status', 'url'},
     modifier: {'experimental', 'implicitRules', 'modifierExtension', 'status'},
@@ -2676,7 +2675,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'ingredient',
       'instance',
       'meta',
-      'status'
+      'status',
     },
     mandatory: {'code'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2704,7 +2703,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'status',
       'structure',
       'supplier',
-      'version'
+      'version',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2719,7 +2718,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'occurrencePeriod',
       'occurrenceTiming',
       'partOf',
-      'status'
+      'status',
     },
     mandatory: {},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2741,7 +2740,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'quantity',
       'requester',
       'status',
-      'supplier'
+      'supplier',
     },
     mandatory: {'itemCodeableConcept', 'itemReference', 'quantity'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2769,7 +2768,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'partOf',
       'requester',
       'status',
-      'statusReason'
+      'statusReason',
     },
     mandatory: {'intent', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2794,7 +2793,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'date', 'kind', 'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2811,7 +2810,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'score',
       'status',
       'testScript',
-      'tester'
+      'tester',
     },
     mandatory: {'result', 'status', 'testScript'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2832,7 +2831,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'name', 'status', 'url'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2854,7 +2853,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'title',
       'url',
       'useContext',
-      'version'
+      'version',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension', 'status'},
@@ -2871,7 +2870,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'target',
       'targetLocation',
       'validationProcess',
-      'validationType'
+      'validationType',
     },
     mandatory: {'status'},
     modifier: {'implicitRules', 'modifierExtension'},
@@ -2886,7 +2885,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'meta',
       'patient',
       'prescriber',
-      'status'
+      'status',
     },
     mandatory: {
       'created',
@@ -2894,7 +2893,7 @@ const Map<String, ResourceElementSummary> resourceElementSummary = {
       'lensSpecification',
       'patient',
       'prescriber',
-      'status'
+      'status',
     },
     modifier: {'implicitRules', 'modifierExtension', 'status'},
   ),
