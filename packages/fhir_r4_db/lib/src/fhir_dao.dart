@@ -3007,6 +3007,47 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     return result;
   }
 
+  /// The ids of every [resourceType] resource that is in ANY
+  /// [compartmentType] compartment: rows of the reference index whose
+  /// search parameter is one of the compartment's parameters for that type
+  /// and whose target is a [compartmentType]. [since] keeps only resources
+  /// last updated at or after it. Nothing is read but ids.
+  ///
+  /// This is what a patient-level Bulk Data export writes for a member
+  /// type: Bulk Data v2.0.0 export.html (read 2026-09-08), patient-level,
+  /// "Obtain a detailed set of FHIR resources of diverse resource types
+  /// pertaining to all patients". A resource of a member type with no
+  /// patient (an Observation with no `subject`) is not in any patient's
+  /// compartment and is not written (fhirant REVIEW-2026-09-08 row 40).
+  /// Empty when the compartment does not include [resourceType].
+  Future<Set<String>> compartmentTypeMembers(
+    String compartmentType,
+    String resourceType, {
+    DateTime? since,
+  }) async {
+    final params = compartmentDefinitions[compartmentType]?[resourceType];
+    if (params == null) return const {};
+    final t = referenceSearchParameters;
+    Expression<bool>? byParam;
+    for (final p in params) {
+      final one = t.searchName.equals(p);
+      byParam = byParam == null ? one : (byParam | one);
+    }
+    var where = t.resourceType.equals(resourceType) &
+        byParam! &
+        t.referenceResourceType.equals(compartmentType) &
+        t.referenceIdPart.isNotNull();
+    if (since != null) {
+      where = where &
+          t.lastUpdated.isBiggerOrEqualValue(since.millisecondsSinceEpoch);
+    }
+    final rows = await (selectOnly(t, distinct: true)
+          ..addColumns([t.id])
+          ..where(where))
+        .get();
+    return rows.map((r) => r.read(t.id)!).toSet();
+  }
+
   /// The ids of [resourceType] resources in [scope]'s compartment through
   /// the compartment's parameters for that type. With [includeFocal], the
   /// focal resource's own id is added when [resourceType] is the focal type

@@ -185,7 +185,9 @@ abstract class BulkRequest {
       query.add('_outputFormat=${Uri.encodeQueryComponent(outputFormat!)}');
     }
     if (since != null) {
-      query.add('_since=$since');
+      // Encoded: an offset's `+` is a space on the wire otherwise
+      // (fhirant REVIEW-2026-09-08 row 41).
+      query.add('_since=${Uri.encodeQueryComponent(since.toString())}');
     }
     if (types != null && types!.isNotEmpty) {
       final typeValue = types!.map((r) {

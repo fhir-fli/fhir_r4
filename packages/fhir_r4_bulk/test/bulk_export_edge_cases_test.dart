@@ -123,6 +123,27 @@ void main() {
       expect(capturedUrl, contains('_since=2023-06-01'));
     });
 
+    test(
+        '_since with an offset is percent-encoded (fhirant REVIEW-2026-09-08 row 41)',
+        () async {
+      String? capturedUrl;
+      final mockClient = MockClient((request) async {
+        capturedUrl = request.url.toString();
+        return http.Response('', 400);
+      });
+
+      final req = BulkRequestSystem(
+        base: Uri.parse('http://example.com/fhir'),
+        since: '2023-06-01T00:00:00+05:00'.toFhirDateTime,
+        client: mockClient,
+      );
+
+      await req.request();
+      // The `+` would be a space on the wire unencoded.
+      expect(capturedUrl, contains('_since=2023-06-01T00%3A00%3A00%2B05%3A00'));
+      expect(capturedUrl, isNot(contains('+05:00')));
+    });
+
     test('includes _type parameter with multiple types', () async {
       String? capturedUrl;
       final mockClient = MockClient((request) async {

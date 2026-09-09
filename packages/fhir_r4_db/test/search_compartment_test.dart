@@ -285,6 +285,32 @@ Future<void> main() async {
     expect(past['Observation'], hasLength(3));
   });
 
+  test('compartmentTypeMembers: every member of the type across all patients',
+      () async {
+    // fhirant REVIEW-2026-09-08 row 40: a patient-level export writes the
+    // compartments' members, so o-none (no subject, no performer) is out and
+    // o-other (Patient/p2) is in.
+    expect(
+      await dao.compartmentTypeMembers('Patient', 'Observation'),
+      {'o-subject', 'o-performer', 'o-both', 'o-other'},
+    );
+    // A Patient is a member of another Patient's compartment through link.
+    expect(
+        await dao.compartmentTypeMembers('Patient', 'Patient'), {'p1-linked'});
+    expect(await dao.compartmentTypeMembers('Patient', 'Encounter'), {'e1'});
+    // Not a compartment type: nothing, not an error.
+    expect(await dao.compartmentTypeMembers('Patient', 'ValueSet'), isEmpty);
+    expect(await dao.compartmentTypeMembers('Nobody', 'Observation'), isEmpty);
+    expect(
+      await dao.compartmentTypeMembers(
+        'Patient',
+        'Observation',
+        since: DateTime(2200),
+      ),
+      isEmpty,
+    );
+  });
+
   test('an empty compartment: the focal resource does not exist', () async {
     expect(
       await ids(
