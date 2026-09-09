@@ -296,7 +296,9 @@ Future<void> main() async {
     );
     // A Patient is a member of another Patient's compartment through link.
     expect(
-        await dao.compartmentTypeMembers('Patient', 'Patient'), {'p1-linked'});
+      await dao.compartmentTypeMembers('Patient', 'Patient'),
+      {'p1-linked'},
+    );
     expect(await dao.compartmentTypeMembers('Patient', 'Encounter'), {'e1'});
     // Not a compartment type: nothing, not an error.
     expect(await dao.compartmentTypeMembers('Patient', 'ValueSet'), isEmpty);
