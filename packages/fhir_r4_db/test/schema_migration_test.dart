@@ -113,8 +113,8 @@ void main() {
     );
     final seed = _SeedDb(NativeDatabase(dbFile));
     await seed.customStatement(
-      'INSERT INTO resources VALUES '
-      "('Patient', 'pat-1', ?, 0)",
+      'INSERT INTO resources (resource_type, id, resource, last_updated) '
+      "VALUES ('Patient', 'pat-1', ?, 0)",
       [patient.toJsonString()],
     );
     await seed.customStatement(

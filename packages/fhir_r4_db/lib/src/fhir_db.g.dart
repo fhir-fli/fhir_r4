@@ -32,9 +32,17 @@ class $ResourcesTable extends Resources
   late final GeneratedColumn<int> lastUpdated = GeneratedColumn<int>(
       'last_updated', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _versionIdMeta =
+      const VerificationMeta('versionId');
+  @override
+  late final GeneratedColumn<String> versionId = GeneratedColumn<String>(
+      'version_id', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('1'));
   @override
   List<GeneratedColumn> get $columns =>
-      [resourceType, id, resource, lastUpdated];
+      [resourceType, id, resource, lastUpdated, versionId];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -72,6 +80,10 @@ class $ResourcesTable extends Resources
     } else if (isInserting) {
       context.missing(_lastUpdatedMeta);
     }
+    if (data.containsKey('version_id')) {
+      context.handle(_versionIdMeta,
+          versionId.isAcceptableOrUnknown(data['version_id']!, _versionIdMeta));
+    }
     return context;
   }
 
@@ -89,6 +101,8 @@ class $ResourcesTable extends Resources
           .read(DriftSqlType.string, data['${effectivePrefix}resource'])!,
       lastUpdated: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_updated'])!,
+      versionId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}version_id'])!,
     );
   }
 
@@ -110,11 +124,20 @@ class Resource extends DataClass implements Insertable<Resource> {
 
   /// When this version was last updated
   final int lastUpdated;
+
+  /// `meta.versionId` of the current version, as a column (schema 14), so
+  /// history can be answered from this table and `resources_history`
+  /// together: the current version lives here only, history holds the
+  /// superseded versions and the tombstones. Every current version used to
+  /// be stored twice (fhirant REVIEW-2026-09-06 §4.5: 1.07 GB of a 6.21 GB
+  /// store was the second copy).
+  final String versionId;
   const Resource(
       {required this.resourceType,
       required this.id,
       required this.resource,
-      required this.lastUpdated});
+      required this.lastUpdated,
+      required this.versionId});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -122,6 +145,7 @@ class Resource extends DataClass implements Insertable<Resource> {
     map['id'] = Variable<String>(id);
     map['resource'] = Variable<String>(resource);
     map['last_updated'] = Variable<int>(lastUpdated);
+    map['version_id'] = Variable<String>(versionId);
     return map;
   }
 
@@ -131,6 +155,7 @@ class Resource extends DataClass implements Insertable<Resource> {
       id: Value(id),
       resource: Value(resource),
       lastUpdated: Value(lastUpdated),
+      versionId: Value(versionId),
     );
   }
 
@@ -142,6 +167,7 @@ class Resource extends DataClass implements Insertable<Resource> {
       id: serializer.fromJson<String>(json['id']),
       resource: serializer.fromJson<String>(json['resource']),
       lastUpdated: serializer.fromJson<int>(json['lastUpdated']),
+      versionId: serializer.fromJson<String>(json['versionId']),
     );
   }
   @override
@@ -152,6 +178,7 @@ class Resource extends DataClass implements Insertable<Resource> {
       'id': serializer.toJson<String>(id),
       'resource': serializer.toJson<String>(resource),
       'lastUpdated': serializer.toJson<int>(lastUpdated),
+      'versionId': serializer.toJson<String>(versionId),
     };
   }
 
@@ -159,12 +186,14 @@ class Resource extends DataClass implements Insertable<Resource> {
           {String? resourceType,
           String? id,
           String? resource,
-          int? lastUpdated}) =>
+          int? lastUpdated,
+          String? versionId}) =>
       Resource(
         resourceType: resourceType ?? this.resourceType,
         id: id ?? this.id,
         resource: resource ?? this.resource,
         lastUpdated: lastUpdated ?? this.lastUpdated,
+        versionId: versionId ?? this.versionId,
       );
   Resource copyWithCompanion(ResourcesCompanion data) {
     return Resource(
@@ -175,6 +204,7 @@ class Resource extends DataClass implements Insertable<Resource> {
       resource: data.resource.present ? data.resource.value : this.resource,
       lastUpdated:
           data.lastUpdated.present ? data.lastUpdated.value : this.lastUpdated,
+      versionId: data.versionId.present ? data.versionId.value : this.versionId,
     );
   }
 
@@ -184,13 +214,15 @@ class Resource extends DataClass implements Insertable<Resource> {
           ..write('resourceType: $resourceType, ')
           ..write('id: $id, ')
           ..write('resource: $resource, ')
-          ..write('lastUpdated: $lastUpdated')
+          ..write('lastUpdated: $lastUpdated, ')
+          ..write('versionId: $versionId')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(resourceType, id, resource, lastUpdated);
+  int get hashCode =>
+      Object.hash(resourceType, id, resource, lastUpdated, versionId);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -198,7 +230,8 @@ class Resource extends DataClass implements Insertable<Resource> {
           other.resourceType == this.resourceType &&
           other.id == this.id &&
           other.resource == this.resource &&
-          other.lastUpdated == this.lastUpdated);
+          other.lastUpdated == this.lastUpdated &&
+          other.versionId == this.versionId);
 }
 
 class ResourcesCompanion extends UpdateCompanion<Resource> {
@@ -206,12 +239,14 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
   final Value<String> id;
   final Value<String> resource;
   final Value<int> lastUpdated;
+  final Value<String> versionId;
   final Value<int> rowid;
   const ResourcesCompanion({
     this.resourceType = const Value.absent(),
     this.id = const Value.absent(),
     this.resource = const Value.absent(),
     this.lastUpdated = const Value.absent(),
+    this.versionId = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ResourcesCompanion.insert({
@@ -219,6 +254,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
     required String id,
     required String resource,
     required int lastUpdated,
+    this.versionId = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : resourceType = Value(resourceType),
         id = Value(id),
@@ -229,6 +265,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
     Expression<String>? id,
     Expression<String>? resource,
     Expression<int>? lastUpdated,
+    Expression<String>? versionId,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -236,6 +273,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
       if (id != null) 'id': id,
       if (resource != null) 'resource': resource,
       if (lastUpdated != null) 'last_updated': lastUpdated,
+      if (versionId != null) 'version_id': versionId,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -245,12 +283,14 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
       Value<String>? id,
       Value<String>? resource,
       Value<int>? lastUpdated,
+      Value<String>? versionId,
       Value<int>? rowid}) {
     return ResourcesCompanion(
       resourceType: resourceType ?? this.resourceType,
       id: id ?? this.id,
       resource: resource ?? this.resource,
       lastUpdated: lastUpdated ?? this.lastUpdated,
+      versionId: versionId ?? this.versionId,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -270,6 +310,9 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
     if (lastUpdated.present) {
       map['last_updated'] = Variable<int>(lastUpdated.value);
     }
+    if (versionId.present) {
+      map['version_id'] = Variable<String>(versionId.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -283,6 +326,7 @@ class ResourcesCompanion extends UpdateCompanion<Resource> {
           ..write('id: $id, ')
           ..write('resource: $resource, ')
           ..write('lastUpdated: $lastUpdated, ')
+          ..write('versionId: $versionId, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -6613,6 +6657,7 @@ typedef $$ResourcesTableCreateCompanionBuilder = ResourcesCompanion Function({
   required String id,
   required String resource,
   required int lastUpdated,
+  Value<String> versionId,
   Value<int> rowid,
 });
 typedef $$ResourcesTableUpdateCompanionBuilder = ResourcesCompanion Function({
@@ -6620,6 +6665,7 @@ typedef $$ResourcesTableUpdateCompanionBuilder = ResourcesCompanion Function({
   Value<String> id,
   Value<String> resource,
   Value<int> lastUpdated,
+  Value<String> versionId,
   Value<int> rowid,
 });
 
@@ -6643,6 +6689,9 @@ class $$ResourcesTableFilterComposer
 
   ColumnFilters<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get versionId => $composableBuilder(
+      column: $table.versionId, builder: (column) => ColumnFilters(column));
 }
 
 class $$ResourcesTableOrderingComposer
@@ -6666,6 +6715,9 @@ class $$ResourcesTableOrderingComposer
 
   ColumnOrderings<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get versionId => $composableBuilder(
+      column: $table.versionId, builder: (column) => ColumnOrderings(column));
 }
 
 class $$ResourcesTableAnnotationComposer
@@ -6688,6 +6740,9 @@ class $$ResourcesTableAnnotationComposer
 
   GeneratedColumn<int> get lastUpdated => $composableBuilder(
       column: $table.lastUpdated, builder: (column) => column);
+
+  GeneratedColumn<String> get versionId =>
+      $composableBuilder(column: $table.versionId, builder: (column) => column);
 }
 
 class $$ResourcesTableTableManager extends RootTableManager<
@@ -6717,6 +6772,7 @@ class $$ResourcesTableTableManager extends RootTableManager<
             Value<String> id = const Value.absent(),
             Value<String> resource = const Value.absent(),
             Value<int> lastUpdated = const Value.absent(),
+            Value<String> versionId = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesCompanion(
@@ -6724,6 +6780,7 @@ class $$ResourcesTableTableManager extends RootTableManager<
             id: id,
             resource: resource,
             lastUpdated: lastUpdated,
+            versionId: versionId,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -6731,6 +6788,7 @@ class $$ResourcesTableTableManager extends RootTableManager<
             required String id,
             required String resource,
             required int lastUpdated,
+            Value<String> versionId = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ResourcesCompanion.insert(
@@ -6738,6 +6796,7 @@ class $$ResourcesTableTableManager extends RootTableManager<
             id: id,
             resource: resource,
             lastUpdated: lastUpdated,
+            versionId: versionId,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

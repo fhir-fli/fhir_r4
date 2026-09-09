@@ -282,20 +282,37 @@ Future<void> main() async {
       );
     });
 
-    test('recordHistory: false writes no first-version history row', () async {
+    test(
+        'a first version is stored once; history holds only what a save '
+        'replaced (schema 14)', () async {
       final p = Patient.fromJson({'resourceType': 'Patient', 'id': 'spec'});
-      expect(await dao.saveResources([p], recordHistory: false), isTrue);
+      expect(await dao.saveResources([p]), isTrue);
       final stored = await dao.getResource(R4ResourceType.Patient, 'spec');
       expect(stored!.meta!.versionId!.valueString, '1');
+      // The history interaction still answers with the current version.
       expect(
-        await dao.getResourceHistory(R4ResourceType.Patient, 'spec'),
-        isEmpty,
+        (await dao.getResourceHistory(R4ResourceType.Patient, 'spec'))
+            .map((r) => r.meta!.versionId!.valueString),
+        ['1'],
       );
-      // A resource the store already holds keeps its history either way.
-      expect(await dao.saveResources([p], recordHistory: false), isTrue);
-      final history =
-          await dao.getResourceHistory(R4ResourceType.Patient, 'spec');
-      expect(history.map((r) => r.meta!.versionId!.valueString), ['2']);
+      // The table behind it holds nothing: no second copy of version 1.
+      Future<List<String>> tableVersions() async => (await db
+              .customSelect(
+                "SELECT version_id FROM resources_history WHERE id = 'spec' "
+                'ORDER BY version_id',
+              )
+              .get())
+          .map((r) => r.read<String>('version_id'))
+          .toList();
+      expect(await tableVersions(), isEmpty);
+      // An update moves the replaced version into history, as stored.
+      expect(await dao.saveResources([p]), isTrue);
+      expect(await tableVersions(), ['1']);
+      expect(
+        (await dao.getResourceHistory(R4ResourceType.Patient, 'spec'))
+            .map((r) => r.meta!.versionId!.valueString),
+        ['2', '1'],
+      );
     });
 
     test('is atomic: an indexing failure stores no resource', () async {

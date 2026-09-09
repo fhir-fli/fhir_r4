@@ -14,6 +14,14 @@ class Resources extends Table {
   /// When this version was last updated
   IntColumn get lastUpdated => integer()();
 
+  /// `meta.versionId` of the current version, as a column (schema 14), so
+  /// history can be answered from this table and `resources_history`
+  /// together: the current version lives here only, history holds the
+  /// superseded versions and the tombstones. Every current version used to
+  /// be stored twice (fhirant REVIEW-2026-09-06 §4.5: 1.07 GB of a 6.21 GB
+  /// store was the second copy).
+  TextColumn get versionId => text().withDefault(const Constant('1'))();
+
   @override
   Set<Column> get primaryKey => {resourceType, id};
 }

@@ -37,7 +37,7 @@ class FhirDb extends _$FhirDb {
   FhirDb(super.e);
 
   @override
-  int get schemaVersion => 13;
+  int get schemaVersion => 14;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -253,6 +253,9 @@ class FhirDb extends _$FhirDb {
           if (from < 13) {
             await addHistoryDeletedColumn();
           }
+          if (from < 14) {
+            await moveCurrentVersionsOutOfHistory();
+          }
         },
         beforeOpen: ensurePlannerStatistics,
       );
@@ -280,6 +283,35 @@ class FhirDb extends _$FhirDb {
       r"WHERE json_extract(t.value, '$.code') = 'DELETED' "
       r"AND json_extract(t.value, '$.system') = "
       "'http://terminology.hl7.org/CodeSystem/v3-ObservationValue')",
+    );
+  }
+
+  /// Schema 14: the current version of a resource is stored once, in
+  /// `resources`; `resources_history` holds superseded versions and
+  /// tombstones. `resources.version_id` is added and filled from the JSON,
+  /// and every history row that duplicates a current version is deleted.
+  /// The layout used to hold a full copy of every current version in
+  /// history: measured 2026-09-06 on 928,935 resources, 1.07 GB of a
+  /// 6.21 GB file (fhirant REVIEW-2026-09-06 §4.5). The freed pages are
+  /// reused by SQLite; `VACUUM` shrinks the file and is the caller's to run
+  /// outside a transaction. Public and guarded, as [addHistoryDeletedColumn].
+  Future<void> moveCurrentVersionsOutOfHistory() async {
+    final columns = await customSelect('PRAGMA table_info(resources)').get();
+    if (!columns.any((c) => c.read<String>('name') == 'version_id')) {
+      await customStatement(
+        "ALTER TABLE resources ADD COLUMN version_id TEXT NOT NULL DEFAULT '1'",
+      );
+    }
+    await customStatement(
+      'UPDATE resources SET version_id = '
+      r"COALESCE(json_extract(resource, '$.meta.versionId'), '1')",
+    );
+    await customStatement(
+      'DELETE FROM resources_history WHERE deleted = 0 AND EXISTS ( '
+      'SELECT 1 FROM resources r '
+      'WHERE r.resource_type = resources_history.resource_type '
+      'AND r.id = resources_history.id '
+      'AND r.version_id = resources_history.version_id)',
     );
   }
 

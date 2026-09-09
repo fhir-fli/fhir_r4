@@ -135,23 +135,31 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     final id = withId.id!.valueString!;
 
     final newResource = await transaction(() async {
-      final existing = await getResource(withId.resourceType, id);
-      final currentVersion = existing?.meta?.versionId?.valueString;
+      final existingRow = await _currentRow(withId.resourceType, id);
+      final currentVersion = existingRow?.versionId;
       if (ifMatchVersion != null && currentVersion != ifMatchVersion) {
         throw VersionConflict(
           expected: ifMatchVersion,
           actual: currentVersion,
         );
       }
+      final existingMeta = existingRow == null
+          ? null
+          : fhir.Resource.fromJsonString(existingRow.resource).meta;
       final updated = withId.copyWith(
-        meta: _nextMeta(withId.meta, existing?.meta, mergeTags: mergeTags),
+        meta: _nextMeta(withId.meta, existingMeta, mergeTags: mergeTags),
       );
-      // The row, its history row and its index rows go in together. A
-      // failure part way used to leave a resource stored that no search
-      // could find, with the caller told it had worked.
-      final (current, history) = _rowsFor(updated);
-      await into(resources).insertOnConflictUpdate(current);
-      await into(resourcesHistory).insertOnConflictUpdate(history);
+      // The row, the superseded version's move into history and the index
+      // rows go in together. A failure part way used to leave a resource
+      // stored that no search could find, with the caller told it had
+      // worked. The current version is stored once: history takes the
+      // version this save replaces, as stored, and a first version writes
+      // no history row (schema 14; fhirant REVIEW-2026-09-06 §4.5).
+      if (existingRow != null) {
+        await into(resourcesHistory)
+            .insertOnConflictUpdate(_historyRowFrom(existingRow));
+      }
+      await into(resources).insertOnConflictUpdate(_currentRowFor(updated));
       await _updateSearchParameters(updated);
       return updated;
     });
@@ -173,40 +181,52 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   /// (fhirant REVIEW-2026-09-06 finding 27).
   ///
   /// Versions continue from what is stored, as [saveResource]'s do: the
-  /// stored meta of every resource in the batch is read first, one query per
-  /// resource type ([_storedMetas]), and a resource that appears twice in one
+  /// stored row of every resource in the batch is read first, one query per
+  /// resource type ([_storedRows]), and a resource that appears twice in one
   /// batch is two versions. Every bulk save used to write version 1 and
   /// overwrite history version 1 (finding 28).
   ///
-  /// [recordHistory] false writes no history row for a resource the store
-  /// did not hold, its first version. A resource that is already stored
-  /// gets its history row as always, so anything that has ever changed
-  /// keeps a complete history. fhirant's specification load is the caller:
-  /// 4,212 conformance resources whose first version was a second 48 MB
-  /// copy of the same JSON (fhirant REVIEW-2026-09-06 §6.1).
-  Future<bool> saveResources(
-    List<fhir.Resource> resourcesList, {
-    bool recordHistory = true,
-  }) async {
+  /// The current version is stored once (schema 14): a stored resource's
+  /// row moves into history as it is replaced, a first version writes no
+  /// history row. fhirant's specification load used to need a flag for
+  /// that: 4,212 conformance resources whose first version was a second
+  /// 48 MB copy of the same JSON (fhirant REVIEW-2026-09-06 §6.1); now no
+  /// first version is copied.
+  Future<bool> saveResources(List<fhir.Resource> resourcesList) async {
     if (resourcesList.isEmpty) return true;
     try {
       final newResources = <fhir.Resource>[];
       await transaction(() async {
         final withIds = [for (final r in resourcesList) r.newIdIfNoId()];
-        final metas = await _storedMetas(withIds);
+        final stored = await _storedRows(withIds);
+        final metas = <String, fhir.FhirMeta?>{
+          for (final e in stored.entries) e.key: e.value.meta,
+        };
         final currentRows = <ResourcesCompanion>[];
         final historyRows = <ResourcesHistoryCompanion>[];
         for (final resource in withIds) {
           final key = '${resource.resourceType}/${resource.id!.valueString!}';
-          final stored = metas[key] != null;
           final updated = resource.copyWith(
             meta: _nextMeta(resource.meta, metas[key], mergeTags: true),
           );
           metas[key] = updated.meta;
           newResources.add(updated);
-          final (current, history) = _rowsFor(updated);
-          currentRows.add(current);
-          if (recordHistory || stored) historyRows.add(history);
+          // The version this one replaces: the stored row the first time
+          // the resource appears in the batch, the batch's own previous
+          // version after that.
+          final previous = stored.remove(key)?.history;
+          if (previous != null) {
+            historyRows.add(previous);
+          } else {
+            final earlier = currentRows.lastWhere(
+              (c) =>
+                  c.resourceType.value == resource.resourceType.toString() &&
+                  c.id.value == resource.id!.valueString,
+              orElse: () => const ResourcesCompanion(),
+            );
+            if (earlier.id.present) historyRows.add(_historyRowOf(earlier));
+          }
+          currentRows.add(_currentRowFor(updated));
         }
         await batch(
           (b) => b
@@ -308,39 +328,62 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
 
   /// The current-version row and the history row of one versioned resource,
   /// serialized once.
-  (ResourcesCompanion, ResourcesHistoryCompanion) _rowsFor(fhir.Resource r) {
-    final type = r.resourceType.toString();
-    final id = r.id!.valueString!;
-    final json = r.toJsonString();
-    final lastUpdated =
-        r.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch;
-    return (
-      ResourcesCompanion(
-        resourceType: Value(type),
-        id: Value(id),
-        resource: Value(json),
-        lastUpdated: Value(lastUpdated),
-      ),
-      ResourcesHistoryCompanion(
-        resourceType: Value(type),
-        id: Value(id),
+  /// The `resources` row for [r], its `version_id` from `meta.versionId`.
+  ResourcesCompanion _currentRowFor(fhir.Resource r) => ResourcesCompanion(
+        resourceType: Value(r.resourceType.toString()),
+        id: Value(r.id!.valueString!),
+        resource: Value(r.toJsonString()),
+        lastUpdated:
+            Value(r.meta!.lastUpdated!.valueDateTime!.millisecondsSinceEpoch),
         versionId: Value(r.meta?.versionId?.toString() ?? '1'),
-        resource: Value(json),
-        lastUpdated: Value(lastUpdated),
-      ),
-    );
-  }
+      );
 
-  /// The stored `meta` of each of [resourcesList] that already exists, keyed
-  /// `Type/id`; one query per resource type, ids in chunks of 500.
-  /// `json_extract` takes the one element out of the stored JSON, so no
-  /// resource is parsed. Empty under [versionIdAsTime], which does not count
-  /// from the stored version.
-  Future<Map<String, fhir.FhirMeta?>> _storedMetas(
-    List<fhir.Resource> resourcesList,
-  ) async {
-    final metas = <String, fhir.FhirMeta?>{};
-    if (versionIdAsTime) return metas;
+  /// The history row a stored current [row] becomes when it is superseded:
+  /// the JSON as stored, not re-serialised.
+  ResourcesHistoryCompanion _historyRowFrom(Resource row) =>
+      ResourcesHistoryCompanion(
+        resourceType: Value(row.resourceType),
+        id: Value(row.id),
+        versionId: Value(row.versionId),
+        resource: Value(row.resource),
+        lastUpdated: Value(row.lastUpdated),
+      );
+
+  /// As [_historyRowFrom], from a row not yet written (a batch's earlier
+  /// version of the same resource).
+  ResourcesHistoryCompanion _historyRowOf(ResourcesCompanion row) =>
+      ResourcesHistoryCompanion(
+        resourceType: row.resourceType,
+        id: row.id,
+        versionId: row.versionId,
+        resource: row.resource,
+        lastUpdated: row.lastUpdated,
+      );
+
+  /// The stored current row of a resource, or null.
+  Future<Resource?> _currentRow(
+    fhir.R4ResourceType resourceType,
+    String id,
+  ) =>
+      (select(resources)
+            ..where(
+              (tbl) =>
+                  tbl.resourceType.equals(resourceType.toString()) &
+                  tbl.id.equals(id),
+            ))
+          .getSingleOrNull();
+
+  /// The stored current row of each of [resourcesList] that already
+  /// exists, keyed `Type/id`: its `meta` (so the next version counts from
+  /// it; `json_extract` takes the one element out, no resource is parsed)
+  /// and the history row it becomes when replaced. One query per resource
+  /// type, ids in chunks of 500.
+  Future<
+          Map<String,
+              ({fhir.FhirMeta? meta, ResourcesHistoryCompanion history})>>
+      _storedRows(List<fhir.Resource> resourcesList) async {
+    final rows =
+        <String, ({fhir.FhirMeta? meta, ResourcesHistoryCompanion history})>{};
     final idsByType = <String, Set<String>>{};
     for (final r in resourcesList) {
       idsByType
@@ -353,8 +396,9 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       for (var i = 0; i < all.length; i += chunk) {
         final slice = all.sublist(i, math.min(i + chunk, all.length));
         final placeholders = List.filled(slice.length, '?').join(', ');
-        final rows = await customSelect(
-          r"SELECT id, json_extract(resource, '$.meta') AS meta "
+        final found = await customSelect(
+          'SELECT id, resource, last_updated, version_id, '
+          r"json_extract(resource, '$.meta') AS meta "
           'FROM resources WHERE resource_type = ? AND id IN ($placeholders)',
           variables: [
             Variable<String>(type),
@@ -362,25 +406,36 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           ],
           readsFrom: {resources},
         ).get();
-        for (final row in rows) {
+        for (final row in found) {
           final json = row.readNullable<String>('meta');
-          metas['$type/${row.read<String>('id')}'] = json == null
-              ? null
-              : fhir.FhirMeta.fromJson(
-                  jsonDecode(json) as Map<String, dynamic>,
-                );
+          final id = row.read<String>('id');
+          rows['$type/$id'] = (
+            meta: json == null
+                ? null
+                : fhir.FhirMeta.fromJson(
+                    jsonDecode(json) as Map<String, dynamic>,
+                  ),
+            history: ResourcesHistoryCompanion(
+              resourceType: Value(type),
+              id: Value(id),
+              versionId: Value(row.read<String>('version_id')),
+              resource: Value(row.read<String>('resource')),
+              lastUpdated: Value(row.read<int>('last_updated')),
+            ),
+          );
         }
       }
     }
-    return metas;
+    return rows;
   }
 
   /// Delete a resource by type and id.
   ///
-  /// One transaction: a tombstone (a version with no content, tagged
-  /// DELETED) goes into history, the current row is removed, and the index
-  /// rows of the resource AND of anything it contained go with it through
-  /// [_deleteSearchParams]. The contained rows used to be left behind
+  /// One transaction: the current version moves into history (schema 14:
+  /// it was stored there already until then), a tombstone (a version with
+  /// no content, tagged DELETED) follows it, the current row is removed,
+  /// and the index rows of the resource AND of anything it contained go
+  /// with it through [_deleteSearchParams]. The contained rows used to be left behind
   /// (fhirant REVIEW-2026-09-06 finding 29) and the tombstone was built by
   /// string interpolation (finding 31).
   ///
@@ -394,8 +449,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }) async {
     final resourceTypeString = resourceType.toString();
     return transaction(() async {
-      final existing = await getResource(resourceType, id);
-      final currentVersion = existing?.meta?.versionId?.valueString;
+      final existing = await _currentRow(resourceType, id);
+      final currentVersion = existing?.versionId;
       if (ifMatchVersion != null && currentVersion != ifMatchVersion) {
         throw VersionConflict(
           expected: ifMatchVersion,
@@ -403,6 +458,8 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         );
       }
       if (existing == null) return false;
+      await into(resourcesHistory)
+          .insertOnConflictUpdate(_historyRowFrom(existing));
 
       final nextVersion =
           currentVersion != null && int.tryParse(currentVersion) != null
@@ -539,21 +596,61 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     int? count,
     int? offset,
   }) async {
-    final query = select(resourcesHistory)
-      ..where((tbl) => _historyOf(tbl, resourceType.toString(), id, since, at))
-      ..orderBy([
-        (tbl) => OrderingTerm.desc(tbl.lastUpdated),
-        (tbl) => OrderingTerm.desc(tbl.versionId),
-      ]);
+    var sql = 'SELECT * FROM (${_versionsSql(since: since, at: at)}) v '
+        'ORDER BY last_updated DESC, version_id DESC';
     if (at != null) {
-      query.limit(1);
+      sql += ' LIMIT 1';
     } else if (count != null) {
-      query.limit(count, offset: offset);
+      sql += ' LIMIT $count OFFSET ${offset ?? 0}';
     } else if (offset != null && offset > 0) {
-      query.limit(-1, offset: offset);
+      sql += ' LIMIT -1 OFFSET $offset';
     }
-    final rows = await query.get();
-    return [for (final row in rows) HistoryEntry.fromRow(row)];
+    final rows = await customSelect(
+      sql,
+      variables: _versionsVariables(resourceType.toString(), id, since, at),
+      readsFrom: {resources, resourcesHistory},
+    ).get();
+    return [
+      for (final row in rows)
+        HistoryEntry.fromRow(resourcesHistory.map(row.data)),
+    ];
+  }
+
+  /// Every version of one resource as one row set: the superseded versions
+  /// and tombstones from `resources_history`, the current version from
+  /// `resources` (schema 14 stores it there only). Columns as the history
+  /// table's, so a row maps to [HistoryEntry.fromRow]. `_since` and `_at`
+  /// are applied inside each half so both `(resource_type, id)` keys are
+  /// used. Variables: [_versionsVariables].
+  String _versionsSql({DateTime? since, DateTime? at}) {
+    final time = at != null
+        ? 'AND last_updated <= ? '
+        : since != null
+            ? 'AND last_updated > ? '
+            : '';
+    return 'SELECT resource_type, id, version_id, resource, last_updated, '
+        'deleted FROM resources_history '
+        'WHERE resource_type = ? AND id = ? $time'
+        'UNION ALL '
+        'SELECT resource_type, id, version_id, resource, last_updated, '
+        '0 AS deleted FROM resources '
+        'WHERE resource_type = ? AND id = ? $time';
+  }
+
+  List<Variable<Object>> _versionsVariables(
+    String resourceType,
+    String id,
+    DateTime? since,
+    DateTime? at,
+  ) {
+    final time = at ?? since;
+    return [
+      for (var half = 0; half < 2; half++) ...[
+        Variable.withString(resourceType),
+        Variable.withString(id),
+        if (time != null) Variable.withInt(time.millisecondsSinceEpoch),
+      ],
+    ];
   }
 
   /// How many versions [getHistory] would return without a page.
@@ -566,13 +663,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     if (at != null) {
       return (await getHistory(resourceType, id, at: at)).length;
     }
-    final h = resourcesHistory;
-    final total = h.id.count();
-    final row = await (selectOnly(h)
-          ..addColumns([total])
-          ..where(_historyOf(h, resourceType.toString(), id, since, at)))
-        .getSingle();
-    return row.read(total) ?? 0;
+    final row = await customSelect(
+      'SELECT count(*) AS c FROM (${_versionsSql(since: since)}) v',
+      variables: _versionsVariables(resourceType.toString(), id, since, null),
+      readsFrom: {resources, resourcesHistory},
+    ).getSingle();
+    return row.read<int>('c');
   }
 
   /// One version of one resource, by its key, or null. A tombstone is an
@@ -582,6 +678,21 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
     String id,
     String versionId,
   ) async {
+    // The current version first (one PK read), then history.
+    final current = await _currentRow(resourceType, id);
+    if (current != null && current.versionId == versionId) {
+      return HistoryEntry(
+        resourceType: current.resourceType,
+        id: current.id,
+        versionId: current.versionId,
+        lastUpdated: DateTime.fromMillisecondsSinceEpoch(
+          current.lastUpdated,
+          isUtc: true,
+        ),
+        deleted: false,
+        resource: fhir.Resource.fromJsonString(current.resource),
+      );
+    }
     final row = await (select(resourcesHistory)
           ..where(
             (tbl) =>
@@ -591,24 +702,6 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
           ))
         .getSingleOrNull();
     return row == null ? null : HistoryEntry.fromRow(row);
-  }
-
-  Expression<bool> _historyOf(
-    $ResourcesHistoryTable tbl,
-    String resourceType,
-    String id,
-    DateTime? since,
-    DateTime? at,
-  ) {
-    var cond = tbl.resourceType.equals(resourceType) & tbl.id.equals(id);
-    if (at != null) {
-      cond = cond &
-          tbl.lastUpdated.isSmallerOrEqualValue(at.millisecondsSinceEpoch);
-    } else if (since != null) {
-      cond = cond &
-          tbl.lastUpdated.isBiggerThanValue(since.millisecondsSinceEpoch);
-    }
-    return cond;
   }
 
   /// Check if a resource exists.
