@@ -165,12 +165,16 @@ void main() {
       // point of use.
       expect(isModifierAllowed('token', 'above'), isFalse);
       expect(isModifierAllowed('token', 'below'), isTrue);
+      // The verdict "defined for the type, not implemented here" is the
+      // model's (ModifierRules), handed to the exception by the store.
       expect(
-        const UnsupportedSearchModifier(
+        UnsupportedSearchModifier(
           parameter: 'code',
           modifier: 'above',
           type: 'token',
-          allowed: {},
+          allowed: const {},
+          definedButUnsupported:
+              r4Model.modifierRules.isUnsupported('token', 'above'),
         ).message,
         contains('does not support'),
       );
