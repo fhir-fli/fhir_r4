@@ -2,9 +2,8 @@
 // Generated from FHIR R4 SearchParameter definitions
 // Do not edit by hand.
 
+import 'package:fhir_db/fhir_db.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
-
-import 'package:fhir_r4_db/fhir_r4_db.dart';
 
 extension MakeIterable on fhir.FhirBase {
   /// Returns an iterable of the given type.
@@ -20,19 +19,13 @@ extension MakeIterableList on Iterable<fhir.FhirBase?> {
   }
 }
 
-class SearchParameterLists {
-  final stringParams = <StringSearchParametersCompanion>[];
-  final tokenParams = <TokenSearchParametersCompanion>[];
-  final referenceParams = <ReferenceSearchParametersCompanion>[];
-  final dateParams = <DateSearchParametersCompanion>[];
-  final numberParams = <NumberSearchParametersCompanion>[];
-  final quantityParams = <QuantitySearchParametersCompanion>[];
-  final uriParams = <UriSearchParametersCompanion>[];
-  final compositeParams = <CompositeSearchParametersCompanion>[];
-  final specialParams = <SpecialSearchParametersCompanion>[];
-}
-
-SearchParameterLists updateSearchParameters(fhir.Resource resource) {
+/// The index rows of [resource], one list per index table: every
+/// element a search parameter of this FHIR version reads, handed
+/// to the row builder of its type on [indexer].
+SearchParameterLists updateSearchParameters(
+  SearchIndexer indexer,
+  fhir.Resource resource,
+) {
   final resourceType = resource.resourceTypeString;
   final id = resource.id.toString();
   final lastUpdated =
@@ -46,9 +39,10 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
   if (resource is fhir.DomainResource &&
       resource.text?.div?.valueString != null) {
     searchParameterLists.stringParams.addAll(
-      fhir.FhirString(
-        resource.text!.div!.valueString!.replaceAll(RegExp('<[^>]+>'), ' '),
-      ).toStringSearchParameter(
+      indexer.stringRows(
+        fhir.FhirString(
+          resource.text!.div!.valueString!.replaceAll(RegExp('<[^>]+>'), ' '),
+        ),
         resourceType,
         id,
         lastUpdated,
@@ -62,7 +56,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
   i = 0;
   for (final entry in resource.meta?.profile ?? <fhir.FhirCanonical>[]) {
     searchParameterLists.uriParams.addAll(
-      entry.toUriSearchParameter(
+      indexer.uriRows(
+        entry,
         resourceType,
         id,
         lastUpdated,
@@ -77,7 +72,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
   i = 0;
   for (final entry in resource.meta?.security ?? <fhir.Coding>[]) {
     searchParameterLists.tokenParams.addAll(
-      entry.toTokenSearchParameter(
+      indexer.tokenRows(
+        entry,
         resourceType,
         id,
         lastUpdated,
@@ -94,7 +90,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
     if (resource.meta?.source != null) resource.meta!.source!
   ]) {
     searchParameterLists.uriParams.addAll(
-      entry.toUriSearchParameter(
+      indexer.uriRows(
+        entry,
         resourceType,
         id,
         lastUpdated,
@@ -109,7 +106,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
   i = 0;
   for (final entry in resource.meta?.tag ?? <fhir.Coding>[]) {
     searchParameterLists.tokenParams.addAll(
-      entry.toTokenSearchParameter(
+      indexer.tokenRows(
+        entry,
         resourceType,
         id,
         lastUpdated,
@@ -129,7 +127,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -145,7 +144,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -161,7 +161,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.owner?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -180,7 +181,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -196,7 +198,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.servicePeriod?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -212,7 +215,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -228,7 +232,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -244,7 +249,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -265,7 +271,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -283,7 +290,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -301,7 +309,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -319,7 +328,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -337,7 +347,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -353,7 +364,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -372,7 +384,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -389,7 +402,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.library_?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -408,7 +422,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -425,7 +440,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -442,7 +458,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -459,7 +476,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -476,7 +494,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -492,7 +511,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -511,7 +531,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -527,7 +548,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -543,7 +565,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -562,7 +585,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -578,7 +602,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -595,7 +620,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.topic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -611,7 +637,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -627,7 +654,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -644,7 +672,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -662,7 +691,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -681,7 +711,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.device?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -698,7 +729,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -714,7 +746,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.formOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -731,7 +764,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -748,7 +782,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.ingredient?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -765,7 +800,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.producedFrom?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -783,7 +819,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -804,7 +841,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -823,7 +861,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.actuality?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -840,7 +879,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -856,7 +896,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -873,7 +914,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.event?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -889,7 +931,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -905,7 +948,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recorder?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -922,7 +966,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.resultingCondition?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -939,7 +984,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.seriousness?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -956,7 +1002,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.severity?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -972,7 +1019,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.study?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -988,7 +1036,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1006,7 +1055,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1024,7 +1074,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.asserter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1041,7 +1092,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1058,7 +1110,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.clinicalStatus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1074,7 +1127,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1092,7 +1146,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1109,7 +1164,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.criticality?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1126,7 +1182,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.recordedDate?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1143,7 +1200,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1160,7 +1218,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.lastOccurrence?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1178,7 +1237,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1196,7 +1256,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1212,7 +1273,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1228,7 +1290,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recorder?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1246,7 +1309,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1264,7 +1328,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1280,7 +1345,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1297,7 +1363,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1317,7 +1384,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1334,7 +1402,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.appointmentType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1350,7 +1419,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1366,7 +1436,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.start?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1383,7 +1454,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1404,7 +1476,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1422,7 +1495,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1443,7 +1517,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1464,7 +1539,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1481,7 +1557,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1498,7 +1575,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1515,7 +1593,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.serviceCategory?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1532,7 +1611,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.serviceType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1548,7 +1628,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.slot?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1565,7 +1646,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.specialty?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1581,7 +1663,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1598,7 +1681,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.supportingInformation?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1616,7 +1700,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.actor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1633,7 +1718,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.appointment?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1650,7 +1736,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1670,7 +1757,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1687,7 +1775,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.participantStatus?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1707,7 +1796,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1727,7 +1817,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1745,7 +1836,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.action?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1764,7 +1856,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1782,7 +1875,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1800,7 +1894,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1818,7 +1913,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1836,7 +1932,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1852,7 +1949,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recorded?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1870,7 +1968,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1888,7 +1987,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1906,7 +2006,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1924,7 +2025,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1940,7 +2042,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.outcome?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1960,7 +2063,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1980,7 +2084,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -1998,7 +2103,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2015,7 +2121,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.source?.site?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2032,7 +2139,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.source?.observer?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2048,7 +2156,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.subtype?.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2064,7 +2173,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.type?.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2082,7 +2192,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2098,7 +2209,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2114,7 +2226,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDate>() ??
           <fhir.FhirDate>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2131,7 +2244,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2151,7 +2265,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2167,7 +2282,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2186,7 +2302,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2203,7 +2320,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.location?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2220,7 +2338,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.morphology?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2236,7 +2355,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2255,7 +2375,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Resource>() ??
           <fhir.Resource>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2272,7 +2393,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2289,7 +2411,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Resource>() ??
           <fhir.Resource>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2306,7 +2429,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.timestamp?.makeIterable<fhir.FhirInstant>() ??
               <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2322,7 +2446,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2342,7 +2467,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2360,7 +2486,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2378,7 +2505,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2396,7 +2524,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2412,7 +2541,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2429,7 +2559,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2445,7 +2576,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2461,7 +2593,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.format?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2478,7 +2611,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.implementationGuide?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2495,7 +2629,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2513,7 +2648,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2529,7 +2665,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2545,7 +2682,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2565,7 +2703,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2585,7 +2724,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2604,7 +2744,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2621,7 +2762,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.software?.name?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2637,7 +2779,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2657,7 +2800,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2673,7 +2817,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2689,7 +2834,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2705,7 +2851,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2722,7 +2869,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2740,7 +2888,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2759,7 +2908,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2776,7 +2926,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2796,7 +2947,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2815,7 +2967,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2834,7 +2987,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ScheduledXCarePlanDetail>() ??
           <fhir.ScheduledXCarePlanDetail>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2852,7 +3006,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2868,7 +3023,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2884,7 +3040,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.careTeam?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2901,7 +3058,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2917,7 +3075,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.addresses?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2933,7 +3092,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2949,7 +3109,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.goal?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2966,7 +3127,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2983,7 +3145,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -2999,7 +3162,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3015,7 +3179,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3034,7 +3199,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3050,7 +3216,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.replaces?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3066,7 +3233,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3082,7 +3250,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3100,7 +3269,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3117,7 +3287,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3137,7 +3308,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3154,7 +3326,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3170,7 +3343,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3188,7 +3362,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3204,7 +3379,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3220,7 +3396,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3238,7 +3415,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.account?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3254,7 +3432,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3270,7 +3449,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.context?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3287,7 +3467,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.enteredDate?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3303,7 +3484,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.enterer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3320,7 +3502,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.factorOverride?.makeIterable<fhir.FhirDecimal>() ??
               <fhir.FhirDecimal>[]) {
         searchParameterLists.numberParams.addAll(
-          entry.toNumberSearchParameter(
+          indexer.numberRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3337,7 +3520,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3354,7 +3538,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.occurrenceX?.makeIterable<fhir.OccurrenceXChargeItem>() ??
               <fhir.OccurrenceXChargeItem>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3374,7 +3559,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3392,7 +3578,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3410,7 +3597,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3427,7 +3615,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.performingOrganization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3443,7 +3632,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.priceOverride?.makeIterable<fhir.Money>() ??
           <fhir.Money>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3459,7 +3649,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.quantity?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3476,7 +3667,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.requestingOrganization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3492,7 +3684,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.service?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3508,7 +3701,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3528,7 +3722,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3546,7 +3741,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3564,7 +3760,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3582,7 +3779,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3598,7 +3796,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3615,7 +3814,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3632,7 +3832,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3649,7 +3850,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3666,7 +3868,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3682,7 +3885,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3698,7 +3902,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3714,7 +3919,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3730,7 +3936,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3746,7 +3953,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3763,7 +3971,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3781,7 +3990,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3802,7 +4012,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3820,7 +4031,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3838,7 +4050,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3856,7 +4069,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3872,7 +4086,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3889,7 +4104,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3906,7 +4122,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3923,7 +4140,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3940,7 +4158,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3956,7 +4175,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3972,7 +4192,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -3988,7 +4209,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4004,7 +4226,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4020,7 +4243,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4036,7 +4260,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4053,7 +4278,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4071,7 +4297,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4092,7 +4319,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4108,7 +4336,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4127,7 +4356,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4145,7 +4375,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4161,7 +4392,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.enterer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4177,7 +4409,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.facility?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4194,7 +4427,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4210,7 +4444,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.insurer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4228,7 +4463,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4244,7 +4480,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4261,7 +4498,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.payee?.party?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4278,7 +4516,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.priority?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4296,7 +4535,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4312,7 +4552,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.provider?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4328,7 +4569,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4348,7 +4590,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4364,7 +4607,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.use?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4382,7 +4626,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4399,7 +4644,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.disposition?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4416,7 +4662,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4432,7 +4679,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.insurer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4448,7 +4696,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.outcome?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4464,7 +4713,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4481,7 +4731,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.payment?.date?.makeIterable<fhir.FhirDate>() ??
               <fhir.FhirDate>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4497,7 +4748,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.request?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4513,7 +4765,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requestor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4529,7 +4782,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4545,7 +4799,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.use?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4563,7 +4818,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4583,7 +4839,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4599,7 +4856,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.assessor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4615,7 +4873,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4633,7 +4892,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4651,7 +4911,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4668,7 +4929,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4686,7 +4948,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4702,7 +4965,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.previous?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4718,7 +4982,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.problem?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4734,7 +4999,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4750,7 +5016,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4767,7 +5034,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.supportingInfo?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4786,7 +5054,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableReference>() ??
           <fhir.CodeableReference>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4803,7 +5072,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableReference>() ??
           <fhir.CodeableReference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4820,7 +5090,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableReference>() ??
           <fhir.CodeableReference>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4837,7 +5108,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableReference>() ??
           <fhir.CodeableReference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4854,7 +5126,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4871,7 +5144,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableReference>() ??
           <fhir.CodeableReference>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4888,7 +5162,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableReference>() ??
           <fhir.CodeableReference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4905,7 +5180,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.interaction?.type?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4925,7 +5201,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4941,7 +5218,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4957,7 +5235,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4977,7 +5256,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -4995,7 +5275,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5013,7 +5294,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5031,7 +5313,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5047,7 +5330,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5064,7 +5348,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5081,7 +5366,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5097,7 +5383,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5113,7 +5400,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5129,7 +5417,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5145,7 +5434,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5161,7 +5451,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5177,7 +5468,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5194,7 +5486,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5212,7 +5505,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5231,7 +5525,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5247,7 +5542,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.content?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5264,7 +5560,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5283,7 +5580,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5300,7 +5598,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.supplements?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5316,7 +5615,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5334,7 +5634,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5351,7 +5652,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5367,7 +5669,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5384,7 +5687,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5401,7 +5705,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5418,7 +5723,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5435,7 +5741,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.medium?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5451,7 +5758,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5471,7 +5779,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5488,7 +5797,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.received?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5504,7 +5814,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recipient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5520,7 +5831,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.sender?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5536,7 +5848,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.sent?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5552,7 +5865,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5568,7 +5882,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5587,7 +5902,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authoredOn?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5603,7 +5919,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5620,7 +5937,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5636,7 +5954,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5653,7 +5972,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.groupIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5670,7 +5990,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5687,7 +6008,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.medium?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5704,7 +6026,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5724,7 +6047,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5741,7 +6065,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.priority?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5757,7 +6082,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recipient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5773,7 +6099,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.replaces?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5789,7 +6116,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requester?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5805,7 +6133,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.sender?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5821,7 +6150,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5837,7 +6167,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5857,7 +6188,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5875,7 +6207,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5893,7 +6226,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5911,7 +6245,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5927,7 +6262,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5944,7 +6280,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5960,7 +6297,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5976,7 +6314,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -5992,7 +6331,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6008,7 +6348,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6024,7 +6365,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6041,7 +6383,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6059,7 +6402,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6076,7 +6420,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6094,7 +6439,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6112,7 +6458,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6129,7 +6476,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6149,7 +6497,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6165,7 +6514,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6183,7 +6533,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6199,7 +6550,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6216,7 +6568,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6233,7 +6586,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.confidentiality?.makeIterable<fhir.FhirCode>() ??
               <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6251,7 +6605,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6267,7 +6622,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6285,7 +6641,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6303,7 +6660,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6321,7 +6679,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Identifier>() ??
           <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6339,7 +6698,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6357,7 +6717,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6373,7 +6734,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6389,7 +6751,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6405,7 +6768,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6425,7 +6789,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6443,7 +6808,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6461,7 +6827,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6479,7 +6846,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6495,7 +6863,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6512,7 +6881,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6529,7 +6899,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6545,7 +6916,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6561,7 +6933,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6577,7 +6950,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6593,7 +6967,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6609,7 +6984,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6625,7 +7001,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6642,7 +7019,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6660,7 +7038,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6678,7 +7057,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6699,7 +7079,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6718,7 +7099,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6739,7 +7121,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6756,7 +7139,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.sourceCanonical?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6775,7 +7159,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6793,7 +7178,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6809,7 +7195,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.sourceUri?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6826,7 +7213,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.targetCanonical?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6846,7 +7234,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6864,7 +7253,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6880,7 +7270,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.targetUri?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6898,7 +7289,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6915,7 +7307,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6935,7 +7328,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6951,7 +7345,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.abatementAge?.makeIterable<fhir.Age>() ?? <fhir.Age>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6967,7 +7362,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.abatementRange?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -6984,7 +7380,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.abatementDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7001,7 +7398,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.abatementPeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7018,7 +7416,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.abatementString?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7034,7 +7433,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.asserter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7051,7 +7451,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.bodySite?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7068,7 +7469,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7085,7 +7487,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.clinicalStatus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7101,7 +7504,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7119,7 +7523,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7137,7 +7542,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7153,7 +7559,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.onsetAge?.makeIterable<fhir.Age>() ?? <fhir.Age>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7169,7 +7576,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.onsetRange?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7186,7 +7594,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.onsetDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7202,7 +7611,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.onsetPeriod?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7219,7 +7629,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.onsetString?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7236,7 +7647,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.recordedDate?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7253,7 +7665,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.severity?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7271,7 +7684,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7287,7 +7701,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7304,7 +7719,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7323,7 +7739,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.dateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7340,7 +7757,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7356,7 +7774,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7373,7 +7792,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.provision?.action?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7391,7 +7811,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7408,7 +7829,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7424,7 +7846,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.performer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7442,7 +7865,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7459,7 +7883,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.organization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7476,7 +7901,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.provision?.period?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7493,7 +7919,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.provision?.purpose?.makeIterable<fhir.Coding>() ??
               <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7510,7 +7937,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.scope?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7527,7 +7955,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.provision?.securityLabel?.makeIterable<fhir.Coding>() ??
               <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7544,7 +7973,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.sourceX?.makeIterable<fhir.SourceXConsent>() ??
               <fhir.SourceXConsent>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7560,7 +7990,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7578,7 +8009,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.authority?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7594,7 +8026,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.domain?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7611,7 +8044,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7628,7 +8062,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7644,7 +8079,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.issued?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7663,7 +8099,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7681,7 +8118,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7697,7 +8135,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7713,7 +8152,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7729,7 +8169,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7748,7 +8189,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.beneficiary?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7766,7 +8208,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7784,7 +8227,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7800,7 +8244,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.dependent?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7817,7 +8262,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7834,7 +8280,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.beneficiary?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7850,7 +8297,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.payor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7867,7 +8315,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.policyHolder?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7883,7 +8332,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7899,7 +8349,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subscriber?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7915,7 +8366,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7933,7 +8385,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7949,7 +8402,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.enterer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7965,7 +8419,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.facility?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7982,7 +8437,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -7998,7 +8454,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8014,7 +8471,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.provider?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8030,7 +8488,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8048,7 +8507,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8065,7 +8525,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.disposition?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8082,7 +8543,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8098,7 +8560,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.insurer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8114,7 +8577,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.outcome?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8130,7 +8594,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8146,7 +8611,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.request?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8162,7 +8628,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requestor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8178,7 +8645,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8197,7 +8665,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8213,7 +8682,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8229,7 +8699,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8245,7 +8716,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8262,7 +8734,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.IdentifiedXDetectedIssue>() ??
           <fhir.IdentifiedXDetectedIssue>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8278,7 +8751,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.implicated?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8298,7 +8772,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8316,7 +8791,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8333,7 +8809,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.type?.text?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8350,7 +8827,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8366,7 +8844,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8383,7 +8862,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.manufacturer?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8400,7 +8880,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.modelNumber?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8416,7 +8897,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.owner?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8432,7 +8914,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8448,7 +8931,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8464,7 +8948,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8482,7 +8967,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8500,7 +8986,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8516,7 +9003,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8535,7 +9023,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8552,7 +9041,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.parentDevice?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8568,7 +9058,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8587,7 +9078,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8604,7 +9096,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8620,7 +9113,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.parent?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8636,7 +9130,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.source?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8652,7 +9147,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8671,7 +9167,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8688,7 +9185,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8708,7 +9206,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8724,7 +9223,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8741,7 +9241,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authoredOn?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8757,7 +9258,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8774,7 +9276,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.codeReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8791,7 +9294,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8808,7 +9312,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.occurrencePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8825,7 +9330,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.groupIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8842,7 +9348,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8859,7 +9366,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8875,7 +9383,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.insurance?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8891,7 +9400,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8907,7 +9417,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.performer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8924,7 +9435,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.priorRequest?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8940,7 +9452,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requester?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8956,7 +9469,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8972,7 +9486,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -8994,7 +9509,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9010,7 +9526,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.device?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9027,7 +9544,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9043,7 +9561,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9061,7 +9580,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9078,7 +9598,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.EffectiveXDiagnosticReport>() ??
           <fhir.EffectiveXDiagnosticReport>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9095,7 +9616,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9115,7 +9637,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9131,7 +9654,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9147,7 +9671,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9164,7 +9689,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9181,7 +9707,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.conclusionCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9197,7 +9724,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.issued?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9215,7 +9743,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9231,7 +9760,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.performer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9247,7 +9777,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.result?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9264,7 +9795,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.resultsInterpreter?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9280,7 +9812,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.specimen?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9296,7 +9829,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9312,7 +9846,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9331,7 +9866,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.masterIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9348,7 +9884,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9368,7 +9905,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9384,7 +9922,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9400,7 +9939,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9416,7 +9956,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9433,7 +9974,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9449,7 +9991,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.content?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9465,7 +10008,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recipient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9483,7 +10027,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Identifier>() ??
           <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9501,7 +10046,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9517,7 +10063,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.source?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9533,7 +10080,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9549,7 +10097,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9568,7 +10117,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.masterIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9585,7 +10135,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9605,7 +10156,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9621,7 +10173,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9640,7 +10193,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9657,7 +10211,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authenticator?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9673,7 +10228,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9690,7 +10246,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9709,7 +10266,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9725,7 +10283,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.custodian?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9741,7 +10300,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9758,7 +10318,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9775,7 +10336,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.context?.event?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9792,7 +10354,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9810,7 +10373,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9829,7 +10393,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9848,7 +10413,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUrl>() ??
           <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9865,7 +10431,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.context?.period?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9882,7 +10449,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.context?.related?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9900,7 +10468,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9918,7 +10487,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9935,7 +10505,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.securityLabel?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9952,7 +10523,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9968,7 +10540,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -9984,7 +10557,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10001,7 +10575,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.DocumentReferenceRelatesTo>() ??
           <fhir.DocumentReferenceRelatesTo>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10020,7 +10595,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10037,7 +10613,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10057,7 +10634,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10073,7 +10651,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10089,7 +10668,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.account?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10106,7 +10686,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.appointment?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10122,7 +10703,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10138,7 +10720,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.class_?.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10156,7 +10739,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10173,7 +10757,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.episodeOfCare?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10189,7 +10774,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.length?.makeIterable<fhir.FhirDuration>() ??
           <fhir.FhirDuration>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10207,7 +10793,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10225,7 +10812,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10241,7 +10829,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10259,7 +10848,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10277,7 +10867,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10298,7 +10889,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10315,7 +10907,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10332,7 +10925,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10349,7 +10943,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.serviceProvider?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10366,7 +10961,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10382,7 +10978,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10398,7 +10995,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10417,7 +11015,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.connectionType?.makeIterable<fhir.Coding>() ??
               <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10434,7 +11033,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10450,7 +11050,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10467,7 +11068,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.managingOrganization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10484,7 +11086,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.payloadType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10500,7 +11103,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10519,7 +11123,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10535,7 +11140,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.candidate?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10551,7 +11157,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10567,7 +11174,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.candidate?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10586,7 +11194,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10602,7 +11211,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.request?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10618,7 +11228,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10636,7 +11247,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10653,7 +11265,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10669,7 +11282,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10685,7 +11299,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10705,7 +11320,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10723,7 +11339,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10740,7 +11357,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.referralRequest?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10757,7 +11375,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.managingOrganization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10773,7 +11392,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10794,7 +11414,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10812,7 +11433,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10830,7 +11452,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10848,7 +11471,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10866,7 +11490,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10882,7 +11507,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10901,7 +11527,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10920,7 +11547,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10937,7 +11565,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10954,7 +11583,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10971,7 +11601,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -10988,7 +11619,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11004,7 +11636,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11023,7 +11656,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11039,7 +11673,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11055,7 +11690,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11074,7 +11710,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11090,7 +11727,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11107,7 +11745,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.topic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11123,7 +11762,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11139,7 +11779,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11156,7 +11797,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11174,7 +11816,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11195,7 +11838,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11213,7 +11857,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11231,7 +11876,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11249,7 +11895,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11265,7 +11912,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11282,7 +11930,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11299,7 +11948,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11315,7 +11965,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11331,7 +11982,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11347,7 +11999,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11363,7 +12016,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11379,7 +12033,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11396,7 +12051,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11414,7 +12070,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11435,7 +12092,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11453,7 +12111,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11471,7 +12130,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11489,7 +12149,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11506,7 +12167,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11522,7 +12184,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11538,7 +12201,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11554,7 +12218,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11571,7 +12236,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11589,7 +12255,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11610,7 +12277,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11628,7 +12296,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11646,7 +12315,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11664,7 +12334,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11680,7 +12351,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11697,7 +12369,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11714,7 +12387,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11730,7 +12404,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11746,7 +12421,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11762,7 +12438,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11778,7 +12455,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11794,7 +12472,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11810,7 +12489,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11827,7 +12507,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11845,7 +12526,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11866,7 +12548,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11884,7 +12567,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11902,7 +12586,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11920,7 +12605,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11936,7 +12622,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11953,7 +12640,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11970,7 +12658,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -11986,7 +12675,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12002,7 +12692,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12018,7 +12709,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12034,7 +12726,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12050,7 +12743,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12067,7 +12761,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12085,7 +12780,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12106,7 +12802,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12122,7 +12819,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.claim?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12140,7 +12838,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12156,7 +12855,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12175,7 +12875,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12192,7 +12893,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.disposition?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12210,7 +12912,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12226,7 +12929,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.enterer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12242,7 +12946,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.facility?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12259,7 +12964,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12277,7 +12983,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12293,7 +13000,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12310,7 +13018,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.payee?.party?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12328,7 +13037,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12344,7 +13054,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.provider?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12360,7 +13071,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12381,7 +13093,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12401,7 +13114,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12417,7 +13131,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12434,7 +13149,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12450,7 +13166,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12467,7 +13184,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12484,7 +13202,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12501,7 +13220,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.relationship?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12517,7 +13237,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.sex?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12533,7 +13254,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12551,7 +13273,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12571,7 +13294,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12587,7 +13311,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12603,7 +13328,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12620,7 +13346,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12636,7 +13363,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12655,7 +13383,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12675,7 +13404,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12692,7 +13422,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.achievementStatus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12709,7 +13440,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12726,7 +13458,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.lifecycleStatus?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12742,7 +13475,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.startDate?.makeIterable<fhir.FhirDate>() ??
           <fhir.FhirDate>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12758,7 +13492,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12776,7 +13511,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirDate>() ??
           <fhir.FhirDate>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12796,7 +13532,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12814,7 +13551,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12832,7 +13570,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12850,7 +13589,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12866,7 +13606,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12883,7 +13624,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12900,7 +13642,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12916,7 +13659,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12932,7 +13676,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12948,7 +13693,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12964,7 +13710,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12980,7 +13727,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -12997,7 +13745,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13015,7 +13764,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13032,7 +13782,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.start?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13050,7 +13801,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.actual?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13068,7 +13820,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13084,7 +13837,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13102,7 +13856,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13119,7 +13874,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13136,7 +13892,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.managingEntity?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13154,7 +13911,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13170,7 +13928,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13188,7 +13947,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13206,7 +13966,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13223,7 +13984,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.GroupCharacteristic>() ??
           <fhir.GroupCharacteristic>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13243,7 +14005,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13263,7 +14026,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13280,7 +14044,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.requestIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13296,7 +14061,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13314,7 +14080,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13331,7 +14098,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.characteristic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13348,7 +14116,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.coverageArea?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13364,7 +14133,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.endpoint?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13381,7 +14151,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13397,7 +14168,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13413,7 +14185,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13429,7 +14202,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.providedBy?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13446,7 +14220,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.program?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13463,7 +14238,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13479,7 +14255,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13496,7 +14273,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.specialty?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13515,7 +14293,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13535,7 +14314,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13551,7 +14331,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13569,7 +14350,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13588,7 +14370,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13604,7 +14387,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13620,7 +14404,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.endpoint?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13638,7 +14423,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13657,7 +14443,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirId>() ??
           <fhir.FhirId>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13674,7 +14461,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.interpreter?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13692,7 +14480,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13711,7 +14500,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13728,7 +14518,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13744,7 +14535,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.referrer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13762,7 +14554,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirId>() ??
           <fhir.FhirId>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13778,7 +14571,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.started?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13794,7 +14588,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13810,7 +14605,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13829,7 +14625,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13846,7 +14643,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13862,7 +14660,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13878,7 +14677,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13894,7 +14694,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.lotNumber?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13911,7 +14712,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.manufacturer?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13929,7 +14731,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13947,7 +14750,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13965,7 +14769,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13982,7 +14787,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -13999,7 +14805,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14017,7 +14824,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14033,7 +14841,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14050,7 +14859,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.statusReason?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14068,7 +14878,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14085,7 +14896,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.vaccineCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14103,7 +14915,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14120,7 +14933,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.doseStatus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14137,7 +14951,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14154,7 +14969,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.immunizationEvent?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14170,7 +14986,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14186,7 +15003,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14203,7 +15021,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.targetDisease?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14221,7 +15040,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14238,7 +15058,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14257,7 +15078,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14273,7 +15095,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14291,7 +15114,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14309,7 +15133,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14327,7 +15152,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14345,7 +15171,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14365,7 +15192,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14383,7 +15211,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14401,7 +15230,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14419,7 +15249,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14435,7 +15266,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14452,7 +15284,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14469,7 +15302,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14485,7 +15319,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14501,7 +15336,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14517,7 +15353,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14533,7 +15370,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14549,7 +15387,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14565,7 +15404,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14582,7 +15422,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14600,7 +15441,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14619,7 +15461,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14636,7 +15479,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.experimental?.makeIterable<fhir.FhirBoolean>() ??
               <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14654,7 +15498,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14672,7 +15517,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14690,7 +15536,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.for_?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14707,7 +15554,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.function_?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14724,7 +15572,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14741,7 +15590,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.IngredientManufacturer>() ??
           <fhir.IngredientManufacturer>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14757,7 +15607,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.role?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14774,7 +15625,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14791,7 +15643,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14808,7 +15661,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14828,7 +15682,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14847,7 +15702,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14866,7 +15722,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14885,7 +15742,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14904,7 +15762,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14923,7 +15782,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14940,7 +15800,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.administeredBy?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14956,7 +15817,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.endpoint?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14973,7 +15835,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -14989,7 +15852,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15005,7 +15869,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.alias?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15021,7 +15886,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.ownedBy?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15037,7 +15903,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15053,7 +15920,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15069,7 +15937,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15087,7 +15956,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.account?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15103,7 +15973,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15120,7 +15991,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15136,7 +16008,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.issuer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15154,7 +16027,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15172,7 +16046,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15192,7 +16067,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15208,7 +16084,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recipient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15224,7 +16101,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15240,7 +16118,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15256,7 +16135,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.totalGross?.makeIterable<fhir.Money>() ??
           <fhir.Money>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15272,7 +16152,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.totalNet?.makeIterable<fhir.Money>() ?? <fhir.Money>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15288,7 +16169,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15309,7 +16191,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15327,7 +16210,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15345,7 +16229,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15363,7 +16248,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15381,7 +16267,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15399,7 +16286,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15415,7 +16303,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15434,7 +16323,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15453,7 +16343,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15470,7 +16361,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15487,7 +16379,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15504,7 +16397,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15521,7 +16415,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15537,7 +16432,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15556,7 +16452,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15572,7 +16469,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15588,7 +16486,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15607,7 +16506,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15623,7 +16523,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15640,7 +16541,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.topic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15656,7 +16558,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15672,7 +16575,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15688,7 +16592,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15705,7 +16610,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15723,7 +16629,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15742,7 +16649,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15760,7 +16668,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15778,7 +16687,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15796,7 +16706,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15812,7 +16723,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15829,7 +16741,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15849,7 +16762,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15865,7 +16779,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15882,7 +16797,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.emptyReason?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15900,7 +16816,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15918,7 +16835,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirMarkdown>() ??
           <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15934,7 +16852,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.source?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15950,7 +16869,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15966,7 +16886,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -15982,7 +16903,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16000,7 +16922,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.address?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16017,7 +16940,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.address?.city?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16034,7 +16958,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.address?.country?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16051,7 +16976,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.address?.postalCode?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16068,7 +16994,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.address?.state?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16085,7 +17012,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.address?.use?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16101,7 +17029,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.endpoint?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16118,7 +17047,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16134,7 +17064,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16150,7 +17081,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.alias?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16167,7 +17099,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.position?.makeIterable<fhir.LocationPosition>() ??
               <fhir.LocationPosition>[]) {
         searchParameterLists.specialParams.addAll(
-          entry.toSpecialSearchParameter(
+          indexer.specialRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16184,7 +17117,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.operationalStatus?.makeIterable<fhir.Coding>() ??
               <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16201,7 +17135,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.managingOrganization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16217,7 +17152,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16233,7 +17169,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16249,7 +17186,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16268,7 +17206,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16285,7 +17224,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16302,7 +17242,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.ingredient?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16323,7 +17264,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16341,7 +17283,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16359,7 +17302,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16377,7 +17321,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16395,7 +17340,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16411,7 +17357,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16430,7 +17377,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16447,7 +17395,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.library_?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16466,7 +17415,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16483,7 +17433,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16500,7 +17451,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16517,7 +17469,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16534,7 +17487,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16550,7 +17504,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16569,7 +17524,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16585,7 +17541,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16601,7 +17558,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16620,7 +17578,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16636,7 +17595,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16653,7 +17613,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.topic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16669,7 +17630,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16685,7 +17647,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16702,7 +17665,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16720,7 +17684,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16739,7 +17704,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16756,7 +17722,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.evaluatedResource?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16773,7 +17740,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16790,7 +17758,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.measure?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16810,7 +17779,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16826,7 +17796,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16842,7 +17813,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.reporter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16858,7 +17830,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16874,7 +17847,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16892,7 +17866,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16909,7 +17884,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.createdX?.makeIterable<fhir.CreatedXMedia>() ??
               <fhir.CreatedXMedia>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16925,7 +17901,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.device?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16941,7 +17918,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16958,7 +17936,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16975,7 +17954,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.modality?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -16991,7 +17971,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.operator_?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17011,7 +17992,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17028,7 +18010,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.bodySite?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17044,7 +18027,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17060,7 +18044,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17076,7 +18061,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17092,7 +18078,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.view?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17110,7 +18097,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17127,7 +18115,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17143,7 +18132,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.form?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17160,7 +18150,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17178,7 +18169,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17196,7 +18188,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17213,7 +18206,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.batch?.lotNumber?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17230,7 +18224,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.manufacturer?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17246,7 +18241,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17265,7 +18261,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17282,7 +18279,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17302,7 +18300,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17318,7 +18317,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.context?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17334,7 +18334,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.device?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17351,7 +18352,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.EffectiveXMedicationAdministration>() ??
           <fhir.EffectiveXMedicationAdministration>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17368,7 +18370,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.medicationReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17386,7 +18389,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17403,7 +18407,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17420,7 +18425,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.statusReason?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17436,7 +18442,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.request?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17452,7 +18459,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17468,7 +18476,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17487,7 +18496,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17504,7 +18514,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17524,7 +18535,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17541,7 +18553,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.medicationReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17557,7 +18570,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17573,7 +18587,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.context?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17590,7 +18605,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.destination?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17608,7 +18624,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17625,7 +18642,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authorizingPrescription?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17641,7 +18659,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.receiver?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17658,7 +18677,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17674,7 +18694,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17690,7 +18711,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17707,7 +18729,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.whenHandedOver?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17724,7 +18747,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.whenPrepared?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17744,7 +18768,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17762,7 +18787,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17778,7 +18804,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17795,7 +18822,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.doseForm?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17813,7 +18841,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17831,7 +18860,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17848,7 +18878,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.manufacturer?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17866,7 +18897,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17884,7 +18916,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17902,7 +18935,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17920,7 +18954,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17938,7 +18973,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17954,7 +18990,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17973,7 +19010,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -17990,7 +19028,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18010,7 +19049,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18027,7 +19067,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.medicationReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18043,7 +19084,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18060,7 +19102,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authoredOn?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18077,7 +19120,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18096,7 +19140,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18112,7 +19157,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18129,7 +19175,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18145,7 +19192,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.performer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18162,7 +19210,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.performerType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18178,7 +19227,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18195,7 +19245,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.priority?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18211,7 +19262,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requester?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18227,7 +19279,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18246,7 +19299,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18263,7 +19317,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18283,7 +19338,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18300,7 +19356,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.medicationReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18316,7 +19373,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18333,7 +19391,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18349,7 +19408,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.context?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18366,7 +19426,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.EffectiveXMedicationStatement>() ??
           <fhir.EffectiveXMedicationStatement>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18382,7 +19443,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18399,7 +19461,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.informationSource?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18415,7 +19478,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18437,7 +19501,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
                   fhir.ValueXMedicinalProductDefinitionCharacteristic>() ??
           <fhir.ValueXMedicinalProductDefinitionCharacteristic>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18455,7 +19520,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18473,7 +19539,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18490,7 +19557,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.domain?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18507,7 +19575,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18524,7 +19593,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.ingredient?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18540,7 +19610,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.masterFile?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18558,7 +19629,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18579,7 +19651,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18596,7 +19669,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.classification?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18613,7 +19687,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.status?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18629,7 +19704,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18649,7 +19725,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18667,7 +19744,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18685,7 +19763,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18703,7 +19782,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18719,7 +19799,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18736,7 +19817,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18753,7 +19835,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18769,7 +19852,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18785,7 +19869,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18801,7 +19886,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18817,7 +19903,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18833,7 +19920,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18849,7 +19937,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18866,7 +19955,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18884,7 +19974,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18902,7 +19993,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18919,7 +20011,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18936,7 +20029,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.eventX?.makeIterable<fhir.EventXMessageDefinition>() ??
               <fhir.EventXMessageDefinition>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18954,7 +20048,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18970,7 +20065,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.parent?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -18988,7 +20084,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19005,7 +20102,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.response?.code?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19023,7 +20121,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19041,7 +20140,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUrl>() ??
           <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19057,7 +20157,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.enterer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19074,7 +20175,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.eventX?.makeIterable<fhir.EventXMessageHeader>() ??
               <fhir.EventXMessageHeader>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19090,7 +20192,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.focus?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19108,7 +20211,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19125,7 +20229,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.response?.identifier?.makeIterable<fhir.FhirId>() ??
               <fhir.FhirId>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19142,7 +20247,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.responsible?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19158,7 +20264,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.sender?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19175,7 +20282,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.source?.name?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19192,7 +20300,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.source?.endpoint?.makeIterable<fhir.FhirUrl>() ??
               <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19210,7 +20319,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19229,7 +20339,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19246,7 +20357,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19262,7 +20374,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19279,7 +20392,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19295,7 +20409,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19313,7 +20428,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirInteger>() ??
           <fhir.FhirInteger>[]) {
         searchParameterLists.numberParams.addAll(
-          entry.toNumberSearchParameter(
+          indexer.numberRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19331,7 +20447,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirInteger>() ??
           <fhir.FhirInteger>[]) {
         searchParameterLists.numberParams.addAll(
-          entry.toNumberSearchParameter(
+          indexer.numberRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19348,7 +20465,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirInteger>() ??
           <fhir.FhirInteger>[]) {
         searchParameterLists.numberParams.addAll(
-          entry.toNumberSearchParameter(
+          indexer.numberRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19365,7 +20483,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirInteger>() ??
           <fhir.FhirInteger>[]) {
         searchParameterLists.numberParams.addAll(
-          entry.toNumberSearchParameter(
+          indexer.numberRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19382,7 +20501,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.variant?.makeIterable<fhir.MolecularSequenceVariant>() ??
               <fhir.MolecularSequenceVariant>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19400,7 +20520,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.MolecularSequenceReferenceSeq>() ??
           <fhir.MolecularSequenceReferenceSeq>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19418,7 +20539,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.variant?.makeIterable<fhir.MolecularSequenceVariant>() ??
               <fhir.MolecularSequenceVariant>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19436,7 +20558,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.MolecularSequenceReferenceSeq>() ??
           <fhir.MolecularSequenceReferenceSeq>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19457,7 +20580,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19475,7 +20599,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19493,7 +20618,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19511,7 +20637,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19527,7 +20654,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19544,7 +20672,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19561,7 +20690,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19577,7 +20707,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19593,7 +20724,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19609,7 +20741,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19626,7 +20759,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19644,7 +20778,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19663,7 +20798,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19681,7 +20817,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19697,7 +20834,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.kind?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19715,7 +20853,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19732,7 +20871,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.responsible?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19750,7 +20890,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19766,7 +20907,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19784,7 +20926,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19803,7 +20946,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19819,7 +20963,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19835,7 +20980,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19852,7 +20998,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19869,7 +21016,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.dateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19886,7 +21034,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19903,7 +21052,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19920,7 +21070,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19937,7 +21088,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.oralDiet?.type?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19953,7 +21105,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.orderer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19969,7 +21122,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -19987,7 +21141,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20006,7 +21161,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instance?.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20022,7 +21178,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20040,7 +21197,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20057,7 +21215,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectiveX?.makeIterable<fhir.EffectiveXObservation>() ??
               <fhir.EffectiveXObservation>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20074,7 +21233,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20094,7 +21254,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20110,7 +21271,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20126,7 +21288,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20143,7 +21306,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20159,7 +21323,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20177,7 +21342,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20194,7 +21360,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.dataAbsentReason?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20212,7 +21379,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20229,7 +21397,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20247,7 +21416,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20264,7 +21434,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.valueQuantity?.makeIterable<fhir.Quantity>() ??
               <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20281,7 +21452,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.valueSampledData?.makeIterable<fhir.SampledData>() ??
               <fhir.SampledData>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20299,7 +21471,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20317,7 +21490,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.SampledData>() ??
           <fhir.SampledData>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20335,7 +21509,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20353,7 +21528,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20371,7 +21547,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20389,7 +21566,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20407,7 +21585,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.SampledData>() ??
           <fhir.SampledData>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20424,7 +21603,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.dataAbsentReason?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20441,7 +21621,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.derivedFrom?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20457,7 +21638,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.device?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20473,7 +21655,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.focus?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20489,7 +21672,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.hasMember?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20506,7 +21690,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.method?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20522,7 +21707,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20538,7 +21724,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.performer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20554,7 +21741,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.specimen?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20570,7 +21758,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20586,7 +21775,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20603,7 +21793,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20620,7 +21811,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.valueDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20636,7 +21828,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.valuePeriod?.makeIterable<fhir.Period>() ??
           <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20653,7 +21846,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.valueQuantity?.makeIterable<fhir.Quantity>() ??
               <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20670,7 +21864,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.valueSampledData?.makeIterable<fhir.SampledData>() ??
               <fhir.SampledData>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20687,7 +21882,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.valueString?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20703,7 +21899,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.makeIterable<fhir.Observation>() ??
           <fhir.Observation>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20720,7 +21917,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.makeIterable<fhir.Observation>() ??
           <fhir.Observation>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20737,7 +21935,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.makeIterable<fhir.Observation>() ??
           <fhir.Observation>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20754,7 +21953,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.makeIterable<fhir.Observation>() ??
           <fhir.Observation>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20771,7 +21971,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.makeIterable<fhir.Observation>() ??
           <fhir.Observation>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20789,7 +21990,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.component?.makeIterable<fhir.ObservationComponent>() ??
               <fhir.ObservationComponent>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20806,7 +22008,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.makeIterable<fhir.Observation>() ??
           <fhir.Observation>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20824,7 +22027,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.component?.makeIterable<fhir.ObservationComponent>() ??
               <fhir.ObservationComponent>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20842,7 +22046,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.component?.makeIterable<fhir.ObservationComponent>() ??
               <fhir.ObservationComponent>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20860,7 +22065,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.component?.makeIterable<fhir.ObservationComponent>() ??
               <fhir.ObservationComponent>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20881,7 +22087,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20899,7 +22106,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20917,7 +22125,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20935,7 +22144,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20951,7 +22161,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20968,7 +22179,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -20985,7 +22197,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21001,7 +22214,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21017,7 +22231,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21033,7 +22248,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21049,7 +22265,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21065,7 +22282,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21081,7 +22299,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21098,7 +22317,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21116,7 +22336,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21133,7 +22354,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.base?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21149,7 +22371,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21166,7 +22389,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.inputProfile?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21182,7 +22406,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.instance?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21198,7 +22423,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.kind?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21215,7 +22441,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.outputProfile?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21231,7 +22458,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.system?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21247,7 +22475,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21265,7 +22494,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21281,7 +22511,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.address?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21299,7 +22530,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21317,7 +22549,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21335,7 +22568,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21353,7 +22587,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21371,7 +22606,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21387,7 +22623,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.endpoint?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21404,7 +22641,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21420,7 +22658,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21436,7 +22675,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.alias?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21452,7 +22692,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21468,7 +22709,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21484,7 +22726,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21502,7 +22745,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21518,7 +22762,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21536,7 +22781,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21552,7 +22798,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.endpoint?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21569,7 +22816,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21585,7 +22833,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21601,7 +22850,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.network?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21618,7 +22868,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21636,7 +22887,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21653,7 +22905,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.organization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21669,7 +22922,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21686,7 +22940,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.healthcareService?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21703,7 +22958,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.specialty?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21719,7 +22975,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.telecom?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21740,7 +22997,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21759,7 +23017,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21778,7 +23037,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21795,7 +23055,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21814,7 +23075,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21833,7 +23095,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21849,7 +23112,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21868,7 +23132,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21887,7 +23152,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21903,7 +23169,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.packageFor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21920,7 +23187,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.status?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21938,7 +23206,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21954,7 +23223,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.address?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21972,7 +23242,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -21990,7 +23261,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22008,7 +23280,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22026,7 +23299,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22044,7 +23318,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22060,7 +23335,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.birthDate?.makeIterable<fhir.FhirDate>() ??
           <fhir.FhirDate>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22077,7 +23353,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.deceasedDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22095,7 +23372,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
             resource.deceasedBoolean?.valueBoolean != false)
       ]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22113,7 +23391,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22131,7 +23410,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22147,7 +23427,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.gender?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22164,7 +23445,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.generalPractitioner?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22182,7 +23464,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22199,7 +23482,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22217,7 +23501,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22235,7 +23520,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22251,7 +23537,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22268,7 +23555,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.managingOrganization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22286,7 +23574,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22302,7 +23591,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22318,7 +23608,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.telecom?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22336,7 +23627,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22353,7 +23645,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22370,7 +23663,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.paymentStatus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22386,7 +23680,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.provider?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22402,7 +23697,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.request?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22418,7 +23714,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.response?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22434,7 +23731,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22452,7 +23750,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.created?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22469,7 +23768,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.disposition?.makeIterable<fhir.FhirString>() ??
               <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22486,7 +23786,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22502,7 +23803,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.outcome?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22519,7 +23821,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.paymentIssuer?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22535,7 +23838,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.request?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22551,7 +23855,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requestor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22567,7 +23872,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22585,7 +23891,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.address?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22603,7 +23910,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22621,7 +23929,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22639,7 +23948,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22657,7 +23967,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22675,7 +23986,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22691,7 +24003,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.birthDate?.makeIterable<fhir.FhirDate>() ??
           <fhir.FhirDate>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22709,7 +24022,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22725,7 +24039,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.gender?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22743,7 +24058,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22759,7 +24075,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22775,7 +24092,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.telecom?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22792,7 +24110,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22810,7 +24129,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22826,7 +24146,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22843,7 +24164,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.managingOrganization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22863,7 +24185,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22883,7 +24206,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22903,7 +24227,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               })?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22924,7 +24249,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22942,7 +24268,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22960,7 +24287,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22978,7 +24306,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -22996,7 +24325,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23012,7 +24342,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23031,7 +24362,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.DefinitionXPlanDefinitionAction>() ??
           <fhir.DefinitionXPlanDefinitionAction>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23050,7 +24382,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23067,7 +24400,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.library_?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23086,7 +24420,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23103,7 +24438,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23120,7 +24456,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23137,7 +24474,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23154,7 +24492,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23170,7 +24509,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23189,7 +24529,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23205,7 +24546,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23221,7 +24563,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23240,7 +24583,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23256,7 +24600,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23273,7 +24618,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.topic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23289,7 +24635,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23305,7 +24652,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23321,7 +24669,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23338,7 +24687,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23356,7 +24706,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23375,7 +24726,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.address?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23393,7 +24745,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23411,7 +24764,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23429,7 +24783,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23447,7 +24802,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23465,7 +24821,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23483,7 +24840,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23501,7 +24859,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23517,7 +24876,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.gender?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23535,7 +24895,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23553,7 +24914,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23569,7 +24931,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23585,7 +24948,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.telecom?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23601,7 +24965,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23618,7 +24983,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.communication?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23635,7 +25001,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23651,7 +25018,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23671,7 +25039,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23689,7 +25058,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23705,7 +25075,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.telecom?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23721,7 +25092,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23737,7 +25109,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23753,7 +25126,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.endpoint?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23770,7 +25144,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23786,7 +25161,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23803,7 +25179,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.organization?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23820,7 +25197,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.practitioner?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23836,7 +25214,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23853,7 +25232,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.healthcareService?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23870,7 +25250,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.specialty?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23888,7 +25269,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23905,7 +25287,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.performedX?.makeIterable<fhir.PerformedXProcedure>() ??
               <fhir.PerformedXProcedure>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23922,7 +25305,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23942,7 +25326,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23958,7 +25343,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23974,7 +25360,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -23991,7 +25378,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24008,7 +25396,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24025,7 +25414,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24041,7 +25431,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24057,7 +25448,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24075,7 +25467,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24092,7 +25485,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonCode?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24109,7 +25503,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.reasonReference?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24125,7 +25520,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24141,7 +25537,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24161,7 +25558,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24179,7 +25577,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24197,7 +25596,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24215,7 +25615,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24231,7 +25632,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.location?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24250,7 +25652,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           })?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24266,7 +25669,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.recorded?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24284,7 +25688,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24300,7 +25705,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.target?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24317,7 +25723,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.occurredDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24337,7 +25744,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24355,7 +25763,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24373,7 +25782,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24391,7 +25801,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24409,7 +25820,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24425,7 +25837,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24443,7 +25856,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24460,7 +25874,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24477,7 +25892,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24494,7 +25910,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24511,7 +25928,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24527,7 +25945,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24543,7 +25962,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24559,7 +25979,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24575,7 +25996,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subjectType?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24591,7 +26013,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24607,7 +26030,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24623,7 +26047,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24640,7 +26065,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24658,7 +26084,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24677,7 +26104,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24694,7 +26122,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authored?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24710,7 +26139,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24726,7 +26156,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24743,7 +26174,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24759,7 +26191,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24779,7 +26212,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24796,7 +26230,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.questionnaire?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24812,7 +26247,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.source?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24828,7 +26264,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24844,7 +26281,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24863,7 +26301,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.case_?.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24880,7 +26319,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.case_?.type?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24896,7 +26336,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.holder?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24913,7 +26354,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24930,7 +26372,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.region?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24947,7 +26390,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.status?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24963,7 +26407,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24981,7 +26426,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.address?.makeIterable<fhir.Address>() ??
           <fhir.Address>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -24999,7 +26445,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25017,7 +26464,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25035,7 +26483,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25053,7 +26502,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25071,7 +26521,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25087,7 +26538,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.birthDate?.makeIterable<fhir.FhirDate>() ??
           <fhir.FhirDate>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25105,7 +26557,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25121,7 +26574,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.gender?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25139,7 +26593,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25155,7 +26610,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25171,7 +26627,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.telecom?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25187,7 +26644,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25204,7 +26662,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25220,7 +26679,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.HumanName>() ??
           <fhir.HumanName>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25236,7 +26696,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25253,7 +26714,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.relationship?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25271,7 +26733,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.author?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25288,7 +26751,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authoredOn?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25304,7 +26768,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25320,7 +26785,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25337,7 +26803,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.groupIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25354,7 +26821,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25371,7 +26839,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25388,7 +26857,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25404,7 +26874,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25422,7 +26893,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25442,7 +26914,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25459,7 +26932,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.priority?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25475,7 +26949,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25491,7 +26966,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25512,7 +26988,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25530,7 +27007,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25548,7 +27026,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25566,7 +27045,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25584,7 +27064,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25600,7 +27081,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25619,7 +27101,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25636,7 +27119,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.library_?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25655,7 +27139,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25672,7 +27157,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25689,7 +27175,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25706,7 +27193,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25723,7 +27211,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25739,7 +27228,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25758,7 +27248,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25774,7 +27265,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25790,7 +27282,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25809,7 +27302,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25825,7 +27319,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25842,7 +27337,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.topic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25858,7 +27354,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25874,7 +27371,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25891,7 +27389,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25909,7 +27408,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25931,7 +27431,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25949,7 +27450,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25967,7 +27469,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -25985,7 +27488,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26003,7 +27507,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26019,7 +27524,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26038,7 +27544,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26055,7 +27562,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.library_?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26074,7 +27582,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26091,7 +27600,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26108,7 +27618,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.effectivePeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26125,7 +27636,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26142,7 +27654,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26158,7 +27671,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26177,7 +27691,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26193,7 +27708,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26209,7 +27725,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26228,7 +27745,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26244,7 +27762,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26261,7 +27780,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.topic?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26277,7 +27797,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26293,7 +27814,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26310,7 +27832,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26328,7 +27851,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26348,7 +27872,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26364,7 +27889,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26381,7 +27907,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.focus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26398,7 +27925,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26415,7 +27943,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.keyword?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26432,7 +27961,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.location?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26448,7 +27978,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26465,7 +27996,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.principalInvestigator?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26481,7 +28013,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.protocol?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26497,7 +28030,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.site?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26513,7 +28047,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.sponsor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26529,7 +28064,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26545,7 +28081,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26563,7 +28100,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.period?.makeIterable<fhir.Period>() ?? <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26580,7 +28118,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26596,7 +28135,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.individual?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26612,7 +28152,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.individual?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26628,7 +28169,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26644,7 +28186,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.study?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26663,7 +28206,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.occurrenceDateTime?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26680,7 +28224,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26700,7 +28245,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26716,7 +28262,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26732,7 +28279,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.condition?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26749,7 +28297,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.method?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26765,7 +28314,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.performer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26784,7 +28334,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.ProbabilityXRiskAssessmentPrediction>() ??
           <fhir.ProbabilityXRiskAssessmentPrediction>[]) {
         searchParameterLists.numberParams.addAll(
-          entry.toNumberSearchParameter(
+          indexer.numberRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26802,7 +28353,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26818,7 +28370,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26836,7 +28389,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.active?.makeIterable<fhir.FhirBoolean>() ??
           <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26852,7 +28406,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.actor?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26869,7 +28424,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.planningHorizon?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26886,7 +28442,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26903,7 +28460,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.serviceCategory?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26920,7 +28478,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.serviceType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26937,7 +28496,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.specialty?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26957,7 +28517,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26975,7 +28536,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -26993,7 +28555,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27011,7 +28574,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27027,7 +28591,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27044,7 +28609,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27061,7 +28627,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27077,7 +28644,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27093,7 +28661,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27109,7 +28678,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27125,7 +28695,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27141,7 +28712,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27158,7 +28730,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27176,7 +28749,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27193,7 +28767,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.base?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27209,7 +28784,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27227,7 +28803,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27244,7 +28821,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.derivedFrom?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27260,7 +28838,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.target?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27276,7 +28855,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27294,7 +28874,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27311,7 +28892,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27331,7 +28913,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27347,7 +28930,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27364,7 +28948,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authoredOn?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27380,7 +28965,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27397,7 +28983,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.bodySite?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27414,7 +29001,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27431,7 +29019,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27448,7 +29037,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.instantiatesUri?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27464,7 +29054,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27481,7 +29072,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.OccurrenceXServiceRequest>() ??
           <fhir.OccurrenceXServiceRequest>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27497,7 +29089,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.performer?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27514,7 +29107,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.performerType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27531,7 +29125,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.priority?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27547,7 +29142,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.replaces?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27563,7 +29159,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requester?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27580,7 +29177,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.requisition?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27596,7 +29194,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.specimen?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27612,7 +29211,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27628,7 +29228,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27647,7 +29248,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.appointmentType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27664,7 +29266,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27680,7 +29283,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.schedule?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27697,7 +29301,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.serviceCategory?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27714,7 +29319,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.serviceType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27731,7 +29337,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.specialty?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27747,7 +29354,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.start?.makeIterable<fhir.FhirInstant>() ??
           <fhir.FhirInstant>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27763,7 +29371,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27782,7 +29391,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.accessionIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27799,7 +29409,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27816,7 +29427,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CollectedXSpecimenCollection>() ??
           <fhir.CollectedXSpecimenCollection>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27833,7 +29445,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.collection?.collector?.makeIterable<fhir.Reference>() ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27851,7 +29464,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27869,7 +29483,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Identifier>() ??
           <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27886,7 +29501,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27902,7 +29518,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.parent?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27922,7 +29539,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27938,7 +29556,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27954,7 +29573,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.subject?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27970,7 +29590,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.type?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -27991,7 +29612,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28008,7 +29630,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28025,7 +29648,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.typeCollected?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28045,7 +29669,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28063,7 +29688,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28081,7 +29707,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28099,7 +29726,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28115,7 +29743,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28132,7 +29761,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28149,7 +29779,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28165,7 +29796,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28181,7 +29813,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28197,7 +29830,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28213,7 +29847,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28229,7 +29864,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28245,7 +29881,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28262,7 +29899,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28280,7 +29918,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28298,7 +29937,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28315,7 +29955,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.abstract_?.makeIterable<fhir.FhirBoolean>() ??
               <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28332,7 +29973,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.baseDefinition?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28351,7 +29993,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28370,7 +30013,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28387,7 +30031,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.derivation?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28404,7 +30049,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.experimental?.makeIterable<fhir.FhirBoolean>() ??
               <fhir.FhirBoolean>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28422,7 +30068,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28438,7 +30085,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.keyword?.makeIterable<fhir.Coding>() ?? <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28454,7 +30102,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.kind?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28472,7 +30121,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28490,7 +30140,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28506,7 +30157,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.type?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28525,7 +30177,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCanonical>() ??
           <fhir.FhirCanonical>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28545,7 +30198,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28563,7 +30217,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28581,7 +30236,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28599,7 +30255,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28615,7 +30272,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28632,7 +30290,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28649,7 +30308,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28665,7 +30325,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28681,7 +30342,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28697,7 +30359,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28713,7 +30376,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28729,7 +30393,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28745,7 +30410,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28762,7 +30428,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28780,7 +30447,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28798,7 +30466,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28816,7 +30485,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.contact?.makeIterable<fhir.ContactPoint>() ??
           <fhir.ContactPoint>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28832,7 +30502,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.criteria?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28849,7 +30520,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.channel?.payload?.makeIterable<fhir.FhirCode>() ??
               <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28865,7 +30537,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28882,7 +30555,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.channel?.type?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28899,7 +30573,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.channel?.endpoint?.makeIterable<fhir.FhirUrl>() ??
               <fhir.FhirUrl>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28917,7 +30592,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28933,7 +30609,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28950,7 +30627,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.derivedFrom?.makeIterable<fhir.FhirCanonical>() ??
               <fhir.FhirCanonical>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28967,7 +30645,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -28985,7 +30664,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29001,7 +30681,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29017,7 +30698,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29035,7 +30717,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirMarkdown>() ??
           <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29051,7 +30734,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29067,7 +30751,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29086,7 +30771,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29102,7 +30788,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29120,7 +30807,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29138,7 +30826,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Identifier>() ??
           <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29156,7 +30845,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29173,7 +30863,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29191,7 +30882,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29207,7 +30899,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29225,7 +30918,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29244,7 +30938,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.classification?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29262,7 +30957,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29279,7 +30975,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.domain?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29296,7 +30993,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29314,7 +31012,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29333,7 +31032,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29349,7 +31049,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29365,7 +31066,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.receiver?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29381,7 +31083,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29397,7 +31100,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.supplier?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29416,7 +31120,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authoredOn?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29433,7 +31138,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29450,7 +31156,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.category?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29466,7 +31173,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requester?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29482,7 +31190,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29498,7 +31207,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.deliverTo?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29514,7 +31224,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.supplier?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29533,7 +31244,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.authoredOn?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29549,7 +31261,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.basedOn?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29566,7 +31279,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.businessStatus?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29582,7 +31296,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.code?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29598,7 +31313,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29614,7 +31330,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.focus?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29631,7 +31348,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.groupIdentifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29648,7 +31366,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29664,7 +31383,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.intent?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29681,7 +31401,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.lastModified?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29697,7 +31418,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.owner?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29713,7 +31435,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.partOf?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29733,7 +31456,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               }) ??
               <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29750,7 +31474,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.performerType?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29767,7 +31492,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.executionPeriod?.makeIterable<fhir.Period>() ??
               <fhir.Period>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29784,7 +31510,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.priority?.makeIterable<fhir.FhirCodeEnum>() ??
               <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29800,7 +31527,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.requester?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29816,7 +31544,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29832,7 +31561,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.for_?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29852,7 +31582,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29870,7 +31601,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29888,7 +31620,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29906,7 +31639,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29922,7 +31656,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29939,7 +31674,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29956,7 +31692,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29972,7 +31709,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -29988,7 +31726,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30004,7 +31743,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30020,7 +31760,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30036,7 +31777,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30052,7 +31794,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30069,7 +31812,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30087,7 +31831,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30107,7 +31852,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30123,7 +31869,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.issued?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30141,7 +31888,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30157,7 +31905,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.result?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30173,7 +31922,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.tester?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30189,7 +31939,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.testScript?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30209,7 +31960,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30227,7 +31979,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30245,7 +31998,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30263,7 +32017,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30279,7 +32034,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30296,7 +32052,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30313,7 +32070,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30330,7 +32088,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30346,7 +32105,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30362,7 +32122,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30378,7 +32139,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30396,7 +32158,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30412,7 +32175,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30428,7 +32192,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30444,7 +32209,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30461,7 +32227,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30479,7 +32246,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30500,7 +32268,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.CodeableConcept>() ??
           <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30518,7 +32287,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Quantity>() ??
           <fhir.Quantity>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30536,7 +32306,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Range>() ??
           <fhir.Range>[]) {
         searchParameterLists.quantityParams.addAll(
-          entry.toQuantitySearchParameter(
+          indexer.quantityRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30554,7 +32325,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.Coding>() ??
           <fhir.Coding>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30570,7 +32342,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.date?.makeIterable<fhir.FhirDateTime>() ??
           <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30587,7 +32360,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.description?.makeIterable<fhir.FhirMarkdown>() ??
               <fhir.FhirMarkdown>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30604,7 +32378,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.jurisdiction?.makeIterable<fhir.CodeableConcept>() ??
               <fhir.CodeableConcept>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30620,7 +32395,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.name?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30636,7 +32412,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.publisher?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30652,7 +32429,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30668,7 +32446,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.title?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.stringParams.addAll(
-          entry.toStringSearchParameter(
+          indexer.stringRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30684,7 +32463,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry
           in resource.url?.makeIterable<fhir.FhirUri>() ?? <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30700,7 +32480,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.version?.makeIterable<fhir.FhirString>() ??
           <fhir.FhirString>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30717,7 +32498,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30735,7 +32517,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.useContext?.makeIterable<fhir.UsageContext>() ??
               <fhir.UsageContext>[]) {
         searchParameterLists.compositeParams.addAll(
-          entry.toCompositeSearchParameter(
+          indexer.compositeRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30753,7 +32536,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30771,7 +32555,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30790,7 +32575,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirCode>() ??
           <fhir.FhirCode>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30807,7 +32593,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.expansion?.identifier?.makeIterable<fhir.FhirUri>() ??
               <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30825,7 +32612,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
               ?.makeIterable<fhir.FhirUri>() ??
           <fhir.FhirUri>[]) {
         searchParameterLists.uriParams.addAll(
-          entry.toUriSearchParameter(
+          indexer.uriRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30843,7 +32631,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.target?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30862,7 +32651,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.identifier?.makeIterable<fhir.Identifier>() ??
               <fhir.Identifier>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30878,7 +32668,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.patient?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30894,7 +32685,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.encounter?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30911,7 +32703,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
           in resource.dateWritten?.makeIterable<fhir.FhirDateTime>() ??
               <fhir.FhirDateTime>[]) {
         searchParameterLists.dateParams.addAll(
-          entry.toDateSearchParameter(
+          indexer.dateRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30927,7 +32720,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.prescriber?.makeIterable<fhir.Reference>() ??
           <fhir.Reference>[]) {
         searchParameterLists.referenceParams.addAll(
-          entry.toReferenceSearchParameter(
+          indexer.referenceRows(
+            entry,
             resourceType,
             id,
             lastUpdated,
@@ -30943,7 +32737,8 @@ SearchParameterLists updateSearchParameters(fhir.Resource resource) {
       for (final entry in resource.status?.makeIterable<fhir.FhirCodeEnum>() ??
           <fhir.FhirCodeEnum>[]) {
         searchParameterLists.tokenParams.addAll(
-          entry.toTokenSearchParameter(
+          indexer.tokenRows(
+            entry,
             resourceType,
             id,
             lastUpdated,

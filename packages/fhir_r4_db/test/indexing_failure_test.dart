@@ -60,7 +60,8 @@ Future<void> main() async {
 
     // Not merely absent from the index: absent from the store, because the
     // row and its index rows go in one transaction.
-    dao.extractSearchParameters = updateSearchParameters;
+    dao.extractSearchParameters =
+        (r) => updateSearchParameters(r4Model.indexer, r);
     expect(
       await dao.getResource(R4ResourceType.Patient, 'p1'),
       isNull,
@@ -93,7 +94,8 @@ Future<void> main() async {
       throwsA(isA<StateError>()),
     );
 
-    dao.extractSearchParameters = updateSearchParameters;
+    dao.extractSearchParameters =
+        (r) => updateSearchParameters(r4Model.indexer, r);
     final stored = await dao.getResource(R4ResourceType.Patient, 'p1');
     expect(
       (stored! as Patient).name?.first.family?.valueString,

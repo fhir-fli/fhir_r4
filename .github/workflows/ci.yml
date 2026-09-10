@@ -41,6 +41,12 @@ jobs:
                 echo "  ${name}:"
                 echo "    path: ${GITHUB_WORKSPACE}/packages/${name}"
               done
+              # fhir_db, the model-independent store fhir_r4_db binds, from its
+              # repository until 0.13.0 is on pub.dev (remove at that release).
+              echo "  fhir_db:"
+              echo "    git:"
+              echo "      url: https://github.com/fhir-fli/fhir_db.git"
+              echo "      ref: main"
             } > "${d}pubspec_overrides.yaml"
           done
           echo "Overrides written for $(ls -d packages/*/ | wc -l) packages"

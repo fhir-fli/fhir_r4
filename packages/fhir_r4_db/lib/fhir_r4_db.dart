@@ -1,14 +1,14 @@
-export 'src/cipher_from_key.dart';
-export 'src/fhir_dao.dart';
+/// FHIR R4B database on SQLite: the `fhir_db` store bound to `fhir_r4`.
+///
+/// Re-exports the model-independent core and adds this version's model,
+/// its generated search-parameter and compartment data, and the typed
+/// `FhirDb`, `FhirDao` and `HistoryEntry` an application uses.
+library;
+
+export 'package:fhir_db/fhir_db.dart' hide FhirDao, FhirDb, HistoryEntry;
+
 export 'src/fhir_db.dart';
-export 'src/has_parameter.dart';
+export 'src/r4_model.dart';
 export 'src/search/compartment_definitions.dart';
-export 'src/search/compartment_scope.dart';
-export 'src/search/contained_index.dart';
-export 'src/search/implicit_range.dart';
-export 'src/search/search_date_range.dart';
-export 'src/search/search_escaping.dart';
 export 'src/search/search_parameter_types.dart';
 export 'src/search/search_parameters.dart';
-export 'src/search/search_query_key.dart';
-export 'src/tables/tables.dart';

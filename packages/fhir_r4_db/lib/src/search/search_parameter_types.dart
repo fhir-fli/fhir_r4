@@ -3,65 +3,8 @@
 // Generated from search-parameters.json by
 // fhir_generator/lib/src/generate_search_parameter_types.dart
 
-/// What a search parameter is, and which comparators it takes.
-///
-/// Read from the published SearchParameter definitions. A query
-/// cannot be parsed without it: whether `gt` at the front of a
-/// value is a comparator or the first two letters of a name is
-/// decided by the parameter's declared type, never by the shape
-/// of the value.
-class SearchParameterDefinition {
-  /// Creates a definition.
-  const SearchParameterDefinition(
-    this.type,
-    this.comparators, {
-    this.components = const [],
-    this.mime = false,
-    this.targets = const [],
-  });
-
-  /// string | token | date | number | quantity | reference |
-  /// uri | composite | special.
-  final String type;
-
-  /// The prefixes this parameter accepts, empty for the types
-  /// that take none.
-  final List<String> comparators;
-
-  /// For a composite (R4B 3.1.1.4.17): its components, in the
-  /// order the $-joined value gives them, each the type of the
-  /// parameter it stands for and its expression relative to the
-  /// composite's own element. Empty for every other type.
-  final List<SearchComponent> components;
-
-  /// True for a token parameter whose element is bound to the
-  /// mimetypes value set (`Attachment.contentType`,
-  /// `CapabilityStatement.format`, ...). `:below` on such a
-  /// parameter is the mime-type search of search.html
-  /// "Searching MIME Types"; on any other token it is code
-  /// subsumption.
-  final bool mime;
-
-  /// For a reference parameter, the resource types it may
-  /// point at (SearchParameter.target), sorted. Empty for
-  /// every other type, and for the reference parameters
-  /// whose definition declares none.
-  final List<String> targets;
-}
-
-/// One component of a composite search parameter.
-class SearchComponent {
-  /// Creates a component.
-  const SearchComponent(this.type, this.expression);
-
-  /// The component parameter's type: token, quantity, ...
-  final String type;
-
-  /// The path from the composite's element to the value, as
-  /// the definition writes it: `code`, `value.as(Quantity)`,
-  /// `%resource.referenceSeq.chromosome`.
-  final String expression;
-}
+import 'package:fhir_db/fhir_db.dart'
+    show SearchComponent, SearchParameterDefinition;
 
 /// Every search parameter, by resource type then by code.
 const Map<String, Map<String, SearchParameterDefinition>> searchParameterTypes =
