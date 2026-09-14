@@ -3,11 +3,12 @@ import 'dart:convert';
 import 'package:fhir_db/fhir_db.dart' as core;
 import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-
 import 'package:fhir_r4_db/src/search/compartment_definitions.dart'
     as generated;
 import 'package:fhir_r4_db/src/search/search_parameter_types.dart';
 import 'package:fhir_r4_db/src/search/search_parameters.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart'
+    show FHIRPathEngine, IEvaluationContext, WorkerContext;
 
 /// FHIR R4B for the store: how `fhir_r4` resources are parsed, written and
 /// stamped, and this version's generated search and compartment data.
@@ -71,6 +72,15 @@ class R4Model extends core.FhirModel<Resource, R4ResourceType> {
   @override
   String? enumDisplay(FhirNode value) =>
       value is FhirCodeEnum ? value.display?.valueString : null;
+
+  /// The R4B engine, for uploaded SearchParameters: the binding's
+  /// [WorkerContext] answers the type questions (`is Patient`, `ofType`)
+  /// from the generated type hierarchy; [hostServices] is the store's.
+  @override
+  Future<FHIRPathEngine> createFhirPathEngine(
+    IEvaluationContext hostServices,
+  ) =>
+      FHIRPathEngine.create(WorkerContext(), hostServices);
 }
 
 /// The one model instance the binding's database uses.

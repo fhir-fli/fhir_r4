@@ -47,6 +47,12 @@ jobs:
               echo "    git:"
               echo "      url: https://github.com/fhir-fli/fhir_db.git"
               echo "      ref: main"
+              # fhir_path 0.14.2 (resolve() on a literal reference, which
+              # uploaded SearchParameters index by) until it is on pub.dev.
+              echo "  fhir_path:"
+              echo "    git:"
+              echo "      url: https://github.com/fhir-fli/fhir_path.git"
+              echo "      ref: main"
             } > "${d}pubspec_overrides.yaml"
           done
           echo "Overrides written for $(ls -d packages/*/ | wc -l) packages"
