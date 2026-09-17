@@ -1,5 +1,10 @@
 # fhir_r4_db
 
+## [0.12.1]
+
+- **A resource fetched from a server can keep its `meta`.** Every save replaced `meta.lastUpdated` with `DateTime.now()` and bumped `versionId`, which is right for a resource the caller authored and wrong for one it downloaded: the server's version and the time it last changed were overwritten on the way into the store. Nothing could then tell a cached copy's age from the time of the last sync, and a caller comparing its local copy against a remote one was comparing a write time against an edit time. `saveResource` and `saveResources` take `preserveMeta`, which keeps the incoming `meta` when it carries a `lastUpdated`. It defaults to false, so existing callers are unchanged, and a resource with no `lastUpdated` is still versioned.
+- With `preserveMeta` set there is no version to continue, so `saveResource` also skips the read it does to find the stored `versionId`.
+
 ## [0.12.0]
 
 - **A save that cannot be indexed now fails instead of succeeding quietly.** `_updateSearchParameters` caught every exception, printed it and returned `false`, and `saveResource` ignored that `false` and returned the resource. A record could therefore be stored with no index rows while the caller was told the save had worked, and it was then invisible to every search — a wrong answer rather than an error. The failure propagates now.
