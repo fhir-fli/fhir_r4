@@ -71,12 +71,22 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }
 
   /// Save a single FHIR resource (insert or update).
-  Future<fhir.Resource> saveResource(fhir.Resource resource) async {
+  ///
+  /// Set [preserveMeta] when storing a resource fetched from a server: its
+  /// `meta` records when that server last changed it, and replacing it with a
+  /// local timestamp destroys the only copy of that fact. A resource arriving
+  /// without a `meta.lastUpdated` is versioned as usual, so resources created
+  /// locally are unaffected.
+  Future<fhir.Resource> saveResource(
+    fhir.Resource resource, {
+    bool preserveMeta = false,
+  }) async {
     final withId = resource.newIdIfNoId();
+    final keepMeta = preserveMeta && withId.meta?.lastUpdated != null;
 
     // Look up the existing resource's meta so version counting works correctly.
     fhir.FhirMeta? oldMeta;
-    if (!versionIdAsTime) {
+    if (!versionIdAsTime && !keepMeta) {
       final existing = await getResource(
         withId.resourceType,
         withId.id!.valueString!,
@@ -91,10 +101,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
       }
     }
 
-    final newResource = withId.updateVersion(
-      oldMeta: oldMeta,
-      versionIdAsTime: versionIdAsTime,
-    );
+    final newResource = keepMeta
+        ? withId
+        : withId.updateVersion(
+            oldMeta: oldMeta,
+            versionIdAsTime: versionIdAsTime,
+          );
 
     // The row and its index rows go in together. Separately, a failure part
     // way through left a resource stored that no search could find, and the
@@ -136,7 +148,12 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
   }
 
   /// Save multiple FHIR resources in a single batch.
-  Future<bool> saveResources(List<fhir.Resource> resourcesList) async {
+  ///
+  /// [preserveMeta] behaves as in [saveResource].
+  Future<bool> saveResources(
+    List<fhir.Resource> resourcesList, {
+    bool preserveMeta = false,
+  }) async {
     try {
       final newResources = <fhir.Resource>[];
       await batch((batch) {
@@ -144,9 +161,10 @@ class FhirDao extends DatabaseAccessor<FhirDb> with _$FhirDaoMixin {
         final historyCompanions = <ResourcesHistoryCompanion>[];
 
         for (final resource in resourcesList) {
-          final newResource = resource
-              .newIdIfNoId()
-              .updateVersion(versionIdAsTime: versionIdAsTime);
+          final withId = resource.newIdIfNoId();
+          final newResource = preserveMeta && withId.meta?.lastUpdated != null
+              ? withId
+              : withId.updateVersion(versionIdAsTime: versionIdAsTime);
           newResources.add(newResource);
           resourceCompanions.add(
             ResourcesCompanion(
