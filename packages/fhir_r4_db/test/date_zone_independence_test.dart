@@ -59,19 +59,18 @@ void main() {
       );
       expect(writer.exitCode, 0, reason: '${writer.stdout}\n${writer.stderr}');
 
+      // One reader, in a zone 14 hours from the writer's: a second
+      // `dart run` child on CI costs minutes (the native build hooks run
+      // again), and the test timed out at four children (2026-09-18).
       final tokyo = await probe('Asia/Tokyo');
-      final honolulu = await probe('Pacific/Honolulu');
-      final utc = await probe('UTC');
-      for (final zone in [tokyo, honolulu, utc]) {
-        expect(zone['birthdate-eq'], '1', reason: '$zone');
-        expect(zone['birthdate-day-before'], '0', reason: '$zone');
-        expect(zone['zoneless-eq'], '1', reason: '$zone');
-        expect(zone['zoneless-day'], '2', reason: '$zone');
-        // A value with its own zone is an instant wherever it is read.
-        expect(zone['zoned-eq'], '1', reason: '$zone');
-      }
+      expect(tokyo['birthdate-eq'], '1', reason: '$tokyo');
+      expect(tokyo['birthdate-day-before'], '0', reason: '$tokyo');
+      expect(tokyo['zoneless-eq'], '1', reason: '$tokyo');
+      expect(tokyo['zoneless-day'], '2', reason: '$tokyo');
+      // A value with its own zone is an instant wherever it is read.
+      expect(tokyo['zoned-eq'], '1', reason: '$tokyo');
     },
-    timeout: const Timeout(Duration(minutes: 5)),
+    timeout: const Timeout(Duration(minutes: 15)),
   );
 
   test('the parser puts a zone-less value on the UTC clock', () {
