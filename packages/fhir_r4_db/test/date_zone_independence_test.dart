@@ -70,6 +70,7 @@ void main() {
       // A value with its own zone is an instant wherever it is read.
       expect(tokyo['zoned-eq'], '1', reason: '$tokyo');
     },
+    tags: ['zone'],
     timeout: const Timeout(Duration(minutes: 15)),
   );
 
