@@ -55,19 +55,22 @@ Future<void> main() async {
     test("covers one unit of the value's precision", () {
       expect(
         searchDateRange('2013'),
-        (low: DateTime(2013), high: DateTime(2014)),
+        (low: DateTime.utc(2013), high: DateTime.utc(2014)),
       );
       expect(
         searchDateRange('2013-01'),
-        (low: DateTime(2013), high: DateTime(2013, 2)),
+        (low: DateTime.utc(2013), high: DateTime.utc(2013, 2)),
       );
       expect(
         searchDateRange('2013-01-14'),
-        (low: DateTime(2013, 1, 14), high: DateTime(2013, 1, 15)),
+        (low: DateTime.utc(2013, 1, 14), high: DateTime.utc(2013, 1, 15)),
       );
       expect(
         searchDateRange('2013-01-14T10:00'),
-        (low: DateTime(2013, 1, 14, 10), high: DateTime(2013, 1, 14, 10, 1)),
+        (
+          low: DateTime.utc(2013, 1, 14, 10),
+          high: DateTime.utc(2013, 1, 14, 10, 1),
+        ),
       );
       expect(
         searchDateRange('2013-01-14T10:00:00Z'),

@@ -269,8 +269,10 @@ void main() {
             .toList();
     final dates = await db.fhirDao.select(db.dateSearchParameters).get();
     final enc = dates.where((r) => r.id == 'enc' && r.searchName == 'date');
-    expect(enc.single.dateValue, DateTime(2013, 1, 14));
-    expect(enc.single.dateValueEnd, DateTime(2013, 1, 17));
+    // The instant of 00:00 on the UTC clock (fhirant REVIEW-2026-09-17 Q1);
+    // the column reads back in the local zone, so compare as UTC.
+    expect(enc.single.dateValue!.toUtc(), DateTime.utc(2013, 1, 14));
+    expect(enc.single.dateValueEnd!.toUtc(), DateTime.utc(2013, 1, 17));
     expect(await find(R4ResourceType.Encounter, 'date', '2013-01'), ['enc']);
     expect(await find(R4ResourceType.Patient, '_tag', 'urgent'), ['tagged']);
     expect(
