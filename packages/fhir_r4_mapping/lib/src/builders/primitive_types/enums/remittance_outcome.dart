@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for RemittanceOutcome
@@ -98,12 +99,13 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = RemittanceOutcomeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return RemittanceOutcomeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,26 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
         'RemittanceOutcomeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(RemittanceOutcomeBuilderEnum.fromString(value));
     return RemittanceOutcomeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static RemittanceOutcomeBuilder? _known(
+      RemittanceOutcomeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for RemittanceOutcomeBuilder
@@ -150,7 +168,7 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     valueString: 'queued',
     valueEnum: RemittanceOutcomeBuilderEnum.queued,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+      valueString: 'http://hl7.org/fhir/remittance-outcome',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -163,7 +181,7 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     valueString: 'complete',
     valueEnum: RemittanceOutcomeBuilderEnum.complete,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+      valueString: 'http://hl7.org/fhir/remittance-outcome',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,7 +194,7 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     valueString: 'error',
     valueEnum: RemittanceOutcomeBuilderEnum.error,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+      valueString: 'http://hl7.org/fhir/remittance-outcome',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -189,7 +207,7 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
     valueString: 'partial',
     valueEnum: RemittanceOutcomeBuilderEnum.partial,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/remittance-outcome',
+      valueString: 'http://hl7.org/fhir/remittance-outcome',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -217,6 +235,10 @@ class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
   ) {
     return RemittanceOutcomeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

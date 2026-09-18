@@ -1064,12 +1064,13 @@ class CarePlanActivityKind extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CarePlanActivityKindEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CarePlanActivityKind._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -1093,11 +1094,25 @@ class CarePlanActivityKind extends FhirCodeEnum {
         'CarePlanActivityKind cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CarePlanActivityKind._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CarePlanActivityKind? _known(CarePlanActivityKindEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CarePlanActivityKind
@@ -1108,7 +1123,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Resource',
     valueEnum: CarePlanActivityKindEnum.resource,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1121,7 +1136,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Binary',
     valueEnum: CarePlanActivityKindEnum.binary,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1134,7 +1149,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Bundle',
     valueEnum: CarePlanActivityKindEnum.bundle,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1147,7 +1162,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DomainResource',
     valueEnum: CarePlanActivityKindEnum.domainResource,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1160,7 +1175,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Account',
     valueEnum: CarePlanActivityKindEnum.account,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1173,7 +1188,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ActivityDefinition',
     valueEnum: CarePlanActivityKindEnum.activityDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1187,7 +1202,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'AdministrableProductDefinition',
     valueEnum: CarePlanActivityKindEnum.administrableProductDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1200,7 +1215,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'AdverseEvent',
     valueEnum: CarePlanActivityKindEnum.adverseEvent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1213,7 +1228,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'AllergyIntolerance',
     valueEnum: CarePlanActivityKindEnum.allergyIntolerance,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1226,7 +1241,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Appointment',
     valueEnum: CarePlanActivityKindEnum.appointment,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1240,7 +1255,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'AppointmentResponse',
     valueEnum: CarePlanActivityKindEnum.appointmentResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1253,7 +1268,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'AuditEvent',
     valueEnum: CarePlanActivityKindEnum.auditEvent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1266,7 +1281,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Basic',
     valueEnum: CarePlanActivityKindEnum.basic,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1280,7 +1295,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'BiologicallyDerivedProduct',
     valueEnum: CarePlanActivityKindEnum.biologicallyDerivedProduct,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1293,7 +1308,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'BodyStructure',
     valueEnum: CarePlanActivityKindEnum.bodyStructure,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1307,7 +1322,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CapabilityStatement',
     valueEnum: CarePlanActivityKindEnum.capabilityStatement,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1320,7 +1335,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CarePlan',
     valueEnum: CarePlanActivityKindEnum.carePlan,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1333,7 +1348,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CareTeam',
     valueEnum: CarePlanActivityKindEnum.careTeam,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1346,7 +1361,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CatalogEntry',
     valueEnum: CarePlanActivityKindEnum.catalogEntry,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1359,7 +1374,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ChargeItem',
     valueEnum: CarePlanActivityKindEnum.chargeItem,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1373,7 +1388,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ChargeItemDefinition',
     valueEnum: CarePlanActivityKindEnum.chargeItemDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1386,7 +1401,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Citation',
     valueEnum: CarePlanActivityKindEnum.citation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1399,7 +1414,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Claim',
     valueEnum: CarePlanActivityKindEnum.claim,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1412,7 +1427,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ClaimResponse',
     valueEnum: CarePlanActivityKindEnum.claimResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1425,7 +1440,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ClinicalImpression',
     valueEnum: CarePlanActivityKindEnum.clinicalImpression,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1439,7 +1454,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ClinicalUseDefinition',
     valueEnum: CarePlanActivityKindEnum.clinicalUseDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1452,7 +1467,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CodeSystem',
     valueEnum: CarePlanActivityKindEnum.codeSystem,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1465,7 +1480,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Communication',
     valueEnum: CarePlanActivityKindEnum.communication,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1479,7 +1494,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CommunicationRequest',
     valueEnum: CarePlanActivityKindEnum.communicationRequest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1493,7 +1508,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CompartmentDefinition',
     valueEnum: CarePlanActivityKindEnum.compartmentDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1506,7 +1521,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Composition',
     valueEnum: CarePlanActivityKindEnum.composition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1519,7 +1534,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ConceptMap',
     valueEnum: CarePlanActivityKindEnum.conceptMap,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1532,7 +1547,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Condition',
     valueEnum: CarePlanActivityKindEnum.condition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1545,7 +1560,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Consent',
     valueEnum: CarePlanActivityKindEnum.consent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1558,7 +1573,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Contract',
     valueEnum: CarePlanActivityKindEnum.contract,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1571,7 +1586,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Coverage',
     valueEnum: CarePlanActivityKindEnum.coverage,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1585,7 +1600,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CoverageEligibilityRequest',
     valueEnum: CarePlanActivityKindEnum.coverageEligibilityRequest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1599,7 +1614,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'CoverageEligibilityResponse',
     valueEnum: CarePlanActivityKindEnum.coverageEligibilityResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1612,7 +1627,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DetectedIssue',
     valueEnum: CarePlanActivityKindEnum.detectedIssue,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1625,7 +1640,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Device',
     valueEnum: CarePlanActivityKindEnum.device,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1638,7 +1653,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DeviceDefinition',
     valueEnum: CarePlanActivityKindEnum.deviceDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1651,7 +1666,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DeviceMetric',
     valueEnum: CarePlanActivityKindEnum.deviceMetric,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1664,7 +1679,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DeviceRequest',
     valueEnum: CarePlanActivityKindEnum.deviceRequest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1677,7 +1692,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DeviceUseStatement',
     valueEnum: CarePlanActivityKindEnum.deviceUseStatement,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1690,7 +1705,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DiagnosticReport',
     valueEnum: CarePlanActivityKindEnum.diagnosticReport,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1703,7 +1718,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DocumentManifest',
     valueEnum: CarePlanActivityKindEnum.documentManifest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1716,7 +1731,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'DocumentReference',
     valueEnum: CarePlanActivityKindEnum.documentReference,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1729,7 +1744,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Encounter',
     valueEnum: CarePlanActivityKindEnum.encounter,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1742,7 +1757,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Endpoint',
     valueEnum: CarePlanActivityKindEnum.endpoint,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1755,7 +1770,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'EnrollmentRequest',
     valueEnum: CarePlanActivityKindEnum.enrollmentRequest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1768,7 +1783,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'EnrollmentResponse',
     valueEnum: CarePlanActivityKindEnum.enrollmentResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1781,7 +1796,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'EpisodeOfCare',
     valueEnum: CarePlanActivityKindEnum.episodeOfCare,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1794,7 +1809,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'EventDefinition',
     valueEnum: CarePlanActivityKindEnum.eventDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1807,7 +1822,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Evidence',
     valueEnum: CarePlanActivityKindEnum.evidence,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1820,7 +1835,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'EvidenceReport',
     valueEnum: CarePlanActivityKindEnum.evidenceReport,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1833,7 +1848,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'EvidenceVariable',
     valueEnum: CarePlanActivityKindEnum.evidenceVariable,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1846,7 +1861,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ExampleScenario',
     valueEnum: CarePlanActivityKindEnum.exampleScenario,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1860,7 +1875,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ExplanationOfBenefit',
     valueEnum: CarePlanActivityKindEnum.explanationOfBenefit,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1874,7 +1889,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'FamilyMemberHistory',
     valueEnum: CarePlanActivityKindEnum.familyMemberHistory,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1887,7 +1902,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Flag',
     valueEnum: CarePlanActivityKindEnum.flag,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1900,7 +1915,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Goal',
     valueEnum: CarePlanActivityKindEnum.goal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1913,7 +1928,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'GraphDefinition',
     valueEnum: CarePlanActivityKindEnum.graphDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1926,7 +1941,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Group',
     valueEnum: CarePlanActivityKindEnum.group,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1939,7 +1954,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'GuidanceResponse',
     valueEnum: CarePlanActivityKindEnum.guidanceResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1952,7 +1967,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'HealthcareService',
     valueEnum: CarePlanActivityKindEnum.healthcareService,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1965,7 +1980,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ImagingStudy',
     valueEnum: CarePlanActivityKindEnum.imagingStudy,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1978,7 +1993,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Immunization',
     valueEnum: CarePlanActivityKindEnum.immunization,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -1992,7 +2007,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ImmunizationEvaluation',
     valueEnum: CarePlanActivityKindEnum.immunizationEvaluation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2006,7 +2021,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ImmunizationRecommendation',
     valueEnum: CarePlanActivityKindEnum.immunizationRecommendation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2020,7 +2035,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ImplementationGuide',
     valueEnum: CarePlanActivityKindEnum.implementationGuide,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2033,7 +2048,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Ingredient',
     valueEnum: CarePlanActivityKindEnum.ingredient,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2046,7 +2061,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'InsurancePlan',
     valueEnum: CarePlanActivityKindEnum.insurancePlan,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2059,7 +2074,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Invoice',
     valueEnum: CarePlanActivityKindEnum.invoice,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2072,7 +2087,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Library',
     valueEnum: CarePlanActivityKindEnum.library,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2085,7 +2100,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Linkage',
     valueEnum: CarePlanActivityKindEnum.linkage,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2098,7 +2113,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'List',
     valueEnum: CarePlanActivityKindEnum.list_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2111,7 +2126,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Location',
     valueEnum: CarePlanActivityKindEnum.location,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2125,7 +2140,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ManufacturedItemDefinition',
     valueEnum: CarePlanActivityKindEnum.manufacturedItemDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2138,7 +2153,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Measure',
     valueEnum: CarePlanActivityKindEnum.measure,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2151,7 +2166,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MeasureReport',
     valueEnum: CarePlanActivityKindEnum.measureReport,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2164,7 +2179,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Media',
     valueEnum: CarePlanActivityKindEnum.media,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2177,7 +2192,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Medication',
     valueEnum: CarePlanActivityKindEnum.medication,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2191,7 +2206,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MedicationAdministration',
     valueEnum: CarePlanActivityKindEnum.medicationAdministration,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2204,7 +2219,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MedicationDispense',
     valueEnum: CarePlanActivityKindEnum.medicationDispense,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2218,7 +2233,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MedicationKnowledge',
     valueEnum: CarePlanActivityKindEnum.medicationKnowledge,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2231,7 +2246,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MedicationRequest',
     valueEnum: CarePlanActivityKindEnum.medicationRequest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2245,7 +2260,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MedicationStatement',
     valueEnum: CarePlanActivityKindEnum.medicationStatement,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2259,7 +2274,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MedicinalProductDefinition',
     valueEnum: CarePlanActivityKindEnum.medicinalProductDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2272,7 +2287,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MessageDefinition',
     valueEnum: CarePlanActivityKindEnum.messageDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2285,7 +2300,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MessageHeader',
     valueEnum: CarePlanActivityKindEnum.messageHeader,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2298,7 +2313,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'MolecularSequence',
     valueEnum: CarePlanActivityKindEnum.molecularSequence,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2311,7 +2326,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'NamingSystem',
     valueEnum: CarePlanActivityKindEnum.namingSystem,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2324,7 +2339,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'NutritionOrder',
     valueEnum: CarePlanActivityKindEnum.nutritionOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2337,7 +2352,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'NutritionProduct',
     valueEnum: CarePlanActivityKindEnum.nutritionProduct,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2350,7 +2365,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Observation',
     valueEnum: CarePlanActivityKindEnum.observation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2364,7 +2379,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ObservationDefinition',
     valueEnum: CarePlanActivityKindEnum.observationDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2378,7 +2393,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'OperationDefinition',
     valueEnum: CarePlanActivityKindEnum.operationDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2391,7 +2406,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'OperationOutcome',
     valueEnum: CarePlanActivityKindEnum.operationOutcome,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2404,7 +2419,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Organization',
     valueEnum: CarePlanActivityKindEnum.organization,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2418,7 +2433,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'OrganizationAffiliation',
     valueEnum: CarePlanActivityKindEnum.organizationAffiliation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2432,7 +2447,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'PackagedProductDefinition',
     valueEnum: CarePlanActivityKindEnum.packagedProductDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2445,7 +2460,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Patient',
     valueEnum: CarePlanActivityKindEnum.patient,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2458,7 +2473,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'PaymentNotice',
     valueEnum: CarePlanActivityKindEnum.paymentNotice,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2472,7 +2487,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'PaymentReconciliation',
     valueEnum: CarePlanActivityKindEnum.paymentReconciliation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2485,7 +2500,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Person',
     valueEnum: CarePlanActivityKindEnum.person,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2498,7 +2513,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'PlanDefinition',
     valueEnum: CarePlanActivityKindEnum.planDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2511,7 +2526,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Practitioner',
     valueEnum: CarePlanActivityKindEnum.practitioner,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2524,7 +2539,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'PractitionerRole',
     valueEnum: CarePlanActivityKindEnum.practitionerRole,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2537,7 +2552,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Procedure',
     valueEnum: CarePlanActivityKindEnum.procedure,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2550,7 +2565,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Provenance',
     valueEnum: CarePlanActivityKindEnum.provenance,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2563,7 +2578,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Questionnaire',
     valueEnum: CarePlanActivityKindEnum.questionnaire,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2577,7 +2592,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'QuestionnaireResponse',
     valueEnum: CarePlanActivityKindEnum.questionnaireResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2591,7 +2606,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'RegulatedAuthorization',
     valueEnum: CarePlanActivityKindEnum.regulatedAuthorization,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2604,7 +2619,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'RelatedPerson',
     valueEnum: CarePlanActivityKindEnum.relatedPerson,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2617,7 +2632,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'RequestGroup',
     valueEnum: CarePlanActivityKindEnum.requestGroup,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2630,7 +2645,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ResearchDefinition',
     valueEnum: CarePlanActivityKindEnum.researchDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2644,7 +2659,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ResearchElementDefinition',
     valueEnum: CarePlanActivityKindEnum.researchElementDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2657,7 +2672,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ResearchStudy',
     valueEnum: CarePlanActivityKindEnum.researchStudy,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2670,7 +2685,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ResearchSubject',
     valueEnum: CarePlanActivityKindEnum.researchSubject,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2683,7 +2698,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'RiskAssessment',
     valueEnum: CarePlanActivityKindEnum.riskAssessment,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2696,7 +2711,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Schedule',
     valueEnum: CarePlanActivityKindEnum.schedule,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2709,7 +2724,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'SearchParameter',
     valueEnum: CarePlanActivityKindEnum.searchParameter,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2722,7 +2737,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ServiceRequest',
     valueEnum: CarePlanActivityKindEnum.serviceRequest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2735,7 +2750,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Slot',
     valueEnum: CarePlanActivityKindEnum.slot,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2748,7 +2763,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Specimen',
     valueEnum: CarePlanActivityKindEnum.specimen,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2761,7 +2776,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'SpecimenDefinition',
     valueEnum: CarePlanActivityKindEnum.specimenDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2775,7 +2790,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'StructureDefinition',
     valueEnum: CarePlanActivityKindEnum.structureDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2788,7 +2803,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'StructureMap',
     valueEnum: CarePlanActivityKindEnum.structureMap,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2801,7 +2816,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Subscription',
     valueEnum: CarePlanActivityKindEnum.subscription,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2814,7 +2829,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'SubscriptionStatus',
     valueEnum: CarePlanActivityKindEnum.subscriptionStatus,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2827,7 +2842,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'SubscriptionTopic',
     valueEnum: CarePlanActivityKindEnum.subscriptionTopic,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2840,7 +2855,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Substance',
     valueEnum: CarePlanActivityKindEnum.substance,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2854,7 +2869,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'SubstanceDefinition',
     valueEnum: CarePlanActivityKindEnum.substanceDefinition,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2867,7 +2882,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'SupplyDelivery',
     valueEnum: CarePlanActivityKindEnum.supplyDelivery,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2880,7 +2895,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'SupplyRequest',
     valueEnum: CarePlanActivityKindEnum.supplyRequest,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2893,7 +2908,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Task',
     valueEnum: CarePlanActivityKindEnum.task,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2907,7 +2922,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'TerminologyCapabilities',
     valueEnum: CarePlanActivityKindEnum.terminologyCapabilities,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2920,7 +2935,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'TestReport',
     valueEnum: CarePlanActivityKindEnum.testReport,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2933,7 +2948,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'TestScript',
     valueEnum: CarePlanActivityKindEnum.testScript,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2946,7 +2961,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'ValueSet',
     valueEnum: CarePlanActivityKindEnum.valueSet,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2959,7 +2974,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'VerificationResult',
     valueEnum: CarePlanActivityKindEnum.verificationResult,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2972,7 +2987,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'VisionPrescription',
     valueEnum: CarePlanActivityKindEnum.visionPrescription,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2985,7 +3000,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
     valueString: 'Parameters',
     valueEnum: CarePlanActivityKindEnum.parameters,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3144,6 +3159,10 @@ class CarePlanActivityKind extends FhirCodeEnum {
   CarePlanActivityKind withElement(Element? newElement) {
     return CarePlanActivityKind._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

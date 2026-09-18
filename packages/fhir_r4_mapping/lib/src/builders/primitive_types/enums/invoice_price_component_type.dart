@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for InvoicePriceComponentType
@@ -112,12 +113,13 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = InvoicePriceComponentTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return InvoicePriceComponentTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -150,10 +152,27 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
         'InvoicePriceComponentTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(InvoicePriceComponentTypeBuilderEnum.fromString(value));
     return InvoicePriceComponentTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static InvoicePriceComponentTypeBuilder? _known(
+      InvoicePriceComponentTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for InvoicePriceComponentTypeBuilder
@@ -165,7 +184,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'base',
     valueEnum: InvoicePriceComponentTypeBuilderEnum.base,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -179,7 +198,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'surcharge',
     valueEnum: InvoicePriceComponentTypeBuilderEnum.surcharge,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -193,7 +212,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'deduction',
     valueEnum: InvoicePriceComponentTypeBuilderEnum.deduction,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -207,7 +226,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'discount',
     valueEnum: InvoicePriceComponentTypeBuilderEnum.discount,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -221,7 +240,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'tax',
     valueEnum: InvoicePriceComponentTypeBuilderEnum.tax,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -235,7 +254,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'informational',
     valueEnum: InvoicePriceComponentTypeBuilderEnum.informational,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -266,6 +285,10 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return InvoicePriceComponentTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

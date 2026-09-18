@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for GroupMeasure
@@ -112,12 +113,13 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     final valueEnum = GroupMeasureBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return GroupMeasureBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -150,10 +152,25 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
         'GroupMeasureBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(GroupMeasureBuilderEnum.fromString(value));
     return GroupMeasureBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static GroupMeasureBuilder? _known(GroupMeasureBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for GroupMeasureBuilder
@@ -164,7 +181,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     valueString: 'mean',
     valueEnum: GroupMeasureBuilderEnum.mean,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,7 +194,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     valueString: 'median',
     valueEnum: GroupMeasureBuilderEnum.median,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -190,7 +207,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     valueString: 'mean-of-mean',
     valueEnum: GroupMeasureBuilderEnum.meanOfMean,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,7 +220,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     valueString: 'mean-of-median',
     valueEnum: GroupMeasureBuilderEnum.meanOfMedian,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -216,7 +233,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     valueString: 'median-of-mean',
     valueEnum: GroupMeasureBuilderEnum.medianOfMean,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -229,7 +246,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     valueString: 'median-of-median',
     valueEnum: GroupMeasureBuilderEnum.medianOfMedian,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -259,6 +276,10 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   ) {
     return GroupMeasureBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

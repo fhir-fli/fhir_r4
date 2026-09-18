@@ -83,12 +83,13 @@ class ListMode extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ListModeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ListMode._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -112,11 +113,25 @@ class ListMode extends FhirCodeEnum {
         'ListMode cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ListMode._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ListMode? _known(ListModeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ListMode
@@ -127,7 +142,7 @@ class ListMode extends FhirCodeEnum {
     valueString: 'working',
     valueEnum: ListModeEnum.working,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/list-mode',
+      valueString: 'http://hl7.org/fhir/list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -140,7 +155,7 @@ class ListMode extends FhirCodeEnum {
     valueString: 'snapshot',
     valueEnum: ListModeEnum.snapshot,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/list-mode',
+      valueString: 'http://hl7.org/fhir/list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -153,7 +168,7 @@ class ListMode extends FhirCodeEnum {
     valueString: 'changes',
     valueEnum: ListModeEnum.changes,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/list-mode',
+      valueString: 'http://hl7.org/fhir/list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -172,6 +187,10 @@ class ListMode extends FhirCodeEnum {
   ListMode withElement(Element? newElement) {
     return ListMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

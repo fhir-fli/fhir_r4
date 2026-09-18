@@ -90,12 +90,13 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ExplanationOfBenefitStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ExplanationOfBenefitStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -119,11 +120,26 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
         'ExplanationOfBenefitStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ExplanationOfBenefitStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ExplanationOfBenefitStatus? _known(
+      ExplanationOfBenefitStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ExplanationOfBenefitStatus
@@ -134,7 +150,7 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
     valueString: 'active',
     valueEnum: ExplanationOfBenefitStatusEnum.active,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+      valueString: 'http://hl7.org/fhir/explanationofbenefit-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -148,7 +164,7 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
     valueString: 'cancelled',
     valueEnum: ExplanationOfBenefitStatusEnum.cancelled,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+      valueString: 'http://hl7.org/fhir/explanationofbenefit-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +177,7 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
     valueString: 'draft',
     valueEnum: ExplanationOfBenefitStatusEnum.draft,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+      valueString: 'http://hl7.org/fhir/explanationofbenefit-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -175,7 +191,7 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: ExplanationOfBenefitStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status',
+      valueString: 'http://hl7.org/fhir/explanationofbenefit-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -195,6 +211,10 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
   ExplanationOfBenefitStatus withElement(Element? newElement) {
     return ExplanationOfBenefitStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

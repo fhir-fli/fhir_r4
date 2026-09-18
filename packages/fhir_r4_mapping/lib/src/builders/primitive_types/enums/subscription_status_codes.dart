@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SubscriptionStatusCodes
@@ -98,12 +99,13 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SubscriptionStatusCodesBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SubscriptionStatusCodesBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,26 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
         'SubscriptionStatusCodesBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(SubscriptionStatusCodesBuilderEnum.fromString(value));
     return SubscriptionStatusCodesBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SubscriptionStatusCodesBuilder? _known(
+      SubscriptionStatusCodesBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SubscriptionStatusCodesBuilder
@@ -151,7 +169,7 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'requested',
     valueEnum: SubscriptionStatusCodesBuilderEnum.requested,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+      valueString: 'http://hl7.org/fhir/subscription-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -165,7 +183,7 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: SubscriptionStatusCodesBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+      valueString: 'http://hl7.org/fhir/subscription-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -179,7 +197,7 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'error',
     valueEnum: SubscriptionStatusCodesBuilderEnum.error,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+      valueString: 'http://hl7.org/fhir/subscription-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -192,7 +210,7 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'off',
     valueEnum: SubscriptionStatusCodesBuilderEnum.off,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-status',
+      valueString: 'http://hl7.org/fhir/subscription-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -221,6 +239,10 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   ) {
     return SubscriptionStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

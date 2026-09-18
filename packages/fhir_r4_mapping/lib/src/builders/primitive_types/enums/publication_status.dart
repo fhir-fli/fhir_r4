@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for PublicationStatus
@@ -98,12 +99,13 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = PublicationStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return PublicationStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,26 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
         'PublicationStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(PublicationStatusBuilderEnum.fromString(value));
     return PublicationStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static PublicationStatusBuilder? _known(
+      PublicationStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for PublicationStatusBuilder
@@ -150,7 +168,7 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'draft',
     valueEnum: PublicationStatusBuilderEnum.draft,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+      valueString: 'http://hl7.org/fhir/publication-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -163,7 +181,7 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: PublicationStatusBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+      valueString: 'http://hl7.org/fhir/publication-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,7 +194,7 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'retired',
     valueEnum: PublicationStatusBuilderEnum.retired,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+      valueString: 'http://hl7.org/fhir/publication-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -189,7 +207,7 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: PublicationStatusBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+      valueString: 'http://hl7.org/fhir/publication-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -217,6 +235,10 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return PublicationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

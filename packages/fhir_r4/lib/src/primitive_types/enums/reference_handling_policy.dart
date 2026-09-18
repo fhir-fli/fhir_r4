@@ -97,12 +97,13 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ReferenceHandlingPolicyEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ReferenceHandlingPolicy._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,26 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
         'ReferenceHandlingPolicy cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ReferenceHandlingPolicy._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ReferenceHandlingPolicy? _known(
+      ReferenceHandlingPolicyEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ReferenceHandlingPolicy
@@ -141,7 +157,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     valueString: 'literal',
     valueEnum: ReferenceHandlingPolicyEnum.literal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+      valueString: 'http://hl7.org/fhir/reference-handling-policy',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +170,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     valueString: 'logical',
     valueEnum: ReferenceHandlingPolicyEnum.logical,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+      valueString: 'http://hl7.org/fhir/reference-handling-policy',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +183,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     valueString: 'resolves',
     valueEnum: ReferenceHandlingPolicyEnum.resolves,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+      valueString: 'http://hl7.org/fhir/reference-handling-policy',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +196,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     valueString: 'enforced',
     valueEnum: ReferenceHandlingPolicyEnum.enforced,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+      valueString: 'http://hl7.org/fhir/reference-handling-policy',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +209,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     valueString: 'local',
     valueEnum: ReferenceHandlingPolicyEnum.local,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-handling-policy',
+      valueString: 'http://hl7.org/fhir/reference-handling-policy',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +230,10 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
   ReferenceHandlingPolicy withElement(Element? newElement) {
     return ReferenceHandlingPolicy._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -111,12 +111,13 @@ class ChargeItemStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ChargeItemStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ChargeItemStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -140,11 +141,25 @@ class ChargeItemStatus extends FhirCodeEnum {
         'ChargeItemStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ChargeItemStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ChargeItemStatus? _known(ChargeItemStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ChargeItemStatus
@@ -155,7 +170,7 @@ class ChargeItemStatus extends FhirCodeEnum {
     valueString: 'planned',
     valueEnum: ChargeItemStatusEnum.planned,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+      valueString: 'http://hl7.org/fhir/chargeitem-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -168,7 +183,7 @@ class ChargeItemStatus extends FhirCodeEnum {
     valueString: 'billable',
     valueEnum: ChargeItemStatusEnum.billable,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+      valueString: 'http://hl7.org/fhir/chargeitem-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -181,7 +196,7 @@ class ChargeItemStatus extends FhirCodeEnum {
     valueString: 'not-billable',
     valueEnum: ChargeItemStatusEnum.notBillable,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+      valueString: 'http://hl7.org/fhir/chargeitem-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,7 +209,7 @@ class ChargeItemStatus extends FhirCodeEnum {
     valueString: 'aborted',
     valueEnum: ChargeItemStatusEnum.aborted,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+      valueString: 'http://hl7.org/fhir/chargeitem-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -207,7 +222,7 @@ class ChargeItemStatus extends FhirCodeEnum {
     valueString: 'billed',
     valueEnum: ChargeItemStatusEnum.billed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+      valueString: 'http://hl7.org/fhir/chargeitem-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -220,7 +235,7 @@ class ChargeItemStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: ChargeItemStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+      valueString: 'http://hl7.org/fhir/chargeitem-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -233,7 +248,7 @@ class ChargeItemStatus extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: ChargeItemStatusEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+      valueString: 'http://hl7.org/fhir/chargeitem-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -256,6 +271,10 @@ class ChargeItemStatus extends FhirCodeEnum {
   ChargeItemStatus withElement(Element? newElement) {
     return ChargeItemStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

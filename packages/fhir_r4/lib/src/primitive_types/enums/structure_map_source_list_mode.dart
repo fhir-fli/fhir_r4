@@ -97,12 +97,13 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = StructureMapSourceListModeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return StructureMapSourceListMode._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,26 @@ class StructureMapSourceListMode extends FhirCodeEnum {
         'StructureMapSourceListMode cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return StructureMapSourceListMode._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static StructureMapSourceListMode? _known(
+      StructureMapSourceListModeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for StructureMapSourceListMode
@@ -141,7 +157,7 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     valueString: 'first',
     valueEnum: StructureMapSourceListModeEnum.first,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+      valueString: 'http://hl7.org/fhir/map-source-list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -155,7 +171,7 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     valueString: 'not_first',
     valueEnum: StructureMapSourceListModeEnum.notFirst,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+      valueString: 'http://hl7.org/fhir/map-source-list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -168,7 +184,7 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     valueString: 'last',
     valueEnum: StructureMapSourceListModeEnum.last,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+      valueString: 'http://hl7.org/fhir/map-source-list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -182,7 +198,7 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     valueString: 'not_last',
     valueEnum: StructureMapSourceListModeEnum.notLast,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+      valueString: 'http://hl7.org/fhir/map-source-list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -196,7 +212,7 @@ class StructureMapSourceListMode extends FhirCodeEnum {
     valueString: 'only_one',
     valueEnum: StructureMapSourceListModeEnum.onlyOne,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-source-list-mode',
+      valueString: 'http://hl7.org/fhir/map-source-list-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -217,6 +233,10 @@ class StructureMapSourceListMode extends FhirCodeEnum {
   StructureMapSourceListMode withElement(Element? newElement) {
     return StructureMapSourceListMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for IssueType
@@ -287,12 +288,13 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = IssueTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return IssueTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -324,10 +326,25 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
         'IssueTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(IssueTypeBuilderEnum.fromString(value));
     return IssueTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static IssueTypeBuilder? _known(IssueTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for IssueTypeBuilder
@@ -338,7 +355,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'invalid',
     valueEnum: IssueTypeBuilderEnum.invalid,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -351,7 +368,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'structure',
     valueEnum: IssueTypeBuilderEnum.structure,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -364,7 +381,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'required',
     valueEnum: IssueTypeBuilderEnum.required_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -377,7 +394,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'value',
     valueEnum: IssueTypeBuilderEnum.value_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -390,7 +407,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'invariant',
     valueEnum: IssueTypeBuilderEnum.invariant,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -403,7 +420,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'security',
     valueEnum: IssueTypeBuilderEnum.security,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -416,7 +433,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'login',
     valueEnum: IssueTypeBuilderEnum.login,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -429,7 +446,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: IssueTypeBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -442,7 +459,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'expired',
     valueEnum: IssueTypeBuilderEnum.expired,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -455,7 +472,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'forbidden',
     valueEnum: IssueTypeBuilderEnum.forbidden,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -468,7 +485,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'suppressed',
     valueEnum: IssueTypeBuilderEnum.suppressed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -481,7 +498,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'processing',
     valueEnum: IssueTypeBuilderEnum.processing,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -494,7 +511,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-supported',
     valueEnum: IssueTypeBuilderEnum.notSupported,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -507,7 +524,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'duplicate',
     valueEnum: IssueTypeBuilderEnum.duplicate,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -520,7 +537,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'multiple-matches',
     valueEnum: IssueTypeBuilderEnum.multipleMatches,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -533,7 +550,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-found',
     valueEnum: IssueTypeBuilderEnum.notFound,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -546,7 +563,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'deleted',
     valueEnum: IssueTypeBuilderEnum.deleted,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -559,7 +576,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'too-long',
     valueEnum: IssueTypeBuilderEnum.tooLong,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -572,7 +589,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'code-invalid',
     valueEnum: IssueTypeBuilderEnum.codeInvalid,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -585,7 +602,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'extension',
     valueEnum: IssueTypeBuilderEnum.extensionValue,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -598,7 +615,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'too-costly',
     valueEnum: IssueTypeBuilderEnum.tooCostly,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -611,7 +628,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'business-rule',
     valueEnum: IssueTypeBuilderEnum.businessRule,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -624,7 +641,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'conflict',
     valueEnum: IssueTypeBuilderEnum.conflict,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -637,7 +654,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'transient',
     valueEnum: IssueTypeBuilderEnum.transient,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -650,7 +667,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'lock-error',
     valueEnum: IssueTypeBuilderEnum.lockError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -663,7 +680,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'no-store',
     valueEnum: IssueTypeBuilderEnum.noStore,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -676,7 +693,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'exception',
     valueEnum: IssueTypeBuilderEnum.exception,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -689,7 +706,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'timeout',
     valueEnum: IssueTypeBuilderEnum.timeout,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -702,7 +719,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'incomplete',
     valueEnum: IssueTypeBuilderEnum.incomplete,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -715,7 +732,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'throttled',
     valueEnum: IssueTypeBuilderEnum.throttled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -728,7 +745,7 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'informational',
     valueEnum: IssueTypeBuilderEnum.informational,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/issue-type',
+      valueString: 'http://hl7.org/fhir/issue-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -783,6 +800,10 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return IssueTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

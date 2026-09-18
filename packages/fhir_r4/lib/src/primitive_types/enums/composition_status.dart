@@ -90,12 +90,13 @@ class CompositionStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CompositionStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CompositionStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -119,11 +120,25 @@ class CompositionStatus extends FhirCodeEnum {
         'CompositionStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CompositionStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CompositionStatus? _known(CompositionStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CompositionStatus
@@ -134,7 +149,7 @@ class CompositionStatus extends FhirCodeEnum {
     valueString: 'preliminary',
     valueEnum: CompositionStatusEnum.preliminary,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+      valueString: 'http://hl7.org/fhir/composition-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -147,7 +162,7 @@ class CompositionStatus extends FhirCodeEnum {
     valueString: 'final',
     valueEnum: CompositionStatusEnum.final_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+      valueString: 'http://hl7.org/fhir/composition-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -160,7 +175,7 @@ class CompositionStatus extends FhirCodeEnum {
     valueString: 'amended',
     valueEnum: CompositionStatusEnum.amended,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+      valueString: 'http://hl7.org/fhir/composition-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,7 +188,7 @@ class CompositionStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: CompositionStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/composition-status',
+      valueString: 'http://hl7.org/fhir/composition-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,6 +208,10 @@ class CompositionStatus extends FhirCodeEnum {
   CompositionStatus withElement(Element? newElement) {
     return CompositionStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

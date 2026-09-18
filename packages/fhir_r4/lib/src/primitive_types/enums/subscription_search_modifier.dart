@@ -161,12 +161,13 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = SubscriptionSearchModifierEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return SubscriptionSearchModifier._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -190,11 +191,26 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
         'SubscriptionSearchModifier cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return SubscriptionSearchModifier._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SubscriptionSearchModifier? _known(
+      SubscriptionSearchModifierEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for SubscriptionSearchModifier
@@ -205,7 +221,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: '=',
     valueEnum: SubscriptionSearchModifierEnum.eq,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -218,7 +235,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'ne',
     valueEnum: SubscriptionSearchModifierEnum.ne,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -231,7 +249,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'gt',
     valueEnum: SubscriptionSearchModifierEnum.gt,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -244,7 +263,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'lt',
     valueEnum: SubscriptionSearchModifierEnum.lt,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -257,7 +277,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'ge',
     valueEnum: SubscriptionSearchModifierEnum.ge,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -270,7 +291,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'le',
     valueEnum: SubscriptionSearchModifierEnum.le,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -283,7 +305,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'sa',
     valueEnum: SubscriptionSearchModifierEnum.sa,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -296,7 +319,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'eb',
     valueEnum: SubscriptionSearchModifierEnum.eb,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -309,7 +333,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'ap',
     valueEnum: SubscriptionSearchModifierEnum.ap,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -322,7 +347,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'above',
     valueEnum: SubscriptionSearchModifierEnum.above,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -335,7 +361,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'below',
     valueEnum: SubscriptionSearchModifierEnum.below,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -348,7 +375,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'in',
     valueEnum: SubscriptionSearchModifierEnum.in_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -361,7 +389,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'not-in',
     valueEnum: SubscriptionSearchModifierEnum.notIn,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -374,7 +403,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     valueString: 'of-type',
     valueEnum: SubscriptionSearchModifierEnum.ofType,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/subscription-search-modifier',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -404,6 +434,10 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
   SubscriptionSearchModifier withElement(Element? newElement) {
     return SubscriptionSearchModifier._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

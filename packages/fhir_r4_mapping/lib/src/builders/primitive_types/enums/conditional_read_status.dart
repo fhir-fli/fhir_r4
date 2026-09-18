@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ConditionalReadStatus
@@ -98,12 +99,13 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ConditionalReadStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ConditionalReadStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,26 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
         'ConditionalReadStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ConditionalReadStatusBuilderEnum.fromString(value));
     return ConditionalReadStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ConditionalReadStatusBuilder? _known(
+      ConditionalReadStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ConditionalReadStatusBuilder
@@ -151,7 +169,7 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-supported',
     valueEnum: ConditionalReadStatusBuilderEnum.notSupported,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+      valueString: 'http://hl7.org/fhir/conditional-read-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -165,7 +183,7 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'modified-since',
     valueEnum: ConditionalReadStatusBuilderEnum.modifiedSince,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+      valueString: 'http://hl7.org/fhir/conditional-read-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -178,7 +196,7 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-match',
     valueEnum: ConditionalReadStatusBuilderEnum.notMatch,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+      valueString: 'http://hl7.org/fhir/conditional-read-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -192,7 +210,7 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'full-support',
     valueEnum: ConditionalReadStatusBuilderEnum.fullSupport,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/conditional-read-status',
+      valueString: 'http://hl7.org/fhir/conditional-read-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -221,6 +239,10 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return ConditionalReadStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

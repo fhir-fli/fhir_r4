@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ClinicalUseDefinitionType
@@ -105,12 +106,13 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ClinicalUseDefinitionTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ClinicalUseDefinitionTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -143,10 +145,27 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
         'ClinicalUseDefinitionTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(ClinicalUseDefinitionTypeBuilderEnum.fromString(value));
     return ClinicalUseDefinitionTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ClinicalUseDefinitionTypeBuilder? _known(
+      ClinicalUseDefinitionTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ClinicalUseDefinitionTypeBuilder
@@ -158,7 +177,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'indication',
     valueEnum: ClinicalUseDefinitionTypeBuilderEnum.indication,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+      valueString: 'http://hl7.org/fhir/clinical-use-definition-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -172,7 +191,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'contraindication',
     valueEnum: ClinicalUseDefinitionTypeBuilderEnum.contraindication,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+      valueString: 'http://hl7.org/fhir/clinical-use-definition-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -186,7 +205,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'interaction',
     valueEnum: ClinicalUseDefinitionTypeBuilderEnum.interaction,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+      valueString: 'http://hl7.org/fhir/clinical-use-definition-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -200,7 +219,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'undesirable-effect',
     valueEnum: ClinicalUseDefinitionTypeBuilderEnum.undesirableEffect,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+      valueString: 'http://hl7.org/fhir/clinical-use-definition-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -214,7 +233,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'warning',
     valueEnum: ClinicalUseDefinitionTypeBuilderEnum.warning,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinical-use-definition-type',
+      valueString: 'http://hl7.org/fhir/clinical-use-definition-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -244,6 +263,10 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return ClinicalUseDefinitionTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for EventStatus
@@ -126,12 +127,13 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = EventStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return EventStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -163,10 +165,25 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
         'EventStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(EventStatusBuilderEnum.fromString(value));
     return EventStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static EventStatusBuilder? _known(EventStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for EventStatusBuilder
@@ -177,7 +194,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'preparation',
     valueEnum: EventStatusBuilderEnum.preparation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -190,7 +207,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'in-progress',
     valueEnum: EventStatusBuilderEnum.inProgress,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,7 +220,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-done',
     valueEnum: EventStatusBuilderEnum.notDone,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -216,7 +233,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'on-hold',
     valueEnum: EventStatusBuilderEnum.onHold,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -229,7 +246,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'stopped',
     valueEnum: EventStatusBuilderEnum.stopped,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -242,7 +259,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'completed',
     valueEnum: EventStatusBuilderEnum.completed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -255,7 +272,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: EventStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -268,7 +285,7 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: EventStatusBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -300,6 +317,10 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return EventStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

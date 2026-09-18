@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for FinancialResourceStatusCodes
@@ -98,12 +99,13 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     final valueEnum = FinancialResourceStatusCodesBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return FinancialResourceStatusCodesBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,27 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
         'FinancialResourceStatusCodesBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(FinancialResourceStatusCodesBuilderEnum.fromString(value));
     return FinancialResourceStatusCodesBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static FinancialResourceStatusCodesBuilder? _known(
+      FinancialResourceStatusCodesBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for FinancialResourceStatusCodesBuilder
@@ -151,7 +170,7 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: FinancialResourceStatusCodesBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/fm-status',
+      valueString: 'http://hl7.org/fhir/fm-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -165,7 +184,7 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'cancelled',
     valueEnum: FinancialResourceStatusCodesBuilderEnum.cancelled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/fm-status',
+      valueString: 'http://hl7.org/fhir/fm-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -179,7 +198,7 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'draft',
     valueEnum: FinancialResourceStatusCodesBuilderEnum.draft,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/fm-status',
+      valueString: 'http://hl7.org/fhir/fm-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -193,7 +212,7 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: FinancialResourceStatusCodesBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/fm-status',
+      valueString: 'http://hl7.org/fhir/fm-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -222,6 +241,10 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   ) {
     return FinancialResourceStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

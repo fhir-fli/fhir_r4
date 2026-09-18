@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for IngredientManufacturerRole
@@ -94,12 +95,13 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
     final valueEnum = IngredientManufacturerRoleBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return IngredientManufacturerRoleBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -132,10 +134,27 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
         'IngredientManufacturerRoleBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(IngredientManufacturerRoleBuilderEnum.fromString(value));
     return IngredientManufacturerRoleBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static IngredientManufacturerRoleBuilder? _known(
+      IngredientManufacturerRoleBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for IngredientManufacturerRoleBuilder
@@ -147,7 +166,7 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'allowed',
     valueEnum: IngredientManufacturerRoleBuilderEnum.allowed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role',
+      valueString: 'http://hl7.org/fhir/ingredient-manufacturer-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -161,7 +180,7 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'possible',
     valueEnum: IngredientManufacturerRoleBuilderEnum.possible,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role',
+      valueString: 'http://hl7.org/fhir/ingredient-manufacturer-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -175,7 +194,7 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'actual',
     valueEnum: IngredientManufacturerRoleBuilderEnum.actual,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role',
+      valueString: 'http://hl7.org/fhir/ingredient-manufacturer-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,6 +222,10 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
   ) {
     return IngredientManufacturerRoleBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

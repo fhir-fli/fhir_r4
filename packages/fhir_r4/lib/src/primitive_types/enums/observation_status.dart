@@ -118,12 +118,13 @@ class ObservationStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ObservationStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ObservationStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -147,11 +148,25 @@ class ObservationStatus extends FhirCodeEnum {
         'ObservationStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ObservationStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ObservationStatus? _known(ObservationStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ObservationStatus
@@ -162,7 +177,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'registered',
     valueEnum: ObservationStatusEnum.registered,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -175,7 +190,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'preliminary',
     valueEnum: ObservationStatusEnum.preliminary,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -188,7 +203,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'final',
     valueEnum: ObservationStatusEnum.final_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -201,7 +216,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'amended',
     valueEnum: ObservationStatusEnum.amended,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,7 +229,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'corrected',
     valueEnum: ObservationStatusEnum.corrected,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -227,7 +242,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'cancelled',
     valueEnum: ObservationStatusEnum.cancelled,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -240,7 +255,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: ObservationStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -253,7 +268,7 @@ class ObservationStatus extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: ObservationStatusEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/observation-status',
+      valueString: 'http://hl7.org/fhir/observation-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -277,6 +292,10 @@ class ObservationStatus extends FhirCodeEnum {
   ObservationStatus withElement(Element? newElement) {
     return ObservationStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

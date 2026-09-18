@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for MessageSignificanceCategory
@@ -91,12 +92,13 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
     final valueEnum = MessageSignificanceCategoryBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return MessageSignificanceCategoryBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -129,10 +131,27 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
         'MessageSignificanceCategoryBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(MessageSignificanceCategoryBuilderEnum.fromString(value));
     return MessageSignificanceCategoryBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static MessageSignificanceCategoryBuilder? _known(
+      MessageSignificanceCategoryBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for MessageSignificanceCategoryBuilder
@@ -144,7 +163,7 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
     valueString: 'consequence',
     valueEnum: MessageSignificanceCategoryBuilderEnum.consequence,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/message-significance-category',
+      valueString: 'http://hl7.org/fhir/message-significance-category',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -158,7 +177,7 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
     valueString: 'currency',
     valueEnum: MessageSignificanceCategoryBuilderEnum.currency,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/message-significance-category',
+      valueString: 'http://hl7.org/fhir/message-significance-category',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -172,7 +191,7 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
     valueString: 'notification',
     valueEnum: MessageSignificanceCategoryBuilderEnum.notification,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/message-significance-category',
+      valueString: 'http://hl7.org/fhir/message-significance-category',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -200,6 +219,10 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
   ) {
     return MessageSignificanceCategoryBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

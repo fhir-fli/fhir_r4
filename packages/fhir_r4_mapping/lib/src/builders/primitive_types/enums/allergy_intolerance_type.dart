@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for AllergyIntoleranceType
@@ -85,12 +86,13 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = AllergyIntoleranceTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return AllergyIntoleranceTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -123,10 +125,26 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
         'AllergyIntoleranceTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(AllergyIntoleranceTypeBuilderEnum.fromString(value));
     return AllergyIntoleranceTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AllergyIntoleranceTypeBuilder? _known(
+      AllergyIntoleranceTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for AllergyIntoleranceTypeBuilder
@@ -138,7 +156,7 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'allergy',
     valueEnum: AllergyIntoleranceTypeBuilderEnum.allergy,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-type',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -152,7 +170,7 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'intolerance',
     valueEnum: AllergyIntoleranceTypeBuilderEnum.intolerance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-type',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -179,6 +197,10 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return AllergyIntoleranceTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

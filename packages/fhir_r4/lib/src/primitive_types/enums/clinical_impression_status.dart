@@ -119,12 +119,13 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ClinicalImpressionStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ClinicalImpressionStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -148,11 +149,26 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
         'ClinicalImpressionStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ClinicalImpressionStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ClinicalImpressionStatus? _known(
+      ClinicalImpressionStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ClinicalImpressionStatus
@@ -164,7 +180,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'preparation',
     valueEnum: ClinicalImpressionStatusEnum.preparation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -177,7 +193,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'in-progress',
     valueEnum: ClinicalImpressionStatusEnum.inProgress,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -190,7 +206,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'not-done',
     valueEnum: ClinicalImpressionStatusEnum.notDone,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -203,7 +219,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'on-hold',
     valueEnum: ClinicalImpressionStatusEnum.onHold,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -216,7 +232,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'stopped',
     valueEnum: ClinicalImpressionStatusEnum.stopped,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -229,7 +245,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: ClinicalImpressionStatusEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -243,7 +259,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: ClinicalImpressionStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -256,7 +272,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: ClinicalImpressionStatusEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -280,6 +296,10 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   ClinicalImpressionStatus withElement(Element? newElement) {
     return ClinicalImpressionStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

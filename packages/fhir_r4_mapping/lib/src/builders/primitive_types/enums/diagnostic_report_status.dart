@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for DiagnosticReportStatus
@@ -140,12 +141,13 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = DiagnosticReportStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return DiagnosticReportStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -178,10 +180,26 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
         'DiagnosticReportStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(DiagnosticReportStatusBuilderEnum.fromString(value));
     return DiagnosticReportStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static DiagnosticReportStatusBuilder? _known(
+      DiagnosticReportStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for DiagnosticReportStatusBuilder
@@ -193,7 +211,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'registered',
     valueEnum: DiagnosticReportStatusBuilderEnum.registered,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -207,7 +225,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'partial',
     valueEnum: DiagnosticReportStatusBuilderEnum.partial,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -221,7 +239,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'preliminary',
     valueEnum: DiagnosticReportStatusBuilderEnum.preliminary,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -234,7 +252,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'final',
     valueEnum: DiagnosticReportStatusBuilderEnum.final_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -248,7 +266,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'amended',
     valueEnum: DiagnosticReportStatusBuilderEnum.amended,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -262,7 +280,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'corrected',
     valueEnum: DiagnosticReportStatusBuilderEnum.corrected,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -276,7 +294,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'appended',
     valueEnum: DiagnosticReportStatusBuilderEnum.appended,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -290,7 +308,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'cancelled',
     valueEnum: DiagnosticReportStatusBuilderEnum.cancelled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -304,7 +322,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: DiagnosticReportStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -318,7 +336,7 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: DiagnosticReportStatusBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+      valueString: 'http://hl7.org/fhir/diagnostic-report-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -353,6 +371,10 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return DiagnosticReportStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

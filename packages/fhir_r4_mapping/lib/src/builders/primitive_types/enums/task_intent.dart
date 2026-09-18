@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for TaskIntent
@@ -140,12 +141,13 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     final valueEnum = TaskIntentBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return TaskIntentBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -177,10 +179,25 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
         'TaskIntentBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(TaskIntentBuilderEnum.fromString(value));
     return TaskIntentBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TaskIntentBuilder? _known(TaskIntentBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for TaskIntentBuilder
@@ -191,7 +208,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: TaskIntentBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/task-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -204,7 +221,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'proposal',
     valueEnum: TaskIntentBuilderEnum.proposal,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -217,7 +234,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'plan',
     valueEnum: TaskIntentBuilderEnum.plan,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -230,7 +247,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'directive',
     valueEnum: TaskIntentBuilderEnum.directive,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -243,7 +260,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'order',
     valueEnum: TaskIntentBuilderEnum.order,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -256,7 +273,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'original-order',
     valueEnum: TaskIntentBuilderEnum.originalOrder,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -269,7 +286,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'reflex-order',
     valueEnum: TaskIntentBuilderEnum.reflexOrder,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -282,7 +299,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'filler-order',
     valueEnum: TaskIntentBuilderEnum.fillerOrder,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -295,7 +312,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'instance-order',
     valueEnum: TaskIntentBuilderEnum.instanceOrder,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -308,7 +325,7 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     valueString: 'option',
     valueEnum: TaskIntentBuilderEnum.option,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -342,6 +359,10 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
   ) {
     return TaskIntentBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

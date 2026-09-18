@@ -111,12 +111,13 @@ class UnitsOfTime extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = UnitsOfTimeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return UnitsOfTime._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -140,11 +141,25 @@ class UnitsOfTime extends FhirCodeEnum {
         'UnitsOfTime cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return UnitsOfTime._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static UnitsOfTime? _known(UnitsOfTimeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for UnitsOfTime
@@ -155,9 +170,8 @@ class UnitsOfTime extends FhirCodeEnum {
     valueString: 's',
     valueEnum: UnitsOfTimeEnum.s,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+      valueString: 'http://unitsofmeasure.org',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: 'second',
     ),
@@ -168,9 +182,8 @@ class UnitsOfTime extends FhirCodeEnum {
     valueString: 'min',
     valueEnum: UnitsOfTimeEnum.min,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+      valueString: 'http://unitsofmeasure.org',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: 'minute',
     ),
@@ -181,9 +194,8 @@ class UnitsOfTime extends FhirCodeEnum {
     valueString: 'h',
     valueEnum: UnitsOfTimeEnum.h,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+      valueString: 'http://unitsofmeasure.org',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: 'hour',
     ),
@@ -194,9 +206,8 @@ class UnitsOfTime extends FhirCodeEnum {
     valueString: 'd',
     valueEnum: UnitsOfTimeEnum.d,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+      valueString: 'http://unitsofmeasure.org',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: 'day',
     ),
@@ -207,9 +218,8 @@ class UnitsOfTime extends FhirCodeEnum {
     valueString: 'wk',
     valueEnum: UnitsOfTimeEnum.wk,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+      valueString: 'http://unitsofmeasure.org',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: 'week',
     ),
@@ -220,9 +230,8 @@ class UnitsOfTime extends FhirCodeEnum {
     valueString: 'mo',
     valueEnum: UnitsOfTimeEnum.mo,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+      valueString: 'http://unitsofmeasure.org',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: 'month',
     ),
@@ -233,9 +242,8 @@ class UnitsOfTime extends FhirCodeEnum {
     valueString: 'a',
     valueEnum: UnitsOfTimeEnum.a,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+      valueString: 'http://unitsofmeasure.org',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: 'year',
     ),
@@ -256,6 +264,10 @@ class UnitsOfTime extends FhirCodeEnum {
   UnitsOfTime withElement(Element? newElement) {
     return UnitsOfTime._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

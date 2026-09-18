@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for Status
@@ -112,12 +113,13 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = StatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return StatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -149,10 +151,25 @@ class StatusBuilder extends FhirCodeEnumBuilder {
         'StatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(StatusBuilderEnum.fromString(value));
     return StatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static StatusBuilder? _known(StatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for StatusBuilder
@@ -163,7 +180,7 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'attested',
     valueEnum: StatusBuilderEnum.attested,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,7 +193,7 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'validated',
     valueEnum: StatusBuilderEnum.validated,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -189,7 +206,7 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'in-process',
     valueEnum: StatusBuilderEnum.inProcess,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -202,7 +219,7 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'req-revalid',
     valueEnum: StatusBuilderEnum.reqRevalid,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -215,7 +232,7 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'val-fail',
     valueEnum: StatusBuilderEnum.valFail,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -228,7 +245,7 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'reval-fail',
     valueEnum: StatusBuilderEnum.revalFail,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -258,6 +275,10 @@ class StatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return StatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

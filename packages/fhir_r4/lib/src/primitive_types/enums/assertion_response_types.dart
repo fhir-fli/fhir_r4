@@ -146,12 +146,13 @@ class AssertionResponseTypes extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = AssertionResponseTypesEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return AssertionResponseTypes._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -175,11 +176,25 @@ class AssertionResponseTypes extends FhirCodeEnum {
         'AssertionResponseTypes cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return AssertionResponseTypes._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AssertionResponseTypes? _known(AssertionResponseTypesEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for AssertionResponseTypes
@@ -190,7 +205,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'okay',
     valueEnum: AssertionResponseTypesEnum.okay,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -203,7 +218,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'created',
     valueEnum: AssertionResponseTypesEnum.created,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -216,7 +231,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'noContent',
     valueEnum: AssertionResponseTypesEnum.noContent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -229,7 +244,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'notModified',
     valueEnum: AssertionResponseTypesEnum.notModified,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -242,7 +257,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'bad',
     valueEnum: AssertionResponseTypesEnum.bad,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -255,7 +270,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'forbidden',
     valueEnum: AssertionResponseTypesEnum.forbidden,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -268,7 +283,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'notFound',
     valueEnum: AssertionResponseTypesEnum.notFound,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -282,7 +297,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'methodNotAllowed',
     valueEnum: AssertionResponseTypesEnum.methodNotAllowed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -295,7 +310,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'conflict',
     valueEnum: AssertionResponseTypesEnum.conflict,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -308,7 +323,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'gone',
     valueEnum: AssertionResponseTypesEnum.gone,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -322,7 +337,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'preconditionFailed',
     valueEnum: AssertionResponseTypesEnum.preconditionFailed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -335,7 +350,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
     valueString: 'unprocessable',
     valueEnum: AssertionResponseTypesEnum.unprocessable,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-response-code-types',
+      valueString: 'http://hl7.org/fhir/assert-response-code-types',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -363,6 +378,10 @@ class AssertionResponseTypes extends FhirCodeEnum {
   AssertionResponseTypes withElement(Element? newElement) {
     return AssertionResponseTypes._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

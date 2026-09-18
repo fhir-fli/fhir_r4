@@ -125,12 +125,13 @@ class ActionRelationshipType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ActionRelationshipTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ActionRelationshipType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -154,11 +155,25 @@ class ActionRelationshipType extends FhirCodeEnum {
         'ActionRelationshipType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ActionRelationshipType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionRelationshipType? _known(ActionRelationshipTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ActionRelationshipType
@@ -169,7 +184,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'before-start',
     valueEnum: ActionRelationshipTypeEnum.beforeStart,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -182,7 +197,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'before',
     valueEnum: ActionRelationshipTypeEnum.before,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -195,7 +210,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'before-end',
     valueEnum: ActionRelationshipTypeEnum.beforeEnd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -209,7 +224,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'concurrent-with-start',
     valueEnum: ActionRelationshipTypeEnum.concurrentWithStart,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -222,7 +237,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'concurrent',
     valueEnum: ActionRelationshipTypeEnum.concurrent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -236,7 +251,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'concurrent-with-end',
     valueEnum: ActionRelationshipTypeEnum.concurrentWithEnd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -249,7 +264,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'after-start',
     valueEnum: ActionRelationshipTypeEnum.afterStart,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -262,7 +277,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'after',
     valueEnum: ActionRelationshipTypeEnum.after,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -275,7 +290,7 @@ class ActionRelationshipType extends FhirCodeEnum {
     valueString: 'after-end',
     valueEnum: ActionRelationshipTypeEnum.afterEnd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -300,6 +315,10 @@ class ActionRelationshipType extends FhirCodeEnum {
   ActionRelationshipType withElement(Element? newElement) {
     return ActionRelationshipType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

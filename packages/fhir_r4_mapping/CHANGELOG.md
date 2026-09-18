@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- **A bound `code` Builder carries its CodeSystem**, the same change as in the core package: constants name the CodeSystem, not the ValueSet, and a value parsed from JSON or built from a string takes its constant's `system`, `version` and `display`. `fromJson` also sets `valueEnum`, which it did not.
 - **`FhirDateTimeBaseBuilder.valueDateTime` honours the offset**, the same change as in the core package: a value with `Z` or an offset comes back in UTC at the instant it denotes; one without stays local.
 - **A map that leaves a required element unset now says so usefully.** `transformBuilder` ends in `result.build()`, which is `Type.fromJson(toJson())`, and `fromJson` dereferences the required elements — so an unset one surfaced as `Null check operator used on a null value`, naming neither the type nor the element, inside an OperationOutcome the caller could do nothing with. The failure now reports the target type and the elements the map actually did set, which is the list the missing one is absent from.
 

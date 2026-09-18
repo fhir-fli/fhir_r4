@@ -76,12 +76,13 @@ class VisionEyes extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = VisionEyesEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return VisionEyes._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -105,11 +106,25 @@ class VisionEyes extends FhirCodeEnum {
         'VisionEyes cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return VisionEyes._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static VisionEyes? _known(VisionEyesEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for VisionEyes
@@ -120,7 +135,7 @@ class VisionEyes extends FhirCodeEnum {
     valueString: 'right',
     valueEnum: VisionEyesEnum.right,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/vision-eye-codes',
+      valueString: 'http://hl7.org/fhir/vision-eye-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -133,7 +148,7 @@ class VisionEyes extends FhirCodeEnum {
     valueString: 'left',
     valueEnum: VisionEyesEnum.left,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/vision-eye-codes',
+      valueString: 'http://hl7.org/fhir/vision-eye-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -151,6 +166,10 @@ class VisionEyes extends FhirCodeEnum {
   VisionEyes withElement(Element? newElement) {
     return VisionEyes._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

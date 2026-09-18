@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ActionGroupingBehavior
@@ -91,12 +92,13 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ActionGroupingBehaviorBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ActionGroupingBehaviorBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -129,10 +131,26 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
         'ActionGroupingBehaviorBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ActionGroupingBehaviorBuilderEnum.fromString(value));
     return ActionGroupingBehaviorBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionGroupingBehaviorBuilder? _known(
+      ActionGroupingBehaviorBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ActionGroupingBehaviorBuilder
@@ -144,7 +162,7 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'visual-group',
     valueEnum: ActionGroupingBehaviorBuilderEnum.visualGroup,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+      valueString: 'http://hl7.org/fhir/action-grouping-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -158,7 +176,7 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'logical-group',
     valueEnum: ActionGroupingBehaviorBuilderEnum.logicalGroup,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+      valueString: 'http://hl7.org/fhir/action-grouping-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -172,7 +190,7 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'sentence-group',
     valueEnum: ActionGroupingBehaviorBuilderEnum.sentenceGroup,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+      valueString: 'http://hl7.org/fhir/action-grouping-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -200,6 +218,10 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   ) {
     return ActionGroupingBehaviorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

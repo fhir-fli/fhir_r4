@@ -2487,12 +2487,13 @@ class SPDXLicense extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = SPDXLicenseEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return SPDXLicense._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -2516,11 +2517,25 @@ class SPDXLicense extends FhirCodeEnum {
         'SPDXLicense cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return SPDXLicense._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SPDXLicense? _known(SPDXLicenseEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for SPDXLicense
@@ -2531,7 +2546,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'not-open-source',
     valueEnum: SPDXLicenseEnum.notOpenSource,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2544,7 +2559,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: '0BSD',
     valueEnum: SPDXLicenseEnum.value0BSD,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2557,7 +2572,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AAL',
     valueEnum: SPDXLicenseEnum.aAL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2570,7 +2585,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Abstyles',
     valueEnum: SPDXLicenseEnum.abstyles,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2583,7 +2598,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Adobe-2006',
     valueEnum: SPDXLicenseEnum.adobe2006,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2596,7 +2611,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Adobe-Glyph',
     valueEnum: SPDXLicenseEnum.adobeGlyph,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2609,7 +2624,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ADSL',
     valueEnum: SPDXLicenseEnum.aDSL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2622,7 +2637,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AFL-1.1',
     valueEnum: SPDXLicenseEnum.afl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2635,7 +2650,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AFL-1.2',
     valueEnum: SPDXLicenseEnum.afl12,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2648,7 +2663,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AFL-2.0',
     valueEnum: SPDXLicenseEnum.afl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2661,7 +2676,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AFL-2.1',
     valueEnum: SPDXLicenseEnum.afl21,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2674,7 +2689,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AFL-3.0',
     valueEnum: SPDXLicenseEnum.afl30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2687,7 +2702,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Afmparse',
     valueEnum: SPDXLicenseEnum.afmparse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2700,7 +2715,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AGPL-1.0-only',
     valueEnum: SPDXLicenseEnum.agpl10Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2713,7 +2728,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AGPL-1.0-or-later',
     valueEnum: SPDXLicenseEnum.agpl10OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2726,7 +2741,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AGPL-3.0-only',
     valueEnum: SPDXLicenseEnum.agpl30Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2739,7 +2754,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AGPL-3.0-or-later',
     valueEnum: SPDXLicenseEnum.agpl30OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2752,7 +2767,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Aladdin',
     valueEnum: SPDXLicenseEnum.aladdin,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2765,7 +2780,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AMDPLPA',
     valueEnum: SPDXLicenseEnum.aMDPLPA,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2778,7 +2793,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AML',
     valueEnum: SPDXLicenseEnum.aML,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2791,7 +2806,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'AMPAS',
     valueEnum: SPDXLicenseEnum.aMPAS,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2804,7 +2819,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ANTLR-PD',
     valueEnum: SPDXLicenseEnum.antlrPd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2817,7 +2832,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Apache-1.0',
     valueEnum: SPDXLicenseEnum.apache10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2830,7 +2845,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Apache-1.1',
     valueEnum: SPDXLicenseEnum.apache11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2843,7 +2858,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Apache-2.0',
     valueEnum: SPDXLicenseEnum.apache20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2856,7 +2871,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'APAFML',
     valueEnum: SPDXLicenseEnum.aPAFML,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2869,7 +2884,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'APL-1.0',
     valueEnum: SPDXLicenseEnum.apl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2882,7 +2897,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'APSL-1.0',
     valueEnum: SPDXLicenseEnum.apsl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2895,7 +2910,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'APSL-1.1',
     valueEnum: SPDXLicenseEnum.apsl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2908,7 +2923,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'APSL-1.2',
     valueEnum: SPDXLicenseEnum.apsl12,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2921,7 +2936,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'APSL-2.0',
     valueEnum: SPDXLicenseEnum.apsl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2934,7 +2949,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Artistic-1.0-cl8',
     valueEnum: SPDXLicenseEnum.artistic10Cl8,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2947,7 +2962,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Artistic-1.0-Perl',
     valueEnum: SPDXLicenseEnum.artistic10Perl,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2960,7 +2975,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Artistic-1.0',
     valueEnum: SPDXLicenseEnum.artistic10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2973,7 +2988,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Artistic-2.0',
     valueEnum: SPDXLicenseEnum.artistic20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2986,7 +3001,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Bahyph',
     valueEnum: SPDXLicenseEnum.bahyph,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -2999,7 +3014,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Barr',
     valueEnum: SPDXLicenseEnum.barr,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3012,7 +3027,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Beerware',
     valueEnum: SPDXLicenseEnum.beerware,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3025,7 +3040,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BitTorrent-1.0',
     valueEnum: SPDXLicenseEnum.bittorrent10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3038,7 +3053,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BitTorrent-1.1',
     valueEnum: SPDXLicenseEnum.bittorrent11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3051,7 +3066,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Borceux',
     valueEnum: SPDXLicenseEnum.borceux,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3064,7 +3079,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-1-Clause',
     valueEnum: SPDXLicenseEnum.bsd1Clause,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3077,7 +3092,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-2-Clause-FreeBSD',
     valueEnum: SPDXLicenseEnum.bsd2ClauseFreebsd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3090,7 +3105,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-2-Clause-NetBSD',
     valueEnum: SPDXLicenseEnum.bsd2ClauseNetbsd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3103,7 +3118,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-2-Clause-Patent',
     valueEnum: SPDXLicenseEnum.bsd2ClausePatent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3116,11 +3131,11 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-2-Clause',
     valueEnum: SPDXLicenseEnum.bsd2Clause,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
-      valueString: 'BSD 2-Clause "Simplified" License',
+      valueString: 'BSD 2-Clause \"Simplified\" License',
     ),
   );
 
@@ -3129,7 +3144,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-3-Clause-Attribution',
     valueEnum: SPDXLicenseEnum.bsd3ClauseAttribution,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3142,7 +3157,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-3-Clause-Clear',
     valueEnum: SPDXLicenseEnum.bsd3ClauseClear,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3155,7 +3170,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-3-Clause-LBNL',
     valueEnum: SPDXLicenseEnum.bsd3ClauseLbnl,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3168,7 +3183,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-3-Clause-No-Nuclear-License-2014',
     valueEnum: SPDXLicenseEnum.bsd3ClauseNoNuclearLicense2014,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3181,7 +3196,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-3-Clause-No-Nuclear-License',
     valueEnum: SPDXLicenseEnum.bsd3ClauseNoNuclearLicense,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3194,7 +3209,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-3-Clause-No-Nuclear-Warranty',
     valueEnum: SPDXLicenseEnum.bsd3ClauseNoNuclearWarranty,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3207,11 +3222,11 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-3-Clause',
     valueEnum: SPDXLicenseEnum.bsd3Clause,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
-      valueString: 'BSD 3-Clause "New" or "Revised" License',
+      valueString: 'BSD 3-Clause \"New\" or \"Revised\" License',
     ),
   );
 
@@ -3220,7 +3235,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-4-Clause-UC',
     valueEnum: SPDXLicenseEnum.bsd4ClauseUc,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3233,11 +3248,11 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-4-Clause',
     valueEnum: SPDXLicenseEnum.bsd4Clause,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
-      valueString: 'BSD 4-Clause "Original" or "Old" License',
+      valueString: 'BSD 4-Clause \"Original\" or \"Old\" License',
     ),
   );
 
@@ -3246,7 +3261,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-Protection',
     valueEnum: SPDXLicenseEnum.bsdProtection,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3259,7 +3274,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSD-Source-Code',
     valueEnum: SPDXLicenseEnum.bsdSourceCode,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3272,7 +3287,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'BSL-1.0',
     valueEnum: SPDXLicenseEnum.bsl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3285,7 +3300,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'bzip2-1.0.5',
     valueEnum: SPDXLicenseEnum.bzip2105,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3298,7 +3313,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'bzip2-1.0.6',
     valueEnum: SPDXLicenseEnum.bzip2106,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3311,7 +3326,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Caldera',
     valueEnum: SPDXLicenseEnum.caldera,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3324,7 +3339,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CATOSL-1.1',
     valueEnum: SPDXLicenseEnum.catosl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3337,7 +3352,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-1.0',
     valueEnum: SPDXLicenseEnum.ccBy10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3350,7 +3365,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-2.0',
     valueEnum: SPDXLicenseEnum.ccBy20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3363,7 +3378,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-2.5',
     valueEnum: SPDXLicenseEnum.ccBy25,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3376,7 +3391,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-3.0',
     valueEnum: SPDXLicenseEnum.ccBy30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3389,7 +3404,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-4.0',
     valueEnum: SPDXLicenseEnum.ccBy40,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3402,7 +3417,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-1.0',
     valueEnum: SPDXLicenseEnum.ccByNc10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3415,7 +3430,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-2.0',
     valueEnum: SPDXLicenseEnum.ccByNc20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3428,7 +3443,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-2.5',
     valueEnum: SPDXLicenseEnum.ccByNc25,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3441,7 +3456,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-3.0',
     valueEnum: SPDXLicenseEnum.ccByNc30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3454,7 +3469,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-4.0',
     valueEnum: SPDXLicenseEnum.ccByNc40,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3468,7 +3483,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-ND-1.0',
     valueEnum: SPDXLicenseEnum.ccByNcNd10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3482,7 +3497,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-ND-2.0',
     valueEnum: SPDXLicenseEnum.ccByNcNd20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3496,7 +3511,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-ND-2.5',
     valueEnum: SPDXLicenseEnum.ccByNcNd25,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3510,7 +3525,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-ND-3.0',
     valueEnum: SPDXLicenseEnum.ccByNcNd30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3524,7 +3539,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-ND-4.0',
     valueEnum: SPDXLicenseEnum.ccByNcNd40,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3538,7 +3553,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-SA-1.0',
     valueEnum: SPDXLicenseEnum.ccByNcSa10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3552,7 +3567,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-SA-2.0',
     valueEnum: SPDXLicenseEnum.ccByNcSa20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3566,7 +3581,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-SA-2.5',
     valueEnum: SPDXLicenseEnum.ccByNcSa25,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3580,7 +3595,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-SA-3.0',
     valueEnum: SPDXLicenseEnum.ccByNcSa30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3594,7 +3609,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-NC-SA-4.0',
     valueEnum: SPDXLicenseEnum.ccByNcSa40,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3608,7 +3623,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-ND-1.0',
     valueEnum: SPDXLicenseEnum.ccByNd10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3621,7 +3636,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-ND-2.0',
     valueEnum: SPDXLicenseEnum.ccByNd20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3634,7 +3649,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-ND-2.5',
     valueEnum: SPDXLicenseEnum.ccByNd25,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3647,7 +3662,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-ND-3.0',
     valueEnum: SPDXLicenseEnum.ccByNd30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3660,7 +3675,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-ND-4.0',
     valueEnum: SPDXLicenseEnum.ccByNd40,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3674,7 +3689,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-SA-1.0',
     valueEnum: SPDXLicenseEnum.ccBySa10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3687,7 +3702,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-SA-2.0',
     valueEnum: SPDXLicenseEnum.ccBySa20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3700,7 +3715,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-SA-2.5',
     valueEnum: SPDXLicenseEnum.ccBySa25,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3713,7 +3728,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-SA-3.0',
     valueEnum: SPDXLicenseEnum.ccBySa30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3726,7 +3741,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC-BY-SA-4.0',
     valueEnum: SPDXLicenseEnum.ccBySa40,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3739,7 +3754,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CC0-1.0',
     valueEnum: SPDXLicenseEnum.cc010,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3752,7 +3767,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CDDL-1.0',
     valueEnum: SPDXLicenseEnum.cddl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3765,7 +3780,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CDDL-1.1',
     valueEnum: SPDXLicenseEnum.cddl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3778,7 +3793,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CDLA-Permissive-1.0',
     valueEnum: SPDXLicenseEnum.cdlaPermissive10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3791,7 +3806,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CDLA-Sharing-1.0',
     valueEnum: SPDXLicenseEnum.cdlaSharing10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3804,7 +3819,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CECILL-1.0',
     valueEnum: SPDXLicenseEnum.cecill10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3817,7 +3832,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CECILL-1.1',
     valueEnum: SPDXLicenseEnum.cecill11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3830,7 +3845,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CECILL-2.0',
     valueEnum: SPDXLicenseEnum.cecill20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3843,7 +3858,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CECILL-2.1',
     valueEnum: SPDXLicenseEnum.cecill21,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3856,7 +3871,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CECILL-B',
     valueEnum: SPDXLicenseEnum.cecillB,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3869,7 +3884,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CECILL-C',
     valueEnum: SPDXLicenseEnum.cecillC,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3882,7 +3897,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ClArtistic',
     valueEnum: SPDXLicenseEnum.clArtistic,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3895,7 +3910,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CNRI-Jython',
     valueEnum: SPDXLicenseEnum.cnriJython,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3908,7 +3923,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CNRI-Python-GPL-Compatible',
     valueEnum: SPDXLicenseEnum.cnriPythonGplCompatible,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3921,7 +3936,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CNRI-Python',
     valueEnum: SPDXLicenseEnum.cnriPython,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3934,7 +3949,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Condor-1.1',
     valueEnum: SPDXLicenseEnum.condor11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3947,7 +3962,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CPAL-1.0',
     valueEnum: SPDXLicenseEnum.cpal10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3960,7 +3975,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CPL-1.0',
     valueEnum: SPDXLicenseEnum.cpl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3973,7 +3988,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CPOL-1.02',
     valueEnum: SPDXLicenseEnum.cpol102,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3986,7 +4001,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Crossword',
     valueEnum: SPDXLicenseEnum.crossword,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -3999,7 +4014,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CrystalStacker',
     valueEnum: SPDXLicenseEnum.crystalStacker,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4012,7 +4027,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'CUA-OPL-1.0',
     valueEnum: SPDXLicenseEnum.cuaOpl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4025,7 +4040,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Cube',
     valueEnum: SPDXLicenseEnum.cube,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4038,7 +4053,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'curl',
     valueEnum: SPDXLicenseEnum.curl,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4051,7 +4066,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'D-FSL-1.0',
     valueEnum: SPDXLicenseEnum.dFsl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4064,7 +4079,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'diffmark',
     valueEnum: SPDXLicenseEnum.diffmark,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4077,7 +4092,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'DOC',
     valueEnum: SPDXLicenseEnum.dOC,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4090,7 +4105,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Dotseqn',
     valueEnum: SPDXLicenseEnum.dotseqn,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4103,7 +4118,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'DSDP',
     valueEnum: SPDXLicenseEnum.dSDP,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4116,7 +4131,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'dvipdfm',
     valueEnum: SPDXLicenseEnum.dvipdfm,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4129,7 +4144,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ECL-1.0',
     valueEnum: SPDXLicenseEnum.ecl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4142,7 +4157,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ECL-2.0',
     valueEnum: SPDXLicenseEnum.ecl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4155,7 +4170,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EFL-1.0',
     valueEnum: SPDXLicenseEnum.efl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4168,7 +4183,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EFL-2.0',
     valueEnum: SPDXLicenseEnum.efl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4181,7 +4196,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'eGenix',
     valueEnum: SPDXLicenseEnum.eGenix,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4194,7 +4209,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Entessa',
     valueEnum: SPDXLicenseEnum.entessa,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4207,7 +4222,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EPL-1.0',
     valueEnum: SPDXLicenseEnum.epl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4220,7 +4235,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EPL-2.0',
     valueEnum: SPDXLicenseEnum.epl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4233,7 +4248,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ErlPL-1.1',
     valueEnum: SPDXLicenseEnum.erlpl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4246,7 +4261,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EUDatagrid',
     valueEnum: SPDXLicenseEnum.eUDatagrid,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4259,7 +4274,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EUPL-1.0',
     valueEnum: SPDXLicenseEnum.eupl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4272,7 +4287,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EUPL-1.1',
     valueEnum: SPDXLicenseEnum.eupl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4285,7 +4300,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'EUPL-1.2',
     valueEnum: SPDXLicenseEnum.eupl12,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4298,7 +4313,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Eurosym',
     valueEnum: SPDXLicenseEnum.eurosym,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4311,7 +4326,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Fair',
     valueEnum: SPDXLicenseEnum.fair,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4324,7 +4339,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Frameworx-1.0',
     valueEnum: SPDXLicenseEnum.frameworx10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4337,7 +4352,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'FreeImage',
     valueEnum: SPDXLicenseEnum.freeImage,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4350,7 +4365,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'FSFAP',
     valueEnum: SPDXLicenseEnum.fSFAP,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4363,7 +4378,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'FSFUL',
     valueEnum: SPDXLicenseEnum.fSFUL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4376,7 +4391,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'FSFULLR',
     valueEnum: SPDXLicenseEnum.fSFULLR,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4389,7 +4404,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'FTL',
     valueEnum: SPDXLicenseEnum.fTL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4402,7 +4417,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GFDL-1.1-only',
     valueEnum: SPDXLicenseEnum.gfdl11Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4415,7 +4430,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GFDL-1.1-or-later',
     valueEnum: SPDXLicenseEnum.gfdl11OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4428,7 +4443,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GFDL-1.2-only',
     valueEnum: SPDXLicenseEnum.gfdl12Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4441,7 +4456,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GFDL-1.2-or-later',
     valueEnum: SPDXLicenseEnum.gfdl12OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4454,7 +4469,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GFDL-1.3-only',
     valueEnum: SPDXLicenseEnum.gfdl13Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4467,7 +4482,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GFDL-1.3-or-later',
     valueEnum: SPDXLicenseEnum.gfdl13OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4480,7 +4495,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Giftware',
     valueEnum: SPDXLicenseEnum.giftware,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4493,7 +4508,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GL2PS',
     valueEnum: SPDXLicenseEnum.gL2PS,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4506,7 +4521,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Glide',
     valueEnum: SPDXLicenseEnum.glide,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4519,7 +4534,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Glulxe',
     valueEnum: SPDXLicenseEnum.glulxe,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4532,7 +4547,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'gnuplot',
     valueEnum: SPDXLicenseEnum.gnuplot,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4545,7 +4560,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GPL-1.0-only',
     valueEnum: SPDXLicenseEnum.gpl10Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4558,7 +4573,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GPL-1.0-or-later',
     valueEnum: SPDXLicenseEnum.gpl10OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4571,7 +4586,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GPL-2.0-only',
     valueEnum: SPDXLicenseEnum.gpl20Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4584,7 +4599,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GPL-2.0-or-later',
     valueEnum: SPDXLicenseEnum.gpl20OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4597,7 +4612,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GPL-3.0-only',
     valueEnum: SPDXLicenseEnum.gpl30Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4610,7 +4625,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'GPL-3.0-or-later',
     valueEnum: SPDXLicenseEnum.gpl30OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4623,7 +4638,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'gSOAP-1.3b',
     valueEnum: SPDXLicenseEnum.gsoap13b,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4636,7 +4651,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'HaskellReport',
     valueEnum: SPDXLicenseEnum.haskellReport,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4649,7 +4664,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'HPND',
     valueEnum: SPDXLicenseEnum.hPND,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4662,7 +4677,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'IBM-pibs',
     valueEnum: SPDXLicenseEnum.ibmPibs,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4675,7 +4690,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ICU',
     valueEnum: SPDXLicenseEnum.iCU,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4688,7 +4703,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'IJG',
     valueEnum: SPDXLicenseEnum.iJG,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4701,7 +4716,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ImageMagick',
     valueEnum: SPDXLicenseEnum.imageMagick,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4714,7 +4729,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'iMatix',
     valueEnum: SPDXLicenseEnum.iMatix,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4727,7 +4742,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Imlib2',
     valueEnum: SPDXLicenseEnum.imlib2,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4740,7 +4755,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Info-ZIP',
     valueEnum: SPDXLicenseEnum.infoZip,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4753,7 +4768,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Intel-ACPI',
     valueEnum: SPDXLicenseEnum.intelAcpi,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4766,7 +4781,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Intel',
     valueEnum: SPDXLicenseEnum.intel,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4779,7 +4794,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Interbase-1.0',
     valueEnum: SPDXLicenseEnum.interbase10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4792,7 +4807,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'IPA',
     valueEnum: SPDXLicenseEnum.iPA,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4805,7 +4820,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'IPL-1.0',
     valueEnum: SPDXLicenseEnum.ipl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4818,7 +4833,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ISC',
     valueEnum: SPDXLicenseEnum.iSC,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4831,7 +4846,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'JasPer-2.0',
     valueEnum: SPDXLicenseEnum.jasper20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4844,7 +4859,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'JSON',
     valueEnum: SPDXLicenseEnum.jSON,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4857,7 +4872,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LAL-1.2',
     valueEnum: SPDXLicenseEnum.lal12,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4870,7 +4885,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LAL-1.3',
     valueEnum: SPDXLicenseEnum.lal13,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4883,7 +4898,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Latex2e',
     valueEnum: SPDXLicenseEnum.latex2e,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4896,7 +4911,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Leptonica',
     valueEnum: SPDXLicenseEnum.leptonica,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4909,7 +4924,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LGPL-2.0-only',
     valueEnum: SPDXLicenseEnum.lgpl20Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4922,7 +4937,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LGPL-2.0-or-later',
     valueEnum: SPDXLicenseEnum.lgpl20OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4935,7 +4950,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LGPL-2.1-only',
     valueEnum: SPDXLicenseEnum.lgpl21Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4948,7 +4963,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LGPL-2.1-or-later',
     valueEnum: SPDXLicenseEnum.lgpl21OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4961,7 +4976,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LGPL-3.0-only',
     valueEnum: SPDXLicenseEnum.lgpl30Only,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4974,7 +4989,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LGPL-3.0-or-later',
     valueEnum: SPDXLicenseEnum.lgpl30OrLater,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -4987,7 +5002,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LGPLLR',
     valueEnum: SPDXLicenseEnum.lGPLLR,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5000,7 +5015,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Libpng',
     valueEnum: SPDXLicenseEnum.libpng,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5013,7 +5028,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'libtiff',
     valueEnum: SPDXLicenseEnum.libtiff,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5026,7 +5041,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LiLiQ-P-1.1',
     valueEnum: SPDXLicenseEnum.liliqP11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5039,7 +5054,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LiLiQ-R-1.1',
     valueEnum: SPDXLicenseEnum.liliqR11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5052,7 +5067,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LiLiQ-Rplus-1.1',
     valueEnum: SPDXLicenseEnum.liliqRplus11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5065,7 +5080,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Linux-OpenIB',
     valueEnum: SPDXLicenseEnum.linuxOpenib,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5078,7 +5093,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LPL-1.0',
     valueEnum: SPDXLicenseEnum.lpl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5091,7 +5106,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LPL-1.02',
     valueEnum: SPDXLicenseEnum.lpl102,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5104,7 +5119,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LPPL-1.0',
     valueEnum: SPDXLicenseEnum.lppl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5117,7 +5132,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LPPL-1.1',
     valueEnum: SPDXLicenseEnum.lppl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5130,7 +5145,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LPPL-1.2',
     valueEnum: SPDXLicenseEnum.lppl12,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5143,7 +5158,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LPPL-1.3a',
     valueEnum: SPDXLicenseEnum.lppl13a,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5156,7 +5171,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'LPPL-1.3c',
     valueEnum: SPDXLicenseEnum.lppl13c,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5169,7 +5184,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MakeIndex',
     valueEnum: SPDXLicenseEnum.makeIndex,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5182,7 +5197,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MirOS',
     valueEnum: SPDXLicenseEnum.mirOS,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5195,7 +5210,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MIT-0',
     valueEnum: SPDXLicenseEnum.mit0,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5208,7 +5223,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MIT-advertising',
     valueEnum: SPDXLicenseEnum.mitAdvertising,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5221,7 +5236,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MIT-CMU',
     valueEnum: SPDXLicenseEnum.mitCmu,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5234,7 +5249,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MIT-enna',
     valueEnum: SPDXLicenseEnum.mitEnna,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5247,7 +5262,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MIT-feh',
     valueEnum: SPDXLicenseEnum.mitFeh,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5260,7 +5275,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MIT',
     valueEnum: SPDXLicenseEnum.mIT,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5273,7 +5288,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MITNFA',
     valueEnum: SPDXLicenseEnum.mITNFA,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5286,7 +5301,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Motosoto',
     valueEnum: SPDXLicenseEnum.motosoto,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5299,7 +5314,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'mpich2',
     valueEnum: SPDXLicenseEnum.mpich2,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5312,7 +5327,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MPL-1.0',
     valueEnum: SPDXLicenseEnum.mpl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5325,7 +5340,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MPL-1.1',
     valueEnum: SPDXLicenseEnum.mpl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5338,7 +5353,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MPL-2.0-no-copyleft-exception',
     valueEnum: SPDXLicenseEnum.mpl20NoCopyleftException,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5351,7 +5366,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MPL-2.0',
     valueEnum: SPDXLicenseEnum.mpl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5364,7 +5379,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MS-PL',
     valueEnum: SPDXLicenseEnum.msPl,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5377,7 +5392,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MS-RL',
     valueEnum: SPDXLicenseEnum.msRl,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5390,7 +5405,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'MTLL',
     valueEnum: SPDXLicenseEnum.mTLL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5403,7 +5418,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Multics',
     valueEnum: SPDXLicenseEnum.multics,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5416,7 +5431,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Mup',
     valueEnum: SPDXLicenseEnum.mup,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5429,7 +5444,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NASA-1.3',
     valueEnum: SPDXLicenseEnum.nasa13,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5442,7 +5457,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Naumen',
     valueEnum: SPDXLicenseEnum.naumen,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5455,7 +5470,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NBPL-1.0',
     valueEnum: SPDXLicenseEnum.nbpl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5468,7 +5483,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NCSA',
     valueEnum: SPDXLicenseEnum.nCSA,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5481,7 +5496,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Net-SNMP',
     valueEnum: SPDXLicenseEnum.netSnmp,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5494,7 +5509,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NetCDF',
     valueEnum: SPDXLicenseEnum.netCDF,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5507,7 +5522,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Newsletr',
     valueEnum: SPDXLicenseEnum.newsletr,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5520,7 +5535,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NGPL',
     valueEnum: SPDXLicenseEnum.nGPL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5533,7 +5548,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NLOD-1.0',
     valueEnum: SPDXLicenseEnum.nlod10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5546,7 +5561,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NLPL',
     valueEnum: SPDXLicenseEnum.nLPL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5559,7 +5574,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Nokia',
     valueEnum: SPDXLicenseEnum.nokia,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5572,7 +5587,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NOSL',
     valueEnum: SPDXLicenseEnum.nOSL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5585,7 +5600,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Noweb',
     valueEnum: SPDXLicenseEnum.noweb,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5598,7 +5613,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NPL-1.0',
     valueEnum: SPDXLicenseEnum.npl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5611,7 +5626,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NPL-1.1',
     valueEnum: SPDXLicenseEnum.npl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5624,7 +5639,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NPOSL-3.0',
     valueEnum: SPDXLicenseEnum.nposl30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5637,7 +5652,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NRL',
     valueEnum: SPDXLicenseEnum.nRL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5650,7 +5665,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'NTP',
     valueEnum: SPDXLicenseEnum.nTP,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5663,7 +5678,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OCCT-PL',
     valueEnum: SPDXLicenseEnum.occtPl,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5676,7 +5691,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OCLC-2.0',
     valueEnum: SPDXLicenseEnum.oclc20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5689,7 +5704,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ODbL-1.0',
     valueEnum: SPDXLicenseEnum.odbl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5702,7 +5717,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OFL-1.0',
     valueEnum: SPDXLicenseEnum.ofl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5715,7 +5730,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OFL-1.1',
     valueEnum: SPDXLicenseEnum.ofl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5728,7 +5743,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OGTSL',
     valueEnum: SPDXLicenseEnum.oGTSL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5741,7 +5756,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-1.1',
     valueEnum: SPDXLicenseEnum.oldap11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5754,7 +5769,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-1.2',
     valueEnum: SPDXLicenseEnum.oldap12,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5767,7 +5782,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-1.3',
     valueEnum: SPDXLicenseEnum.oldap13,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5780,7 +5795,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-1.4',
     valueEnum: SPDXLicenseEnum.oldap14,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5793,7 +5808,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.0.1',
     valueEnum: SPDXLicenseEnum.oldap201,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5806,7 +5821,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.0',
     valueEnum: SPDXLicenseEnum.oldap20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5819,7 +5834,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.1',
     valueEnum: SPDXLicenseEnum.oldap21,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5832,7 +5847,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.2.1',
     valueEnum: SPDXLicenseEnum.oldap221,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5845,7 +5860,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.2.2',
     valueEnum: SPDXLicenseEnum.oldap222,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5858,7 +5873,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.2',
     valueEnum: SPDXLicenseEnum.oldap22,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5871,7 +5886,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.3',
     valueEnum: SPDXLicenseEnum.oldap23,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5884,7 +5899,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.4',
     valueEnum: SPDXLicenseEnum.oldap24,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5897,7 +5912,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.5',
     valueEnum: SPDXLicenseEnum.oldap25,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5910,7 +5925,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.6',
     valueEnum: SPDXLicenseEnum.oldap26,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5923,7 +5938,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.7',
     valueEnum: SPDXLicenseEnum.oldap27,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5936,7 +5951,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OLDAP-2.8',
     valueEnum: SPDXLicenseEnum.oldap28,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5949,7 +5964,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OML',
     valueEnum: SPDXLicenseEnum.oML,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5962,7 +5977,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OpenSSL',
     valueEnum: SPDXLicenseEnum.openSSL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5975,7 +5990,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OPL-1.0',
     valueEnum: SPDXLicenseEnum.opl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -5988,7 +6003,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OSET-PL-2.1',
     valueEnum: SPDXLicenseEnum.osetPl21,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6001,7 +6016,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OSL-1.0',
     valueEnum: SPDXLicenseEnum.osl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6014,7 +6029,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OSL-1.1',
     valueEnum: SPDXLicenseEnum.osl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6027,7 +6042,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OSL-2.0',
     valueEnum: SPDXLicenseEnum.osl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6040,7 +6055,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OSL-2.1',
     valueEnum: SPDXLicenseEnum.osl21,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6053,7 +6068,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'OSL-3.0',
     valueEnum: SPDXLicenseEnum.osl30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6066,7 +6081,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'PDDL-1.0',
     valueEnum: SPDXLicenseEnum.pddl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6079,7 +6094,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'PHP-3.0',
     valueEnum: SPDXLicenseEnum.php30,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6092,7 +6107,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'PHP-3.01',
     valueEnum: SPDXLicenseEnum.php301,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6105,7 +6120,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Plexus',
     valueEnum: SPDXLicenseEnum.plexus,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6118,7 +6133,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'PostgreSQL',
     valueEnum: SPDXLicenseEnum.postgreSQL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6131,7 +6146,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'psfrag',
     valueEnum: SPDXLicenseEnum.psfrag,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6144,7 +6159,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'psutils',
     valueEnum: SPDXLicenseEnum.psutils,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6157,7 +6172,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Python-2.0',
     valueEnum: SPDXLicenseEnum.python20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6170,7 +6185,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Qhull',
     valueEnum: SPDXLicenseEnum.qhull,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6183,7 +6198,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'QPL-1.0',
     valueEnum: SPDXLicenseEnum.qpl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6196,7 +6211,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Rdisc',
     valueEnum: SPDXLicenseEnum.rdisc,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6209,7 +6224,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'RHeCos-1.1',
     valueEnum: SPDXLicenseEnum.rhecos11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6222,7 +6237,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'RPL-1.1',
     valueEnum: SPDXLicenseEnum.rpl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6235,7 +6250,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'RPL-1.5',
     valueEnum: SPDXLicenseEnum.rpl15,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6248,7 +6263,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'RPSL-1.0',
     valueEnum: SPDXLicenseEnum.rpsl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6261,7 +6276,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'RSA-MD',
     valueEnum: SPDXLicenseEnum.rsaMd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6274,7 +6289,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'RSCPL',
     valueEnum: SPDXLicenseEnum.rSCPL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6287,7 +6302,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Ruby',
     valueEnum: SPDXLicenseEnum.ruby,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6300,7 +6315,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SAX-PD',
     valueEnum: SPDXLicenseEnum.saxPd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6313,7 +6328,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Saxpath',
     valueEnum: SPDXLicenseEnum.saxpath,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6326,7 +6341,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SCEA',
     valueEnum: SPDXLicenseEnum.sCEA,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6339,7 +6354,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Sendmail',
     valueEnum: SPDXLicenseEnum.sendmail,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6352,7 +6367,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SGI-B-1.0',
     valueEnum: SPDXLicenseEnum.sgiB10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6365,7 +6380,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SGI-B-1.1',
     valueEnum: SPDXLicenseEnum.sgiB11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6378,7 +6393,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SGI-B-2.0',
     valueEnum: SPDXLicenseEnum.sgiB20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6391,7 +6406,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SimPL-2.0',
     valueEnum: SPDXLicenseEnum.simpl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6404,7 +6419,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SISSL-1.2',
     valueEnum: SPDXLicenseEnum.sissl12,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6417,7 +6432,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SISSL',
     valueEnum: SPDXLicenseEnum.sISSL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6430,7 +6445,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Sleepycat',
     valueEnum: SPDXLicenseEnum.sleepycat,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6443,7 +6458,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SMLNJ',
     valueEnum: SPDXLicenseEnum.sMLNJ,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6456,7 +6471,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SMPPL',
     valueEnum: SPDXLicenseEnum.sMPPL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6469,7 +6484,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SNIA',
     valueEnum: SPDXLicenseEnum.sNIA,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6482,7 +6497,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Spencer-86',
     valueEnum: SPDXLicenseEnum.spencer86,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6495,7 +6510,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Spencer-94',
     valueEnum: SPDXLicenseEnum.spencer94,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6508,7 +6523,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Spencer-99',
     valueEnum: SPDXLicenseEnum.spencer99,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6521,7 +6536,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SPL-1.0',
     valueEnum: SPDXLicenseEnum.spl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6534,7 +6549,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SugarCRM-1.1.3',
     valueEnum: SPDXLicenseEnum.sugarcrm113,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6547,7 +6562,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'SWL',
     valueEnum: SPDXLicenseEnum.sWL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6560,7 +6575,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'TCL',
     valueEnum: SPDXLicenseEnum.tCL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6573,7 +6588,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'TCP-wrappers',
     valueEnum: SPDXLicenseEnum.tcpWrappers,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6586,7 +6601,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'TMate',
     valueEnum: SPDXLicenseEnum.tMate,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6599,7 +6614,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'TORQUE-1.1',
     valueEnum: SPDXLicenseEnum.torque11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6612,7 +6627,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'TOSL',
     valueEnum: SPDXLicenseEnum.tOSL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6625,7 +6640,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Unicode-DFS-2015',
     valueEnum: SPDXLicenseEnum.unicodeDfs2015,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6638,7 +6653,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Unicode-DFS-2016',
     valueEnum: SPDXLicenseEnum.unicodeDfs2016,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6651,7 +6666,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Unicode-TOU',
     valueEnum: SPDXLicenseEnum.unicodeTou,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6664,7 +6679,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Unlicense',
     valueEnum: SPDXLicenseEnum.unlicense,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6677,7 +6692,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'UPL-1.0',
     valueEnum: SPDXLicenseEnum.upl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6690,7 +6705,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Vim',
     valueEnum: SPDXLicenseEnum.vim,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6703,7 +6718,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'VOSTROM',
     valueEnum: SPDXLicenseEnum.vOSTROM,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6716,7 +6731,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'VSL-1.0',
     valueEnum: SPDXLicenseEnum.vsl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6729,7 +6744,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'W3C-19980720',
     valueEnum: SPDXLicenseEnum.w3c19980720,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6742,7 +6757,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'W3C-20150513',
     valueEnum: SPDXLicenseEnum.w3c20150513,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6755,7 +6770,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'W3C',
     valueEnum: SPDXLicenseEnum.w3C,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6768,7 +6783,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Watcom-1.0',
     valueEnum: SPDXLicenseEnum.watcom10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6781,7 +6796,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Wsuipa',
     valueEnum: SPDXLicenseEnum.wsuipa,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6794,7 +6809,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'WTFPL',
     valueEnum: SPDXLicenseEnum.wTFPL,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6807,7 +6822,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'X11',
     valueEnum: SPDXLicenseEnum.x11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6820,7 +6835,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Xerox',
     valueEnum: SPDXLicenseEnum.xerox,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6833,7 +6848,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'XFree86-1.1',
     valueEnum: SPDXLicenseEnum.xfree8611,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6846,7 +6861,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'xinetd',
     valueEnum: SPDXLicenseEnum.xinetd,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6859,7 +6874,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Xnet',
     valueEnum: SPDXLicenseEnum.xnet,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6872,7 +6887,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'xpp',
     valueEnum: SPDXLicenseEnum.xpp,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6885,7 +6900,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'XSkat',
     valueEnum: SPDXLicenseEnum.xSkat,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6898,7 +6913,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'YPL-1.0',
     valueEnum: SPDXLicenseEnum.ypl10,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6911,7 +6926,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'YPL-1.1',
     valueEnum: SPDXLicenseEnum.ypl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6924,7 +6939,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Zed',
     valueEnum: SPDXLicenseEnum.zed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6937,7 +6952,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Zend-2.0',
     valueEnum: SPDXLicenseEnum.zend20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6950,7 +6965,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Zimbra-1.3',
     valueEnum: SPDXLicenseEnum.zimbra13,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6963,7 +6978,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Zimbra-1.4',
     valueEnum: SPDXLicenseEnum.zimbra14,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6976,7 +6991,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'zlib-acknowledgement',
     valueEnum: SPDXLicenseEnum.zlibAcknowledgement,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -6989,7 +7004,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'Zlib',
     valueEnum: SPDXLicenseEnum.zlib,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -7002,7 +7017,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ZPL-1.1',
     valueEnum: SPDXLicenseEnum.zpl11,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -7015,7 +7030,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ZPL-2.0',
     valueEnum: SPDXLicenseEnum.zpl20,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -7028,7 +7043,7 @@ class SPDXLicense extends FhirCodeEnum {
     valueString: 'ZPL-2.1',
     valueEnum: SPDXLicenseEnum.zpl21,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -7390,6 +7405,10 @@ class SPDXLicense extends FhirCodeEnum {
   SPDXLicense withElement(Element? newElement) {
     return SPDXLicense._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

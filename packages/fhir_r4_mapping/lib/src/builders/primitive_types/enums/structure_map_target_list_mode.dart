@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for StructureMapTargetListMode
@@ -98,12 +99,13 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = StructureMapTargetListModeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return StructureMapTargetListModeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,27 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
         'StructureMapTargetListModeBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(StructureMapTargetListModeBuilderEnum.fromString(value));
     return StructureMapTargetListModeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static StructureMapTargetListModeBuilder? _known(
+      StructureMapTargetListModeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for StructureMapTargetListModeBuilder
@@ -151,7 +170,7 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
     valueString: 'first',
     valueEnum: StructureMapTargetListModeBuilderEnum.first,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-target-list-mode',
+      valueString: 'http://hl7.org/fhir/map-target-list-mode',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -165,7 +184,7 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
     valueString: 'share',
     valueEnum: StructureMapTargetListModeBuilderEnum.share,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-target-list-mode',
+      valueString: 'http://hl7.org/fhir/map-target-list-mode',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -179,7 +198,7 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
     valueString: 'last',
     valueEnum: StructureMapTargetListModeBuilderEnum.last,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-target-list-mode',
+      valueString: 'http://hl7.org/fhir/map-target-list-mode',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -193,7 +212,7 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
     valueString: 'collate',
     valueEnum: StructureMapTargetListModeBuilderEnum.collate,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-target-list-mode',
+      valueString: 'http://hl7.org/fhir/map-target-list-mode',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -222,6 +241,10 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
   ) {
     return StructureMapTargetListModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

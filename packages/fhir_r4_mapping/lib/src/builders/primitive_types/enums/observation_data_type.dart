@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ObservationDataType
@@ -147,12 +148,13 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ObservationDataTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ObservationDataTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -185,10 +187,26 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
         'ObservationDataTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ObservationDataTypeBuilderEnum.fromString(value));
     return ObservationDataTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ObservationDataTypeBuilder? _known(
+      ObservationDataTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ObservationDataTypeBuilder
@@ -199,7 +217,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Quantity',
     valueEnum: ObservationDataTypeBuilderEnum.quantity,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -213,7 +231,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'CodeableConcept',
     valueEnum: ObservationDataTypeBuilderEnum.codeableConcept,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -226,7 +244,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'string',
     valueEnum: ObservationDataTypeBuilderEnum.string,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -239,7 +257,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'boolean',
     valueEnum: ObservationDataTypeBuilderEnum.boolean,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -252,7 +270,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'integer',
     valueEnum: ObservationDataTypeBuilderEnum.integer,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -265,7 +283,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Range',
     valueEnum: ObservationDataTypeBuilderEnum.range,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -278,7 +296,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Ratio',
     valueEnum: ObservationDataTypeBuilderEnum.ratio,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -291,7 +309,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'SampledData',
     valueEnum: ObservationDataTypeBuilderEnum.sampledData,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -304,7 +322,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'time',
     valueEnum: ObservationDataTypeBuilderEnum.time,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -317,7 +335,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'dateTime',
     valueEnum: ObservationDataTypeBuilderEnum.dateTime,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -330,7 +348,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Period',
     valueEnum: ObservationDataTypeBuilderEnum.period,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/permitted-data-type',
+      valueString: 'http://hl7.org/fhir/permitted-data-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -365,6 +383,10 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return ObservationDataTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

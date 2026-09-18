@@ -168,12 +168,13 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum =
         ContractResourcePublicationStatusCodesEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ContractResourcePublicationStatusCodes._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -193,19 +194,32 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContractResourcePublicationStatusCodes._(
-        valueString: null,
-        element: element,
-      );
+          valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ContractResourcePublicationStatusCodes cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ContractResourcePublicationStatusCodes._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ContractResourcePublicationStatusCodes? _known(
+      ContractResourcePublicationStatusCodesEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ContractResourcePublicationStatusCodes
@@ -217,7 +231,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'amended',
     valueEnum: ContractResourcePublicationStatusCodesEnum.amended,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -231,7 +245,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'appended',
     valueEnum: ContractResourcePublicationStatusCodesEnum.appended,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -245,7 +259,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'cancelled',
     valueEnum: ContractResourcePublicationStatusCodesEnum.cancelled,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -259,7 +273,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'disputed',
     valueEnum: ContractResourcePublicationStatusCodesEnum.disputed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -273,7 +287,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: ContractResourcePublicationStatusCodesEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -287,7 +301,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'executable',
     valueEnum: ContractResourcePublicationStatusCodesEnum.executable,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -301,7 +315,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'executed',
     valueEnum: ContractResourcePublicationStatusCodesEnum.executed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -315,7 +329,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'negotiable',
     valueEnum: ContractResourcePublicationStatusCodesEnum.negotiable,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -329,7 +343,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'offered',
     valueEnum: ContractResourcePublicationStatusCodesEnum.offered,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -343,7 +357,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'policy',
     valueEnum: ContractResourcePublicationStatusCodesEnum.policy,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -357,7 +371,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'rejected',
     valueEnum: ContractResourcePublicationStatusCodesEnum.rejected,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -371,7 +385,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'renewed',
     valueEnum: ContractResourcePublicationStatusCodesEnum.renewed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -385,7 +399,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'revoked',
     valueEnum: ContractResourcePublicationStatusCodesEnum.revoked,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -399,7 +413,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'resolved',
     valueEnum: ContractResourcePublicationStatusCodesEnum.resolved,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -413,7 +427,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
     valueString: 'terminated',
     valueEnum: ContractResourcePublicationStatusCodesEnum.terminated,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus',
+      valueString: 'http://hl7.org/fhir/contract-publicationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -444,6 +458,10 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
   ContractResourcePublicationStatusCodes withElement(Element? newElement) {
     return ContractResourcePublicationStatusCodes._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -83,12 +83,13 @@ class TestReportParticipantType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = TestReportParticipantTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return TestReportParticipantType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -112,11 +113,26 @@ class TestReportParticipantType extends FhirCodeEnum {
         'TestReportParticipantType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return TestReportParticipantType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TestReportParticipantType? _known(
+      TestReportParticipantTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for TestReportParticipantType
@@ -128,7 +144,7 @@ class TestReportParticipantType extends FhirCodeEnum {
     valueString: 'test-engine',
     valueEnum: TestReportParticipantTypeEnum.testEngine,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-participant-type',
+      valueString: 'http://hl7.org/fhir/report-participant-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -141,7 +157,7 @@ class TestReportParticipantType extends FhirCodeEnum {
     valueString: 'client',
     valueEnum: TestReportParticipantTypeEnum.client,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-participant-type',
+      valueString: 'http://hl7.org/fhir/report-participant-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +170,7 @@ class TestReportParticipantType extends FhirCodeEnum {
     valueString: 'server',
     valueEnum: TestReportParticipantTypeEnum.server,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-participant-type',
+      valueString: 'http://hl7.org/fhir/report-participant-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,6 +189,10 @@ class TestReportParticipantType extends FhirCodeEnum {
   TestReportParticipantType withElement(Element? newElement) {
     return TestReportParticipantType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

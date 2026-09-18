@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for XPathUsageType
@@ -106,12 +107,13 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = XPathUsageTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return XPathUsageTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -144,10 +146,25 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
         'XPathUsageTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(XPathUsageTypeBuilderEnum.fromString(value));
     return XPathUsageTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static XPathUsageTypeBuilder? _known(XPathUsageTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for XPathUsageTypeBuilder
@@ -158,7 +175,7 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'normal',
     valueEnum: XPathUsageTypeBuilderEnum.normal,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -171,7 +188,7 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'phonetic',
     valueEnum: XPathUsageTypeBuilderEnum.phonetic,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -184,7 +201,7 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'nearby',
     valueEnum: XPathUsageTypeBuilderEnum.nearby,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,7 +214,7 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'distance',
     valueEnum: XPathUsageTypeBuilderEnum.distance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -210,7 +227,7 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'other',
     valueEnum: XPathUsageTypeBuilderEnum.other,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -239,6 +256,10 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return XPathUsageTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

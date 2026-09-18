@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for CharacteristicCombination
@@ -84,12 +85,13 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
     final valueEnum = CharacteristicCombinationBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return CharacteristicCombinationBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -122,10 +124,27 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
         'CharacteristicCombinationBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(CharacteristicCombinationBuilderEnum.fromString(value));
     return CharacteristicCombinationBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CharacteristicCombinationBuilder? _known(
+      CharacteristicCombinationBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for CharacteristicCombinationBuilder
@@ -137,7 +156,7 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
     valueString: 'intersection',
     valueEnum: CharacteristicCombinationBuilderEnum.intersection,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/characteristic-combination',
+      valueString: 'http://hl7.org/fhir/characteristic-combination',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -151,7 +170,7 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
     valueString: 'union',
     valueEnum: CharacteristicCombinationBuilderEnum.union,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/characteristic-combination',
+      valueString: 'http://hl7.org/fhir/characteristic-combination',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -178,6 +197,10 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
   ) {
     return CharacteristicCombinationBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

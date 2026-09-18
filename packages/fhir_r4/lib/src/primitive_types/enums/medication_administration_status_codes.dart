@@ -112,12 +112,13 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum =
         MedicationAdministrationStatusCodesEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return MedicationAdministrationStatusCodes._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,19 +137,32 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MedicationAdministrationStatusCodes._(
-        valueString: null,
-        element: element,
-      );
+          valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MedicationAdministrationStatusCodes cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return MedicationAdministrationStatusCodes._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static MedicationAdministrationStatusCodes? _known(
+      MedicationAdministrationStatusCodesEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for MedicationAdministrationStatusCodes
@@ -160,7 +174,8 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     valueString: 'in-progress',
     valueEnum: MedicationAdministrationStatusCodesEnum.inProgress,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medication-admin-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medication-admin-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,8 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     valueString: 'not-done',
     valueEnum: MedicationAdministrationStatusCodesEnum.notDone,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medication-admin-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medication-admin-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -188,7 +204,8 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     valueString: 'on-hold',
     valueEnum: MedicationAdministrationStatusCodesEnum.onHold,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medication-admin-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medication-admin-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -202,7 +219,8 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: MedicationAdministrationStatusCodesEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medication-admin-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medication-admin-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -216,7 +234,8 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: MedicationAdministrationStatusCodesEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medication-admin-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medication-admin-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -230,7 +249,8 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     valueString: 'stopped',
     valueEnum: MedicationAdministrationStatusCodesEnum.stopped,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medication-admin-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medication-admin-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -244,7 +264,8 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: MedicationAdministrationStatusCodesEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medication-admin-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medication-admin-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -267,6 +288,10 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   MedicationAdministrationStatusCodes withElement(Element? newElement) {
     return MedicationAdministrationStatusCodes._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

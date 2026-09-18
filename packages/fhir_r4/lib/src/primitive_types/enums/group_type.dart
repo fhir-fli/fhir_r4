@@ -104,12 +104,13 @@ class GroupType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = GroupTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return GroupType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -133,11 +134,25 @@ class GroupType extends FhirCodeEnum {
         'GroupType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return GroupType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static GroupType? _known(GroupTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for GroupType
@@ -148,7 +163,7 @@ class GroupType extends FhirCodeEnum {
     valueString: 'person',
     valueEnum: GroupTypeEnum.person,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+      valueString: 'http://hl7.org/fhir/group-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +176,7 @@ class GroupType extends FhirCodeEnum {
     valueString: 'animal',
     valueEnum: GroupTypeEnum.animal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+      valueString: 'http://hl7.org/fhir/group-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,7 @@ class GroupType extends FhirCodeEnum {
     valueString: 'practitioner',
     valueEnum: GroupTypeEnum.practitioner,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+      valueString: 'http://hl7.org/fhir/group-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -187,7 +202,7 @@ class GroupType extends FhirCodeEnum {
     valueString: 'device',
     valueEnum: GroupTypeEnum.device,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+      valueString: 'http://hl7.org/fhir/group-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -200,7 +215,7 @@ class GroupType extends FhirCodeEnum {
     valueString: 'medication',
     valueEnum: GroupTypeEnum.medication,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+      valueString: 'http://hl7.org/fhir/group-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -213,7 +228,7 @@ class GroupType extends FhirCodeEnum {
     valueString: 'substance',
     valueEnum: GroupTypeEnum.substance,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+      valueString: 'http://hl7.org/fhir/group-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,6 +250,10 @@ class GroupType extends FhirCodeEnum {
   GroupType withElement(Element? newElement) {
     return GroupType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

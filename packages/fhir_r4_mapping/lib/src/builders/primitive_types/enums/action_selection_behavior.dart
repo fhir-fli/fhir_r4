@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ActionSelectionBehavior
@@ -112,12 +113,13 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ActionSelectionBehaviorBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ActionSelectionBehaviorBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -150,10 +152,26 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
         'ActionSelectionBehaviorBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ActionSelectionBehaviorBuilderEnum.fromString(value));
     return ActionSelectionBehaviorBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionSelectionBehaviorBuilder? _known(
+      ActionSelectionBehaviorBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ActionSelectionBehaviorBuilder
@@ -164,7 +182,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'any',
     valueEnum: ActionSelectionBehaviorBuilderEnum.any,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,7 +195,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'all',
     valueEnum: ActionSelectionBehaviorBuilderEnum.all,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -191,7 +209,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'all-or-none',
     valueEnum: ActionSelectionBehaviorBuilderEnum.allOrNone,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -205,7 +223,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'exactly-one',
     valueEnum: ActionSelectionBehaviorBuilderEnum.exactlyOne,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -219,7 +237,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'at-most-one',
     valueEnum: ActionSelectionBehaviorBuilderEnum.atMostOne,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -233,7 +251,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'one-or-more',
     valueEnum: ActionSelectionBehaviorBuilderEnum.oneOrMore,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -264,6 +282,10 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
   ) {
     return ActionSelectionBehaviorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

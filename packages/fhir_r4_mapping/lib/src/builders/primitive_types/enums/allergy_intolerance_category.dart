@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for AllergyIntoleranceCategory
@@ -99,12 +100,13 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
     final valueEnum = AllergyIntoleranceCategoryBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return AllergyIntoleranceCategoryBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -137,10 +139,27 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
         'AllergyIntoleranceCategoryBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(AllergyIntoleranceCategoryBuilderEnum.fromString(value));
     return AllergyIntoleranceCategoryBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AllergyIntoleranceCategoryBuilder? _known(
+      AllergyIntoleranceCategoryBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for AllergyIntoleranceCategoryBuilder
@@ -152,7 +171,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
     valueString: 'food',
     valueEnum: AllergyIntoleranceCategoryBuilderEnum.food,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -166,7 +185,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
     valueString: 'medication',
     valueEnum: AllergyIntoleranceCategoryBuilderEnum.medication,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -180,7 +199,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
     valueString: 'environment',
     valueEnum: AllergyIntoleranceCategoryBuilderEnum.environment,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -194,7 +213,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
     valueString: 'biologic',
     valueEnum: AllergyIntoleranceCategoryBuilderEnum.biologic,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -223,6 +242,10 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   ) {
     return AllergyIntoleranceCategoryBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

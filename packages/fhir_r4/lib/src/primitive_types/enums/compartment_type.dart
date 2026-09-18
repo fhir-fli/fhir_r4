@@ -97,12 +97,13 @@ class CompartmentType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CompartmentTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CompartmentType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,25 @@ class CompartmentType extends FhirCodeEnum {
         'CompartmentType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CompartmentType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CompartmentType? _known(CompartmentTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CompartmentType
@@ -141,7 +156,7 @@ class CompartmentType extends FhirCodeEnum {
     valueString: 'Patient',
     valueEnum: CompartmentTypeEnum.patient,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+      valueString: 'http://hl7.org/fhir/compartment-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class CompartmentType extends FhirCodeEnum {
     valueString: 'Encounter',
     valueEnum: CompartmentTypeEnum.encounter,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+      valueString: 'http://hl7.org/fhir/compartment-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +182,7 @@ class CompartmentType extends FhirCodeEnum {
     valueString: 'RelatedPerson',
     valueEnum: CompartmentTypeEnum.relatedPerson,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+      valueString: 'http://hl7.org/fhir/compartment-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +195,7 @@ class CompartmentType extends FhirCodeEnum {
     valueString: 'Practitioner',
     valueEnum: CompartmentTypeEnum.practitioner,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+      valueString: 'http://hl7.org/fhir/compartment-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +208,7 @@ class CompartmentType extends FhirCodeEnum {
     valueString: 'Device',
     valueEnum: CompartmentTypeEnum.device,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/compartment-type',
+      valueString: 'http://hl7.org/fhir/compartment-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +229,10 @@ class CompartmentType extends FhirCodeEnum {
   CompartmentType withElement(Element? newElement) {
     return CompartmentType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

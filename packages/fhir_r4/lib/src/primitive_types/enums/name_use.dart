@@ -111,12 +111,13 @@ class NameUse extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = NameUseEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return NameUse._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -140,11 +141,25 @@ class NameUse extends FhirCodeEnum {
         'NameUse cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return NameUse._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static NameUse? _known(NameUseEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for NameUse
@@ -155,7 +170,7 @@ class NameUse extends FhirCodeEnum {
     valueString: 'usual',
     valueEnum: NameUseEnum.usual,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/name-use',
+      valueString: 'http://hl7.org/fhir/name-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -168,7 +183,7 @@ class NameUse extends FhirCodeEnum {
     valueString: 'official',
     valueEnum: NameUseEnum.official,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/name-use',
+      valueString: 'http://hl7.org/fhir/name-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -181,7 +196,7 @@ class NameUse extends FhirCodeEnum {
     valueString: 'temp',
     valueEnum: NameUseEnum.temp,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/name-use',
+      valueString: 'http://hl7.org/fhir/name-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,7 +209,7 @@ class NameUse extends FhirCodeEnum {
     valueString: 'nickname',
     valueEnum: NameUseEnum.nickname,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/name-use',
+      valueString: 'http://hl7.org/fhir/name-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -207,7 +222,7 @@ class NameUse extends FhirCodeEnum {
     valueString: 'anonymous',
     valueEnum: NameUseEnum.anonymous,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/name-use',
+      valueString: 'http://hl7.org/fhir/name-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -220,7 +235,7 @@ class NameUse extends FhirCodeEnum {
     valueString: 'old',
     valueEnum: NameUseEnum.old,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/name-use',
+      valueString: 'http://hl7.org/fhir/name-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -233,7 +248,7 @@ class NameUse extends FhirCodeEnum {
     valueString: 'maiden',
     valueEnum: NameUseEnum.maiden,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/name-use',
+      valueString: 'http://hl7.org/fhir/name-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -256,6 +271,10 @@ class NameUse extends FhirCodeEnum {
   NameUse withElement(Element? newElement) {
     return NameUse._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

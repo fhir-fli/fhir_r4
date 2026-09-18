@@ -91,12 +91,13 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = IdentityAssuranceLevelEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return IdentityAssuranceLevel._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -120,11 +121,25 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
         'IdentityAssuranceLevel cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return IdentityAssuranceLevel._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static IdentityAssuranceLevel? _known(IdentityAssuranceLevelEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for IdentityAssuranceLevel
@@ -135,7 +150,7 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     valueString: 'level1',
     valueEnum: IdentityAssuranceLevelEnum.level1,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+      valueString: 'http://hl7.org/fhir/identity-assuranceLevel',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -148,7 +163,7 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     valueString: 'level2',
     valueEnum: IdentityAssuranceLevelEnum.level2,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+      valueString: 'http://hl7.org/fhir/identity-assuranceLevel',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +176,7 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     valueString: 'level3',
     valueEnum: IdentityAssuranceLevelEnum.level3,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+      valueString: 'http://hl7.org/fhir/identity-assuranceLevel',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,7 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
     valueString: 'level4',
     valueEnum: IdentityAssuranceLevelEnum.level4,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel',
+      valueString: 'http://hl7.org/fhir/identity-assuranceLevel',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,6 +209,10 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
   IdentityAssuranceLevel withElement(Element? newElement) {
     return IdentityAssuranceLevel._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

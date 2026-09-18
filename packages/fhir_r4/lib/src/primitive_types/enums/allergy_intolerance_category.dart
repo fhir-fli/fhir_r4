@@ -91,12 +91,13 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = AllergyIntoleranceCategoryEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return AllergyIntoleranceCategory._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -120,11 +121,26 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
         'AllergyIntoleranceCategory cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return AllergyIntoleranceCategory._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AllergyIntoleranceCategory? _known(
+      AllergyIntoleranceCategoryEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for AllergyIntoleranceCategory
@@ -135,7 +151,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
     valueString: 'food',
     valueEnum: AllergyIntoleranceCategoryEnum.food,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -149,7 +165,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
     valueString: 'medication',
     valueEnum: AllergyIntoleranceCategoryEnum.medication,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -163,7 +179,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
     valueString: 'environment',
     valueEnum: AllergyIntoleranceCategoryEnum.environment,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -177,7 +193,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
     valueString: 'biologic',
     valueEnum: AllergyIntoleranceCategoryEnum.biologic,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-category',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -197,6 +213,10 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
   AllergyIntoleranceCategory withElement(Element? newElement) {
     return AllergyIntoleranceCategory._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

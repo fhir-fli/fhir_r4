@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for EligibilityResponsePurpose
@@ -98,12 +99,13 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = EligibilityResponsePurposeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return EligibilityResponsePurposeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,27 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
         'EligibilityResponsePurposeBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(EligibilityResponsePurposeBuilderEnum.fromString(value));
     return EligibilityResponsePurposeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static EligibilityResponsePurposeBuilder? _known(
+      EligibilityResponsePurposeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for EligibilityResponsePurposeBuilder
@@ -151,7 +170,7 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
     valueString: 'auth-requirements',
     valueEnum: EligibilityResponsePurposeBuilderEnum.authRequirements,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose',
+      valueString: 'http://hl7.org/fhir/eligibilityresponse-purpose',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -165,7 +184,7 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
     valueString: 'benefits',
     valueEnum: EligibilityResponsePurposeBuilderEnum.benefits,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose',
+      valueString: 'http://hl7.org/fhir/eligibilityresponse-purpose',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -179,7 +198,7 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
     valueString: 'discovery',
     valueEnum: EligibilityResponsePurposeBuilderEnum.discovery,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose',
+      valueString: 'http://hl7.org/fhir/eligibilityresponse-purpose',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -193,7 +212,7 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
     valueString: 'validation',
     valueEnum: EligibilityResponsePurposeBuilderEnum.validation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose',
+      valueString: 'http://hl7.org/fhir/eligibilityresponse-purpose',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -222,6 +241,10 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
   ) {
     return EligibilityResponsePurposeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

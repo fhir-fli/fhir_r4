@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SupplyRequestStatus
@@ -119,12 +120,13 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SupplyRequestStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SupplyRequestStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -157,10 +159,26 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
         'SupplyRequestStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(SupplyRequestStatusBuilderEnum.fromString(value));
     return SupplyRequestStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SupplyRequestStatusBuilder? _known(
+      SupplyRequestStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SupplyRequestStatusBuilder
@@ -171,7 +189,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'draft',
     valueEnum: SupplyRequestStatusBuilderEnum.draft,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -184,7 +202,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: SupplyRequestStatusBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,7 +215,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'suspended',
     valueEnum: SupplyRequestStatusBuilderEnum.suspended,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -210,7 +228,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'cancelled',
     valueEnum: SupplyRequestStatusBuilderEnum.cancelled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -223,7 +241,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'completed',
     valueEnum: SupplyRequestStatusBuilderEnum.completed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -237,7 +255,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: SupplyRequestStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -250,7 +268,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: SupplyRequestStatusBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -281,6 +299,10 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return SupplyRequestStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

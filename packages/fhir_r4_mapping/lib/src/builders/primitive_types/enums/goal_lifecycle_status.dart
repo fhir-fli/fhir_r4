@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for GoalLifecycleStatus
@@ -134,12 +135,13 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = GoalLifecycleStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return GoalLifecycleStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -172,10 +174,26 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
         'GoalLifecycleStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(GoalLifecycleStatusBuilderEnum.fromString(value));
     return GoalLifecycleStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static GoalLifecycleStatusBuilder? _known(
+      GoalLifecycleStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for GoalLifecycleStatusBuilder
@@ -186,7 +204,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'proposed',
     valueEnum: GoalLifecycleStatusBuilderEnum.proposed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -199,7 +217,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'planned',
     valueEnum: GoalLifecycleStatusBuilderEnum.planned,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -212,7 +230,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'accepted',
     valueEnum: GoalLifecycleStatusBuilderEnum.accepted,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -225,7 +243,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: GoalLifecycleStatusBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -238,7 +256,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'on-hold',
     valueEnum: GoalLifecycleStatusBuilderEnum.onHold,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -251,7 +269,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'completed',
     valueEnum: GoalLifecycleStatusBuilderEnum.completed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -264,7 +282,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'cancelled',
     valueEnum: GoalLifecycleStatusBuilderEnum.cancelled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -278,7 +296,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: GoalLifecycleStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -291,7 +309,7 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'rejected',
     valueEnum: GoalLifecycleStatusBuilderEnum.rejected,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+      valueString: 'http://hl7.org/fhir/goal-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -324,6 +342,10 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return GoalLifecycleStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

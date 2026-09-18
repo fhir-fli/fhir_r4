@@ -118,12 +118,13 @@ class ReportRelationshipType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ReportRelationshipTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ReportRelationshipType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -147,11 +148,25 @@ class ReportRelationshipType extends FhirCodeEnum {
         'ReportRelationshipType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ReportRelationshipType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ReportRelationshipType? _known(ReportRelationshipTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ReportRelationshipType
@@ -162,7 +177,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'replaces',
     valueEnum: ReportRelationshipTypeEnum.replaces,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -175,7 +190,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'amends',
     valueEnum: ReportRelationshipTypeEnum.amends,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -188,7 +203,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'appends',
     valueEnum: ReportRelationshipTypeEnum.appends,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -201,7 +216,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'transforms',
     valueEnum: ReportRelationshipTypeEnum.transforms,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,7 +229,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'replacedWith',
     valueEnum: ReportRelationshipTypeEnum.replacedWith,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -227,7 +242,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'amendedWith',
     valueEnum: ReportRelationshipTypeEnum.amendedWith,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -240,7 +255,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'appendedWith',
     valueEnum: ReportRelationshipTypeEnum.appendedWith,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -254,7 +269,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     valueString: 'transformedWith',
     valueEnum: ReportRelationshipTypeEnum.transformedWith,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-relation-type',
+      valueString: 'http://hl7.org/fhir/report-relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -278,6 +293,10 @@ class ReportRelationshipType extends FhirCodeEnum {
   ReportRelationshipType withElement(Element? newElement) {
     return ReportRelationshipType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

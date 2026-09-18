@@ -181,12 +181,13 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = TypeRestfulInteractionEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return TypeRestfulInteraction._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -210,11 +211,25 @@ class TypeRestfulInteraction extends FhirCodeEnum {
         'TypeRestfulInteraction cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return TypeRestfulInteraction._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TypeRestfulInteraction? _known(TypeRestfulInteractionEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for TypeRestfulInteraction
@@ -225,7 +240,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'read',
     valueEnum: TypeRestfulInteractionEnum.read,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -238,7 +253,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'vread',
     valueEnum: TypeRestfulInteractionEnum.vread,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -251,7 +266,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'update',
     valueEnum: TypeRestfulInteractionEnum.update,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -264,7 +279,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'patch',
     valueEnum: TypeRestfulInteractionEnum.patch,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -277,7 +292,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'delete',
     valueEnum: TypeRestfulInteractionEnum.delete,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -290,7 +305,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'history',
     valueEnum: TypeRestfulInteractionEnum.history,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -304,7 +319,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'history-instance',
     valueEnum: TypeRestfulInteractionEnum.historyInstance,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -317,7 +332,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'history-type',
     valueEnum: TypeRestfulInteractionEnum.historyType,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -330,7 +345,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'history-system',
     valueEnum: TypeRestfulInteractionEnum.historySystem,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -343,7 +358,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'create',
     valueEnum: TypeRestfulInteractionEnum.create,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -356,7 +371,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'search',
     valueEnum: TypeRestfulInteractionEnum.search,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -369,7 +384,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'search-type',
     valueEnum: TypeRestfulInteractionEnum.searchType,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -382,7 +397,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'search-system',
     valueEnum: TypeRestfulInteractionEnum.searchSystem,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -395,7 +410,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'capabilities',
     valueEnum: TypeRestfulInteractionEnum.capabilities,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -408,7 +423,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'transaction',
     valueEnum: TypeRestfulInteractionEnum.transaction,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -421,7 +436,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'batch',
     valueEnum: TypeRestfulInteractionEnum.batch,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -434,7 +449,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     valueString: 'operation',
     valueEnum: TypeRestfulInteractionEnum.operation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+      valueString: 'http://hl7.org/fhir/restful-interaction',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -467,6 +482,10 @@ class TypeRestfulInteraction extends FhirCodeEnum {
   TypeRestfulInteraction withElement(Element? newElement) {
     return TypeRestfulInteraction._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

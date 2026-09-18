@@ -83,12 +83,13 @@ class TestReportResult extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = TestReportResultEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return TestReportResult._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -112,11 +113,25 @@ class TestReportResult extends FhirCodeEnum {
         'TestReportResult cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return TestReportResult._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TestReportResult? _known(TestReportResultEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for TestReportResult
@@ -127,7 +142,7 @@ class TestReportResult extends FhirCodeEnum {
     valueString: 'pass',
     valueEnum: TestReportResultEnum.pass,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-result-codes',
+      valueString: 'http://hl7.org/fhir/report-result-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -140,7 +155,7 @@ class TestReportResult extends FhirCodeEnum {
     valueString: 'fail',
     valueEnum: TestReportResultEnum.fail,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-result-codes',
+      valueString: 'http://hl7.org/fhir/report-result-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -153,7 +168,7 @@ class TestReportResult extends FhirCodeEnum {
     valueString: 'pending',
     valueEnum: TestReportResultEnum.pending,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-result-codes',
+      valueString: 'http://hl7.org/fhir/report-result-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -172,6 +187,10 @@ class TestReportResult extends FhirCodeEnum {
   TestReportResult withElement(Element? newElement) {
     return TestReportResult._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

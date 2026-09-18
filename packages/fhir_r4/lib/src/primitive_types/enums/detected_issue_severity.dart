@@ -84,12 +84,13 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = DetectedIssueSeverityEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return DetectedIssueSeverity._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -113,11 +114,25 @@ class DetectedIssueSeverity extends FhirCodeEnum {
         'DetectedIssueSeverity cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return DetectedIssueSeverity._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static DetectedIssueSeverity? _known(DetectedIssueSeverityEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for DetectedIssueSeverity
@@ -128,7 +143,7 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     valueString: 'high',
     valueEnum: DetectedIssueSeverityEnum.high,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+      valueString: 'http://hl7.org/fhir/detectedissue-severity',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -141,7 +156,7 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     valueString: 'moderate',
     valueEnum: DetectedIssueSeverityEnum.moderate,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+      valueString: 'http://hl7.org/fhir/detectedissue-severity',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     valueString: 'low',
     valueEnum: DetectedIssueSeverityEnum.low,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+      valueString: 'http://hl7.org/fhir/detectedissue-severity',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,6 +188,10 @@ class DetectedIssueSeverity extends FhirCodeEnum {
   DetectedIssueSeverity withElement(Element? newElement) {
     return DetectedIssueSeverity._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

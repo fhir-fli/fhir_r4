@@ -111,12 +111,13 @@ class PropertyTypeEnum extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = PropertyTypeEnumEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return PropertyTypeEnum._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -140,11 +141,25 @@ class PropertyTypeEnum extends FhirCodeEnum {
         'PropertyTypeEnum cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return PropertyTypeEnum._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static PropertyTypeEnum? _known(PropertyTypeEnumEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for PropertyTypeEnum
@@ -155,7 +170,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     valueString: 'code',
     valueEnum: PropertyTypeEnumEnum.code,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -168,7 +183,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     valueString: 'Coding',
     valueEnum: PropertyTypeEnumEnum.coding,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -181,7 +196,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     valueString: 'string',
     valueEnum: PropertyTypeEnumEnum.string,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,7 +209,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     valueString: 'integer',
     valueEnum: PropertyTypeEnumEnum.integer,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -207,7 +222,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     valueString: 'boolean',
     valueEnum: PropertyTypeEnumEnum.boolean,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -220,7 +235,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     valueString: 'dateTime',
     valueEnum: PropertyTypeEnumEnum.dateTime,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -233,7 +248,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     valueString: 'decimal',
     valueEnum: PropertyTypeEnumEnum.decimal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -256,6 +271,10 @@ class PropertyTypeEnum extends FhirCodeEnum {
   PropertyTypeEnum withElement(Element? newElement) {
     return PropertyTypeEnum._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

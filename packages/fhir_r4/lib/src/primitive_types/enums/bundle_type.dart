@@ -125,12 +125,13 @@ class BundleType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = BundleTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return BundleType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -154,11 +155,25 @@ class BundleType extends FhirCodeEnum {
         'BundleType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return BundleType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static BundleType? _known(BundleTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for BundleType
@@ -169,7 +184,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'document',
     valueEnum: BundleTypeEnum.document,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -182,7 +197,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'message',
     valueEnum: BundleTypeEnum.message,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -195,7 +210,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'transaction',
     valueEnum: BundleTypeEnum.transaction,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -208,7 +223,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'transaction-response',
     valueEnum: BundleTypeEnum.transactionResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -221,7 +236,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'batch',
     valueEnum: BundleTypeEnum.batch,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -234,7 +249,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'batch-response',
     valueEnum: BundleTypeEnum.batchResponse,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -247,7 +262,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'history',
     valueEnum: BundleTypeEnum.history,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -260,7 +275,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'searchset',
     valueEnum: BundleTypeEnum.searchset,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -273,7 +288,7 @@ class BundleType extends FhirCodeEnum {
     valueString: 'collection',
     valueEnum: BundleTypeEnum.collection,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -298,6 +313,10 @@ class BundleType extends FhirCodeEnum {
   BundleType withElement(Element? newElement) {
     return BundleType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for StructureMapTransform
@@ -189,12 +190,13 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     final valueEnum = StructureMapTransformBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return StructureMapTransformBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -227,10 +229,26 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
         'StructureMapTransformBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(StructureMapTransformBuilderEnum.fromString(value));
     return StructureMapTransformBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static StructureMapTransformBuilder? _known(
+      StructureMapTransformBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for StructureMapTransformBuilder
@@ -241,7 +259,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'create',
     valueEnum: StructureMapTransformBuilderEnum.create,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -254,7 +272,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'copy',
     valueEnum: StructureMapTransformBuilderEnum.copy_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -267,7 +285,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'truncate',
     valueEnum: StructureMapTransformBuilderEnum.truncate,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -280,7 +298,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'escape',
     valueEnum: StructureMapTransformBuilderEnum.escape,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -293,7 +311,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'cast',
     valueEnum: StructureMapTransformBuilderEnum.cast,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -306,7 +324,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'append',
     valueEnum: StructureMapTransformBuilderEnum.append,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -320,7 +338,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'translate',
     valueEnum: StructureMapTransformBuilderEnum.translate,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -334,7 +352,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'reference',
     valueEnum: StructureMapTransformBuilderEnum.reference,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -347,7 +365,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'dateOp',
     valueEnum: StructureMapTransformBuilderEnum.dateOp,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -360,7 +378,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'uuid',
     valueEnum: StructureMapTransformBuilderEnum.uuid,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -373,7 +391,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'pointer',
     valueEnum: StructureMapTransformBuilderEnum.pointer,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -386,7 +404,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'evaluate',
     valueEnum: StructureMapTransformBuilderEnum.evaluate,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -399,7 +417,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'cc',
     valueEnum: StructureMapTransformBuilderEnum.cc,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -412,7 +430,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'c',
     valueEnum: StructureMapTransformBuilderEnum.c,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -425,7 +443,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'qty',
     valueEnum: StructureMapTransformBuilderEnum.qty,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -438,7 +456,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'id',
     valueEnum: StructureMapTransformBuilderEnum.id_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -451,7 +469,7 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     valueString: 'cp',
     valueEnum: StructureMapTransformBuilderEnum.cp,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+      valueString: 'http://hl7.org/fhir/map-transform',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -493,6 +511,10 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
   ) {
     return StructureMapTransformBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

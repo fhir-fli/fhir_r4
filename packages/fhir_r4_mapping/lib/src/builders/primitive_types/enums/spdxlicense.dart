@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SPDXLicense
@@ -2495,12 +2496,13 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SPDXLicenseBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SPDXLicenseBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -2532,10 +2534,25 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
         'SPDXLicenseBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(SPDXLicenseBuilderEnum.fromString(value));
     return SPDXLicenseBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SPDXLicenseBuilder? _known(SPDXLicenseBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SPDXLicenseBuilder
@@ -2546,7 +2563,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-open-source',
     valueEnum: SPDXLicenseBuilderEnum.notOpenSource,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2559,7 +2576,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: '0BSD',
     valueEnum: SPDXLicenseBuilderEnum.value0BSD,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2572,7 +2589,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AAL',
     valueEnum: SPDXLicenseBuilderEnum.aAL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2585,7 +2602,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Abstyles',
     valueEnum: SPDXLicenseBuilderEnum.abstyles,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2598,7 +2615,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Adobe-2006',
     valueEnum: SPDXLicenseBuilderEnum.adobe2006,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2611,7 +2628,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Adobe-Glyph',
     valueEnum: SPDXLicenseBuilderEnum.adobeGlyph,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2624,7 +2641,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ADSL',
     valueEnum: SPDXLicenseBuilderEnum.aDSL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2637,7 +2654,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AFL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.afl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2650,7 +2667,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AFL-1.2',
     valueEnum: SPDXLicenseBuilderEnum.afl12,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2663,7 +2680,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AFL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.afl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2676,7 +2693,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AFL-2.1',
     valueEnum: SPDXLicenseBuilderEnum.afl21,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2689,7 +2706,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AFL-3.0',
     valueEnum: SPDXLicenseBuilderEnum.afl30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2702,7 +2719,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Afmparse',
     valueEnum: SPDXLicenseBuilderEnum.afmparse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2715,7 +2732,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AGPL-1.0-only',
     valueEnum: SPDXLicenseBuilderEnum.agpl10Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2728,7 +2745,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AGPL-1.0-or-later',
     valueEnum: SPDXLicenseBuilderEnum.agpl10OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2741,7 +2758,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AGPL-3.0-only',
     valueEnum: SPDXLicenseBuilderEnum.agpl30Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2754,7 +2771,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AGPL-3.0-or-later',
     valueEnum: SPDXLicenseBuilderEnum.agpl30OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2767,7 +2784,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Aladdin',
     valueEnum: SPDXLicenseBuilderEnum.aladdin,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2780,7 +2797,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AMDPLPA',
     valueEnum: SPDXLicenseBuilderEnum.aMDPLPA,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2793,7 +2810,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AML',
     valueEnum: SPDXLicenseBuilderEnum.aML,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2806,7 +2823,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'AMPAS',
     valueEnum: SPDXLicenseBuilderEnum.aMPAS,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2819,7 +2836,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ANTLR-PD',
     valueEnum: SPDXLicenseBuilderEnum.antlrPd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2832,7 +2849,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Apache-1.0',
     valueEnum: SPDXLicenseBuilderEnum.apache10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2845,7 +2862,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Apache-1.1',
     valueEnum: SPDXLicenseBuilderEnum.apache11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2858,7 +2875,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Apache-2.0',
     valueEnum: SPDXLicenseBuilderEnum.apache20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2871,7 +2888,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'APAFML',
     valueEnum: SPDXLicenseBuilderEnum.aPAFML,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2884,7 +2901,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'APL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.apl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2897,7 +2914,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'APSL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.apsl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2910,7 +2927,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'APSL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.apsl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2923,7 +2940,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'APSL-1.2',
     valueEnum: SPDXLicenseBuilderEnum.apsl12,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2936,7 +2953,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'APSL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.apsl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2949,7 +2966,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Artistic-1.0-cl8',
     valueEnum: SPDXLicenseBuilderEnum.artistic10Cl8,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2962,7 +2979,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Artistic-1.0-Perl',
     valueEnum: SPDXLicenseBuilderEnum.artistic10Perl,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2975,7 +2992,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Artistic-1.0',
     valueEnum: SPDXLicenseBuilderEnum.artistic10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2988,7 +3005,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Artistic-2.0',
     valueEnum: SPDXLicenseBuilderEnum.artistic20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3001,7 +3018,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Bahyph',
     valueEnum: SPDXLicenseBuilderEnum.bahyph,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3014,7 +3031,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Barr',
     valueEnum: SPDXLicenseBuilderEnum.barr,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3027,7 +3044,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Beerware',
     valueEnum: SPDXLicenseBuilderEnum.beerware,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3040,7 +3057,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BitTorrent-1.0',
     valueEnum: SPDXLicenseBuilderEnum.bittorrent10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3053,7 +3070,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BitTorrent-1.1',
     valueEnum: SPDXLicenseBuilderEnum.bittorrent11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3066,7 +3083,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Borceux',
     valueEnum: SPDXLicenseBuilderEnum.borceux,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3079,7 +3096,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-1-Clause',
     valueEnum: SPDXLicenseBuilderEnum.bsd1Clause,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3092,7 +3109,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-2-Clause-FreeBSD',
     valueEnum: SPDXLicenseBuilderEnum.bsd2ClauseFreebsd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3105,7 +3122,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-2-Clause-NetBSD',
     valueEnum: SPDXLicenseBuilderEnum.bsd2ClauseNetbsd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3118,7 +3135,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-2-Clause-Patent',
     valueEnum: SPDXLicenseBuilderEnum.bsd2ClausePatent,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3131,7 +3148,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-2-Clause',
     valueEnum: SPDXLicenseBuilderEnum.bsd2Clause,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3144,7 +3161,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-3-Clause-Attribution',
     valueEnum: SPDXLicenseBuilderEnum.bsd3ClauseAttribution,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3157,7 +3174,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-3-Clause-Clear',
     valueEnum: SPDXLicenseBuilderEnum.bsd3ClauseClear,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3170,7 +3187,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-3-Clause-LBNL',
     valueEnum: SPDXLicenseBuilderEnum.bsd3ClauseLbnl,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3184,7 +3201,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-3-Clause-No-Nuclear-License-2014',
     valueEnum: SPDXLicenseBuilderEnum.bsd3ClauseNoNuclearLicense2014,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3197,7 +3214,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-3-Clause-No-Nuclear-License',
     valueEnum: SPDXLicenseBuilderEnum.bsd3ClauseNoNuclearLicense,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3210,7 +3227,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-3-Clause-No-Nuclear-Warranty',
     valueEnum: SPDXLicenseBuilderEnum.bsd3ClauseNoNuclearWarranty,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3223,7 +3240,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-3-Clause',
     valueEnum: SPDXLicenseBuilderEnum.bsd3Clause,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3236,7 +3253,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-4-Clause-UC',
     valueEnum: SPDXLicenseBuilderEnum.bsd4ClauseUc,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3249,7 +3266,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-4-Clause',
     valueEnum: SPDXLicenseBuilderEnum.bsd4Clause,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3262,7 +3279,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-Protection',
     valueEnum: SPDXLicenseBuilderEnum.bsdProtection,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3275,7 +3292,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSD-Source-Code',
     valueEnum: SPDXLicenseBuilderEnum.bsdSourceCode,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3288,7 +3305,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'BSL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.bsl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3301,7 +3318,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'bzip2-1.0.5',
     valueEnum: SPDXLicenseBuilderEnum.bzip2105,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3314,7 +3331,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'bzip2-1.0.6',
     valueEnum: SPDXLicenseBuilderEnum.bzip2106,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3327,7 +3344,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Caldera',
     valueEnum: SPDXLicenseBuilderEnum.caldera,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3340,7 +3357,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CATOSL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.catosl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3353,7 +3370,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBy10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3366,7 +3383,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-2.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBy20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3379,7 +3396,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-2.5',
     valueEnum: SPDXLicenseBuilderEnum.ccBy25,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3392,7 +3409,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-3.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBy30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3405,7 +3422,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-4.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBy40,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3418,7 +3435,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNc10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3431,7 +3448,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-2.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNc20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3444,7 +3461,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-2.5',
     valueEnum: SPDXLicenseBuilderEnum.ccByNc25,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3457,7 +3474,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-3.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNc30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3470,7 +3487,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-4.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNc40,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3484,7 +3501,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-ND-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcNd10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3498,7 +3515,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-ND-2.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcNd20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3512,7 +3529,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-ND-2.5',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcNd25,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3526,7 +3543,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-ND-3.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcNd30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3540,7 +3557,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-ND-4.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcNd40,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3554,7 +3571,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-SA-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcSa10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3568,7 +3585,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-SA-2.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcSa20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3582,7 +3599,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-SA-2.5',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcSa25,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3596,7 +3613,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-SA-3.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcSa30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3610,7 +3627,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-NC-SA-4.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNcSa40,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3624,7 +3641,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-ND-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNd10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3637,7 +3654,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-ND-2.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNd20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3650,7 +3667,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-ND-2.5',
     valueEnum: SPDXLicenseBuilderEnum.ccByNd25,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3663,7 +3680,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-ND-3.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNd30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3676,7 +3693,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-ND-4.0',
     valueEnum: SPDXLicenseBuilderEnum.ccByNd40,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3690,7 +3707,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-SA-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBySa10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3703,7 +3720,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-SA-2.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBySa20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3716,7 +3733,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-SA-2.5',
     valueEnum: SPDXLicenseBuilderEnum.ccBySa25,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3729,7 +3746,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-SA-3.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBySa30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3742,7 +3759,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC-BY-SA-4.0',
     valueEnum: SPDXLicenseBuilderEnum.ccBySa40,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3755,7 +3772,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CC0-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cc010,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3768,7 +3785,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CDDL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cddl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3781,7 +3798,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CDDL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.cddl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3794,7 +3811,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CDLA-Permissive-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cdlaPermissive10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3807,7 +3824,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CDLA-Sharing-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cdlaSharing10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3820,7 +3837,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CECILL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cecill10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3833,7 +3850,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CECILL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.cecill11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3846,7 +3863,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CECILL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.cecill20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3859,7 +3876,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CECILL-2.1',
     valueEnum: SPDXLicenseBuilderEnum.cecill21,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3872,7 +3889,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CECILL-B',
     valueEnum: SPDXLicenseBuilderEnum.cecillB,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3885,7 +3902,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CECILL-C',
     valueEnum: SPDXLicenseBuilderEnum.cecillC,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3898,7 +3915,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ClArtistic',
     valueEnum: SPDXLicenseBuilderEnum.clArtistic,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3911,7 +3928,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CNRI-Jython',
     valueEnum: SPDXLicenseBuilderEnum.cnriJython,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3924,7 +3941,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CNRI-Python-GPL-Compatible',
     valueEnum: SPDXLicenseBuilderEnum.cnriPythonGplCompatible,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3937,7 +3954,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CNRI-Python',
     valueEnum: SPDXLicenseBuilderEnum.cnriPython,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3950,7 +3967,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Condor-1.1',
     valueEnum: SPDXLicenseBuilderEnum.condor11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3963,7 +3980,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CPAL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cpal10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3976,7 +3993,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cpl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3989,7 +4006,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CPOL-1.02',
     valueEnum: SPDXLicenseBuilderEnum.cpol102,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4002,7 +4019,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Crossword',
     valueEnum: SPDXLicenseBuilderEnum.crossword,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4015,7 +4032,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CrystalStacker',
     valueEnum: SPDXLicenseBuilderEnum.crystalStacker,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4028,7 +4045,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'CUA-OPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.cuaOpl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4041,7 +4058,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Cube',
     valueEnum: SPDXLicenseBuilderEnum.cube,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4054,7 +4071,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'curl',
     valueEnum: SPDXLicenseBuilderEnum.curl,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4067,7 +4084,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'D-FSL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.dFsl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4080,7 +4097,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'diffmark',
     valueEnum: SPDXLicenseBuilderEnum.diffmark,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4093,7 +4110,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'DOC',
     valueEnum: SPDXLicenseBuilderEnum.dOC,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4106,7 +4123,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Dotseqn',
     valueEnum: SPDXLicenseBuilderEnum.dotseqn,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4119,7 +4136,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'DSDP',
     valueEnum: SPDXLicenseBuilderEnum.dSDP,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4132,7 +4149,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'dvipdfm',
     valueEnum: SPDXLicenseBuilderEnum.dvipdfm,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4145,7 +4162,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ECL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ecl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4158,7 +4175,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ECL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.ecl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4171,7 +4188,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EFL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.efl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4184,7 +4201,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EFL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.efl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4197,7 +4214,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'eGenix',
     valueEnum: SPDXLicenseBuilderEnum.eGenix,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4210,7 +4227,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Entessa',
     valueEnum: SPDXLicenseBuilderEnum.entessa,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4223,7 +4240,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.epl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4236,7 +4253,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EPL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.epl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4249,7 +4266,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ErlPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.erlpl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4262,7 +4279,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EUDatagrid',
     valueEnum: SPDXLicenseBuilderEnum.eUDatagrid,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4275,7 +4292,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EUPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.eupl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4288,7 +4305,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EUPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.eupl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4301,7 +4318,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'EUPL-1.2',
     valueEnum: SPDXLicenseBuilderEnum.eupl12,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4314,7 +4331,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Eurosym',
     valueEnum: SPDXLicenseBuilderEnum.eurosym,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4327,7 +4344,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Fair',
     valueEnum: SPDXLicenseBuilderEnum.fair,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4340,7 +4357,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Frameworx-1.0',
     valueEnum: SPDXLicenseBuilderEnum.frameworx10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4353,7 +4370,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'FreeImage',
     valueEnum: SPDXLicenseBuilderEnum.freeImage,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4366,7 +4383,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'FSFAP',
     valueEnum: SPDXLicenseBuilderEnum.fSFAP,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4379,7 +4396,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'FSFUL',
     valueEnum: SPDXLicenseBuilderEnum.fSFUL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4392,7 +4409,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'FSFULLR',
     valueEnum: SPDXLicenseBuilderEnum.fSFULLR,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4405,7 +4422,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'FTL',
     valueEnum: SPDXLicenseBuilderEnum.fTL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4418,7 +4435,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GFDL-1.1-only',
     valueEnum: SPDXLicenseBuilderEnum.gfdl11Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4431,7 +4448,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GFDL-1.1-or-later',
     valueEnum: SPDXLicenseBuilderEnum.gfdl11OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4444,7 +4461,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GFDL-1.2-only',
     valueEnum: SPDXLicenseBuilderEnum.gfdl12Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4457,7 +4474,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GFDL-1.2-or-later',
     valueEnum: SPDXLicenseBuilderEnum.gfdl12OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4470,7 +4487,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GFDL-1.3-only',
     valueEnum: SPDXLicenseBuilderEnum.gfdl13Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4483,7 +4500,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GFDL-1.3-or-later',
     valueEnum: SPDXLicenseBuilderEnum.gfdl13OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4496,7 +4513,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Giftware',
     valueEnum: SPDXLicenseBuilderEnum.giftware,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4509,7 +4526,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GL2PS',
     valueEnum: SPDXLicenseBuilderEnum.gL2PS,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4522,7 +4539,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Glide',
     valueEnum: SPDXLicenseBuilderEnum.glide,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4535,7 +4552,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Glulxe',
     valueEnum: SPDXLicenseBuilderEnum.glulxe,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4548,7 +4565,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'gnuplot',
     valueEnum: SPDXLicenseBuilderEnum.gnuplot,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4561,7 +4578,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GPL-1.0-only',
     valueEnum: SPDXLicenseBuilderEnum.gpl10Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4574,7 +4591,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GPL-1.0-or-later',
     valueEnum: SPDXLicenseBuilderEnum.gpl10OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4587,7 +4604,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GPL-2.0-only',
     valueEnum: SPDXLicenseBuilderEnum.gpl20Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4600,7 +4617,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GPL-2.0-or-later',
     valueEnum: SPDXLicenseBuilderEnum.gpl20OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4613,7 +4630,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GPL-3.0-only',
     valueEnum: SPDXLicenseBuilderEnum.gpl30Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4626,7 +4643,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'GPL-3.0-or-later',
     valueEnum: SPDXLicenseBuilderEnum.gpl30OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4639,7 +4656,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'gSOAP-1.3b',
     valueEnum: SPDXLicenseBuilderEnum.gsoap13b,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4652,7 +4669,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'HaskellReport',
     valueEnum: SPDXLicenseBuilderEnum.haskellReport,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4665,7 +4682,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'HPND',
     valueEnum: SPDXLicenseBuilderEnum.hPND,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4678,7 +4695,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'IBM-pibs',
     valueEnum: SPDXLicenseBuilderEnum.ibmPibs,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4691,7 +4708,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ICU',
     valueEnum: SPDXLicenseBuilderEnum.iCU,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4704,7 +4721,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'IJG',
     valueEnum: SPDXLicenseBuilderEnum.iJG,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4717,7 +4734,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ImageMagick',
     valueEnum: SPDXLicenseBuilderEnum.imageMagick,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4730,7 +4747,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'iMatix',
     valueEnum: SPDXLicenseBuilderEnum.iMatix,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4743,7 +4760,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Imlib2',
     valueEnum: SPDXLicenseBuilderEnum.imlib2,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4756,7 +4773,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Info-ZIP',
     valueEnum: SPDXLicenseBuilderEnum.infoZip,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4769,7 +4786,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Intel-ACPI',
     valueEnum: SPDXLicenseBuilderEnum.intelAcpi,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4782,7 +4799,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Intel',
     valueEnum: SPDXLicenseBuilderEnum.intel,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4795,7 +4812,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Interbase-1.0',
     valueEnum: SPDXLicenseBuilderEnum.interbase10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4808,7 +4825,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'IPA',
     valueEnum: SPDXLicenseBuilderEnum.iPA,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4821,7 +4838,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'IPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ipl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4834,7 +4851,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ISC',
     valueEnum: SPDXLicenseBuilderEnum.iSC,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4847,7 +4864,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'JasPer-2.0',
     valueEnum: SPDXLicenseBuilderEnum.jasper20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4860,7 +4877,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'JSON',
     valueEnum: SPDXLicenseBuilderEnum.jSON,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4873,7 +4890,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LAL-1.2',
     valueEnum: SPDXLicenseBuilderEnum.lal12,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4886,7 +4903,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LAL-1.3',
     valueEnum: SPDXLicenseBuilderEnum.lal13,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4899,7 +4916,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Latex2e',
     valueEnum: SPDXLicenseBuilderEnum.latex2e,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4912,7 +4929,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Leptonica',
     valueEnum: SPDXLicenseBuilderEnum.leptonica,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4925,7 +4942,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LGPL-2.0-only',
     valueEnum: SPDXLicenseBuilderEnum.lgpl20Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4938,7 +4955,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LGPL-2.0-or-later',
     valueEnum: SPDXLicenseBuilderEnum.lgpl20OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4951,7 +4968,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LGPL-2.1-only',
     valueEnum: SPDXLicenseBuilderEnum.lgpl21Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4964,7 +4981,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LGPL-2.1-or-later',
     valueEnum: SPDXLicenseBuilderEnum.lgpl21OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4977,7 +4994,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LGPL-3.0-only',
     valueEnum: SPDXLicenseBuilderEnum.lgpl30Only,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4990,7 +5007,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LGPL-3.0-or-later',
     valueEnum: SPDXLicenseBuilderEnum.lgpl30OrLater,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5003,7 +5020,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LGPLLR',
     valueEnum: SPDXLicenseBuilderEnum.lGPLLR,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5016,7 +5033,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Libpng',
     valueEnum: SPDXLicenseBuilderEnum.libpng,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5029,7 +5046,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'libtiff',
     valueEnum: SPDXLicenseBuilderEnum.libtiff,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5042,7 +5059,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LiLiQ-P-1.1',
     valueEnum: SPDXLicenseBuilderEnum.liliqP11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5055,7 +5072,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LiLiQ-R-1.1',
     valueEnum: SPDXLicenseBuilderEnum.liliqR11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5068,7 +5085,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LiLiQ-Rplus-1.1',
     valueEnum: SPDXLicenseBuilderEnum.liliqRplus11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5081,7 +5098,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Linux-OpenIB',
     valueEnum: SPDXLicenseBuilderEnum.linuxOpenib,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5094,7 +5111,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.lpl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5107,7 +5124,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LPL-1.02',
     valueEnum: SPDXLicenseBuilderEnum.lpl102,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5120,7 +5137,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LPPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.lppl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5133,7 +5150,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LPPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.lppl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5146,7 +5163,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LPPL-1.2',
     valueEnum: SPDXLicenseBuilderEnum.lppl12,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5159,7 +5176,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LPPL-1.3a',
     valueEnum: SPDXLicenseBuilderEnum.lppl13a,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5172,7 +5189,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'LPPL-1.3c',
     valueEnum: SPDXLicenseBuilderEnum.lppl13c,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5185,7 +5202,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MakeIndex',
     valueEnum: SPDXLicenseBuilderEnum.makeIndex,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5198,7 +5215,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MirOS',
     valueEnum: SPDXLicenseBuilderEnum.mirOS,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5211,7 +5228,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MIT-0',
     valueEnum: SPDXLicenseBuilderEnum.mit0,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5224,7 +5241,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MIT-advertising',
     valueEnum: SPDXLicenseBuilderEnum.mitAdvertising,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5237,7 +5254,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MIT-CMU',
     valueEnum: SPDXLicenseBuilderEnum.mitCmu,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5250,7 +5267,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MIT-enna',
     valueEnum: SPDXLicenseBuilderEnum.mitEnna,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5263,7 +5280,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MIT-feh',
     valueEnum: SPDXLicenseBuilderEnum.mitFeh,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5276,7 +5293,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MIT',
     valueEnum: SPDXLicenseBuilderEnum.mIT,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5289,7 +5306,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MITNFA',
     valueEnum: SPDXLicenseBuilderEnum.mITNFA,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5302,7 +5319,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Motosoto',
     valueEnum: SPDXLicenseBuilderEnum.motosoto,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5315,7 +5332,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'mpich2',
     valueEnum: SPDXLicenseBuilderEnum.mpich2,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5328,7 +5345,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.mpl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5341,7 +5358,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.mpl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5354,7 +5371,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MPL-2.0-no-copyleft-exception',
     valueEnum: SPDXLicenseBuilderEnum.mpl20NoCopyleftException,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5367,7 +5384,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MPL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.mpl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5380,7 +5397,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MS-PL',
     valueEnum: SPDXLicenseBuilderEnum.msPl,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5393,7 +5410,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MS-RL',
     valueEnum: SPDXLicenseBuilderEnum.msRl,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5406,7 +5423,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'MTLL',
     valueEnum: SPDXLicenseBuilderEnum.mTLL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5419,7 +5436,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Multics',
     valueEnum: SPDXLicenseBuilderEnum.multics,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5432,7 +5449,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Mup',
     valueEnum: SPDXLicenseBuilderEnum.mup,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5445,7 +5462,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NASA-1.3',
     valueEnum: SPDXLicenseBuilderEnum.nasa13,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5458,7 +5475,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Naumen',
     valueEnum: SPDXLicenseBuilderEnum.naumen,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5471,7 +5488,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NBPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.nbpl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5484,7 +5501,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NCSA',
     valueEnum: SPDXLicenseBuilderEnum.nCSA,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5497,7 +5514,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Net-SNMP',
     valueEnum: SPDXLicenseBuilderEnum.netSnmp,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5510,7 +5527,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NetCDF',
     valueEnum: SPDXLicenseBuilderEnum.netCDF,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5523,7 +5540,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Newsletr',
     valueEnum: SPDXLicenseBuilderEnum.newsletr,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5536,7 +5553,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NGPL',
     valueEnum: SPDXLicenseBuilderEnum.nGPL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5549,7 +5566,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NLOD-1.0',
     valueEnum: SPDXLicenseBuilderEnum.nlod10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5562,7 +5579,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NLPL',
     valueEnum: SPDXLicenseBuilderEnum.nLPL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5575,7 +5592,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Nokia',
     valueEnum: SPDXLicenseBuilderEnum.nokia,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5588,7 +5605,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NOSL',
     valueEnum: SPDXLicenseBuilderEnum.nOSL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5601,7 +5618,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Noweb',
     valueEnum: SPDXLicenseBuilderEnum.noweb,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5614,7 +5631,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.npl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5627,7 +5644,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.npl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5640,7 +5657,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NPOSL-3.0',
     valueEnum: SPDXLicenseBuilderEnum.nposl30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5653,7 +5670,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NRL',
     valueEnum: SPDXLicenseBuilderEnum.nRL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5666,7 +5683,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'NTP',
     valueEnum: SPDXLicenseBuilderEnum.nTP,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5679,7 +5696,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OCCT-PL',
     valueEnum: SPDXLicenseBuilderEnum.occtPl,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5692,7 +5709,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OCLC-2.0',
     valueEnum: SPDXLicenseBuilderEnum.oclc20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5705,7 +5722,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ODbL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.odbl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5718,7 +5735,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OFL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ofl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5731,7 +5748,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OFL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.ofl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5744,7 +5761,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OGTSL',
     valueEnum: SPDXLicenseBuilderEnum.oGTSL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5757,7 +5774,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-1.1',
     valueEnum: SPDXLicenseBuilderEnum.oldap11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5770,7 +5787,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-1.2',
     valueEnum: SPDXLicenseBuilderEnum.oldap12,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5783,7 +5800,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-1.3',
     valueEnum: SPDXLicenseBuilderEnum.oldap13,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5796,7 +5813,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-1.4',
     valueEnum: SPDXLicenseBuilderEnum.oldap14,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5809,7 +5826,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.0.1',
     valueEnum: SPDXLicenseBuilderEnum.oldap201,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5822,7 +5839,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.0',
     valueEnum: SPDXLicenseBuilderEnum.oldap20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5835,7 +5852,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.1',
     valueEnum: SPDXLicenseBuilderEnum.oldap21,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5848,7 +5865,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.2.1',
     valueEnum: SPDXLicenseBuilderEnum.oldap221,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5861,7 +5878,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.2.2',
     valueEnum: SPDXLicenseBuilderEnum.oldap222,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5874,7 +5891,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.2',
     valueEnum: SPDXLicenseBuilderEnum.oldap22,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5887,7 +5904,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.3',
     valueEnum: SPDXLicenseBuilderEnum.oldap23,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5900,7 +5917,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.4',
     valueEnum: SPDXLicenseBuilderEnum.oldap24,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5913,7 +5930,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.5',
     valueEnum: SPDXLicenseBuilderEnum.oldap25,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5926,7 +5943,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.6',
     valueEnum: SPDXLicenseBuilderEnum.oldap26,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5939,7 +5956,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.7',
     valueEnum: SPDXLicenseBuilderEnum.oldap27,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5952,7 +5969,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OLDAP-2.8',
     valueEnum: SPDXLicenseBuilderEnum.oldap28,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5965,7 +5982,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OML',
     valueEnum: SPDXLicenseBuilderEnum.oML,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5978,7 +5995,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OpenSSL',
     valueEnum: SPDXLicenseBuilderEnum.openSSL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -5991,7 +6008,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.opl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6004,7 +6021,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OSET-PL-2.1',
     valueEnum: SPDXLicenseBuilderEnum.osetPl21,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6017,7 +6034,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OSL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.osl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6030,7 +6047,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OSL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.osl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6043,7 +6060,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OSL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.osl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6056,7 +6073,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OSL-2.1',
     valueEnum: SPDXLicenseBuilderEnum.osl21,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6069,7 +6086,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'OSL-3.0',
     valueEnum: SPDXLicenseBuilderEnum.osl30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6082,7 +6099,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'PDDL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.pddl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6095,7 +6112,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'PHP-3.0',
     valueEnum: SPDXLicenseBuilderEnum.php30,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6108,7 +6125,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'PHP-3.01',
     valueEnum: SPDXLicenseBuilderEnum.php301,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6121,7 +6138,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Plexus',
     valueEnum: SPDXLicenseBuilderEnum.plexus,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6134,7 +6151,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'PostgreSQL',
     valueEnum: SPDXLicenseBuilderEnum.postgreSQL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6147,7 +6164,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'psfrag',
     valueEnum: SPDXLicenseBuilderEnum.psfrag,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6160,7 +6177,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'psutils',
     valueEnum: SPDXLicenseBuilderEnum.psutils,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6173,7 +6190,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Python-2.0',
     valueEnum: SPDXLicenseBuilderEnum.python20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6186,7 +6203,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Qhull',
     valueEnum: SPDXLicenseBuilderEnum.qhull,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6199,7 +6216,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'QPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.qpl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6212,7 +6229,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Rdisc',
     valueEnum: SPDXLicenseBuilderEnum.rdisc,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6225,7 +6242,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'RHeCos-1.1',
     valueEnum: SPDXLicenseBuilderEnum.rhecos11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6238,7 +6255,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'RPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.rpl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6251,7 +6268,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'RPL-1.5',
     valueEnum: SPDXLicenseBuilderEnum.rpl15,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6264,7 +6281,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'RPSL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.rpsl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6277,7 +6294,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'RSA-MD',
     valueEnum: SPDXLicenseBuilderEnum.rsaMd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6290,7 +6307,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'RSCPL',
     valueEnum: SPDXLicenseBuilderEnum.rSCPL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6303,7 +6320,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Ruby',
     valueEnum: SPDXLicenseBuilderEnum.ruby,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6316,7 +6333,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SAX-PD',
     valueEnum: SPDXLicenseBuilderEnum.saxPd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6329,7 +6346,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Saxpath',
     valueEnum: SPDXLicenseBuilderEnum.saxpath,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6342,7 +6359,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SCEA',
     valueEnum: SPDXLicenseBuilderEnum.sCEA,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6355,7 +6372,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Sendmail',
     valueEnum: SPDXLicenseBuilderEnum.sendmail,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6368,7 +6385,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SGI-B-1.0',
     valueEnum: SPDXLicenseBuilderEnum.sgiB10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6381,7 +6398,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SGI-B-1.1',
     valueEnum: SPDXLicenseBuilderEnum.sgiB11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6394,7 +6411,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SGI-B-2.0',
     valueEnum: SPDXLicenseBuilderEnum.sgiB20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6407,7 +6424,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SimPL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.simpl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6420,7 +6437,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SISSL-1.2',
     valueEnum: SPDXLicenseBuilderEnum.sissl12,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6433,7 +6450,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SISSL',
     valueEnum: SPDXLicenseBuilderEnum.sISSL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6446,7 +6463,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Sleepycat',
     valueEnum: SPDXLicenseBuilderEnum.sleepycat,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6459,7 +6476,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SMLNJ',
     valueEnum: SPDXLicenseBuilderEnum.sMLNJ,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6472,7 +6489,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SMPPL',
     valueEnum: SPDXLicenseBuilderEnum.sMPPL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6485,7 +6502,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SNIA',
     valueEnum: SPDXLicenseBuilderEnum.sNIA,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6498,7 +6515,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Spencer-86',
     valueEnum: SPDXLicenseBuilderEnum.spencer86,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6511,7 +6528,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Spencer-94',
     valueEnum: SPDXLicenseBuilderEnum.spencer94,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6524,7 +6541,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Spencer-99',
     valueEnum: SPDXLicenseBuilderEnum.spencer99,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6537,7 +6554,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.spl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6550,7 +6567,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SugarCRM-1.1.3',
     valueEnum: SPDXLicenseBuilderEnum.sugarcrm113,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6563,7 +6580,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'SWL',
     valueEnum: SPDXLicenseBuilderEnum.sWL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6576,7 +6593,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'TCL',
     valueEnum: SPDXLicenseBuilderEnum.tCL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6589,7 +6606,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'TCP-wrappers',
     valueEnum: SPDXLicenseBuilderEnum.tcpWrappers,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6602,7 +6619,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'TMate',
     valueEnum: SPDXLicenseBuilderEnum.tMate,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6615,7 +6632,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'TORQUE-1.1',
     valueEnum: SPDXLicenseBuilderEnum.torque11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6628,7 +6645,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'TOSL',
     valueEnum: SPDXLicenseBuilderEnum.tOSL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6641,7 +6658,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Unicode-DFS-2015',
     valueEnum: SPDXLicenseBuilderEnum.unicodeDfs2015,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6654,7 +6671,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Unicode-DFS-2016',
     valueEnum: SPDXLicenseBuilderEnum.unicodeDfs2016,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6667,7 +6684,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Unicode-TOU',
     valueEnum: SPDXLicenseBuilderEnum.unicodeTou,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6680,7 +6697,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Unlicense',
     valueEnum: SPDXLicenseBuilderEnum.unlicense,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6693,7 +6710,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'UPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.upl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6706,7 +6723,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Vim',
     valueEnum: SPDXLicenseBuilderEnum.vim,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6719,7 +6736,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'VOSTROM',
     valueEnum: SPDXLicenseBuilderEnum.vOSTROM,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6732,7 +6749,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'VSL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.vsl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6745,7 +6762,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'W3C-19980720',
     valueEnum: SPDXLicenseBuilderEnum.w3c19980720,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6758,7 +6775,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'W3C-20150513',
     valueEnum: SPDXLicenseBuilderEnum.w3c20150513,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6771,7 +6788,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'W3C',
     valueEnum: SPDXLicenseBuilderEnum.w3C,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6784,7 +6801,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Watcom-1.0',
     valueEnum: SPDXLicenseBuilderEnum.watcom10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6797,7 +6814,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Wsuipa',
     valueEnum: SPDXLicenseBuilderEnum.wsuipa,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6810,7 +6827,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'WTFPL',
     valueEnum: SPDXLicenseBuilderEnum.wTFPL,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6823,7 +6840,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'X11',
     valueEnum: SPDXLicenseBuilderEnum.x11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6836,7 +6853,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Xerox',
     valueEnum: SPDXLicenseBuilderEnum.xerox,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6849,7 +6866,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'XFree86-1.1',
     valueEnum: SPDXLicenseBuilderEnum.xfree8611,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6862,7 +6879,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'xinetd',
     valueEnum: SPDXLicenseBuilderEnum.xinetd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6875,7 +6892,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Xnet',
     valueEnum: SPDXLicenseBuilderEnum.xnet,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6888,7 +6905,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'xpp',
     valueEnum: SPDXLicenseBuilderEnum.xpp,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6901,7 +6918,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'XSkat',
     valueEnum: SPDXLicenseBuilderEnum.xSkat,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6914,7 +6931,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'YPL-1.0',
     valueEnum: SPDXLicenseBuilderEnum.ypl10,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6927,7 +6944,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'YPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.ypl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6940,7 +6957,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Zed',
     valueEnum: SPDXLicenseBuilderEnum.zed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6953,7 +6970,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Zend-2.0',
     valueEnum: SPDXLicenseBuilderEnum.zend20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6966,7 +6983,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Zimbra-1.3',
     valueEnum: SPDXLicenseBuilderEnum.zimbra13,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6979,7 +6996,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Zimbra-1.4',
     valueEnum: SPDXLicenseBuilderEnum.zimbra14,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -6992,7 +7009,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'zlib-acknowledgement',
     valueEnum: SPDXLicenseBuilderEnum.zlibAcknowledgement,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -7005,7 +7022,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'Zlib',
     valueEnum: SPDXLicenseBuilderEnum.zlib,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -7018,7 +7035,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ZPL-1.1',
     valueEnum: SPDXLicenseBuilderEnum.zpl11,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -7031,7 +7048,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ZPL-2.0',
     valueEnum: SPDXLicenseBuilderEnum.zpl20,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -7044,7 +7061,7 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     valueString: 'ZPL-2.1',
     valueEnum: SPDXLicenseBuilderEnum.zpl21,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/spdx-license',
+      valueString: 'http://hl7.org/fhir/spdx-license',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -7414,6 +7431,10 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
   ) {
     return SPDXLicenseBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for DetectedIssueSeverity
@@ -92,12 +93,13 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
     final valueEnum = DetectedIssueSeverityBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return DetectedIssueSeverityBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -130,10 +132,26 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
         'DetectedIssueSeverityBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(DetectedIssueSeverityBuilderEnum.fromString(value));
     return DetectedIssueSeverityBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static DetectedIssueSeverityBuilder? _known(
+      DetectedIssueSeverityBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for DetectedIssueSeverityBuilder
@@ -144,7 +162,7 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
     valueString: 'high',
     valueEnum: DetectedIssueSeverityBuilderEnum.high,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+      valueString: 'http://hl7.org/fhir/detectedissue-severity',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -157,7 +175,7 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
     valueString: 'moderate',
     valueEnum: DetectedIssueSeverityBuilderEnum.moderate,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+      valueString: 'http://hl7.org/fhir/detectedissue-severity',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -170,7 +188,7 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
     valueString: 'low',
     valueEnum: DetectedIssueSeverityBuilderEnum.low,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+      valueString: 'http://hl7.org/fhir/detectedissue-severity',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -198,6 +216,10 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
   ) {
     return DetectedIssueSeverityBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

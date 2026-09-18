@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for TestScriptRequestMethodCode
@@ -119,12 +120,13 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = TestScriptRequestMethodCodeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return TestScriptRequestMethodCodeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -157,10 +159,27 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
         'TestScriptRequestMethodCodeBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(TestScriptRequestMethodCodeBuilderEnum.fromString(value));
     return TestScriptRequestMethodCodeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TestScriptRequestMethodCodeBuilder? _known(
+      TestScriptRequestMethodCodeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for TestScriptRequestMethodCodeBuilder
@@ -172,7 +191,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     valueString: 'delete',
     valueEnum: TestScriptRequestMethodCodeBuilderEnum.delete,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -186,7 +205,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     valueString: 'get',
     valueEnum: TestScriptRequestMethodCodeBuilderEnum.get_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -200,7 +219,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     valueString: 'options',
     valueEnum: TestScriptRequestMethodCodeBuilderEnum.options,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -214,7 +233,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     valueString: 'patch',
     valueEnum: TestScriptRequestMethodCodeBuilderEnum.patch,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -228,7 +247,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     valueString: 'post',
     valueEnum: TestScriptRequestMethodCodeBuilderEnum.post,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -242,7 +261,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     valueString: 'put',
     valueEnum: TestScriptRequestMethodCodeBuilderEnum.put,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -256,7 +275,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
     valueString: 'head',
     valueEnum: TestScriptRequestMethodCodeBuilderEnum.head,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -288,6 +307,10 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
   ) {
     return TestScriptRequestMethodCodeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

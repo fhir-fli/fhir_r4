@@ -91,12 +91,13 @@ class BindingStrength extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = BindingStrengthEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return BindingStrength._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -120,11 +121,25 @@ class BindingStrength extends FhirCodeEnum {
         'BindingStrength cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return BindingStrength._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static BindingStrength? _known(BindingStrengthEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for BindingStrength
@@ -135,7 +150,7 @@ class BindingStrength extends FhirCodeEnum {
     valueString: 'required',
     valueEnum: BindingStrengthEnum.required_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+      valueString: 'http://hl7.org/fhir/binding-strength',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -148,7 +163,7 @@ class BindingStrength extends FhirCodeEnum {
     valueString: 'extensible',
     valueEnum: BindingStrengthEnum.extensible,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+      valueString: 'http://hl7.org/fhir/binding-strength',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +176,7 @@ class BindingStrength extends FhirCodeEnum {
     valueString: 'preferred',
     valueEnum: BindingStrengthEnum.preferred,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+      valueString: 'http://hl7.org/fhir/binding-strength',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,7 @@ class BindingStrength extends FhirCodeEnum {
     valueString: 'example',
     valueEnum: BindingStrengthEnum.example,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+      valueString: 'http://hl7.org/fhir/binding-strength',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,6 +209,10 @@ class BindingStrength extends FhirCodeEnum {
   BindingStrength withElement(Element? newElement) {
     return BindingStrength._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

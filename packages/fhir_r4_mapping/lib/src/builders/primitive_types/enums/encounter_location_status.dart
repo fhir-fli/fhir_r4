@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for EncounterLocationStatus
@@ -98,12 +99,13 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = EncounterLocationStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return EncounterLocationStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,26 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
         'EncounterLocationStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(EncounterLocationStatusBuilderEnum.fromString(value));
     return EncounterLocationStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static EncounterLocationStatusBuilder? _known(
+      EncounterLocationStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for EncounterLocationStatusBuilder
@@ -151,7 +169,7 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'planned',
     valueEnum: EncounterLocationStatusBuilderEnum.planned,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+      valueString: 'http://hl7.org/fhir/encounter-location-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -165,7 +183,7 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: EncounterLocationStatusBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+      valueString: 'http://hl7.org/fhir/encounter-location-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -179,7 +197,7 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'reserved',
     valueEnum: EncounterLocationStatusBuilderEnum.reserved,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+      valueString: 'http://hl7.org/fhir/encounter-location-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -193,7 +211,7 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'completed',
     valueEnum: EncounterLocationStatusBuilderEnum.completed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/encounter-location-status',
+      valueString: 'http://hl7.org/fhir/encounter-location-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -222,6 +240,10 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return EncounterLocationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

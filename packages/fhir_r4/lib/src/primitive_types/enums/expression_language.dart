@@ -97,12 +97,13 @@ class ExpressionLanguage extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ExpressionLanguageEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ExpressionLanguage._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,25 @@ class ExpressionLanguage extends FhirCodeEnum {
         'ExpressionLanguage cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ExpressionLanguage._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ExpressionLanguage? _known(ExpressionLanguageEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ExpressionLanguage
@@ -141,7 +156,7 @@ class ExpressionLanguage extends FhirCodeEnum {
     valueString: 'text/cql',
     valueEnum: ExpressionLanguageEnum.textCql,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+      valueString: 'http://hl7.org/fhir/expression-language',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class ExpressionLanguage extends FhirCodeEnum {
     valueString: 'text/fhirpath',
     valueEnum: ExpressionLanguageEnum.textFhirpath,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+      valueString: 'http://hl7.org/fhir/expression-language',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +182,7 @@ class ExpressionLanguage extends FhirCodeEnum {
     valueString: 'application/x-fhir-query',
     valueEnum: ExpressionLanguageEnum.applicationXFhirQuery,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+      valueString: 'http://hl7.org/fhir/expression-language',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +195,7 @@ class ExpressionLanguage extends FhirCodeEnum {
     valueString: 'text/cql-identifier',
     valueEnum: ExpressionLanguageEnum.textCqlIdentifier,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+      valueString: 'http://hl7.org/fhir/expression-language',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +208,7 @@ class ExpressionLanguage extends FhirCodeEnum {
     valueString: 'text/cql-expression',
     valueEnum: ExpressionLanguageEnum.textCqlExpression,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/expression-language',
+      valueString: 'http://hl7.org/fhir/expression-language',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +229,10 @@ class ExpressionLanguage extends FhirCodeEnum {
   ExpressionLanguage withElement(Element? newElement) {
     return ExpressionLanguage._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

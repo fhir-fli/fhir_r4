@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ActionParticipantType
@@ -98,12 +99,13 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ActionParticipantTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ActionParticipantTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,26 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
         'ActionParticipantTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ActionParticipantTypeBuilderEnum.fromString(value));
     return ActionParticipantTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionParticipantTypeBuilder? _known(
+      ActionParticipantTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ActionParticipantTypeBuilder
@@ -150,7 +168,7 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'patient',
     valueEnum: ActionParticipantTypeBuilderEnum.patient,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+      valueString: 'http://hl7.org/fhir/action-participant-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -164,7 +182,7 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'practitioner',
     valueEnum: ActionParticipantTypeBuilderEnum.practitioner,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+      valueString: 'http://hl7.org/fhir/action-participant-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -178,7 +196,7 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'related-person',
     valueEnum: ActionParticipantTypeBuilderEnum.relatedPerson,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+      valueString: 'http://hl7.org/fhir/action-participant-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -191,7 +209,7 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'device',
     valueEnum: ActionParticipantTypeBuilderEnum.device,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-participant-type',
+      valueString: 'http://hl7.org/fhir/action-participant-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -220,6 +238,10 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return ActionParticipantTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

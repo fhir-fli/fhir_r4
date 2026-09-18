@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ActionRelationshipType
@@ -133,12 +134,13 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ActionRelationshipTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ActionRelationshipTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -171,10 +173,26 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
         'ActionRelationshipTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ActionRelationshipTypeBuilderEnum.fromString(value));
     return ActionRelationshipTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionRelationshipTypeBuilder? _known(
+      ActionRelationshipTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ActionRelationshipTypeBuilder
@@ -186,7 +204,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'before-start',
     valueEnum: ActionRelationshipTypeBuilderEnum.beforeStart,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -199,7 +217,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'before',
     valueEnum: ActionRelationshipTypeBuilderEnum.before,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -213,7 +231,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'before-end',
     valueEnum: ActionRelationshipTypeBuilderEnum.beforeEnd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -227,7 +245,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'concurrent-with-start',
     valueEnum: ActionRelationshipTypeBuilderEnum.concurrentWithStart,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -241,7 +259,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'concurrent',
     valueEnum: ActionRelationshipTypeBuilderEnum.concurrent,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -255,7 +273,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'concurrent-with-end',
     valueEnum: ActionRelationshipTypeBuilderEnum.concurrentWithEnd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -269,7 +287,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'after-start',
     valueEnum: ActionRelationshipTypeBuilderEnum.afterStart,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -282,7 +300,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'after',
     valueEnum: ActionRelationshipTypeBuilderEnum.after,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -296,7 +314,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'after-end',
     valueEnum: ActionRelationshipTypeBuilderEnum.afterEnd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-relationship-type',
+      valueString: 'http://hl7.org/fhir/action-relationship-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -330,6 +348,10 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return ActionRelationshipTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

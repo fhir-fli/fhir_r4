@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for DeviceMetricColor
@@ -126,12 +127,13 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     final valueEnum = DeviceMetricColorBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return DeviceMetricColorBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -164,10 +166,26 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
         'DeviceMetricColorBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(DeviceMetricColorBuilderEnum.fromString(value));
     return DeviceMetricColorBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static DeviceMetricColorBuilder? _known(
+      DeviceMetricColorBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for DeviceMetricColorBuilder
@@ -178,7 +196,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'black',
     valueEnum: DeviceMetricColorBuilderEnum.black,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -191,7 +209,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'red',
     valueEnum: DeviceMetricColorBuilderEnum.red,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -204,7 +222,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'green',
     valueEnum: DeviceMetricColorBuilderEnum.green,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -217,7 +235,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'yellow',
     valueEnum: DeviceMetricColorBuilderEnum.yellow,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -230,7 +248,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'blue',
     valueEnum: DeviceMetricColorBuilderEnum.blue,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -243,7 +261,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'magenta',
     valueEnum: DeviceMetricColorBuilderEnum.magenta,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -256,7 +274,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'cyan',
     valueEnum: DeviceMetricColorBuilderEnum.cyan,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -269,7 +287,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     valueString: 'white',
     valueEnum: DeviceMetricColorBuilderEnum.white,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-color',
+      valueString: 'http://hl7.org/fhir/metric-color',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -301,6 +319,10 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
   ) {
     return DeviceMetricColorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

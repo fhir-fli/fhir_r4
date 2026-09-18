@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for FHIRAllTypes
@@ -1534,12 +1535,13 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     final valueEnum = FHIRAllTypesBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return FHIRAllTypesBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -1572,10 +1574,25 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
         'FHIRAllTypesBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(FHIRAllTypesBuilderEnum.fromString(value));
     return FHIRAllTypesBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static FHIRAllTypesBuilder? _known(FHIRAllTypesBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for FHIRAllTypesBuilder
@@ -1586,7 +1603,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Address',
     valueEnum: FHIRAllTypesBuilderEnum.address,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1599,7 +1616,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Age',
     valueEnum: FHIRAllTypesBuilderEnum.age,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1612,7 +1629,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Annotation',
     valueEnum: FHIRAllTypesBuilderEnum.annotation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1625,7 +1642,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Attachment',
     valueEnum: FHIRAllTypesBuilderEnum.attachment,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1638,7 +1655,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'BackboneElement',
     valueEnum: FHIRAllTypesBuilderEnum.backboneElement,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1651,7 +1668,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CodeableConcept',
     valueEnum: FHIRAllTypesBuilderEnum.codeableConcept,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1664,7 +1681,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CodeableReference',
     valueEnum: FHIRAllTypesBuilderEnum.codeableReference,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1677,7 +1694,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Coding',
     valueEnum: FHIRAllTypesBuilderEnum.coding,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1690,7 +1707,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ContactDetail',
     valueEnum: FHIRAllTypesBuilderEnum.contactDetail,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1703,7 +1720,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ContactPoint',
     valueEnum: FHIRAllTypesBuilderEnum.contactPoint,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1716,7 +1733,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Contributor',
     valueEnum: FHIRAllTypesBuilderEnum.contributor,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1729,7 +1746,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Count',
     valueEnum: FHIRAllTypesBuilderEnum.count,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1742,7 +1759,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DataRequirement',
     valueEnum: FHIRAllTypesBuilderEnum.dataRequirement,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1755,7 +1772,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Distance',
     valueEnum: FHIRAllTypesBuilderEnum.distance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1768,7 +1785,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Dosage',
     valueEnum: FHIRAllTypesBuilderEnum.dosage,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1781,7 +1798,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Duration',
     valueEnum: FHIRAllTypesBuilderEnum.duration,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1794,7 +1811,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Element',
     valueEnum: FHIRAllTypesBuilderEnum.element_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1807,7 +1824,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ElementDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.elementDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1820,7 +1837,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Expression',
     valueEnum: FHIRAllTypesBuilderEnum.expression,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1833,7 +1850,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Extension',
     valueEnum: FHIRAllTypesBuilderEnum.extension,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1846,7 +1863,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'HumanName',
     valueEnum: FHIRAllTypesBuilderEnum.humanName,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1859,7 +1876,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Identifier',
     valueEnum: FHIRAllTypesBuilderEnum.identifier,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1872,7 +1889,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MarketingStatus',
     valueEnum: FHIRAllTypesBuilderEnum.marketingStatus,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1885,7 +1902,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Meta',
     valueEnum: FHIRAllTypesBuilderEnum.meta,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1898,7 +1915,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Money',
     valueEnum: FHIRAllTypesBuilderEnum.money,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1911,7 +1928,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MoneyQuantity',
     valueEnum: FHIRAllTypesBuilderEnum.moneyQuantity,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1924,7 +1941,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Narrative',
     valueEnum: FHIRAllTypesBuilderEnum.narrative,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1937,7 +1954,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ParameterDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.parameterDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1950,7 +1967,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Period',
     valueEnum: FHIRAllTypesBuilderEnum.period,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1963,7 +1980,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Population',
     valueEnum: FHIRAllTypesBuilderEnum.population,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1976,7 +1993,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ProdCharacteristic',
     valueEnum: FHIRAllTypesBuilderEnum.prodCharacteristic,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -1989,7 +2006,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ProductShelfLife',
     valueEnum: FHIRAllTypesBuilderEnum.productShelfLife,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2002,7 +2019,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Quantity',
     valueEnum: FHIRAllTypesBuilderEnum.quantity,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2015,7 +2032,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Range',
     valueEnum: FHIRAllTypesBuilderEnum.range,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2028,7 +2045,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Ratio',
     valueEnum: FHIRAllTypesBuilderEnum.ratio,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2041,7 +2058,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'RatioRange',
     valueEnum: FHIRAllTypesBuilderEnum.ratioRange,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2054,7 +2071,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Reference',
     valueEnum: FHIRAllTypesBuilderEnum.reference,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2067,7 +2084,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'RelatedArtifact',
     valueEnum: FHIRAllTypesBuilderEnum.relatedArtifact,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2080,7 +2097,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SampledData',
     valueEnum: FHIRAllTypesBuilderEnum.sampledData,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2093,7 +2110,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Signature',
     valueEnum: FHIRAllTypesBuilderEnum.signature,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2106,7 +2123,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SimpleQuantity',
     valueEnum: FHIRAllTypesBuilderEnum.simpleQuantity,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2119,7 +2136,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Timing',
     valueEnum: FHIRAllTypesBuilderEnum.timing,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2132,7 +2149,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'TriggerDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.triggerDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2145,7 +2162,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'UsageContext',
     valueEnum: FHIRAllTypesBuilderEnum.usageContext,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2158,7 +2175,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'base64Binary',
     valueEnum: FHIRAllTypesBuilderEnum.base64Binary,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2171,7 +2188,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'boolean',
     valueEnum: FHIRAllTypesBuilderEnum.boolean,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2184,7 +2201,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'canonical',
     valueEnum: FHIRAllTypesBuilderEnum.canonical,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2197,7 +2214,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'code',
     valueEnum: FHIRAllTypesBuilderEnum.code,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2210,7 +2227,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'date',
     valueEnum: FHIRAllTypesBuilderEnum.date,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2223,7 +2240,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'dateTime',
     valueEnum: FHIRAllTypesBuilderEnum.dateTime,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2236,7 +2253,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'decimal',
     valueEnum: FHIRAllTypesBuilderEnum.decimal,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2249,7 +2266,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'id',
     valueEnum: FHIRAllTypesBuilderEnum.id_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2262,7 +2279,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'instant',
     valueEnum: FHIRAllTypesBuilderEnum.instant,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2275,7 +2292,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'integer',
     valueEnum: FHIRAllTypesBuilderEnum.integer,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2288,7 +2305,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'markdown',
     valueEnum: FHIRAllTypesBuilderEnum.markdown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2301,7 +2318,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'oid',
     valueEnum: FHIRAllTypesBuilderEnum.oid,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2314,7 +2331,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'positiveInt',
     valueEnum: FHIRAllTypesBuilderEnum.positiveInt,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2327,7 +2344,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'string',
     valueEnum: FHIRAllTypesBuilderEnum.string,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2340,7 +2357,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'time',
     valueEnum: FHIRAllTypesBuilderEnum.time,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2353,7 +2370,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'unsignedInt',
     valueEnum: FHIRAllTypesBuilderEnum.unsignedInt,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2366,7 +2383,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'uri',
     valueEnum: FHIRAllTypesBuilderEnum.uri,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2379,7 +2396,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'url',
     valueEnum: FHIRAllTypesBuilderEnum.url,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2392,7 +2409,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'uuid',
     valueEnum: FHIRAllTypesBuilderEnum.uuid,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2405,7 +2422,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'xhtml',
     valueEnum: FHIRAllTypesBuilderEnum.xhtml,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/data-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2418,7 +2435,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Resource',
     valueEnum: FHIRAllTypesBuilderEnum.resource,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2431,7 +2448,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Binary',
     valueEnum: FHIRAllTypesBuilderEnum.binary,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2444,7 +2461,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Bundle',
     valueEnum: FHIRAllTypesBuilderEnum.bundle,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2457,7 +2474,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DomainResource',
     valueEnum: FHIRAllTypesBuilderEnum.domainResource,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2470,7 +2487,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Account',
     valueEnum: FHIRAllTypesBuilderEnum.account,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2483,7 +2500,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ActivityDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.activityDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2497,7 +2514,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'AdministrableProductDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.administrableProductDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2510,7 +2527,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'AdverseEvent',
     valueEnum: FHIRAllTypesBuilderEnum.adverseEvent,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2523,7 +2540,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'AllergyIntolerance',
     valueEnum: FHIRAllTypesBuilderEnum.allergyIntolerance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2536,7 +2553,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Appointment',
     valueEnum: FHIRAllTypesBuilderEnum.appointment,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2549,7 +2566,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'AppointmentResponse',
     valueEnum: FHIRAllTypesBuilderEnum.appointmentResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2562,7 +2579,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'AuditEvent',
     valueEnum: FHIRAllTypesBuilderEnum.auditEvent,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2575,7 +2592,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Basic',
     valueEnum: FHIRAllTypesBuilderEnum.basic,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2588,7 +2605,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'BiologicallyDerivedProduct',
     valueEnum: FHIRAllTypesBuilderEnum.biologicallyDerivedProduct,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2601,7 +2618,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'BodyStructure',
     valueEnum: FHIRAllTypesBuilderEnum.bodyStructure,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2614,7 +2631,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CapabilityStatement',
     valueEnum: FHIRAllTypesBuilderEnum.capabilityStatement,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2627,7 +2644,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CarePlan',
     valueEnum: FHIRAllTypesBuilderEnum.carePlan,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2640,7 +2657,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CareTeam',
     valueEnum: FHIRAllTypesBuilderEnum.careTeam,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2653,7 +2670,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CatalogEntry',
     valueEnum: FHIRAllTypesBuilderEnum.catalogEntry,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2666,7 +2683,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ChargeItem',
     valueEnum: FHIRAllTypesBuilderEnum.chargeItem,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2679,7 +2696,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ChargeItemDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.chargeItemDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2692,7 +2709,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Citation',
     valueEnum: FHIRAllTypesBuilderEnum.citation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2705,7 +2722,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Claim',
     valueEnum: FHIRAllTypesBuilderEnum.claim,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2718,7 +2735,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ClaimResponse',
     valueEnum: FHIRAllTypesBuilderEnum.claimResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2731,7 +2748,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ClinicalImpression',
     valueEnum: FHIRAllTypesBuilderEnum.clinicalImpression,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2744,7 +2761,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ClinicalUseDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.clinicalUseDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2757,7 +2774,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CodeSystem',
     valueEnum: FHIRAllTypesBuilderEnum.codeSystem,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2770,7 +2787,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Communication',
     valueEnum: FHIRAllTypesBuilderEnum.communication,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2783,7 +2800,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CommunicationRequest',
     valueEnum: FHIRAllTypesBuilderEnum.communicationRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2796,7 +2813,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CompartmentDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.compartmentDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2809,7 +2826,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Composition',
     valueEnum: FHIRAllTypesBuilderEnum.composition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2822,7 +2839,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ConceptMap',
     valueEnum: FHIRAllTypesBuilderEnum.conceptMap,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2835,7 +2852,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Condition',
     valueEnum: FHIRAllTypesBuilderEnum.condition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2848,7 +2865,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Consent',
     valueEnum: FHIRAllTypesBuilderEnum.consent,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2861,7 +2878,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Contract',
     valueEnum: FHIRAllTypesBuilderEnum.contract,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2874,7 +2891,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Coverage',
     valueEnum: FHIRAllTypesBuilderEnum.coverage,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2887,7 +2904,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CoverageEligibilityRequest',
     valueEnum: FHIRAllTypesBuilderEnum.coverageEligibilityRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2901,7 +2918,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'CoverageEligibilityResponse',
     valueEnum: FHIRAllTypesBuilderEnum.coverageEligibilityResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2914,7 +2931,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DetectedIssue',
     valueEnum: FHIRAllTypesBuilderEnum.detectedIssue,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2927,7 +2944,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Device',
     valueEnum: FHIRAllTypesBuilderEnum.device,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2940,7 +2957,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DeviceDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.deviceDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2953,7 +2970,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DeviceMetric',
     valueEnum: FHIRAllTypesBuilderEnum.deviceMetric,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2966,7 +2983,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DeviceRequest',
     valueEnum: FHIRAllTypesBuilderEnum.deviceRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2979,7 +2996,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DeviceUseStatement',
     valueEnum: FHIRAllTypesBuilderEnum.deviceUseStatement,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -2992,7 +3009,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DiagnosticReport',
     valueEnum: FHIRAllTypesBuilderEnum.diagnosticReport,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3005,7 +3022,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DocumentManifest',
     valueEnum: FHIRAllTypesBuilderEnum.documentManifest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3018,7 +3035,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'DocumentReference',
     valueEnum: FHIRAllTypesBuilderEnum.documentReference,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3031,7 +3048,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Encounter',
     valueEnum: FHIRAllTypesBuilderEnum.encounter,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3044,7 +3061,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Endpoint',
     valueEnum: FHIRAllTypesBuilderEnum.endpoint,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3057,7 +3074,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'EnrollmentRequest',
     valueEnum: FHIRAllTypesBuilderEnum.enrollmentRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3070,7 +3087,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'EnrollmentResponse',
     valueEnum: FHIRAllTypesBuilderEnum.enrollmentResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3083,7 +3100,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'EpisodeOfCare',
     valueEnum: FHIRAllTypesBuilderEnum.episodeOfCare,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3096,7 +3113,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'EventDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.eventDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3109,7 +3126,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Evidence',
     valueEnum: FHIRAllTypesBuilderEnum.evidence,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3122,7 +3139,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'EvidenceReport',
     valueEnum: FHIRAllTypesBuilderEnum.evidenceReport,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3135,7 +3152,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'EvidenceVariable',
     valueEnum: FHIRAllTypesBuilderEnum.evidenceVariable,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3148,7 +3165,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ExampleScenario',
     valueEnum: FHIRAllTypesBuilderEnum.exampleScenario,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3161,7 +3178,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ExplanationOfBenefit',
     valueEnum: FHIRAllTypesBuilderEnum.explanationOfBenefit,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3174,7 +3191,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'FamilyMemberHistory',
     valueEnum: FHIRAllTypesBuilderEnum.familyMemberHistory,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3187,7 +3204,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Flag',
     valueEnum: FHIRAllTypesBuilderEnum.flag,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3200,7 +3217,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Goal',
     valueEnum: FHIRAllTypesBuilderEnum.goal,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3213,7 +3230,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'GraphDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.graphDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3226,7 +3243,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Group',
     valueEnum: FHIRAllTypesBuilderEnum.group,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3239,7 +3256,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'GuidanceResponse',
     valueEnum: FHIRAllTypesBuilderEnum.guidanceResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3252,7 +3269,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'HealthcareService',
     valueEnum: FHIRAllTypesBuilderEnum.healthcareService,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3265,7 +3282,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ImagingStudy',
     valueEnum: FHIRAllTypesBuilderEnum.imagingStudy,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3278,7 +3295,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Immunization',
     valueEnum: FHIRAllTypesBuilderEnum.immunization,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3291,7 +3308,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ImmunizationEvaluation',
     valueEnum: FHIRAllTypesBuilderEnum.immunizationEvaluation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3304,7 +3321,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ImmunizationRecommendation',
     valueEnum: FHIRAllTypesBuilderEnum.immunizationRecommendation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3317,7 +3334,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ImplementationGuide',
     valueEnum: FHIRAllTypesBuilderEnum.implementationGuide,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3330,7 +3347,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Ingredient',
     valueEnum: FHIRAllTypesBuilderEnum.ingredient,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3343,7 +3360,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'InsurancePlan',
     valueEnum: FHIRAllTypesBuilderEnum.insurancePlan,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3356,7 +3373,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Invoice',
     valueEnum: FHIRAllTypesBuilderEnum.invoice,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3369,7 +3386,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Library',
     valueEnum: FHIRAllTypesBuilderEnum.library,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3382,7 +3399,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Linkage',
     valueEnum: FHIRAllTypesBuilderEnum.linkage,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3395,7 +3412,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'List',
     valueEnum: FHIRAllTypesBuilderEnum.list_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3408,7 +3425,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Location',
     valueEnum: FHIRAllTypesBuilderEnum.location,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3421,7 +3438,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ManufacturedItemDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.manufacturedItemDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3434,7 +3451,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Measure',
     valueEnum: FHIRAllTypesBuilderEnum.measure,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3447,7 +3464,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MeasureReport',
     valueEnum: FHIRAllTypesBuilderEnum.measureReport,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3460,7 +3477,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Media',
     valueEnum: FHIRAllTypesBuilderEnum.media,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3473,7 +3490,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Medication',
     valueEnum: FHIRAllTypesBuilderEnum.medication,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3486,7 +3503,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MedicationAdministration',
     valueEnum: FHIRAllTypesBuilderEnum.medicationAdministration,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3499,7 +3516,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MedicationDispense',
     valueEnum: FHIRAllTypesBuilderEnum.medicationDispense,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3512,7 +3529,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MedicationKnowledge',
     valueEnum: FHIRAllTypesBuilderEnum.medicationKnowledge,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3525,7 +3542,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MedicationRequest',
     valueEnum: FHIRAllTypesBuilderEnum.medicationRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3538,7 +3555,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MedicationStatement',
     valueEnum: FHIRAllTypesBuilderEnum.medicationStatement,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3551,7 +3568,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MedicinalProductDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.medicinalProductDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3564,7 +3581,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MessageDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.messageDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3577,7 +3594,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MessageHeader',
     valueEnum: FHIRAllTypesBuilderEnum.messageHeader,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3590,7 +3607,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'MolecularSequence',
     valueEnum: FHIRAllTypesBuilderEnum.molecularSequence,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3603,7 +3620,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'NamingSystem',
     valueEnum: FHIRAllTypesBuilderEnum.namingSystem,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3616,7 +3633,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'NutritionOrder',
     valueEnum: FHIRAllTypesBuilderEnum.nutritionOrder,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3629,7 +3646,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'NutritionProduct',
     valueEnum: FHIRAllTypesBuilderEnum.nutritionProduct,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3642,7 +3659,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Observation',
     valueEnum: FHIRAllTypesBuilderEnum.observation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3655,7 +3672,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ObservationDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.observationDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3668,7 +3685,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'OperationDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.operationDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3681,7 +3698,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'OperationOutcome',
     valueEnum: FHIRAllTypesBuilderEnum.operationOutcome,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3694,7 +3711,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Organization',
     valueEnum: FHIRAllTypesBuilderEnum.organization,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3707,7 +3724,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'OrganizationAffiliation',
     valueEnum: FHIRAllTypesBuilderEnum.organizationAffiliation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3720,7 +3737,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'PackagedProductDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.packagedProductDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3733,7 +3750,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Patient',
     valueEnum: FHIRAllTypesBuilderEnum.patient,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3746,7 +3763,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'PaymentNotice',
     valueEnum: FHIRAllTypesBuilderEnum.paymentNotice,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3759,7 +3776,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'PaymentReconciliation',
     valueEnum: FHIRAllTypesBuilderEnum.paymentReconciliation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3772,7 +3789,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Person',
     valueEnum: FHIRAllTypesBuilderEnum.person,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3785,7 +3802,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'PlanDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.planDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3798,7 +3815,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Practitioner',
     valueEnum: FHIRAllTypesBuilderEnum.practitioner,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3811,7 +3828,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'PractitionerRole',
     valueEnum: FHIRAllTypesBuilderEnum.practitionerRole,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3824,7 +3841,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Procedure',
     valueEnum: FHIRAllTypesBuilderEnum.procedure,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3837,7 +3854,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Provenance',
     valueEnum: FHIRAllTypesBuilderEnum.provenance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3850,7 +3867,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Questionnaire',
     valueEnum: FHIRAllTypesBuilderEnum.questionnaire,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3863,7 +3880,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'QuestionnaireResponse',
     valueEnum: FHIRAllTypesBuilderEnum.questionnaireResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3876,7 +3893,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'RegulatedAuthorization',
     valueEnum: FHIRAllTypesBuilderEnum.regulatedAuthorization,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3889,7 +3906,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'RelatedPerson',
     valueEnum: FHIRAllTypesBuilderEnum.relatedPerson,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3902,7 +3919,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'RequestGroup',
     valueEnum: FHIRAllTypesBuilderEnum.requestGroup,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3915,7 +3932,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ResearchDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.researchDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3928,7 +3945,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ResearchElementDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.researchElementDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3941,7 +3958,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ResearchStudy',
     valueEnum: FHIRAllTypesBuilderEnum.researchStudy,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3954,7 +3971,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ResearchSubject',
     valueEnum: FHIRAllTypesBuilderEnum.researchSubject,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3967,7 +3984,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'RiskAssessment',
     valueEnum: FHIRAllTypesBuilderEnum.riskAssessment,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3980,7 +3997,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Schedule',
     valueEnum: FHIRAllTypesBuilderEnum.schedule,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -3993,7 +4010,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SearchParameter',
     valueEnum: FHIRAllTypesBuilderEnum.searchParameter,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4006,7 +4023,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ServiceRequest',
     valueEnum: FHIRAllTypesBuilderEnum.serviceRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4019,7 +4036,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Slot',
     valueEnum: FHIRAllTypesBuilderEnum.slot,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4032,7 +4049,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Specimen',
     valueEnum: FHIRAllTypesBuilderEnum.specimen,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4045,7 +4062,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SpecimenDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.specimenDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4058,7 +4075,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'StructureDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.structureDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4071,7 +4088,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'StructureMap',
     valueEnum: FHIRAllTypesBuilderEnum.structureMap,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4084,7 +4101,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Subscription',
     valueEnum: FHIRAllTypesBuilderEnum.subscription,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4097,7 +4114,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SubscriptionStatus',
     valueEnum: FHIRAllTypesBuilderEnum.subscriptionStatus,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4110,7 +4127,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SubscriptionTopic',
     valueEnum: FHIRAllTypesBuilderEnum.subscriptionTopic,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4123,7 +4140,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Substance',
     valueEnum: FHIRAllTypesBuilderEnum.substance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4136,7 +4153,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SubstanceDefinition',
     valueEnum: FHIRAllTypesBuilderEnum.substanceDefinition,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4149,7 +4166,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SupplyDelivery',
     valueEnum: FHIRAllTypesBuilderEnum.supplyDelivery,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4162,7 +4179,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'SupplyRequest',
     valueEnum: FHIRAllTypesBuilderEnum.supplyRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4175,7 +4192,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Task',
     valueEnum: FHIRAllTypesBuilderEnum.task,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4188,7 +4205,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'TerminologyCapabilities',
     valueEnum: FHIRAllTypesBuilderEnum.terminologyCapabilities,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4201,7 +4218,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'TestReport',
     valueEnum: FHIRAllTypesBuilderEnum.testReport,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4214,7 +4231,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'TestScript',
     valueEnum: FHIRAllTypesBuilderEnum.testScript,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4227,7 +4244,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'ValueSet',
     valueEnum: FHIRAllTypesBuilderEnum.valueSet,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4240,7 +4257,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'VerificationResult',
     valueEnum: FHIRAllTypesBuilderEnum.verificationResult,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4253,7 +4270,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'VisionPrescription',
     valueEnum: FHIRAllTypesBuilderEnum.visionPrescription,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4266,7 +4283,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Parameters',
     valueEnum: FHIRAllTypesBuilderEnum.parameters,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4279,7 +4296,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Type',
     valueEnum: FHIRAllTypesBuilderEnum.type,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/abstract-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4292,7 +4309,7 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
     valueString: 'Any',
     valueEnum: FHIRAllTypesBuilderEnum.any,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+      valueString: 'http://hl7.org/fhir/abstract-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -4525,6 +4542,10 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
   ) {
     return FHIRAllTypesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -203,4 +203,77 @@ void main() {
       ],
     );
   });
+
+  // REVIEW-2026-09-17 Q8. A `code` element (`status`, `gender`) was indexed
+  // with no system, so `status=<system>|final`, `:in` and `:not-in` never
+  // matched it (fix_q8/00_probe.log: token_system null). R4B search.html
+  // 3.1.1.4.10, the token data type table, read whole 2026-09-17: for
+  // `code` the URI column is "(implicit)" and the comment "the system is
+  // defined in the value set (though it's not usually needed)". The
+  // generated enum now carries its CodeSystem, so the index does.
+  group('a code element carries its implicit system', () {
+    setUp(() async {
+      await observation('o1', 'http://loinc.org', '8867-4');
+      await save({
+        'resourceType': 'ValueSet',
+        'id': 'final-only',
+        'url': 'http://example.org/vs/final-only',
+        'status': 'active',
+        'compose': {
+          'include': [
+            {
+              'system': 'http://hl7.org/fhir/observation-status',
+              'concept': [
+                {'code': 'final'},
+              ],
+            },
+          ],
+        },
+      });
+    });
+
+    Future<List<String>> statusIds(Map<String, List<String>> p) async =>
+        (await dao.search(
+          resourceType: fhir.R4ResourceType.Observation,
+          searchParameters: p,
+        ))
+            .map((r) => r.id!.valueString!)
+            .toList();
+
+    test('system|code matches, and the wrong system does not', () async {
+      expect(
+        await statusIds({
+          'status': ['http://hl7.org/fhir/observation-status|final'],
+        }),
+        ['o1'],
+      );
+      expect(
+        await statusIds({
+          'status': ['http://example.org/other|final'],
+        }),
+        isEmpty,
+      );
+      expect(
+        await statusIds({
+          'status': ['final'],
+        }),
+        ['o1'],
+      );
+    });
+
+    test(':in and :not-in match it', () async {
+      expect(
+        await statusIds({
+          'status:in': ['http://example.org/vs/final-only'],
+        }),
+        ['o1'],
+      );
+      expect(
+        await statusIds({
+          'status:not-in': ['http://example.org/vs/final-only'],
+        }),
+        isEmpty,
+      );
+    });
+  });
 }

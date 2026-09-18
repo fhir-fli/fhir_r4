@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for NarrativeStatus
@@ -98,12 +99,13 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = NarrativeStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return NarrativeStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,25 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
         'NarrativeStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(NarrativeStatusBuilderEnum.fromString(value));
     return NarrativeStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static NarrativeStatusBuilder? _known(NarrativeStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for NarrativeStatusBuilder
@@ -150,7 +167,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'generated',
     valueEnum: NarrativeStatusBuilderEnum.generated,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+      valueString: 'http://hl7.org/fhir/narrative-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -163,7 +180,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'extensions',
     valueEnum: NarrativeStatusBuilderEnum.extensions,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+      valueString: 'http://hl7.org/fhir/narrative-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,7 +193,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'additional',
     valueEnum: NarrativeStatusBuilderEnum.additional,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+      valueString: 'http://hl7.org/fhir/narrative-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -189,7 +206,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'empty',
     valueEnum: NarrativeStatusBuilderEnum.empty_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/narrative-status',
+      valueString: 'http://hl7.org/fhir/narrative-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -217,6 +234,10 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return NarrativeStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }
