@@ -129,6 +129,39 @@ Future<void> main() async {
     expect(found, isNot(contains('o-none')));
   });
 
+  test(
+      'an absolute reference to a same-named patient on another server is '
+      'out once the base is known', () async {
+    // fhirant REVIEW-2026-09-17 A16: membership matched type and id alone,
+    // while the reference search and _include already applied the base.
+    await dao.saveResource(
+      Observation.fromJson(
+        observation(
+          'o-abs-other',
+          subject: 'http://other.example.org/fhir/Patient/p1',
+        ),
+      ),
+    );
+    await dao.saveResource(
+      Observation.fromJson(
+        observation(
+          'o-abs-ours',
+          subject: 'http://this.example.org/fhir/Patient/p1',
+        ),
+      ),
+    );
+    // With no base configured the store cannot tell, and admits both (the
+    // reference search does the same).
+    var found = await ids(R4ResourceType.Observation);
+    expect(found, containsAll(['o-abs-other', 'o-abs-ours']));
+
+    dao.serverBaseUrl = 'http://this.example.org/fhir';
+    found = await ids(R4ResourceType.Observation);
+    expect(found, isNot(contains('o-abs-other')));
+    expect(found, contains('o-abs-ours'));
+    expect(found, contains('o-subject'), reason: 'relative references stay');
+  });
+
   test('the compartment ANDs with the query', () async {
     expect(
       await ids(
