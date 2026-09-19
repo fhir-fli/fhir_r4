@@ -177,6 +177,27 @@ Future<void> main() async {
       );
     });
 
+    // fhirant REVIEW-2026-09-17 Q3. R4B 3.1.1.4.4, section read whole
+    // 2026-09-18: "For string: :exact ... or :contains"; "For reference:
+    // :[type] where [type] is the name of a type of resource, :identifier,
+    // and, for some parameters, :above and :below". `:text` is a token
+    // modifier, and `type` is a placeholder, not a modifier. Both were in
+    // the allowed table: `name:text=tex` answered as a starts-with match
+    // and `subject:type=Patient` answered nothing.
+    test(':text on a string parameter is refused', () async {
+      await expectLater(
+        ids(R4ResourceType.Patient, 'name:text', 'Faulk'),
+        throwsA(isA<UnsupportedSearchModifier>()),
+      );
+    });
+
+    test('the literal word "type" is not a reference modifier', () async {
+      await expectLater(
+        ids(R4ResourceType.Observation, 'subject:type', 'Patient'),
+        throwsA(isA<UnsupportedSearchModifier>()),
+      );
+    });
+
     test('an unknown PARAMETER is not rejected on this basis', () async {
       // Nothing is known about it, so its modifier cannot be judged, and
       // refusing would reject searches a deployment does support.
