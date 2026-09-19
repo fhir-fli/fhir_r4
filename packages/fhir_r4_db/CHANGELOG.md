@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- **`subject:identifier=|42` matches only a system-less identifier** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q5): the leading-pipe token form; it was read as a bare value. Two tests in `test/search_syntax_test.dart`.
 - **`:missing=maybe` is refused** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q4): the value is `true` or `false`, case-insensitive; anything else is `InvalidSearchValue` instead of being read as false. `test/search_syntax_test.dart`.
 - **`name:text` and `subject:type` are refused** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q3): R4B 3.1.1.4.4 gives string only `:exact` and `:contains`, and `:[type]` is a placeholder for a resource type. Both were answered silently as something else. `test/search_syntax_test.dart`.
 - **Uploaded `SearchParameter` resources are indexed** (fhir_db 0.14.0): `R4BModel.createFhirPathEngine` supplies the binding's FHIRPath engine, so a stored `SearchParameter` with `status: active` indexes every later save of its base types by its expression, `rebuildSearchIndex()` indexes what was stored before it, and a definition the store cannot index by is refused with `InvalidSearchParameter`. Depends on `fhir_r4_path` and `fhir_path` 0.14.2 (`resolve()` on a literal reference). `test/custom_search_parameter_test.dart`, with US Core's published `race` parameter.

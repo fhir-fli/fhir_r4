@@ -392,6 +392,22 @@ Future<void> main() async {
           },
         }),
       );
+      // The same identifier value with NO system, for the `|12345` form.
+      await dao.saveResource(
+        Observation.fromJson({
+          'resourceType': 'Observation',
+          'id': 'obs-ref-nosystem',
+          'status': 'final',
+          'code': {
+            'coding': [
+              {'system': 'http://loinc.org', 'code': '1975-2'},
+            ],
+          },
+          'subject': {
+            'identifier': {'value': '12345'},
+          },
+        }),
+      );
       await dao.saveResource(
         ValueSet.fromJson({
           'resourceType': 'ValueSet',
@@ -436,6 +452,26 @@ Future<void> main() async {
           'http://example.org/mrn|12345',
         ),
         equals(['obs-ref']),
+      );
+    });
+
+    // fhirant REVIEW-2026-09-17 Q5. R4B 3.1.1.4.12: with :identifier "the
+    // search value works as a token search", and 3.1.1.4.10 (read whole)
+    // gives the token forms: "[parameter]=[code]" under any system,
+    // "[parameter]=|[code]" where the Identifier "has no system property".
+    // The leading pipe was read as a bare code, so `|12345` matched both.
+    test(':identifier=|value matches only an identifier with no system',
+        () async {
+      expect(
+        await ids(R4ResourceType.Observation, 'subject:identifier', '|12345'),
+        equals(['obs-ref-nosystem']),
+      );
+    });
+
+    test(':identifier=value matches under any system', () async {
+      expect(
+        await ids(R4ResourceType.Observation, 'subject:identifier', '12345'),
+        equals(['obs-ref', 'obs-ref-nosystem']),
       );
     });
 
