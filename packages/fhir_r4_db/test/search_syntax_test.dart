@@ -177,6 +177,24 @@ Future<void> main() async {
       );
     });
 
+    // fhirant REVIEW-2026-09-17 Q4. R4B 3.1.1.4.4, read whole 2026-09-18:
+    // ":missing; e.g. gender:missing=true (or false)". `maybe` was read as
+    // false and answered "present".
+    test(':missing takes true or false and nothing else', () async {
+      await expectLater(
+        ids(R4ResourceType.Patient, 'family:missing', 'maybe'),
+        throwsA(isA<InvalidSearchValue>()),
+      );
+      // An EMPTY value (`family:missing=`) is dropped with every other empty
+      // value before a modifier is read, and search.html says nothing about
+      // it (scanned 2026-09-18); that is not this test's subject.
+      expect(
+        await ids(R4ResourceType.Patient, 'family:missing', 'FALSE'),
+        isNotEmpty,
+        reason: 'the value is a boolean, and case does not change it',
+      );
+    });
+
     // fhirant REVIEW-2026-09-17 Q3. R4B 3.1.1.4.4, section read whole
     // 2026-09-18: "For string: :exact ... or :contains"; "For reference:
     // :[type] where [type] is the name of a type of resource, :identifier,
