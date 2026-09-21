@@ -1650,10 +1650,13 @@ Future<void> main() async {
     // component-value-quantity is the quantity parameter over the component.
     const key = 'component-value-quantity';
     // The stored values are decimals written as integers (`25`), whose
-    // range is [24.5, 25.5). R4B 3.1.1.4.5 gt: "the range above the search
-    // value intersects (i.e. overlaps) with the range of the target value",
-    // and [24.5, 25.5) reaches above 25, so o25 matches gt25. (A stored
-    // INTEGER 25 would not; see the number test below.)
+    // range is [24.5, 25.5). R4B search.html 3.1.1.4.5, read whole
+    // 2026-09-19, verbatim: gt is "the range above the search value
+    // intersects (i.e. overlaps) with the range of the target value". The
+    // range above the search value `25` starts where its own range ends,
+    // at 25.5, so o25 does NOT match gt25. This file read that sentence
+    // the other way until 2026-09-21; HAPI 8.13.9 and Firely Server 6.9.1
+    // both answer this way, and so does this store's date path.
     expect(
       await ids(
         {
@@ -1661,7 +1664,7 @@ Future<void> main() async {
         },
         count: 3,
       ),
-      ['o25', 'o26', 'o27'],
+      ['o26', 'o27', 'o28'],
     );
     expect(
       await ids(
@@ -1671,7 +1674,7 @@ Future<void> main() async {
         count: 3,
         offset: 3,
       ),
-      ['o28', 'o29'],
+      ['o29'],
     );
     // A unit that no row carries matches nothing, so the system|code clauses
     // are part of the WHERE and not dropped.
@@ -1749,9 +1752,11 @@ Future<void> main() async {
       ),
       ['r3'],
     );
-    // 0.2 is stored as [0.15, 0.25), which has values below 0.2, so it
-    // matches lt0.2 (3.1.1.4.5 lt: "the range below the search value
-    // intersects with the range of the target value").
+    // lt0.2 is the range below the search value's own range [0.15, 0.25),
+    // that is everything under 0.15, so the row stored 0.2 does not match:
+    // r0 (0) and r1 (0.1, stored [0.05, 0.15)) do. R4B search.html
+    // 3.1.1.4.5, read whole 2026-09-19, verbatim: lt is "the range below
+    // the search value intersects with the range of the target value".
     expect(
       await riskIds(
         {
@@ -1760,7 +1765,7 @@ Future<void> main() async {
         },
         count: 5,
       ),
-      ['r0', 'r1', 'r2'],
+      ['r0', 'r1'],
     );
   });
 
@@ -1818,9 +1823,10 @@ Future<void> main() async {
     // 0.25 is [0.245, 0.255), which overlaps [0.15, 0.25), so not sa0.2.
     expect(await both('sa0.2'), ['n30', 'n31', 'n34', 'n35']);
     expect(await both('eb0.3'), ['n24']);
-    // gt ignores the search value's precision; the stored ranges count:
-    // 0.3 is [0.295, 0.305) and reaches above 0.3.
-    expect(await both('gt0.3'), ['n30', 'n31', 'n34', 'n35']);
+    // gt is the range above the search value's own range: `0.3` is
+    // [0.25, 0.35), so only a row reaching above 0.35 matches, which is
+    // n35 ([0.345, 0.355)). n30, n31 and n34 end at or below 0.35.
+    expect(await both('gt0.3'), ['n35']);
     // ap: [0.25, 0.35) widened by 10% of 0.3 each side, overlap with
     // [0.22, 0.38).
     expect(await both('ap0.3'), ['n24', 'n25', 'n30', 'n31', 'n34', 'n35']);

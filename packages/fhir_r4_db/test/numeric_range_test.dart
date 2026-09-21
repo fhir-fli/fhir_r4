@@ -58,9 +58,21 @@ void main() {
     return hits.map((r) => r.id!.valueString!).toList()..sort();
   }
 
-  /// The ids the predicate of before schema 11 selects: the OR over both
-  /// bounds with their NULL alternatives, as `_numericPrefixCondition`
-  /// wrote it, run as SQL over the same table.
+  /// The ids each prefix selects, as SQL over the same table.
+  ///
+  /// `gt` and `lt` compare against the SEARCH VALUE'S RANGE (R4B
+  /// 3.1.1.4.5, verbatim: "the range above the search value intersects
+  /// (i.e. overlaps) with the range of the target value"), so the range
+  /// above `100`, that is [99.5, 100.5), starts at 100.5 and does not
+  /// reach a stored 100. This oracle read the other way until 2026-09-21,
+  /// copied from the pre-schema-11 predicate, so it defended that reading
+  /// rather than checking it; HAPI 8.13.9 and Firely Server 6.9.1 both
+  /// answer this way, and so does this file's date path.
+  ///
+  /// `ge` and `le` keep the implementation's own value-based form and are
+  /// NOT checked against the specification here: for a stored RANGE the
+  /// spec's containment clause may be stricter, which no reference server
+  /// was asked about. Unverified.
   Future<List<String>> old(String prefix, String written) async {
     final (:low, :high) = implicitRange(written)!;
     final value = double.parse(written);
@@ -68,14 +80,17 @@ void main() {
     const h = 'quantity_high';
     final contained = '($l IS NOT NULL AND $h IS NOT NULL AND $l >= $low '
         'AND $l < $high AND $h <= $high)';
-    final above = '($h IS NULL OR $h > $value OR ($l = $h AND $l > $value))';
-    final below = '($l IS NULL OR $l < $value)';
+    final above = '($h IS NULL OR $h > $high)';
+    final below = '($l IS NULL OR $l < $low)';
+    final aboveValue =
+        '($h IS NULL OR $h > $value OR ($l = $h AND $l > $value))';
+    final belowValue = '($l IS NULL OR $l < $value)';
     final approximation = value.abs() * 0.1;
     final where = switch (prefix) {
       'gt' => above,
       'lt' => below,
-      'ge' => '($above OR ($l IS NOT NULL AND $l >= $value))',
-      'le' => '($below OR ($h IS NOT NULL AND $h <= $value))',
+      'ge' => '($aboveValue OR ($l IS NOT NULL AND $l >= $value))',
+      'le' => '($belowValue OR ($h IS NOT NULL AND $h <= $value))',
       'sa' => '($l IS NOT NULL AND $l >= $high)',
       'eb' => '($h IS NOT NULL AND $h <= $low)',
       'ne' => 'NOT $contained',
@@ -196,8 +211,8 @@ void main() {
 
 /// The SQL `_numericPrefixCondition` writes for [prefix] at 100.
 String _sql(String prefix) => switch (prefix) {
-      'gt' => 'quantity_high > 100',
-      'lt' => 'quantity_low < 100',
+      'gt' => 'quantity_high > 100.5',
+      'lt' => 'quantity_low < 99.5',
       'ge' => 'quantity_high >= 100 AND '
           '(quantity_high > 100 OR quantity_low >= 100)',
       'le' => 'quantity_low <= 100 AND '
