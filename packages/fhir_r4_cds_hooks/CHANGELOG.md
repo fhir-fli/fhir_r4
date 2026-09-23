@@ -1,5 +1,14 @@
 # fhir_r4_cds_hooks
 
+## [Unreleased]
+
+- The CDS Hooks code now lives in `fhir_cds_hooks` 0.13.0, which serves every
+  FHIR version and carries resources as JSON. This package re-exports it and
+  adds R4B-typed views: `prefetchResources`, `typedResource`, and
+  `draftOrdersBundle`-style getters on the hook contexts. `CdsRequest.prefetch`,
+  `CdsAction.resource` and the contexts' bundle fields are `Map<String, dynamic>`
+  (were `Resource`/`Bundle`); pass `resource.toJson()` in.
+
 ## [0.12.0]
 
 - No code changes; version aligned with the fhir_r4 0.12.0 family release
