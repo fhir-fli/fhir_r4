@@ -74,7 +74,7 @@ void main() {
             'Token error',
             details: 'Validation failed',
           );
-        } catch (e, stackTrace) {
+        } on TokenException catch (e, stackTrace) {
           final stackString = stackTrace.toString();
 
           // Stack trace should not contain token values
@@ -234,36 +234,43 @@ void main() {
         final stateManager = StateManager();
         final state = stateManager.generateState();
 
-        try {
-          stateManager.validateStateOrThrow('wrong_state');
-        } catch (e) {
-          final errorMessage = e.toString();
-
-          // Should indicate state mismatch
-          expect(errorMessage, contains('state'));
-
-          // Should not contain actual state values
-          expect(errorMessage, isNot(contains(state)));
-          expect(errorMessage, isNot(contains('wrong_state')));
-        }
+        expect(
+          () => stateManager.validateStateOrThrow('wrong_state'),
+          throwsA(
+            isA<Exception>().having(
+              (e) => e.toString(),
+              'message',
+              allOf(
+                // Should indicate state mismatch
+                contains('state'),
+                // Should not contain actual state values
+                isNot(contains(state)),
+                isNot(contains('wrong_state')),
+              ),
+            ),
+          ),
+        );
       });
 
       test('JWT validation errors do not log token content', () {
         const jwt = 'header.payload.signature';
 
-        try {
-          JwtValidator.decodeWithoutValidation(jwt);
-          fail('Should have thrown an exception');
-        } catch (e) {
-          final errorMessage = e.toString();
-
-          // Error should describe the problem
-          expect(errorMessage, isNotEmpty);
-
-          // Should not contain the actual JWT parts
-          expect(errorMessage, isNot(contains('header.payload.signature')));
-          expect(errorMessage, isNot(contains('signature')));
-        }
+        expect(
+          () => JwtValidator.decodeWithoutValidation(jwt),
+          throwsA(
+            isA<Exception>().having(
+              (e) => e.toString(),
+              'message',
+              allOf(
+                // Error should describe the problem
+                isNotEmpty,
+                // Should not contain the actual JWT parts
+                isNot(contains('header.payload.signature')),
+                isNot(contains('signature')),
+              ),
+            ),
+          ),
+        );
       });
     });
 

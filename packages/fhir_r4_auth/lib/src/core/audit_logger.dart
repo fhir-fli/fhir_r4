@@ -354,7 +354,7 @@ class AuditLogger {
         '[AUDIT] ${event.eventType.name}: ${event.message}',
         event,
       );
-    } catch (e, stackTrace) {
+    } on Exception catch (e, stackTrace) {
       _logger.severe('Failed to log audit event', e, stackTrace);
     }
   }

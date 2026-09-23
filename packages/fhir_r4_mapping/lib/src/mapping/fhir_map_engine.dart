@@ -161,10 +161,10 @@ class FhirMapEngine {
               'An element the type requires is missing from that list.',
         );
       }
-    } catch (e, s) {
-      return e is FHIRException
-          ? _createOutcome(e.message ?? e.toString(), s.toString())
-          : _createOutcome(e.toString(), s.toString());
+    } on FHIRException catch (e, s) {
+      return _createOutcome(e.message ?? e.toString(), s.toString());
+    } on Exception catch (e, s) {
+      return _createOutcome(e.toString(), s.toString());
     }
   }
 
@@ -1937,13 +1937,11 @@ class FhirMapEngine {
     try {
       final intValue = int.parse(value);
       return intValue.toFhirIntegerBuilder;
-    } catch (e) {
-      final errorMessage = e is FormatException
-          ? "Rule '$ruleId': Failed to cast '$value' to type "
-              "'$targetType'. Invalid number format."
-          : "Rule '$ruleId': Failed to cast '$value' to type "
-              "'$targetType'. $e";
-      throw FHIRMappingCastException(message: errorMessage);
+    } on FormatException catch (_) {
+      throw FHIRMappingCastException(
+        message: "Rule '$ruleId': Failed to cast '$value' to type "
+            "'$targetType'. Invalid number format.",
+      );
     }
   }
 }

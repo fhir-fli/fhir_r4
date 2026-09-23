@@ -76,13 +76,13 @@ abstract class FhirAuthClient extends http.BaseClient {
         try {
           await refreshToken();
           return true;
-        } catch (e) {
+        } on Exception catch (e) {
           logger.warning('Token refresh failed during auth check', e);
         }
       }
 
       return false;
-    } catch (e) {
+    } on Exception catch (e) {
       logger.severe('Error checking authentication', e);
       return false;
     }
@@ -156,7 +156,7 @@ abstract class FhirAuthClient extends http.BaseClient {
     if (_currentTokens!.isExpired) {
       try {
         await refreshToken();
-      } catch (e) {
+      } on Exception catch (e) {
         logger.warning('Failed to refresh expired token', e);
         return null;
       }
@@ -218,7 +218,7 @@ abstract class FhirAuthClient extends http.BaseClient {
         }
 
         response = await innerClient.send(retryRequest);
-      } catch (e) {
+      } on Exception catch (e) {
         logger.warning('Token refresh failed on 401', e);
       }
     }

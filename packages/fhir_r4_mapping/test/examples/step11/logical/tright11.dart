@@ -334,15 +334,11 @@ class TRight11eBuilder extends BackboneElementBuilder {
             return;
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert from one primitive type to another
-            try {
-              final stringValue = child.toString();
-              final converted = FhirStringBuilder.tryParse(stringValue);
-              if (converted != null) {
-                id = converted;
-                return;
-              }
-            } catch (e) {
-              // Continue if conversion fails
+            final stringValue = child.toString();
+            final converted = FhirStringBuilder.tryParse(stringValue);
+            if (converted != null) {
+              id = converted;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
@@ -380,15 +376,11 @@ class TRight11eBuilder extends BackboneElementBuilder {
             return;
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert from one primitive type to another
-            try {
-              final stringValue = child.toString();
-              final converted = FhirStringBuilder.tryParse(stringValue);
-              if (converted != null) {
-                f = converted;
-                return;
-              }
-            } catch (e) {
-              // Continue if conversion fails
+            final stringValue = child.toString();
+            final converted = FhirStringBuilder.tryParse(stringValue);
+            if (converted != null) {
+              f = converted;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
@@ -400,15 +392,11 @@ class TRight11eBuilder extends BackboneElementBuilder {
             return;
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert from one primitive type to another
-            try {
-              final stringValue = child.toString();
-              final converted = FhirCodeBuilder.tryParse(stringValue);
-              if (converted != null) {
-                g = converted;
-                return;
-              }
-            } catch (e) {
-              // Continue if conversion fails
+            final stringValue = child.toString();
+            final converted = FhirCodeBuilder.tryParse(stringValue);
+            if (converted != null) {
+              g = converted;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
@@ -668,15 +656,11 @@ class TRight11Builder extends ElementBuilder {
             return;
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert from one primitive type to another
-            try {
-              final stringValue = child.toString();
-              final converted = FhirStringBuilder.tryParse(stringValue);
-              if (converted != null) {
-                id = converted;
-                return;
-              }
-            } catch (e) {
-              // Continue if conversion fails
+            final stringValue = child.toString();
+            final converted = FhirStringBuilder.tryParse(stringValue);
+            if (converted != null) {
+              id = converted;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');

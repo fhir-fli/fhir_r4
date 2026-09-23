@@ -124,7 +124,7 @@ void _testPatientStandaloneLaunch() {
         if (tokens?.refreshToken != null) {
           await IntegrationTestHelpers.verifyTokenRefresh(client);
         }
-      } catch (e) {
+      } on Exception catch (e) {
         // Log error but don't fail if it's a network/credential issue
         log(
           'Epic patient standalone launch test failed: $e',

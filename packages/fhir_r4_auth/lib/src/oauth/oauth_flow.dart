@@ -516,7 +516,7 @@ class OAuthFlow {
           'Token revocation may have failed: ${response.statusCode}',
         );
       }
-    } catch (e) {
+    } on Exception catch (e) {
       // Revocation failure is not critical
       _logger.warning('Token revocation failed', e);
     }

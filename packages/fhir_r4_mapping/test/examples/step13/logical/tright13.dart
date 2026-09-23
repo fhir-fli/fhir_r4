@@ -237,15 +237,11 @@ class TRight13Builder extends ElementBuilder {
             return;
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert from one primitive type to another
-            try {
-              final stringValue = child.toString();
-              final converted = FhirStringBuilder.tryParse(stringValue);
-              if (converted != null) {
-                id = converted;
-                return;
-              }
-            } catch (e) {
-              // Continue if conversion fails
+            final stringValue = child.toString();
+            final converted = FhirStringBuilder.tryParse(stringValue);
+            if (converted != null) {
+              id = converted;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
@@ -277,14 +273,10 @@ class TRight13Builder extends ElementBuilder {
             // Try to convert list of primitive types
             final convertedList = <FhirStringBuilder>[];
             for (final element in child) {
-              try {
-                final stringValue = element.toString();
-                final converted = FhirStringBuilder.tryParse(stringValue);
-                if (converted != null) {
-                  convertedList.add(converted);
-                }
-              } catch (e) {
-                // Continue if conversion fails
+              final stringValue = element.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                convertedList.add(converted);
               }
             }
             if (convertedList.isNotEmpty) {
@@ -293,15 +285,11 @@ class TRight13Builder extends ElementBuilder {
             }
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert a single primitive
-            try {
-              final stringValue = child.toString();
-              final converted = FhirStringBuilder.tryParse(stringValue);
-              if (converted != null) {
-                ptr = [...(ptr ?? []), converted];
-                return;
-              }
-            } catch (e) {
-              // Continue if conversion fails
+            final stringValue = child.toString();
+            final converted = FhirStringBuilder.tryParse(stringValue);
+            if (converted != null) {
+              ptr = [...(ptr ?? []), converted];
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');

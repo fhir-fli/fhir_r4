@@ -204,7 +204,7 @@ void main() {
       // But we can verify the flow structure is correct.
       try {
         await client.login();
-      } catch (e) {
+      } on Exception catch (e) {
         // Expected: the test private key won't produce a valid JWT
         // The important thing is that it attempted the backend service path
         expect(e, isA<AuthenticationException>());

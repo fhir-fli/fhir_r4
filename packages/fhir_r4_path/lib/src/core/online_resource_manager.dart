@@ -84,8 +84,8 @@ class OnlineResourceCache extends CanonicalResourceCache {
         see(resource);
         return resource;
       }
-    } catch (_) {
-      // Swallow errors and return null
+    } on Exception catch (_) {
+      // A fetch or parse that fails means the resource is not available.
     }
     return null;
   }

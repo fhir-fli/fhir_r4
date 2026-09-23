@@ -92,7 +92,7 @@ abstract class BulkRequest {
           initialResponse =
               await _initiateExportViaGet(httpClient, requestHeaders);
         }
-      } catch (e) {
+      } on Exception catch (e) {
         return _operationOutcome(
           'Failed to initiate bulk export request',
           diagnostics: e.toString(),
@@ -131,7 +131,7 @@ abstract class BulkRequest {
       try {
         pollResponse =
             await _pollForCompletion(httpClient, pollUrl, requestHeaders);
-      } catch (e) {
+      } on Exception catch (e) {
         return _operationOutcome(
           'Failed while polling bulk export status',
           diagnostics: e.toString(),
@@ -332,7 +332,7 @@ abstract class BulkRequest {
     Map<String, dynamic> decoded;
     try {
       decoded = jsonDecode(response.body) as Map<String, dynamic>;
-    } catch (e) {
+    } on FormatException catch (e) {
       return _operationOutcome(
         'Failed to parse Bulk Export completion response as JSON',
         diagnostics: e.toString(),
@@ -358,7 +358,8 @@ abstract class BulkRequest {
       final BulkExportFile file;
       try {
         file = BulkExportFile.fromJson(item as Map<String, dynamic>);
-      } catch (e) {
+      } on Object catch (_) {
+        // The server's JSON is not ours: whatever the model rejects.
         results.addAll(
           _operationOutcome(
             'Invalid output item in final response',
@@ -377,7 +378,7 @@ abstract class BulkRequest {
       late Response fileResponse;
       try {
         fileResponse = await httpClient.get(uri, headers: headers);
-      } catch (e) {
+      } on Exception catch (e) {
         results.addAll(
           _operationOutcome(
             'Failed to download $url',

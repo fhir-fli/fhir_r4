@@ -95,7 +95,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
       // Return the expanded ValueSet
       return ValueSetExpansionOutcome(expansion);
-    } catch (e) {
+    } on Exception catch (e) {
       _allErrors.add('Error expanding ValueSet: $e');
       return ValueSetExpansionOutcome.withError(
         null,

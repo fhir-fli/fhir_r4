@@ -165,7 +165,7 @@ class StructureMapParser {
                     : '<div xmlns="http://www.w3.org/1999/xhtml">${text.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</div>')
                 .toFhirXhtmlBuilder,
           );
-        } catch (e) {
+        } on Exception catch (_) {
           result.text = NarrativeBuilder(
             status: NarrativeStatusBuilder.additional,
             div:

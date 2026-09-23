@@ -232,7 +232,9 @@ class TerminologyCache {
       }
 
       writeFileAsString('$folder/${nc.name}.cache', sink.toString());
-    } catch (e) {
+    } on Exception catch (e) {
+      // writeFileAsString is platform-abstracted (io or stub), so this names
+      // no io type; a cache that fails to save costs nothing but the cache.
       print('Error saving ${nc.name}: $e');
     }
   }

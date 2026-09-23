@@ -1031,22 +1031,22 @@ void main() {
         ],
       };
 
-      try {
-        FhirBatchRequest(
+      expect(
+        () => FhirBatchRequest(
           base: Uri.parse('http://hapi.fhir.org/baseR4'),
           bundle: invalidBundle,
           headers: {'test': 'headers'},
-        ).buildBody();
-        fail('Expected exception not thrown');
-      } catch (e) {
-        expect(e, isA<FormatException>());
-        expect(
-          e.toString(),
-          const FormatException(
-            'Each request in a bundle entry must include a "url".',
-          ).toString(),
-        );
-      }
+        ).buildBody(),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.toString(),
+            'message',
+            const FormatException(
+              'Each request in a bundle entry must include a "url".',
+            ).toString(),
+          ),
+        ),
+      );
     });
 
     test('batch with parameters', () {

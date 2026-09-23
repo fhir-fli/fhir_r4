@@ -200,15 +200,11 @@ class TRight6Builder extends ElementBuilder {
             return;
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert from one primitive type to another
-            try {
-              final stringValue = child.toString();
-              final converted = FhirStringBuilder.tryParse(stringValue);
-              if (converted != null) {
-                id = converted;
-                return;
-              }
-            } catch (e) {
-              // Continue if conversion fails
+            final stringValue = child.toString();
+            final converted = FhirStringBuilder.tryParse(stringValue);
+            if (converted != null) {
+              id = converted;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
@@ -233,20 +229,16 @@ class TRight6Builder extends ElementBuilder {
             return;
           } else if (child is PrimitiveTypeBuilder) {
             // Try to convert from one primitive type to another
-            try {
-              final stringValue = child.toString();
-              // For number types, first parse to num then pass the
-              // number directly
-              final numValue = num.tryParse(stringValue);
-              if (numValue != null) {
-                final converted = FhirIntegerBuilder.tryParse(numValue);
-                if (converted != null) {
-                  a23 = converted;
-                  return;
-                }
+            final stringValue = child.toString();
+            // For number types, first parse to num then pass the
+            // number directly
+            final numValue = num.tryParse(stringValue);
+            if (numValue != null) {
+              final converted = FhirIntegerBuilder.tryParse(numValue);
+              if (converted != null) {
+                a23 = converted;
+                return;
               }
-            } catch (e) {
-              // Continue if conversion fails
             }
           }
           throw Exception('Invalid child type for $childName');

@@ -64,7 +64,8 @@ void main() {
       while (!done) {
         try {
           answers.add(await females());
-        } catch (e) {
+        } on Object catch (e) {
+          // The test records whatever a query during the rebuild threw.
           answers.add('error: ${e.runtimeType}');
         }
         polls++;

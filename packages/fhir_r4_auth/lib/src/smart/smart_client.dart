@@ -370,7 +370,7 @@ class SmartFhirClient extends FhirAuthClient {
       try {
         _logger.fine('Attempting to revoke tokens during logout');
         await revokeCurrentTokens();
-      } catch (e) {
+      } on Exception catch (e) {
         _logger.warning('Token revocation failed during logout', e);
         // Continue with logout even if revocation fails
       }
@@ -481,7 +481,7 @@ class SmartFhirClient extends FhirAuthClient {
             'introspection_endpoint': _introspectionEndpoint,
         };
       }
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.warning('Failed to fetch .well-known/smart-configuration', e);
     }
 
@@ -564,14 +564,14 @@ class SmartFhirClient extends FhirAuthClient {
           'http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities') {
         final valueCode = extension.valueCode?.toString();
         if (valueCode != null) {
-          try {
-            final capability = SmartCapability.values.firstWhere(
-              (cap) => cap.value == valueCode,
-            );
+          final capability = SmartCapability.values
+              .cast<SmartCapability?>()
+              .firstWhere((cap) => cap!.value == valueCode, orElse: () => null);
+          if (capability == null) {
+            _logger.warning('Unknown SMART capability: $valueCode');
+          } else {
             capabilities.add(capability);
             _logger.fine('Discovered capability: $valueCode');
-          } catch (e) {
-            _logger.warning('Unknown SMART capability: $valueCode');
           }
         }
       }
@@ -672,13 +672,13 @@ class SmartFhirClient extends FhirAuthClient {
   Future<void> revokeCurrentTokens() async {
     try {
       await revokeAccessToken();
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.warning('Failed to revoke access token', e);
     }
 
     try {
       await revokeRefreshToken();
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.warning('Failed to revoke refresh token', e);
     }
   }
@@ -710,7 +710,7 @@ class SmartFhirClient extends FhirAuthClient {
 
       final introspector = getTokenIntrospector();
       return await introspector.isTokenActive(tokens.accessToken);
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.warning('Failed to check token status', e);
       return false;
     }

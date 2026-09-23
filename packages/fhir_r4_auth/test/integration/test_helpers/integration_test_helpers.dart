@@ -211,8 +211,8 @@ class IntegrationTestHelpers {
   static Future<void> cleanupClient(SmartFhirClient client) async {
     try {
       await client.logout();
-    } catch (e) {
-      // Ignore errors during cleanup
+    } on Object catch (_) {
+      // Cleanup: whatever logout throws is not the test's concern.
     }
     client.close();
   }

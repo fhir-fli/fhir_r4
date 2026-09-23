@@ -465,7 +465,7 @@ void main() {
         for (var i = 0; i < 10; i++) {
           try {
             JwtValidator.decodeWithoutValidation(jwt1);
-          } catch (_) {}
+          } on Exception catch (_) {}
         }
 
         // Measure multiple runs and take median to reduce variance
@@ -476,14 +476,14 @@ void main() {
           final stopwatch1 = Stopwatch()..start();
           try {
             JwtValidator.decodeWithoutValidation(jwt1);
-          } catch (_) {}
+          } on Exception catch (_) {}
           stopwatch1.stop();
           times1.add(stopwatch1.elapsedMicroseconds);
 
           final stopwatch2 = Stopwatch()..start();
           try {
             JwtValidator.decodeWithoutValidation(jwt2);
-          } catch (_) {}
+          } on Exception catch (_) {}
           stopwatch2.stop();
           times2.add(stopwatch2.elapsedMicroseconds);
         }

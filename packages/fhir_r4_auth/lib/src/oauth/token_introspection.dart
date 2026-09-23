@@ -297,7 +297,7 @@ class TokenIntrospector {
     try {
       final result = await introspect(token);
       return result.active && !result.isExpired && !result.isNotYetValid;
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.warning('Failed to check token status', e);
       return false;
     }

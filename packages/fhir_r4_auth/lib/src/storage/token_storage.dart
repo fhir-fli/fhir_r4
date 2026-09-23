@@ -219,7 +219,9 @@ class SecureTokenStorage implements TokenStorage {
           AuthState.fromJson(jsonDecode(json) as Map<String, dynamic>);
       _logger.fine('Authentication state loaded');
       return state;
-    } catch (e, stackTrace) {
+    } on Object catch (e, stackTrace) {
+      // Stored state that no longer parses (corrupt or from an older
+      // shape) must not keep the app from starting: whatever it throws.
       _logger.severe('Failed to load auth state', e, stackTrace);
 
       // Clear corrupted state
@@ -245,7 +247,7 @@ class SecureTokenStorage implements TokenStorage {
         iOptions: _iosOptions,
       );
       return value != null;
-    } catch (e) {
+    } on Exception catch (e) {
       _logger.warning('Error checking for tokens', e);
       return false;
     }

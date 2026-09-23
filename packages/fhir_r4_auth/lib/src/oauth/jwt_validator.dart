@@ -268,7 +268,7 @@ class JwtValidator {
       try {
         final jwk = JsonWebKey.fromJson(keyJson as Map<String, dynamic>);
         keyStore.addKey(jwk);
-      } catch (e) {
+      } on Exception catch (e) {
         _logger.warning('Failed to parse JWK: $e');
         // Continue with other keys
       }
@@ -371,7 +371,7 @@ class JwtValidator {
           utf8.decode(base64Url.decode(base64Url.normalize(parts[0])));
       final header = jsonDecode(headerJson) as Map<String, dynamic>;
       return header['alg'] as String? ?? 'RS256';
-    } catch (e) {
+    } on FormatException catch (e) {
       _logger.warning('Failed to extract algorithm from token header: $e');
       return 'RS256'; // Default
     }
@@ -493,7 +493,7 @@ class JwtValidator {
       }
 
       return isValid;
-    } catch (e, stackTrace) {
+    } on Exception catch (e, stackTrace) {
       _logger.severe('Error validating at_hash', e, stackTrace);
       return false;
     }
@@ -585,7 +585,7 @@ class JwtValidator {
       return base64Url
           .encode(sha256.convert(utf8.encode(jsonEncode(publicFields))).bytes)
           .replaceAll('=', '');
-    } catch (_) {
+    } on Exception catch (_) {
       return DateTime.now().millisecondsSinceEpoch.toString();
     }
   }

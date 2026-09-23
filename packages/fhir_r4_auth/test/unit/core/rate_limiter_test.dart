@@ -154,13 +154,12 @@ void main() {
       await rateLimiter.execute(testKey, () async => 'success');
 
       // Second request fails but still counts
-      try {
-        await rateLimiter.execute(testKey, () async {
+      await expectLater(
+        rateLimiter.execute(testKey, () async {
           throw Exception('Request failed');
-        });
-      } catch (e) {
-        // Expected
-      }
+        }),
+        throwsException,
+      );
 
       // Should have 2 requests recorded
       expect(rateLimiter.getRequestCount(testKey), equals(2));

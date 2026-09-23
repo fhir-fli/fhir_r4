@@ -227,7 +227,15 @@ bool isValueAValidPrimitive(String primitiveClass, dynamic value) {
         return value is String;
     }
     return true;
-  } catch (e) {
+    // The primitive constructors signal an invalid value with ArgumentError
+    // (FhirPositiveInt(0), FhirDate('not a date')); a FormatException would
+    // be Dart's convention, but that is the model's API across three
+    // versions.
+    // ignore: avoid_catching_errors
+  } on ArgumentError catch (_) {
+    return false;
+  } on FormatException catch (_) {
+    // FhirUuid signals an invalid value with FormatException.
     return false;
   }
 }

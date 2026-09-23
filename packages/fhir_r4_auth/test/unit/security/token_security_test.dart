@@ -48,7 +48,7 @@ void main() {
             'Token validation failed',
             details: 'Token: $sensitiveToken',
           );
-        } catch (e) {
+        } on TokenException catch (e) {
           final errorMessage = e.toString();
 
           // Exception message should not contain raw token

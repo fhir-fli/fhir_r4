@@ -103,7 +103,7 @@ class BulkImportRequest {
         headers: headers,
         body: body,
       );
-    } catch (e) {
+    } on Exception catch (e) {
       return _operationOutcome(
         'Exception during Bulk Import POST',
         diagnostics: e.toString(),
@@ -121,7 +121,8 @@ class BulkImportRequest {
     try {
       final decoded = jsonDecode(response.body) as Map<String, dynamic>;
       return OperationOutcome.fromJson(decoded);
-    } catch (e) {
+    } on Object catch (_) {
+      // The server's JSON is not ours: whatever decoding or the model rejects.
       return _operationOutcome(
         'Failed to parse server response as OperationOutcome',
         diagnostics: 'HTTP ${response.statusCode}, body=${response.body}',

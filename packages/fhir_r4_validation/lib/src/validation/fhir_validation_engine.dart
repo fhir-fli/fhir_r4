@@ -37,7 +37,7 @@ class FhirValidationEngine {
     Map<String, dynamic> resourceMap;
     try {
       resourceMap = json.decode(structureToValidate) as Map<String, dynamic>;
-    } catch (e) {
+    } on FormatException catch (e) {
       final results = ValidationResults();
       return results
         ..addResult(
@@ -122,7 +122,7 @@ class FhirValidationEngine {
     Node node;
     try {
       node = parse(jsonEncode(structureToValidate), Settings(), type);
-    } catch (e) {
+    } on Exception catch (e) {
       return results
         ..addResult(
           null,

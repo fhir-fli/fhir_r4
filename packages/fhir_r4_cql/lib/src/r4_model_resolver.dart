@@ -307,7 +307,8 @@ class R4ModelResolver implements ModelResolver {
       }
       if (result.length == 1) return result.first;
       return result;
-    } catch (_) {
+    } on Exception catch (_) {
+      // A path the engine cannot parse or evaluate resolves to nothing.
       return null;
     }
   }

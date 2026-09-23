@@ -71,7 +71,8 @@ fhir.FhirBase? _getContext(
       if (context != null) {
         return context;
       }
-    } catch (e) {
+    } on Object catch (e) {
+      // Whatever the model throws for a value it cannot build.
       results.addResult(
         node,
         'Type conversion failed: Unable to convert '

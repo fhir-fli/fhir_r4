@@ -51,11 +51,10 @@ void booleanTest() {
     });
 
     test('FromJson - Invalid Input', () {
-      try {
-        FhirBoolean.fromJson({'value': 'invalid'});
-      } catch (e) {
-        expect(e, isA<ArgumentError>());
-      }
+      expect(
+        () => FhirBoolean.fromJson({'value': 'invalid'}),
+        throwsArgumentError,
+      );
     });
 
     test('FromYaml - Valid Yaml', () {

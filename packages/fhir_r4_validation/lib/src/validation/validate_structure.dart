@@ -663,7 +663,7 @@ ValidationResults _checkDateTimeFormats(
       } else {
         DateTime.parse(value);
       }
-    } catch (e) {
+    } on FormatException catch (_) {
       results.addResult(
         node,
         'Value "$value" is not a valid $primitiveClass format.',

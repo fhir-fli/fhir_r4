@@ -61,7 +61,9 @@ class CustomStringEquality implements Equality<String> {
   bool equals(String str1, String str2) {
     try {
       return Uri.decodeFull(str1) == Uri.decodeFull(str2);
-    } catch (e) {
+      // Uri.decodeFull signals a malformed %-escape with ArgumentError.
+      // ignore: avoid_catching_errors
+    } on ArgumentError catch (_) {
       return str1 == str2;
     }
   }
@@ -70,7 +72,9 @@ class CustomStringEquality implements Equality<String> {
   int hash(String str) {
     try {
       return Uri.decodeFull(str).hashCode;
-    } catch (e) {
+      // Uri.decodeFull signals a malformed %-escape with ArgumentError.
+      // ignore: avoid_catching_errors
+    } on ArgumentError catch (_) {
       return str.hashCode;
     }
   }

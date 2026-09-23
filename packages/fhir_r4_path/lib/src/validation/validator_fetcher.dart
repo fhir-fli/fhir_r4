@@ -14,8 +14,7 @@ class ValidatorFetcher {
   void findResource(Object validator, String url) {
     try {
       resolveURL(validator, url);
-    } catch (e) {
-      // Log or handle the exception as needed
+    } on Exception catch (e) {
       print('Error resolving URL: $e');
     }
   }
