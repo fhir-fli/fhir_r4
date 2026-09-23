@@ -515,7 +515,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       _client = SmartFhirClient(
         config: BackendServiceConfig(
           clientId: clientId,
-          fhirBaseUrl: baseUrl.toFhirUri,
+          fhirBaseUrl: Uri.parse(baseUrl),
           privateKey: privateKey,
           tokenUrl: tokenUrl,
           scopes: config.scopes[_selectedMode]!,
@@ -530,7 +530,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
       _client = SmartFhirClient(
         config: SmartConfig(
           clientId: clientId,
-          fhirBaseUrl: baseUrl.toFhirUri,
+          fhirBaseUrl: Uri.parse(baseUrl),
           redirectUri: Uri.parse(redirectUri),
           scopes: config.scopes[_selectedMode]!,
           // SMART Sandbox supports PKCE and OpenID; Epic does not

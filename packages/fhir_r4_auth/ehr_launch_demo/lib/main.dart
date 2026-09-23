@@ -297,7 +297,7 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
     _client = SmartFhirClient(
       config: SmartConfig(
         clientId: clientId,
-        fhirBaseUrl: iss.toFhirUri,
+        fhirBaseUrl: Uri.parse(iss),
         redirectUri: Uri.parse(redirectUri),
         launchType: LaunchType.ehr,
         launchToken: launchToken,

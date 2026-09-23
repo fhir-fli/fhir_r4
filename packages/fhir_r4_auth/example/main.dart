@@ -10,7 +10,6 @@
 // Flutter app and run with `flutter run` rather than `dart run`. The logic
 // shown here is plain Dart.
 // ignore_for_file: avoid_print
-import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 
 void main() {
@@ -18,7 +17,7 @@ void main() {
   //    authorization endpoint. For a public client (no secret) the default
   //    ClientAuthMethod.none is correct; PKCE protects the code exchange.
   final config = SmartConfig(
-    fhirBaseUrl: FhirUri('https://launch.smarthealthit.org/v/r4/fhir'),
+    fhirBaseUrl: Uri.parse('https://launch.smarthealthit.org/v/r4/fhir'),
     clientId: 'my-fhir-app',
     redirectUri: Uri.parse('https://my-app.example/callback'),
     scopes: const [
