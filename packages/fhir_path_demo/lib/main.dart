@@ -125,7 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _result = const JsonEncoder.withIndent('  ').convert(values);
       });
-    } catch (e) {
+    } on Object catch (e) {
+      // A playground: whatever the input caused, the page shows it.
       setState(() {
         _result = 'Error: $e';
       });

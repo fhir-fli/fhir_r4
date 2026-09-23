@@ -83,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ).convert(structureMap.toJson());
         _result = const JsonEncoder.withIndent('  ').convert(target.toJson());
       });
-    } catch (e) {
+    } on Object catch (e) {
+      // A playground: whatever the input caused, the page shows it.
       setState(() {
         _result = 'Error: $e';
       });

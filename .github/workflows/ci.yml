@@ -69,7 +69,10 @@ jobs:
             [ -f "${d}pubspec.yaml" ] || continue
             pkg=$(basename "$d")
             echo "::group::$pkg"
-            (
+            # `if ! ( ... )` so the outer `bash -e` does not stop at the first
+            # failing package (it did: 2026-09-23 the run ended at the first
+            # of two demo apps with a lint hit, and the other was never checked).
+            if ! (
               set -e
               cd "$d"
               flutter pub get
@@ -82,8 +85,7 @@ jobs:
               done
               flutter analyze
               if [ -d test ]; then flutter test; fi
-            )
-            if [ $? -ne 0 ]; then
+            ); then
               failed="${failed} ${pkg}"
               echo "::error::${pkg} failed"
             fi
