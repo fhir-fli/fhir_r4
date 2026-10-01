@@ -4,7 +4,8 @@ import 'package:fhir_r4_db/fhir_r4_db.dart';
 import 'package:test/test.dart';
 
 /// `searchIds` gives the set a `search` would page, and a long `_id` list
-/// is answered from the set path (fhirant REVIEW-2026-09-06 finding 38).
+/// is one JSON array in SQL (fhirant REVIEW-2026-09-06 finding 38; ST4
+/// step 2, 2026-10-01, the set path is gone for it).
 void main() {
   late FhirDb db;
   late FhirDao dao;
@@ -55,7 +56,7 @@ void main() {
     );
   });
 
-  test('a long _id list leaves the SQL path and still answers', () async {
+  test('a long _id list is one JSON array in SQL and still answers', () async {
     final ids = [
       for (var i = 0; i < FhirDao.maxIdListInSql + 100; i++) 'nope$i',
       'p03',
@@ -68,7 +69,7 @@ void main() {
       },
       count: 20,
     );
-    expect(dao.lastSearchPagedInSql, isFalse);
+    expect(dao.lastSearchPagedInSql, isTrue);
     expect(page.map((r) => r.id!.valueString), ['p03', 'p17']);
 
     final withOther = await dao.search(
@@ -136,7 +137,8 @@ void main() {
     );
   });
 
-  test("ids: the caller's set restricts the search on both paths", () async {
+  test("ids: the caller's set restricts the search, bound or as JSON",
+      () async {
     final few = {'p01', 'p02', 'p03', 'p04'};
     final small = await dao.search(
       resourceType: fhir.R4ResourceType.Patient,
@@ -160,7 +162,7 @@ void main() {
       ids: many,
       count: 3,
     );
-    expect(dao.lastSearchPagedInSql, isFalse);
+    expect(dao.lastSearchPagedInSql, isTrue);
     expect(large.map((r) => r.id!.valueString), ['p01', 'p03', 'p05']);
     expect(
       await dao.searchCount(
@@ -189,7 +191,7 @@ void main() {
       ),
       {'p03'},
     );
-    // Alone, on the set path: paged in id order.
+    // Alone, past maxIdListInSql: paged in id order.
     final alone = await dao.search(
       resourceType: fhir.R4ResourceType.Patient,
       ids: many,

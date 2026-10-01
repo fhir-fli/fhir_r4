@@ -95,7 +95,7 @@ void main() {
     expect(hits.map((r) => r.id!.valueString), ['oa']);
   });
 
-  test('an unknown parameter is ignored on the general path', () async {
+  test('an unknown parameter is ignored beside a long _id list', () async {
     await save({
       'resourceType': 'Patient',
       'id': 'p',
@@ -103,8 +103,9 @@ void main() {
         {'family': 'Unique'},
       ],
     });
-    // A long _id list is what sends a search down the general path
-    // (maxIdListInSql); the unknown parameter rides along with it.
+    // A long _id list used to send a search down the general path
+    // (maxIdListInSql); it is one JSON array in SQL now, and the unknown
+    // parameter is still ignored beside it.
     final ids = [
       for (var i = 0; i <= FhirDao.maxIdListInSql; i++) 'absent$i',
       'p',
@@ -117,7 +118,7 @@ void main() {
         'nonsense': ['1'],
       },
     );
-    expect(dao.lastSearchPagedInSql, isFalse);
+    expect(dao.lastSearchPagedInSql, isTrue);
     expect(hits.map((r) => r.id!.valueString), ['p']);
   });
 
