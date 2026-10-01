@@ -537,23 +537,53 @@ void main() {
   });
   test('a version-11 database stores its open date bounds as sentinels',
       () async {
+    // Schema 12 turned a NULL date bound into the before/after-any-date
+    // sentinel so each prefix is one index range. Since schema 15 every
+    // upgrade re-extracts the index (fhir_db ST4 step 3), so the step is
+    // proved two ways: directly on a hand-made row, and through a real
+    // open-ended period that the upgraded store must hold as a sentinel.
     final dir = await Directory.systemTemp.createTemp('fhir_db_v11_');
     addTearDown(() => dir.delete(recursive: true));
     final file = File('${dir.path}/db.sqlite');
     final db11 = FhirDb(NativeDatabase(file));
     await db11.fhirDao.saveResource(
-      Patient.fromJson({'resourceType': 'Patient', 'id': 'v11'}),
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'open',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://s', 'code': 'c'},
+          ],
+        },
+        'effectivePeriod': {'start': '2013-01-21T00:00:00Z'},
+      }),
     );
+    // The schema-11 shape of that row, and a hand-made composite row.
     await db11.customStatement(
-      'INSERT INTO date_search_parameters (resource_type, id, last_updated, '
-      'search_name, param_index, date_string, date_value, date_value_end) '
-      "VALUES ('Observation', 'open', 0, 'date', 0, '{}', 1358726400, NULL)",
+      'UPDATE date_search_parameters SET date_value_end = NULL '
+      "WHERE id = 'open'",
     );
     await db11.customStatement(
       'INSERT INTO composite_search_parameters (resource_type, id, '
       'last_updated, search_name, param_index, c1_type, c1_low, c1_high, '
-      "c2_type, c2_low, c2_high) VALUES ('Observation', 'open', 0, "
+      "c2_type, c2_low, c2_high) VALUES ('Observation', 'orphan', 0, "
       "'code-value-date', 0, 'token', NULL, NULL, 'date', NULL, 1358726400)",
+    );
+    await db11.storeOpenDateBoundsAsSentinels();
+    final composite = await db11
+        .customSelect(
+          'SELECT c1_low AS a, c1_high AS b, c2_low AS c, c2_high AS d FROM '
+          "composite_search_parameters WHERE id = 'orphan'",
+        )
+        .getSingle();
+    expect(composite.read<double>('a'), double.negativeInfinity);
+    expect(composite.read<double>('b'), double.infinity);
+    expect(composite.read<double>('c'), -62135596800);
+    expect(composite.read<double>('d'), 1358726400);
+    await db11.customStatement(
+      'UPDATE date_search_parameters SET date_value_end = NULL '
+      "WHERE id = 'open'",
     );
     await db11.customStatement('PRAGMA user_version = 11');
     await db11.close();
@@ -562,53 +592,67 @@ void main() {
     final row = await db
         .customSelect(
           'SELECT date_value AS l, date_value_end AS h FROM '
-          "date_search_parameters WHERE id = 'open'",
+          "date_search_parameters WHERE id = 'open' AND search_name = 'date'",
         )
         .getSingle();
     expect(row.read<int>('l'), 1358726400);
     expect(row.read<int>('h'), 253402214400);
-    final composite = await db
-        .customSelect(
-          'SELECT c1_low AS a, c1_high AS b, c2_low AS c, c2_high AS d FROM '
-          "composite_search_parameters WHERE id = 'open'",
-        )
-        .getSingle();
-    expect(composite.read<double>('a'), double.negativeInfinity);
-    expect(composite.read<double>('b'), double.infinity);
-    expect(composite.read<double>('c'), -62135596800);
-    expect(composite.read<double>('d'), 1358726400);
     await db.close();
   });
-
   test('a version-10 database stores its open bounds as infinity', () async {
     // Schema 11: a Range with no low or no high used to leave the bound
     // NULL; reopening converts every NULL bound and the row is then found
-    // through a single index range.
+    // through a single index range. Proved directly on the schema-10 shape
+    // of a real row, and again after the reopen, which since schema 15
+    // re-extracts the index (fhir_db ST4 step 3).
     final dir = await Directory.systemTemp.createTemp('fhir_db_v10_');
     addTearDown(() => dir.delete(recursive: true));
     final file = File('${dir.path}/db.sqlite');
     final db10 = FhirDb(NativeDatabase(file));
     await db10.fhirDao.saveResource(
-      Patient.fromJson({'resourceType': 'Patient', 'id': 'v10'}),
+      ActivityDefinition.fromJson({
+        'resourceType': 'ActivityDefinition',
+        'id': 'open',
+        'status': 'active',
+        'useContext': [
+          {
+            'code': {'system': 'http://s', 'code': 'age'},
+            'valueRange': {
+              'low': {'value': 200, 'code': 'a'},
+            },
+          },
+        ],
+      }),
     );
+    Future<(double, double)> bounds(FhirDb on) async {
+      final row = await on
+          .customSelect(
+            'SELECT quantity_low AS l, quantity_high AS h FROM '
+            "quantity_search_parameters WHERE id = 'open'",
+          )
+          .getSingle();
+      return (row.read<double>('l'), row.read<double>('h'));
+    }
+
     await db10.customStatement(
-      'INSERT INTO quantity_search_parameters (resource_type, id, '
-      'last_updated, search_name, param_index, quantity_value, quantity_low, '
-      "quantity_high, quantity_code) VALUES ('ActivityDefinition', 'open', 0, "
-      "'context-quantity', 0, NULL, 200, NULL, 'a')",
+      'UPDATE quantity_search_parameters SET quantity_high = NULL '
+      "WHERE id = 'open'",
+    );
+    await db10.storeOpenBoundsAsInfinity();
+    // 199.5: a decimal written `200` is indexed as its implicit range
+    // (R4B search.html 3.1.1.4.5, read whole 2026-10-01: "the number 2.0 has an
+    // implicit range of 1.95 to 2.05"), so the stored low is the range's
+    // low.
+    expect(await bounds(db10), (199.5, double.infinity));
+    await db10.customStatement(
+      'UPDATE quantity_search_parameters SET quantity_high = NULL '
+      "WHERE id = 'open'",
     );
     await db10.customStatement('PRAGMA user_version = 10');
     await db10.close();
 
     final db = FhirDb(NativeDatabase(file));
-    final row = await db
-        .customSelect(
-          'SELECT quantity_low AS l, quantity_high AS h FROM '
-          "quantity_search_parameters WHERE id = 'open'",
-        )
-        .getSingle();
-    expect(row.read<double>('l'), 200);
-    expect(row.read<double>('h'), double.infinity);
+    expect(await bounds(db), (199.5, double.infinity));
     expect(
       await db.customSelect('PRAGMA user_version').getSingle().then(
             (r) => r.read<int>('user_version'),
@@ -617,7 +661,6 @@ void main() {
     );
     await db.close();
   });
-
   test('a version-9 database loses search_path, its key and the old indexes',
       () async {
     // Walk a current database back to the schema-9 shape: search_path on an

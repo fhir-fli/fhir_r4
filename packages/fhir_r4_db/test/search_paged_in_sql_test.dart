@@ -1587,17 +1587,63 @@ Future<void> main() async {
     expect(await conditions('_content', 'headache patient/p1'), ['plain']);
   });
 
-  test('modifiers the SQL path does not build fall back', () async {
-    // :of-type reads the identifier's type from the resource in Dart.
+  test('identifier:of-type is paged in SQL from its own index rows', () async {
+    // R4B search.html 3.1.1.4.10 (read whole 2026-10-01): "system|code|
+    // value, where the system and code refer to a Identifier.type.coding
+    // .system and .code, and match if any of the type codes match". This
+    // used to be the one shape left to the Dart set path, which read every
+    // candidate resource to look at its identifier types (fhir_db ST4
+    // step 3).
+    await dao.saveResource(
+      Observation.fromJson({
+        'resourceType': 'Observation',
+        'id': 'typed',
+        'status': 'final',
+        'code': {
+          'coding': [
+            {'system': 'http://example.org', 'code': 'Z'},
+          ],
+        },
+        'identifier': [
+          {
+            'system': 'http://x',
+            'value': '1',
+            'type': {
+              'coding': [
+                {'system': 'http://x/types', 'code': 'MR'},
+              ],
+            },
+          },
+        ],
+      }),
+    );
     expect(
       await ids(
         {
-          'identifier:of-type': ['http://x|MR|1'],
+          'identifier:of-type': ['http://x/types|MR|1'],
         },
         count: 3,
-        general: true,
+      ),
+      ['typed'],
+    );
+    expect(
+      await ids(
+        {
+          'identifier:of-type': ['http://x/types|SS|1'],
+        },
+        count: 3,
       ),
       isEmpty,
+    );
+    expect(
+      await ids(
+        {
+          'identifier': ['http://x|1'],
+        },
+        count: 3,
+      ),
+      ['typed'],
+      reason: 'the plain search is unchanged',
     );
   });
 
