@@ -162,20 +162,14 @@ ReturnResults<T> parseBundleForType<T>(Bundle bundle) {
 
 /// Returns an OperationOutcome that contains the given Resource and a message
 /// stating that it was not the type of resource that was specified
-OperationOutcome incorrectResultType<T>(Resource result) => OperationOutcome(
+OperationOutcome incorrectResultType<T>(Resource result) =>
+    errorOperationOutcome(
+      code: IssueType.structure,
       contained: <Resource>[result],
-      issue: <OperationOutcomeIssue>[
-        OperationOutcomeIssue(
-          severity: IssueSeverity.error,
-          code: IssueType.structure,
-          diagnostics:
-              'This request returned a bundle, and should have been a $T but '
-                      'is a ${result.resourceTypeString}. The resource is '
-                      'contained in this new and locally created '
-                      'OperationOutcome for troubleshooting purposes'
-                  .toFhirString,
-        ),
-      ],
+      diagnostics: 'This request returned a bundle, and should have been a $T '
+          'but is a ${result.resourceTypeString}. The resource is contained '
+          'in this new and locally created OperationOutcome for '
+          'troubleshooting purposes',
     );
 
 /// Returns true if the OperationOutcome is informational

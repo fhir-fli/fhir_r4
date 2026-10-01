@@ -431,17 +431,9 @@ abstract class BulkRequest {
   List<OperationOutcome> _failedHttp(int statusCode, Response result) {
     final message = _errorCodes[statusCode] ?? 'Unknown Error';
     return [
-      OperationOutcome(
-        issue: [
-          OperationOutcomeIssue(
-            severity: IssueSeverity.error,
-            code: IssueType.invalid,
-            details: CodeableConcept(
-              text: 'HTTP $statusCode: $message'.toFhirString,
-            ),
-            diagnostics: result.body.toFhirString,
-          ),
-        ],
+      errorOperationOutcome(
+        details: 'HTTP $statusCode: $message',
+        diagnostics: result.body,
       ),
     ];
   }
@@ -451,18 +443,7 @@ abstract class BulkRequest {
     String issue, {
     String? diagnostics,
   }) {
-    return [
-      OperationOutcome(
-        issue: [
-          OperationOutcomeIssue(
-            severity: IssueSeverity.error,
-            code: IssueType.invalid,
-            details: CodeableConcept(text: issue.toFhirString),
-            diagnostics: diagnostics?.toFhirString,
-          ),
-        ],
-      ),
-    ];
+    return [errorOperationOutcome(details: issue, diagnostics: diagnostics)];
   }
 
   /// Known HTTP error codes -> textual meaning

@@ -216,35 +216,16 @@ class BulkImportRequest {
   }
 
   /// Creates an [OperationOutcome] for an HTTP error.
-  OperationOutcome _failedHttp(int statusCode, Response result) {
-    return OperationOutcome(
-      issue: [
-        OperationOutcomeIssue(
-          severity: IssueSeverity.error,
-          code: IssueType.invalid,
-          details: CodeableConcept(
-            text: 'HTTP $statusCode error during Bulk Import'.toFhirString,
-          ),
-          diagnostics: result.body.toFhirString,
-        ),
-      ],
-    );
-  }
+  OperationOutcome _failedHttp(int statusCode, Response result) =>
+      errorOperationOutcome(
+        details: 'HTTP $statusCode error during Bulk Import',
+        diagnostics: result.body,
+      );
 
   /// Convenience function to create an error [OperationOutcome].
   OperationOutcome _operationOutcome(
     String issue, {
     String? diagnostics,
-  }) {
-    return OperationOutcome(
-      issue: [
-        OperationOutcomeIssue(
-          severity: IssueSeverity.error,
-          code: IssueType.invalid,
-          details: CodeableConcept(text: issue.toFhirString),
-          diagnostics: diagnostics?.toFhirString,
-        ),
-      ],
-    );
-  }
+  }) =>
+      errorOperationOutcome(details: issue, diagnostics: diagnostics);
 }
