@@ -836,14 +836,16 @@ class WorkerContext implements IWorkerContext {
   }
 
   // Utility methods for loading resources
-  void loadStructureDefinition(StructureDefinition sd) {
+  Future<void> loadStructureDefinition(StructureDefinition sd) async {
     if (sd.name.valueString != null && sd.url?.valueString != null) {
-      unawaited(resourceCache.saveCanonicalResource(sd));
+      await resourceCache.saveCanonicalResource(sd);
     }
   }
 
-  void loadStructureDefinitions(List<StructureDefinition> sds) {
-    sds.forEach(loadStructureDefinition);
+  Future<void> loadStructureDefinitions(List<StructureDefinition> sds) async {
+    for (final sd in sds) {
+      await loadStructureDefinition(sd);
+    }
   }
 
   Future<void> loadResource(CanonicalResource resource) async {
