@@ -190,17 +190,23 @@ void main() {
       expect(result.errorOperationOutcomes, hasLength(1));
     });
 
-    test('non-transaction-response bundle returns empty results', () {
+    test("a searchset's entries are its resources", () {
+      // Quoted from hl7.org/fhir/R4B/http.html, search, fetched 2026-10-01:
+      // the return content is "a Bundle with type = searchset containing
+      // the results of the search as a collection of zero or more
+      // resources". The earlier version of this test asserted the opposite
+      // (an empty result), which was the code's behaviour, not the
+      // specification's.
       final bundle = Bundle(
         type: BundleType.searchset,
         entry: <BundleEntry>[
           BundleEntry(resource: Patient(id: '1'.toFhirString)),
+          BundleEntry(resource: _makeObservation(id: '2')),
         ],
       );
       final result = parseBundle(bundle);
 
-      // Only transaction-response bundles are parsed
-      expect(result.resources, isEmpty);
+      expect(result.resources, hasLength(2));
       expect(result.informationOperationOutcomes, isEmpty);
       expect(result.errorOperationOutcomes, isEmpty);
     });

@@ -37,7 +37,15 @@ ReturnResults<Resource> parseRequestResult(Resource result) => result is Bundle
 /// OperationOutcomes that don't contain a Resource
 ReturnResults<Resource> parseBundle(Bundle bundle) {
   final returnResults = ReturnResults<Resource>();
-  if (bundle.type == FhirCode('transaction-response')) {
+  // Every Bundle's entries are its results. Quoted from
+  // hl7.org/fhir/R4B/http.html, search, fetched 2026-10-01: the return
+  // content is "a Bundle with type = searchset containing the results of
+  // the search as a collection of zero or more resources"; and transaction:
+  // "Each entry element SHALL contain a response element which details the
+  // outcome of processing the entry". Only the transaction-response branch
+  // used to run here, so a searchset came back empty.
+  final isTransactionResponse = bundle.type == FhirCode('transaction-response');
+  {
     for (final entry in bundle.entry ?? <BundleEntry>[]) {
       if (entry.resource != null) {
         if (entry.resource is OperationOutcome) {
@@ -63,7 +71,7 @@ ReturnResults<Resource> parseBundle(Bundle bundle) {
         } else {
           returnResults.resources.add(entry.response!.outcome!);
         }
-      } else {
+      } else if (isTransactionResponse) {
         returnResults.informationOperationOutcomes.add(
           OperationOutcome(
             issue: <OperationOutcomeIssue>[
@@ -108,7 +116,15 @@ ReturnResults<T> parseRequestResultForType<T>(Resource result) => result
 /// are of type T
 ReturnResults<T> parseBundleForType<T>(Bundle bundle) {
   final returnResults = ReturnResults<T>();
-  if (bundle.type == FhirCode('transaction-response')) {
+  // Every Bundle's entries are its results. Quoted from
+  // hl7.org/fhir/R4B/http.html, search, fetched 2026-10-01: the return
+  // content is "a Bundle with type = searchset containing the results of
+  // the search as a collection of zero or more resources"; and transaction:
+  // "Each entry element SHALL contain a response element which details the
+  // outcome of processing the entry". Only the transaction-response branch
+  // used to run here, so a searchset came back empty.
+  final isTransactionResponse = bundle.type == FhirCode('transaction-response');
+  {
     for (final entry in bundle.entry ?? <BundleEntry>[]) {
       if (entry.resource != null) {
         if (entry.resource is OperationOutcome) {
@@ -140,7 +156,7 @@ ReturnResults<T> parseBundleForType<T>(Bundle bundle) {
           returnResults.errorOperationOutcomes
               .add(incorrectResultType<T>(entry.response!.outcome!));
         }
-      } else {
+      } else if (isTransactionResponse) {
         returnResults.informationOperationOutcomes.add(
           OperationOutcome(
             issue: <OperationOutcomeIssue>[
