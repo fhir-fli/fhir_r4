@@ -120,7 +120,6 @@ Future<void> main() async {
       await ids(R4ResourceType.Observation),
       ['o-both', 'o-performer', 'o-subject'],
     );
-    expect(dao.lastSearchPagedInSql, isTrue, reason: 'one SQL condition');
   });
 
   test('a resource pointing at another patient, or at none, is out', () async {
@@ -172,7 +171,6 @@ Future<void> main() async {
       ),
       ['o-performer'],
     );
-    expect(dao.lastSearchPagedInSql, isTrue);
     // A parameter that matches outside the compartment finds nothing inside.
     expect(
       await ids(

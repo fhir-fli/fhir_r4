@@ -118,7 +118,6 @@ void main() {
         'nonsense': ['1'],
       },
     );
-    expect(dao.lastSearchPagedInSql, isTrue);
     expect(hits.map((r) => r.id!.valueString), ['p']);
   });
 

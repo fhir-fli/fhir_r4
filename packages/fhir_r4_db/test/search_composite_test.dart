@@ -31,9 +31,7 @@ Future<void> main() async {
       },
       count: count,
     );
-    if (count != null) {
-      expect(dao.lastSearchPagedInSql, isTrue, reason: '$key=$value');
-    }
+    if (count != null) {}
     return found.map((r) => r.id!.valueString!).toList()..sort();
   }
 

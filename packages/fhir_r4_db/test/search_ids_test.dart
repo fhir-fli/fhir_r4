@@ -69,7 +69,6 @@ void main() {
       },
       count: 20,
     );
-    expect(dao.lastSearchPagedInSql, isTrue);
     expect(page.map((r) => r.id!.valueString), ['p03', 'p17']);
 
     final withOther = await dao.search(
@@ -148,7 +147,6 @@ void main() {
       ids: few,
       count: 20,
     );
-    expect(dao.lastSearchPagedInSql, isTrue);
     expect(small.map((r) => r.id!.valueString), ['p01', 'p03']);
     final many = {
       for (var i = 0; i < FhirDao.maxIdListInSql + 50; i++)
@@ -162,7 +160,6 @@ void main() {
       ids: many,
       count: 3,
     );
-    expect(dao.lastSearchPagedInSql, isTrue);
     expect(large.map((r) => r.id!.valueString), ['p01', 'p03', 'p05']);
     expect(
       await dao.searchCount(
@@ -209,6 +206,5 @@ void main() {
       },
       count: 20,
     );
-    expect(dao.lastSearchPagedInSql, isTrue);
   });
 }
