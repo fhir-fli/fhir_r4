@@ -1,4 +1,5 @@
 export 'utils/compare.dart';
+export 'utils/error_operation_outcome.dart';
 export 'utils/fhir_field_map.dart';
 export 'utils/fhir_type_hierarchy.dart';
 export 'utils/from_path.dart';
