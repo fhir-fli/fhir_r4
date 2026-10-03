@@ -2,6 +2,20 @@
 
 ## [Unreleased]
 
+- The bulk-data code now lives in `fhir_bulk` 0.13.0, which serves every
+  FHIR version and reads resources through `fhir_node`. This package
+  re-exports it with the R4B model filled in (`r4Bulk`): `FhirBulk` and
+  `NdjsonStream` keep their static members over `Resource`; `WhichResource`,
+  `ImportFile`, the three `BulkRequest`s and `BulkImportRequest` keep their
+  typed constructors (`R4ResourceType`, `FhirId`, `FhirDateTime`) over the
+  core's string-typed classes, so `WhichResource.resourceType` is now the
+  type's name and `BulkRequest.request()` returns `List<Resource>`.
+  `BulkExportKickoff.unknownTypes` and `TypeFilter.resourceTypeKnown` take
+  the model: `kickoff.unknownTypes(r4Bulk)`.
+- A POST kick-off sends `_since` as `valueInstant`, as the Bulk Data IG
+  2.0.0 OperationDefinition `export` types it; it was `valueDateTime`.
+- `BulkImportRequest` rejects an empty file list or a non-HTTP(S) file URL
+  with `ArgumentError` at runtime (they were asserts).
 - **Streaming NDJSON: `NdjsonStream.lines` (from a byte stream, chunked anyhow), `resources`, `encode` and `write` (to a sink, flushing every N lines).** The list-shaped `FhirBulk` helpers stay; they hold a whole file, which a server export cannot (fhirant REVIEW-2026-09-06 finding 34: 813k Observations as a list 5.1 GB, streamed 741 MB).
 - **Bulk Data Access IG 2.0.0 models a client and a server both read**: `BulkExportKickoff` (from a query map or a POSTed `Parameters`; repeated and comma-delimited values are one list, as export.html requires), `TypeFilter`, `BulkExportFile`, `BulkExportManifest` (checked against export.html's own example response body), `bulkOutputFormats`. The client now reads the complete-status body through `BulkExportManifest`.
 
