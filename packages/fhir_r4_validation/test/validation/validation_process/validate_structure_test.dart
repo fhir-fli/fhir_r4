@@ -1,3 +1,4 @@
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_validation/fhir_r4_validation.dart';
@@ -175,7 +176,7 @@ class _TestResourceCache extends CanonicalResourceCache {
   final Map<String, StructureDefinition> _cache = {};
 
   @override
-  Future<StructureDefinition?> getStructureDefinition(String? type) async {
+  Future<FhirNode?> getStructureDefinition(String? type) async {
     if (type == null) return null;
     final cached =
         _cache[type] ?? _cache['http://hl7.org/fhir/StructureDefinition/$type'];

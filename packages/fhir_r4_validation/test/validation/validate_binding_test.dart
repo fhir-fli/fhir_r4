@@ -1,3 +1,4 @@
+import 'package:fhir_node/fhir_node.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_validation/fhir_r4_validation.dart';
@@ -91,18 +92,12 @@ class _TestResourceCache extends CanonicalResourceCache {
   final Map<String, ValueSet> _valueSets = {};
 
   @override
-  Future<T?> getCanonicalResource<T extends CanonicalResource>(
-    String url, [
-    String? version,
-  ]) async {
+  Future<FhirNode?> getCanonicalResource(String url, [String? version]) async {
     final cached = _valueSets[url];
     if (cached != null) {
-      // Check if T is ValueSet or a supertype
-      if (T == ValueSet || T == CanonicalResource || T == Resource) {
-        return cached as T;
-      }
+      return cached;
     }
-    return super.getCanonicalResource<T>(url, version);
+    return super.getCanonicalResource(url, version);
   }
 }
 

@@ -39,7 +39,7 @@ class DefinitionResolver {
 
   /// Resolves a [StructureDefinition] from [structureUrl].
   Future<StructureDefinition?> resolve(String structureUrl) async {
-    return _worker.fetchResource<StructureDefinition>(uri: structureUrl);
+    return _worker.resourceCache.structureDefinition(structureUrl);
   }
 
   /// Resolves a [StructureDefinition] by [type].
@@ -52,7 +52,7 @@ class DefinitionResolver {
     }
 
     final sd = await _worker.fetchTypeDefinition(type);
-    if (sd != null) {
+    if (sd is StructureDefinition) {
       return sd;
     }
 
@@ -150,11 +150,8 @@ class DefinitionResolver {
   }
 
   /// Fetches a [CanonicalResource] of type [T] from [uri].
-  Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
-    final resource = await _worker.fetchResource<T>(uri: uri);
-    if (resource is T) return resource;
-    return null;
-  }
+  Future<T?> fetchResource<T extends CanonicalResource>(String uri) =>
+      _worker.resourceCache.canonical<T>(uri);
 
   ElementDefinition? _resolveElementDefinitionFromStructure(
     StructureDefinition? structureDef,

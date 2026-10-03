@@ -171,7 +171,7 @@ Future<ValidationResults> _validateNestedElements({
     final typeCode = findCode(element, foundNode.path);
     if (typeCode != null && !isPrimitiveType(typeCode)) {
       final structureDefinition =
-          await resourceCache.getStructureDefinition(typeCode);
+          await resourceCache.structureDefinition(typeCode);
       if (structureDefinition != null) {
         final newElements = extractElements(structureDefinition);
 

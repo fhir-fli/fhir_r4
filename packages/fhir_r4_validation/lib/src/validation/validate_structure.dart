@@ -291,7 +291,7 @@ Future<ValidationResults> _withoutCode(
 ) async {
   for (final ext in element.extension_ ?? <FhirExtension>[]) {
     final url = ext.url.toString();
-    final structureDefinition = await resourceCache.getStructureDefinition(url);
+    final structureDefinition = await resourceCache.structureDefinition(url);
 
     // If the extension references a StructureDefinition, extract elements
     //and validate.
@@ -375,7 +375,7 @@ Future<ValidationResults> _codeIsComplexType(
   ValidationResults results,
   ResourceCache resourceCache,
 ) async {
-  final structureDefinition = await resourceCache.getStructureDefinition(code);
+  final structureDefinition = await resourceCache.structureDefinition(code);
 
   // Handle cases where the StructureDefinition is missing.
   if (structureDefinition == null) {

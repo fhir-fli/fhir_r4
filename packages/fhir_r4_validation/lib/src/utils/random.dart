@@ -85,7 +85,8 @@ Future<Set<String>> getValueSetCodes(
   String valueSetUrl,
   ResourceCache resourceCache,
 ) async {
-  final resource = await resourceCache.getCanonicalResource(valueSetUrl);
+  final resource =
+      await resourceCache.canonical<CanonicalResource>(valueSetUrl);
   if (resource == null) {
     throw Exception('Resource not found at $valueSetUrl');
   }
@@ -155,7 +156,7 @@ Future<Set<String>> _fetchIncludedValueSetCodes(
   ResourceCache resourceCache,
 ) async {
   final resource =
-      await resourceCache.getCanonicalResource(includedValueSetUrl);
+      await resourceCache.canonical<CanonicalResource>(includedValueSetUrl);
   if (resource == null) {
     return <String>{};
   }

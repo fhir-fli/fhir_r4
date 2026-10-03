@@ -24,7 +24,7 @@ Future<ValidationResults> validateQuestionnaireResponse({
 
   // Retrieve the Questionnaire
   final questionnaireDef =
-      await resourceCache.getCanonicalResource(questionnaireUrl);
+      await resourceCache.canonical<CanonicalResource>(questionnaireUrl);
   if (questionnaireDef == null) {
     return results
       ..addResult(

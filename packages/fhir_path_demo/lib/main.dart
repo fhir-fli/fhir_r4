@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _result = '';
   FHIRPathEngine? _fhirPathEngine;
   final WorkerContext _context = WorkerContext(
-    resourceCache: OnlineResourceCache(),
+    resourceCache: OnlineResourceCache(parse: Resource.fromJson),
   );
 
   @override

@@ -65,8 +65,7 @@ Future<ValidationResults> validateExtensions({
           // Fetch the StructureDefinition for the extension if the
           // profile URL exists.
           final structureDefinition = extensionUrl != null
-              ? await resourceCache
-                  .getStructureDefinition(extensionUrl.toString())
+              ? await resourceCache.structureDefinition(extensionUrl.toString())
               : null;
 
           if (structureDefinition != null) {

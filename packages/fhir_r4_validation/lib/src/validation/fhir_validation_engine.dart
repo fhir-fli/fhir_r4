@@ -89,8 +89,8 @@ class FhirValidationEngine {
     // cache keyed by canonical URL. The bare name is still tried second, for
     // a cache that indexes by type.
     const base = 'http://hl7.org/fhir/StructureDefinition/';
-    structureDefinition ??= await cache.getStructureDefinition('$base$type') ??
-        await cache.getStructureDefinition(type);
+    structureDefinition ??= await cache.structureDefinition('$base$type') ??
+        await cache.structureDefinition(type);
 
     if (structureDefinition == null) {
       return results

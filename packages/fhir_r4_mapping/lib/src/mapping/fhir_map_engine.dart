@@ -1625,7 +1625,7 @@ class FhirMapEngine {
           throw FHIRException(message: vse.error);
         }
         final List<ValueSetContains>? expanded =
-            vse.valueSet?.expansion?.contains;
+            (vse.valueSet as ValueSet?)?.expansion?.contains;
         bool found = false;
         for (final ValueSetContains t in expanded ?? <ValueSetContains>[]) {
           if (t.code?.valueString != null) {

@@ -26,7 +26,7 @@ Future<void> main() async {
 
   // If you want to pass in resources locally, but also fetch some online
   // It will search everytime you pass it a new url
-  final onlineResourceCache = OnlineResourceCache();
+  final onlineResourceCache = OnlineResourceCache(parse: Resource.fromJson);
 
   final onlineEngine = await FhirMapEngine.create(onlineResourceCache);
 
