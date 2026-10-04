@@ -38,7 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// Canonical resources (StructureDefinitions, ConceptMaps, imported maps)
   /// are fetched on demand; plain FHIR-to-FHIR maps need none.
-  final OnlineResourceCache _cache = OnlineResourceCache(parse: Resource.fromJson);
+  final OnlineResourceCache _cache = OnlineResourceCache(
+    parse: Resource.fromJson,
+  );
 
   @override
   void initState() {
