@@ -71,6 +71,17 @@ jobs:
               echo "    git:"
               echo "      url: https://github.com/fhir-fli/fhir_bulk.git"
               echo "      ref: main"
+              # fhir_at_rest 0.13.0, which fhir_r4_at_rest binds, and
+              # fhir_node 0.6.1, which it and fhir_bulk need, until they are
+              # on pub.dev.
+              echo "  fhir_at_rest:"
+              echo "    git:"
+              echo "      url: https://github.com/fhir-fli/fhir_at_rest.git"
+              echo "      ref: main"
+              echo "  fhir_node:"
+              echo "    git:"
+              echo "      url: https://github.com/fhir-fli/fhir_node.git"
+              echo "      ref: main"
             } > "${d}pubspec_overrides.yaml"
           done
           echo "Overrides written for $(ls -d packages/*/ | wc -l) packages"
