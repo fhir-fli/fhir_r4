@@ -113,19 +113,22 @@ jobs:
             # `if ! ( ... )` so the outer `bash -e` does not stop at the first
             # failing package (it did: 2026-09-23 the run ended at the first
             # of two demo apps with a lint hit, and the other was never checked).
+            # That rewrite silenced the gate: see the note inside.
             if ! (
-              set -e
-              cd "$d"
-              flutter pub get
+              # No `set -e` here: bash ignores errexit inside an `if` condition,
+              # subshell included, so only the last command counted and a format
+              # or analyze failure passed (found 2026-10-04). Each step exits.
+              cd "$d" || exit 1
+              flutter pub get || exit 1
               # Scope to the package's own dirs: nested demo apps are separate
               # packages whose formatter context (language version) differs.
               for f in lib test example bin tool; do
                 if [ -d "$f" ]; then
-                  dart format --output=none --set-exit-if-changed "$f"
+                  dart format --output=none --set-exit-if-changed "$f" || exit 1
                 fi
               done
-              flutter analyze
-              if [ -d test ]; then flutter test; fi
+              flutter analyze || exit 1
+              if [ -d test ]; then flutter test || exit 1; fi
             ); then
               failed="${failed} ${pkg}"
               echo "::error::${pkg} failed"
