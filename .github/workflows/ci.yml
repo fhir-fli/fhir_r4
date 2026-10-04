@@ -88,6 +88,12 @@ jobs:
               echo "    git:"
               echo "      url: https://github.com/fhir-fli/fhir_validation.git"
               echo "      ref: main"
+              # fhir_mapping 0.13.0, which fhir_r4_mapping binds, until it is
+              # on pub.dev.
+              echo "  fhir_mapping:"
+              echo "    git:"
+              echo "      url: https://github.com/fhir-fli/fhir_mapping.git"
+              echo "      ref: main"
             } > "${d}pubspec_overrides.yaml"
           done
           echo "Overrides written for $(ls -d packages/*/ | wc -l) packages"

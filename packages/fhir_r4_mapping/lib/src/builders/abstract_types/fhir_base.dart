@@ -4,8 +4,9 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 
-/// Base class for all FHIR elements.
-abstract class FhirBaseBuilder {
+/// Base class for all FHIR elements. Implements [FhirNodeBuilder], the
+/// builder contract the shared `fhir_mapping` engine writes through.
+abstract class FhirBaseBuilder implements FhirNodeBuilder {
   /// Main constructor for [FhirBaseBuilder].
   FhirBaseBuilder({
     this.userData,
@@ -40,7 +41,12 @@ abstract class FhirBaseBuilder {
   String? objectPath;
 
   /// Checks if the object is primitive.
+  @override
   bool get isPrimitive => this is PrimitiveTypeBuilder;
+
+  /// Checks if the object is a resource.
+  @override
+  bool get isResource => this is ResourceBuilder;
 
   /// Checks if the object has a primitive value.
   bool get hasPrimitiveValue => isPrimitive;

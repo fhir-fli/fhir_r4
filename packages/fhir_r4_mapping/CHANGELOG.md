@@ -2,6 +2,22 @@
 
 ## [Unreleased]
 
+- **The engine and parser move to `fhir_mapping` 0.13.0**; this package is
+  its R4B binding. The generated builders stay here and now implement
+  `FhirNodeBuilder`, the contract the shared engine writes through;
+  `R4MappingModel` supplies them and R4B's StructureMap spellings.
+  `fhirMappingEngine`, `FhirMapEngine.create(cache)` and
+  `StructureMapParser.create()` keep their signatures and return R4B types.
+  `MappingVariables`, the views, the exceptions and the caches are
+  re-exported from `fhir_mapping`; the engine-only extensions on
+  ElementDefinition, StructureDefinition, StructureMap and ValueSet are gone
+  (the engine reads those by element name now). `crypto` and `http` are no
+  longer dependencies.
+- Parser, per the Java reference: the old-format header's comment block is
+  the map's description, `/// experimental` is read, and a bare
+  `/// status = draft` is accepted.
+- `translate` over a CodeableConcept source looks the codings up one by one.
+
 - **A bound `code` Builder carries its CodeSystem**, the same change as in the core package: constants name the CodeSystem, not the ValueSet, and a value parsed from JSON or built from a string takes its constant's `system`, `version` and `display`. `fromJson` also sets `valueEnum`, which it did not.
 - **`FhirDateTimeBaseBuilder.valueDateTime` honours the offset**, the same change as in the core package: a value with `Z` or an offset comes back in UTC at the instant it denotes; one without stays local.
 - **A map that leaves a required element unset now says so usefully.** `transformBuilder` ends in `result.build()`, which is `Type.fromJson(toJson())`, and `fromJson` dereferences the required elements — so an unset one surfaced as `Null check operator used on a null value`, naming neither the type nor the element, inside an OperationOutcome the caller could do nothing with. The failure now reports the target type and the elements the map actually did set, which is the list the missing one is absent from.
