@@ -7,7 +7,7 @@ void main() {
     late FhirValidationEngine validator;
 
     setUp(() {
-      validator = FhirValidationEngine();
+      validator = const FhirValidationEngine();
     });
 
     group('validateFhirResource', () {

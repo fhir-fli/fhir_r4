@@ -1,5 +1,4 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_validation/fhir_r4_validation.dart';
 import 'package:test/test.dart';
 
@@ -650,7 +649,7 @@ void main() {
     late FhirValidationEngine validator;
 
     setUp(() {
-      validator = FhirValidationEngine();
+      validator = const FhirValidationEngine();
     });
 
     test('validates Patient with valid birthDate', () async {
