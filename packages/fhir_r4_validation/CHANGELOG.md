@@ -1,6 +1,6 @@
 # fhir_r4_validation
 
-## [Unreleased]
+## [0.13.0]
 
 - The validator now lives in `fhir_validation` 0.13.0, which serves every
   FHIR version and reads definitions through `fhir_node`. This package

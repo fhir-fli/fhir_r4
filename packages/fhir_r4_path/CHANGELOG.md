@@ -1,5 +1,19 @@
 # fhir_r4_path
 
+## [0.13.0]
+
+- **Binding over fhir_path 0.15.0.** The terminology layer, the resource
+  caches and the worker context this package carried as its own typed copy
+  are fhir_path's now; what stays is R4's: the model binding (type table,
+  value factory, `Resource.fromJson`/`toJson`), the TypeConvertor, and a
+  `TypedResourceCache` extension (`structureDefinition`, `codeSystem`,
+  `valueSet`, `canonical<T>`) that casts a cache's node to its R4 class.
+  `OnlineResourceCache` takes the model's parser. Dependencies the binding
+  no longer imports (collection, http, meta, ucum) are gone.
+- `WorkerContext.loadStructureDefinition` awaits the cache write and returns
+  a Future (the three versions now agree).
+- Every catch names what it catches.
+
 ## [0.12.0]
 
 - No code changes; version aligned with the fhir_r4 0.12.0 family release

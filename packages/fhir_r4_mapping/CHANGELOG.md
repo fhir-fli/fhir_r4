@@ -1,6 +1,6 @@
 # fhir_r4_mapping
 
-## [Unreleased]
+## [0.13.0]
 
 - **The engine and parser move to `fhir_mapping` 0.13.0**; this package is
   its R4B binding. The generated builders stay here and now implement

@@ -1,6 +1,6 @@
 # fhir_r4_bulk
 
-## [Unreleased]
+## [0.13.0]
 
 - The bulk-data code now lives in `fhir_bulk` 0.13.0, which serves every
   FHIR version and reads resources through `fhir_node`. This package

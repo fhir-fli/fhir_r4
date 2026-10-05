@@ -1,6 +1,6 @@
 # fhir_r4_db
 
-## [Unreleased]
+## [0.13.0]
 
 - `R4Model` gives `fromJson(Map)` / `toJson(Resource)` through fhir_node's
   `ResourceModel`; the store's text pair is `fromJsonText` / `toJsonText`

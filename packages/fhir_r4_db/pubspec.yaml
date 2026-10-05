@@ -1,6 +1,6 @@
 name: fhir_r4_db
 description: FHIR R4B database on SQLite/Drift, the fhir_db store bound to fhir_r4, with search parameter indexing, history, compartments and optional encryption.
-version: 0.12.0
+version: 0.13.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 issue_tracker: https://github.com/fhir-fli/fhir_r4/issues
@@ -28,10 +28,10 @@ environment:
 # fhir_r4 and carries the generated per-version data.
 dependencies:
   drift: ^2.33.0
-  fhir_db: ^0.13.0
+  fhir_db: ^0.15.0
   fhir_node: ^0.6.0
-  fhir_r4: ^0.12.0
-  fhir_r4_path: ^0.12.0
+  fhir_r4: ^0.13.0
+  fhir_r4_path: ^0.13.0
 
 dev_dependencies:
   collection: ^1.19.1

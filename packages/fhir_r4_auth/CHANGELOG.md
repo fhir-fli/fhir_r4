@@ -1,6 +1,6 @@
 # fhir_r4_auth
 
-## [Unreleased]
+## [0.13.0]
 
 - This package is now a re-export of `fhir_auth` 0.13.0, which serves every
   FHIR version. `AuthConfig.fhirBaseUrl` and `AuthClient.fhirBaseUrl` are

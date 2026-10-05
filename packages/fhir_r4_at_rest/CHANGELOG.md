@@ -1,6 +1,6 @@
 # fhir_r4_at_rest
 
-## [Unreleased]
+## [0.13.0]
 
 - The request builders, `RestfulParameters`, `PatchBody`, the enums and the
   response parsing now live in `fhir_at_rest` 0.13.0, which serves every

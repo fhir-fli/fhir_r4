@@ -1,6 +1,6 @@
 # fhir_r4_cds_hooks
 
-## [Unreleased]
+## [0.13.0]
 
 - The CDS Hooks code now lives in `fhir_cds_hooks` 0.13.0, which serves every
   FHIR version and carries resources as JSON. This package re-exports it and
