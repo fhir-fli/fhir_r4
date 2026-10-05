@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for RequestResourceType
@@ -176,12 +177,13 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = RequestResourceTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return RequestResourceTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -214,10 +216,26 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
         'RequestResourceTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(RequestResourceTypeBuilderEnum.fromString(value));
     return RequestResourceTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static RequestResourceTypeBuilder? _known(
+      RequestResourceTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for RequestResourceTypeBuilder
@@ -228,7 +246,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Appointment',
     valueEnum: RequestResourceTypeBuilderEnum.appointment,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -242,7 +260,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'AppointmentResponse',
     valueEnum: RequestResourceTypeBuilderEnum.appointmentResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -255,7 +273,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'CarePlan',
     valueEnum: RequestResourceTypeBuilderEnum.carePlan,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -268,7 +286,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Claim',
     valueEnum: RequestResourceTypeBuilderEnum.claim,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -282,7 +300,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'CommunicationRequest',
     valueEnum: RequestResourceTypeBuilderEnum.communicationRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -295,7 +313,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Contract',
     valueEnum: RequestResourceTypeBuilderEnum.contract,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -309,7 +327,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'DeviceRequest',
     valueEnum: RequestResourceTypeBuilderEnum.deviceRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -323,7 +341,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'EnrollmentRequest',
     valueEnum: RequestResourceTypeBuilderEnum.enrollmentRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -337,7 +355,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'ImmunizationRecommendation',
     valueEnum: RequestResourceTypeBuilderEnum.immunizationRecommendation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -351,7 +369,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'MedicationRequest',
     valueEnum: RequestResourceTypeBuilderEnum.medicationRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -365,7 +383,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'NutritionOrder',
     valueEnum: RequestResourceTypeBuilderEnum.nutritionOrder,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -379,7 +397,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'ServiceRequest',
     valueEnum: RequestResourceTypeBuilderEnum.serviceRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -393,7 +411,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'SupplyRequest',
     valueEnum: RequestResourceTypeBuilderEnum.supplyRequest,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -406,7 +424,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'Task',
     valueEnum: RequestResourceTypeBuilderEnum.task,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -420,7 +438,7 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'VisionPrescription',
     valueEnum: RequestResourceTypeBuilderEnum.visionPrescription,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-resource-types',
+      valueString: 'http://hl7.org/fhir/request-resource-types',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -459,6 +477,10 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return RequestResourceTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -83,12 +83,13 @@ class AddressType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = AddressTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return AddressType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -112,11 +113,25 @@ class AddressType extends FhirCodeEnum {
         'AddressType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return AddressType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AddressType? _known(AddressTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for AddressType
@@ -127,7 +142,7 @@ class AddressType extends FhirCodeEnum {
     valueString: 'postal',
     valueEnum: AddressTypeEnum.postal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/address-type',
+      valueString: 'http://hl7.org/fhir/address-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -140,7 +155,7 @@ class AddressType extends FhirCodeEnum {
     valueString: 'physical',
     valueEnum: AddressTypeEnum.physical,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/address-type',
+      valueString: 'http://hl7.org/fhir/address-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -153,7 +168,7 @@ class AddressType extends FhirCodeEnum {
     valueString: 'both',
     valueEnum: AddressTypeEnum.both,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/address-type',
+      valueString: 'http://hl7.org/fhir/address-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -172,6 +187,10 @@ class AddressType extends FhirCodeEnum {
   AddressType withElement(Element? newElement) {
     return AddressType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

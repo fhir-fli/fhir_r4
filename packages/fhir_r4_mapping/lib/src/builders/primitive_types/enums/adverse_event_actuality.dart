@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for AdverseEventActuality
@@ -84,12 +85,13 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
     final valueEnum = AdverseEventActualityBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return AdverseEventActualityBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -122,10 +124,26 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
         'AdverseEventActualityBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(AdverseEventActualityBuilderEnum.fromString(value));
     return AdverseEventActualityBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AdverseEventActualityBuilder? _known(
+      AdverseEventActualityBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for AdverseEventActualityBuilder
@@ -136,7 +154,7 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
     valueString: 'actual',
     valueEnum: AdverseEventActualityBuilderEnum.actual,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/adverse-event-actuality',
+      valueString: 'http://hl7.org/fhir/adverse-event-actuality',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -150,7 +168,7 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
     valueString: 'potential',
     valueEnum: AdverseEventActualityBuilderEnum.potential,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/adverse-event-actuality',
+      valueString: 'http://hl7.org/fhir/adverse-event-actuality',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,6 +195,10 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
   ) {
     return AdverseEventActualityBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

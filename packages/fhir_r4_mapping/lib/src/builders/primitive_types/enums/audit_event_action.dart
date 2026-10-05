@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for AuditEventAction
@@ -106,12 +107,13 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
     final valueEnum = AuditEventActionBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return AuditEventActionBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -144,10 +146,26 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
         'AuditEventActionBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(AuditEventActionBuilderEnum.fromString(value));
     return AuditEventActionBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AuditEventActionBuilder? _known(
+      AuditEventActionBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for AuditEventActionBuilder
@@ -158,7 +176,7 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
     valueString: 'C',
     valueEnum: AuditEventActionBuilderEnum.c,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/audit-event-action',
+      valueString: 'http://hl7.org/fhir/audit-event-action',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -171,7 +189,7 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
     valueString: 'R',
     valueEnum: AuditEventActionBuilderEnum.r,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/audit-event-action',
+      valueString: 'http://hl7.org/fhir/audit-event-action',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -184,7 +202,7 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
     valueString: 'U',
     valueEnum: AuditEventActionBuilderEnum.u,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/audit-event-action',
+      valueString: 'http://hl7.org/fhir/audit-event-action',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,7 +215,7 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
     valueString: 'D',
     valueEnum: AuditEventActionBuilderEnum.d,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/audit-event-action',
+      valueString: 'http://hl7.org/fhir/audit-event-action',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -210,7 +228,7 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
     valueString: 'E',
     valueEnum: AuditEventActionBuilderEnum.e,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/audit-event-action',
+      valueString: 'http://hl7.org/fhir/audit-event-action',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -239,6 +257,10 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
   ) {
     return AuditEventActionBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

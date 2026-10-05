@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ConsentDataMeaning
@@ -99,12 +100,13 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ConsentDataMeaningBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ConsentDataMeaningBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -137,10 +139,26 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
         'ConsentDataMeaningBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ConsentDataMeaningBuilderEnum.fromString(value));
     return ConsentDataMeaningBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ConsentDataMeaningBuilder? _known(
+      ConsentDataMeaningBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ConsentDataMeaningBuilder
@@ -151,7 +169,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     valueString: 'instance',
     valueEnum: ConsentDataMeaningBuilderEnum.instance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-data-meaning',
+      valueString: 'http://hl7.org/fhir/consent-data-meaning',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -164,7 +182,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     valueString: 'related',
     valueEnum: ConsentDataMeaningBuilderEnum.related,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-data-meaning',
+      valueString: 'http://hl7.org/fhir/consent-data-meaning',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,7 +195,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     valueString: 'dependents',
     valueEnum: ConsentDataMeaningBuilderEnum.dependents,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-data-meaning',
+      valueString: 'http://hl7.org/fhir/consent-data-meaning',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -190,7 +208,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     valueString: 'authoredby',
     valueEnum: ConsentDataMeaningBuilderEnum.authoredby,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-data-meaning',
+      valueString: 'http://hl7.org/fhir/consent-data-meaning',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -218,6 +236,10 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
   ) {
     return ConsentDataMeaningBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

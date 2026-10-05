@@ -91,12 +91,13 @@ class LinkType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = LinkTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return LinkType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -120,11 +121,25 @@ class LinkType extends FhirCodeEnum {
         'LinkType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return LinkType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static LinkType? _known(LinkTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for LinkType
@@ -135,7 +150,7 @@ class LinkType extends FhirCodeEnum {
     valueString: 'replaced-by',
     valueEnum: LinkTypeEnum.replacedBy,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+      valueString: 'http://hl7.org/fhir/link-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -148,7 +163,7 @@ class LinkType extends FhirCodeEnum {
     valueString: 'replaces',
     valueEnum: LinkTypeEnum.replaces,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+      valueString: 'http://hl7.org/fhir/link-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +176,7 @@ class LinkType extends FhirCodeEnum {
     valueString: 'refer',
     valueEnum: LinkTypeEnum.refer,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+      valueString: 'http://hl7.org/fhir/link-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,7 @@ class LinkType extends FhirCodeEnum {
     valueString: 'seealso',
     valueEnum: LinkTypeEnum.seealso,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/link-type',
+      valueString: 'http://hl7.org/fhir/link-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,6 +209,10 @@ class LinkType extends FhirCodeEnum {
   LinkType withElement(Element? newElement) {
     return LinkType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

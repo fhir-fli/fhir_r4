@@ -97,12 +97,13 @@ class PropertyRepresentation extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = PropertyRepresentationEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return PropertyRepresentation._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,25 @@ class PropertyRepresentation extends FhirCodeEnum {
         'PropertyRepresentation cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return PropertyRepresentation._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static PropertyRepresentation? _known(PropertyRepresentationEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for PropertyRepresentation
@@ -141,7 +156,7 @@ class PropertyRepresentation extends FhirCodeEnum {
     valueString: 'xmlAttr',
     valueEnum: PropertyRepresentationEnum.xmlAttr,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/property-representation',
+      valueString: 'http://hl7.org/fhir/property-representation',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class PropertyRepresentation extends FhirCodeEnum {
     valueString: 'xmlText',
     valueEnum: PropertyRepresentationEnum.xmlText,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/property-representation',
+      valueString: 'http://hl7.org/fhir/property-representation',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +182,7 @@ class PropertyRepresentation extends FhirCodeEnum {
     valueString: 'typeAttr',
     valueEnum: PropertyRepresentationEnum.typeAttr,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/property-representation',
+      valueString: 'http://hl7.org/fhir/property-representation',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +195,7 @@ class PropertyRepresentation extends FhirCodeEnum {
     valueString: 'cdaText',
     valueEnum: PropertyRepresentationEnum.cdaText,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/property-representation',
+      valueString: 'http://hl7.org/fhir/property-representation',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +208,7 @@ class PropertyRepresentation extends FhirCodeEnum {
     valueString: 'xhtml',
     valueEnum: PropertyRepresentationEnum.xhtml,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/property-representation',
+      valueString: 'http://hl7.org/fhir/property-representation',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +229,10 @@ class PropertyRepresentation extends FhirCodeEnum {
   PropertyRepresentation withElement(Element? newElement) {
     return PropertyRepresentation._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

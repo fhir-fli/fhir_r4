@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for AssertionDirectionType
@@ -84,12 +85,13 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = AssertionDirectionTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return AssertionDirectionTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -122,10 +124,26 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
         'AssertionDirectionTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(AssertionDirectionTypeBuilderEnum.fromString(value));
     return AssertionDirectionTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AssertionDirectionTypeBuilder? _known(
+      AssertionDirectionTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for AssertionDirectionTypeBuilder
@@ -137,7 +155,7 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'response',
     valueEnum: AssertionDirectionTypeBuilderEnum.response,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-direction-codes',
+      valueString: 'http://hl7.org/fhir/assert-direction-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -151,7 +169,7 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'request',
     valueEnum: AssertionDirectionTypeBuilderEnum.request,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-direction-codes',
+      valueString: 'http://hl7.org/fhir/assert-direction-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -178,6 +196,10 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return AssertionDirectionTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

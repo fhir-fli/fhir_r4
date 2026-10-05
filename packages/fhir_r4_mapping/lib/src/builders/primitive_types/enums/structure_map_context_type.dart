@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for StructureMapContextType
@@ -84,12 +85,13 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = StructureMapContextTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return StructureMapContextTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -122,10 +124,26 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
         'StructureMapContextTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(StructureMapContextTypeBuilderEnum.fromString(value));
     return StructureMapContextTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static StructureMapContextTypeBuilder? _known(
+      StructureMapContextTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for StructureMapContextTypeBuilder
@@ -136,7 +154,7 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'type',
     valueEnum: StructureMapContextTypeBuilderEnum.type,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-context-type',
+      valueString: 'http://hl7.org/fhir/map-context-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -150,7 +168,7 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'variable',
     valueEnum: StructureMapContextTypeBuilderEnum.variable,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/map-context-type',
+      valueString: 'http://hl7.org/fhir/map-context-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,6 +195,10 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return StructureMapContextTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

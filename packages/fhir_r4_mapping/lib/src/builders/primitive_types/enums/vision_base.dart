@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for VisionBase
@@ -98,12 +99,13 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
     final valueEnum = VisionBaseBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return VisionBaseBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -135,10 +137,25 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
         'VisionBaseBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(VisionBaseBuilderEnum.fromString(value));
     return VisionBaseBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static VisionBaseBuilder? _known(VisionBaseBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for VisionBaseBuilder
@@ -149,7 +166,7 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
     valueString: 'up',
     valueEnum: VisionBaseBuilderEnum.up,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/vision-base-codes',
+      valueString: 'http://hl7.org/fhir/vision-base-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -162,7 +179,7 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
     valueString: 'down',
     valueEnum: VisionBaseBuilderEnum.down,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/vision-base-codes',
+      valueString: 'http://hl7.org/fhir/vision-base-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -175,7 +192,7 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
     valueString: 'in',
     valueEnum: VisionBaseBuilderEnum.in_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/vision-base-codes',
+      valueString: 'http://hl7.org/fhir/vision-base-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -188,7 +205,7 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
     valueString: 'out',
     valueEnum: VisionBaseBuilderEnum.out,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/vision-base-codes',
+      valueString: 'http://hl7.org/fhir/vision-base-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -216,6 +233,10 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
   ) {
     return VisionBaseBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

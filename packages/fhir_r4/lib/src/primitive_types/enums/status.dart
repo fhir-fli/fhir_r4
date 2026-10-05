@@ -104,12 +104,13 @@ class Status extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = StatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return Status._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -133,11 +134,25 @@ class Status extends FhirCodeEnum {
         'Status cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return Status._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static Status? _known(StatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for Status
@@ -148,7 +163,7 @@ class Status extends FhirCodeEnum {
     valueString: 'attested',
     valueEnum: StatusEnum.attested,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +176,7 @@ class Status extends FhirCodeEnum {
     valueString: 'validated',
     valueEnum: StatusEnum.validated,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,7 @@ class Status extends FhirCodeEnum {
     valueString: 'in-process',
     valueEnum: StatusEnum.inProcess,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -187,7 +202,7 @@ class Status extends FhirCodeEnum {
     valueString: 'req-revalid',
     valueEnum: StatusEnum.reqRevalid,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -200,7 +215,7 @@ class Status extends FhirCodeEnum {
     valueString: 'val-fail',
     valueEnum: StatusEnum.valFail,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -213,7 +228,7 @@ class Status extends FhirCodeEnum {
     valueString: 'reval-fail',
     valueEnum: StatusEnum.revalFail,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/verificationresult-status',
+      valueString: 'http://hl7.org/fhir/verificationresult-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,6 +250,10 @@ class Status extends FhirCodeEnum {
   Status withElement(Element? newElement) {
     return Status._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

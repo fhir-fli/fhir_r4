@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for TestReportResult
@@ -91,12 +92,13 @@ class TestReportResultBuilder extends FhirCodeEnumBuilder {
     final valueEnum = TestReportResultBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return TestReportResultBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -129,10 +131,26 @@ class TestReportResultBuilder extends FhirCodeEnumBuilder {
         'TestReportResultBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(TestReportResultBuilderEnum.fromString(value));
     return TestReportResultBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TestReportResultBuilder? _known(
+      TestReportResultBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for TestReportResultBuilder
@@ -143,7 +161,7 @@ class TestReportResultBuilder extends FhirCodeEnumBuilder {
     valueString: 'pass',
     valueEnum: TestReportResultBuilderEnum.pass,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-result-codes',
+      valueString: 'http://hl7.org/fhir/report-result-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -156,7 +174,7 @@ class TestReportResultBuilder extends FhirCodeEnumBuilder {
     valueString: 'fail',
     valueEnum: TestReportResultBuilderEnum.fail,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-result-codes',
+      valueString: 'http://hl7.org/fhir/report-result-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -169,7 +187,7 @@ class TestReportResultBuilder extends FhirCodeEnumBuilder {
     valueString: 'pending',
     valueEnum: TestReportResultBuilderEnum.pending,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-result-codes',
+      valueString: 'http://hl7.org/fhir/report-result-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -196,6 +214,10 @@ class TestReportResultBuilder extends FhirCodeEnumBuilder {
   ) {
     return TestReportResultBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

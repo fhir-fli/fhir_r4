@@ -1,232 +1,38 @@
-import 'package:drift/drift.dart';
-import 'package:fhir_r4/fhir_r4.dart' as fhir;
-import 'package:fhir_r4_db/fhir_r4_db.dart';
+import 'package:fhir_db/fhir_db.dart' as core;
+import 'package:fhir_r4/fhir_r4.dart';
 
-part 'fhir_db.g.dart';
+import 'package:fhir_r4_db/src/r4_model.dart';
 
-/// Standalone FHIR database using Drift/SQLite.
+/// The R4B store: `fhir_db`'s [core.FhirDb] over [R4Model].
 ///
-/// Includes tables for FHIR resources, history, search parameter indexing,
-/// sync tracking, canonical resource caching, and general storage.
-@DriftDatabase(
-  tables: [
-    Resources,
-    ResourcesHistory,
-    StringSearchParameters,
-    TokenSearchParameters,
-    ReferenceSearchParameters,
-    DateSearchParameters,
-    NumberSearchParameters,
-    QuantitySearchParameters,
-    UriSearchParameters,
-    CompositeSearchParameters,
-    SpecialSearchParameters,
-    SyncResources,
-    CanonicalResources,
-    GeneralStorage,
-  ],
-  daos: [FhirDao],
-)
-class FhirDb extends _$FhirDb {
-  /// Creates an instance of the database with the given [QueryExecutor].
-  ///
-  /// The caller is responsible for creating the appropriate executor:
-  /// - Native: `NativeDatabase(File(path), setup: ...)`
-  /// - Tests: `NativeDatabase.memory()`
-  /// - Web: `WasmDatabase` or `WebDatabase`
-  FhirDb(super.e);
+/// Everything an application calls is the core's, typed for this version:
+/// [fhirDao] is a [FhirDao] whose resources are `fhir_r4` [Resource]s and
+/// whose type tokens are [R4ResourceType].
+class FhirDb extends core.FhirDb<Resource, R4ResourceType> {
+  /// Creates the database over the executor [e] (a `NativeDatabase`, a
+  /// `LazyDatabase`, an encrypted one from `cipherFromKey`, ...).
+  FhirDb(super.e) : super(model: r4Model);
 
-  @override
-  int get schemaVersion => 6;
+  // Static members are not inherited through a subclass name; the two the
+  // tests and tools read are re-exposed here.
 
-  @override
-  MigrationStrategy get migration => MigrationStrategy(
-        onCreate: (m) async {
-          await m.createAll();
-        },
-        onUpgrade: (m, from, to) async {
-          if (from < 2) {
-            // Make referenceValue nullable for identifier-only references
-            await customStatement(
-              'CREATE TABLE reference_search_parameters_new ( '
-              'resource_type TEXT NOT NULL, '
-              'id TEXT NOT NULL, '
-              'last_updated INTEGER NOT NULL, '
-              'search_path TEXT NOT NULL, '
-              "search_name TEXT NOT NULL DEFAULT '', "
-              'param_index INTEGER NOT NULL, '
-              'reference_value TEXT, '
-              'reference_resource_type TEXT, '
-              'reference_id_part TEXT, '
-              'reference_version TEXT, '
-              'reference_base_url TEXT, '
-              'identifier_system TEXT, '
-              'identifier_value TEXT, '
-              'PRIMARY KEY (resource_type, id, search_path, param_index) '
-              ')',
-            );
-            await customStatement(
-              'INSERT INTO reference_search_parameters_new '
-              'SELECT * FROM reference_search_parameters',
-            );
-            await customStatement(
-              'DROP TABLE reference_search_parameters',
-            );
-            await customStatement(
-              'ALTER TABLE reference_search_parameters_new '
-              'RENAME TO reference_search_parameters',
-            );
-          }
-          if (from < 3) {
-            // Add versionId column to resources_history and rebuild with new
-            // primary key {resourceType, id, versionId} to prevent overwrites
-            // when two saves happen within the same wall-clock second.
-            await customStatement(
-              'CREATE TABLE resources_history_new ( '
-              'resource_type TEXT NOT NULL, '
-              'id TEXT NOT NULL, '
-              'version_id TEXT NOT NULL, '
-              'resource TEXT NOT NULL, '
-              'last_updated INTEGER NOT NULL, '
-              'PRIMARY KEY (resource_type, id, version_id) '
-              ')',
-            );
-            // Migrate existing data — extract versionId from JSON, fall back
-            // to lastUpdated cast to TEXT so every row has a unique key.
-            await customStatement(
-              'INSERT OR IGNORE INTO resources_history_new '
-              '(resource_type, id, version_id, resource, last_updated) '
-              'SELECT resource_type, id, '
-              'COALESCE('
-              r"json_extract(resource, '$.meta.versionId'), "
-              'CAST(last_updated AS TEXT) '
-              '), '
-              'resource, last_updated '
-              'FROM resources_history',
-            );
-            await customStatement('DROP TABLE resources_history');
-            await customStatement(
-              'ALTER TABLE resources_history_new '
-              'RENAME TO resources_history',
-            );
-          }
-          if (from < 4) {
-            // Convert lastUpdated from seconds to milliseconds in all tables.
-            const tables = [
-              'resources',
-              'resources_history',
-              'string_search_parameters',
-              'token_search_parameters',
-              'reference_search_parameters',
-              'date_search_parameters',
-              'number_search_parameters',
-              'quantity_search_parameters',
-              'uri_search_parameters',
-              'composite_search_parameters',
-              'special_search_parameters',
-              'sync_resources',
-            ];
-            for (final table in tables) {
-              await customStatement(
-                'UPDATE $table SET last_updated = last_updated * 1000',
-              );
-            }
-          }
-          if (from < 5) {
-            // searchName joins the primary key of every index table.
-            //
-            // One FHIR path can back more than one search parameter —
-            // Observation.code serves both `code` and `combo-code`, and the
-            // polymorphic value parameters (`value-quantity`,
-            // `value-concept`) share a path with each other. With searchName
-            // outside the key the second row collided with the first on
-            // insert, so only one of them could ever be indexed.
-            //
-            // Rows are preserved. Parameters that could not be indexed before
-            // appear for resources saved after this upgrade; existing
-            // resources need re-saving to pick them up, the same way a FHIR
-            // server reindexes after a SearchParameter is added.
-            final indexTables = <TableInfo<Table, dynamic>>[
-              stringSearchParameters,
-              tokenSearchParameters,
-              referenceSearchParameters,
-              dateSearchParameters,
-              numberSearchParameters,
-              quantitySearchParameters,
-              uriSearchParameters,
-              compositeSearchParameters,
-              specialSearchParameters,
-            ];
-            for (final table in indexTables) {
-              await m.alterTable(
-                TableMigration(
-                  table,
-                  // exact_value arrived with schema 6 and is not in a database
-                  // older than 5. Without declaring it new, drift copies the
-                  // rows with a SELECT naming every CURRENT column, and the
-                  // upgrade fails on "no such column: exact_value" — which
-                  // means a real version-4 database would not open at all.
-                  newColumns: [
-                    if (identical(table, stringSearchParameters))
-                      stringSearchParameters.exactValue,
-                  ],
-                ),
-              );
-            }
-          }
-          // Exactly 5, not `< 6`. Anything older went through the rebuild
-          // above, which recreates each index table from the CURRENT
-          // definition and so already has this column; adding it again is a
-          // duplicate-column error.
-          if (from == 5) {
-            // `:exact` needs the value as written, and the only column there
-            // was holds it normalized, so casing and accents are gone before
-            // a query can ask about them.
-            await customStatement(
-              'ALTER TABLE string_search_parameters '
-              "ADD COLUMN exact_value TEXT NOT NULL DEFAULT ''",
-            );
-          }
-          if (from < 6) {
-            // Rebuild the string index from the resources.
-            //
-            // The index is DERIVED data: every value in it comes from a
-            // resource that is still sitting in `resources`. So there is
-            // nothing to preserve and nothing to lose, and leaving old rows
-            // with a null exact value would mean `:exact` silently ignored
-            // every record stored before the upgrade — a wrong answer rather
-            // than an error.
-            //
-            // The accent folding changed in the same version, so the
-            // normalized column is stale for every accented value too. Both
-            // are fixed by the same rebuild.
-            await customStatement('DELETE FROM string_search_parameters');
-            final stored = await customSelect(
-              'SELECT resource FROM resources',
-            ).get();
-            for (final row in stored) {
-              fhir.Resource resource;
-              try {
-                resource = fhir.Resource.fromJsonString(
-                  row.data['resource']! as String,
-                );
-              } catch (_) {
-                // A resource that will not parse cannot be indexed, and
-                // failing the upgrade over one bad row would keep the whole
-                // database shut. Only the PARSE is guarded: an insert that
-                // fails is a bug in this migration, and swallowing it would
-                // leave the index quietly empty.
-                continue;
-              }
-              for (final param
-                  in updateSearchParameters(resource).stringParams) {
-                await into(stringSearchParameters).insert(
-                  param,
-                  mode: InsertMode.insertOrReplace,
-                );
-              }
-            }
-          }
-        },
-      );
+  /// See [core.FhirDb.analysisLimit].
+  static const int analysisLimit = core.FhirDb.analysisLimit;
+
+  /// See [core.FhirDb.searchTableNames].
+  static const List<String> searchTableNames = core.FhirDb.searchTableNames;
 }
+
+/// The R4B data-access object: [core.FhirDao] over `fhir_r4` resources.
+typedef FhirDao = core.FhirDao<Resource, R4ResourceType>;
+
+/// One version of an R4B resource in its history, or a tombstone.
+typedef HistoryEntry = core.HistoryEntry<Resource>;
+
+/// The definition of [code] on [resourceType], or null when there is none;
+/// this version's SearchParameter data through the core's lookup.
+core.SearchParameterDefinition? searchParameterFor(
+  String resourceType,
+  String code,
+) =>
+    r4Model.searchParameters.lookup(resourceType, code);

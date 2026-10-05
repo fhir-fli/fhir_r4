@@ -90,12 +90,13 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = DeviceMetricCalibrationStateEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return DeviceMetricCalibrationState._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -114,19 +115,32 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return DeviceMetricCalibrationState._(
-        valueString: null,
-        element: element,
-      );
+          valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DeviceMetricCalibrationState cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return DeviceMetricCalibrationState._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static DeviceMetricCalibrationState? _known(
+      DeviceMetricCalibrationStateEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for DeviceMetricCalibrationState
@@ -138,7 +152,7 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
     valueString: 'not-calibrated',
     valueEnum: DeviceMetricCalibrationStateEnum.notCalibrated,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+      valueString: 'http://hl7.org/fhir/metric-calibration-state',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -152,7 +166,7 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
     valueString: 'calibration-required',
     valueEnum: DeviceMetricCalibrationStateEnum.calibrationRequired,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+      valueString: 'http://hl7.org/fhir/metric-calibration-state',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -166,7 +180,7 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
     valueString: 'calibrated',
     valueEnum: DeviceMetricCalibrationStateEnum.calibrated,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+      valueString: 'http://hl7.org/fhir/metric-calibration-state',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +194,7 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
     valueString: 'unspecified',
     valueEnum: DeviceMetricCalibrationStateEnum.unspecified,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/metric-calibration-state',
+      valueString: 'http://hl7.org/fhir/metric-calibration-state',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -200,6 +214,10 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
   DeviceMetricCalibrationState withElement(Element? newElement) {
     return DeviceMetricCalibrationState._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

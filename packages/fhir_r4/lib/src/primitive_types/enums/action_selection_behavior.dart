@@ -104,12 +104,13 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ActionSelectionBehaviorEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ActionSelectionBehavior._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -133,11 +134,26 @@ class ActionSelectionBehavior extends FhirCodeEnum {
         'ActionSelectionBehavior cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ActionSelectionBehavior._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionSelectionBehavior? _known(
+      ActionSelectionBehaviorEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ActionSelectionBehavior
@@ -148,7 +164,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     valueString: 'any',
     valueEnum: ActionSelectionBehaviorEnum.any,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +177,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     valueString: 'all',
     valueEnum: ActionSelectionBehaviorEnum.all,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +190,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     valueString: 'all-or-none',
     valueEnum: ActionSelectionBehaviorEnum.allOrNone,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -187,7 +203,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     valueString: 'exactly-one',
     valueEnum: ActionSelectionBehaviorEnum.exactlyOne,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -200,7 +216,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     valueString: 'at-most-one',
     valueEnum: ActionSelectionBehaviorEnum.atMostOne,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -213,7 +229,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     valueString: 'one-or-more',
     valueEnum: ActionSelectionBehaviorEnum.oneOrMore,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+      valueString: 'http://hl7.org/fhir/action-selection-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,6 +251,10 @@ class ActionSelectionBehavior extends FhirCodeEnum {
   ActionSelectionBehavior withElement(Element? newElement) {
     return ActionSelectionBehavior._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -121,12 +121,13 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ImmunizationStatusCodesEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ImmunizationStatusCodes._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -150,11 +151,26 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
         'ImmunizationStatusCodes cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ImmunizationStatusCodes._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ImmunizationStatusCodes? _known(
+      ImmunizationStatusCodesEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ImmunizationStatusCodes
@@ -165,7 +181,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'preparation',
     valueEnum: ImmunizationStatusCodesEnum.preparation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -178,7 +194,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'in-progress',
     valueEnum: ImmunizationStatusCodesEnum.inProgress,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -191,7 +207,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'not-done',
     valueEnum: ImmunizationStatusCodesEnum.notDone,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -204,7 +220,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'on-hold',
     valueEnum: ImmunizationStatusCodesEnum.onHold,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -217,7 +233,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'stopped',
     valueEnum: ImmunizationStatusCodesEnum.stopped,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -230,7 +246,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: ImmunizationStatusCodesEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -244,7 +260,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: ImmunizationStatusCodesEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -257,7 +273,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: ImmunizationStatusCodesEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -281,6 +297,10 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
   ImmunizationStatusCodes withElement(Element? newElement) {
     return ImmunizationStatusCodes._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

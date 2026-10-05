@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for EnableWhenBehavior
@@ -85,12 +86,13 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
     final valueEnum = EnableWhenBehaviorBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return EnableWhenBehaviorBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -123,10 +125,26 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
         'EnableWhenBehaviorBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(EnableWhenBehaviorBuilderEnum.fromString(value));
     return EnableWhenBehaviorBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static EnableWhenBehaviorBuilder? _known(
+      EnableWhenBehaviorBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for EnableWhenBehaviorBuilder
@@ -137,7 +155,7 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'all',
     valueEnum: EnableWhenBehaviorBuilderEnum.all,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior',
+      valueString: 'http://hl7.org/fhir/questionnaire-enable-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -150,7 +168,7 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
     valueString: 'any',
     valueEnum: EnableWhenBehaviorBuilderEnum.any,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior',
+      valueString: 'http://hl7.org/fhir/questionnaire-enable-behavior',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,6 +194,10 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
   ) {
     return EnableWhenBehaviorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

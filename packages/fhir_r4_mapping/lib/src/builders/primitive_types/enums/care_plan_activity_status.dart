@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for CarePlanActivityStatus
@@ -134,12 +135,13 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = CarePlanActivityStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return CarePlanActivityStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -172,10 +174,26 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
         'CarePlanActivityStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(CarePlanActivityStatusBuilderEnum.fromString(value));
     return CarePlanActivityStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CarePlanActivityStatusBuilder? _known(
+      CarePlanActivityStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for CarePlanActivityStatusBuilder
@@ -187,7 +205,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-started',
     valueEnum: CarePlanActivityStatusBuilderEnum.notStarted,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -201,7 +219,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'scheduled',
     valueEnum: CarePlanActivityStatusBuilderEnum.scheduled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -215,7 +233,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'in-progress',
     valueEnum: CarePlanActivityStatusBuilderEnum.inProgress,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -228,7 +246,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'on-hold',
     valueEnum: CarePlanActivityStatusBuilderEnum.onHold,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -242,7 +260,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'completed',
     valueEnum: CarePlanActivityStatusBuilderEnum.completed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -256,7 +274,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'cancelled',
     valueEnum: CarePlanActivityStatusBuilderEnum.cancelled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -270,7 +288,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'stopped',
     valueEnum: CarePlanActivityStatusBuilderEnum.stopped,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -284,7 +302,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: CarePlanActivityStatusBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -298,7 +316,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: CarePlanActivityStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+      valueString: 'http://hl7.org/fhir/care-plan-activity-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -332,6 +350,10 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return CarePlanActivityStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

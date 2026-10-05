@@ -97,12 +97,13 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = AuditEventAgentNetworkTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return AuditEventAgentNetworkType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,26 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
         'AuditEventAgentNetworkType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return AuditEventAgentNetworkType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AuditEventAgentNetworkType? _known(
+      AuditEventAgentNetworkTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for AuditEventAgentNetworkType
@@ -141,7 +157,7 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
     valueString: '1',
     valueEnum: AuditEventAgentNetworkTypeEnum.value1,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+      valueString: 'http://hl7.org/fhir/network-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +170,7 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
     valueString: '2',
     valueEnum: AuditEventAgentNetworkTypeEnum.value2,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+      valueString: 'http://hl7.org/fhir/network-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +183,7 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
     valueString: '3',
     valueEnum: AuditEventAgentNetworkTypeEnum.value3,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+      valueString: 'http://hl7.org/fhir/network-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +196,7 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
     valueString: '4',
     valueEnum: AuditEventAgentNetworkTypeEnum.value4,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+      valueString: 'http://hl7.org/fhir/network-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +209,7 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
     valueString: '5',
     valueEnum: AuditEventAgentNetworkTypeEnum.value5,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/network-type',
+      valueString: 'http://hl7.org/fhir/network-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +230,10 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
   AuditEventAgentNetworkType withElement(Element? newElement) {
     return AuditEventAgentNetworkType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for DeviceNameType
@@ -112,12 +113,13 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = DeviceNameTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return DeviceNameTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -150,10 +152,25 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
         'DeviceNameTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(DeviceNameTypeBuilderEnum.fromString(value));
     return DeviceNameTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static DeviceNameTypeBuilder? _known(DeviceNameTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for DeviceNameTypeBuilder
@@ -164,7 +181,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'udi-label-name',
     valueEnum: DeviceNameTypeBuilderEnum.udiLabelName,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/device-nametype',
+      valueString: 'http://hl7.org/fhir/device-nametype',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,7 +194,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'user-friendly-name',
     valueEnum: DeviceNameTypeBuilderEnum.userFriendlyName,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/device-nametype',
+      valueString: 'http://hl7.org/fhir/device-nametype',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -190,7 +207,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'patient-reported-name',
     valueEnum: DeviceNameTypeBuilderEnum.patientReportedName,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/device-nametype',
+      valueString: 'http://hl7.org/fhir/device-nametype',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,7 +220,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'manufacturer-name',
     valueEnum: DeviceNameTypeBuilderEnum.manufacturerName,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/device-nametype',
+      valueString: 'http://hl7.org/fhir/device-nametype',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -216,7 +233,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'model-name',
     valueEnum: DeviceNameTypeBuilderEnum.modelName,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/device-nametype',
+      valueString: 'http://hl7.org/fhir/device-nametype',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -229,7 +246,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'other',
     valueEnum: DeviceNameTypeBuilderEnum.other,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/device-nametype',
+      valueString: 'http://hl7.org/fhir/device-nametype',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -259,6 +276,10 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return DeviceNameTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

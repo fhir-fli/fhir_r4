@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SlicingRules
@@ -91,12 +92,13 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SlicingRulesBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SlicingRulesBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -129,10 +131,25 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
         'SlicingRulesBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(SlicingRulesBuilderEnum.fromString(value));
     return SlicingRulesBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SlicingRulesBuilder? _known(SlicingRulesBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SlicingRulesBuilder
@@ -143,7 +160,7 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     valueString: 'closed',
     valueEnum: SlicingRulesBuilderEnum.closed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules',
+      valueString: 'http://hl7.org/fhir/resource-slicing-rules',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -156,7 +173,7 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     valueString: 'open',
     valueEnum: SlicingRulesBuilderEnum.open,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules',
+      valueString: 'http://hl7.org/fhir/resource-slicing-rules',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -169,7 +186,7 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     valueString: 'openAtEnd',
     valueEnum: SlicingRulesBuilderEnum.openAtEnd,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules',
+      valueString: 'http://hl7.org/fhir/resource-slicing-rules',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -196,6 +213,10 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
   ) {
     return SlicingRulesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

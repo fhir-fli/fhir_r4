@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ProvenanceEntityRole
@@ -105,12 +106,13 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ProvenanceEntityRoleBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ProvenanceEntityRoleBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -143,10 +145,26 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
         'ProvenanceEntityRoleBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ProvenanceEntityRoleBuilderEnum.fromString(value));
     return ProvenanceEntityRoleBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ProvenanceEntityRoleBuilder? _known(
+      ProvenanceEntityRoleBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ProvenanceEntityRoleBuilder
@@ -157,7 +175,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'derivation',
     valueEnum: ProvenanceEntityRoleBuilderEnum.derivation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/provenance-entity-role',
+      valueString: 'http://hl7.org/fhir/provenance-entity-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -170,7 +188,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'revision',
     valueEnum: ProvenanceEntityRoleBuilderEnum.revision,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/provenance-entity-role',
+      valueString: 'http://hl7.org/fhir/provenance-entity-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -183,7 +201,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'quotation',
     valueEnum: ProvenanceEntityRoleBuilderEnum.quotation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/provenance-entity-role',
+      valueString: 'http://hl7.org/fhir/provenance-entity-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -196,7 +214,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'source',
     valueEnum: ProvenanceEntityRoleBuilderEnum.source,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/provenance-entity-role',
+      valueString: 'http://hl7.org/fhir/provenance-entity-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -209,7 +227,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     valueString: 'removal',
     valueEnum: ProvenanceEntityRoleBuilderEnum.removal,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/provenance-entity-role',
+      valueString: 'http://hl7.org/fhir/provenance-entity-role',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -239,6 +257,10 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
   ) {
     return ProvenanceEntityRoleBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

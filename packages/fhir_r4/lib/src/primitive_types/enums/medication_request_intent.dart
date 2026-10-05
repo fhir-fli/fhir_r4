@@ -118,12 +118,13 @@ class MedicationRequestIntent extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = MedicationRequestIntentEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return MedicationRequestIntent._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -147,11 +148,26 @@ class MedicationRequestIntent extends FhirCodeEnum {
         'MedicationRequestIntent cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return MedicationRequestIntent._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static MedicationRequestIntent? _known(
+      MedicationRequestIntentEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for MedicationRequestIntent
@@ -162,7 +178,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'proposal',
     valueEnum: MedicationRequestIntentEnum.proposal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -175,7 +191,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'plan',
     valueEnum: MedicationRequestIntentEnum.plan,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -188,7 +204,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'order',
     valueEnum: MedicationRequestIntentEnum.order,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -202,7 +218,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'original-order',
     valueEnum: MedicationRequestIntentEnum.originalOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -215,7 +231,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'reflex-order',
     valueEnum: MedicationRequestIntentEnum.reflexOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -228,7 +244,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'filler-order',
     valueEnum: MedicationRequestIntentEnum.fillerOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -242,7 +258,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'instance-order',
     valueEnum: MedicationRequestIntentEnum.instanceOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -255,7 +271,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     valueString: 'option',
     valueEnum: MedicationRequestIntentEnum.option,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -279,6 +295,10 @@ class MedicationRequestIntent extends FhirCodeEnum {
   MedicationRequestIntent withElement(Element? newElement) {
     return MedicationRequestIntent._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

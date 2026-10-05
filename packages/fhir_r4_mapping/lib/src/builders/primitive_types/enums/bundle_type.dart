@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for BundleType
@@ -133,12 +134,13 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = BundleTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return BundleTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -170,10 +172,25 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
         'BundleTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(BundleTypeBuilderEnum.fromString(value));
     return BundleTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static BundleTypeBuilder? _known(BundleTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for BundleTypeBuilder
@@ -184,7 +201,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'document',
     valueEnum: BundleTypeBuilderEnum.document,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,7 +214,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'message',
     valueEnum: BundleTypeBuilderEnum.message,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -210,7 +227,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'transaction',
     valueEnum: BundleTypeBuilderEnum.transaction,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -223,7 +240,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'transaction-response',
     valueEnum: BundleTypeBuilderEnum.transactionResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -236,7 +253,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'batch',
     valueEnum: BundleTypeBuilderEnum.batch,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -249,7 +266,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'batch-response',
     valueEnum: BundleTypeBuilderEnum.batchResponse,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -262,7 +279,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'history',
     valueEnum: BundleTypeBuilderEnum.history,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -275,7 +292,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'searchset',
     valueEnum: BundleTypeBuilderEnum.searchset,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -288,7 +305,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'collection',
     valueEnum: BundleTypeBuilderEnum.collection,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/bundle-type',
+      valueString: 'http://hl7.org/fhir/bundle-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -321,6 +338,10 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return BundleTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

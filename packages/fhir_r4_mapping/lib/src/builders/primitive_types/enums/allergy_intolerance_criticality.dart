@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for AllergyIntoleranceCriticality
@@ -92,12 +93,13 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     final valueEnum = AllergyIntoleranceCriticalityBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return AllergyIntoleranceCriticalityBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -130,10 +132,27 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
         'AllergyIntoleranceCriticalityBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(AllergyIntoleranceCriticalityBuilderEnum.fromString(value));
     return AllergyIntoleranceCriticalityBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AllergyIntoleranceCriticalityBuilder? _known(
+      AllergyIntoleranceCriticalityBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for AllergyIntoleranceCriticalityBuilder
@@ -145,8 +164,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     valueString: 'low',
     valueEnum: AllergyIntoleranceCriticalityBuilderEnum.low,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-criticality',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -160,8 +178,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     valueString: 'high',
     valueEnum: AllergyIntoleranceCriticalityBuilderEnum.high,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-criticality',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -175,8 +192,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     valueString: 'unable-to-assess',
     valueEnum: AllergyIntoleranceCriticalityBuilderEnum.unableToAssess,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-criticality',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -204,6 +220,10 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   ) {
     return AllergyIntoleranceCriticalityBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

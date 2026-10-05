@@ -97,12 +97,13 @@ class CareTeamStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CareTeamStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CareTeamStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,25 @@ class CareTeamStatus extends FhirCodeEnum {
         'CareTeamStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CareTeamStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CareTeamStatus? _known(CareTeamStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CareTeamStatus
@@ -141,7 +156,7 @@ class CareTeamStatus extends FhirCodeEnum {
     valueString: 'proposed',
     valueEnum: CareTeamStatusEnum.proposed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-team-status',
+      valueString: 'http://hl7.org/fhir/care-team-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class CareTeamStatus extends FhirCodeEnum {
     valueString: 'active',
     valueEnum: CareTeamStatusEnum.active,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-team-status',
+      valueString: 'http://hl7.org/fhir/care-team-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +182,7 @@ class CareTeamStatus extends FhirCodeEnum {
     valueString: 'suspended',
     valueEnum: CareTeamStatusEnum.suspended,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-team-status',
+      valueString: 'http://hl7.org/fhir/care-team-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +195,7 @@ class CareTeamStatus extends FhirCodeEnum {
     valueString: 'inactive',
     valueEnum: CareTeamStatusEnum.inactive,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-team-status',
+      valueString: 'http://hl7.org/fhir/care-team-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +208,7 @@ class CareTeamStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: CareTeamStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-team-status',
+      valueString: 'http://hl7.org/fhir/care-team-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +229,10 @@ class CareTeamStatus extends FhirCodeEnum {
   CareTeamStatus withElement(Element? newElement) {
     return CareTeamStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

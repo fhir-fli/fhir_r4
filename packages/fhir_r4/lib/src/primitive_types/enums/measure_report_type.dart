@@ -90,12 +90,13 @@ class MeasureReportType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = MeasureReportTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return MeasureReportType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -119,11 +120,25 @@ class MeasureReportType extends FhirCodeEnum {
         'MeasureReportType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return MeasureReportType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static MeasureReportType? _known(MeasureReportTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for MeasureReportType
@@ -134,7 +149,7 @@ class MeasureReportType extends FhirCodeEnum {
     valueString: 'individual',
     valueEnum: MeasureReportTypeEnum.individual,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+      valueString: 'http://hl7.org/fhir/measure-report-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -147,7 +162,7 @@ class MeasureReportType extends FhirCodeEnum {
     valueString: 'subject-list',
     valueEnum: MeasureReportTypeEnum.subjectList,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+      valueString: 'http://hl7.org/fhir/measure-report-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -160,7 +175,7 @@ class MeasureReportType extends FhirCodeEnum {
     valueString: 'summary',
     valueEnum: MeasureReportTypeEnum.summary,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+      valueString: 'http://hl7.org/fhir/measure-report-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,7 +188,7 @@ class MeasureReportType extends FhirCodeEnum {
     valueString: 'data-collection',
     valueEnum: MeasureReportTypeEnum.dataCollection,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+      valueString: 'http://hl7.org/fhir/measure-report-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,6 +208,10 @@ class MeasureReportType extends FhirCodeEnum {
   MeasureReportType withElement(Element? newElement) {
     return MeasureReportType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

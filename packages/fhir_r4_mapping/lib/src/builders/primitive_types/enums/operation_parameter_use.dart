@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for OperationParameterUse
@@ -84,12 +85,13 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
     final valueEnum = OperationParameterUseBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return OperationParameterUseBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -122,10 +124,26 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
         'OperationParameterUseBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(OperationParameterUseBuilderEnum.fromString(value));
     return OperationParameterUseBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static OperationParameterUseBuilder? _known(
+      OperationParameterUseBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for OperationParameterUseBuilder
@@ -136,7 +154,7 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
     valueString: 'in',
     valueEnum: OperationParameterUseBuilderEnum.in_,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/operation-parameter-use',
+      valueString: 'http://hl7.org/fhir/operation-parameter-use',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -149,7 +167,7 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
     valueString: 'out',
     valueEnum: OperationParameterUseBuilderEnum.out,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/operation-parameter-use',
+      valueString: 'http://hl7.org/fhir/operation-parameter-use',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,6 +194,10 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
   ) {
     return OperationParameterUseBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

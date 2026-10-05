@@ -76,12 +76,13 @@ class OperationKind extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = OperationKindEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return OperationKind._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -105,11 +106,25 @@ class OperationKind extends FhirCodeEnum {
         'OperationKind cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return OperationKind._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static OperationKind? _known(OperationKindEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for OperationKind
@@ -120,7 +135,7 @@ class OperationKind extends FhirCodeEnum {
     valueString: 'operation',
     valueEnum: OperationKindEnum.operation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/operation-kind',
+      valueString: 'http://hl7.org/fhir/operation-kind',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -133,7 +148,7 @@ class OperationKind extends FhirCodeEnum {
     valueString: 'query',
     valueEnum: OperationKindEnum.query,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/operation-kind',
+      valueString: 'http://hl7.org/fhir/operation-kind',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -151,6 +166,10 @@ class OperationKind extends FhirCodeEnum {
   OperationKind withElement(Element? newElement) {
     return OperationKind._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

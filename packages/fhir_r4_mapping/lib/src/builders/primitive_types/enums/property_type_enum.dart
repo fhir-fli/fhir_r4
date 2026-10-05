@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for PropertyTypeEnum
@@ -119,12 +120,13 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     final valueEnum = PropertyTypeEnumBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return PropertyTypeEnumBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -157,10 +159,26 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
         'PropertyTypeEnumBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(PropertyTypeEnumBuilderEnum.fromString(value));
     return PropertyTypeEnumBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static PropertyTypeEnumBuilder? _known(
+      PropertyTypeEnumBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for PropertyTypeEnumBuilder
@@ -171,7 +189,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     valueString: 'code',
     valueEnum: PropertyTypeEnumBuilderEnum.code,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -184,7 +202,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     valueString: 'Coding',
     valueEnum: PropertyTypeEnumBuilderEnum.coding,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,7 +215,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     valueString: 'string',
     valueEnum: PropertyTypeEnumBuilderEnum.string,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -210,7 +228,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     valueString: 'integer',
     valueEnum: PropertyTypeEnumBuilderEnum.integer,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -223,7 +241,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     valueString: 'boolean',
     valueEnum: PropertyTypeEnumBuilderEnum.boolean,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -236,7 +254,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     valueString: 'dateTime',
     valueEnum: PropertyTypeEnumBuilderEnum.dateTime,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -249,7 +267,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     valueString: 'decimal',
     valueEnum: PropertyTypeEnumBuilderEnum.decimal,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+      valueString: 'http://hl7.org/fhir/concept-property-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -280,6 +298,10 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
   ) {
     return PropertyTypeEnumBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

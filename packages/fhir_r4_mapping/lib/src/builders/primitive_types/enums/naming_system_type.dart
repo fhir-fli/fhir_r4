@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for NamingSystemType
@@ -91,12 +92,13 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = NamingSystemTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return NamingSystemTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -129,10 +131,26 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
         'NamingSystemTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(NamingSystemTypeBuilderEnum.fromString(value));
     return NamingSystemTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static NamingSystemTypeBuilder? _known(
+      NamingSystemTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for NamingSystemTypeBuilder
@@ -143,7 +161,7 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'codesystem',
     valueEnum: NamingSystemTypeBuilderEnum.codesystem,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-type',
+      valueString: 'http://hl7.org/fhir/namingsystem-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -156,7 +174,7 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'identifier',
     valueEnum: NamingSystemTypeBuilderEnum.identifier,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-type',
+      valueString: 'http://hl7.org/fhir/namingsystem-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -169,7 +187,7 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'root',
     valueEnum: NamingSystemTypeBuilderEnum.root,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/namingsystem-type',
+      valueString: 'http://hl7.org/fhir/namingsystem-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -196,6 +214,10 @@ class NamingSystemTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return NamingSystemTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

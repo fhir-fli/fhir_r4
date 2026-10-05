@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ImmunizationStatusCodes
@@ -129,12 +130,13 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ImmunizationStatusCodesBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ImmunizationStatusCodesBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -167,10 +169,26 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
         'ImmunizationStatusCodesBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ImmunizationStatusCodesBuilderEnum.fromString(value));
     return ImmunizationStatusCodesBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ImmunizationStatusCodesBuilder? _known(
+      ImmunizationStatusCodesBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ImmunizationStatusCodesBuilder
@@ -182,7 +200,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'preparation',
     valueEnum: ImmunizationStatusCodesBuilderEnum.preparation,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -196,7 +214,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'in-progress',
     valueEnum: ImmunizationStatusCodesBuilderEnum.inProgress,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -210,7 +228,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'not-done',
     valueEnum: ImmunizationStatusCodesBuilderEnum.notDone,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -224,7 +242,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'on-hold',
     valueEnum: ImmunizationStatusCodesBuilderEnum.onHold,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -238,7 +256,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'stopped',
     valueEnum: ImmunizationStatusCodesBuilderEnum.stopped,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -252,7 +270,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'completed',
     valueEnum: ImmunizationStatusCodesBuilderEnum.completed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -266,7 +284,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: ImmunizationStatusCodesBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -280,7 +298,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: ImmunizationStatusCodesBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+      valueString: 'http://hl7.org/fhir/event-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -313,6 +331,10 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
   ) {
     return ImmunizationStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

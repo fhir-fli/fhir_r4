@@ -83,12 +83,13 @@ class ActionGroupingBehavior extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ActionGroupingBehaviorEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ActionGroupingBehavior._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -112,11 +113,25 @@ class ActionGroupingBehavior extends FhirCodeEnum {
         'ActionGroupingBehavior cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ActionGroupingBehavior._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionGroupingBehavior? _known(ActionGroupingBehaviorEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ActionGroupingBehavior
@@ -127,7 +142,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
     valueString: 'visual-group',
     valueEnum: ActionGroupingBehaviorEnum.visualGroup,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+      valueString: 'http://hl7.org/fhir/action-grouping-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -140,7 +155,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
     valueString: 'logical-group',
     valueEnum: ActionGroupingBehaviorEnum.logicalGroup,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+      valueString: 'http://hl7.org/fhir/action-grouping-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -153,7 +168,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
     valueString: 'sentence-group',
     valueEnum: ActionGroupingBehaviorEnum.sentenceGroup,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior',
+      valueString: 'http://hl7.org/fhir/action-grouping-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -172,6 +187,10 @@ class ActionGroupingBehavior extends FhirCodeEnum {
   ActionGroupingBehavior withElement(Element? newElement) {
     return ActionGroupingBehavior._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

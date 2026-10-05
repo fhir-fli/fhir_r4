@@ -125,12 +125,13 @@ class SearchParamType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = SearchParamTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return SearchParamType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -154,11 +155,25 @@ class SearchParamType extends FhirCodeEnum {
         'SearchParamType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return SearchParamType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SearchParamType? _known(SearchParamTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for SearchParamType
@@ -169,7 +184,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'number',
     valueEnum: SearchParamTypeEnum.number,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -182,7 +197,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'date',
     valueEnum: SearchParamTypeEnum.date,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -195,7 +210,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'string',
     valueEnum: SearchParamTypeEnum.string,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -208,7 +223,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'token',
     valueEnum: SearchParamTypeEnum.token,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -221,7 +236,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'reference',
     valueEnum: SearchParamTypeEnum.reference,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -234,7 +249,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'composite',
     valueEnum: SearchParamTypeEnum.composite,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -247,7 +262,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'quantity',
     valueEnum: SearchParamTypeEnum.quantity,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -260,7 +275,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'uri',
     valueEnum: SearchParamTypeEnum.uri,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -273,7 +288,7 @@ class SearchParamType extends FhirCodeEnum {
     valueString: 'special',
     valueEnum: SearchParamTypeEnum.special,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-param-type',
+      valueString: 'http://hl7.org/fhir/search-param-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -298,6 +313,10 @@ class SearchParamType extends FhirCodeEnum {
   SearchParamType withElement(Element? newElement) {
     return SearchParamType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -97,12 +97,13 @@ class IdentifierUse extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = IdentifierUseEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return IdentifierUse._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,25 @@ class IdentifierUse extends FhirCodeEnum {
         'IdentifierUse cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return IdentifierUse._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static IdentifierUse? _known(IdentifierUseEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for IdentifierUse
@@ -141,7 +156,7 @@ class IdentifierUse extends FhirCodeEnum {
     valueString: 'usual',
     valueEnum: IdentifierUseEnum.usual,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+      valueString: 'http://hl7.org/fhir/identifier-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class IdentifierUse extends FhirCodeEnum {
     valueString: 'official',
     valueEnum: IdentifierUseEnum.official,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+      valueString: 'http://hl7.org/fhir/identifier-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +182,7 @@ class IdentifierUse extends FhirCodeEnum {
     valueString: 'temp',
     valueEnum: IdentifierUseEnum.temp,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+      valueString: 'http://hl7.org/fhir/identifier-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +195,7 @@ class IdentifierUse extends FhirCodeEnum {
     valueString: 'secondary',
     valueEnum: IdentifierUseEnum.secondary,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+      valueString: 'http://hl7.org/fhir/identifier-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +208,7 @@ class IdentifierUse extends FhirCodeEnum {
     valueString: 'old',
     valueEnum: IdentifierUseEnum.old,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/identifier-use',
+      valueString: 'http://hl7.org/fhir/identifier-use',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +229,10 @@ class IdentifierUse extends FhirCodeEnum {
   IdentifierUse withElement(Element? newElement) {
     return IdentifierUse._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

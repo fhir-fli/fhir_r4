@@ -97,12 +97,13 @@ class InvoiceStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = InvoiceStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return InvoiceStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,25 @@ class InvoiceStatus extends FhirCodeEnum {
         'InvoiceStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return InvoiceStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static InvoiceStatus? _known(InvoiceStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for InvoiceStatus
@@ -141,7 +156,7 @@ class InvoiceStatus extends FhirCodeEnum {
     valueString: 'draft',
     valueEnum: InvoiceStatusEnum.draft,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+      valueString: 'http://hl7.org/fhir/invoice-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class InvoiceStatus extends FhirCodeEnum {
     valueString: 'issued',
     valueEnum: InvoiceStatusEnum.issued,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+      valueString: 'http://hl7.org/fhir/invoice-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +182,7 @@ class InvoiceStatus extends FhirCodeEnum {
     valueString: 'balanced',
     valueEnum: InvoiceStatusEnum.balanced,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+      valueString: 'http://hl7.org/fhir/invoice-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +195,7 @@ class InvoiceStatus extends FhirCodeEnum {
     valueString: 'cancelled',
     valueEnum: InvoiceStatusEnum.cancelled,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+      valueString: 'http://hl7.org/fhir/invoice-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +208,7 @@ class InvoiceStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: InvoiceStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+      valueString: 'http://hl7.org/fhir/invoice-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +229,10 @@ class InvoiceStatus extends FhirCodeEnum {
   InvoiceStatus withElement(Element? newElement) {
     return InvoiceStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

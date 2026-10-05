@@ -90,12 +90,13 @@ class ParticipationStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ParticipationStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ParticipationStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -119,11 +120,25 @@ class ParticipationStatus extends FhirCodeEnum {
         'ParticipationStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ParticipationStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ParticipationStatus? _known(ParticipationStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ParticipationStatus
@@ -134,7 +149,7 @@ class ParticipationStatus extends FhirCodeEnum {
     valueString: 'accepted',
     valueEnum: ParticipationStatusEnum.accepted,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -147,7 +162,7 @@ class ParticipationStatus extends FhirCodeEnum {
     valueString: 'declined',
     valueEnum: ParticipationStatusEnum.declined,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -160,7 +175,7 @@ class ParticipationStatus extends FhirCodeEnum {
     valueString: 'tentative',
     valueEnum: ParticipationStatusEnum.tentative,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,7 +188,7 @@ class ParticipationStatus extends FhirCodeEnum {
     valueString: 'needs-action',
     valueEnum: ParticipationStatusEnum.needsAction,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,6 +208,10 @@ class ParticipationStatus extends FhirCodeEnum {
   ParticipationStatus withElement(Element? newElement) {
     return ParticipationStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

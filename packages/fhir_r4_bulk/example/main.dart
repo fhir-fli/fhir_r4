@@ -65,7 +65,7 @@ void main() {
       final result = await req.request();
       expect(result, hasLength(2));
       expect(result.first, isA<Patient>());
-      expect((result.first! as Patient).id, FhirString('123'));
+      expect((result.first as Patient).id, FhirString('123'));
     });
 
     test('POST-based export handles 202 + polling', () async {
@@ -124,7 +124,7 @@ void main() {
       final result = await req.request();
       expect(result, hasLength(1));
       expect(result.first, isA<Patient>());
-      expect((result.first! as Patient).id, FhirString('abc'));
+      expect((result.first as Patient).id, FhirString('abc'));
     });
   });
 
@@ -216,7 +216,7 @@ void main() {
           print('OperationOutcome: ${r.issue.first.diagnostics?.valueString}');
         } else {
           print(
-            'Resource: ${r?.resourceType}, id=${(r as DomainResource?)?.id}',
+            'Resource: ${r.resourceType}, id=${(r as DomainResource?)?.id}',
           );
         }
       }

@@ -84,12 +84,13 @@ class LinkageType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = LinkageTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return LinkageType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -113,11 +114,25 @@ class LinkageType extends FhirCodeEnum {
         'LinkageType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return LinkageType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static LinkageType? _known(LinkageTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for LinkageType
@@ -128,7 +143,7 @@ class LinkageType extends FhirCodeEnum {
     valueString: 'source',
     valueEnum: LinkageTypeEnum.source,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/linkage-type',
+      valueString: 'http://hl7.org/fhir/linkage-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -141,7 +156,7 @@ class LinkageType extends FhirCodeEnum {
     valueString: 'alternate',
     valueEnum: LinkageTypeEnum.alternate,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/linkage-type',
+      valueString: 'http://hl7.org/fhir/linkage-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class LinkageType extends FhirCodeEnum {
     valueString: 'historical',
     valueEnum: LinkageTypeEnum.historical,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/linkage-type',
+      valueString: 'http://hl7.org/fhir/linkage-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,6 +188,10 @@ class LinkageType extends FhirCodeEnum {
   LinkageType withElement(Element? newElement) {
     return LinkageType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

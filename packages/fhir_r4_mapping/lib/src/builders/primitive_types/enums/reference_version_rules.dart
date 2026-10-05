@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ReferenceVersionRules
@@ -92,12 +93,13 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ReferenceVersionRulesBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ReferenceVersionRulesBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -130,10 +132,26 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
         'ReferenceVersionRulesBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ReferenceVersionRulesBuilderEnum.fromString(value));
     return ReferenceVersionRulesBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ReferenceVersionRulesBuilder? _known(
+      ReferenceVersionRulesBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ReferenceVersionRulesBuilder
@@ -144,7 +162,7 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     valueString: 'either',
     valueEnum: ReferenceVersionRulesBuilderEnum.either,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+      valueString: 'http://hl7.org/fhir/reference-version-rules',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -158,7 +176,7 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     valueString: 'independent',
     valueEnum: ReferenceVersionRulesBuilderEnum.independent,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+      valueString: 'http://hl7.org/fhir/reference-version-rules',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -171,7 +189,7 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
     valueString: 'specific',
     valueEnum: ReferenceVersionRulesBuilderEnum.specific,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/reference-version-rules',
+      valueString: 'http://hl7.org/fhir/reference-version-rules',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -199,6 +217,10 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
   ) {
     return ReferenceVersionRulesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

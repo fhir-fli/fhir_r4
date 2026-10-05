@@ -1,5 +1,20 @@
 # fhir_r4_validation
 
+## [0.13.0]
+
+- The validator now lives in `fhir_validation` 0.13.0, which serves every
+  FHIR version and reads definitions through `fhir_node`. This package
+  re-exports it with the R4B model filled in (`r4Validation`):
+  `FhirValidationEngine()` still takes no argument and validates a typed
+  `Resource`; `validateStructure`, `validateCardinality`, `validateBindings`,
+  `validateExtensions`, `validateInvariants` and
+  `validateQuestionnaireResponse` keep their typed signatures;
+  `ValidationResults.toOperationOutcome()` gives a typed OperationOutcome.
+  `isValueAValidPrimitive` stays here (the model's primitive rules).
+- `validateBindings` now checks bindings (it never reached a value before),
+  an empty object no longer satisfies a required element, and the
+  grapheme splitter copy is gone (see fhir_validation 0.13.0).
+
 ## [0.12.0]
 
 - **The validator could not resolve anything, and now a caller can give it a store.** `FhirValidationEngine` built its own empty in-memory `CanonicalResourceCache` per call and offered no way to supply one, so `validateFhirMap` on any resource answered *"No StructureDefinition found for resourceType: X"*, and a resource with a coded element threw *"Resource not found at `<url>`"*. `validateFhirResource`, `validateFhirString` and `validateFhirMap` now take an optional `resourceCache`, which is used for every StructureDefinition, ValueSet and CodeSystem lookup. The package's own tests never caught this because they call the inner `validateStructure` with a test cache directly.

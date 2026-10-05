@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SearchComparator
@@ -133,12 +134,13 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SearchComparatorBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SearchComparatorBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -171,10 +173,26 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
         'SearchComparatorBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(SearchComparatorBuilderEnum.fromString(value));
     return SearchComparatorBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SearchComparatorBuilder? _known(
+      SearchComparatorBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SearchComparatorBuilder
@@ -185,7 +203,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'eq',
     valueEnum: SearchComparatorBuilderEnum.eq,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -198,7 +216,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'ne',
     valueEnum: SearchComparatorBuilderEnum.ne,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -211,7 +229,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'gt',
     valueEnum: SearchComparatorBuilderEnum.gt,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -224,7 +242,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'lt',
     valueEnum: SearchComparatorBuilderEnum.lt,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -237,7 +255,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'ge',
     valueEnum: SearchComparatorBuilderEnum.ge,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -250,7 +268,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'le',
     valueEnum: SearchComparatorBuilderEnum.le,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -263,7 +281,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'sa',
     valueEnum: SearchComparatorBuilderEnum.sa,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -276,7 +294,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'eb',
     valueEnum: SearchComparatorBuilderEnum.eb,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -289,7 +307,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     valueString: 'ap',
     valueEnum: SearchComparatorBuilderEnum.ap,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-comparator',
+      valueString: 'http://hl7.org/fhir/search-comparator',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -322,6 +340,10 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
   ) {
     return SearchComparatorBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

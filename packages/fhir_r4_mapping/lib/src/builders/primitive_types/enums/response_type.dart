@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ResponseType
@@ -91,12 +92,13 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ResponseTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ResponseTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -129,10 +131,25 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
         'ResponseTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ResponseTypeBuilderEnum.fromString(value));
     return ResponseTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ResponseTypeBuilder? _known(ResponseTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ResponseTypeBuilder
@@ -143,7 +160,7 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'ok',
     valueEnum: ResponseTypeBuilderEnum.ok,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+      valueString: 'http://hl7.org/fhir/response-code',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -156,7 +173,7 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'transient-error',
     valueEnum: ResponseTypeBuilderEnum.transientError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+      valueString: 'http://hl7.org/fhir/response-code',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -169,7 +186,7 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'fatal-error',
     valueEnum: ResponseTypeBuilderEnum.fatalError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+      valueString: 'http://hl7.org/fhir/response-code',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -196,6 +213,10 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return ResponseTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

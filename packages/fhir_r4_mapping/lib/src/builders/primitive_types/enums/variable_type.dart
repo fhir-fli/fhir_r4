@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for VariableType
@@ -92,12 +93,13 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = VariableTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return VariableTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -130,10 +132,25 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
         'VariableTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(VariableTypeBuilderEnum.fromString(value));
     return VariableTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static VariableTypeBuilder? _known(VariableTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for VariableTypeBuilder
@@ -144,7 +161,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'dichotomous',
     valueEnum: VariableTypeBuilderEnum.dichotomous,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/variable-type',
+      valueString: 'http://hl7.org/fhir/variable-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -157,7 +174,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'continuous',
     valueEnum: VariableTypeBuilderEnum.continuous,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/variable-type',
+      valueString: 'http://hl7.org/fhir/variable-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -170,7 +187,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'descriptive',
     valueEnum: VariableTypeBuilderEnum.descriptive,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/variable-type',
+      valueString: 'http://hl7.org/fhir/variable-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,6 +214,10 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return VariableTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

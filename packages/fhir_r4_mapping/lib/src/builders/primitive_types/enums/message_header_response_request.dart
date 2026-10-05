@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for MessageHeaderResponseRequest
@@ -99,12 +100,13 @@ class MessageHeaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     final valueEnum = MessageHeaderResponseRequestBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return MessageHeaderResponseRequestBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -137,10 +139,27 @@ class MessageHeaderResponseRequestBuilder extends FhirCodeEnumBuilder {
         'MessageHeaderResponseRequestBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(MessageHeaderResponseRequestBuilderEnum.fromString(value));
     return MessageHeaderResponseRequestBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static MessageHeaderResponseRequestBuilder? _known(
+      MessageHeaderResponseRequestBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for MessageHeaderResponseRequestBuilder
@@ -152,8 +171,7 @@ class MessageHeaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     valueString: 'always',
     valueEnum: MessageHeaderResponseRequestBuilderEnum.always,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+      valueString: 'http://hl7.org/fhir/messageheader-response-request',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -167,8 +185,7 @@ class MessageHeaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     valueString: 'on-error',
     valueEnum: MessageHeaderResponseRequestBuilderEnum.onError,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+      valueString: 'http://hl7.org/fhir/messageheader-response-request',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -182,8 +199,7 @@ class MessageHeaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     valueString: 'never',
     valueEnum: MessageHeaderResponseRequestBuilderEnum.never,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+      valueString: 'http://hl7.org/fhir/messageheader-response-request',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,8 +213,7 @@ class MessageHeaderResponseRequestBuilder extends FhirCodeEnumBuilder {
     valueString: 'on-success',
     valueEnum: MessageHeaderResponseRequestBuilderEnum.onSuccess,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/messageheader-response-request',
+      valueString: 'http://hl7.org/fhir/messageheader-response-request',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -227,6 +242,10 @@ class MessageHeaderResponseRequestBuilder extends FhirCodeEnumBuilder {
   ) {
     return MessageHeaderResponseRequestBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

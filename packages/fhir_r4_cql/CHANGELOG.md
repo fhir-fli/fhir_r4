@@ -1,5 +1,13 @@
 # fhir_r4_cql
 
+## [0.13.0]
+
+- **Re-exports cql 0.7.0** (breaking there: `To*`, `ConvertsTo*` and the
+  `resolve*Ref` lookups answer null where they threw; impossible dates are
+  refused with a `FormatException`). Reads definitions through
+  fhir_r4_path 0.13.0's `TypedResourceCache`. Every catch names what it
+  catches.
+
 ## [0.12.0]
 
 - No code changes; version aligned with the fhir_r4 0.12.0 family release

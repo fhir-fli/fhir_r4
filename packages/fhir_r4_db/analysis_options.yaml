@@ -7,3 +7,10 @@ analyzer:
   exclude:
     - lib/**.g.dart
     - lib/src/search/search_parameters.dart
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**

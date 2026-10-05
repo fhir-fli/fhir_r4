@@ -146,12 +146,13 @@ class TaskStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = TaskStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return TaskStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -175,11 +176,25 @@ class TaskStatus extends FhirCodeEnum {
         'TaskStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return TaskStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TaskStatus? _known(TaskStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for TaskStatus
@@ -190,7 +205,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'draft',
     valueEnum: TaskStatusEnum.draft,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -203,7 +218,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'requested',
     valueEnum: TaskStatusEnum.requested,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -216,7 +231,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'received',
     valueEnum: TaskStatusEnum.received,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -229,7 +244,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'accepted',
     valueEnum: TaskStatusEnum.accepted,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -242,7 +257,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'rejected',
     valueEnum: TaskStatusEnum.rejected,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -255,7 +270,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'ready',
     valueEnum: TaskStatusEnum.ready,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -268,7 +283,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'cancelled',
     valueEnum: TaskStatusEnum.cancelled,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -281,7 +296,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'in-progress',
     valueEnum: TaskStatusEnum.inProgress,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -294,7 +309,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'on-hold',
     valueEnum: TaskStatusEnum.onHold,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -307,7 +322,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'failed',
     valueEnum: TaskStatusEnum.failed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -320,7 +335,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: TaskStatusEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -333,7 +348,7 @@ class TaskStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: TaskStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/task-status',
+      valueString: 'http://hl7.org/fhir/task-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -361,6 +376,10 @@ class TaskStatus extends FhirCodeEnum {
   TaskStatus withElement(Element? newElement) {
     return TaskStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

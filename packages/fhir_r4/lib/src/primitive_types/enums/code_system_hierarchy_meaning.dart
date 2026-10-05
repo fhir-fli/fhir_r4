@@ -90,12 +90,13 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CodeSystemHierarchyMeaningEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CodeSystemHierarchyMeaning._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -119,11 +120,26 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
         'CodeSystemHierarchyMeaning cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CodeSystemHierarchyMeaning._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CodeSystemHierarchyMeaning? _known(
+      CodeSystemHierarchyMeaningEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CodeSystemHierarchyMeaning
@@ -135,7 +151,7 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
     valueString: 'grouped-by',
     valueEnum: CodeSystemHierarchyMeaningEnum.groupedBy,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning',
+      valueString: 'http://hl7.org/fhir/codesystem-hierarchy-meaning',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -148,7 +164,7 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
     valueString: 'is-a',
     valueEnum: CodeSystemHierarchyMeaningEnum.isA,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning',
+      valueString: 'http://hl7.org/fhir/codesystem-hierarchy-meaning',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +177,7 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
     valueString: 'part-of',
     valueEnum: CodeSystemHierarchyMeaningEnum.partOf,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning',
+      valueString: 'http://hl7.org/fhir/codesystem-hierarchy-meaning',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -175,7 +191,7 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
     valueString: 'classified-with',
     valueEnum: CodeSystemHierarchyMeaningEnum.classifiedWith,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning',
+      valueString: 'http://hl7.org/fhir/codesystem-hierarchy-meaning',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -195,6 +211,10 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
   CodeSystemHierarchyMeaning withElement(Element? newElement) {
     return CodeSystemHierarchyMeaning._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

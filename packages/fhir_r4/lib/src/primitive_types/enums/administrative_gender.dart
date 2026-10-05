@@ -90,12 +90,13 @@ class AdministrativeGender extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = AdministrativeGenderEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return AdministrativeGender._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -119,11 +120,25 @@ class AdministrativeGender extends FhirCodeEnum {
         'AdministrativeGender cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return AdministrativeGender._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AdministrativeGender? _known(AdministrativeGenderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for AdministrativeGender
@@ -134,7 +149,7 @@ class AdministrativeGender extends FhirCodeEnum {
     valueString: 'male',
     valueEnum: AdministrativeGenderEnum.male,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+      valueString: 'http://hl7.org/fhir/administrative-gender',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -147,7 +162,7 @@ class AdministrativeGender extends FhirCodeEnum {
     valueString: 'female',
     valueEnum: AdministrativeGenderEnum.female,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+      valueString: 'http://hl7.org/fhir/administrative-gender',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -160,7 +175,7 @@ class AdministrativeGender extends FhirCodeEnum {
     valueString: 'other',
     valueEnum: AdministrativeGenderEnum.other,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+      valueString: 'http://hl7.org/fhir/administrative-gender',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,7 +188,7 @@ class AdministrativeGender extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: AdministrativeGenderEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/administrative-gender',
+      valueString: 'http://hl7.org/fhir/administrative-gender',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,6 +208,10 @@ class AdministrativeGender extends FhirCodeEnum {
   AdministrativeGender withElement(Element? newElement) {
     return AdministrativeGender._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

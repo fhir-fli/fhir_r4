@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ConsentState
@@ -112,12 +113,13 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ConsentStateBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ConsentStateBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -150,10 +152,25 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
         'ConsentStateBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ConsentStateBuilderEnum.fromString(value));
     return ConsentStateBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ConsentStateBuilder? _known(ConsentStateBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ConsentStateBuilder
@@ -164,7 +181,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     valueString: 'draft',
     valueEnum: ConsentStateBuilderEnum.draft,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-state-codes',
+      valueString: 'http://hl7.org/fhir/consent-state-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,7 +194,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     valueString: 'proposed',
     valueEnum: ConsentStateBuilderEnum.proposed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-state-codes',
+      valueString: 'http://hl7.org/fhir/consent-state-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -190,7 +207,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: ConsentStateBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-state-codes',
+      valueString: 'http://hl7.org/fhir/consent-state-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,7 +220,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     valueString: 'rejected',
     valueEnum: ConsentStateBuilderEnum.rejected,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-state-codes',
+      valueString: 'http://hl7.org/fhir/consent-state-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -216,7 +233,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     valueString: 'inactive',
     valueEnum: ConsentStateBuilderEnum.inactive,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-state-codes',
+      valueString: 'http://hl7.org/fhir/consent-state-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -229,7 +246,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: ConsentStateBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/consent-state-codes',
+      valueString: 'http://hl7.org/fhir/consent-state-codes',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -259,6 +276,10 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
   ) {
     return ConsentStateBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

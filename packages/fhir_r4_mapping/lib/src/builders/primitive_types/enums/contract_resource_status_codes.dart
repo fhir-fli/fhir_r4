@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ContractResourceStatusCodes
@@ -175,12 +176,13 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ContractResourceStatusCodesBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ContractResourceStatusCodesBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -213,10 +215,27 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
         'ContractResourceStatusCodesBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(ContractResourceStatusCodesBuilderEnum.fromString(value));
     return ContractResourceStatusCodesBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ContractResourceStatusCodesBuilder? _known(
+      ContractResourceStatusCodesBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ContractResourceStatusCodesBuilder
@@ -228,7 +247,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'amended',
     valueEnum: ContractResourceStatusCodesBuilderEnum.amended,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -242,7 +261,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'appended',
     valueEnum: ContractResourceStatusCodesBuilderEnum.appended,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -256,7 +275,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'cancelled',
     valueEnum: ContractResourceStatusCodesBuilderEnum.cancelled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -270,7 +289,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'disputed',
     valueEnum: ContractResourceStatusCodesBuilderEnum.disputed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -284,7 +303,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: ContractResourceStatusCodesBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -298,7 +317,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'executable',
     valueEnum: ContractResourceStatusCodesBuilderEnum.executable,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -312,7 +331,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'executed',
     valueEnum: ContractResourceStatusCodesBuilderEnum.executed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -326,7 +345,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'negotiable',
     valueEnum: ContractResourceStatusCodesBuilderEnum.negotiable,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -340,7 +359,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'offered',
     valueEnum: ContractResourceStatusCodesBuilderEnum.offered,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -354,7 +373,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'policy',
     valueEnum: ContractResourceStatusCodesBuilderEnum.policy,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -368,7 +387,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'rejected',
     valueEnum: ContractResourceStatusCodesBuilderEnum.rejected,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -382,7 +401,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'renewed',
     valueEnum: ContractResourceStatusCodesBuilderEnum.renewed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -396,7 +415,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'revoked',
     valueEnum: ContractResourceStatusCodesBuilderEnum.revoked,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -410,7 +429,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'resolved',
     valueEnum: ContractResourceStatusCodesBuilderEnum.resolved,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -424,7 +443,7 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
     valueString: 'terminated',
     valueEnum: ContractResourceStatusCodesBuilderEnum.terminated,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contract-status',
+      valueString: 'http://hl7.org/fhir/contract-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -464,6 +483,10 @@ class ContractResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   ) {
     return ContractResourceStatusCodesBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

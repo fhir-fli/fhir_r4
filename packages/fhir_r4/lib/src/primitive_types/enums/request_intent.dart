@@ -126,12 +126,13 @@ class RequestIntent extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = RequestIntentEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return RequestIntent._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -155,11 +156,25 @@ class RequestIntent extends FhirCodeEnum {
         'RequestIntent cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return RequestIntent._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static RequestIntent? _known(RequestIntentEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for RequestIntent
@@ -170,7 +185,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'proposal',
     valueEnum: RequestIntentEnum.proposal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -183,7 +198,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'plan',
     valueEnum: RequestIntentEnum.plan,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -196,7 +211,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'directive',
     valueEnum: RequestIntentEnum.directive,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -209,7 +224,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'order',
     valueEnum: RequestIntentEnum.order,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -222,7 +237,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'original-order',
     valueEnum: RequestIntentEnum.originalOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,7 +250,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'reflex-order',
     valueEnum: RequestIntentEnum.reflexOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -248,7 +263,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'filler-order',
     valueEnum: RequestIntentEnum.fillerOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -261,7 +276,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'instance-order',
     valueEnum: RequestIntentEnum.instanceOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -274,7 +289,7 @@ class RequestIntent extends FhirCodeEnum {
     valueString: 'option',
     valueEnum: RequestIntentEnum.option,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/request-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -299,6 +314,10 @@ class RequestIntent extends FhirCodeEnum {
   RequestIntent withElement(Element? newElement) {
     return RequestIntent._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

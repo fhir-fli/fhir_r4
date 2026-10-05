@@ -132,12 +132,13 @@ class GuideParameterCode extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = GuideParameterCodeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return GuideParameterCode._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -161,11 +162,25 @@ class GuideParameterCode extends FhirCodeEnum {
         'GuideParameterCode cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return GuideParameterCode._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static GuideParameterCode? _known(GuideParameterCodeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for GuideParameterCode
@@ -176,7 +191,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'apply',
     valueEnum: GuideParameterCodeEnum.apply,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -189,7 +204,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'path-resource',
     valueEnum: GuideParameterCodeEnum.pathResource,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -202,7 +217,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'path-pages',
     valueEnum: GuideParameterCodeEnum.pathPages,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -215,7 +230,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'path-tx-cache',
     valueEnum: GuideParameterCodeEnum.pathTxCache,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -228,7 +243,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'expansion-parameter',
     valueEnum: GuideParameterCodeEnum.expansionParameter,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -241,7 +256,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'rule-broken-links',
     valueEnum: GuideParameterCodeEnum.ruleBrokenLinks,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -254,7 +269,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'generate-xml',
     valueEnum: GuideParameterCodeEnum.generateXml,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -267,7 +282,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'generate-json',
     valueEnum: GuideParameterCodeEnum.generateJson,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -280,7 +295,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'generate-turtle',
     valueEnum: GuideParameterCodeEnum.generateTurtle,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -293,7 +308,7 @@ class GuideParameterCode extends FhirCodeEnum {
     valueString: 'html-template',
     valueEnum: GuideParameterCodeEnum.htmlTemplate,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guide-parameter-code',
+      valueString: 'http://hl7.org/fhir/guide-parameter-code',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -319,6 +334,10 @@ class GuideParameterCode extends FhirCodeEnum {
   GuideParameterCode withElement(Element? newElement) {
     return GuideParameterCode._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

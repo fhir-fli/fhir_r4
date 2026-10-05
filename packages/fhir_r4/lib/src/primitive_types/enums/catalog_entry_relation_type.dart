@@ -76,12 +76,13 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CatalogEntryRelationTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CatalogEntryRelationType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -105,11 +106,26 @@ class CatalogEntryRelationType extends FhirCodeEnum {
         'CatalogEntryRelationType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CatalogEntryRelationType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CatalogEntryRelationType? _known(
+      CatalogEntryRelationTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CatalogEntryRelationType
@@ -120,7 +136,7 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     valueString: 'triggers',
     valueEnum: CatalogEntryRelationTypeEnum.triggers,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/relation-type',
+      valueString: 'http://hl7.org/fhir/relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -134,7 +150,7 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     valueString: 'is-replaced-by',
     valueEnum: CatalogEntryRelationTypeEnum.isReplacedBy,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/relation-type',
+      valueString: 'http://hl7.org/fhir/relation-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -152,6 +168,10 @@ class CatalogEntryRelationType extends FhirCodeEnum {
   CatalogEntryRelationType withElement(Element? newElement) {
     return CatalogEntryRelationType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

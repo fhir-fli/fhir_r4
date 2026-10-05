@@ -126,12 +126,13 @@ class CarePlanIntent extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CarePlanIntentEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CarePlanIntent._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -155,11 +156,25 @@ class CarePlanIntent extends FhirCodeEnum {
         'CarePlanIntent cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CarePlanIntent._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CarePlanIntent? _known(CarePlanIntentEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CarePlanIntent
@@ -170,7 +185,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'proposal',
     valueEnum: CarePlanIntentEnum.proposal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -183,7 +198,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'plan',
     valueEnum: CarePlanIntentEnum.plan,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -196,7 +211,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'directive',
     valueEnum: CarePlanIntentEnum.directive,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -209,7 +224,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'order',
     valueEnum: CarePlanIntentEnum.order,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -222,7 +237,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'original-order',
     valueEnum: CarePlanIntentEnum.originalOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,7 +250,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'reflex-order',
     valueEnum: CarePlanIntentEnum.reflexOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -248,7 +263,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'filler-order',
     valueEnum: CarePlanIntentEnum.fillerOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -261,7 +276,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'instance-order',
     valueEnum: CarePlanIntentEnum.instanceOrder,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -274,7 +289,7 @@ class CarePlanIntent extends FhirCodeEnum {
     valueString: 'option',
     valueEnum: CarePlanIntentEnum.option,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-intent',
+      valueString: 'http://hl7.org/fhir/request-intent',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -299,6 +314,10 @@ class CarePlanIntent extends FhirCodeEnum {
   CarePlanIntent withElement(Element? newElement) {
     return CarePlanIntent._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

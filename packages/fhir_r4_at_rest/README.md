@@ -4,6 +4,8 @@
 
 A Dart package for building FHIR R4 RESTful requests and parsing responses. This package handles request construction and response parsing, while authentication is handled by passing authenticated HTTP clients (e.g., from the `fhir_r4_auth` package).
 
+Since 0.13.0 the request builders and response parsing live in [`fhir_at_rest`](https://pub.dev/packages/fhir_at_rest), which serves every FHIR version; this package re-exports it with the R4B model (`r4Rest`) filled in and carries the generated per-resource search builders.
+
 FHIR® is the registered trademark of HL7 and is used with the permission of HL7. Use of the FHIR trademark does not constitute endorsement of this product by HL7.
 
 ## Features

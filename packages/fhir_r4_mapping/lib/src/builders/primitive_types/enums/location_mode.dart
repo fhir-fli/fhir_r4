@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for LocationMode
@@ -85,12 +86,13 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = LocationModeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return LocationModeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -123,10 +125,25 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
         'LocationModeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(LocationModeBuilderEnum.fromString(value));
     return LocationModeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static LocationModeBuilder? _known(LocationModeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for LocationModeBuilder
@@ -137,7 +154,7 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
     valueString: 'instance',
     valueEnum: LocationModeBuilderEnum.instance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/location-mode',
+      valueString: 'http://hl7.org/fhir/location-mode',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -150,7 +167,7 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
     valueString: 'kind',
     valueEnum: LocationModeBuilderEnum.kind,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/location-mode',
+      valueString: 'http://hl7.org/fhir/location-mode',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,6 +193,10 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
   ) {
     return LocationModeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

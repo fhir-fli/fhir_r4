@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SortDirection
@@ -84,12 +85,13 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SortDirectionBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SortDirectionBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -122,10 +124,25 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
         'SortDirectionBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(SortDirectionBuilderEnum.fromString(value));
     return SortDirectionBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SortDirectionBuilder? _known(SortDirectionBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SortDirectionBuilder
@@ -136,7 +153,7 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
     valueString: 'ascending',
     valueEnum: SortDirectionBuilderEnum.ascending,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/sort-direction',
+      valueString: 'http://hl7.org/fhir/sort-direction',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -149,7 +166,7 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
     valueString: 'descending',
     valueEnum: SortDirectionBuilderEnum.descending,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/sort-direction',
+      valueString: 'http://hl7.org/fhir/sort-direction',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -175,6 +192,10 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
   ) {
     return SortDirectionBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

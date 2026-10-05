@@ -97,12 +97,13 @@ class TestReportStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = TestReportStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return TestReportStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,25 @@ class TestReportStatus extends FhirCodeEnum {
         'TestReportStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return TestReportStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TestReportStatus? _known(TestReportStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for TestReportStatus
@@ -141,7 +156,7 @@ class TestReportStatus extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: TestReportStatusEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-status-codes',
+      valueString: 'http://hl7.org/fhir/report-status-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +169,7 @@ class TestReportStatus extends FhirCodeEnum {
     valueString: 'in-progress',
     valueEnum: TestReportStatusEnum.inProgress,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-status-codes',
+      valueString: 'http://hl7.org/fhir/report-status-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +182,7 @@ class TestReportStatus extends FhirCodeEnum {
     valueString: 'waiting',
     valueEnum: TestReportStatusEnum.waiting,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-status-codes',
+      valueString: 'http://hl7.org/fhir/report-status-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +195,7 @@ class TestReportStatus extends FhirCodeEnum {
     valueString: 'stopped',
     valueEnum: TestReportStatusEnum.stopped,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-status-codes',
+      valueString: 'http://hl7.org/fhir/report-status-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +208,7 @@ class TestReportStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: TestReportStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/report-status-codes',
+      valueString: 'http://hl7.org/fhir/report-status-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +229,10 @@ class TestReportStatus extends FhirCodeEnum {
   TestReportStatus withElement(Element? newElement) {
     return TestReportStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

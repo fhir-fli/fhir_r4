@@ -1,5 +1,23 @@
 # fhir_r4_at_rest
 
+## [0.13.0]
+
+- The request builders, `RestfulParameters`, `PatchBody`, the enums and the
+  response parsing now live in `fhir_at_rest` 0.13.0, which serves every
+  FHIR version and reads resources through `fhir_node`. This package
+  re-exports it with the R4B model filled in (`r4Rest`) and keeps the
+  generated per-resource search builders. `parseRequestResult`,
+  `parseBundle`, `parseRequestResultForType`, `parseBundleForType`,
+  `incorrectResultType` and `parseResponse` keep their signatures over
+  `Resource`; `ReturnResults<T>` holds its OperationOutcomes as
+  `List<Resource>` (cast to `OperationOutcome` to read issues).
+  `FhirSearchRequest.search` is typed `RestfulParameters`, which every
+  generated search builder extends.
+- `parseResponse` answers a body whose `resourceType` this version does not
+  know with one error OperationOutcome; it let the model's
+  UnsupportedError through.
+- `parseResponse` decodes a server's answer; `parseBundle` reads every
+  bundle type (a searchset came back empty before).
 ## [0.12.0]
 
 - No code changes; version aligned with the fhir_r4 0.12.0 family release

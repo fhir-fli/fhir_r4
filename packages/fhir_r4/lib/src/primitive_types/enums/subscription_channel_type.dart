@@ -97,12 +97,13 @@ class SubscriptionChannelType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = SubscriptionChannelTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return SubscriptionChannelType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -126,11 +127,26 @@ class SubscriptionChannelType extends FhirCodeEnum {
         'SubscriptionChannelType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return SubscriptionChannelType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SubscriptionChannelType? _known(
+      SubscriptionChannelTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for SubscriptionChannelType
@@ -141,7 +157,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
     valueString: 'rest-hook',
     valueEnum: SubscriptionChannelTypeEnum.restHook,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-channel-type',
+      valueString: 'http://hl7.org/fhir/subscription-channel-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -154,7 +170,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
     valueString: 'websocket',
     valueEnum: SubscriptionChannelTypeEnum.websocket,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-channel-type',
+      valueString: 'http://hl7.org/fhir/subscription-channel-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -167,7 +183,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
     valueString: 'email',
     valueEnum: SubscriptionChannelTypeEnum.email,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-channel-type',
+      valueString: 'http://hl7.org/fhir/subscription-channel-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -180,7 +196,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
     valueString: 'sms',
     valueEnum: SubscriptionChannelTypeEnum.sms,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-channel-type',
+      valueString: 'http://hl7.org/fhir/subscription-channel-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,7 +209,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
     valueString: 'message',
     valueEnum: SubscriptionChannelTypeEnum.message,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/subscription-channel-type',
+      valueString: 'http://hl7.org/fhir/subscription-channel-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -214,6 +230,10 @@ class SubscriptionChannelType extends FhirCodeEnum {
   SubscriptionChannelType withElement(Element? newElement) {
     return SubscriptionChannelType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

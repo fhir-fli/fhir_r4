@@ -104,12 +104,13 @@ class GroupMeasure extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = GroupMeasureEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return GroupMeasure._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -133,11 +134,25 @@ class GroupMeasure extends FhirCodeEnum {
         'GroupMeasure cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return GroupMeasure._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static GroupMeasure? _known(GroupMeasureEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for GroupMeasure
@@ -148,7 +163,7 @@ class GroupMeasure extends FhirCodeEnum {
     valueString: 'mean',
     valueEnum: GroupMeasureEnum.mean,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +176,7 @@ class GroupMeasure extends FhirCodeEnum {
     valueString: 'median',
     valueEnum: GroupMeasureEnum.median,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,7 @@ class GroupMeasure extends FhirCodeEnum {
     valueString: 'mean-of-mean',
     valueEnum: GroupMeasureEnum.meanOfMean,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -187,7 +202,7 @@ class GroupMeasure extends FhirCodeEnum {
     valueString: 'mean-of-median',
     valueEnum: GroupMeasureEnum.meanOfMedian,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -200,7 +215,7 @@ class GroupMeasure extends FhirCodeEnum {
     valueString: 'median-of-mean',
     valueEnum: GroupMeasureEnum.medianOfMean,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -213,7 +228,7 @@ class GroupMeasure extends FhirCodeEnum {
     valueString: 'median-of-median',
     valueEnum: GroupMeasureEnum.medianOfMedian,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+      valueString: 'http://hl7.org/fhir/group-measure',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,6 +250,10 @@ class GroupMeasure extends FhirCodeEnum {
   GroupMeasure withElement(Element? newElement) {
     return GroupMeasure._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for CapabilityStatementKind
@@ -91,12 +92,13 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     final valueEnum = CapabilityStatementKindBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return CapabilityStatementKindBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -129,10 +131,26 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
         'CapabilityStatementKindBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(CapabilityStatementKindBuilderEnum.fromString(value));
     return CapabilityStatementKindBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CapabilityStatementKindBuilder? _known(
+      CapabilityStatementKindBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for CapabilityStatementKindBuilder
@@ -144,7 +162,7 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     valueString: 'instance',
     valueEnum: CapabilityStatementKindBuilderEnum.instance,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/capability-statement-kind',
+      valueString: 'http://hl7.org/fhir/capability-statement-kind',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -158,7 +176,7 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     valueString: 'capability',
     valueEnum: CapabilityStatementKindBuilderEnum.capability,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/capability-statement-kind',
+      valueString: 'http://hl7.org/fhir/capability-statement-kind',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -172,7 +190,7 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
     valueString: 'requirements',
     valueEnum: CapabilityStatementKindBuilderEnum.requirements,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/capability-statement-kind',
+      valueString: 'http://hl7.org/fhir/capability-statement-kind',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -200,6 +218,10 @@ class CapabilityStatementKindBuilder extends FhirCodeEnumBuilder {
   ) {
     return CapabilityStatementKindBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

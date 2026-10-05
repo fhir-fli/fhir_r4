@@ -132,12 +132,13 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ConceptMapEquivalenceEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ConceptMapEquivalence._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -161,11 +162,25 @@ class ConceptMapEquivalence extends FhirCodeEnum {
         'ConceptMapEquivalence cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ConceptMapEquivalence._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ConceptMapEquivalence? _known(ConceptMapEquivalenceEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ConceptMapEquivalence
@@ -176,7 +191,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'relatedto',
     valueEnum: ConceptMapEquivalenceEnum.relatedto,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -189,7 +204,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'equivalent',
     valueEnum: ConceptMapEquivalenceEnum.equivalent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -202,7 +217,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'equal',
     valueEnum: ConceptMapEquivalenceEnum.equal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -215,7 +230,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'wider',
     valueEnum: ConceptMapEquivalenceEnum.wider,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -228,7 +243,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'subsumes',
     valueEnum: ConceptMapEquivalenceEnum.subsumes,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -241,7 +256,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'narrower',
     valueEnum: ConceptMapEquivalenceEnum.narrower,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -254,7 +269,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'specializes',
     valueEnum: ConceptMapEquivalenceEnum.specializes,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -267,7 +282,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'inexact',
     valueEnum: ConceptMapEquivalenceEnum.inexact,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -280,7 +295,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'unmatched',
     valueEnum: ConceptMapEquivalenceEnum.unmatched,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -293,7 +308,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     valueString: 'disjoint',
     valueEnum: ConceptMapEquivalenceEnum.disjoint,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence',
+      valueString: 'http://hl7.org/fhir/concept-map-equivalence',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -319,6 +334,10 @@ class ConceptMapEquivalence extends FhirCodeEnum {
   ConceptMapEquivalence withElement(Element? newElement) {
     return ConceptMapEquivalence._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

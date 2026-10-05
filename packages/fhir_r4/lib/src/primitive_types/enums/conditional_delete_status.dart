@@ -83,12 +83,13 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ConditionalDeleteStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ConditionalDeleteStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -112,11 +113,26 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
         'ConditionalDeleteStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ConditionalDeleteStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ConditionalDeleteStatus? _known(
+      ConditionalDeleteStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ConditionalDeleteStatus
@@ -127,7 +143,7 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
     valueString: 'not-supported',
     valueEnum: ConditionalDeleteStatusEnum.notSupported,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/conditional-delete-status',
+      valueString: 'http://hl7.org/fhir/conditional-delete-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -140,7 +156,7 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
     valueString: 'single',
     valueEnum: ConditionalDeleteStatusEnum.single,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/conditional-delete-status',
+      valueString: 'http://hl7.org/fhir/conditional-delete-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -153,7 +169,7 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
     valueString: 'multiple',
     valueEnum: ConditionalDeleteStatusEnum.multiple,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/conditional-delete-status',
+      valueString: 'http://hl7.org/fhir/conditional-delete-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -172,6 +188,10 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
   ConditionalDeleteStatus withElement(Element? newElement) {
     return ConditionalDeleteStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

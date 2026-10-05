@@ -104,12 +104,13 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = GuidanceResponseStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return GuidanceResponseStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -133,11 +134,25 @@ class GuidanceResponseStatus extends FhirCodeEnum {
         'GuidanceResponseStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return GuidanceResponseStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static GuidanceResponseStatus? _known(GuidanceResponseStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for GuidanceResponseStatus
@@ -148,7 +163,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     valueString: 'success',
     valueEnum: GuidanceResponseStatusEnum.success,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+      valueString: 'http://hl7.org/fhir/guidance-response-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -161,7 +176,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     valueString: 'data-requested',
     valueEnum: GuidanceResponseStatusEnum.dataRequested,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+      valueString: 'http://hl7.org/fhir/guidance-response-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,7 +189,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     valueString: 'data-required',
     valueEnum: GuidanceResponseStatusEnum.dataRequired,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+      valueString: 'http://hl7.org/fhir/guidance-response-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -187,7 +202,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     valueString: 'in-progress',
     valueEnum: GuidanceResponseStatusEnum.inProgress,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+      valueString: 'http://hl7.org/fhir/guidance-response-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -200,7 +215,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     valueString: 'failure',
     valueEnum: GuidanceResponseStatusEnum.failure,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+      valueString: 'http://hl7.org/fhir/guidance-response-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -213,7 +228,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: GuidanceResponseStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/guidance-response-status',
+      valueString: 'http://hl7.org/fhir/guidance-response-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,6 +250,10 @@ class GuidanceResponseStatus extends FhirCodeEnum {
   GuidanceResponseStatus withElement(Element? newElement) {
     return GuidanceResponseStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

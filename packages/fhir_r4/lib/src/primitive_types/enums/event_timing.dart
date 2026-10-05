@@ -244,12 +244,13 @@ class EventTiming extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = EventTimingEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return EventTiming._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -273,11 +274,25 @@ class EventTiming extends FhirCodeEnum {
         'EventTiming cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return EventTiming._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static EventTiming? _known(EventTimingEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for EventTiming
@@ -288,7 +303,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'MORN',
     valueEnum: EventTimingEnum.mORN,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -301,7 +316,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'MORN.early',
     valueEnum: EventTimingEnum.mornEarly,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -314,7 +329,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'MORN.late',
     valueEnum: EventTimingEnum.mornLate,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -327,7 +342,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'NOON',
     valueEnum: EventTimingEnum.nOON,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -340,7 +355,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'AFT',
     valueEnum: EventTimingEnum.aFT,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -353,7 +368,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'AFT.early',
     valueEnum: EventTimingEnum.aftEarly,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -366,7 +381,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'AFT.late',
     valueEnum: EventTimingEnum.aftLate,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -379,7 +394,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'EVE',
     valueEnum: EventTimingEnum.eVE,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -392,7 +407,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'EVE.early',
     valueEnum: EventTimingEnum.eveEarly,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -405,7 +420,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'EVE.late',
     valueEnum: EventTimingEnum.eveLate,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -418,7 +433,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'NIGHT',
     valueEnum: EventTimingEnum.nIGHT,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -431,7 +446,7 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'PHS',
     valueEnum: EventTimingEnum.pHS,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://hl7.org/fhir/event-timing',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -444,9 +459,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'HS',
     valueEnum: EventTimingEnum.hS,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -457,9 +471,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'WAKE',
     valueEnum: EventTimingEnum.wAKE,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -470,9 +483,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'C',
     valueEnum: EventTimingEnum.c,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -483,9 +495,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'CM',
     valueEnum: EventTimingEnum.cM,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -496,9 +507,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'CD',
     valueEnum: EventTimingEnum.cD,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -509,9 +519,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'CV',
     valueEnum: EventTimingEnum.cV,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -522,9 +531,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'AC',
     valueEnum: EventTimingEnum.aC,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -535,9 +543,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'ACM',
     valueEnum: EventTimingEnum.aCM,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -548,9 +555,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'ACD',
     valueEnum: EventTimingEnum.aCD,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -561,9 +567,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'ACV',
     valueEnum: EventTimingEnum.aCV,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -574,9 +579,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'PC',
     valueEnum: EventTimingEnum.pC,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -587,9 +591,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'PCM',
     valueEnum: EventTimingEnum.pCM,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -600,9 +603,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'PCD',
     valueEnum: EventTimingEnum.pCD,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -613,9 +615,8 @@ class EventTiming extends FhirCodeEnum {
     valueString: 'PCV',
     valueEnum: EventTimingEnum.pCV,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/event-timing',
+      valueString: 'http://terminology.hl7.org/CodeSystem/v3-TimingEvent',
     ),
-    version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
       valueString: '',
     ),
@@ -655,6 +656,10 @@ class EventTiming extends FhirCodeEnum {
   EventTiming withElement(Element? newElement) {
     return EventTiming._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

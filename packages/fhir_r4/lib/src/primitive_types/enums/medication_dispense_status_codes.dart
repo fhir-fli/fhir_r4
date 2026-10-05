@@ -125,12 +125,13 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = MedicationDispenseStatusCodesEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return MedicationDispenseStatusCodes._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -149,19 +150,32 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MedicationDispenseStatusCodes._(
-        valueString: null,
-        element: element,
-      );
+          valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MedicationDispenseStatusCodes cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return MedicationDispenseStatusCodes._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static MedicationDispenseStatusCodes? _known(
+      MedicationDispenseStatusCodesEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for MedicationDispenseStatusCodes
@@ -173,7 +187,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'preparation',
     valueEnum: MedicationDispenseStatusCodesEnum.preparation,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -187,7 +202,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'in-progress',
     valueEnum: MedicationDispenseStatusCodesEnum.inProgress,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -201,7 +217,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'cancelled',
     valueEnum: MedicationDispenseStatusCodesEnum.cancelled,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -215,7 +232,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'on-hold',
     valueEnum: MedicationDispenseStatusCodesEnum.onHold,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -229,7 +247,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: MedicationDispenseStatusCodesEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -243,7 +262,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: MedicationDispenseStatusCodesEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -257,7 +277,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'stopped',
     valueEnum: MedicationDispenseStatusCodesEnum.stopped,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -271,7 +292,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'declined',
     valueEnum: MedicationDispenseStatusCodesEnum.declined,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -285,7 +307,8 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: MedicationDispenseStatusCodesEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationdispense-status',
+      valueString:
+          'http://terminology.hl7.org/CodeSystem/medicationdispense-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -310,6 +333,10 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
   MedicationDispenseStatusCodes withElement(Element? newElement) {
     return MedicationDispenseStatusCodes._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

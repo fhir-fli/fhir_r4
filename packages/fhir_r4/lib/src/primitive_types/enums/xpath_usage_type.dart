@@ -98,12 +98,13 @@ class XPathUsageType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = XPathUsageTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return XPathUsageType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -127,11 +128,25 @@ class XPathUsageType extends FhirCodeEnum {
         'XPathUsageType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return XPathUsageType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static XPathUsageType? _known(XPathUsageTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for XPathUsageType
@@ -142,7 +157,7 @@ class XPathUsageType extends FhirCodeEnum {
     valueString: 'normal',
     valueEnum: XPathUsageTypeEnum.normal,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -155,7 +170,7 @@ class XPathUsageType extends FhirCodeEnum {
     valueString: 'phonetic',
     valueEnum: XPathUsageTypeEnum.phonetic,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -168,7 +183,7 @@ class XPathUsageType extends FhirCodeEnum {
     valueString: 'nearby',
     valueEnum: XPathUsageTypeEnum.nearby,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -181,7 +196,7 @@ class XPathUsageType extends FhirCodeEnum {
     valueString: 'distance',
     valueEnum: XPathUsageTypeEnum.distance,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,7 +209,7 @@ class XPathUsageType extends FhirCodeEnum {
     valueString: 'other',
     valueEnum: XPathUsageTypeEnum.other,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+      valueString: 'http://hl7.org/fhir/search-xpath-usage',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -215,6 +230,10 @@ class XPathUsageType extends FhirCodeEnum {
   XPathUsageType withElement(Element? newElement) {
     return XPathUsageType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

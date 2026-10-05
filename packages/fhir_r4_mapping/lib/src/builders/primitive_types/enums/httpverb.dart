@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for HTTPVerb
@@ -113,12 +114,13 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     final valueEnum = HTTPVerbBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return HTTPVerbBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -150,10 +152,25 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
         'HTTPVerbBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(HTTPVerbBuilderEnum.fromString(value));
     return HTTPVerbBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static HTTPVerbBuilder? _known(HTTPVerbBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for HTTPVerbBuilder
@@ -164,7 +181,7 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     valueString: 'GET',
     valueEnum: HTTPVerbBuilderEnum.gET,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+      valueString: 'http://hl7.org/fhir/http-verb',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -177,7 +194,7 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     valueString: 'HEAD',
     valueEnum: HTTPVerbBuilderEnum.hEAD,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+      valueString: 'http://hl7.org/fhir/http-verb',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -190,7 +207,7 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     valueString: 'POST',
     valueEnum: HTTPVerbBuilderEnum.pOST,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+      valueString: 'http://hl7.org/fhir/http-verb',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,7 +220,7 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     valueString: 'PUT',
     valueEnum: HTTPVerbBuilderEnum.pUT,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+      valueString: 'http://hl7.org/fhir/http-verb',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -216,7 +233,7 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     valueString: 'DELETE',
     valueEnum: HTTPVerbBuilderEnum.dELETE,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+      valueString: 'http://hl7.org/fhir/http-verb',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -229,7 +246,7 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     valueString: 'PATCH',
     valueEnum: HTTPVerbBuilderEnum.pATCH,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-verb',
+      valueString: 'http://hl7.org/fhir/http-verb',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -259,6 +276,10 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
   ) {
     return HTTPVerbBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

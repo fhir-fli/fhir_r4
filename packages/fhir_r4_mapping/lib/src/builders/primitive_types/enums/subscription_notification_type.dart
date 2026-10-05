@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SubscriptionNotificationType
@@ -105,12 +106,13 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SubscriptionNotificationTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SubscriptionNotificationTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -143,10 +145,27 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
         'SubscriptionNotificationTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known =
+        _known(SubscriptionNotificationTypeBuilderEnum.fromString(value));
     return SubscriptionNotificationTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SubscriptionNotificationTypeBuilder? _known(
+      SubscriptionNotificationTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SubscriptionNotificationTypeBuilder
@@ -158,8 +177,7 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'handshake',
     valueEnum: SubscriptionNotificationTypeBuilderEnum.handshake,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+      valueString: 'http://hl7.org/fhir/subscription-notification-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -173,8 +191,7 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'heartbeat',
     valueEnum: SubscriptionNotificationTypeBuilderEnum.heartbeat,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+      valueString: 'http://hl7.org/fhir/subscription-notification-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -188,8 +205,7 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'event-notification',
     valueEnum: SubscriptionNotificationTypeBuilderEnum.eventNotification,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+      valueString: 'http://hl7.org/fhir/subscription-notification-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,8 +219,7 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'query-status',
     valueEnum: SubscriptionNotificationTypeBuilderEnum.queryStatus,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+      valueString: 'http://hl7.org/fhir/subscription-notification-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -218,8 +233,7 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'query-event',
     valueEnum: SubscriptionNotificationTypeBuilderEnum.queryEvent,
     system: FhirUriBuilder._(
-      valueString:
-          'http://hl7.org/fhir/ValueSet/subscription-notification-type',
+      valueString: 'http://hl7.org/fhir/subscription-notification-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -249,6 +263,10 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return SubscriptionNotificationTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

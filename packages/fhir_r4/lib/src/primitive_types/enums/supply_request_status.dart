@@ -111,12 +111,13 @@ class SupplyRequestStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = SupplyRequestStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return SupplyRequestStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -140,11 +141,25 @@ class SupplyRequestStatus extends FhirCodeEnum {
         'SupplyRequestStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return SupplyRequestStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SupplyRequestStatus? _known(SupplyRequestStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for SupplyRequestStatus
@@ -155,7 +170,7 @@ class SupplyRequestStatus extends FhirCodeEnum {
     valueString: 'draft',
     valueEnum: SupplyRequestStatusEnum.draft,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -168,7 +183,7 @@ class SupplyRequestStatus extends FhirCodeEnum {
     valueString: 'active',
     valueEnum: SupplyRequestStatusEnum.active,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -181,7 +196,7 @@ class SupplyRequestStatus extends FhirCodeEnum {
     valueString: 'suspended',
     valueEnum: SupplyRequestStatusEnum.suspended,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,7 +209,7 @@ class SupplyRequestStatus extends FhirCodeEnum {
     valueString: 'cancelled',
     valueEnum: SupplyRequestStatusEnum.cancelled,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -207,7 +222,7 @@ class SupplyRequestStatus extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: SupplyRequestStatusEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -220,7 +235,7 @@ class SupplyRequestStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: SupplyRequestStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -233,7 +248,7 @@ class SupplyRequestStatus extends FhirCodeEnum {
     valueString: 'unknown',
     valueEnum: SupplyRequestStatusEnum.unknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+      valueString: 'http://hl7.org/fhir/supplyrequest-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -256,6 +271,10 @@ class SupplyRequestStatus extends FhirCodeEnum {
   SupplyRequestStatus withElement(Element? newElement) {
     return SupplyRequestStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ContactPointSystem
@@ -119,12 +120,13 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ContactPointSystemBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ContactPointSystemBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -157,10 +159,26 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
         'ContactPointSystemBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ContactPointSystemBuilderEnum.fromString(value));
     return ContactPointSystemBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ContactPointSystemBuilder? _known(
+      ContactPointSystemBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ContactPointSystemBuilder
@@ -171,7 +189,7 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     valueString: 'phone',
     valueEnum: ContactPointSystemBuilderEnum.phone,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-system',
+      valueString: 'http://hl7.org/fhir/contact-point-system',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -184,7 +202,7 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     valueString: 'fax',
     valueEnum: ContactPointSystemBuilderEnum.fax,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-system',
+      valueString: 'http://hl7.org/fhir/contact-point-system',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -197,7 +215,7 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     valueString: 'email',
     valueEnum: ContactPointSystemBuilderEnum.email,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-system',
+      valueString: 'http://hl7.org/fhir/contact-point-system',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -210,7 +228,7 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     valueString: 'pager',
     valueEnum: ContactPointSystemBuilderEnum.pager,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-system',
+      valueString: 'http://hl7.org/fhir/contact-point-system',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -223,7 +241,7 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     valueString: 'url',
     valueEnum: ContactPointSystemBuilderEnum.url,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-system',
+      valueString: 'http://hl7.org/fhir/contact-point-system',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -236,7 +254,7 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     valueString: 'sms',
     valueEnum: ContactPointSystemBuilderEnum.sms,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-system',
+      valueString: 'http://hl7.org/fhir/contact-point-system',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -249,7 +267,7 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
     valueString: 'other',
     valueEnum: ContactPointSystemBuilderEnum.other,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-system',
+      valueString: 'http://hl7.org/fhir/contact-point-system',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -280,6 +298,10 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
   ) {
     return ContactPointSystemBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

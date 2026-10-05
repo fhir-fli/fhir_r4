@@ -98,12 +98,13 @@ class CodeSystemContentMode extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = CodeSystemContentModeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return CodeSystemContentMode._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -127,11 +128,25 @@ class CodeSystemContentMode extends FhirCodeEnum {
         'CodeSystemContentMode cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return CodeSystemContentMode._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static CodeSystemContentMode? _known(CodeSystemContentModeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for CodeSystemContentMode
@@ -142,7 +157,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
     valueString: 'not-present',
     valueEnum: CodeSystemContentModeEnum.notPresent,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+      valueString: 'http://hl7.org/fhir/codesystem-content-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -155,7 +170,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
     valueString: 'example',
     valueEnum: CodeSystemContentModeEnum.example,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+      valueString: 'http://hl7.org/fhir/codesystem-content-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -168,7 +183,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
     valueString: 'fragment',
     valueEnum: CodeSystemContentModeEnum.fragment,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+      valueString: 'http://hl7.org/fhir/codesystem-content-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -181,7 +196,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
     valueString: 'complete',
     valueEnum: CodeSystemContentModeEnum.complete,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+      valueString: 'http://hl7.org/fhir/codesystem-content-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -194,7 +209,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
     valueString: 'supplement',
     valueEnum: CodeSystemContentModeEnum.supplement,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode',
+      valueString: 'http://hl7.org/fhir/codesystem-content-mode',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -215,6 +230,10 @@ class CodeSystemContentMode extends FhirCodeEnum {
   CodeSystemContentMode withElement(Element? newElement) {
     return CodeSystemContentMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

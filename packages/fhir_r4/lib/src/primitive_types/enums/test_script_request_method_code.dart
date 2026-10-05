@@ -111,12 +111,13 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = TestScriptRequestMethodCodeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return TestScriptRequestMethodCode._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -140,11 +141,26 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
         'TestScriptRequestMethodCode cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return TestScriptRequestMethodCode._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TestScriptRequestMethodCode? _known(
+      TestScriptRequestMethodCodeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for TestScriptRequestMethodCode
@@ -156,7 +172,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     valueString: 'delete',
     valueEnum: TestScriptRequestMethodCodeEnum.delete,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -169,7 +185,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     valueString: 'get',
     valueEnum: TestScriptRequestMethodCodeEnum.get_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -183,7 +199,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     valueString: 'options',
     valueEnum: TestScriptRequestMethodCodeEnum.options,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -197,7 +213,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     valueString: 'patch',
     valueEnum: TestScriptRequestMethodCodeEnum.patch,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -210,7 +226,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     valueString: 'post',
     valueEnum: TestScriptRequestMethodCodeEnum.post,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -223,7 +239,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     valueString: 'put',
     valueEnum: TestScriptRequestMethodCodeEnum.put,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -236,7 +252,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     valueString: 'head',
     valueEnum: TestScriptRequestMethodCodeEnum.head,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/http-operations',
+      valueString: 'http://hl7.org/fhir/http-operations',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -259,6 +275,10 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   TestScriptRequestMethodCode withElement(Element? newElement) {
     return TestScriptRequestMethodCode._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

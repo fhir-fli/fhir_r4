@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for BiologicallyDerivedProductStorageScale
@@ -93,12 +94,13 @@ class BiologicallyDerivedProductStorageScaleBuilder
         BiologicallyDerivedProductStorageScaleBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return BiologicallyDerivedProductStorageScaleBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -131,10 +133,27 @@ class BiologicallyDerivedProductStorageScaleBuilder
         'BiologicallyDerivedProductStorageScaleBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(
+        BiologicallyDerivedProductStorageScaleBuilderEnum.fromString(value));
     return BiologicallyDerivedProductStorageScaleBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static BiologicallyDerivedProductStorageScaleBuilder? _known(
+      BiologicallyDerivedProductStorageScaleBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for BiologicallyDerivedProductStorageScaleBuilder
@@ -146,7 +165,7 @@ class BiologicallyDerivedProductStorageScaleBuilder
     valueString: 'farenheit',
     valueEnum: BiologicallyDerivedProductStorageScaleBuilderEnum.farenheit,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/product-storage-scale',
+      valueString: 'http://hl7.org/fhir/product-storage-scale',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -160,7 +179,7 @@ class BiologicallyDerivedProductStorageScaleBuilder
     valueString: 'celsius',
     valueEnum: BiologicallyDerivedProductStorageScaleBuilderEnum.celsius,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/product-storage-scale',
+      valueString: 'http://hl7.org/fhir/product-storage-scale',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -174,7 +193,7 @@ class BiologicallyDerivedProductStorageScaleBuilder
     valueString: 'kelvin',
     valueEnum: BiologicallyDerivedProductStorageScaleBuilderEnum.kelvin,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/product-storage-scale',
+      valueString: 'http://hl7.org/fhir/product-storage-scale',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -202,6 +221,10 @@ class BiologicallyDerivedProductStorageScaleBuilder
   ) {
     return BiologicallyDerivedProductStorageScaleBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

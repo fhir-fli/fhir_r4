@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for MedicationRequestStatus
@@ -126,12 +127,13 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = MedicationRequestStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return MedicationRequestStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -164,10 +166,26 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
         'MedicationRequestStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(MedicationRequestStatusBuilderEnum.fromString(value));
     return MedicationRequestStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static MedicationRequestStatusBuilder? _known(
+      MedicationRequestStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for MedicationRequestStatusBuilder
@@ -179,7 +197,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'active',
     valueEnum: MedicationRequestStatusBuilderEnum.active,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -193,7 +211,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'on-hold',
     valueEnum: MedicationRequestStatusBuilderEnum.onHold,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -207,7 +225,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'cancelled',
     valueEnum: MedicationRequestStatusBuilderEnum.cancelled,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -221,7 +239,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'completed',
     valueEnum: MedicationRequestStatusBuilderEnum.completed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -235,7 +253,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: MedicationRequestStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -249,7 +267,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'stopped',
     valueEnum: MedicationRequestStatusBuilderEnum.stopped,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -263,7 +281,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'draft',
     valueEnum: MedicationRequestStatusBuilderEnum.draft,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -277,7 +295,7 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'unknown',
     valueEnum: MedicationRequestStatusBuilderEnum.unknown,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/medicationrequest-status',
+      valueString: 'http://hl7.org/fhir/CodeSystem/medicationrequest-status',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -310,6 +328,10 @@ class MedicationRequestStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return MedicationRequestStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -77,12 +77,13 @@ class AllergyIntoleranceType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = AllergyIntoleranceTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return AllergyIntoleranceType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -106,11 +107,25 @@ class AllergyIntoleranceType extends FhirCodeEnum {
         'AllergyIntoleranceType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return AllergyIntoleranceType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AllergyIntoleranceType? _known(AllergyIntoleranceTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for AllergyIntoleranceType
@@ -121,7 +136,7 @@ class AllergyIntoleranceType extends FhirCodeEnum {
     valueString: 'allergy',
     valueEnum: AllergyIntoleranceTypeEnum.allergy,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-type',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -134,7 +149,7 @@ class AllergyIntoleranceType extends FhirCodeEnum {
     valueString: 'intolerance',
     valueEnum: AllergyIntoleranceTypeEnum.intolerance,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-type',
+      valueString: 'http://hl7.org/fhir/allergy-intolerance-type',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -152,6 +167,10 @@ class AllergyIntoleranceType extends FhirCodeEnum {
   AllergyIntoleranceType withElement(Element? newElement) {
     return AllergyIntoleranceType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

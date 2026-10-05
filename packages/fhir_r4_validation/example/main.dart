@@ -44,7 +44,7 @@ Future<void> main() async {
     ),
   );
 
-  final engine = FhirValidationEngine();
+  const engine = FhirValidationEngine();
   final results = await engine.validateFhirResource(
     structureToValidate: patient,
     structureDefinition: profile,

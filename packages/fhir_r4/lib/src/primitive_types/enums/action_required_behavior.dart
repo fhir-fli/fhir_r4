@@ -84,12 +84,13 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = ActionRequiredBehaviorEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return ActionRequiredBehavior._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -113,11 +114,25 @@ class ActionRequiredBehavior extends FhirCodeEnum {
         'ActionRequiredBehavior cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return ActionRequiredBehavior._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ActionRequiredBehavior? _known(ActionRequiredBehaviorEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for ActionRequiredBehavior
@@ -128,7 +143,7 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     valueString: 'must',
     valueEnum: ActionRequiredBehaviorEnum.must,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-required-behavior',
+      valueString: 'http://hl7.org/fhir/action-required-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -141,7 +156,7 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     valueString: 'could',
     valueEnum: ActionRequiredBehaviorEnum.could,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-required-behavior',
+      valueString: 'http://hl7.org/fhir/action-required-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -155,7 +170,7 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     valueString: 'must-unless-documented',
     valueEnum: ActionRequiredBehaviorEnum.mustUnlessDocumented,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/action-required-behavior',
+      valueString: 'http://hl7.org/fhir/action-required-behavior',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -174,6 +189,10 @@ class ActionRequiredBehavior extends FhirCodeEnum {
   ActionRequiredBehavior withElement(Element? newElement) {
     return ActionRequiredBehavior._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

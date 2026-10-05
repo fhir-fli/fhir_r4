@@ -104,12 +104,13 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = InvoicePriceComponentTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return InvoicePriceComponentType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -133,11 +134,26 @@ class InvoicePriceComponentType extends FhirCodeEnum {
         'InvoicePriceComponentType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return InvoicePriceComponentType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static InvoicePriceComponentType? _known(
+      InvoicePriceComponentTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for InvoicePriceComponentType
@@ -148,7 +164,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     valueString: 'base',
     valueEnum: InvoicePriceComponentTypeEnum.base,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -162,7 +178,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     valueString: 'surcharge',
     valueEnum: InvoicePriceComponentTypeEnum.surcharge,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -176,7 +192,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     valueString: 'deduction',
     valueEnum: InvoicePriceComponentTypeEnum.deduction,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -189,7 +205,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     valueString: 'discount',
     valueEnum: InvoicePriceComponentTypeEnum.discount,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -202,7 +218,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     valueString: 'tax',
     valueEnum: InvoicePriceComponentTypeEnum.tax,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -216,7 +232,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     valueString: 'informational',
     valueEnum: InvoicePriceComponentTypeEnum.informational,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType',
+      valueString: 'http://hl7.org/fhir/invoice-priceComponentType',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -238,6 +254,10 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   InvoicePriceComponentType withElement(Element? newElement) {
     return InvoicePriceComponentType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

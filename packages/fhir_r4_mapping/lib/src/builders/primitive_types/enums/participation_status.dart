@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for ParticipationStatus
@@ -98,12 +99,13 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = ParticipationStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return ParticipationStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -136,10 +138,26 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
         'ParticipationStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(ParticipationStatusBuilderEnum.fromString(value));
     return ParticipationStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static ParticipationStatusBuilder? _known(
+      ParticipationStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for ParticipationStatusBuilder
@@ -150,7 +168,7 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'accepted',
     valueEnum: ParticipationStatusBuilderEnum.accepted,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -163,7 +181,7 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'declined',
     valueEnum: ParticipationStatusBuilderEnum.declined,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -176,7 +194,7 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'tentative',
     valueEnum: ParticipationStatusBuilderEnum.tentative,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -189,7 +207,7 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'needs-action',
     valueEnum: ParticipationStatusBuilderEnum.needsAction,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/participationstatus',
+      valueString: 'http://hl7.org/fhir/participationstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -217,6 +235,10 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return ParticipationStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

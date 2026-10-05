@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
-import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,7 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// Canonical resources (StructureDefinitions, ConceptMaps, imported maps)
   /// are fetched on demand; plain FHIR-to-FHIR maps need none.
-  final OnlineResourceCache _cache = OnlineResourceCache();
+  final OnlineResourceCache _cache = OnlineResourceCache(
+    parse: Resource.fromJson,
+  );
 
   @override
   void initState() {
@@ -83,7 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ).convert(structureMap.toJson());
         _result = const JsonEncoder.withIndent('  ').convert(target.toJson());
       });
-    } catch (e) {
+    } on Object catch (e) {
+      // A playground: whatever the input caused, the page shows it.
       setState(() {
         _result = 'Error: $e';
       });

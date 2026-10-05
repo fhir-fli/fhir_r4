@@ -139,12 +139,13 @@ class AssertionOperatorType extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = AssertionOperatorTypeEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return AssertionOperatorType._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -168,11 +169,25 @@ class AssertionOperatorType extends FhirCodeEnum {
         'AssertionOperatorType cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return AssertionOperatorType._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static AssertionOperatorType? _known(AssertionOperatorTypeEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for AssertionOperatorType
@@ -183,7 +198,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'equals',
     valueEnum: AssertionOperatorTypeEnum.equals_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -196,7 +211,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'notEquals',
     valueEnum: AssertionOperatorTypeEnum.notEquals,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -209,7 +224,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'in',
     valueEnum: AssertionOperatorTypeEnum.in_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -222,7 +237,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'notIn',
     valueEnum: AssertionOperatorTypeEnum.notIn,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -235,7 +250,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'greaterThan',
     valueEnum: AssertionOperatorTypeEnum.greaterThan,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -248,7 +263,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'lessThan',
     valueEnum: AssertionOperatorTypeEnum.lessThan,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -261,7 +276,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'empty',
     valueEnum: AssertionOperatorTypeEnum.empty_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -274,7 +289,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'notEmpty',
     valueEnum: AssertionOperatorTypeEnum.notEmpty,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -287,7 +302,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'contains',
     valueEnum: AssertionOperatorTypeEnum.contains_,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -300,7 +315,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'notContains',
     valueEnum: AssertionOperatorTypeEnum.notContains,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -313,7 +328,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     valueString: 'eval',
     valueEnum: AssertionOperatorTypeEnum.eval,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/assert-operator-codes',
+      valueString: 'http://hl7.org/fhir/assert-operator-codes',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -340,6 +355,10 @@ class AssertionOperatorType extends FhirCodeEnum {
   AssertionOperatorType withElement(Element? newElement) {
     return AssertionOperatorType._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for TriggerType
@@ -126,12 +127,13 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     final valueEnum = TriggerTypeBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return TriggerTypeBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -163,10 +165,25 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
         'TriggerTypeBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(TriggerTypeBuilderEnum.fromString(value));
     return TriggerTypeBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static TriggerTypeBuilder? _known(TriggerTypeBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for TriggerTypeBuilder
@@ -177,7 +194,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'named-event',
     valueEnum: TriggerTypeBuilderEnum.namedEvent,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -190,7 +207,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'periodic',
     valueEnum: TriggerTypeBuilderEnum.periodic,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -203,7 +220,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'data-changed',
     valueEnum: TriggerTypeBuilderEnum.dataChanged,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -216,7 +233,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'data-added',
     valueEnum: TriggerTypeBuilderEnum.dataAdded,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -229,7 +246,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'data-modified',
     valueEnum: TriggerTypeBuilderEnum.dataModified,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -242,7 +259,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'data-removed',
     valueEnum: TriggerTypeBuilderEnum.dataRemoved,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -255,7 +272,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'data-accessed',
     valueEnum: TriggerTypeBuilderEnum.dataAccessed,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -268,7 +285,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     valueString: 'data-access-ended',
     valueEnum: TriggerTypeBuilderEnum.dataAccessEnded,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/trigger-type',
+      valueString: 'http://hl7.org/fhir/trigger-type',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -300,6 +317,10 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
   ) {
     return TriggerTypeBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

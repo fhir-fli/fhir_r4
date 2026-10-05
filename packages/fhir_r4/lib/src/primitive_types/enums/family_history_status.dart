@@ -90,12 +90,13 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
     final valueEnum = FamilyHistoryStatusEnum.fromString(valueString);
+    final known = _known(valueEnum);
     return FamilyHistoryStatus._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -119,11 +120,25 @@ class FamilyHistoryStatus extends FhirCodeEnum {
         'FamilyHistoryStatus cannot be constructed from JSON.',
       );
     }
+    final known = _known(valueEnum);
     return FamilyHistoryStatus._(
       valueString: value,
       valueEnum: valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static FamilyHistoryStatus? _known(FamilyHistoryStatusEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   /// An actual enum that can be used for FamilyHistoryStatus
@@ -134,7 +149,7 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     valueString: 'partial',
     valueEnum: FamilyHistoryStatusEnum.partial,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+      valueString: 'http://hl7.org/fhir/history-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -147,7 +162,7 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     valueString: 'completed',
     valueEnum: FamilyHistoryStatusEnum.completed,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+      valueString: 'http://hl7.org/fhir/history-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -160,7 +175,7 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     valueString: 'entered-in-error',
     valueEnum: FamilyHistoryStatusEnum.enteredInError,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+      valueString: 'http://hl7.org/fhir/history-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -173,7 +188,7 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     valueString: 'health-unknown',
     valueEnum: FamilyHistoryStatusEnum.healthUnknown,
     system: FhirUri._(
-      valueString: 'http://hl7.org/fhir/ValueSet/history-status',
+      valueString: 'http://hl7.org/fhir/history-status',
     ),
     version: FhirString._(valueString: '4.3.0'),
     display: FhirString._(
@@ -193,6 +208,10 @@ class FamilyHistoryStatus extends FhirCodeEnum {
   FamilyHistoryStatus withElement(Element? newElement) {
     return FamilyHistoryStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }

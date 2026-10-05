@@ -4,6 +4,8 @@
 
 A Dart package for FHIR R4 Bulk Data operations, supporting NDJSON conversion, compression, and the standard FHIR bulk import/export operations.
 
+Since 0.13.0 the code lives in [`fhir_bulk`](https://pub.dev/packages/fhir_bulk), which serves every FHIR version; this package re-exports it with the R4B model (`r4Bulk`) filled in, so every call below gives and takes `fhir_r4` resources.
+
 FHIR® is the registered trademark of HL7 and is used with the permission of HL7. Use of the FHIR trademark does not constitute endorsement of this product by HL7.
 
 ## Features

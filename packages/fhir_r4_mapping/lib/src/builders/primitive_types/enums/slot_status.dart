@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
 /// Actual enum for SlotStatus
@@ -105,12 +106,13 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     final valueEnum = SlotStatusBuilderEnum.fromString(
       valueString,
     );
+    final known = _known(valueEnum);
     return SlotStatusBuilder._(
       valueString: valueString,
       valueEnum: valueEnum,
-      system: system,
-      version: version,
-      display: display,
+      system: system ?? known?.system,
+      version: version ?? known?.version,
+      display: display ?? known?.display,
       element: element,
       id: id,
       extension_: extension_,
@@ -142,10 +144,25 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
         'SlotStatusBuilder cannot be constructed from JSON.',
       );
     }
+    final known = _known(SlotStatusBuilderEnum.fromString(value));
     return SlotStatusBuilder._(
       valueString: value,
+      valueEnum: known?.valueEnum,
+      system: known?.system,
+      version: known?.version,
+      display: known?.display,
       element: element,
     );
+  }
+
+  /// The constant for [valueEnum], with its system, version and
+  /// display; null for a code the value set does not define.
+  static SlotStatusBuilder? _known(SlotStatusBuilderEnum? valueEnum) {
+    if (valueEnum == null) return null;
+    for (final v in values) {
+      if (v.valueEnum == valueEnum) return v;
+    }
+    return null;
   }
 
   ///  An actual enum that can be used for SlotStatusBuilder
@@ -156,7 +173,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'busy',
     valueEnum: SlotStatusBuilderEnum.busy,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/slotstatus',
+      valueString: 'http://hl7.org/fhir/slotstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -169,7 +186,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'free',
     valueEnum: SlotStatusBuilderEnum.free,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/slotstatus',
+      valueString: 'http://hl7.org/fhir/slotstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -182,7 +199,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'busy-unavailable',
     valueEnum: SlotStatusBuilderEnum.busyUnavailable,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/slotstatus',
+      valueString: 'http://hl7.org/fhir/slotstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -195,7 +212,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'busy-tentative',
     valueEnum: SlotStatusBuilderEnum.busyTentative,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/slotstatus',
+      valueString: 'http://hl7.org/fhir/slotstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -208,7 +225,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     valueString: 'entered-in-error',
     valueEnum: SlotStatusBuilderEnum.enteredInError,
     system: FhirUriBuilder._(
-      valueString: 'http://hl7.org/fhir/ValueSet/slotstatus',
+      valueString: 'http://hl7.org/fhir/slotstatus',
     ),
     version: FhirStringBuilder._(valueString: '4.3.0'),
     display: FhirStringBuilder._(
@@ -237,6 +254,10 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
   ) {
     return SlotStatusBuilder._(
       valueString: valueString,
+      valueEnum: valueEnum,
+      system: system,
+      version: version,
+      display: display,
       element: newElement,
     );
   }
