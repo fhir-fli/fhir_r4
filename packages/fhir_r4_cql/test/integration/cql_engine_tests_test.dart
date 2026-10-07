@@ -316,10 +316,10 @@ void main() {
 const _isCqlConcept = TypeMatcher<CqlConcept>();
 
 /// Matcher for CqlInterval values.
-const _isInterval = TypeMatcher<CqlInterval>();
+const _isInterval = TypeMatcher<CqlInterval<dynamic>>();
 
 /// Matcher for List values.
-const _isList = TypeMatcher<List>();
+const _isList = TypeMatcher<List<dynamic>>();
 
 /// Helper that generates a test group for a single CQL file.
 void _testFile(

@@ -36,7 +36,8 @@ void main() {
           expect(
             compareElm(
                 loadJsonFile('$name.json'),
-                CqlBaseVisitor(parseAndBuildLibrary(loadCqlFile('$name.cql')))
+                CqlBaseVisitor<dynamic>(
+                        parseAndBuildLibrary(loadCqlFile('$name.cql')))
                     .result),
             isFalse,
             reason: '$name now matches the reference: remove its pin',
@@ -50,7 +51,7 @@ void main() {
         final cqlSource = loadCqlFile('$name.cql');
         final expectedJson = loadJsonFile('$name.json');
         final library = parseAndBuildLibrary(cqlSource);
-        final visitor = CqlBaseVisitor(library);
+        final visitor = CqlBaseVisitor<dynamic>(library);
         final actualElm = visitor.result;
         expect(compareElm(expectedJson, actualElm), isTrue,
             reason: '$name ELM output does not match expected JSON');

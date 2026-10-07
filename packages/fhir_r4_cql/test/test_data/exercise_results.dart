@@ -27,11 +27,11 @@ final results = <String, dynamic>{
 };
 
 final contexts = <String, dynamic>{
-  'Simple.cql': {},
-  'Exercises01.cql': {},
-  'Exercises02.cql': {},
-  'Exercises03.cql': {},
-  'Exercises04.cql': {},
+  'Simple.cql': <String, dynamic>{},
+  'Exercises01.cql': <String, dynamic>{},
+  'Exercises02.cql': <String, dynamic>{},
+  'Exercises03.cql': <String, dynamic>{},
+  'Exercises04.cql': <String, dynamic>{},
   'Exercises05.cql': context05,
   'Exercises06.cql': context06,
   'Exercises07.cql': context07,

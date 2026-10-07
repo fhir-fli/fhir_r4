@@ -73,15 +73,17 @@ bool areValuesEqual(dynamic result, dynamic answer) {
   return result == answer;
 }
 
-bool _areMapsEqual(Map result, Map answer) {
-  final equal = const DeepCollectionEquality().equals(result, Map.from(answer));
+bool _areMapsEqual(Map<dynamic, dynamic> result, Map<dynamic, dynamic> answer) {
+  final equal = const DeepCollectionEquality()
+      .equals(result, Map<dynamic, dynamic>.from(answer));
   if (!equal) {
-    if (!const DeepCollectionEquality()
-        .equals(result.keys.toSet(), Map.from(answer).keys.toSet())) {
+    if (!const DeepCollectionEquality().equals(
+        result.keys.toSet(), Map<dynamic, dynamic>.from(answer).keys.toSet())) {
       return false;
     }
     for (final key in result.keys) {
-      if (!areValuesEqual(result[key], Map.from(answer)[key])) {
+      if (!areValuesEqual(
+          result[key], Map<dynamic, dynamic>.from(answer)[key])) {
         return false;
       }
     }
