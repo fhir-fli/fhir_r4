@@ -102,11 +102,7 @@ void main() {
 
 /// Exercises whose written ELM is not yet the reference's (first differing
 /// path; the same pins as the cql package's exercises test, 2026-10-06).
-const _elmNotYetEqual = <String, String>{
-  'Exercises03': '/statements/def/79 ToDecimal of an Integer literal against '
-      'a Decimal property',
-  'Exercises05': '/statements/def/2 FHIRHelpers.ToString inserted at equality',
-};
+const _elmNotYetEqual = <String, String>{};
 
 /// Exercises that execute, with defines that do not yet answer right
 /// (measured 2026-10-06; each is a binding or engine defect to fix).
