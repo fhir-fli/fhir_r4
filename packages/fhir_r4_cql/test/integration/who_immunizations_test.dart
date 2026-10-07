@@ -53,7 +53,9 @@ void main() {
         evaluationDate: _evaluationDate,
       );
       final result = await measlesLogic.execute(
-          context, const R4ModelResolver()) as Map<String, dynamic>;
+        context,
+        const R4ModelResolver(),
+      ) as Map<String, dynamic>;
 
       expect(
         result['Client is not due for MCV1 Case 1'],
@@ -78,7 +80,9 @@ void main() {
         evaluationDate: _evaluationDate,
       );
       final result = await measlesLogic.execute(
-          context, const R4ModelResolver()) as Map<String, dynamic>;
+        context,
+        const R4ModelResolver(),
+      ) as Map<String, dynamic>;
 
       expect(
         result['Client is due for MCV1'],
@@ -97,7 +101,9 @@ void main() {
       final context =
           buildContext(bundleContext, valueSets, evaluationDate: '2025-12-01');
       final result = await measlesLogic.execute(
-          context, const R4ModelResolver()) as Map<String, dynamic>;
+        context,
+        const R4ModelResolver(),
+      ) as Map<String, dynamic>;
 
       expect(
         result['Client is not due for MCV2 Case 1'],
@@ -126,7 +132,9 @@ void main() {
         evaluationDate: _evaluationDate,
       );
       final result = await measlesLogic.execute(
-          context, const R4ModelResolver()) as Map<String, dynamic>;
+        context,
+        const R4ModelResolver(),
+      ) as Map<String, dynamic>;
 
       expect(
         result['Measles primary series is complete'],
@@ -146,7 +154,9 @@ void main() {
         evaluationDate: _evaluationDate,
       );
       final result = await measlesLogic.execute(
-          context, const R4ModelResolver()) as Map<String, dynamic>;
+        context,
+        const R4ModelResolver(),
+      ) as Map<String, dynamic>;
 
       expect(
         result['Test Validation'],
@@ -164,7 +174,9 @@ void main() {
         evaluationDate: _evaluationDate,
       );
       final result = await measlesLogic.execute(
-          context, const R4ModelResolver()) as Map<String, dynamic>;
+        context,
+        const R4ModelResolver(),
+      ) as Map<String, dynamic>;
 
       expect(
         result['Test Validation'],
@@ -179,7 +191,9 @@ void main() {
       final context =
           buildContext(bundleContext, valueSets, evaluationDate: '2025-12-01');
       final result = await measlesLogic.execute(
-          context, const R4ModelResolver()) as Map<String, dynamic>;
+        context,
+        const R4ModelResolver(),
+      ) as Map<String, dynamic>;
 
       expect(
         result['Test Validation'],
