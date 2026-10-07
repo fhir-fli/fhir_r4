@@ -100,15 +100,16 @@ void main() {
     'TestUnion',
     libraryManager,
     {
+      // CQL reference 09-b, Union (lists), read whole 2026-10-07: "If
+      // either argument is null, it is considered an empty list for the
+      // purposes of evaluating the union." Two typed null lists → {}.
+      'NullAndNullList': <dynamic>[],
       'NullAndNullInterval': null,
       'NullAndNullUntyped': null,
       'NullAndEmpty': <dynamic>[],
       'EmptyAndNull': <dynamic>[],
       'NullAndSingle': [CqlInteger(1)],
       'SingleAndNull': [CqlInteger(1)],
-    },
-    knownFailures: {
-      'NullAndNullList': 'Null list union returns null instead of empty list',
     },
   );
 
@@ -127,7 +128,11 @@ void main() {
   _testFile(
     'DateOrDateTimeInNullIntervalTest',
     libraryManager,
-    {},
+    {
+      // The file's answers (null); the engine answers false, see the pins.
+      'Date in Null Interval Test': null,
+      'DateTime in Null Interval Test': null,
+    },
     knownFailures: {
       // Interval[null, null] with untyped nulls is a null interval, and a
       // point in a null interval is false (09-b, Contains: "If the first
@@ -343,10 +348,26 @@ void _testFile(
     for (final entry in expectedResults.entries) {
       final name = entry.key;
       final expected = entry.value;
-      final skipReason = knownFailures[name];
+      final pin = knownFailures[name];
 
       test(name, () {
         final actual = results[name];
+        // A pinned case asserts that the file's answer is NOT given (the
+        // engine follows the spec sentence quoted beside the pin), so the
+        // pin fails the day the case starts matching. Until 2026-10-07 a
+        // pin skipped the case, and two pins named cases that had no
+        // expectation at all, so they never ran.
+        if (pin != null) {
+          expect(
+            expected is TypeMatcher
+                ? expected.matches(actual, <dynamic, dynamic>{})
+                : areValuesEqual(actual, expected),
+            isFalse,
+            reason: '$filename.$name now matches the file: remove its pin '
+                '($pin)',
+          );
+          return;
+        }
         if (expected is TypeMatcher) {
           expect(actual, expected,
               reason: '$filename.$name: got ${actual?.runtimeType}');
@@ -356,7 +377,7 @@ void _testFile(
                   '$actual (${actual?.runtimeType}) != '
                   '$expected (${expected?.runtimeType})');
         }
-      }, skip: skipReason);
+      });
     }
   }, skip: skipAll);
 }

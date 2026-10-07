@@ -35,7 +35,7 @@ void main() {
     });
 
     for (final name in defineNames) {
-      final skipReason = _knownFailures[name];
+      final pin = _knownFailures[name];
       test('$name should throw at runtime', () async {
         final context = <String, dynamic>{
           'startTimestamp':
@@ -48,15 +48,30 @@ void main() {
         // a CqlException/error value. Since we execute the whole library,
         // check that the result is an error or null.
         final result = results[name];
+        // An error-suite case errors when its define holds the exception
+        // it threw (a failed define carries its exception as its value).
+        // Until 2026-10-07 a null answer counted as an error too, which
+        // hid every case the engine answers null for.
+        final errored = result is Exception || result is Error;
+
+        // A pinned case asserts the suite's expectation is NOT met (the
+        // engine follows the spec sentence quoted beside the pin), so the
+        // pin fails the day the case starts erroring. Until 2026-10-07 a
+        // pin skipped the case.
+        if (pin != null) {
+          expect(errored, isFalse,
+              reason: '$name now errors: remove its pin ($pin)');
+          return;
+        }
 
         // For error suite, we accept: threw during whole-library execution
         // (caught above), or produced null/error result
         expect(
-          result == null || result is Exception || result is Error,
+          errored,
           isTrue,
           reason: '$name should error but got: $result (${result.runtimeType})',
         );
-      }, skip: skipReason);
+      });
     }
   });
 }

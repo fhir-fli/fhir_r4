@@ -56,16 +56,25 @@ void main() {
     });
 
     for (final name in testNames) {
-      final skipReason = _knownFailures[name];
+      final pin = _knownFailures[name];
       test(name, () {
         // The expected pattern: the test name without "test_" prefix + " TEST PASSED"
         final baseName = name.replaceFirst('test_', '');
         final expected = '$baseName TEST PASSED';
         final actual = results[name];
+        // A pinned case asserts the suite's answer is NOT given (the engine
+        // follows the spec sentence quoted beside the pin), so the pin
+        // fails the day the case starts passing. Until 2026-10-07 a pin
+        // skipped the case.
+        if (pin != null) {
+          expect(areValuesEqual(actual, expected), isFalse,
+              reason: '$name now passes: remove its pin ($pin)');
+          return;
+        }
         // The define answers a System String; compared by value.
         expect(areValuesEqual(actual, expected), isTrue,
             reason: 'Expected: $expected\nActual: $actual');
-      }, skip: skipReason);
+      });
     }
   });
 }
@@ -76,10 +85,9 @@ void main() {
 /// /* ... */ block comments or // line comments). These are not counted.
 // ignore_for_file: lines_longer_than_80_chars
 const _knownFailures = <String, String>{
-  // Interval Expand cross-unit edge cases (2 tests) — require matching CQF precision during unit conversion
+  // Interval Expand cross-unit edge case (1 test; the MGPerGTrunc twin
+  // started passing 2026-10-07 and its pin came out).
   'test_QtyIvlExpand_ClosedSingleGPerMG':
-      'the reference engine writes the sub-interval highs at a fourth decimal (2.0009 g for per 1 mg); the spec gives no cross-unit precision rule',
-  'test_QtyIvlExpand_ClosedSingleMGPerGTrunc':
       'the reference engine writes the sub-interval highs at a fourth decimal (2.0009 g for per 1 mg); the spec gives no cross-unit precision rule',
   // Type conversion edge cases (1 test) - ToList promotion in CQL-to-ELM translator
   // Null list inclusion (8 tests). CQL reference 09-b, Includes / Included
