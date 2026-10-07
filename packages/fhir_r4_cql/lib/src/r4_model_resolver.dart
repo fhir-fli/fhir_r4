@@ -278,6 +278,14 @@ class R4ModelResolver implements ModelResolver {
     final r4.FhirBase? fhirContext;
     if (source is r4.FhirBase) {
       fhirContext = source;
+    } else if (source is Map<String, dynamic> &&
+        !source.containsKey('resourceType')) {
+      // A map with no resourceType is a CQL Tuple (ELM 04, Property: "the
+      // source may be a Tuple"), not FHIR data: its element is the key,
+      // absent means null. Handing it to Resource.fromJson threw
+      // UnsupportedError and stopped the whole CqlTestSuite (1,789 cases)
+      // on 2026-10-06.
+      return source[path];
     } else if (source is Map<String, dynamic>) {
       fhirContext = r4.Resource.fromJson(source);
     } else if (source is List &&
