@@ -1,0 +1,13 @@
+CCDAToFHIR exit=0 url=http://hl7.org/fhir/cda/mapping/ccdaDocumentToFhir
+CdaChEmedMedicationCardDocumentToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationCardDocumentToBundle
+CdaChEmedMedicationDispenseDocumentToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationDispenseDocumentToBundle
+CdaChEmedMedicationListDocumentToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationListDocumentToBundle
+CdaChEmedMedicationPrescriptionDocumentToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationPrescriptionDocumentToBundle
+CdaChEmedMedicationTreatmentPlanDocumentToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationTreatmentPlanDocumentToBundle
+CdaChEmedPharmaceuticalAdviceDocumentToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedPharmaceuticalAdviceDocumentToBundle
+CdaChEmedToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedToBundle
+CdaChToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChToBundle
+CdaToBundle exit=0 url=http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle
+ClinicalDocument exit=0 url=http://hl7.org/fhir/cda/mapping/ClinicalDocumentToFHIR
+SDOHCCHungerVitalSignMap exit=0 url=http://hl7.org/fhir/us/sdoh-clinicalcare/StructureMap/SDOHCC-StructureMapHungerVitalSign
+SDOHCCPRAPAREMap exit=0 url=http://hl7.org/fhir/us/sdoh-clinicalcare/StructureMap/SDOHCC-StructureMapPRAPARE

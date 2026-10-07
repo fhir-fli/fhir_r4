@@ -1,0 +1,4104 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "CdaChEmedToBundle",
+  "text" : {
+    "status" : "additional",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedToBundle&quot; = &quot;CdaChEmedToBundle&quot;\n\n//\n// Medication Entries\n// 2020-10-30 Oliver Egger, copyright ahdis ag, Apache License \n// CDA-CH-EMED:  https://art-decor.org/art-decor/decor-project--cdachemed-\n// FHIR CH-EMED: http://fhir.ch/ig/ch-emed/index.html\n//\n\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument&quot; alias ClinicalDocument as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor&quot; alias AssignedAuthor as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity&quot; alias AssignedEntity as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Author&quot; alias Author as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization&quot; alias CustodianOrganization as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/IVL-TS&quot; alias IVL_TS as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/EIVL-TS&quot; alias EIVL_TS as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Observation&quot; alias Observation as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/PatientRole&quot; alias PatientRole as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/RecordTarget&quot; alias RecordTarget as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Section&quot; alias Section as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/SubstanceAdministration&quot; alias SubstanceAdministration as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/SXPR-TS&quot; alias SXPR_TS as source\n\nuses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias Bundle as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Composition&quot; alias Composition as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot; alias Practitioner as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot; alias Organization as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/MedicationStatement&quot; alias MedicationStatement as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Dosage&quot; alias Dosage as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Observation&quot; alias Observation as produced\n\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes&quot;\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle&quot;\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChToBundle&quot;\n\n\n// _________________________ Entry Level Templates   _________________________ \n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.2\n// target: Annotation note (e.g. http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationstatement.html)\ngroup AnnotationComment(source act: Act, target note: Annotation) {\n  act.text as text then {\n    text.data as data -&gt; note.text = data &quot;level3&quot;;\n    text.reference as reference then {\n      reference.value as value -&gt; note.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n    } &quot;reference&quot;;\n  } &quot;text&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.33\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationdispense.html\ngroup ManufacturedMaterialEntryContentModuleDispense(source src : Supply, target medicationDispense : MedicationDispense, target medication : Medication) {\n  src -&gt; medication.id = 'med', medicationDispense.medication = create('Reference') as vt, vt.reference = '#med' &quot;medication&quot;;\n  \n  // quantity value (number of packages)\n  src.quantity as quantity -&gt; medicationDispense.quantity as medDispQuantity then {\n    // IHE-DIS: If the product-element contains package information, the unit attribute is not be present\n    quantity.value as value -&gt; medDispQuantity.value = value &quot;value&quot;;\n\n    // IHE-DIS: If the product-element does not contain package information, the unit attribut is present and the value SHALL be out of the UCUM code system\n    quantity.unit as unit then {\n      unit -&gt; medDispQuantity.unit = unit &quot;unit&quot;;\n      unit -&gt; medDispQuantity.system = 'http://unitsofmeasure.org' &quot;ucum&quot;;\n      unit -&gt; medDispQuantity.code = unit &quot;code&quot;;\n    } &quot;unit&quot;;\n  } &quot;quantity&quot;;\n  \n  src.product as product then {\n    product.manufacturedProduct as manufacturedProduct then {\n      manufacturedProduct.manufacturedMaterial as manufacturedMaterial then {\n\n        manufacturedMaterial.name as name where asContent.exists()=false -&gt; medication.code as fhircode, fhircode.text = (%manufacturedMaterial.name.other) &quot;medication.code&quot;;\n\n        manufacturedMaterial.asContent as asContent then {\n          asContent.containerPackagedMedicine as containerPackagedMedicine then {\n            containerPackagedMedicine.code as code -&gt; medication.code as fhircode share medcode then CECodeableConcept(code, fhircode) &quot;medication.code&quot;;\n            containerPackagedMedicine.name as name -&gt; medication.code as fhircode share medcode then { \n              name -&gt; fhircode.text = (%name.other)  &quot;medication.code.text&quot;;\n              } &quot;code.text&quot;;\n\n            containerPackagedMedicine.formCode as formCode -&gt; medication.form as form then CECodeableConcept(formCode, form)  &quot;medication.formCode&quot;;\n\n           // Package size \n            containerPackagedMedicine.capacityQuantity as capacityQuantity -&gt; \n                  medication.amount = create('Ratio') as ratio,\n                  ratio.denominator\t = create('Quantity') as denominator, \n                  denominator.value = '1',\n                  denominator.unit = 'Package',\n                  denominator.system = 'http://unitsofmeasure.org',\n                  denominator.code = '{Package}',\n                  ratio.numerator = create('Quantity') as quantity then EmedPQQuantity(capacityQuantity, quantity)  &quot;capacityQuantity&quot;; \n          } &quot;containerPackagedMedicine&quot;;\n        } &quot;asContent&quot;;       \n        manufacturedMaterial.ingredient as ingredient -&gt; medication.ingredient as ing then {\n          ingredient.quantity as quantity -&gt; ing.strength = create('Ratio') as strength then EmedRTOPQPQRatio(quantity, strength) &quot;strength&quot;;\n          ingredient.ingredient as medingredient then {\n              medingredient.code as code -&gt; ing.item = create('CodeableConcept') as ingcode, ingcode.text = (%medingredient.name.other) then CECodeableConcept(code, ingcode) &quot;ingredientCode&quot;;\n          } &quot;ingredient.ingredient&quot;;\n        } &quot;ingredient&quot;;\n      } &quot;manufacturedMaterial&quot;;\n    } &quot;manufacturedProduct&quot;;\n\n    // dosage for normal dosing, as no sequences are present there\n    src.entryRelationship as entry then {\n      entry.substanceAdministration as substanceAdministration then {\n        substanceAdministration where $this.entryRelationship.sequenceNumber.exists()=false\n          -&gt; medicationDispense.dosageInstruction as dosage then DosageInstructionsStartStopFrequency(substanceAdministration, dosage) &quot;dosage&quot;;\n      } &quot;substanceAdministration&quot;;\n    } &quot;entry&quot;;\n    \n  } &quot;product&quot;;\n}\n\ngroup EmedPQQuantity(source src : PQ, target tgt : Quantity) {\n  src.value as value -&gt; tgt.value = value;\n  src.unit as unit -&gt; tgt.code = unit;\n  src.unit as unit -&gt; tgt.system = ('http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.where(concept.where(code=%unit)).system) &quot;unit&quot;;\n  src.unit as unit -&gt; tgt.unit = ('http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.concept.where(code=%unit).display) &quot;unit&quot;;\n}\n  \ngroup EmedRTOPQPQRatio(source src : RTO_PQ_PQ, target tgt : Ratio) {\n  src.numerator as numerator -&gt; tgt.numerator as targetNumerator then EmedPQQuantity(numerator, targetNumerator) &quot;numerator&quot;;\n  src.denominator as denominator -&gt; tgt.denominator as targetDenominator then EmedPQQuantity(denominator, targetDenominator) &quot;denominator&quot;; \n}\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.33\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationstatement.html\ngroup ManufacturedMaterialEntryContentModuleStatement(source src : SubstanceAdministration, target medicationStatement : MedicationStatement, target medication : Medication) {\n  src -&gt; medication.id = 'med', medicationStatement.medication = create('Reference') as vt, vt.reference = '#med' &quot;medication&quot;;\n  src.consumable as consumable then {\n    consumable.manufacturedProduct as manufacturedProduct then {\n      manufacturedProduct.manufacturedMaterial as manufacturedMaterial then {\n\n        manufacturedMaterial.name as name where asContent.exists()=false -&gt; medication.code as fhircode, fhircode.text = (%manufacturedMaterial.name.other) &quot;medication.code&quot;;\n\n        manufacturedMaterial.asContent as asContent then {\n          asContent.containerPackagedMedicine as containerPackagedMedicine then {\n            containerPackagedMedicine.code as code -&gt; medication.code as fhircode share medcode then CECodeableConcept(code, fhircode) &quot;medication.code&quot;;\n            containerPackagedMedicine.name as name -&gt; medication.code as fhircode share medcode then { \n              name -&gt; fhircode.text = (%name.other)  &quot;medication.code.text&quot;;\n            } &quot;code.text&quot;;\n\n            containerPackagedMedicine.formCode as formCode -&gt; medication.form as form then CECodeableConcept(formCode, form)  &quot;medication.formCode&quot;;\n            \n            // Package size \n            containerPackagedMedicine.capacityQuantity as capacityQuantity -&gt; \n              medication.amount = create('Ratio') as ratio,\n              ratio.denominator\t = create('Quantity') as denominator, \n              denominator.value = '1',\n              denominator.unit = 'Package',\n              denominator.system = 'http://unitsofmeasure.org',\n              denominator.code = '{Package}',\n              ratio.numerator = create('Quantity') as quantity then EmedPQQuantity(capacityQuantity, quantity)  &quot;capacityQuantity&quot;; \n\n          } &quot;containerPackagedMedicine&quot;;\n        } &quot;asContent&quot;;       \n        \n        manufacturedMaterial.ingredient as ingredient -&gt; medication.ingredient as ing then {\n          ingredient.quantity as quantity -&gt; ing.strength = create('Ratio') as strength then EmedRTOPQPQRatio(quantity, strength) &quot;strength&quot;;\n          ingredient.ingredient as medingredient then {\n              medingredient.code as code -&gt; ing.item = create('CodeableConcept') as ingcode, ingcode.text = (%medingredient.name.other) then CECodeableConcept(code, ingcode) &quot;ingredientCode&quot;;\n          } &quot;ingredient.ingredient&quot;;\n        } &quot;ingredient&quot;;\n      } &quot;manufacturedMaterial&quot;;\n    } &quot;manufacturedProduct&quot;;\n\n    // dosage for normal dosing, as no sequences are present there\n    src where $this.entryRelationship.sequenceNumber.exists()=false\n      -&gt; medicationStatement.dosage as dosage then DosageInstructionsStartStopFrequency(src, dosage) &quot;dosage&quot;;\n    \n  } &quot;consumable&quot;;\n}\n\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.34\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationstatement.html\ngroup MedicationTreatmentPlanItemEntryContentModule(source section : Section, source src : SubstanceAdministration, source patient : Patient, target medicationStatement : MedicationStatement) {\n//  src.templateId as template then TemplateID(template, medicationStatement) &quot;templateId&quot;;\n  src.id -&gt; medicationStatement.identifier;\n  patient -&gt; medicationStatement.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) &quot;patient&quot;;\n  src -&gt; medicationStatement.status = 'completed' &quot;completed&quot;;  src.text as text then {\n    text.reference as reference then {\n      reference.value as value -&gt; medicationStatement.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n    } &quot;reference&quot;;\n  } &quot;text&quot;;\n  src -&gt; medicationStatement.contained = create('Medication') as medication then ManufacturedMaterialEntryContentModuleStatement(src, medicationStatement, medication) &quot;medication&quot;;\n\n  src.entryRelationship as entry where typeCode = 'RSON' then {\n    entry.observation as observation \n      -&gt; medicationStatement.reasonCode as reasonCode \n          then TreatmentReasonEntryContentModule(section, observation, reasonCode) &quot;reasonCode&quot;;\n  } &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.41&quot;;\n\n  src.entryRelationship as entry where (typeCode='COMP' and substanceAdministration.templateId.root='2.16.756.5.30.1.1.10.4.52') \n    -&gt; medicationStatement.dosage as dosage \n        then DosageInstructionsNonStructuredEntryContentModule(section, entry, dosage) &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.52&quot;;  \n\n  src.entryRelationship as entry where (typeCode='COMP' and sequenceNumber.value&gt;=0) \n    -&gt; medicationStatement.dosage as dosage \n        then DosageInstructionsEntryDosageChange(src, entry, dosage) &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.36&quot;;  \n  \n  src.entryRelationship as entry where (typeCode='REFR' and substanceAdministration.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.10').exists()) \n    -&gt; medicationStatement.extension as ext then MTPReferenceEntryContentModule(entry, ext) &quot;MTPReferenceEntry&quot;;   \n\n  src.entryRelationship as entry where (typeCode='COMP' and act.templateId.where(root='2.16.756.5.30.1.1.10.4.2').exists()) then {\n    entry.act as act -&gt; medicationStatement.note as note then AnnotationComment(act, note) &quot;annotation&quot;;\n  } &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.2&quot;;  \n\n  src.entryRelationship as entry where (typeCode='COMP' and act.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.9.1').exists()) then {\n    entry.act as act -&gt; medicationStatement as medicationStatement then SubstitutionStatement(act, medicationStatement) &quot;substitution&quot;;\n  } &quot;entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.9.1&quot;;\n}\n\n// source https://art-decor.org/art-decor/decor-templates--ch-pharm-?id=2.16.756.5.30.1.1.10.4.36\n// target: http://fhir.ch/ig/ch-emed/StructureDefinition/ch-emed-dosage-structured-split\n// dosage for split dosing, with sequences\ngroup DosageInstructionsEntryDosageChange(source src: substanceAdministration, source entry: entryRelationship, target dosage: Dosage) {\n  entry.sequenceNumber as sequenceNumber then {\n    sequenceNumber.value as val  -&gt; dosage.sequence = val &quot;value&quot;;\n  } &quot;sequenceNumber&quot;;\n\n  src as src -&gt; dosage as dosage then EffectiveTimeStartEnd(src, dosage) &quot;effectiveTimeStartEnd&quot;;\n  entry.substanceAdministration as src -&gt; dosage as dosage then EffectiveTimeWhen(src, dosage) &quot;effectiveTimeWhen&quot;;\n  src.routeCode as routeCode -&gt; dosage.route as route then CECodeableConcept(routeCode, route) &quot;routeCode&quot;;\n  entry.substanceAdministration as src -&gt; dosage as dosage then DoseQuantity(src, dosage) &quot;doseQuantity&quot;;\n}\n\n// effective time start &amp; end for dosage\ngroup EffectiveTimeStartEnd(source src: substanceAdministration, target dosage: Dosage) {\n  src.effectiveTime: IVL_TS as effectiveTime -&gt; dosage.timing as timing share sharetiming then {\n    effectiveTime -&gt; timing.repeat as repeat then {\n      effectiveTime -&gt; repeat.bounds = create('Period') as period then {\n        effectiveTime.low as low then {\n          low.value as lowDate -&gt; period.start = lowDate &quot;lowDate&quot;;\n        } &quot;low&quot;;\n        effectiveTime.high as high then {\n          high.value as highDate -&gt; period.end = highDate &quot;highDate&quot;;\n        } &quot;high&quot;;\n      } &quot;period&quot;;\n    } &quot;repeat&quot;;\n  } &quot;effectiveTime-IVL-TS&quot;;\n}\n\n// effective time when for dosage\ngroup EffectiveTimeWhen(source src: substanceAdministration, target dosage: Dosage) {\n  src.effectiveTime: EIVL_TS as effectiveTime -&gt; dosage.timing as timing share sharetiming then {\n    effectiveTime -&gt; timing.repeat as repeat then {\n      effectiveTime.event as event then {\n        event.code as code -&gt; repeat.when = code &quot;code&quot;;\n      } &quot;event&quot;;\n    } &quot;repeat&quot;;\n  } &quot;effectiveTime-EIVL-TS&quot;;\n  src.effectiveTime: SXPR_TS as effectiveTime -&gt; dosage.timing as timing share sharetiming then {\n    effectiveTime -&gt; timing.repeat as repeat then {\n      effectiveTime.comp as comp then {\n        comp.event as event then {\n          event.code as code -&gt; repeat.when = code &quot;code&quot;;\n        } &quot;event&quot;;\n      } &quot;comp&quot;;\n    } &quot;repeat&quot;;\n  } &quot;effectiveTime-SXPR-TS&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.41\n// target: reasonCode Coding (e.g. http://build.fhir.org/ig/hl7ch/ig/ch-emed/StructureDefinition/ch-emed-medicationstatement)\ngroup TreatmentReasonEntryContentModule(source section : Section, source observation: Observation, target reasonCode : Coding) {\n    // extraxt text (Bluthochdruck) from id #mtpc.1.reason in section text &lt;td ID=&quot;mtpc.1.reason&quot;&gt;Bluthochdruck&lt;/td&gt;\n    //                                                                             a--------------b------------c\n    // id = (%observation.text.reference.value.substring(1))\n    // a = %section.text.substring(%section.text.indexOf(%id))\n    // res = (%a.substring(%a.indexOf('&gt;')+1, %a.indexOf('&lt;')-%a.indexOf('&gt;')-1))\n    // a = %section.text.substring(%section.text.indexOf((%observation.text.reference.value.substring(1))))\n    observation.text as text then {\n      text.data as data -&gt; reasonCode.text = data &quot;level3&quot;;\n      text.reference as reference then {\n        reference.value as value -&gt; reasonCode.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n      } &quot;reference&quot;;\n    } &quot;text&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--ch-pharm-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.45\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-ext-treatmentplan.html\ngroup MTPReferenceEntryContentModule(source entryrelationship, target ext: Extension) {\n  entryrelationship -&gt; ext.url = 'http://fhir.ch/ig/ch-emed/StructureDefinition/ch-emed-ext-treatmentplan' &quot;url&quot;;\n  entryrelationship.substanceAdministration as substanceAdministration then {\n    substanceAdministration.id as id -&gt; ext.extension as ext then InnerExtensionId(id, ext) &quot;innerExtensionId&quot;;\n    substanceAdministration.reference as reference then {\n      reference.externalDocument as externalDocument then {\n        externalDocument.id as id -&gt; ext.extension as ext then InnerExtensionExternalDocumentId(id, ext) &quot;innerExtensionExternalDocumentId&quot;;\n      } &quot;externalDocument&quot;;\n    } &quot;substanceAdministration&quot;;\n  } &quot;id&quot;;\n}\n\n\n// source: https://art-decor.org/art-decor/decor-templates--ch-pharm-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.52\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-dosage-nonstructured.html\ngroup DosageInstructionsNonStructuredEntryContentModule(source section : Section, source entry : Element, target dosage : Dosage) {\n  // see MedicationTreatmentPlanItemEntryContentModule\n  entry.substanceAdministration as observation then {\n    observation.text as text then {\n      text.data as data -&gt; dosage.text = data &quot;level3&quot;;\n            text.reference as reference then {\n        reference.value as value -&gt; dosage.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n      } &quot;reference&quot;;\n    } &quot;text&quot;;\n  } &quot;observation&quot;;\n}\n\n// source: Substitution act Contains 1.3.6.1.4.1.19376.1.9.1.3.9.2 IHE Substitution Act Content Module\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-medicationdispense.html\ngroup SubstitutionDispense(source act: Act, target medicationDispense: MedicationDispense) {\n  act -&gt; medicationDispense.substitution as substitution then {\n    act -&gt; substitution.wasSubstituted as wasSubstituted, wasSubstituted.value = 'true' &quot;wasSubstituted&quot;;\n\n    //act.code as code -&gt; substitution.type as type then CECodeableConcept(code, type) &quot;type&quot;;\n    // workaround, because the line above generates no uri for the oid\n    act.code as actCode -&gt; substitution.type as type, type.coding as coding then {\n      actCode -&gt; coding.system as systemCC, systemCC.value = 'http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution' &quot;system&quot;;\n      actCode.code as code -&gt; coding.code as codeCC, codeCC.value = code &quot;code&quot;;\n      actCode.displayName as display -&gt; coding.display as displayCC, displayCC.value = display &quot;display&quot;;\n    } &quot;allowedCC&quot;;\n\n  } &quot;substitution&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.42\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationdispense.html\ngroup DispenseItemEntryContentModule(source section : Section, source src : Supply, source patient : Patient, target medicationDispense : MedicationDispense) {\n//  src.templateId as template then TemplateID(template, medicationDispense) &quot;templateId&quot;;\n  src.id -&gt; medicationDispense.identifier;\n  patient -&gt; medicationDispense.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) &quot;patient&quot;;\n  src -&gt; medicationDispense.status = 'completed' &quot;completed&quot;;  \n  src.text as text then {\n    text.reference as reference then {\n      reference.value as value -&gt; medicationDispense.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n    } &quot;reference&quot;;\n  } &quot;text&quot;;\n  src -&gt; medicationDispense.contained = create('Medication') as medication then ManufacturedMaterialEntryContentModuleDispense(src, medicationDispense, medication) &quot;medication&quot;;\n\n  src.entryRelationship as entry where (typeCode='COMP' and substanceAdministration.templateId.root='2.16.756.5.30.1.1.10.4.52') \n    -&gt; medicationDispense.dosageInstruction as dosage \n        then DosageInstructionsNonStructuredEntryContentModule(section, entry, dosage) &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.52&quot;;  \n\n  src.entryRelationship as entryRelationship then {\n    entryRelationship.substanceAdministration as substanceAdministration then {\n\n      // dosage for split dosing, as sequences are present there\n      substanceAdministration.entryRelationship as entryRelationship where (typeCode='COMP' and sequenceNumber.value&gt;=0) \n        -&gt; medicationDispense.dosageInstruction as dosage \n          then DosageInstructionsEntryDosageChange(substanceAdministration, entryRelationship, dosage) &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.36&quot;; \n\n    } &quot;substanceAdministration&quot;;\n  } &quot;entryRelationship&quot;;\n\n  src.entryRelationship as entry where (typeCode='REFR' and substanceAdministration.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.10').exists()) \n    -&gt; medicationDispense.extension as ext then MTPReferenceEntryContentModule(entry, ext) &quot;MTPReferenceEntry&quot;;   \n\n  src.entryRelationship as entry where (typeCode='COMP' and act.templateId.where(root='2.16.756.5.30.1.1.10.4.2').exists()) then {\n    entry.act as act -&gt; medicationDispense.note as note then AnnotationComment(sact, note) &quot;annotation&quot;;\n  } &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.2&quot;;  \n\n  src.entryRelationship as entry where (typeCode='COMP' and act.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.9.2').exists()) then {\n    entry.act as act -&gt; medicationDispense as medicationDispense then SubstitutionDispense(act, medicationDispense) &quot;substitution&quot;;\n  } &quot;entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.9.2&quot;;\n}\n\n// dose quantity for dosage (application schema)\ngroup DoseQuantity(source src: substanceAdministration, target dosage: Dosage) {\n  src.doseQuantity as doseQuantity -&gt; dosage.doseAndRate as doseAndRate then {\n    doseQuantity.value as value -&gt; doseAndRate.dose = create('Quantity') as quantity then {\n      value -&gt; quantity.value = value &quot;value&quot;;\n      doseQuantity.unit as unit -&gt; quantity.code = unit;\n      doseQuantity.unit as unit -&gt; quantity.system = ('http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.where(concept.where(code=%unit)).system) &quot;unit&quot;;\n      doseQuantity.unit as unit -&gt; quantity.unit = ('http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.concept.where(code=%unit).display) &quot;unit&quot;;\n    } &quot;quantity&quot;;\n   } &quot;doseQuantity&quot;;\n}\n\n// source: Substitution permission Contains 1.3.6.1.4.1.19376.1.9.1.3.9.1 IHE Substitution Permission Content Module (DYNAMIC)\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-medicationrequest.html\ngroup SubstitutionRequest(source act: Act, target medicationRequest: MedicationRequest) {\n  act -&gt; medicationRequest.substitution as substitution then {\n    \n    //act.code as code -&gt; substitution.allowed = create('CodeableConcept') as allowedCC then CECodeableConcept(code, allowedCC) &quot;allowedCC&quot;;\n    // workaround, because the line above generates no uri for the oid\n    act.code as actCode -&gt; substitution.allowed = create('CodeableConcept') as allowedCC, allowedCC.coding as coding then {\n      actCode -&gt; coding.system as systemCC, systemCC.value = 'http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution' &quot;system&quot;;\n      actCode.code as code -&gt; coding.code as codeCC, codeCC.value = code &quot;code&quot;;\n      actCode.displayName as display -&gt; coding.display as displayCC, displayCC.value = display &quot;display&quot;;\n    } &quot;allowedCC&quot;;\n  } &quot;substitutionRequest&quot;;\n}\n\n// source: Substitution permission Contains 1.3.6.1.4.1.19376.1.9.1.3.9.1 IHE Substitution Permission Content Module (DYNAMIC)\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-medicationstatement.html\ngroup SubstitutionStatement(source act: Act, target medicationStatement : MedicationStatement) {\n  act -&gt; medicationStatement.extension as ext then {\n    act -&gt; ext.url = 'http://fhir.ch/ig/ch-emed/StructureDefinition/ch-emed-ext-substitution' then {\n        \n      //act.code as code -&gt; ext.value = create('CodeableConcept') as valueCC then CECodeableConcept(code, valueCC) &quot;valueCC&quot;;\n      // workaround, because the line above generates no uri for the oid\n      act.code as actCode -&gt; ext.value = create('CodeableConcept') as valueCC, valueCC.coding as coding then {\n        actCode -&gt; coding.system as systemCC, systemCC.value = 'http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution' &quot;system&quot;;\n        actCode.code as code -&gt; coding.code as codeCC, codeCC.value = code &quot;code&quot;;\n        actCode.displayName as display -&gt; coding.display as displayCC, displayCC.value = display &quot;display&quot;;\n      } &quot;valueCC&quot;;\n    } &quot;substitutionExtension&quot;;\n  } &quot;substitutionStatement&quot;;\n}\n\n// Number of packages\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?id=2.16.756.5.30.1.1.10.4.38\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-medicationrequest.html\ngroup PrescribedQuantity(source supply: Supply, target medicationRequest: MedicationRequest) {\n  supply.quantity as quantity -&gt; medicationRequest.dispenseRequest as dispenseRequest, dispenseRequest.quantity as quant then {\n    // IHE-PRE: If the product-element contains package information, the unit attribute is not be present\n    quantity.value as value -&gt; quant.value = value &quot;value&quot;;\n\n    // IHE-PRE: If the product-element does not contain package information, the unit attribut is present and the value SHALL be out of the UCUM code system\n    quantity.unit as unit then {\n      unit -&gt; quant.unit = unit &quot;unit&quot;;\n      unit -&gt; quant.system = 'http://unitsofmeasure.org' &quot;ucum&quot;;\n      unit -&gt; quant.code = unit &quot;code&quot;;\n    } &quot;unit&quot;;\n  } &quot;quantity&quot;;\n}\n\n\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.33\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-medicationrequest.html\ngroup ManufacturedMaterialEntryContentModuleRequest(source src : SubstanceAdministration, target medicationRequest : MedicationRequest, target medication : Medication) {\n  src -&gt; medication.id = 'med', medicationRequest.medication = create('Reference') as vt, vt.reference = '#med' &quot;medication&quot;;\n  src.consumable as consumable then {\n    consumable.manufacturedProduct as manufacturedProduct then {\n      manufacturedProduct.manufacturedMaterial as manufacturedMaterial then {\n\n        manufacturedMaterial.name as name where asContent.exists()=false -&gt; medication.code as fhircode, fhircode.text = (%manufacturedMaterial.name.other) &quot;medication.code&quot;;\n\n        manufacturedMaterial.asContent as asContent then {\n          asContent.containerPackagedMedicine as containerPackagedMedicine then {\n            containerPackagedMedicine.code as code -&gt; medication.code as fhircode share medcode then CECodeableConcept(code, fhircode) &quot;medication.code&quot;;\n            containerPackagedMedicine.name as name -&gt; medication.code as fhircode share medcode then { \n              name -&gt; fhircode.text = (%name.other)  &quot;medication.code.text&quot;;\n            } &quot;code.text&quot;;\n            containerPackagedMedicine.formCode as formCode -&gt; medication.form as form then CECodeableConcept(formCode, form)  &quot;medication.formCode&quot;;\n            \n          // Package size \n          containerPackagedMedicine.capacityQuantity as capacityQuantity -&gt; \n            medication.amount = create('Ratio') as ratio,\n            ratio.denominator\t = create('Quantity') as denominator, \n            denominator.value = '1',\n            denominator.unit = 'Package',\n            denominator.system = 'http://unitsofmeasure.org',\n            denominator.code = '{Package}',\n            ratio.numerator = create('Quantity') as quantity then EmedPQQuantity(capacityQuantity, quantity)  &quot;capacityQuantity&quot;; \n\n          } &quot;containerPackagedMedicine&quot;;\n        } &quot;asContent&quot;;\n        manufacturedMaterial.ingredient as ingredient -&gt; medication.ingredient as ing then {\n          ingredient.quantity as quantity -&gt; ing.strength = create('Ratio') as strength then EmedRTOPQPQRatio(quantity, strength) &quot;strength&quot;;\n          ingredient.ingredient as medingredient then {\n              medingredient.code as code -&gt; ing.item = create('CodeableConcept') as ingcode, ingcode.text = (%medingredient.name.other) then CECodeableConcept(code, ingcode) &quot;ingredientCode&quot;;\n          } &quot;ingredient.ingredient&quot;;\n        } &quot;ingredient&quot;;\n      } &quot;manufacturedMaterial&quot;;\n    } &quot;manufacturedProduct&quot;;\n\n    // dosage for normal dosing, as no sequences are present there\n    src where $this.entryRelationship.sequenceNumber.exists()=false\n      -&gt; medicationRequest.dosageInstruction as dosage then DosageInstructionsStartStopFrequency(src, dosage) &quot;dosage&quot;;\n\n  } &quot;consumable&quot;;\n}\n\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.43\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-medicationrequest.html\ngroup PrescriptionItemEntryContentModule(source section : Section, source src : SubstanceAdministration, source patient : Patient, target medicationRequest : MedicationRequest) {\n  \n  src.id -&gt; medicationRequest.identifier;\n  patient -&gt; medicationRequest.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id)  &quot;patient&quot;;\n  src -&gt; medicationRequest.status = 'completed' &quot;completed&quot;;\n  src -&gt; medicationRequest.intent = 'order' &quot;order&quot;;\n  src.text as text then {\n    text.reference as reference then {\n      reference.value as value -&gt; medicationRequest.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n    } &quot;reference&quot;;\n  } &quot;text&quot;;\n  src -&gt; medicationRequest.contained = create('Medication') as medication then ManufacturedMaterialEntryContentModuleRequest(src, medicationRequest, medication) &quot;medication&quot;;\n\n  src.entryRelationship as entry where typeCode = 'RSON' then {\n    entry.observation as observation \n      -&gt; medicationRequest.reasonCode as reasonCode \n          then TreatmentReasonEntryContentModule(section, observation, reasonCode) &quot;reasonCode&quot;;\n  } &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.41&quot;;\n\n  src.entryRelationship as entry where (typeCode='COMP' and substanceAdministration.templateId.root='2.16.756.5.30.1.1.10.4.52') \n    -&gt; medicationRequest.dosageInstruction as dosage \n        then DosageInstructionsNonStructuredEntryContentModule(section, entry, dosage) &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.52&quot;;  \n\n  // dosage for split dosing, as sequences are present there\n  src.entryRelationship as entry where (typeCode='COMP' and sequenceNumber.value&gt;=0) \n    -&gt; medicationRequest.dosageInstruction as dosage \n        then DosageInstructionsEntryDosageChange(src, entry, dosage) &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.36&quot;;  \n  \n  src.entryRelationship as entry where (typeCode='REFR' and substanceAdministration.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.10').exists()) \n    -&gt; medicationRequest.extension as ext then MTPReferenceEntryContentModule(entry, ext) &quot;MTPReferenceEntry&quot;;   \n\n  src.entryRelationship as entry where (typeCode='COMP' and act.templateId.where(root='2.16.756.5.30.1.1.10.4.2').exists()) then {\n    entry.act as act -&gt; medicationRequest.note as note then AnnotationComment(act, note) &quot;annotation&quot;;\n  } &quot;entryRelationShip-2.16.756.5.30.1.1.10.4.2&quot;;  \n\n  src.repeatNumber as repeatNumber -&gt; medicationRequest.dispenseRequest as dispenseRequest then {\n    repeatNumber.value as val -&gt; dispenseRequest.numberOfRepeatsAllowed = val &quot;repeatNumber&quot;;\n  } &quot;repeats&quot;;\n\n  src.entryRelationship as entry where (typeCode='COMP' and supply.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.8').exists()) then {\n    entry.supply as supply -&gt; medicationRequest as medicationRequest then PrescribedQuantity(supply, medicationRequest) &quot;quantity&quot;;\n  } &quot;entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.8&quot;;\n\n  src.entryRelationship as entry where (typeCode='COMP' and act.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.9.1').exists()) then {\n    entry.act as act -&gt; medicationRequest as medicationRequest then SubstitutionRequest(act, medicationRequest) &quot;substitution&quot;;\n  } &quot;entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.9.1&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--ch-pharm-?id=2.16.756.5.30.1.1.10.4.35 \n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition/ch-emed-dosage-structured-normal\n// dosage for normal dosing, without sequences\ngroup DosageInstructionsStartStopFrequency(source src : SubstanceAdministration, target dosage: Dosage) {\n  src as src -&gt; dosage as dosage then EffectiveTimeStartEnd(src, dosage) &quot;effectiveTimeStartEnd&quot;;\n  src as src -&gt; dosage as dosage then EffectiveTimeWhen(src, dosage) &quot;effectiveTimeWhen&quot;;\n  src.routeCode as routeCode -&gt; dosage.route as route then CECodeableConcept(routeCode, route) &quot;routeCode&quot;;\n  src as src -&gt; dosage as dosage then DoseQuantity(src, dosage) &quot;doseQuantity&quot;;\n}\n\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.4.44\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-observation.html\ngroup PharmaceuticalAdviceItemEntryContentModule(source section : Section, source src : Observation, source patient : Patient, target observation : Observation, target bundle: Bundle) {\n  src.id -&gt; observation.identifier;\n  patient -&gt; observation.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) &quot;patient&quot;;\n  src -&gt; observation.status = 'final' &quot;final&quot;;\n\n  src.effectiveTime as effectiveTime -&gt; observation.effective = create('dateTime') as value then TSDateTime(effectiveTime, value) &quot;value&quot;;\n \n  src.entryRelationship as entry where (typeCode='REFR' and substanceAdministration.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.10').exists()) \n    -&gt; observation.extension as ext then MTPReferenceEntryContentModule(entry, ext) &quot;MTPReferenceEntry&quot;;   \n\n  src.entryRelationship as entry where (typeCode='REFR' and substanceAdministration.templateId.where(root='1.3.6.1.4.1.19376.1.9.1.3.7').exists()) \n    -&gt; bundle.entry as e,  \n           e.id = uuid() as uuid,\n           e.fullUrl = append('urn:uuid:',uuid), \n           e.resource = create('MedicationStatement') as medicationstatement, \n      observation.extension as ext,  \n          ext.url = 'http://fhir.ch/ig/ch-emed/StructureDefinition/ch-emed-ext-medicationstatement-changed',\n          ext.value = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid)\n      then {\n        entry.substanceAdministration as substanceAdministration then MedicationTreatmentPlanItemEntryContentModule(section, substanceAdministration, patient, medicationstatement);\n      } &quot;cdaEntry&quot;;\n\n  src.text as text -&gt; observation.note as note then {\n    text.data as data -&gt; note.text = data &quot;level3observation&quot;;\n    text where (data.exists()=false) -&gt; note.text = (%section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).substring(%section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).indexOf('&gt;')+1, %section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).indexOf('&lt;')-%section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).indexOf('&gt;')-1)) &quot;idRef&quot;;\n    text.reference as reference then {\n      reference.value as value -&gt; note.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n    } &quot;reference&quot;;\n  } &quot;note&quot;;\n   \n  src.code -&gt; observation.code;\n}\n\n// _________________________ Template Type not specified   _________________________ \n\n\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-ext-treatmentplan.html\ngroup InnerExtensionExternalDocumentId(source src, target ext: Extension) {\n  src -&gt; ext.url = 'externalDocumentId' &quot;url&quot;;\n  src -&gt; ext.value = create('Identifier') as id then II(src, id) &quot;value&quot;;\n}\n\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/branches/master/StructureDefinition-ch-emed-ext-treatmentplan.html\ngroup InnerExtensionId(source src, target ext: Extension) {\n  src -&gt; ext.url = 'id' &quot;url&quot;;\n  src -&gt; ext.value = create('Identifier') as id then II(src, id) &quot;value&quot;;\n}\n</pre></div>"
+  },
+  "url" : "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedToBundle",
+  "name" : "CdaChEmedToBundle",
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+    "mode" : "source",
+    "alias" : "ClinicalDocument"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor",
+    "mode" : "source",
+    "alias" : "AssignedAuthor"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity",
+    "mode" : "source",
+    "alias" : "AssignedEntity"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Author",
+    "mode" : "source",
+    "alias" : "Author"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization",
+    "mode" : "source",
+    "alias" : "CustodianOrganization"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/IVL-TS",
+    "mode" : "source",
+    "alias" : "IVL_TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/EIVL-TS",
+    "mode" : "source",
+    "alias" : "EIVL_TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Observation",
+    "mode" : "source",
+    "alias" : "Observation"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/PatientRole",
+    "mode" : "source",
+    "alias" : "PatientRole"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/RecordTarget",
+    "mode" : "source",
+    "alias" : "RecordTarget"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Section",
+    "mode" : "source",
+    "alias" : "Section"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/SubstanceAdministration",
+    "mode" : "source",
+    "alias" : "SubstanceAdministration"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/SXPR-TS",
+    "mode" : "source",
+    "alias" : "SXPR_TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Composition",
+    "mode" : "produced",
+    "alias" : "Composition"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Patient",
+    "mode" : "produced",
+    "alias" : "Patient"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+    "mode" : "produced",
+    "alias" : "Practitioner"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Organization",
+    "mode" : "produced",
+    "alias" : "Organization"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+    "mode" : "produced",
+    "alias" : "MedicationStatement"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Dosage",
+    "mode" : "produced",
+    "alias" : "Dosage"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Observation",
+    "mode" : "produced",
+    "alias" : "Observation"
+  }],
+  "import" : ["http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes",
+  "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle",
+  "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChToBundle"],
+  "group" : [{
+    "name" : "AnnotationComment",
+    "input" : [{
+      "name" : "act",
+      "type" : "Act",
+      "mode" : "source"
+    },
+    {
+      "name" : "note",
+      "type" : "Annotation",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "text",
+      "source" : [{
+        "context" : "act",
+        "element" : "text",
+        "variable" : "text"
+      }],
+      "rule" : [{
+        "name" : "level3",
+        "source" : [{
+          "context" : "text",
+          "element" : "data",
+          "variable" : "data"
+        }],
+        "target" : [{
+          "context" : "note",
+          "contextType" : "variable",
+          "element" : "text",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "data"
+          }]
+        }]
+      },
+      {
+        "name" : "reference",
+        "source" : [{
+          "context" : "text",
+          "element" : "reference",
+          "variable" : "reference"
+        }],
+        "rule" : [{
+          "name" : "narrativeLink",
+          "source" : [{
+            "context" : "reference",
+            "element" : "value",
+            "variable" : "value"
+          }],
+          "target" : [{
+            "context" : "note",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "NarrativeLink",
+            "variable" : ["value",
+            "ext"]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ManufacturedMaterialEntryContentModuleDispense",
+    "input" : [{
+      "name" : "src",
+      "type" : "Supply",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationDispense",
+      "type" : "MedicationDispense",
+      "mode" : "target"
+    },
+    {
+      "name" : "medication",
+      "type" : "Medication",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "medication",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medication",
+        "contextType" : "variable",
+        "element" : "id",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "med"
+        }]
+      },
+      {
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "medication",
+        "variable" : "vt",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "vt",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "#med"
+        }]
+      }]
+    },
+    {
+      "name" : "quantity",
+      "source" : [{
+        "context" : "src",
+        "element" : "quantity",
+        "variable" : "quantity"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "quantity",
+        "variable" : "medDispQuantity"
+      }],
+      "rule" : [{
+        "name" : "value",
+        "source" : [{
+          "context" : "quantity",
+          "element" : "value",
+          "variable" : "value"
+        }],
+        "target" : [{
+          "context" : "medDispQuantity",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "value"
+          }]
+        }]
+      },
+      {
+        "name" : "unit",
+        "source" : [{
+          "context" : "quantity",
+          "element" : "unit",
+          "variable" : "unit"
+        }],
+        "rule" : [{
+          "name" : "unit",
+          "source" : [{
+            "context" : "unit"
+          }],
+          "target" : [{
+            "context" : "medDispQuantity",
+            "contextType" : "variable",
+            "element" : "unit",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "unit"
+            }]
+          }]
+        },
+        {
+          "name" : "ucum",
+          "source" : [{
+            "context" : "unit"
+          }],
+          "target" : [{
+            "context" : "medDispQuantity",
+            "contextType" : "variable",
+            "element" : "system",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "http://unitsofmeasure.org"
+            }]
+          }]
+        },
+        {
+          "name" : "code",
+          "source" : [{
+            "context" : "unit"
+          }],
+          "target" : [{
+            "context" : "medDispQuantity",
+            "contextType" : "variable",
+            "element" : "code",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "unit"
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "product",
+      "source" : [{
+        "context" : "src",
+        "element" : "product",
+        "variable" : "product"
+      }],
+      "rule" : [{
+        "name" : "manufacturedProduct",
+        "source" : [{
+          "context" : "product",
+          "element" : "manufacturedProduct",
+          "variable" : "manufacturedProduct"
+        }],
+        "rule" : [{
+          "name" : "manufacturedMaterial",
+          "source" : [{
+            "context" : "manufacturedProduct",
+            "element" : "manufacturedMaterial",
+            "variable" : "manufacturedMaterial"
+          }],
+          "rule" : [{
+            "name" : "medication.code",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "name",
+              "variable" : "name",
+              "condition" : "asContent.exists() = false"
+            }],
+            "target" : [{
+              "context" : "medication",
+              "contextType" : "variable",
+              "element" : "code",
+              "variable" : "fhircode"
+            },
+            {
+              "context" : "fhircode",
+              "contextType" : "variable",
+              "element" : "text",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "%manufacturedMaterial.name.other"
+              }]
+            }]
+          },
+          {
+            "name" : "asContent",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "asContent",
+              "variable" : "asContent"
+            }],
+            "rule" : [{
+              "name" : "containerPackagedMedicine",
+              "source" : [{
+                "context" : "asContent",
+                "element" : "containerPackagedMedicine",
+                "variable" : "containerPackagedMedicine"
+              }],
+              "rule" : [{
+                "name" : "medication.code",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "code",
+                  "variable" : "code"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "variable" : "fhircode",
+                  "listMode" : ["share"],
+                  "listRuleId" : "medcode"
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["code",
+                  "fhircode"]
+                }]
+              },
+              {
+                "name" : "code.text",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "name",
+                  "variable" : "name"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "variable" : "fhircode",
+                  "listMode" : ["share"],
+                  "listRuleId" : "medcode"
+                }],
+                "rule" : [{
+                  "name" : "medication.code.text",
+                  "source" : [{
+                    "context" : "name"
+                  }],
+                  "target" : [{
+                    "context" : "fhircode",
+                    "contextType" : "variable",
+                    "element" : "text",
+                    "transform" : "evaluate",
+                    "parameter" : [{
+                      "valueString" : "%name.other"
+                    }]
+                  }]
+                }]
+              },
+              {
+                "name" : "medication.formCode",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "formCode",
+                  "variable" : "formCode"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "form",
+                  "variable" : "form"
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["formCode",
+                  "form"]
+                }]
+              },
+              {
+                "name" : "capacityQuantity",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "capacityQuantity",
+                  "variable" : "capacityQuantity"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "amount",
+                  "variable" : "ratio",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Ratio"
+                  }]
+                },
+                {
+                  "context" : "ratio",
+                  "contextType" : "variable",
+                  "element" : "denominator",
+                  "variable" : "denominator",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Quantity"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "value",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "1"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "unit",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "Package"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "http://unitsofmeasure.org"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "{Package}"
+                  }]
+                },
+                {
+                  "context" : "ratio",
+                  "contextType" : "variable",
+                  "element" : "numerator",
+                  "variable" : "quantity",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Quantity"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "EmedPQQuantity",
+                  "variable" : ["capacityQuantity",
+                  "quantity"]
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "ingredient",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "ingredient",
+              "variable" : "ingredient"
+            }],
+            "target" : [{
+              "context" : "medication",
+              "contextType" : "variable",
+              "element" : "ingredient",
+              "variable" : "ing"
+            }],
+            "rule" : [{
+              "name" : "strength",
+              "source" : [{
+                "context" : "ingredient",
+                "element" : "quantity",
+                "variable" : "quantity"
+              }],
+              "target" : [{
+                "context" : "ing",
+                "contextType" : "variable",
+                "element" : "strength",
+                "variable" : "strength",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Ratio"
+                }]
+              }],
+              "dependent" : [{
+                "name" : "EmedRTOPQPQRatio",
+                "variable" : ["quantity",
+                "strength"]
+              }]
+            },
+            {
+              "name" : "ingredient.ingredient",
+              "source" : [{
+                "context" : "ingredient",
+                "element" : "ingredient",
+                "variable" : "medingredient"
+              }],
+              "rule" : [{
+                "name" : "ingredientCode",
+                "source" : [{
+                  "context" : "medingredient",
+                  "element" : "code",
+                  "variable" : "code"
+                }],
+                "target" : [{
+                  "context" : "ing",
+                  "contextType" : "variable",
+                  "element" : "item",
+                  "variable" : "ingcode",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "CodeableConcept"
+                  }]
+                },
+                {
+                  "context" : "ingcode",
+                  "contextType" : "variable",
+                  "element" : "text",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "%medingredient.name.other"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["code",
+                  "ingcode"]
+                }]
+              }]
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "entry",
+        "source" : [{
+          "context" : "src",
+          "element" : "entryRelationship",
+          "variable" : "entry"
+        }],
+        "rule" : [{
+          "name" : "substanceAdministration",
+          "source" : [{
+            "context" : "entry",
+            "element" : "substanceAdministration",
+            "variable" : "substanceAdministration"
+          }],
+          "rule" : [{
+            "name" : "dosage",
+            "source" : [{
+              "context" : "substanceAdministration",
+              "condition" : "$this.entryRelationship.sequenceNumber.exists() = false"
+            }],
+            "target" : [{
+              "context" : "medicationDispense",
+              "contextType" : "variable",
+              "element" : "dosageInstruction",
+              "variable" : "dosage"
+            }],
+            "dependent" : [{
+              "name" : "DosageInstructionsStartStopFrequency",
+              "variable" : ["substanceAdministration",
+              "dosage"]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "EmedPQQuantity",
+    "input" : [{
+      "name" : "src",
+      "type" : "PQ",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Quantity",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "value",
+      "source" : [{
+        "context" : "src",
+        "element" : "value",
+        "variable" : "value"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "value"
+        }]
+      }]
+    },
+    {
+      "name" : "unit",
+      "source" : [{
+        "context" : "src",
+        "element" : "unit",
+        "variable" : "unit"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "code",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "unit"
+        }]
+      }]
+    },
+    {
+      "name" : "unit",
+      "source" : [{
+        "context" : "src",
+        "element" : "unit",
+        "variable" : "unit"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "system",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.where(concept.where(code = %unit)).system"
+        }]
+      }]
+    },
+    {
+      "name" : "unit",
+      "source" : [{
+        "context" : "src",
+        "element" : "unit",
+        "variable" : "unit"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "unit",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.concept.where(code = %unit).display"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "EmedRTOPQPQRatio",
+    "input" : [{
+      "name" : "src",
+      "type" : "RTO_PQ_PQ",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Ratio",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "numerator",
+      "source" : [{
+        "context" : "src",
+        "element" : "numerator",
+        "variable" : "numerator"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "numerator",
+        "variable" : "targetNumerator"
+      }],
+      "dependent" : [{
+        "name" : "EmedPQQuantity",
+        "variable" : ["numerator",
+        "targetNumerator"]
+      }]
+    },
+    {
+      "name" : "denominator",
+      "source" : [{
+        "context" : "src",
+        "element" : "denominator",
+        "variable" : "denominator"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "denominator",
+        "variable" : "targetDenominator"
+      }],
+      "dependent" : [{
+        "name" : "EmedPQQuantity",
+        "variable" : ["denominator",
+        "targetDenominator"]
+      }]
+    }]
+  },
+  {
+    "name" : "ManufacturedMaterialEntryContentModuleStatement",
+    "input" : [{
+      "name" : "src",
+      "type" : "SubstanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationStatement",
+      "type" : "MedicationStatement",
+      "mode" : "target"
+    },
+    {
+      "name" : "medication",
+      "type" : "Medication",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "medication",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medication",
+        "contextType" : "variable",
+        "element" : "id",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "med"
+        }]
+      },
+      {
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "medication",
+        "variable" : "vt",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "vt",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "#med"
+        }]
+      }]
+    },
+    {
+      "name" : "consumable",
+      "source" : [{
+        "context" : "src",
+        "element" : "consumable",
+        "variable" : "consumable"
+      }],
+      "rule" : [{
+        "name" : "manufacturedProduct",
+        "source" : [{
+          "context" : "consumable",
+          "element" : "manufacturedProduct",
+          "variable" : "manufacturedProduct"
+        }],
+        "rule" : [{
+          "name" : "manufacturedMaterial",
+          "source" : [{
+            "context" : "manufacturedProduct",
+            "element" : "manufacturedMaterial",
+            "variable" : "manufacturedMaterial"
+          }],
+          "rule" : [{
+            "name" : "medication.code",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "name",
+              "variable" : "name",
+              "condition" : "asContent.exists() = false"
+            }],
+            "target" : [{
+              "context" : "medication",
+              "contextType" : "variable",
+              "element" : "code",
+              "variable" : "fhircode"
+            },
+            {
+              "context" : "fhircode",
+              "contextType" : "variable",
+              "element" : "text",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "%manufacturedMaterial.name.other"
+              }]
+            }]
+          },
+          {
+            "name" : "asContent",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "asContent",
+              "variable" : "asContent"
+            }],
+            "rule" : [{
+              "name" : "containerPackagedMedicine",
+              "source" : [{
+                "context" : "asContent",
+                "element" : "containerPackagedMedicine",
+                "variable" : "containerPackagedMedicine"
+              }],
+              "rule" : [{
+                "name" : "medication.code",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "code",
+                  "variable" : "code"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "variable" : "fhircode",
+                  "listMode" : ["share"],
+                  "listRuleId" : "medcode"
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["code",
+                  "fhircode"]
+                }]
+              },
+              {
+                "name" : "code.text",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "name",
+                  "variable" : "name"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "variable" : "fhircode",
+                  "listMode" : ["share"],
+                  "listRuleId" : "medcode"
+                }],
+                "rule" : [{
+                  "name" : "medication.code.text",
+                  "source" : [{
+                    "context" : "name"
+                  }],
+                  "target" : [{
+                    "context" : "fhircode",
+                    "contextType" : "variable",
+                    "element" : "text",
+                    "transform" : "evaluate",
+                    "parameter" : [{
+                      "valueString" : "%name.other"
+                    }]
+                  }]
+                }]
+              },
+              {
+                "name" : "medication.formCode",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "formCode",
+                  "variable" : "formCode"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "form",
+                  "variable" : "form"
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["formCode",
+                  "form"]
+                }]
+              },
+              {
+                "name" : "capacityQuantity",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "capacityQuantity",
+                  "variable" : "capacityQuantity"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "amount",
+                  "variable" : "ratio",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Ratio"
+                  }]
+                },
+                {
+                  "context" : "ratio",
+                  "contextType" : "variable",
+                  "element" : "denominator",
+                  "variable" : "denominator",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Quantity"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "value",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "1"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "unit",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "Package"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "http://unitsofmeasure.org"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "{Package}"
+                  }]
+                },
+                {
+                  "context" : "ratio",
+                  "contextType" : "variable",
+                  "element" : "numerator",
+                  "variable" : "quantity",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Quantity"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "EmedPQQuantity",
+                  "variable" : ["capacityQuantity",
+                  "quantity"]
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "ingredient",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "ingredient",
+              "variable" : "ingredient"
+            }],
+            "target" : [{
+              "context" : "medication",
+              "contextType" : "variable",
+              "element" : "ingredient",
+              "variable" : "ing"
+            }],
+            "rule" : [{
+              "name" : "strength",
+              "source" : [{
+                "context" : "ingredient",
+                "element" : "quantity",
+                "variable" : "quantity"
+              }],
+              "target" : [{
+                "context" : "ing",
+                "contextType" : "variable",
+                "element" : "strength",
+                "variable" : "strength",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Ratio"
+                }]
+              }],
+              "dependent" : [{
+                "name" : "EmedRTOPQPQRatio",
+                "variable" : ["quantity",
+                "strength"]
+              }]
+            },
+            {
+              "name" : "ingredient.ingredient",
+              "source" : [{
+                "context" : "ingredient",
+                "element" : "ingredient",
+                "variable" : "medingredient"
+              }],
+              "rule" : [{
+                "name" : "ingredientCode",
+                "source" : [{
+                  "context" : "medingredient",
+                  "element" : "code",
+                  "variable" : "code"
+                }],
+                "target" : [{
+                  "context" : "ing",
+                  "contextType" : "variable",
+                  "element" : "item",
+                  "variable" : "ingcode",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "CodeableConcept"
+                  }]
+                },
+                {
+                  "context" : "ingcode",
+                  "contextType" : "variable",
+                  "element" : "text",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "%medingredient.name.other"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["code",
+                  "ingcode"]
+                }]
+              }]
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "dosage",
+        "source" : [{
+          "context" : "src",
+          "condition" : "$this.entryRelationship.sequenceNumber.exists() = false"
+        }],
+        "target" : [{
+          "context" : "medicationStatement",
+          "contextType" : "variable",
+          "element" : "dosage",
+          "variable" : "dosage"
+        }],
+        "dependent" : [{
+          "name" : "DosageInstructionsStartStopFrequency",
+          "variable" : ["src",
+          "dosage"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MedicationTreatmentPlanItemEntryContentModule",
+    "input" : [{
+      "name" : "section",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "src",
+      "type" : "SubstanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationStatement",
+      "type" : "MedicationStatement",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "patient",
+      "source" : [{
+        "context" : "patient"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "subject",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "completed",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "completed"
+        }]
+      }]
+    },
+    {
+      "name" : "text",
+      "source" : [{
+        "context" : "src",
+        "element" : "text",
+        "variable" : "text"
+      }],
+      "rule" : [{
+        "name" : "reference",
+        "source" : [{
+          "context" : "text",
+          "element" : "reference",
+          "variable" : "reference"
+        }],
+        "rule" : [{
+          "name" : "narrativeLink",
+          "source" : [{
+            "context" : "reference",
+            "element" : "value",
+            "variable" : "value"
+          }],
+          "target" : [{
+            "context" : "medicationStatement",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "NarrativeLink",
+            "variable" : ["value",
+            "ext"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "medication",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "contained",
+        "variable" : "medication",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Medication"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ManufacturedMaterialEntryContentModuleStatement",
+        "variable" : ["src",
+        "medicationStatement",
+        "medication"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.41",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "typeCode = 'RSON'"
+      }],
+      "rule" : [{
+        "name" : "reasonCode",
+        "source" : [{
+          "context" : "entry",
+          "element" : "observation",
+          "variable" : "observation"
+        }],
+        "target" : [{
+          "context" : "medicationStatement",
+          "contextType" : "variable",
+          "element" : "reasonCode",
+          "variable" : "reasonCode"
+        }],
+        "dependent" : [{
+          "name" : "TreatmentReasonEntryContentModule",
+          "variable" : ["section",
+          "observation",
+          "reasonCode"]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.52",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and (substanceAdministration.templateId.root = '2.16.756.5.30.1.1.10.4.52'))"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "dosage",
+        "variable" : "dosage"
+      }],
+      "dependent" : [{
+        "name" : "DosageInstructionsNonStructuredEntryContentModule",
+        "variable" : ["section",
+        "entry",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.36",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and (sequenceNumber.value >= 0))"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "dosage",
+        "variable" : "dosage"
+      }],
+      "dependent" : [{
+        "name" : "DosageInstructionsEntryDosageChange",
+        "variable" : ["src",
+        "entry",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "MTPReferenceEntry",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'REFR') and substanceAdministration.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.10').exists())"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "dependent" : [{
+        "name" : "MTPReferenceEntryContentModule",
+        "variable" : ["entry",
+        "ext"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.2",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and act.templateId.where(root = '2.16.756.5.30.1.1.10.4.2').exists())"
+      }],
+      "rule" : [{
+        "name" : "annotation",
+        "source" : [{
+          "context" : "entry",
+          "element" : "act",
+          "variable" : "act"
+        }],
+        "target" : [{
+          "context" : "medicationStatement",
+          "contextType" : "variable",
+          "element" : "note",
+          "variable" : "note"
+        }],
+        "dependent" : [{
+          "name" : "AnnotationComment",
+          "variable" : ["act",
+          "note"]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.9.1",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and act.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.9.1').exists())"
+      }],
+      "rule" : [{
+        "name" : "substitution",
+        "source" : [{
+          "context" : "entry",
+          "element" : "act",
+          "variable" : "act"
+        }],
+        "target" : [{
+          "contextType" : "variable",
+          "variable" : "medicationStatement",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "medicationStatement"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "SubstitutionStatement",
+          "variable" : ["act",
+          "medicationStatement"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "DosageInstructionsEntryDosageChange",
+    "input" : [{
+      "name" : "src",
+      "type" : "substanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "entry",
+      "type" : "entryRelationship",
+      "mode" : "source"
+    },
+    {
+      "name" : "dosage",
+      "type" : "Dosage",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "sequenceNumber",
+      "source" : [{
+        "context" : "entry",
+        "element" : "sequenceNumber",
+        "variable" : "sequenceNumber"
+      }],
+      "rule" : [{
+        "name" : "value",
+        "source" : [{
+          "context" : "sequenceNumber",
+          "element" : "value",
+          "variable" : "val"
+        }],
+        "target" : [{
+          "context" : "dosage",
+          "contextType" : "variable",
+          "element" : "sequence",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "val"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "effectiveTimeStartEnd",
+      "source" : [{
+        "context" : "src",
+        "variable" : "src"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "dosage",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "dosage"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "EffectiveTimeStartEnd",
+        "variable" : ["src",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "effectiveTimeWhen",
+      "source" : [{
+        "context" : "entry",
+        "element" : "substanceAdministration",
+        "variable" : "src"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "dosage",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "dosage"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "EffectiveTimeWhen",
+        "variable" : ["src",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "routeCode",
+      "source" : [{
+        "context" : "src",
+        "element" : "routeCode",
+        "variable" : "routeCode"
+      }],
+      "target" : [{
+        "context" : "dosage",
+        "contextType" : "variable",
+        "element" : "route",
+        "variable" : "route"
+      }],
+      "dependent" : [{
+        "name" : "CECodeableConcept",
+        "variable" : ["routeCode",
+        "route"]
+      }]
+    },
+    {
+      "name" : "doseQuantity",
+      "source" : [{
+        "context" : "entry",
+        "element" : "substanceAdministration",
+        "variable" : "src"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "dosage",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "dosage"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "DoseQuantity",
+        "variable" : ["src",
+        "dosage"]
+      }]
+    }]
+  },
+  {
+    "name" : "EffectiveTimeStartEnd",
+    "input" : [{
+      "name" : "src",
+      "type" : "substanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "dosage",
+      "type" : "Dosage",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "effectiveTime-IVL-TS",
+      "source" : [{
+        "context" : "src",
+        "type" : "IVL_TS",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "target" : [{
+        "context" : "dosage",
+        "contextType" : "variable",
+        "element" : "timing",
+        "variable" : "timing",
+        "listMode" : ["share"],
+        "listRuleId" : "sharetiming"
+      }],
+      "rule" : [{
+        "name" : "repeat",
+        "source" : [{
+          "context" : "effectiveTime"
+        }],
+        "target" : [{
+          "context" : "timing",
+          "contextType" : "variable",
+          "element" : "repeat",
+          "variable" : "repeat"
+        }],
+        "rule" : [{
+          "name" : "period",
+          "source" : [{
+            "context" : "effectiveTime"
+          }],
+          "target" : [{
+            "context" : "repeat",
+            "contextType" : "variable",
+            "element" : "bounds",
+            "variable" : "period",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Period"
+            }]
+          }],
+          "rule" : [{
+            "name" : "low",
+            "source" : [{
+              "context" : "effectiveTime",
+              "element" : "low",
+              "variable" : "low"
+            }],
+            "rule" : [{
+              "name" : "lowDate",
+              "source" : [{
+                "context" : "low",
+                "element" : "value",
+                "variable" : "lowDate"
+              }],
+              "target" : [{
+                "context" : "period",
+                "contextType" : "variable",
+                "element" : "start",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "lowDate"
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "high",
+            "source" : [{
+              "context" : "effectiveTime",
+              "element" : "high",
+              "variable" : "high"
+            }],
+            "rule" : [{
+              "name" : "highDate",
+              "source" : [{
+                "context" : "high",
+                "element" : "value",
+                "variable" : "highDate"
+              }],
+              "target" : [{
+                "context" : "period",
+                "contextType" : "variable",
+                "element" : "end",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "highDate"
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "EffectiveTimeWhen",
+    "input" : [{
+      "name" : "src",
+      "type" : "substanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "dosage",
+      "type" : "Dosage",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "effectiveTime-EIVL-TS",
+      "source" : [{
+        "context" : "src",
+        "type" : "EIVL_TS",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "target" : [{
+        "context" : "dosage",
+        "contextType" : "variable",
+        "element" : "timing",
+        "variable" : "timing",
+        "listMode" : ["share"],
+        "listRuleId" : "sharetiming"
+      }],
+      "rule" : [{
+        "name" : "repeat",
+        "source" : [{
+          "context" : "effectiveTime"
+        }],
+        "target" : [{
+          "context" : "timing",
+          "contextType" : "variable",
+          "element" : "repeat",
+          "variable" : "repeat"
+        }],
+        "rule" : [{
+          "name" : "event",
+          "source" : [{
+            "context" : "effectiveTime",
+            "element" : "event",
+            "variable" : "event"
+          }],
+          "rule" : [{
+            "name" : "code",
+            "source" : [{
+              "context" : "event",
+              "element" : "code",
+              "variable" : "code"
+            }],
+            "target" : [{
+              "context" : "repeat",
+              "contextType" : "variable",
+              "element" : "when",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "code"
+              }]
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "effectiveTime-SXPR-TS",
+      "source" : [{
+        "context" : "src",
+        "type" : "SXPR_TS",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "target" : [{
+        "context" : "dosage",
+        "contextType" : "variable",
+        "element" : "timing",
+        "variable" : "timing",
+        "listMode" : ["share"],
+        "listRuleId" : "sharetiming"
+      }],
+      "rule" : [{
+        "name" : "repeat",
+        "source" : [{
+          "context" : "effectiveTime"
+        }],
+        "target" : [{
+          "context" : "timing",
+          "contextType" : "variable",
+          "element" : "repeat",
+          "variable" : "repeat"
+        }],
+        "rule" : [{
+          "name" : "comp",
+          "source" : [{
+            "context" : "effectiveTime",
+            "element" : "comp",
+            "variable" : "comp"
+          }],
+          "rule" : [{
+            "name" : "event",
+            "source" : [{
+              "context" : "comp",
+              "element" : "event",
+              "variable" : "event"
+            }],
+            "rule" : [{
+              "name" : "code",
+              "source" : [{
+                "context" : "event",
+                "element" : "code",
+                "variable" : "code"
+              }],
+              "target" : [{
+                "context" : "repeat",
+                "contextType" : "variable",
+                "element" : "when",
+                "transform" : "copy",
+                "parameter" : [{
+                  "valueId" : "code"
+                }]
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "TreatmentReasonEntryContentModule",
+    "input" : [{
+      "name" : "section",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "observation",
+      "type" : "Observation",
+      "mode" : "source"
+    },
+    {
+      "name" : "reasonCode",
+      "type" : "Coding",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "text",
+      "source" : [{
+        "context" : "observation",
+        "element" : "text",
+        "variable" : "text"
+      }],
+      "rule" : [{
+        "name" : "level3",
+        "source" : [{
+          "context" : "text",
+          "element" : "data",
+          "variable" : "data"
+        }],
+        "target" : [{
+          "context" : "reasonCode",
+          "contextType" : "variable",
+          "element" : "text",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "data"
+          }]
+        }]
+      },
+      {
+        "name" : "reference",
+        "source" : [{
+          "context" : "text",
+          "element" : "reference",
+          "variable" : "reference"
+        }],
+        "rule" : [{
+          "name" : "narrativeLink",
+          "source" : [{
+            "context" : "reference",
+            "element" : "value",
+            "variable" : "value"
+          }],
+          "target" : [{
+            "context" : "reasonCode",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "NarrativeLink",
+            "variable" : ["value",
+            "ext"]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "MTPReferenceEntryContentModule",
+    "input" : [{
+      "name" : "entryrelationship",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "entryrelationship"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-emed/StructureDefinition/ch-emed-ext-treatmentplan"
+        }]
+      }]
+    },
+    {
+      "name" : "id",
+      "source" : [{
+        "context" : "entryrelationship",
+        "element" : "substanceAdministration",
+        "variable" : "substanceAdministration"
+      }],
+      "rule" : [{
+        "name" : "innerExtensionId",
+        "source" : [{
+          "context" : "substanceAdministration",
+          "element" : "id",
+          "variable" : "id"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "extension",
+          "variable" : "ext"
+        }],
+        "dependent" : [{
+          "name" : "InnerExtensionId",
+          "variable" : ["id",
+          "ext"]
+        }]
+      },
+      {
+        "name" : "substanceAdministration",
+        "source" : [{
+          "context" : "substanceAdministration",
+          "element" : "reference",
+          "variable" : "reference"
+        }],
+        "rule" : [{
+          "name" : "externalDocument",
+          "source" : [{
+            "context" : "reference",
+            "element" : "externalDocument",
+            "variable" : "externalDocument"
+          }],
+          "rule" : [{
+            "name" : "innerExtensionExternalDocumentId",
+            "source" : [{
+              "context" : "externalDocument",
+              "element" : "id",
+              "variable" : "id"
+            }],
+            "target" : [{
+              "context" : "ext",
+              "contextType" : "variable",
+              "element" : "extension",
+              "variable" : "ext"
+            }],
+            "dependent" : [{
+              "name" : "InnerExtensionExternalDocumentId",
+              "variable" : ["id",
+              "ext"]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "DosageInstructionsNonStructuredEntryContentModule",
+    "input" : [{
+      "name" : "section",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "entry",
+      "type" : "Element",
+      "mode" : "source"
+    },
+    {
+      "name" : "dosage",
+      "type" : "Dosage",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "observation",
+      "source" : [{
+        "context" : "entry",
+        "element" : "substanceAdministration",
+        "variable" : "observation"
+      }],
+      "rule" : [{
+        "name" : "text",
+        "source" : [{
+          "context" : "observation",
+          "element" : "text",
+          "variable" : "text"
+        }],
+        "rule" : [{
+          "name" : "level3",
+          "source" : [{
+            "context" : "text",
+            "element" : "data",
+            "variable" : "data"
+          }],
+          "target" : [{
+            "context" : "dosage",
+            "contextType" : "variable",
+            "element" : "text",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "data"
+            }]
+          }]
+        },
+        {
+          "name" : "reference",
+          "source" : [{
+            "context" : "text",
+            "element" : "reference",
+            "variable" : "reference"
+          }],
+          "rule" : [{
+            "name" : "narrativeLink",
+            "source" : [{
+              "context" : "reference",
+              "element" : "value",
+              "variable" : "value"
+            }],
+            "target" : [{
+              "context" : "dosage",
+              "contextType" : "variable",
+              "element" : "extension",
+              "variable" : "ext"
+            }],
+            "dependent" : [{
+              "name" : "NarrativeLink",
+              "variable" : ["value",
+              "ext"]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "SubstitutionDispense",
+    "input" : [{
+      "name" : "act",
+      "type" : "Act",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationDispense",
+      "type" : "MedicationDispense",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "substitution",
+      "source" : [{
+        "context" : "act"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "substitution",
+        "variable" : "substitution"
+      }],
+      "rule" : [{
+        "name" : "wasSubstituted",
+        "source" : [{
+          "context" : "act"
+        }],
+        "target" : [{
+          "context" : "substitution",
+          "contextType" : "variable",
+          "element" : "wasSubstituted",
+          "variable" : "wasSubstituted"
+        },
+        {
+          "context" : "wasSubstituted",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "true"
+          }]
+        }]
+      },
+      {
+        "name" : "allowedCC",
+        "source" : [{
+          "context" : "act",
+          "element" : "code",
+          "variable" : "actCode"
+        }],
+        "target" : [{
+          "context" : "substitution",
+          "contextType" : "variable",
+          "element" : "type",
+          "variable" : "type"
+        },
+        {
+          "context" : "type",
+          "contextType" : "variable",
+          "element" : "coding",
+          "variable" : "coding"
+        }],
+        "rule" : [{
+          "name" : "system",
+          "source" : [{
+            "context" : "actCode"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "system",
+            "variable" : "systemCC"
+          },
+          {
+            "context" : "systemCC",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution"
+            }]
+          }]
+        },
+        {
+          "name" : "code",
+          "source" : [{
+            "context" : "actCode",
+            "element" : "code",
+            "variable" : "code"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "code",
+            "variable" : "codeCC"
+          },
+          {
+            "context" : "codeCC",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "code"
+            }]
+          }]
+        },
+        {
+          "name" : "display",
+          "source" : [{
+            "context" : "actCode",
+            "element" : "displayName",
+            "variable" : "display"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "display",
+            "variable" : "displayCC"
+          },
+          {
+            "context" : "displayCC",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "display"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "DispenseItemEntryContentModule",
+    "input" : [{
+      "name" : "section",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "src",
+      "type" : "Supply",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationDispense",
+      "type" : "MedicationDispense",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "patient",
+      "source" : [{
+        "context" : "patient"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "subject",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "completed",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "completed"
+        }]
+      }]
+    },
+    {
+      "name" : "text",
+      "source" : [{
+        "context" : "src",
+        "element" : "text",
+        "variable" : "text"
+      }],
+      "rule" : [{
+        "name" : "reference",
+        "source" : [{
+          "context" : "text",
+          "element" : "reference",
+          "variable" : "reference"
+        }],
+        "rule" : [{
+          "name" : "narrativeLink",
+          "source" : [{
+            "context" : "reference",
+            "element" : "value",
+            "variable" : "value"
+          }],
+          "target" : [{
+            "context" : "medicationDispense",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "NarrativeLink",
+            "variable" : ["value",
+            "ext"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "medication",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "contained",
+        "variable" : "medication",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Medication"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ManufacturedMaterialEntryContentModuleDispense",
+        "variable" : ["src",
+        "medicationDispense",
+        "medication"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.52",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and (substanceAdministration.templateId.root = '2.16.756.5.30.1.1.10.4.52'))"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "dosageInstruction",
+        "variable" : "dosage"
+      }],
+      "dependent" : [{
+        "name" : "DosageInstructionsNonStructuredEntryContentModule",
+        "variable" : ["section",
+        "entry",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "entryRelationship",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entryRelationship"
+      }],
+      "rule" : [{
+        "name" : "substanceAdministration",
+        "source" : [{
+          "context" : "entryRelationship",
+          "element" : "substanceAdministration",
+          "variable" : "substanceAdministration"
+        }],
+        "rule" : [{
+          "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.36",
+          "source" : [{
+            "context" : "substanceAdministration",
+            "element" : "entryRelationship",
+            "variable" : "entryRelationship",
+            "condition" : "((typeCode = 'COMP') and (sequenceNumber.value >= 0))"
+          }],
+          "target" : [{
+            "context" : "medicationDispense",
+            "contextType" : "variable",
+            "element" : "dosageInstruction",
+            "variable" : "dosage"
+          }],
+          "dependent" : [{
+            "name" : "DosageInstructionsEntryDosageChange",
+            "variable" : ["substanceAdministration",
+            "entryRelationship",
+            "dosage"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "MTPReferenceEntry",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'REFR') and substanceAdministration.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.10').exists())"
+      }],
+      "target" : [{
+        "context" : "medicationDispense",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "dependent" : [{
+        "name" : "MTPReferenceEntryContentModule",
+        "variable" : ["entry",
+        "ext"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.2",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and act.templateId.where(root = '2.16.756.5.30.1.1.10.4.2').exists())"
+      }],
+      "rule" : [{
+        "name" : "annotation",
+        "source" : [{
+          "context" : "entry",
+          "element" : "act",
+          "variable" : "act"
+        }],
+        "target" : [{
+          "context" : "medicationDispense",
+          "contextType" : "variable",
+          "element" : "note",
+          "variable" : "note"
+        }],
+        "dependent" : [{
+          "name" : "AnnotationComment",
+          "variable" : ["sact",
+          "note"]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.9.2",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and act.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.9.2').exists())"
+      }],
+      "rule" : [{
+        "name" : "substitution",
+        "source" : [{
+          "context" : "entry",
+          "element" : "act",
+          "variable" : "act"
+        }],
+        "target" : [{
+          "contextType" : "variable",
+          "variable" : "medicationDispense",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "medicationDispense"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "SubstitutionDispense",
+          "variable" : ["act",
+          "medicationDispense"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "DoseQuantity",
+    "input" : [{
+      "name" : "src",
+      "type" : "substanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "dosage",
+      "type" : "Dosage",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "doseQuantity",
+      "source" : [{
+        "context" : "src",
+        "element" : "doseQuantity",
+        "variable" : "doseQuantity"
+      }],
+      "target" : [{
+        "context" : "dosage",
+        "contextType" : "variable",
+        "element" : "doseAndRate",
+        "variable" : "doseAndRate"
+      }],
+      "rule" : [{
+        "name" : "quantity",
+        "source" : [{
+          "context" : "doseQuantity",
+          "element" : "value",
+          "variable" : "value"
+        }],
+        "target" : [{
+          "context" : "doseAndRate",
+          "contextType" : "variable",
+          "element" : "dose",
+          "variable" : "quantity",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Quantity"
+          }]
+        }],
+        "rule" : [{
+          "name" : "value",
+          "source" : [{
+            "context" : "value"
+          }],
+          "target" : [{
+            "context" : "quantity",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "value"
+            }]
+          }]
+        },
+        {
+          "name" : "unit",
+          "source" : [{
+            "context" : "doseQuantity",
+            "element" : "unit",
+            "variable" : "unit"
+          }],
+          "target" : [{
+            "context" : "quantity",
+            "contextType" : "variable",
+            "element" : "code",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "unit"
+            }]
+          }]
+        },
+        {
+          "name" : "unit",
+          "source" : [{
+            "context" : "doseQuantity",
+            "element" : "unit",
+            "variable" : "unit"
+          }],
+          "target" : [{
+            "context" : "quantity",
+            "contextType" : "variable",
+            "element" : "system",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.where(concept.where(code = %unit)).system"
+            }]
+          }]
+        },
+        {
+          "name" : "unit",
+          "source" : [{
+            "context" : "doseQuantity",
+            "element" : "unit",
+            "variable" : "unit"
+          }],
+          "target" : [{
+            "context" : "quantity",
+            "contextType" : "variable",
+            "element" : "unit",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'http://fhir.ch/ig/ch-emed/ValueSet/UnitCode'.resolve().compose.include.concept.where(code = %unit).display"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "SubstitutionRequest",
+    "input" : [{
+      "name" : "act",
+      "type" : "Act",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationRequest",
+      "type" : "MedicationRequest",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "substitutionRequest",
+      "source" : [{
+        "context" : "act"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "substitution",
+        "variable" : "substitution"
+      }],
+      "rule" : [{
+        "name" : "allowedCC",
+        "source" : [{
+          "context" : "act",
+          "element" : "code",
+          "variable" : "actCode"
+        }],
+        "target" : [{
+          "context" : "substitution",
+          "contextType" : "variable",
+          "element" : "allowed",
+          "variable" : "allowedCC",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "CodeableConcept"
+          }]
+        },
+        {
+          "context" : "allowedCC",
+          "contextType" : "variable",
+          "element" : "coding",
+          "variable" : "coding"
+        }],
+        "rule" : [{
+          "name" : "system",
+          "source" : [{
+            "context" : "actCode"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "system",
+            "variable" : "systemCC"
+          },
+          {
+            "context" : "systemCC",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution"
+            }]
+          }]
+        },
+        {
+          "name" : "code",
+          "source" : [{
+            "context" : "actCode",
+            "element" : "code",
+            "variable" : "code"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "code",
+            "variable" : "codeCC"
+          },
+          {
+            "context" : "codeCC",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "code"
+            }]
+          }]
+        },
+        {
+          "name" : "display",
+          "source" : [{
+            "context" : "actCode",
+            "element" : "displayName",
+            "variable" : "display"
+          }],
+          "target" : [{
+            "context" : "coding",
+            "contextType" : "variable",
+            "element" : "display",
+            "variable" : "displayCC"
+          },
+          {
+            "context" : "displayCC",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "display"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "SubstitutionStatement",
+    "input" : [{
+      "name" : "act",
+      "type" : "Act",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationStatement",
+      "type" : "MedicationStatement",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "substitutionStatement",
+      "source" : [{
+        "context" : "act"
+      }],
+      "target" : [{
+        "context" : "medicationStatement",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "rule" : [{
+        "name" : "substitutionExtension",
+        "source" : [{
+          "context" : "act"
+        }],
+        "target" : [{
+          "context" : "ext",
+          "contextType" : "variable",
+          "element" : "url",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "http://fhir.ch/ig/ch-emed/StructureDefinition/ch-emed-ext-substitution"
+          }]
+        }],
+        "rule" : [{
+          "name" : "valueCC",
+          "source" : [{
+            "context" : "act",
+            "element" : "code",
+            "variable" : "actCode"
+          }],
+          "target" : [{
+            "context" : "ext",
+            "contextType" : "variable",
+            "element" : "value",
+            "variable" : "valueCC",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "CodeableConcept"
+            }]
+          },
+          {
+            "context" : "valueCC",
+            "contextType" : "variable",
+            "element" : "coding",
+            "variable" : "coding"
+          }],
+          "rule" : [{
+            "name" : "system",
+            "source" : [{
+              "context" : "actCode"
+            }],
+            "target" : [{
+              "context" : "coding",
+              "contextType" : "variable",
+              "element" : "system",
+              "variable" : "systemCC"
+            },
+            {
+              "context" : "systemCC",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueString" : "http://terminology.hl7.org/CodeSystem/v3-substanceAdminSubstitution"
+              }]
+            }]
+          },
+          {
+            "name" : "code",
+            "source" : [{
+              "context" : "actCode",
+              "element" : "code",
+              "variable" : "code"
+            }],
+            "target" : [{
+              "context" : "coding",
+              "contextType" : "variable",
+              "element" : "code",
+              "variable" : "codeCC"
+            },
+            {
+              "context" : "codeCC",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "code"
+              }]
+            }]
+          },
+          {
+            "name" : "display",
+            "source" : [{
+              "context" : "actCode",
+              "element" : "displayName",
+              "variable" : "display"
+            }],
+            "target" : [{
+              "context" : "coding",
+              "contextType" : "variable",
+              "element" : "display",
+              "variable" : "displayCC"
+            },
+            {
+              "context" : "displayCC",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "display"
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PrescribedQuantity",
+    "input" : [{
+      "name" : "supply",
+      "type" : "Supply",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationRequest",
+      "type" : "MedicationRequest",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "quantity",
+      "source" : [{
+        "context" : "supply",
+        "element" : "quantity",
+        "variable" : "quantity"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "dispenseRequest",
+        "variable" : "dispenseRequest"
+      },
+      {
+        "context" : "dispenseRequest",
+        "contextType" : "variable",
+        "element" : "quantity",
+        "variable" : "quant"
+      }],
+      "rule" : [{
+        "name" : "value",
+        "source" : [{
+          "context" : "quantity",
+          "element" : "value",
+          "variable" : "value"
+        }],
+        "target" : [{
+          "context" : "quant",
+          "contextType" : "variable",
+          "element" : "value",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "value"
+          }]
+        }]
+      },
+      {
+        "name" : "unit",
+        "source" : [{
+          "context" : "quantity",
+          "element" : "unit",
+          "variable" : "unit"
+        }],
+        "rule" : [{
+          "name" : "unit",
+          "source" : [{
+            "context" : "unit"
+          }],
+          "target" : [{
+            "context" : "quant",
+            "contextType" : "variable",
+            "element" : "unit",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "unit"
+            }]
+          }]
+        },
+        {
+          "name" : "ucum",
+          "source" : [{
+            "context" : "unit"
+          }],
+          "target" : [{
+            "context" : "quant",
+            "contextType" : "variable",
+            "element" : "system",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "http://unitsofmeasure.org"
+            }]
+          }]
+        },
+        {
+          "name" : "code",
+          "source" : [{
+            "context" : "unit"
+          }],
+          "target" : [{
+            "context" : "quant",
+            "contextType" : "variable",
+            "element" : "code",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "unit"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ManufacturedMaterialEntryContentModuleRequest",
+    "input" : [{
+      "name" : "src",
+      "type" : "SubstanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationRequest",
+      "type" : "MedicationRequest",
+      "mode" : "target"
+    },
+    {
+      "name" : "medication",
+      "type" : "Medication",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "medication",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medication",
+        "contextType" : "variable",
+        "element" : "id",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "med"
+        }]
+      },
+      {
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "medication",
+        "variable" : "vt",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "vt",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "#med"
+        }]
+      }]
+    },
+    {
+      "name" : "consumable",
+      "source" : [{
+        "context" : "src",
+        "element" : "consumable",
+        "variable" : "consumable"
+      }],
+      "rule" : [{
+        "name" : "manufacturedProduct",
+        "source" : [{
+          "context" : "consumable",
+          "element" : "manufacturedProduct",
+          "variable" : "manufacturedProduct"
+        }],
+        "rule" : [{
+          "name" : "manufacturedMaterial",
+          "source" : [{
+            "context" : "manufacturedProduct",
+            "element" : "manufacturedMaterial",
+            "variable" : "manufacturedMaterial"
+          }],
+          "rule" : [{
+            "name" : "medication.code",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "name",
+              "variable" : "name",
+              "condition" : "asContent.exists() = false"
+            }],
+            "target" : [{
+              "context" : "medication",
+              "contextType" : "variable",
+              "element" : "code",
+              "variable" : "fhircode"
+            },
+            {
+              "context" : "fhircode",
+              "contextType" : "variable",
+              "element" : "text",
+              "transform" : "evaluate",
+              "parameter" : [{
+                "valueString" : "%manufacturedMaterial.name.other"
+              }]
+            }]
+          },
+          {
+            "name" : "asContent",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "asContent",
+              "variable" : "asContent"
+            }],
+            "rule" : [{
+              "name" : "containerPackagedMedicine",
+              "source" : [{
+                "context" : "asContent",
+                "element" : "containerPackagedMedicine",
+                "variable" : "containerPackagedMedicine"
+              }],
+              "rule" : [{
+                "name" : "medication.code",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "code",
+                  "variable" : "code"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "variable" : "fhircode",
+                  "listMode" : ["share"],
+                  "listRuleId" : "medcode"
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["code",
+                  "fhircode"]
+                }]
+              },
+              {
+                "name" : "code.text",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "name",
+                  "variable" : "name"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "variable" : "fhircode",
+                  "listMode" : ["share"],
+                  "listRuleId" : "medcode"
+                }],
+                "rule" : [{
+                  "name" : "medication.code.text",
+                  "source" : [{
+                    "context" : "name"
+                  }],
+                  "target" : [{
+                    "context" : "fhircode",
+                    "contextType" : "variable",
+                    "element" : "text",
+                    "transform" : "evaluate",
+                    "parameter" : [{
+                      "valueString" : "%name.other"
+                    }]
+                  }]
+                }]
+              },
+              {
+                "name" : "medication.formCode",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "formCode",
+                  "variable" : "formCode"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "form",
+                  "variable" : "form"
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["formCode",
+                  "form"]
+                }]
+              },
+              {
+                "name" : "capacityQuantity",
+                "source" : [{
+                  "context" : "containerPackagedMedicine",
+                  "element" : "capacityQuantity",
+                  "variable" : "capacityQuantity"
+                }],
+                "target" : [{
+                  "context" : "medication",
+                  "contextType" : "variable",
+                  "element" : "amount",
+                  "variable" : "ratio",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Ratio"
+                  }]
+                },
+                {
+                  "context" : "ratio",
+                  "contextType" : "variable",
+                  "element" : "denominator",
+                  "variable" : "denominator",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Quantity"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "value",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "1"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "unit",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "Package"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "system",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "http://unitsofmeasure.org"
+                  }]
+                },
+                {
+                  "context" : "denominator",
+                  "contextType" : "variable",
+                  "element" : "code",
+                  "transform" : "copy",
+                  "parameter" : [{
+                    "valueString" : "{Package}"
+                  }]
+                },
+                {
+                  "context" : "ratio",
+                  "contextType" : "variable",
+                  "element" : "numerator",
+                  "variable" : "quantity",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "Quantity"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "EmedPQQuantity",
+                  "variable" : ["capacityQuantity",
+                  "quantity"]
+                }]
+              }]
+            }]
+          },
+          {
+            "name" : "ingredient",
+            "source" : [{
+              "context" : "manufacturedMaterial",
+              "element" : "ingredient",
+              "variable" : "ingredient"
+            }],
+            "target" : [{
+              "context" : "medication",
+              "contextType" : "variable",
+              "element" : "ingredient",
+              "variable" : "ing"
+            }],
+            "rule" : [{
+              "name" : "strength",
+              "source" : [{
+                "context" : "ingredient",
+                "element" : "quantity",
+                "variable" : "quantity"
+              }],
+              "target" : [{
+                "context" : "ing",
+                "contextType" : "variable",
+                "element" : "strength",
+                "variable" : "strength",
+                "transform" : "create",
+                "parameter" : [{
+                  "valueString" : "Ratio"
+                }]
+              }],
+              "dependent" : [{
+                "name" : "EmedRTOPQPQRatio",
+                "variable" : ["quantity",
+                "strength"]
+              }]
+            },
+            {
+              "name" : "ingredient.ingredient",
+              "source" : [{
+                "context" : "ingredient",
+                "element" : "ingredient",
+                "variable" : "medingredient"
+              }],
+              "rule" : [{
+                "name" : "ingredientCode",
+                "source" : [{
+                  "context" : "medingredient",
+                  "element" : "code",
+                  "variable" : "code"
+                }],
+                "target" : [{
+                  "context" : "ing",
+                  "contextType" : "variable",
+                  "element" : "item",
+                  "variable" : "ingcode",
+                  "transform" : "create",
+                  "parameter" : [{
+                    "valueString" : "CodeableConcept"
+                  }]
+                },
+                {
+                  "context" : "ingcode",
+                  "contextType" : "variable",
+                  "element" : "text",
+                  "transform" : "evaluate",
+                  "parameter" : [{
+                    "valueString" : "%medingredient.name.other"
+                  }]
+                }],
+                "dependent" : [{
+                  "name" : "CECodeableConcept",
+                  "variable" : ["code",
+                  "ingcode"]
+                }]
+              }]
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "dosage",
+        "source" : [{
+          "context" : "src",
+          "condition" : "$this.entryRelationship.sequenceNumber.exists() = false"
+        }],
+        "target" : [{
+          "context" : "medicationRequest",
+          "contextType" : "variable",
+          "element" : "dosageInstruction",
+          "variable" : "dosage"
+        }],
+        "dependent" : [{
+          "name" : "DosageInstructionsStartStopFrequency",
+          "variable" : ["src",
+          "dosage"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "PrescriptionItemEntryContentModule",
+    "input" : [{
+      "name" : "section",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "src",
+      "type" : "SubstanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "medicationRequest",
+      "type" : "MedicationRequest",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "patient",
+      "source" : [{
+        "context" : "patient"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "subject",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "completed",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "completed"
+        }]
+      }]
+    },
+    {
+      "name" : "order",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "intent",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "order"
+        }]
+      }]
+    },
+    {
+      "name" : "text",
+      "source" : [{
+        "context" : "src",
+        "element" : "text",
+        "variable" : "text"
+      }],
+      "rule" : [{
+        "name" : "reference",
+        "source" : [{
+          "context" : "text",
+          "element" : "reference",
+          "variable" : "reference"
+        }],
+        "rule" : [{
+          "name" : "narrativeLink",
+          "source" : [{
+            "context" : "reference",
+            "element" : "value",
+            "variable" : "value"
+          }],
+          "target" : [{
+            "context" : "medicationRequest",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "NarrativeLink",
+            "variable" : ["value",
+            "ext"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "medication",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "contained",
+        "variable" : "medication",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Medication"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ManufacturedMaterialEntryContentModuleRequest",
+        "variable" : ["src",
+        "medicationRequest",
+        "medication"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.41",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "typeCode = 'RSON'"
+      }],
+      "rule" : [{
+        "name" : "reasonCode",
+        "source" : [{
+          "context" : "entry",
+          "element" : "observation",
+          "variable" : "observation"
+        }],
+        "target" : [{
+          "context" : "medicationRequest",
+          "contextType" : "variable",
+          "element" : "reasonCode",
+          "variable" : "reasonCode"
+        }],
+        "dependent" : [{
+          "name" : "TreatmentReasonEntryContentModule",
+          "variable" : ["section",
+          "observation",
+          "reasonCode"]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.52",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and (substanceAdministration.templateId.root = '2.16.756.5.30.1.1.10.4.52'))"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "dosageInstruction",
+        "variable" : "dosage"
+      }],
+      "dependent" : [{
+        "name" : "DosageInstructionsNonStructuredEntryContentModule",
+        "variable" : ["section",
+        "entry",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.36",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and (sequenceNumber.value >= 0))"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "dosageInstruction",
+        "variable" : "dosage"
+      }],
+      "dependent" : [{
+        "name" : "DosageInstructionsEntryDosageChange",
+        "variable" : ["src",
+        "entry",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "MTPReferenceEntry",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'REFR') and substanceAdministration.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.10').exists())"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "dependent" : [{
+        "name" : "MTPReferenceEntryContentModule",
+        "variable" : ["entry",
+        "ext"]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-2.16.756.5.30.1.1.10.4.2",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and act.templateId.where(root = '2.16.756.5.30.1.1.10.4.2').exists())"
+      }],
+      "rule" : [{
+        "name" : "annotation",
+        "source" : [{
+          "context" : "entry",
+          "element" : "act",
+          "variable" : "act"
+        }],
+        "target" : [{
+          "context" : "medicationRequest",
+          "contextType" : "variable",
+          "element" : "note",
+          "variable" : "note"
+        }],
+        "dependent" : [{
+          "name" : "AnnotationComment",
+          "variable" : ["act",
+          "note"]
+        }]
+      }]
+    },
+    {
+      "name" : "repeats",
+      "source" : [{
+        "context" : "src",
+        "element" : "repeatNumber",
+        "variable" : "repeatNumber"
+      }],
+      "target" : [{
+        "context" : "medicationRequest",
+        "contextType" : "variable",
+        "element" : "dispenseRequest",
+        "variable" : "dispenseRequest"
+      }],
+      "rule" : [{
+        "name" : "repeatNumber",
+        "source" : [{
+          "context" : "repeatNumber",
+          "element" : "value",
+          "variable" : "val"
+        }],
+        "target" : [{
+          "context" : "dispenseRequest",
+          "contextType" : "variable",
+          "element" : "numberOfRepeatsAllowed",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "val"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.8",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and supply.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.8').exists())"
+      }],
+      "rule" : [{
+        "name" : "quantity",
+        "source" : [{
+          "context" : "entry",
+          "element" : "supply",
+          "variable" : "supply"
+        }],
+        "target" : [{
+          "contextType" : "variable",
+          "variable" : "medicationRequest",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "medicationRequest"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "PrescribedQuantity",
+          "variable" : ["supply",
+          "medicationRequest"]
+        }]
+      }]
+    },
+    {
+      "name" : "entryRelationShip-1.3.6.1.4.1.19376.1.9.1.3.9.1",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'COMP') and act.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.9.1').exists())"
+      }],
+      "rule" : [{
+        "name" : "substitution",
+        "source" : [{
+          "context" : "entry",
+          "element" : "act",
+          "variable" : "act"
+        }],
+        "target" : [{
+          "contextType" : "variable",
+          "variable" : "medicationRequest",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "medicationRequest"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "SubstitutionRequest",
+          "variable" : ["act",
+          "medicationRequest"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "DosageInstructionsStartStopFrequency",
+    "input" : [{
+      "name" : "src",
+      "type" : "SubstanceAdministration",
+      "mode" : "source"
+    },
+    {
+      "name" : "dosage",
+      "type" : "Dosage",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "effectiveTimeStartEnd",
+      "source" : [{
+        "context" : "src",
+        "variable" : "src"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "dosage",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "dosage"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "EffectiveTimeStartEnd",
+        "variable" : ["src",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "effectiveTimeWhen",
+      "source" : [{
+        "context" : "src",
+        "variable" : "src"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "dosage",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "dosage"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "EffectiveTimeWhen",
+        "variable" : ["src",
+        "dosage"]
+      }]
+    },
+    {
+      "name" : "routeCode",
+      "source" : [{
+        "context" : "src",
+        "element" : "routeCode",
+        "variable" : "routeCode"
+      }],
+      "target" : [{
+        "context" : "dosage",
+        "contextType" : "variable",
+        "element" : "route",
+        "variable" : "route"
+      }],
+      "dependent" : [{
+        "name" : "CECodeableConcept",
+        "variable" : ["routeCode",
+        "route"]
+      }]
+    },
+    {
+      "name" : "doseQuantity",
+      "source" : [{
+        "context" : "src",
+        "variable" : "src"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "dosage",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "dosage"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "DoseQuantity",
+        "variable" : ["src",
+        "dosage"]
+      }]
+    }]
+  },
+  {
+    "name" : "PharmaceuticalAdviceItemEntryContentModule",
+    "input" : [{
+      "name" : "section",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "src",
+      "type" : "Observation",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "observation",
+      "type" : "Observation",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "patient",
+      "source" : [{
+        "context" : "patient"
+      }],
+      "target" : [{
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "subject",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "final",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "final"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src",
+        "element" : "effectiveTime",
+        "variable" : "effectiveTime"
+      }],
+      "target" : [{
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "effective",
+        "variable" : "value",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "dateTime"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["effectiveTime",
+        "value"]
+      }]
+    },
+    {
+      "name" : "MTPReferenceEntry",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'REFR') and substanceAdministration.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.10').exists())"
+      }],
+      "target" : [{
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "dependent" : [{
+        "name" : "MTPReferenceEntryContentModule",
+        "variable" : ["entry",
+        "ext"]
+      }]
+    },
+    {
+      "name" : "cdaEntry",
+      "source" : [{
+        "context" : "src",
+        "element" : "entryRelationship",
+        "variable" : "entry",
+        "condition" : "((typeCode = 'REFR') and substanceAdministration.templateId.where(root = '1.3.6.1.4.1.19376.1.9.1.3.7').exists())"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "medicationstatement",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "MedicationStatement"
+        }]
+      },
+      {
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      },
+      {
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-emed/StructureDefinition/ch-emed-ext-medicationstatement-changed"
+        }]
+      },
+      {
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      }],
+      "rule" : [{
+        "name" : "substanceAdministration",
+        "source" : [{
+          "context" : "entry",
+          "element" : "substanceAdministration",
+          "variable" : "substanceAdministration"
+        }],
+        "dependent" : [{
+          "name" : "MedicationTreatmentPlanItemEntryContentModule",
+          "variable" : ["section",
+          "substanceAdministration",
+          "patient",
+          "medicationstatement"]
+        }]
+      }]
+    },
+    {
+      "name" : "note",
+      "source" : [{
+        "context" : "src",
+        "element" : "text",
+        "variable" : "text"
+      }],
+      "target" : [{
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "note",
+        "variable" : "note"
+      }],
+      "rule" : [{
+        "name" : "level3observation",
+        "source" : [{
+          "context" : "text",
+          "element" : "data",
+          "variable" : "data"
+        }],
+        "target" : [{
+          "context" : "note",
+          "contextType" : "variable",
+          "element" : "text",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "data"
+          }]
+        }]
+      },
+      {
+        "name" : "idRef",
+        "source" : [{
+          "context" : "text",
+          "condition" : "(data.exists() = false)"
+        }],
+        "target" : [{
+          "context" : "note",
+          "contextType" : "variable",
+          "element" : "text",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "%section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).substring(%section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).indexOf('>') + 1, %section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).indexOf('<') - %section.text.substring(%section.text.indexOf(%src.text.reference.value.substring(1))).indexOf('>') - 1)"
+          }]
+        }]
+      },
+      {
+        "name" : "reference",
+        "source" : [{
+          "context" : "text",
+          "element" : "reference",
+          "variable" : "reference"
+        }],
+        "rule" : [{
+          "name" : "narrativeLink",
+          "source" : [{
+            "context" : "reference",
+            "element" : "value",
+            "variable" : "value"
+          }],
+          "target" : [{
+            "context" : "note",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "NarrativeLink",
+            "variable" : ["value",
+            "ext"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "code",
+      "source" : [{
+        "context" : "src",
+        "element" : "code",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "observation",
+        "contextType" : "variable",
+        "element" : "code",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    }]
+  },
+  {
+    "name" : "InnerExtensionExternalDocumentId",
+    "input" : [{
+      "name" : "src",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "externalDocumentId"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "id",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["src",
+        "id"]
+      }]
+    }]
+  },
+  {
+    "name" : "InnerExtensionId",
+    "input" : [{
+      "name" : "src",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "id"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "id",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["src",
+        "id"]
+      }]
+    }]
+  }]
+}

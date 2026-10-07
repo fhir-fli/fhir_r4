@@ -1,0 +1,458 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "CdaChEmedMedicationTreatmentPlanDocumentToBundle",
+  "text" : {
+    "status" : "additional",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationTreatmentPlanDocumentToBundle&quot; = &quot;CdaChEmedMedicationTreatmentPlanDocumentToBundle&quot;\n\n//\n// Medication Treatment Plan document, 2.16.756.5.30.1.1.10.1.7\n// 2020-11-11 Michaela Ziegler, copyright ahdis ag, Apache License \n// CDA-CH-EMED:  https://art-decor.org/art-decor/decor-project--cdachemed-\n// FHIR CH-EMED: http://fhir.ch/ig/ch-emed/index.html\n//\n\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument&quot; alias ClinicalDocument as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor&quot; alias AssignedAuthor as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity&quot; alias AssignedEntity as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Author&quot; alias Author as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization&quot; alias CustodianOrganization as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/IVL-TS&quot; alias IVL_TS as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/EIVL-TS&quot; alias EIVL_TS as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Observation&quot; alias Observation as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/PatientRole&quot; alias PatientRole as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/RecordTarget&quot; alias RecordTarget as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Section&quot; alias Section as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/SubstanceAdministration&quot; alias SubstanceAdministration as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/SXPR-TS&quot; alias SXPR_TS as source\n\nuses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias Bundle as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Composition&quot; alias Composition as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot; alias Practitioner as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot; alias Organization as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/MedicationStatement&quot; alias MedicationStatement as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Dosage&quot; alias Dosage as produced\n\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes&quot;\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle&quot;\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChToBundle&quot;\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedToBundle&quot;\n\n// _________________________ Document Level Template  _________________________ \n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.1.7\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationtreatmentplan.html\ngroup CdaChEmedMedicationTreatmentPlanDocumentToBundle(source cda : ClinicalDocument, target bundle : Bundle) {\n  cda -&gt;  bundle.entry as e, \n             e.resource = create('Composition') as composition, \n             composition.id = uuid() as uuid,\n             e.fullUrl = append('urn:uuid:',uuid),\n             bundle.entry as e2, \n             e2.resource = create('Patient') as patient,patient share patient,\n             patient.id = uuid() as uuid2,\n             e2.fullUrl = append('urn:uuid:',uuid2)\n             then ClinicalDocumentChEmedMedicationTreatmentPlanDocumentToBundle(cda, patient, composition, bundle) &quot;ClinicalDocumentToBody&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.1.7\n// target: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationtreatmentplan.html\ngroup ClinicalDocumentChEmedMedicationTreatmentPlanDocumentToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) extends ClinicalDocumentToBundle  {\n  cda then ClinicalDocumentCompositionCh(cda, composition, patient, bundle) &quot;composition&quot;;\n  cda.component as component then {\n    component.structuredBody as body then {\n      body.component as component then {\n        component.section as srcSection where (templateId.where(root='2.16.756.5.30.1.1.10.3.13')) -&gt; composition.section as tgtSection then SectionMedicationTreatmentPlanSectionContentModule(cda, srcSection, patient, tgtSection, bundle);\n        component.section as srcSection where (templateId.where(root='2.16.756.5.30.1.1.10.3.2')) -&gt; composition.section as tgtSection then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);\n        component.section as srcSection where (templateId.where(root='2.16.756.5.30.1.1.10.3.45')) -&gt; composition.section as tgtSection then SectionOriginalRepresentation(cda, srcSection, patient, tgtSection, bundle);\n      } &quot;component&quot;;\n    } &quot;body&quot;;\n  } &quot;component&quot;;\n}\n\n// _________________________ Section Level Templates _________________________ \n\n// source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationtreatmentplan.html\n// target: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&amp;id=2.16.756.5.30.1.1.10.3.13\ngroup SectionMedicationTreatmentPlanSectionContentModule(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle: Bundle) extends ClinicalDocumentSection {\n  src.entry as cdaEntry where (substanceAdministration.templateId.where(root='2.16.756.5.30.1.1.10.4.34')) -&gt;  bundle.entry as e,  e.resource = create('MedicationStatement') as medicationstatement,  \n    medicationstatement.id = uuid() as uuid,\n    e.fullUrl = append('urn:uuid:',uuid), \n    tgt.entry = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid) then {\n    cdaEntry.substanceAdministration as substanceAdministration then MedicationTreatmentPlanItemEntryContentModule(src, substanceAdministration, patient, medicationstatement);\n  } &quot;cdaEntry&quot;;\n}\n</pre></div>"
+  },
+  "url" : "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedMedicationTreatmentPlanDocumentToBundle",
+  "name" : "CdaChEmedMedicationTreatmentPlanDocumentToBundle",
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+    "mode" : "source",
+    "alias" : "ClinicalDocument"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor",
+    "mode" : "source",
+    "alias" : "AssignedAuthor"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity",
+    "mode" : "source",
+    "alias" : "AssignedEntity"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Author",
+    "mode" : "source",
+    "alias" : "Author"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization",
+    "mode" : "source",
+    "alias" : "CustodianOrganization"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/IVL-TS",
+    "mode" : "source",
+    "alias" : "IVL_TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/EIVL-TS",
+    "mode" : "source",
+    "alias" : "EIVL_TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Observation",
+    "mode" : "source",
+    "alias" : "Observation"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/PatientRole",
+    "mode" : "source",
+    "alias" : "PatientRole"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/RecordTarget",
+    "mode" : "source",
+    "alias" : "RecordTarget"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Section",
+    "mode" : "source",
+    "alias" : "Section"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/SubstanceAdministration",
+    "mode" : "source",
+    "alias" : "SubstanceAdministration"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/SXPR-TS",
+    "mode" : "source",
+    "alias" : "SXPR_TS"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Composition",
+    "mode" : "produced",
+    "alias" : "Composition"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Patient",
+    "mode" : "produced",
+    "alias" : "Patient"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+    "mode" : "produced",
+    "alias" : "Practitioner"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Organization",
+    "mode" : "produced",
+    "alias" : "Organization"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+    "mode" : "produced",
+    "alias" : "MedicationStatement"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Dosage",
+    "mode" : "produced",
+    "alias" : "Dosage"
+  }],
+  "import" : ["http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes",
+  "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle",
+  "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChToBundle",
+  "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChEmedToBundle"],
+  "group" : [{
+    "name" : "CdaChEmedMedicationTreatmentPlanDocumentToBundle",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "ClinicalDocumentToBody",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "composition",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Composition"
+        }]
+      },
+      {
+        "context" : "composition",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      },
+      {
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e2"
+      },
+      {
+        "context" : "e2",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "patient",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Patient"
+        }]
+      },
+      {
+        "contextType" : "variable",
+        "listMode" : ["share"],
+        "listRuleId" : "patient",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "patient"
+        }]
+      },
+      {
+        "context" : "patient",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid2",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e2",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid2"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentChEmedMedicationTreatmentPlanDocumentToBundle",
+        "variable" : ["cda",
+        "patient",
+        "composition",
+        "bundle"]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentChEmedMedicationTreatmentPlanDocumentToBundle",
+    "extends" : "ClinicalDocumentToBundle",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "composition",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentCompositionCh",
+        "variable" : ["cda",
+        "composition",
+        "patient",
+        "bundle"]
+      }]
+    },
+    {
+      "name" : "component",
+      "source" : [{
+        "context" : "cda",
+        "element" : "component",
+        "variable" : "component"
+      }],
+      "rule" : [{
+        "name" : "body",
+        "source" : [{
+          "context" : "component",
+          "element" : "structuredBody",
+          "variable" : "body"
+        }],
+        "rule" : [{
+          "name" : "component",
+          "source" : [{
+            "context" : "body",
+            "element" : "component",
+            "variable" : "component"
+          }],
+          "rule" : [{
+            "name" : "section",
+            "source" : [{
+              "context" : "component",
+              "element" : "section",
+              "variable" : "srcSection",
+              "condition" : "(templateId.where(root = '2.16.756.5.30.1.1.10.3.13'))"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "section",
+              "variable" : "tgtSection"
+            }],
+            "dependent" : [{
+              "name" : "SectionMedicationTreatmentPlanSectionContentModule",
+              "variable" : ["cda",
+              "srcSection",
+              "patient",
+              "tgtSection",
+              "bundle"]
+            }]
+          },
+          {
+            "name" : "section",
+            "source" : [{
+              "context" : "component",
+              "element" : "section",
+              "variable" : "srcSection",
+              "condition" : "(templateId.where(root = '2.16.756.5.30.1.1.10.3.2'))"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "section",
+              "variable" : "tgtSection"
+            }],
+            "dependent" : [{
+              "name" : "ClinicalDocumentSection",
+              "variable" : ["cda",
+              "srcSection",
+              "patient",
+              "tgtSection",
+              "bundle"]
+            }]
+          },
+          {
+            "name" : "section",
+            "source" : [{
+              "context" : "component",
+              "element" : "section",
+              "variable" : "srcSection",
+              "condition" : "(templateId.where(root = '2.16.756.5.30.1.1.10.3.45'))"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "section",
+              "variable" : "tgtSection"
+            }],
+            "dependent" : [{
+              "name" : "SectionOriginalRepresentation",
+              "variable" : ["cda",
+              "srcSection",
+              "patient",
+              "tgtSection",
+              "bundle"]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "SectionMedicationTreatmentPlanSectionContentModule",
+    "extends" : "ClinicalDocumentSection",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "src",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "cdaEntry",
+      "source" : [{
+        "context" : "src",
+        "element" : "entry",
+        "variable" : "cdaEntry",
+        "condition" : "(substanceAdministration.templateId.where(root = '2.16.756.5.30.1.1.10.4.34'))"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "medicationstatement",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "MedicationStatement"
+        }]
+      },
+      {
+        "context" : "medicationstatement",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      }],
+      "rule" : [{
+        "name" : "substanceAdministration",
+        "source" : [{
+          "context" : "cdaEntry",
+          "element" : "substanceAdministration",
+          "variable" : "substanceAdministration"
+        }],
+        "dependent" : [{
+          "name" : "MedicationTreatmentPlanItemEntryContentModule",
+          "variable" : ["src",
+          "substanceAdministration",
+          "patient",
+          "medicationstatement"]
+        }]
+      }]
+    }]
+  }]
+}

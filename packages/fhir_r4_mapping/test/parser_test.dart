@@ -29,8 +29,11 @@ Future<void> main() async {
   test('the corpus is complete: 73 map/reference pairs', () {
     expect(files.length, 73);
     for (final f in files) {
-      expect(File(f.path.replaceAll('.json', '.map')).existsSync(), isTrue,
-          reason: '${f.path} has no .map');
+      expect(
+        File(f.path.replaceAll('.json', '.map')).existsSync(),
+        isTrue,
+        reason: '${f.path} has no .map',
+      );
     }
   });
   for (final file in files) {

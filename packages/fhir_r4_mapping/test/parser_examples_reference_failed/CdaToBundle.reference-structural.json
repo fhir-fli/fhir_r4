@@ -1,0 +1,2610 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "CdaToBundle",
+  "text" : {
+    "status" : "additional",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle&quot; = &quot;CdaToBundle&quot;\n\n// CDA document\n// 2020-01-16 Oliver Egger, copyright ahdis ag, Apache License\n// CDA:  http://build.fhir.org/ig/ahdis/cda-core-2.0/branches/master/index.html\n// FHIR: http://hl7.org/fhir/r4/\n\nconceptmap &quot;cm-v3-administrative-gender&quot; {\n  prefix s = &quot;http://terminology.hl7.org/ValueSet/v3-AdministrativeGender&quot;\n  prefix t = &quot;http://hl7.org/fhir/ValueSet/administrative-gender&quot;\n\n  s:M == t:male\n  s:F == t:female\n}\n\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument&quot; alias ClinicalDocument as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor&quot; alias AssignedAuthor as queried\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity&quot; alias AssignedEntity as queried\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization&quot; alias CustodianOrganization as queried\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Section&quot; alias Section as queried\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/PatientRole&quot; alias PatientRole as queried\nuses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias Bundle as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Composition&quot; alias Composition as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Person&quot; alias Patient as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot; alias Practitioner as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot; alias Organization as produced\n\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes&quot;\n\ngroup CdaToBundle(source cda : ClinicalDocument, target bundle : Bundle) {\n  cda -&gt;  bundle.entry as e,  e.resource = create('Composition') as composition,  composition.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Patient') as patient,  patient.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2) then {\n    cda then ClinicalDocumentToBundle(cda, patient, composition, bundle) &quot;cdatobundle&quot;;\n  } &quot;ClinicalDocumentToBody&quot;;\n}\n\ngroup ClinicalDocumentToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) {\n  cda -&gt; bundle.id = uuid() &quot;id&quot;;\n  cda.id -&gt; bundle.identifier &quot;identifier&quot;;\n  cda -&gt; bundle.type = 'document' &quot;type&quot;;\n  cda.effectiveTime -&gt; bundle.timestamp;\n  cda then ClinicalDocumentComposition(cda, composition, patient, bundle) &quot;composition&quot;;\n  cda.component as component then {\n    component.structuredBody as body then {\n      body.component as component log 'component' then {\n        component.section as srcSection where $this.code.empty() -&gt; composition.section as tgtSection then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);\n      };\n    } &quot;body&quot;;\n  };\n}\n\n// _________________________ Section Level Templates _________________________\ngroup ClinicalDocumentSection(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle : Bundle) {\n  src.id as id where ($this.root = %cda.id.root) = false -&gt; tgt.extension as ext then ChExtEprSectionId(id, ext) &quot;sectionId&quot;;\n  src.title as t -&gt; tgt.title = (t.dataString);\n  src.code -&gt; tgt.code;\n  src.text as cdaText -&gt; tgt.text as fhirText then {\n    cdaText -&gt; fhirText.status = 'generated' &quot;narrativeStatus&quot;;\n    cdaText as t -&gt; fhirText.div = t &quot;narrativeText&quot;;\n  } &quot;cdaText&quot;;\n  src.section as srcSection -&gt; tgt.section as tgtSection then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);\n}\n\n// _________________________ Entry Level Templates   ________________________\n// _________________________ Header Level Templates _________________________\ngroup ClinicalDocumentComposition(source src : ClinicalDocument, target tgt : Composition, target patientResource : Patient, target bundle : Bundle) {\n  src.languageCode -&gt; tgt.language;\n  src.id where src.setId.exists().not() -&gt; tgt.identifier &quot;identifier&quot;;\n  src.setId -&gt; tgt.identifier &quot;identifier&quot;;\n  src -&gt; tgt.status = 'final' &quot;status&quot;;\n  src.code -&gt; tgt.type;\n  src.title as t -&gt; tgt.title = (t.dataString);\n  src.recordTarget as recordTarget then {\n    recordTarget.patientRole as patient -&gt;  tgt.subject = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %patientResource.id) then ClinicalDocumentPatientRole(patient, patientResource, bundle) &quot;subject&quot;;\n  } &quot;patientRole&quot;;\n  src.componentOf as comp -&gt;  bundle.entry as e,  e.resource = create('Encounter') as encounter,  encounter.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid) then {\n    comp.encompassingEncounter as srcEnc -&gt;  tgt.encounter = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %encounter.id) then ClinicalDocumentEncounter(srcEnc, bundle, encounter) &quot;srcEncounter&quot;;\n  } &quot;encompassingEncounter&quot;;\n  src.effectiveTime -&gt; tgt.date;\n  src.author as srcAuthor -&gt;  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  tgt.author = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then {\n    srcAuthor.time as time -&gt; reference.extension as exttime then ChExtEprTime(time, exttime);\n    srcAuthor.assignedAuthor as assignedAuthor then {\n      assignedAuthor.id -&gt; practitioner.identifier;\n      assignedAuthor.addr -&gt; practitioner.address;\n      assignedAuthor.telecom -&gt; practitioner.telecom;\n      assignedAuthor.assignedPerson as person then {\n        person.name -&gt; practitioner.name;\n      } &quot;name&quot;;\n      assignedAuthor.representedOrganization as srcOrg -&gt;  bundle.entry as e2,  e2.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e2.fullUrl = append('urn:uuid:', uuid3),  tgt.author = create('Reference') as reference2,  reference2.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization);\n    } &quot;author&quot;;\n  } &quot;srcAuthor&quot;;\n  src.confidentialityCode -&gt; tgt.confidentiality;\n  src.legalAuthenticator as legalAuth -&gt;  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {\n    legalAuth -&gt; tgt.attester as attester then {\n      legalAuth -&gt; attester.mode = 'legal' &quot;mode&quot;;\n      legalAuth.time -&gt; attester.time;\n      legalAuth.assignedEntity as entity -&gt;  attester.party = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) &quot;entity&quot;;\n    } &quot;attester&quot;;\n  } &quot;legalAuth&quot;;\n  src.authenticator as auth -&gt;  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {\n    auth -&gt; tgt.attester as attester then {\n      auth -&gt; attester.mode = 'official' &quot;mode&quot;;\n      auth.time -&gt; attester.time;\n      auth.assignedEntity as entity -&gt;  attester.party = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) &quot;entity&quot;;\n    } &quot;attester&quot;;\n  } &quot;auth&quot;;\n  src.custodian as custodian -&gt; bundle.entry as e then {\n    custodian.assignedCustodian as assignedCustodian -&gt;  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {\n      assignedCustodian.representedCustodianOrganization as srcOrg -&gt;  tgt.custodian = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization) &quot;assignedCustodian&quot;;\n    } &quot;custodian&quot;;\n  } &quot;cust&quot;;\n  src.documentationOf as docOf then {\n    docOf.serviceEvent as serviceEvent -&gt; tgt.event as event then {\n      serviceEvent.code -&gt; event.code &quot;eventCode&quot;;\n      serviceEvent.effectiveTime -&gt; event.period &quot;eventTime&quot;;\n    } &quot;docOf&quot;;\n  };\n  src.relatedDocument as relatedDoc -&gt; tgt.relatesTo as relates then {\n    relatedDoc.typeCode -&gt; relates.code;\n    relatedDoc.parentDocument as parentDoc then {\n      parentDoc.setId -&gt; relates.targetIdentifier;\n    } &quot;parentDoc&quot;;\n  } &quot;relatedDoc&quot;;\n}\n\ngroup ClinicalDocumentEntityPractitioner(source src : AssignedEntity, target tgt : Practitioner) {\n  src.id -&gt; tgt.identifier;\n  src.addr -&gt; tgt.address;\n  src.telecom -&gt; tgt.telecom;\n  src.assignedPerson as person then {\n    person.name -&gt; tgt.name;\n  } &quot;name&quot;;\n}\n\ngroup ClinicalDocumentOrganization(source src : CustodianOrganization, target tgt : Organization) {\n  src.id -&gt; tgt.identifier;\n  src.name as v -&gt; tgt.name = (v.other);\n  src.telecom -&gt; tgt.telecom;\n  src.addr -&gt; tgt.address;\n}\n\ngroup ClinicalDocumentPatientRole(source src : PatientRole, target tgt : Patient, target bundle : Bundle) {\n  // src.id -&gt; tgt.identifier;\n  src -&gt; tgt.identifier as identifier then {\n    src.id as id -&gt;  identifier.type as type,  type.coding as coding,  coding.system as system,  coding.code as code then {\n      src -&gt; system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' &quot;system&quot;;\n      src -&gt; code.value = 'MR' &quot;code&quot;;\n      id.extension as extension -&gt;  identifier.value as value,  value.value = extension;\n      id.root as root -&gt;  identifier.system as system,  system.value = append('urn:oid:', root);\n    };\n  } &quot;identifier&quot;;\n  src.addr -&gt; tgt.address;\n  src.telecom -&gt; tgt.telecom;\n  src.patient as patient then {\n    patient.name -&gt; tgt.name;\n    patient.administrativeGenderCode as gender then {\n      gender.code as v -&gt; tgt.gender = translate(v, '#cm-v3-administrative-gender', 'code') &quot;gender&quot;;\n    } &quot;gender&quot;;\n    patient.birthTime -&gt; tgt.birthDate &quot;birthDate&quot;;\n    patient.deceasedInd as indicator where patient.deceasedTime.empty() -&gt; tgt.deceased = create('boolean') as bool then boolean(indicator, bool) &quot;deceasedBL&quot;;\n    patient.deceasedTime -&gt; tgt.deceased;\n    patient.maritalStatusCode -&gt; tgt.maritalStatus &quot;maritalStatus&quot;;\n    patient.languageCommunication as language -&gt; tgt.communication as communication then {\n      language.languageCode -&gt; communication.language &quot;communication&quot;;\n    } &quot;language&quot;;\n  };\n  src.providerOrganization as org -&gt;  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {\n    org -&gt;  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) &quot;reference&quot;;\n    org.id -&gt; organization.identifier;\n    org.name as v -&gt; organization.name = (v.other);\n    org.telecom -&gt; organization.telecom;\n    org.addr -&gt; organization.address;\n  } &quot;organization&quot;;\n}\n\ngroup ClinicalDocumentEncounter(source src : EncompassingEncounter, target bundle : Bundle, target tgt : Encounter) {\n  src.id -&gt; tgt.identifier;\n  src.code -&gt; tgt.type;\n  src.effectiveTime -&gt; tgt.period;\n  src where admissionReferralSourceCode.exists() or dischargeDispositionCode.exists() -&gt; tgt.hospitalization as hosp then {\n    src.admissionReferralSourceCode -&gt; hosp.admitSource &quot;adminReferral&quot;;\n    src.dischargeDispositionCode -&gt; hosp.dischargeDisposition &quot;discDisposition&quot;;\n  } &quot;hospitalization&quot;;\n  src.encounterParticipant as srcPart -&gt; tgt.participant as tgtPart then {\n    srcPart.typeCode as code -&gt; tgtPart.type = cc('http://terminology.hl7.org/CodeSystem/v3-ParticipationType', code);\n    srcPart.time -&gt; tgtPart.period;\n    srcPart.assignedEntity as entity -&gt;  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {\n      entity -&gt;  tgtPart.individual = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitioner.id) then ClinicalDocumentEntityPractitioner(entity, practitioner) &quot;entry&quot;;\n    } &quot;entity&quot;;\n  } &quot;participant&quot;;\n  src.location as srcLocation then {\n    srcLocation.healthCareFacility as facility -&gt;  bundle.entry as e,  e.resource = create('Location') as location,  location.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2) then {\n      facility -&gt;  tgt.location as tgtLocation,  tgtLocation.location = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %location.id) then ClinicalDocumentLocation(facility, bundle, location) &quot;facLocation&quot;;\n    } &quot;facility&quot;;\n  };\n}\n\ngroup ClinicalDocumentLocation(source src : HealthCareFacility, target bundle : Bundle, target tgt : Location) {\n  src.id -&gt; tgt.identifier;\n  src.code -&gt; tgt.type;\n  src.location as location then {\n    // place names are usually stored with no parts    location.name as srcName -&gt; tgt.name = cast(srcName, 'string');\n    location.addr -&gt; tgt.address;\n    location.serviceProviderOrganization as srcOrg -&gt;  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e.fullUrl = append('urn:uuid:', uuid3) then {\n      srcOrg -&gt;  tgt.managingOrganization = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) then ClinicalDocumentOrganization(srcOrg, organization) &quot;organization&quot;;\n    } &quot;org&quot;;\n  };\n}\n\n// source dataEnterer: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.2.7\n// source author: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.840.1.113883.10.12.102\n// target: https://build.fhir.org/ig/hl7ch/ch-core//StructureDefinition-ch-ext-epr-time.html\ngroup ChExtEprTime(source src : TSDateTime, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-time' &quot;url&quot;;\n  src -&gt; ext.value = create('dateTime') as value then TSDateTime(src, value) &quot;value&quot;;\n}\n\n// https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.3.45\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-sectionid.html\ngroup ChExtEprSectionId(source src : II, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-sectionid' &quot;url&quot;;\n  src -&gt; ext.value = create('Identifier') as value then II(src, value) &quot;value&quot;;\n}\n\n// _________________________ Template Type not specified  ___________________\ngroup NarrativeLink(source url, target ext : Extension) {\n  url -&gt; ext.url = 'http://hl7.org/fhir/StructureDefinition/narrativeLink' &quot;url&quot;;\n  url -&gt;  ext.value = create('url') as value,  value.value = url &quot;value&quot;;\n}\n</pre></div>"
+  },
+  "contained" : [{
+    "resourceType" : "ConceptMap",
+    "id" : "cm-v3-administrative-gender",
+    "status" : "draft",
+    "group" : [{
+      "source" : "http://terminology.hl7.org/ValueSet/v3-AdministrativeGender",
+      "target" : "http://hl7.org/fhir/ValueSet/administrative-gender",
+      "element" : [{
+        "code" : "M",
+        "target" : [{
+          "code" : "male",
+          "equivalence" : "equivalent"
+        }]
+      },
+      {
+        "code" : "F",
+        "target" : [{
+          "code" : "female",
+          "equivalence" : "equivalent"
+        }]
+      }]
+    }]
+  }],
+  "url" : "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle",
+  "name" : "CdaToBundle",
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+    "mode" : "source",
+    "alias" : "ClinicalDocument"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor",
+    "mode" : "queried",
+    "alias" : "AssignedAuthor"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity",
+    "mode" : "queried",
+    "alias" : "AssignedEntity"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization",
+    "mode" : "queried",
+    "alias" : "CustodianOrganization"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Section",
+    "mode" : "queried",
+    "alias" : "Section"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/PatientRole",
+    "mode" : "queried",
+    "alias" : "PatientRole"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Composition",
+    "mode" : "produced",
+    "alias" : "Composition"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Patient",
+    "mode" : "produced",
+    "alias" : "Patient"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Person",
+    "mode" : "produced",
+    "alias" : "Patient"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+    "mode" : "produced",
+    "alias" : "Practitioner"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Organization",
+    "mode" : "produced",
+    "alias" : "Organization"
+  }],
+  "import" : ["http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes"],
+  "group" : [{
+    "name" : "CdaToBundle",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "ClinicalDocumentToBody",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "composition",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Composition"
+        }]
+      },
+      {
+        "context" : "composition",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      },
+      {
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e2"
+      },
+      {
+        "context" : "e2",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "patient",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Patient"
+        }]
+      },
+      {
+        "context" : "patient",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid2",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e2",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid2"
+        }]
+      }],
+      "rule" : [{
+        "name" : "cdatobundle",
+        "source" : [{
+          "context" : "cda"
+        }],
+        "dependent" : [{
+          "name" : "ClinicalDocumentToBundle",
+          "variable" : ["cda",
+          "patient",
+          "composition",
+          "bundle"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentToBundle",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "id",
+        "transform" : "uuid"
+      }]
+    },
+    {
+      "name" : "identifier",
+      "source" : [{
+        "context" : "cda",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "type",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "type",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "document"
+        }]
+      }]
+    },
+    {
+      "name" : "effectiveTime",
+      "source" : [{
+        "context" : "cda",
+        "element" : "effectiveTime",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "timestamp",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "composition",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentComposition",
+        "variable" : ["cda",
+        "composition",
+        "patient",
+        "bundle"]
+      }]
+    },
+    {
+      "name" : "component",
+      "source" : [{
+        "context" : "cda",
+        "element" : "component",
+        "variable" : "component"
+      }],
+      "rule" : [{
+        "name" : "body",
+        "source" : [{
+          "context" : "component",
+          "element" : "structuredBody",
+          "variable" : "body"
+        }],
+        "rule" : [{
+          "name" : "component",
+          "source" : [{
+            "context" : "body",
+            "element" : "component",
+            "variable" : "component",
+            "logMessage" : "'component'"
+          }],
+          "rule" : [{
+            "name" : "section",
+            "source" : [{
+              "context" : "component",
+              "element" : "section",
+              "variable" : "srcSection",
+              "condition" : "$this.code.empty()"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "section",
+              "variable" : "tgtSection"
+            }],
+            "dependent" : [{
+              "name" : "ClinicalDocumentSection",
+              "variable" : ["cda",
+              "srcSection",
+              "patient",
+              "tgtSection",
+              "bundle"]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentSection",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "src",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "sectionId",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "id",
+        "condition" : "($this.root = %cda.id.root) = false"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "dependent" : [{
+        "name" : "ChExtEprSectionId",
+        "variable" : ["id",
+        "ext"]
+      }]
+    },
+    {
+      "name" : "title",
+      "source" : [{
+        "context" : "src",
+        "element" : "title",
+        "variable" : "t"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "title",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "t.dataString"
+        }]
+      }]
+    },
+    {
+      "name" : "code",
+      "source" : [{
+        "context" : "src",
+        "element" : "code",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "code",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "cdaText",
+      "source" : [{
+        "context" : "src",
+        "element" : "text",
+        "variable" : "cdaText"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "text",
+        "variable" : "fhirText"
+      }],
+      "rule" : [{
+        "name" : "narrativeStatus",
+        "source" : [{
+          "context" : "cdaText"
+        }],
+        "target" : [{
+          "context" : "fhirText",
+          "contextType" : "variable",
+          "element" : "status",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "generated"
+          }]
+        }]
+      },
+      {
+        "name" : "narrativeText",
+        "source" : [{
+          "context" : "cdaText",
+          "variable" : "t"
+        }],
+        "target" : [{
+          "context" : "fhirText",
+          "contextType" : "variable",
+          "element" : "div",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "t"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "section",
+      "source" : [{
+        "context" : "src",
+        "element" : "section",
+        "variable" : "srcSection"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "section",
+        "variable" : "tgtSection"
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentSection",
+        "variable" : ["cda",
+        "srcSection",
+        "patient",
+        "tgtSection",
+        "bundle"]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentComposition",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "patientResource",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "languageCode",
+      "source" : [{
+        "context" : "src",
+        "element" : "languageCode",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "language",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "identifier",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv",
+        "condition" : "src.setId.exists().not()"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "identifier",
+      "source" : [{
+        "context" : "src",
+        "element" : "setId",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "status",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "status",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "final"
+        }]
+      }]
+    },
+    {
+      "name" : "code",
+      "source" : [{
+        "context" : "src",
+        "element" : "code",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "type",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "title",
+      "source" : [{
+        "context" : "src",
+        "element" : "title",
+        "variable" : "t"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "title",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "t.dataString"
+        }]
+      }]
+    },
+    {
+      "name" : "patientRole",
+      "source" : [{
+        "context" : "src",
+        "element" : "recordTarget",
+        "variable" : "recordTarget"
+      }],
+      "rule" : [{
+        "name" : "subject",
+        "source" : [{
+          "context" : "recordTarget",
+          "element" : "patientRole",
+          "variable" : "patient"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "subject",
+          "variable" : "reference",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Reference"
+          }]
+        },
+        {
+          "context" : "reference",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %patientResource.id"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "ClinicalDocumentPatientRole",
+          "variable" : ["patient",
+          "patientResource",
+          "bundle"]
+        }]
+      }]
+    },
+    {
+      "name" : "encompassingEncounter",
+      "source" : [{
+        "context" : "src",
+        "element" : "componentOf",
+        "variable" : "comp"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "encounter",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Encounter"
+        }]
+      },
+      {
+        "context" : "encounter",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      }],
+      "rule" : [{
+        "name" : "srcEncounter",
+        "source" : [{
+          "context" : "comp",
+          "element" : "encompassingEncounter",
+          "variable" : "srcEnc"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "encounter",
+          "variable" : "reference",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Reference"
+          }]
+        },
+        {
+          "context" : "reference",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %encounter.id"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "ClinicalDocumentEncounter",
+          "variable" : ["srcEnc",
+          "bundle",
+          "encounter"]
+        }]
+      }]
+    },
+    {
+      "name" : "effectiveTime",
+      "source" : [{
+        "context" : "src",
+        "element" : "effectiveTime",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "date",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "srcAuthor",
+      "source" : [{
+        "context" : "src",
+        "element" : "author",
+        "variable" : "srcAuthor"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "practitioner",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Practitioner"
+        }]
+      },
+      {
+        "context" : "practitioner",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid2",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid2"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "author",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %practitioner.id"
+        }]
+      }],
+      "rule" : [{
+        "name" : "time",
+        "source" : [{
+          "context" : "srcAuthor",
+          "element" : "time",
+          "variable" : "time"
+        }],
+        "target" : [{
+          "context" : "reference",
+          "contextType" : "variable",
+          "element" : "extension",
+          "variable" : "exttime"
+        }],
+        "dependent" : [{
+          "name" : "ChExtEprTime",
+          "variable" : ["time",
+          "exttime"]
+        }]
+      },
+      {
+        "name" : "author",
+        "source" : [{
+          "context" : "srcAuthor",
+          "element" : "assignedAuthor",
+          "variable" : "assignedAuthor"
+        }],
+        "rule" : [{
+          "name" : "id",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "id",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "practitioner",
+            "contextType" : "variable",
+            "element" : "identifier",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        },
+        {
+          "name" : "addr",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "addr",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "practitioner",
+            "contextType" : "variable",
+            "element" : "address",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        },
+        {
+          "name" : "telecom",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "telecom",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "practitioner",
+            "contextType" : "variable",
+            "element" : "telecom",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        },
+        {
+          "name" : "name",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "assignedPerson",
+            "variable" : "person"
+          }],
+          "rule" : [{
+            "name" : "name",
+            "source" : [{
+              "context" : "person",
+              "element" : "name",
+              "variable" : "vvv"
+            }],
+            "target" : [{
+              "context" : "practitioner",
+              "contextType" : "variable",
+              "element" : "name",
+              "variable" : "vvv",
+              "transform" : "create"
+            }]
+          }]
+        },
+        {
+          "name" : "representedOrganization",
+          "source" : [{
+            "context" : "assignedAuthor",
+            "element" : "representedOrganization",
+            "variable" : "srcOrg"
+          }],
+          "target" : [{
+            "context" : "bundle",
+            "contextType" : "variable",
+            "element" : "entry",
+            "variable" : "e2"
+          },
+          {
+            "context" : "e2",
+            "contextType" : "variable",
+            "element" : "resource",
+            "variable" : "organization",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Organization"
+            }]
+          },
+          {
+            "context" : "organization",
+            "contextType" : "variable",
+            "element" : "id",
+            "variable" : "uuid3",
+            "transform" : "uuid"
+          },
+          {
+            "context" : "e2",
+            "contextType" : "variable",
+            "element" : "fullUrl",
+            "transform" : "append",
+            "parameter" : [{
+              "valueString" : "urn:uuid:"
+            },
+            {
+              "valueId" : "uuid3"
+            }]
+          },
+          {
+            "context" : "tgt",
+            "contextType" : "variable",
+            "element" : "author",
+            "variable" : "reference2",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "reference2",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %organization.id"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "ClinicalDocumentOrganization",
+            "variable" : ["srcOrg",
+            "organization"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "confidentialityCode",
+      "source" : [{
+        "context" : "src",
+        "element" : "confidentialityCode",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "confidentiality",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "legalAuth",
+      "source" : [{
+        "context" : "src",
+        "element" : "legalAuthenticator",
+        "variable" : "legalAuth"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "practitioner",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Practitioner"
+        }]
+      },
+      {
+        "context" : "practitioner",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid2",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid2"
+        }]
+      }],
+      "rule" : [{
+        "name" : "attester",
+        "source" : [{
+          "context" : "legalAuth"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "attester",
+          "variable" : "attester"
+        }],
+        "rule" : [{
+          "name" : "mode",
+          "source" : [{
+            "context" : "legalAuth"
+          }],
+          "target" : [{
+            "context" : "attester",
+            "contextType" : "variable",
+            "element" : "mode",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "legal"
+            }]
+          }]
+        },
+        {
+          "name" : "time",
+          "source" : [{
+            "context" : "legalAuth",
+            "element" : "time",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "attester",
+            "contextType" : "variable",
+            "element" : "time",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        },
+        {
+          "name" : "entity",
+          "source" : [{
+            "context" : "legalAuth",
+            "element" : "assignedEntity",
+            "variable" : "entity"
+          }],
+          "target" : [{
+            "context" : "attester",
+            "contextType" : "variable",
+            "element" : "party",
+            "variable" : "reference",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "reference",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %practitioner.id"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "ClinicalDocumentEntityPractitioner",
+            "variable" : ["entity",
+            "practitioner"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "auth",
+      "source" : [{
+        "context" : "src",
+        "element" : "authenticator",
+        "variable" : "auth"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "practitioner",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Practitioner"
+        }]
+      },
+      {
+        "context" : "practitioner",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid2",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid2"
+        }]
+      }],
+      "rule" : [{
+        "name" : "attester",
+        "source" : [{
+          "context" : "auth"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "attester",
+          "variable" : "attester"
+        }],
+        "rule" : [{
+          "name" : "mode",
+          "source" : [{
+            "context" : "auth"
+          }],
+          "target" : [{
+            "context" : "attester",
+            "contextType" : "variable",
+            "element" : "mode",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "official"
+            }]
+          }]
+        },
+        {
+          "name" : "time",
+          "source" : [{
+            "context" : "auth",
+            "element" : "time",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "attester",
+            "contextType" : "variable",
+            "element" : "time",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        },
+        {
+          "name" : "entity",
+          "source" : [{
+            "context" : "auth",
+            "element" : "assignedEntity",
+            "variable" : "entity"
+          }],
+          "target" : [{
+            "context" : "attester",
+            "contextType" : "variable",
+            "element" : "party",
+            "variable" : "reference",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "reference",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %practitioner.id"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "ClinicalDocumentEntityPractitioner",
+            "variable" : ["entity",
+            "practitioner"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "cust",
+      "source" : [{
+        "context" : "src",
+        "element" : "custodian",
+        "variable" : "custodian"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      }],
+      "rule" : [{
+        "name" : "custodian",
+        "source" : [{
+          "context" : "custodian",
+          "element" : "assignedCustodian",
+          "variable" : "assignedCustodian"
+        }],
+        "target" : [{
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "organization",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Organization"
+          }]
+        },
+        {
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "id",
+          "variable" : "uuid3",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid3"
+          }]
+        }],
+        "rule" : [{
+          "name" : "assignedCustodian",
+          "source" : [{
+            "context" : "assignedCustodian",
+            "element" : "representedCustodianOrganization",
+            "variable" : "srcOrg"
+          }],
+          "target" : [{
+            "context" : "tgt",
+            "contextType" : "variable",
+            "element" : "custodian",
+            "variable" : "reference",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "reference",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %organization.id"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "ClinicalDocumentOrganization",
+            "variable" : ["srcOrg",
+            "organization"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "documentationOf",
+      "source" : [{
+        "context" : "src",
+        "element" : "documentationOf",
+        "variable" : "docOf"
+      }],
+      "rule" : [{
+        "name" : "docOf",
+        "source" : [{
+          "context" : "docOf",
+          "element" : "serviceEvent",
+          "variable" : "serviceEvent"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "event",
+          "variable" : "event"
+        }],
+        "rule" : [{
+          "name" : "eventCode",
+          "source" : [{
+            "context" : "serviceEvent",
+            "element" : "code",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "event",
+            "contextType" : "variable",
+            "element" : "code",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        },
+        {
+          "name" : "eventTime",
+          "source" : [{
+            "context" : "serviceEvent",
+            "element" : "effectiveTime",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "event",
+            "contextType" : "variable",
+            "element" : "period",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "relatedDoc",
+      "source" : [{
+        "context" : "src",
+        "element" : "relatedDocument",
+        "variable" : "relatedDoc"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "relatesTo",
+        "variable" : "relates"
+      }],
+      "rule" : [{
+        "name" : "typeCode",
+        "source" : [{
+          "context" : "relatedDoc",
+          "element" : "typeCode",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "relates",
+          "contextType" : "variable",
+          "element" : "code",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "parentDoc",
+        "source" : [{
+          "context" : "relatedDoc",
+          "element" : "parentDocument",
+          "variable" : "parentDoc"
+        }],
+        "rule" : [{
+          "name" : "setId",
+          "source" : [{
+            "context" : "parentDoc",
+            "element" : "setId",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "relates",
+            "contextType" : "variable",
+            "element" : "targetIdentifier",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentEntityPractitioner",
+    "input" : [{
+      "name" : "src",
+      "type" : "AssignedEntity",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Practitioner",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "addr",
+      "source" : [{
+        "context" : "src",
+        "element" : "addr",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "address",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "telecom",
+      "source" : [{
+        "context" : "src",
+        "element" : "telecom",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "telecom",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "name",
+      "source" : [{
+        "context" : "src",
+        "element" : "assignedPerson",
+        "variable" : "person"
+      }],
+      "rule" : [{
+        "name" : "name",
+        "source" : [{
+          "context" : "person",
+          "element" : "name",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "name",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentOrganization",
+    "input" : [{
+      "name" : "src",
+      "type" : "CustodianOrganization",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Organization",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "name",
+      "source" : [{
+        "context" : "src",
+        "element" : "name",
+        "variable" : "v"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "name",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "v.other"
+        }]
+      }]
+    },
+    {
+      "name" : "telecom",
+      "source" : [{
+        "context" : "src",
+        "element" : "telecom",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "telecom",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "addr",
+      "source" : [{
+        "context" : "src",
+        "element" : "addr",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "address",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentPatientRole",
+    "input" : [{
+      "name" : "src",
+      "type" : "PatientRole",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "identifier",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "identifier"
+      }],
+      "rule" : [{
+        "name" : "id",
+        "source" : [{
+          "context" : "src",
+          "element" : "id",
+          "variable" : "id"
+        }],
+        "target" : [{
+          "context" : "identifier",
+          "contextType" : "variable",
+          "element" : "type",
+          "variable" : "type"
+        },
+        {
+          "context" : "type",
+          "contextType" : "variable",
+          "element" : "coding",
+          "variable" : "coding"
+        },
+        {
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "system",
+          "variable" : "system"
+        },
+        {
+          "context" : "coding",
+          "contextType" : "variable",
+          "element" : "code",
+          "variable" : "code"
+        }],
+        "rule" : [{
+          "name" : "system",
+          "source" : [{
+            "context" : "src"
+          }],
+          "target" : [{
+            "context" : "system",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "http://terminology.hl7.org/CodeSystem/v2-0203"
+            }]
+          }]
+        },
+        {
+          "name" : "code",
+          "source" : [{
+            "context" : "src"
+          }],
+          "target" : [{
+            "context" : "code",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "MR"
+            }]
+          }]
+        },
+        {
+          "name" : "extension",
+          "source" : [{
+            "context" : "id",
+            "element" : "extension",
+            "variable" : "extension"
+          }],
+          "target" : [{
+            "context" : "identifier",
+            "contextType" : "variable",
+            "element" : "value",
+            "variable" : "value"
+          },
+          {
+            "context" : "value",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "extension"
+            }]
+          }]
+        },
+        {
+          "name" : "root",
+          "source" : [{
+            "context" : "id",
+            "element" : "root",
+            "variable" : "root"
+          }],
+          "target" : [{
+            "context" : "identifier",
+            "contextType" : "variable",
+            "element" : "system",
+            "variable" : "system"
+          },
+          {
+            "context" : "system",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "append",
+            "parameter" : [{
+              "valueString" : "urn:oid:"
+            },
+            {
+              "valueId" : "root"
+            }]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "addr",
+      "source" : [{
+        "context" : "src",
+        "element" : "addr",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "address",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "telecom",
+      "source" : [{
+        "context" : "src",
+        "element" : "telecom",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "telecom",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "patient",
+      "source" : [{
+        "context" : "src",
+        "element" : "patient",
+        "variable" : "patient"
+      }],
+      "rule" : [{
+        "name" : "name",
+        "source" : [{
+          "context" : "patient",
+          "element" : "name",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "name",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "gender",
+        "source" : [{
+          "context" : "patient",
+          "element" : "administrativeGenderCode",
+          "variable" : "gender"
+        }],
+        "rule" : [{
+          "name" : "gender",
+          "source" : [{
+            "context" : "gender",
+            "element" : "code",
+            "variable" : "v"
+          }],
+          "target" : [{
+            "context" : "tgt",
+            "contextType" : "variable",
+            "element" : "gender",
+            "transform" : "translate",
+            "parameter" : [{
+              "valueId" : "v"
+            },
+            {
+              "valueString" : "#cm-v3-administrative-gender"
+            },
+            {
+              "valueString" : "code"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "birthDate",
+        "source" : [{
+          "context" : "patient",
+          "element" : "birthTime",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "birthDate",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "deceasedBL",
+        "source" : [{
+          "context" : "patient",
+          "element" : "deceasedInd",
+          "variable" : "indicator",
+          "condition" : "patient.deceasedTime.empty()"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "deceased",
+          "variable" : "bool",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "boolean"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "boolean",
+          "variable" : ["indicator",
+          "bool"]
+        }]
+      },
+      {
+        "name" : "deceasedTime",
+        "source" : [{
+          "context" : "patient",
+          "element" : "deceasedTime",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "deceased",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "maritalStatus",
+        "source" : [{
+          "context" : "patient",
+          "element" : "maritalStatusCode",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "maritalStatus",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "language",
+        "source" : [{
+          "context" : "patient",
+          "element" : "languageCommunication",
+          "variable" : "language"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "communication",
+          "variable" : "communication"
+        }],
+        "rule" : [{
+          "name" : "communication",
+          "source" : [{
+            "context" : "language",
+            "element" : "languageCode",
+            "variable" : "vvv"
+          }],
+          "target" : [{
+            "context" : "communication",
+            "contextType" : "variable",
+            "element" : "language",
+            "variable" : "vvv",
+            "transform" : "create"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "organization",
+      "source" : [{
+        "context" : "src",
+        "element" : "providerOrganization",
+        "variable" : "org"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "organization",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Organization"
+        }]
+      },
+      {
+        "context" : "organization",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid3",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid3"
+        }]
+      }],
+      "rule" : [{
+        "name" : "reference",
+        "source" : [{
+          "context" : "org"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "managingOrganization",
+          "variable" : "reference",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Reference"
+          }]
+        },
+        {
+          "context" : "reference",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "'urn:uuid:' + %organization.id"
+          }]
+        }]
+      },
+      {
+        "name" : "id",
+        "source" : [{
+          "context" : "org",
+          "element" : "id",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "identifier",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "name",
+        "source" : [{
+          "context" : "org",
+          "element" : "name",
+          "variable" : "v"
+        }],
+        "target" : [{
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "name",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "v.other"
+          }]
+        }]
+      },
+      {
+        "name" : "telecom",
+        "source" : [{
+          "context" : "org",
+          "element" : "telecom",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "telecom",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "addr",
+        "source" : [{
+          "context" : "org",
+          "element" : "addr",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "address",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentEncounter",
+    "input" : [{
+      "name" : "src",
+      "type" : "EncompassingEncounter",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Encounter",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "code",
+      "source" : [{
+        "context" : "src",
+        "element" : "code",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "type",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "effectiveTime",
+      "source" : [{
+        "context" : "src",
+        "element" : "effectiveTime",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "period",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "hospitalization",
+      "source" : [{
+        "context" : "src",
+        "condition" : "admissionReferralSourceCode.exists() or dischargeDispositionCode.exists()"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "hospitalization",
+        "variable" : "hosp"
+      }],
+      "rule" : [{
+        "name" : "adminReferral",
+        "source" : [{
+          "context" : "src",
+          "element" : "admissionReferralSourceCode",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "hosp",
+          "contextType" : "variable",
+          "element" : "admitSource",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "discDisposition",
+        "source" : [{
+          "context" : "src",
+          "element" : "dischargeDispositionCode",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "hosp",
+          "contextType" : "variable",
+          "element" : "dischargeDisposition",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      }]
+    },
+    {
+      "name" : "participant",
+      "source" : [{
+        "context" : "src",
+        "element" : "encounterParticipant",
+        "variable" : "srcPart"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "participant",
+        "variable" : "tgtPart"
+      }],
+      "rule" : [{
+        "name" : "typeCode",
+        "source" : [{
+          "context" : "srcPart",
+          "element" : "typeCode",
+          "variable" : "code"
+        }],
+        "target" : [{
+          "context" : "tgtPart",
+          "contextType" : "variable",
+          "element" : "type",
+          "transform" : "cc",
+          "parameter" : [{
+            "valueString" : "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"
+          },
+          {
+            "valueId" : "code"
+          }]
+        }]
+      },
+      {
+        "name" : "time",
+        "source" : [{
+          "context" : "srcPart",
+          "element" : "time",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "tgtPart",
+          "contextType" : "variable",
+          "element" : "period",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "entity",
+        "source" : [{
+          "context" : "srcPart",
+          "element" : "assignedEntity",
+          "variable" : "entity"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "e"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "practitioner",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Practitioner"
+          }]
+        },
+        {
+          "context" : "practitioner",
+          "contextType" : "variable",
+          "element" : "id",
+          "variable" : "uuid2",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid2"
+          }]
+        }],
+        "rule" : [{
+          "name" : "entry",
+          "source" : [{
+            "context" : "entity"
+          }],
+          "target" : [{
+            "context" : "tgtPart",
+            "contextType" : "variable",
+            "element" : "individual",
+            "variable" : "reference",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "reference",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %practitioner.id"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "ClinicalDocumentEntityPractitioner",
+            "variable" : ["entity",
+            "practitioner"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "location",
+      "source" : [{
+        "context" : "src",
+        "element" : "location",
+        "variable" : "srcLocation"
+      }],
+      "rule" : [{
+        "name" : "facility",
+        "source" : [{
+          "context" : "srcLocation",
+          "element" : "healthCareFacility",
+          "variable" : "facility"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "e"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "location",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Location"
+          }]
+        },
+        {
+          "context" : "location",
+          "contextType" : "variable",
+          "element" : "id",
+          "variable" : "uuid2",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid2"
+          }]
+        }],
+        "rule" : [{
+          "name" : "facLocation",
+          "source" : [{
+            "context" : "facility"
+          }],
+          "target" : [{
+            "context" : "tgt",
+            "contextType" : "variable",
+            "element" : "location",
+            "variable" : "tgtLocation"
+          },
+          {
+            "context" : "tgtLocation",
+            "contextType" : "variable",
+            "element" : "location",
+            "variable" : "reference",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "reference",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %location.id"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "ClinicalDocumentLocation",
+            "variable" : ["facility",
+            "bundle",
+            "location"]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentLocation",
+    "input" : [{
+      "name" : "src",
+      "type" : "HealthCareFacility",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Location",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "id",
+      "source" : [{
+        "context" : "src",
+        "element" : "id",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "identifier",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "code",
+      "source" : [{
+        "context" : "src",
+        "element" : "code",
+        "variable" : "vvv"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "type",
+        "variable" : "vvv",
+        "transform" : "create"
+      }]
+    },
+    {
+      "name" : "location",
+      "source" : [{
+        "context" : "src",
+        "element" : "location",
+        "variable" : "location"
+      }],
+      "rule" : [{
+        "name" : "addr",
+        "source" : [{
+          "context" : "location",
+          "element" : "addr",
+          "variable" : "vvv"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "address",
+          "variable" : "vvv",
+          "transform" : "create"
+        }]
+      },
+      {
+        "name" : "org",
+        "source" : [{
+          "context" : "location",
+          "element" : "serviceProviderOrganization",
+          "variable" : "srcOrg"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "e"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "organization",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Organization"
+          }]
+        },
+        {
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "id",
+          "variable" : "uuid3",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid3"
+          }]
+        }],
+        "rule" : [{
+          "name" : "organization",
+          "source" : [{
+            "context" : "srcOrg"
+          }],
+          "target" : [{
+            "context" : "tgt",
+            "contextType" : "variable",
+            "element" : "managingOrganization",
+            "variable" : "reference",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Reference"
+            }]
+          },
+          {
+            "context" : "reference",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "evaluate",
+            "parameter" : [{
+              "valueString" : "'urn:uuid:' + %organization.id"
+            }]
+          }],
+          "dependent" : [{
+            "name" : "ClinicalDocumentOrganization",
+            "variable" : ["srcOrg",
+            "organization"]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprTime",
+    "input" : [{
+      "name" : "src",
+      "type" : "TSDateTime",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-time"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "value",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "dateTime"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "TSDateTime",
+        "variable" : ["src",
+        "value"]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprSectionId",
+    "input" : [{
+      "name" : "src",
+      "type" : "II",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-sectionid"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "value",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Identifier"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "II",
+        "variable" : ["src",
+        "value"]
+      }]
+    }]
+  },
+  {
+    "name" : "NarrativeLink",
+    "input" : [{
+      "name" : "url",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "url"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://hl7.org/fhir/StructureDefinition/narrativeLink"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "url"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "value",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "url"
+        }]
+      },
+      {
+        "context" : "value",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "url"
+        }]
+      }]
+    }]
+  }]
+}

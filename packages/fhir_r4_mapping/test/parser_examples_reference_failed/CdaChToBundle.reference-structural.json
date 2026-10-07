@@ -1,0 +1,1309 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "CdaChToBundle",
+  "text" : {
+    "status" : "additional",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChToBundle&quot; = &quot;CdaChToBundle&quot;\n\n\n// CDA-CH document, 2.16.756.5.30.1.1.10.1.14\n// 2020-01-16 Oliver Egger, copyright ahdis ag, Apache License\n// CDA-CH:  https://art-decor.org/art-decor/decor-templates--hl7chcda-\n// FHIR CH-Core: http://fhir.ch/ig/ch-core/index.html\n\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument&quot; alias ClinicalDocument as source\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Section&quot; alias Section as queried\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/PatientRole&quot; alias PatientRole as queried\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/DataEnterer&quot; alias DataEnterer as queried\nuses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias Bundle as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Composition&quot; alias Composition as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Person&quot; alias Person as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot; alias Practitioner as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot; alias PractitionerRole as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot; alias Organization as produced\n\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes&quot;\nimports &quot;http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle&quot;\n\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-document.html\ngroup CdaChToBundle(source cda : ClinicalDocument, target bundle : Bundle) {\n  cda -&gt;  bundle.entry as e,  e.resource = create('Composition') as composition,  composition.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Patient') as patient,  patient.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2) then ClinicalDocumentChToBundle(cda, patient, composition, bundle) &quot;ClinicalDocumentToBody&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-document.html\ngroup ClinicalDocumentChToBundle(source cda : ClinicalDocument, target patient : Patient, target composition : Composition, target bundle : Bundle) extends ClinicalDocumentToBundle {\n  cda then ClinicalDocumentCompositionCh(cda, composition, patient, bundle) &quot;composition&quot;;\n  cda.component as component then {\n    component.structuredBody as body then {\n      body.component as component then {\n        component.section as srcSection where (templateId.where(root = '2.16.756.5.30.1.1.10.3.2')) -&gt; composition.section as tgtSection then ClinicalDocumentSection(cda, srcSection, patient, tgtSection, bundle);\n        component.section as srcSection where (templateId.where(root = '2.16.756.5.30.1.1.10.3.45')) -&gt; composition.section as tgtSection then SectionOriginalRepresentation(cda, srcSection, patient, tgtSection, bundle);\n      };\n    } &quot;body&quot;;\n  };\n}\n\n// _________________________ Section Level Templates _________________________\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-definitions.html#Composition.section\n// TODO: not excplicitly modeled in CH-Core\ngroup SectionOriginalRepresentation(source cda : ClinicalDocument, source src : Section, source patient : Patient, target tgt, target bundle : Bundle) extends ClinicalDocumentSection {\n  src.entry as cdaEntry -&gt;  bundle.entry as e,  e.resource = create('Binary') as binary,  binary.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid) as urnuuid,  tgt.entry = create('Reference') as reference,  reference.reference = urnuuid then {\n    cdaEntry.observationMedia as observationMedia then {\n      observationMedia then ObservationMedia(observationMedia, binary) &quot;observationMedia&quot;;\n      observationMedia.ID as value -&gt; reference.extension as ext then NarrativeLink(value, ext) &quot;narrativeLink&quot;;\n    };\n  } &quot;cdaEntry&quot;;\n}\n\n// _________________________ Entry Level Templates   ________________________\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.4.83\n// TODO: not excplicitly modeled in CH-Core\ngroup ObservationMedia(source observationMedia, target binary : Binary) {\n  observationMedia.value as value then {\n    value.mediaType as mediaType -&gt; binary.contentType = mediaType &quot;contentType&quot;;\n    value -&gt; binary.data = (value.dataBase64Binary) &quot;dataString&quot;;\n  };\n  observationMedia.languageCode as languageCode then {\n    languageCode.code as lang -&gt; binary.language = lang &quot;lang&quot;;\n  };\n}\n\n// _________________________ Header Level Templates _________________________\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-confidentialitycode.html\ngroup ChExtEprConfidentialityCode(source src : CE, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-confidentialitycode' &quot;url&quot;;\n  src -&gt; ext.value = create('CodeableConcept') as value then CECodeableConcept(src, value) &quot;code&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-versionnumber.html\ngroup ChExtEprVersionNumber(source src : INT, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber' &quot;url&quot;;\n  src -&gt; ext.value = create('unsignedInt') as value then INT(src, value) &quot;value&quot;;\n}\n\ngroup ChExtEprVersionNumber1(source src, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber' &quot;url&quot;;\n  src -&gt;  ext.value = create('unsignedInt') as value,  value.value = '1' &quot;value&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html\ngroup ChExtEprInformationRecipient(source src : IntendedRecipient, target patient : Patient, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' &quot;url&quot;;\n  src -&gt;  ext.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %patient.id) &quot;value&quot;;\n  src.addr as addr -&gt; patient.address as address then ADAddress(addr, address) &quot;address&quot;;\n  src.informationRecipient as informationRecipient then {\n    informationRecipient.name as cdaname -&gt; patient.name as fhirname then ENHumanName(cdaname, fhirname);\n  };\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-ext-epr-informationrecipient.html\ngroup ChExtEprInformationRecipientOrganization(source src : IntendedRecipient, target organization : Organization, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient' &quot;url&quot;;\n  src -&gt;  ext.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %organization.id) &quot;value&quot;;\n  src.receivedOrganization as receivedOrganization then ClinicalDocumentOrganization(receivedOrganization, organization) &quot;organization&quot;;\n}\n\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?section=templates&amp;id=2.16.756.5.30.1.1.10.2.7\n// target: http://build.fhir.org/ig/hl7ch/ch-core/StructureDefinition-ch-ext-epr-dataenterer.html\ngroup ChExtEprDataEnterer(source src : DataEnterer, target bundle : Bundle, target practitionerRole : PractitionerRole, target ext : Extension) {\n  src -&gt; ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer' &quot;url&quot;;\n  src.assignedEntity as assignedEntity -&gt;  ext.extension as ext,  ext.url = 'enterer',  ext.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %practitionerRole.id) &quot;PractitionerRole&quot;;\n  src.time as time -&gt; ext.extension as exttime then ChExtEprTime(time, exttime);\n  src.assignedEntity as assignedEntity then {\n    assignedEntity -&gt;  bundle.entry as e,  e.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid) then ClinicalDocumentEntityPractitioner(assignedEntity, practitioner) &quot;Practitioner&quot;;\n    assignedEntity.representedOrganization as representedOrganization -&gt;  bundle.entry as e,  e.resource = create('Organization') as organization,  organization.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as referenceOrg,  referenceOrg.reference = append('urn:uuid:', uuid2) then ClinicalDocumentOrganization(representedOrganization, organization) &quot;Organization&quot;;\n  };\n}\n\n// _________________________ Template Type not specified  ___________________\n// source: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36\n// target: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-epr.html\ngroup ClinicalDocumentCompositionCh(source src : ClinicalDocument, target tgt : Composition, target patientResource : Patient, target bundle : Bundle) {\n  src.confidentialityCode as confidentialityCode then {\n    confidentialityCode.code as v where ('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code = src.confidentialityCode.code).exists()) -&gt;  tgt.confidentiality = translate(v, 'http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir', 'code') as fhirconf,  fhirconf.extension as ext then ChExtEprConfidentialityCode(confidentialityCode, ext) &quot;confCode&quot;;\n  };\n  src.versionNumber as versionNumber where (versionNumber &gt; 1) -&gt; tgt.extension as ext2 then ChExtEprVersionNumber(versionNumber, ext2);\n  src.informationRecipient as informationRecipient -&gt; bundle.entry as e then {\n    informationRecipient.intendedRecipient as intendedRecipient where $this.receivedOrganization.exists() = false -&gt;  e.resource = create('Patient') as recipient,  recipient.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  tgt.extension as ext then ChExtEprInformationRecipient(intendedRecipient, recipient, ext) &quot;informationRecipient&quot;;\n    informationRecipient.intendedRecipient as intendedRecipient then {\n      intendedRecipient.receivedOrganization -&gt;  e.resource = create('Organization') as recipient,  recipient.id = uuid() as uuid2,  e.fullUrl = append('urn:uuid:', uuid2),  tgt.extension as ext then ChExtEprInformationRecipientOrganization(intendedRecipient, recipient, ext) &quot;informationRecipientOrganization&quot;;\n    } &quot;intendedRecipientAsOrganization&quot;;\n  } &quot;entry&quot;;\n  src.dataEnterer as dataEnterer -&gt;  bundle.entry as e,  e.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  tgt.extension as ext then ChExtEprDataEnterer(dataEnterer, bundle, practitionerRole, ext);\n}\n</pre></div>"
+  },
+  "url" : "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaChToBundle",
+  "name" : "CdaChToBundle",
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+    "mode" : "source",
+    "alias" : "ClinicalDocument"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Section",
+    "mode" : "queried",
+    "alias" : "Section"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/PatientRole",
+    "mode" : "queried",
+    "alias" : "PatientRole"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/DataEnterer",
+    "mode" : "queried",
+    "alias" : "DataEnterer"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Composition",
+    "mode" : "produced",
+    "alias" : "Composition"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Patient",
+    "mode" : "produced",
+    "alias" : "Patient"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Person",
+    "mode" : "produced",
+    "alias" : "Person"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+    "mode" : "produced",
+    "alias" : "Practitioner"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Practitioner",
+    "mode" : "produced",
+    "alias" : "PractitionerRole"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Organization",
+    "mode" : "produced",
+    "alias" : "Organization"
+  }],
+  "import" : ["http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToFhirTypes",
+  "http://fhir.ch/ig/cda-fhir-maps/StructureMap/CdaToBundle"],
+  "group" : [{
+    "name" : "CdaChToBundle",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "ClinicalDocumentToBody",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "composition",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Composition"
+        }]
+      },
+      {
+        "context" : "composition",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      },
+      {
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e2"
+      },
+      {
+        "context" : "e2",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "patient",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Patient"
+        }]
+      },
+      {
+        "context" : "patient",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid2",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e2",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid2"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentChToBundle",
+        "variable" : ["cda",
+        "patient",
+        "composition",
+        "bundle"]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentChToBundle",
+    "extends" : "ClinicalDocumentToBundle",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "composition",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "composition",
+      "source" : [{
+        "context" : "cda"
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentCompositionCh",
+        "variable" : ["cda",
+        "composition",
+        "patient",
+        "bundle"]
+      }]
+    },
+    {
+      "name" : "component",
+      "source" : [{
+        "context" : "cda",
+        "element" : "component",
+        "variable" : "component"
+      }],
+      "rule" : [{
+        "name" : "body",
+        "source" : [{
+          "context" : "component",
+          "element" : "structuredBody",
+          "variable" : "body"
+        }],
+        "rule" : [{
+          "name" : "component",
+          "source" : [{
+            "context" : "body",
+            "element" : "component",
+            "variable" : "component"
+          }],
+          "rule" : [{
+            "name" : "section",
+            "source" : [{
+              "context" : "component",
+              "element" : "section",
+              "variable" : "srcSection",
+              "condition" : "(templateId.where(root = '2.16.756.5.30.1.1.10.3.2'))"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "section",
+              "variable" : "tgtSection"
+            }],
+            "dependent" : [{
+              "name" : "ClinicalDocumentSection",
+              "variable" : ["cda",
+              "srcSection",
+              "patient",
+              "tgtSection",
+              "bundle"]
+            }]
+          },
+          {
+            "name" : "section",
+            "source" : [{
+              "context" : "component",
+              "element" : "section",
+              "variable" : "srcSection",
+              "condition" : "(templateId.where(root = '2.16.756.5.30.1.1.10.3.45'))"
+            }],
+            "target" : [{
+              "context" : "composition",
+              "contextType" : "variable",
+              "element" : "section",
+              "variable" : "tgtSection"
+            }],
+            "dependent" : [{
+              "name" : "SectionOriginalRepresentation",
+              "variable" : ["cda",
+              "srcSection",
+              "patient",
+              "tgtSection",
+              "bundle"]
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "SectionOriginalRepresentation",
+    "extends" : "ClinicalDocumentSection",
+    "input" : [{
+      "name" : "cda",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "src",
+      "type" : "Section",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "cdaEntry",
+      "source" : [{
+        "context" : "src",
+        "element" : "entry",
+        "variable" : "cdaEntry"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "binary",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Binary"
+        }]
+      },
+      {
+        "context" : "binary",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "variable" : "urnuuid",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueId" : "urnuuid"
+        }]
+      }],
+      "rule" : [{
+        "name" : "observationMedia",
+        "source" : [{
+          "context" : "cdaEntry",
+          "element" : "observationMedia",
+          "variable" : "observationMedia"
+        }],
+        "rule" : [{
+          "name" : "observationMedia",
+          "source" : [{
+            "context" : "observationMedia"
+          }],
+          "dependent" : [{
+            "name" : "ObservationMedia",
+            "variable" : ["observationMedia",
+            "binary"]
+          }]
+        },
+        {
+          "name" : "narrativeLink",
+          "source" : [{
+            "context" : "observationMedia",
+            "element" : "ID",
+            "variable" : "value"
+          }],
+          "target" : [{
+            "context" : "reference",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "NarrativeLink",
+            "variable" : ["value",
+            "ext"]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ObservationMedia",
+    "input" : [{
+      "name" : "observationMedia",
+      "mode" : "source"
+    },
+    {
+      "name" : "binary",
+      "type" : "Binary",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "value",
+      "source" : [{
+        "context" : "observationMedia",
+        "element" : "value",
+        "variable" : "value"
+      }],
+      "rule" : [{
+        "name" : "contentType",
+        "source" : [{
+          "context" : "value",
+          "element" : "mediaType",
+          "variable" : "mediaType"
+        }],
+        "target" : [{
+          "context" : "binary",
+          "contextType" : "variable",
+          "element" : "contentType",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "mediaType"
+          }]
+        }]
+      },
+      {
+        "name" : "dataString",
+        "source" : [{
+          "context" : "value"
+        }],
+        "target" : [{
+          "context" : "binary",
+          "contextType" : "variable",
+          "element" : "data",
+          "transform" : "evaluate",
+          "parameter" : [{
+            "valueString" : "value.dataBase64Binary"
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "languageCode",
+      "source" : [{
+        "context" : "observationMedia",
+        "element" : "languageCode",
+        "variable" : "languageCode"
+      }],
+      "rule" : [{
+        "name" : "lang",
+        "source" : [{
+          "context" : "languageCode",
+          "element" : "code",
+          "variable" : "lang"
+        }],
+        "target" : [{
+          "context" : "binary",
+          "contextType" : "variable",
+          "element" : "language",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "lang"
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprConfidentialityCode",
+    "input" : [{
+      "name" : "src",
+      "type" : "CE",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-confidentialitycode"
+        }]
+      }]
+    },
+    {
+      "name" : "code",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "value",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "CodeableConcept"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "CECodeableConcept",
+        "variable" : ["src",
+        "value"]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprVersionNumber",
+    "input" : [{
+      "name" : "src",
+      "type" : "INT",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "value",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "unsignedInt"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "INT",
+        "variable" : ["src",
+        "value"]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprVersionNumber1",
+    "input" : [{
+      "name" : "src",
+      "mode" : "source"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "value",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "unsignedInt"
+        }]
+      },
+      {
+        "context" : "value",
+        "contextType" : "variable",
+        "element" : "value",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "1"
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprInformationRecipient",
+    "input" : [{
+      "name" : "src",
+      "type" : "IntendedRecipient",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %patient.id"
+        }]
+      }]
+    },
+    {
+      "name" : "address",
+      "source" : [{
+        "context" : "src",
+        "element" : "addr",
+        "variable" : "addr"
+      }],
+      "target" : [{
+        "context" : "patient",
+        "contextType" : "variable",
+        "element" : "address",
+        "variable" : "address"
+      }],
+      "dependent" : [{
+        "name" : "ADAddress",
+        "variable" : ["addr",
+        "address"]
+      }]
+    },
+    {
+      "name" : "informationRecipient",
+      "source" : [{
+        "context" : "src",
+        "element" : "informationRecipient",
+        "variable" : "informationRecipient"
+      }],
+      "rule" : [{
+        "name" : "name",
+        "source" : [{
+          "context" : "informationRecipient",
+          "element" : "name",
+          "variable" : "cdaname"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "name",
+          "variable" : "fhirname"
+        }],
+        "dependent" : [{
+          "name" : "ENHumanName",
+          "variable" : ["cdaname",
+          "fhirname"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprInformationRecipientOrganization",
+    "input" : [{
+      "name" : "src",
+      "type" : "IntendedRecipient",
+      "mode" : "source"
+    },
+    {
+      "name" : "organization",
+      "type" : "Organization",
+      "mode" : "target"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient"
+        }]
+      }]
+    },
+    {
+      "name" : "value",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %organization.id"
+        }]
+      }]
+    },
+    {
+      "name" : "organization",
+      "source" : [{
+        "context" : "src",
+        "element" : "receivedOrganization",
+        "variable" : "receivedOrganization"
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentOrganization",
+        "variable" : ["receivedOrganization",
+        "organization"]
+      }]
+    }]
+  },
+  {
+    "name" : "ChExtEprDataEnterer",
+    "input" : [{
+      "name" : "src",
+      "type" : "DataEnterer",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    },
+    {
+      "name" : "practitionerRole",
+      "type" : "PractitionerRole",
+      "mode" : "target"
+    },
+    {
+      "name" : "ext",
+      "type" : "Extension",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "url",
+      "source" : [{
+        "context" : "src"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer"
+        }]
+      }]
+    },
+    {
+      "name" : "PractitionerRole",
+      "source" : [{
+        "context" : "src",
+        "element" : "assignedEntity",
+        "variable" : "assignedEntity"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      },
+      {
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "enterer"
+        }]
+      },
+      {
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "value",
+        "variable" : "reference",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Reference"
+        }]
+      },
+      {
+        "context" : "reference",
+        "contextType" : "variable",
+        "element" : "reference",
+        "transform" : "evaluate",
+        "parameter" : [{
+          "valueString" : "'urn:uuid:' + %practitionerRole.id"
+        }]
+      }]
+    },
+    {
+      "name" : "time",
+      "source" : [{
+        "context" : "src",
+        "element" : "time",
+        "variable" : "time"
+      }],
+      "target" : [{
+        "context" : "ext",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "exttime"
+      }],
+      "dependent" : [{
+        "name" : "ChExtEprTime",
+        "variable" : ["time",
+        "exttime"]
+      }]
+    },
+    {
+      "name" : "assignedEntity",
+      "source" : [{
+        "context" : "src",
+        "element" : "assignedEntity",
+        "variable" : "assignedEntity"
+      }],
+      "rule" : [{
+        "name" : "Practitioner",
+        "source" : [{
+          "context" : "assignedEntity"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "e"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "practitioner",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Practitioner"
+          }]
+        },
+        {
+          "context" : "practitioner",
+          "contextType" : "variable",
+          "element" : "id",
+          "variable" : "uuid",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid"
+          }]
+        },
+        {
+          "context" : "practitionerRole",
+          "contextType" : "variable",
+          "element" : "practitioner",
+          "variable" : "reference",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Reference"
+          }]
+        },
+        {
+          "context" : "reference",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "ClinicalDocumentEntityPractitioner",
+          "variable" : ["assignedEntity",
+          "practitioner"]
+        }]
+      },
+      {
+        "name" : "Organization",
+        "source" : [{
+          "context" : "assignedEntity",
+          "element" : "representedOrganization",
+          "variable" : "representedOrganization"
+        }],
+        "target" : [{
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "e"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "organization",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Organization"
+          }]
+        },
+        {
+          "context" : "organization",
+          "contextType" : "variable",
+          "element" : "id",
+          "variable" : "uuid2",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid2"
+          }]
+        },
+        {
+          "context" : "practitionerRole",
+          "contextType" : "variable",
+          "element" : "organization",
+          "variable" : "referenceOrg",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Reference"
+          }]
+        },
+        {
+          "context" : "referenceOrg",
+          "contextType" : "variable",
+          "element" : "reference",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid2"
+          }]
+        }],
+        "dependent" : [{
+          "name" : "ClinicalDocumentOrganization",
+          "variable" : ["representedOrganization",
+          "organization"]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "ClinicalDocumentCompositionCh",
+    "input" : [{
+      "name" : "src",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "tgt",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "patientResource",
+      "type" : "Patient",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "confidentialityCode",
+      "source" : [{
+        "context" : "src",
+        "element" : "confidentialityCode",
+        "variable" : "confidentialityCode"
+      }],
+      "rule" : [{
+        "name" : "confCode",
+        "source" : [{
+          "context" : "confidentialityCode",
+          "element" : "code",
+          "variable" : "v",
+          "condition" : "('http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.confidentialityCode'.resolve().compose.include.concept.where($this.code = src.confidentialityCode.code).exists())"
+        }],
+        "target" : [{
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "confidentiality",
+          "variable" : "fhirconf",
+          "transform" : "translate",
+          "parameter" : [{
+            "valueId" : "v"
+          },
+          {
+            "valueString" : "http://fhir.ch/ig/ch-core/ConceptMap/documententry-confidentialitycode-to-fhir"
+          },
+          {
+            "valueString" : "code"
+          }]
+        },
+        {
+          "context" : "fhirconf",
+          "contextType" : "variable",
+          "element" : "extension",
+          "variable" : "ext"
+        }],
+        "dependent" : [{
+          "name" : "ChExtEprConfidentialityCode",
+          "variable" : ["confidentialityCode",
+          "ext"]
+        }]
+      }]
+    },
+    {
+      "name" : "versionNumber",
+      "source" : [{
+        "context" : "src",
+        "element" : "versionNumber",
+        "variable" : "versionNumber",
+        "condition" : "(versionNumber > 1)"
+      }],
+      "target" : [{
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext2"
+      }],
+      "dependent" : [{
+        "name" : "ChExtEprVersionNumber",
+        "variable" : ["versionNumber",
+        "ext2"]
+      }]
+    },
+    {
+      "name" : "entry",
+      "source" : [{
+        "context" : "src",
+        "element" : "informationRecipient",
+        "variable" : "informationRecipient"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      }],
+      "rule" : [{
+        "name" : "informationRecipient",
+        "source" : [{
+          "context" : "informationRecipient",
+          "element" : "intendedRecipient",
+          "variable" : "intendedRecipient",
+          "condition" : "$this.receivedOrganization.exists() = false"
+        }],
+        "target" : [{
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "recipient",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "Patient"
+          }]
+        },
+        {
+          "context" : "recipient",
+          "contextType" : "variable",
+          "element" : "id",
+          "variable" : "uuid",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "e",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "uuid"
+          }]
+        },
+        {
+          "context" : "tgt",
+          "contextType" : "variable",
+          "element" : "extension",
+          "variable" : "ext"
+        }],
+        "dependent" : [{
+          "name" : "ChExtEprInformationRecipient",
+          "variable" : ["intendedRecipient",
+          "recipient",
+          "ext"]
+        }]
+      },
+      {
+        "name" : "intendedRecipientAsOrganization",
+        "source" : [{
+          "context" : "informationRecipient",
+          "element" : "intendedRecipient",
+          "variable" : "intendedRecipient"
+        }],
+        "rule" : [{
+          "name" : "informationRecipientOrganization",
+          "source" : [{
+            "context" : "intendedRecipient",
+            "element" : "receivedOrganization"
+          }],
+          "target" : [{
+            "context" : "e",
+            "contextType" : "variable",
+            "element" : "resource",
+            "variable" : "recipient",
+            "transform" : "create",
+            "parameter" : [{
+              "valueString" : "Organization"
+            }]
+          },
+          {
+            "context" : "recipient",
+            "contextType" : "variable",
+            "element" : "id",
+            "variable" : "uuid2",
+            "transform" : "uuid"
+          },
+          {
+            "context" : "e",
+            "contextType" : "variable",
+            "element" : "fullUrl",
+            "transform" : "append",
+            "parameter" : [{
+              "valueString" : "urn:uuid:"
+            },
+            {
+              "valueId" : "uuid2"
+            }]
+          },
+          {
+            "context" : "tgt",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "dependent" : [{
+            "name" : "ChExtEprInformationRecipientOrganization",
+            "variable" : ["intendedRecipient",
+            "recipient",
+            "ext"]
+          }]
+        }]
+      }]
+    },
+    {
+      "name" : "dataEnterer",
+      "source" : [{
+        "context" : "src",
+        "element" : "dataEnterer",
+        "variable" : "dataEnterer"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "e"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "practitionerRole",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "PractitionerRole"
+        }]
+      },
+      {
+        "context" : "practitionerRole",
+        "contextType" : "variable",
+        "element" : "id",
+        "variable" : "uuid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "e",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "uuid"
+        }]
+      },
+      {
+        "context" : "tgt",
+        "contextType" : "variable",
+        "element" : "extension",
+        "variable" : "ext"
+      }],
+      "dependent" : [{
+        "name" : "ChExtEprDataEnterer",
+        "variable" : ["dataEnterer",
+        "bundle",
+        "practitionerRole",
+        "ext"]
+      }]
+    }]
+  }]
+}
