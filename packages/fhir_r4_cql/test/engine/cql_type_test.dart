@@ -697,7 +697,7 @@ void main() {
     test('splits string into list of single-character CqlStrings', () async {
       final toChars = ToChars(operand: LiteralString('ABC'));
       final result = await toChars.execute(_ctx());
-      expect(result, isA<List>());
+      expect(result, isA<List<dynamic>>());
       final list = result as List;
       expect(list.length, equals(3));
       expect(list[0], equals(CqlString('A')));
@@ -708,7 +708,7 @@ void main() {
     test('empty string returns empty list', () async {
       final toChars = ToChars(operand: LiteralString(''));
       final result = await toChars.execute(_ctx());
-      expect(result, isA<List>());
+      expect(result, isA<List<dynamic>>());
       expect((result as List), isEmpty);
     });
 
