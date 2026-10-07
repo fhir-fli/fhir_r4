@@ -28,8 +28,7 @@ Future<void> main() async {
   }
 }
 
-/// Maps our parser does not parse either (measured 2026-10-06).
-const _parseThrows = <String, String>{
-  'SDOHCCHungerVitalSignMap.map': 'parse error at line 6, column 1',
-  'SDOHCCPRAPAREMap.map': 'parse error at line 9, column 1',
-};
+/// Maps our parser does not parse either. Empty since 2026-10-07: the two
+/// SDOHCC maps write their `///` metadata before the `map` line, which the
+/// parser now accepts (fhir_mapping, metadata-before-map).
+const _parseThrows = <String, String>{};
