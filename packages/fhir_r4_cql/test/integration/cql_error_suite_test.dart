@@ -62,6 +62,10 @@ void main() {
 }
 
 const _knownFailures = <String, String>{
-  'Successor_ofr': 'Integer overflow wraps instead of throwing',
-  'Predecessor_ufr': 'Integer underflow wraps instead of throwing',
+  // CQL reference 09-b, Successor: "If the argument is already the maximum
+  // value for the type, a null is returned" (ELM 04 says the same); the
+  // reference engine's suite expects a run-time error. The engine follows
+  // the spec and answers null (2026-10-07).
+  'Successor_ofr': 'the spec says null; this suite expects a run-time error',
+  'Predecessor_ufr': 'the spec says null; this suite expects a run-time error',
 };

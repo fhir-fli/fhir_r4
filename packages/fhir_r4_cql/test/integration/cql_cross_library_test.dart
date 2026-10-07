@@ -48,8 +48,7 @@ void main() {
 
   // ── IncludedConceptRefTest ──
   group('IncludedConceptRefTest', () {
-    test('resolves concept from included library',
-        skip: 'Cross-library concept resolution returns null', () async {
+    test('resolves concept from included library', () async {
       final source =
           File('cql/cqf-engine/IncludedConceptRefTest.cql').readAsStringSync();
       final library =

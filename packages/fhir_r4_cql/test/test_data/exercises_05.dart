@@ -20,6 +20,24 @@ final exercises05 = <String, dynamic>{
 };
 
 final context05 = <String, dynamic>{
+  // The published value set http://hl7.org/fhir/ValueSet/marital-status
+  // (R4 valuesets.json, read 2026-10-07): every code of v3-MaritalStatus
+  // (A, D, I, L, M, P, S, T, U, W) and v3-NullFlavor UNK. Without an
+  // expansion `"Marital Status - Married" in "Marital Status"` is
+  // undetermined (null), not true.
+  '_valueSets': <String, dynamic>{
+    'http://hl7.org/fhir/ValueSet/marital-status': [
+      for (final code in ['A', 'D', 'I', 'L', 'M', 'P', 'S', 'T', 'U', 'W'])
+        {
+          'system': 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus',
+          'code': code,
+        },
+      {
+        'system': 'http://terminology.hl7.org/CodeSystem/v3-NullFlavor',
+        'code': 'UNK',
+      },
+    ],
+  },
   'Patient': {
     "resourceType": "Patient",
     "id": "example",

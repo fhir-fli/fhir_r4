@@ -82,7 +82,6 @@ const _knownFailures = <String, String>{
   'test_QtyIvlExpand_ClosedSingleMGPerGTrunc':
       'Interval Expand cross-unit edge cases',
   // Type conversion edge cases (1 test) - ToList promotion in CQL-to-ELM translator
-  'test_ToList_LengthOfNull': 'Type conversion edge cases',
   // Null list inclusion semantics (8 tests) — CQF returns false, CQL spec says null;
   // cannot fix without breaking unit tests (null as List<T> is indistinguishable from null at runtime)
   'test_IncludedIn_NullIncluded': 'Null list inclusion semantics',

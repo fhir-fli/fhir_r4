@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:cql/src/internal.dart';
+import 'package:ucum/ucum.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 String loadCqlFile(String filename) {
@@ -38,6 +39,32 @@ bool areValuesEqual(dynamic result, dynamic answer) {
   // where the engine answers with a CQL System value (CqlBoolean for a
   // bool, CqlInteger for an int, CqlString for a String); the comparison
   // is by value. A list is compared element by element the same way.
+  // A FHIR primitive the answers were written with (AdministrativeGender,
+  // FhirString…) against the System value the boundary now answers: the
+  // same text (Exercises05 "Patient Gender", 2026-10-07).
+  if (result is CqlPrimitive && answer is FhirBase) {
+    final text = answer.toJson()['value'];
+    return result.valueString == '$text';
+  }
+  // A FHIR composite the answers were written with (CodeableConcept,
+  // Quantity, Period…) against the System value the boundary now answers:
+  // converted the same way and compared as System values.
+  if (result is CqlType && answer is FhirBase) {
+    return areValuesEqual(
+        result, const R4ModelResolver().toCqlSystemType(answer));
+  }
+  // The System composites (Concept, Code, Quantity, Ratio, Interval) print
+  // their full content; two are the same value when they print the same
+  // (no == on them). Dates and times keep their tolerance branch below.
+  // A Quantity compares as a quantity (`==` converts units: 100 'cm2' is
+  // 0.01 'm2'); the other composites print their full content.
+  if ((result is CqlConcept ||
+          result is CqlCode ||
+          result is ValidatedRatio ||
+          result is CqlInterval) &&
+      answer.runtimeType == result.runtimeType) {
+    return '$result' == '$answer';
+  }
   if (result is CqlBoolean && answer is bool) {
     return result.valueBoolean == answer;
   }
@@ -69,6 +96,12 @@ bool areValuesEqual(dynamic result, dynamic answer) {
     return (_calculateSeconds(result) - _calculateSeconds(answer)).abs() < 60;
   } else if (result is FhirBase && answer is FhirBase) {
     return result.equalsDeep(answer);
+  } else if (result is Map && answer is FhirBase) {
+    // A resource the context holds as JSON against the typed answer: the
+    // same resource (Exercises05 "Patient", 2026-10-07).
+    return const DeepCollectionEquality().equals(result, answer.toJson());
+  } else if (result is FhirBase && answer is Map) {
+    return const DeepCollectionEquality().equals(result.toJson(), answer);
   }
   return result == answer;
 }

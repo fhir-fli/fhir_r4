@@ -110,10 +110,7 @@ const _elmNotYetEqual = <String, String>{
 
 /// Exercises that execute, with defines that do not yet answer right
 /// (measured 2026-10-06; each is a binding or engine defect to fix).
-const _executionNotYetRight = <String, String>{
-  'Exercises05': 'Patient: the resource is compared as a map',
-  'Exercises09': 'TestPrimitives: null instead of the Patient',
-};
+const _executionNotYetRight = <String, String>{};
 
 /// Exercises whose execution throws (an Error, so nothing can be compared).
 const _executionThrows = <String, String>{};

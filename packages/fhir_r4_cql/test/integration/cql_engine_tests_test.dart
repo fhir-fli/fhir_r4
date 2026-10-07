@@ -38,12 +38,7 @@ void main() {
       'FunctionTestQuantityArg': 'cm',
       'FunctionTestNullQuantityArg': null,
     },
-    knownFailures: {
-      'FunctionTestOverload':
-          'ToString(0.000) produces wrong result for 3-arg overload',
-      'FunctionTestNullQuantityArg':
-          'Null quantity dispatches to wrong overload, returns empty list',
-    },
+    knownFailures: {},
   );
 
   // ── CqlConceptTest ──
@@ -134,10 +129,14 @@ void main() {
     libraryManager,
     {},
     knownFailures: {
+      // Interval[null, null] with untyped nulls is a null interval, and a
+      // point in a null interval is false (09-b, Contains: "If the first
+      // argument is null, the result is false"); this file expects null.
+      // Measured 2026-10-07.
       'Date in Null Interval Test':
-          'Null interval containment returns false instead of null',
+          'the spec says false; this file expects null',
       'DateTime in Null Interval Test':
-          'Null interval containment returns false instead of null',
+          'the spec says false; this file expects null',
     },
   );
 
@@ -178,9 +177,13 @@ void main() {
       'EquivalentIntervals': false,
     },
     knownFailures: {
-      'EquivalentIntervals':
-          'the engine answers true where the reference engine (cql-engine '
-              'Issue39) answers false; restored 2026-10-06, cause not yet measured',
+      // x is [11:00, next day 00:00:00.000) and y is [11:00, 23:59:59.999].
+      // CQL reference 09-b, Equivalent (intervals): "their starting and
+      // ending points, as determined by the Start and End operators, are
+      // equivalent"; End of x is the predecessor of 00:00:00.000, which is
+      // 23:59:59.999, so the engine answers true. This file (cql-engine
+      // Issue39) expects false. Measured 2026-10-07.
+      'EquivalentIntervals': 'the spec says true; this file expects false',
     },
   );
 
@@ -250,7 +253,7 @@ void main() {
 
       expect(results['Simple Expression'], equals(CqlInteger(42)));
     });
-  }, skip: 'Parameter default resolution not yet implemented');
+  });
 
   // ── CqlListDistinguishedOverloads ──
   _testFile(
