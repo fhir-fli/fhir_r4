@@ -1,5 +1,4 @@
 import 'package:fhir_r4/fhir_r4.dart' as r4;
-import 'package:cql/src/internal.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 

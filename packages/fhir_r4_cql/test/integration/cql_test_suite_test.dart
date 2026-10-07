@@ -18,15 +18,12 @@ import '../test_helpers/cql_test_helpers.dart';
 void main() {
   final engineDir = Directory('cql/cqf-engine');
   if (!engineDir.existsSync()) {
-    print('CQF engine tests not downloaded. '
-        'Run: bash utils/download_engine_tests.sh');
-    return;
+    throw StateError('cql/cqf-engine is missing: the suite cannot run');
   }
 
   final suiteFile = File('cql/cqf-engine/CqlTestSuite.cql');
   if (!suiteFile.existsSync()) {
-    print('CqlTestSuite.cql not found');
-    return;
+    throw StateError('CqlTestSuite.cql is missing: the suite cannot run');
   }
 
   final source = suiteFile.readAsStringSync();
@@ -35,7 +32,7 @@ void main() {
   // extracting test names, so commented-out defines are not included.
   final uncommented = source
       .replaceAll(RegExp(r'/\*.*?\*/', dotAll: true), '')
-      .replaceAll(RegExp(r'//.*'), '');
+      .replaceAll(RegExp('//.*'), '');
 
   // Extract all `define test_*:` names from uncommented source
   final testNames = RegExp(r'define (test_\w+):')
@@ -67,13 +64,19 @@ void main() {
         // fails the day the case starts passing. Until 2026-10-07 a pin
         // skipped the case.
         if (pin != null) {
-          expect(areValuesEqual(actual, expected), isFalse,
-              reason: '$name now passes: remove its pin ($pin)');
+          expect(
+            areValuesEqual(actual, expected),
+            isFalse,
+            reason: '$name now passes: remove its pin ($pin)',
+          );
           return;
         }
         // The define answers a System String; compared by value.
-        expect(areValuesEqual(actual, expected), isTrue,
-            reason: 'Expected: $expected\nActual: $actual');
+        expect(
+          areValuesEqual(actual, expected),
+          isTrue,
+          reason: 'Expected: $expected\nActual: $actual',
+        );
       });
     }
   });

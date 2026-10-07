@@ -16,7 +16,7 @@ final _bgObs1 = <String, dynamic>{
           'code': 'laboratory',
           'display': 'Laboratory',
         }
-      ]
+      ],
     }
   ],
   'code': {
@@ -26,7 +26,7 @@ final _bgObs1 = <String, dynamic>{
         'code': '2339-0',
         'display': 'Glucose Bld-mCnc',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'effectiveDateTime': '2021-06-15T10:00:00Z',
@@ -51,7 +51,7 @@ final _bgObs2 = <String, dynamic>{
           'code': 'laboratory',
           'display': 'Laboratory',
         }
-      ]
+      ],
     }
   ],
   'code': {
@@ -61,7 +61,7 @@ final _bgObs2 = <String, dynamic>{
         'code': '2339-0',
         'display': 'Glucose Bld-mCnc',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'effectiveDateTime': '2021-06-10T08:00:00Z',
@@ -87,7 +87,7 @@ final _labObs = <String, dynamic>{
           'code': 'laboratory',
           'display': 'Laboratory',
         }
-      ]
+      ],
     }
   ],
   'code': {
@@ -97,7 +97,7 @@ final _labObs = <String, dynamic>{
         'code': '718-7',
         'display': 'Hemoglobin [Mass/volume] in Blood',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'effectiveDateTime': '2021-06-12T09:00:00Z',
@@ -123,7 +123,7 @@ final _prelimObs = <String, dynamic>{
           'code': 'laboratory',
           'display': 'Laboratory',
         }
-      ]
+      ],
     }
   ],
   'code': {
@@ -133,7 +133,7 @@ final _prelimObs = <String, dynamic>{
         'code': '2339-0',
         'display': 'Glucose Bld-mCnc',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'effectiveDateTime': '2021-06-20T12:00:00Z',
@@ -191,7 +191,7 @@ final _proc1 = <String, dynamic>{
         'code': '80146002',
         'display': 'Appendectomy',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'performedDateTime': '2021-06-15T14:00:00Z',

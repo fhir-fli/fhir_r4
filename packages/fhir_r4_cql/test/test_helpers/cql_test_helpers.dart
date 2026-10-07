@@ -3,9 +3,8 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:cql/src/internal.dart';
-import 'package:ucum/ucum.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+import 'package:ucum/ucum.dart';
 
 String loadCqlFile(String filename) {
   return File('cql/$filename').readAsStringSync();
@@ -51,7 +50,9 @@ bool areValuesEqual(dynamic result, dynamic answer) {
   // converted the same way and compared as System values.
   if (result is CqlType && answer is FhirBase) {
     return areValuesEqual(
-        result, const R4ModelResolver().toCqlSystemType(answer));
+      result,
+      const R4ModelResolver().toCqlSystemType(answer),
+    );
   }
   // The System composites (Concept, Code, Quantity, Ratio, Interval) print
   // their full content; two are the same value when they print the same
@@ -92,7 +93,8 @@ bool areValuesEqual(dynamic result, dynamic answer) {
     }
     return result == answer;
   } else if (result is CqlTime && answer is CqlTime) {
-    // Allow a 1-minute tolerance for time-sensitive expressions like TimeOfDay()
+    // Allow a 1-minute tolerance for time-sensitive expressions like
+    // TimeOfDay()
     return (_calculateSeconds(result) - _calculateSeconds(answer)).abs() < 60;
   } else if (result is FhirBase && answer is FhirBase) {
     return result.equalsDeep(answer);
@@ -111,12 +113,16 @@ bool _areMapsEqual(Map<dynamic, dynamic> result, Map<dynamic, dynamic> answer) {
       .equals(result, Map<dynamic, dynamic>.from(answer));
   if (!equal) {
     if (!const DeepCollectionEquality().equals(
-        result.keys.toSet(), Map<dynamic, dynamic>.from(answer).keys.toSet())) {
+      result.keys.toSet(),
+      Map<dynamic, dynamic>.from(answer).keys.toSet(),
+    )) {
       return false;
     }
     for (final key in result.keys) {
       if (!areValuesEqual(
-          result[key], Map<dynamic, dynamic>.from(answer)[key])) {
+        result[key],
+        Map<dynamic, dynamic>.from(answer)[key],
+      )) {
         return false;
       }
     }

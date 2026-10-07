@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cql/src/internal.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 
@@ -13,9 +12,7 @@ import '../test_helpers/cql_test_helpers.dart';
 void main() {
   final suiteFile = File('cql/cqf-engine/CqlErrorTestSuite.cql');
   if (!suiteFile.existsSync()) {
-    print('CqlErrorTestSuite.cql not found. '
-        'Run: bash utils/download_engine_tests.sh');
-    return;
+    throw StateError('CqlErrorTestSuite.cql is missing: the suite cannot run');
   }
 
   final source = suiteFile.readAsStringSync();
@@ -42,7 +39,9 @@ void main() {
               CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
         };
         final results = (await library.execute(
-            context, const R4ModelResolver())) as Map<String, dynamic>;
+          context,
+          const R4ModelResolver(),
+        )) as Map<String, dynamic>;
 
         // The define should either throw during execution or produce
         // a CqlException/error value. Since we execute the whole library,
@@ -59,8 +58,11 @@ void main() {
         // pin fails the day the case starts erroring. Until 2026-10-07 a
         // pin skipped the case.
         if (pin != null) {
-          expect(errored, isFalse,
-              reason: '$name now errors: remove its pin ($pin)');
+          expect(
+            errored,
+            isFalse,
+            reason: '$name now errors: remove its pin ($pin)',
+          );
           return;
         }
 

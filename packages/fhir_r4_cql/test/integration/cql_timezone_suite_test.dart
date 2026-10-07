@@ -12,9 +12,9 @@ import '../test_helpers/cql_test_helpers.dart';
 void main() {
   final suiteFile = File('cql/cqf-engine/CqlTimeZoneTestSuite.cql');
   if (!suiteFile.existsSync()) {
-    print('CqlTimeZoneTestSuite.cql not found. '
-        'Run: bash utils/download_engine_tests.sh');
-    return;
+    throw StateError(
+      'CqlTimeZoneTestSuite.cql is missing: the suite cannot run',
+    );
   }
 
   final source = suiteFile.readAsStringSync();
@@ -37,13 +37,20 @@ void main() {
 
     for (final name in testNames) {
       final skipReason = _knownFailures[name];
-      test(name, () {
-        final baseName = name.replaceFirst('test_', '');
-        final expected = '$baseName TEST PASSED';
-        final actual = results[name];
-        expect(areValuesEqual(actual, expected), isTrue,
-            reason: 'Expected: $expected Actual: $actual');
-      }, skip: skipReason);
+      test(
+        name,
+        () {
+          final baseName = name.replaceFirst('test_', '');
+          final expected = '$baseName TEST PASSED';
+          final actual = results[name];
+          expect(
+            areValuesEqual(actual, expected),
+            isTrue,
+            reason: 'Expected: $expected Actual: $actual',
+          );
+        },
+        skip: skipReason,
+      );
     }
   });
 }

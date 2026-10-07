@@ -7,7 +7,8 @@ import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 // - Female, age 35 (born 1984-06-15)
 // - Measurement Period: 2019-01-01 to 2020-01-01
 // - AgeInYearsAt(start of MP) = 34, which is in [23, 64]
-// - Has Pap test (cervical cytology) with date 2019-03-15 (within 3 years of MP end)
+// - Has Pap test (cervical cytology) with date 2019-03-15 (within 3 years
+//   of MP end)
 // - No hysterectomy, no congenital absence of cervix
 // → Initial Population = true
 // → Denominator = true
@@ -33,7 +34,7 @@ final _papTest = <String, dynamic>{
         'code': '10524-7',
         'display': 'Microscopy Cervix/Vaginal',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/cervical-screen'},
   'effectiveDateTime': '2019-03-15T10:00:00Z',
@@ -47,7 +48,8 @@ final context11 = <String, dynamic>{
   'Observation': [_papTest],
   'Procedure': <Map<String, dynamic>>[],
   'Condition': <Map<String, dynamic>>[],
-  // Measurement Period parameter: Interval[@2019-01-01T00:00:00.0, @2020-01-01T00:00:00.0)
+  // Measurement Period parameter:
+  // Interval[@2019-01-01T00:00:00.0, @2020-01-01T00:00:00.0)
   'Measurement Period': CqlInterval(
     low: CqlDateTime.fromString('2019-01-01T00:00:00.0'),
     high: CqlDateTime.fromString('2020-01-01T00:00:00.0'),

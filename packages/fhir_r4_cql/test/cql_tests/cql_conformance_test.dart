@@ -13,7 +13,6 @@ library;
 import 'dart:io';
 
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
-import 'package:cql/src/internal.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 import 'package:xml/xml.dart';
@@ -26,16 +25,13 @@ const _unsupportedCapabilities = <String>{};
 
 void main() {
   final testDir = Directory('test/cql_tests');
-  final xmlFiles = testDir
+  testDir
       .listSync()
       .whereType<File>()
       .where((f) => f.path.endsWith('.xml'))
       .toList()
-    ..sort((a, b) => a.path.compareTo(b.path));
-
-  for (final file in xmlFiles) {
-    _loadXmlTestFile(file);
-  }
+    ..sort((a, b) => a.path.compareTo(b.path))
+    ..forEach(_loadXmlTestFile);
 }
 
 // ---------------------------------------------------------------------------
@@ -53,9 +49,7 @@ void _loadXmlTestFile(File file) {
       final groupName = groupElement.getAttribute('name') ?? 'Unknown';
 
       group(groupName, () {
-        for (final testElement in groupElement.findElements('test')) {
-          _createTest(testElement);
-        }
+        groupElement.findElements('test').forEach(_createTest);
       });
     }
   });
@@ -102,7 +96,7 @@ void _createTest(XmlElement testElement) {
           'library TestLib\ndefine "Test": $expression',
         );
         await library.execute(null, const R4ModelResolver());
-      } catch (_) {
+      } on Object catch (_) {
         // Error is expected — test passes
       }
       return;
@@ -112,14 +106,18 @@ void _createTest(XmlElement testElement) {
     final library = parseAndBuildLibrary(
       'library TestLib\ndefine "Test": $expression',
     );
-    final result = await library.execute(null, const R4ModelResolver());
+    final result = await library.execute(null, const R4ModelResolver())
+        as Map<String, dynamic>;
     final actual = result['Test'];
 
     // Handle expected null
     if (expectedOutput == null || expectedOutput == 'null') {
-      expect(actual, isNull,
-          reason: 'Expression: $expression\n'
-              'Expected null but got: $actual (${actual.runtimeType})');
+      expect(
+        actual,
+        isNull,
+        reason: 'Expression: $expression\n'
+            'Expected null but got: $actual (${actual.runtimeType})',
+      );
       return;
     }
 
@@ -205,9 +203,10 @@ Future<dynamic> _parseExpectedOutput(String output) async {
     final library = parseAndBuildLibrary(
       'library TestOutput\ndefine "Output": $normalized',
     );
-    final result = await library.execute(null, const R4ModelResolver());
+    final result = await library.execute(null, const R4ModelResolver())
+        as Map<String, dynamic>;
     return result['Output'];
-  } catch (e) {
+  } on Object catch (e) {
     // If CQL parsing fails for the expected output, return the raw string
     // so the test fails with a clear message about what we couldn't parse.
     return 'UNPARSEABLE_OUTPUT: $output (error: $e)';
@@ -218,7 +217,7 @@ Future<dynamic> _parseExpectedOutput(String output) async {
 String _unescapeCqlString(String s) {
   final buf = StringBuffer();
   for (var i = 0; i < s.length; i++) {
-    if (s[i] == '\\' && i + 1 < s.length) {
+    if (s[i] == r'\' && i + 1 < s.length) {
       final next = s[i + 1];
       switch (next) {
         case "'":
@@ -236,8 +235,8 @@ String _unescapeCqlString(String s) {
         case 't':
           buf.write('\t');
           i++;
-        case '\\':
-          buf.write('\\');
+        case r'\':
+          buf.write(r'\');
           i++;
         case 'u':
           if (i + 5 < s.length) {
@@ -247,13 +246,13 @@ String _unescapeCqlString(String s) {
               buf.write(String.fromCharCode(code));
               i += 5;
             } else {
-              buf.write('\\');
+              buf.write(r'\');
             }
           } else {
-            buf.write('\\');
+            buf.write(r'\');
           }
         default:
-          buf.write('\\');
+          buf.write(r'\');
       }
     } else {
       buf.write(s[i]);

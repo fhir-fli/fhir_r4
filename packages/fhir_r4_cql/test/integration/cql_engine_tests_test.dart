@@ -12,9 +12,7 @@ import '../test_helpers/cql_test_helpers.dart';
 void main() {
   final engineDir = Directory('cql/cqf-engine');
   if (!engineDir.existsSync()) {
-    print('CQF engine tests not downloaded. '
-        'Run: bash utils/download_engine_tests.sh');
-    return;
+    throw StateError('cql/cqf-engine is missing: the suite cannot run');
   }
 
   final libraryManager = LibraryManager(
@@ -154,13 +152,13 @@ void main() {
         CqlInteger(1),
         CqlInteger(1),
         CqlInteger(1),
-        CqlInteger(1)
+        CqlInteger(1),
       ],
       'Third Position of list With Same Name of Let As First': [
         CqlInteger(3),
         CqlInteger(3),
         CqlInteger(3),
-        CqlInteger(3)
+        CqlInteger(3),
       ],
     },
   );
@@ -331,53 +329,64 @@ void _testFile(
   Map<String, String> knownFailures = const {},
   String? skipAll,
 }) {
-  group(filename, () {
-    late Map<String, dynamic> results;
+  group(
+    filename,
+    () {
+      late Map<String, dynamic> results;
 
-    setUpAll(() async {
-      final source = File('cql/cqf-engine/$filename.cql').readAsStringSync();
-      final library =
-          parseAndBuildLibrary(source, libraryManager: libraryManager);
-      final context = <String, dynamic>{
-        'startTimestamp': CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
-      };
-      results = (await library.execute(context, const R4ModelResolver()))
-          as Map<String, dynamic>;
-    });
+      setUpAll(() async {
+        final source = File('cql/cqf-engine/$filename.cql').readAsStringSync();
+        final library =
+            parseAndBuildLibrary(source, libraryManager: libraryManager);
+        final context = <String, dynamic>{
+          'startTimestamp':
+              CqlDateTime.fromString('2018-01-01T07:00:00.0-07:00'),
+        };
+        results = (await library.execute(context, const R4ModelResolver()))
+            as Map<String, dynamic>;
+      });
 
-    for (final entry in expectedResults.entries) {
-      final name = entry.key;
-      final expected = entry.value;
-      final pin = knownFailures[name];
+      for (final entry in expectedResults.entries) {
+        final name = entry.key;
+        final expected = entry.value;
+        final pin = knownFailures[name];
 
-      test(name, () {
-        final actual = results[name];
-        // A pinned case asserts that the file's answer is NOT given (the
-        // engine follows the spec sentence quoted beside the pin), so the
-        // pin fails the day the case starts matching. Until 2026-10-07 a
-        // pin skipped the case, and two pins named cases that had no
-        // expectation at all, so they never ran.
-        if (pin != null) {
-          expect(
-            expected is TypeMatcher
-                ? expected.matches(actual, <dynamic, dynamic>{})
-                : areValuesEqual(actual, expected),
-            isFalse,
-            reason: '$filename.$name now matches the file: remove its pin '
-                '($pin)',
-          );
-          return;
-        }
-        if (expected is TypeMatcher) {
-          expect(actual, expected,
-              reason: '$filename.$name: got ${actual?.runtimeType}');
-        } else {
-          expect(areValuesEqual(actual, expected), isTrue,
+        test(name, () {
+          final actual = results[name];
+          // A pinned case asserts that the file's answer is NOT given (the
+          // engine follows the spec sentence quoted beside the pin), so the
+          // pin fails the day the case starts matching. Until 2026-10-07 a
+          // pin skipped the case, and two pins named cases that had no
+          // expectation at all, so they never ran.
+          if (pin != null) {
+            expect(
+              expected is TypeMatcher
+                  ? expected.matches(actual, <dynamic, dynamic>{})
+                  : areValuesEqual(actual, expected),
+              isFalse,
+              reason: '$filename.$name now matches the file: remove its pin '
+                  '($pin)',
+            );
+            return;
+          }
+          if (expected is TypeMatcher) {
+            expect(
+              actual,
+              expected,
+              reason: '$filename.$name: got ${actual?.runtimeType}',
+            );
+          } else {
+            expect(
+              areValuesEqual(actual, expected),
+              isTrue,
               reason: '$filename.$name: '
                   '$actual (${actual?.runtimeType}) != '
-                  '$expected (${expected?.runtimeType})');
-        }
-      });
-    }
-  }, skip: skipAll);
+                  '$expected (${expected?.runtimeType})',
+            );
+          }
+        });
+      }
+    },
+    skip: skipAll,
+  );
 }

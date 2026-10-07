@@ -35,10 +35,11 @@ void main() {
           // noted (the cql package's exercises test pins the same files).
           expect(
             compareElm(
-                loadJsonFile('$name.json'),
-                CqlBaseVisitor<dynamic>(
-                        parseAndBuildLibrary(loadCqlFile('$name.cql')))
-                    .result),
+              loadJsonFile('$name.json'),
+              CqlBaseVisitor<dynamic>(
+                parseAndBuildLibrary(loadCqlFile('$name.cql')),
+              ).result,
+            ),
             isFalse,
             reason: '$name now matches the reference: remove its pin',
           );
@@ -53,49 +54,63 @@ void main() {
         final library = parseAndBuildLibrary(cqlSource);
         final visitor = CqlBaseVisitor<dynamic>(library);
         final actualElm = visitor.result;
-        expect(compareElm(expectedJson, actualElm), isTrue,
-            reason: '$name ELM output does not match expected JSON');
+        expect(
+          compareElm(expectedJson, actualElm),
+          isTrue,
+          reason: '$name ELM output does not match expected JSON',
+        );
       });
 
-      test('executes and produces correct results', () async {
-        final cqlSource = loadCqlFile('$name.cql');
-        final pinned = _executionNotYetRight[name];
-        final expectedResults = results['$name.cql'];
-        final context = contexts['$name.cql'];
-        final library =
-            parseAndBuildLibrary(cqlSource, libraryManager: libraryManager);
-        final executionResults = await library.execute(
+      test(
+        'executes and produces correct results',
+        () async {
+          final cqlSource = loadCqlFile('$name.cql');
+          final pinned = _executionNotYetRight[name];
+          final expectedResults = results['$name.cql'];
+          final context = contexts['$name.cql'];
+          final library =
+              parseAndBuildLibrary(cqlSource, libraryManager: libraryManager);
+          final executionResults = await library.execute(
             context is Map<String, dynamic> ? context : null,
-            const R4ModelResolver());
+            const R4ModelResolver(),
+          );
 
-        if (executionResults is Map<String, dynamic> &&
-            expectedResults is Map<String, dynamic>) {
-          final resultMap = Map<String, dynamic>.from(executionResults)
-            ..remove('startTimestamp')
-            ..remove('library')
-            ..remove('workerContext')
-            ..remove('resourceCache');
+          if (executionResults is Map<String, dynamic> &&
+              expectedResults is Map<String, dynamic>) {
+            final resultMap = Map<String, dynamic>.from(executionResults)
+              ..remove('startTimestamp')
+              ..remove('library')
+              ..remove('workerContext')
+              ..remove('resourceCache');
 
-          final wrong = <String>[];
-          for (final key in expectedResults.keys) {
-            final result = resultMap[key];
-            final answer = expectedResults[key];
-            if (pinned != null) {
-              if (!areValuesEqual(result, answer)) wrong.add(key);
-              continue;
+            final wrong = <String>[];
+            for (final key in expectedResults.keys) {
+              final result = resultMap[key];
+              final answer = expectedResults[key];
+              if (pinned != null) {
+                if (!areValuesEqual(result, answer)) wrong.add(key);
+                continue;
+              }
+              expect(
+                areValuesEqual(result, answer),
+                isTrue,
+                reason: '$name.$key: $result (${result?.runtimeType}) != '
+                    '$answer (${answer?.runtimeType})',
+              );
             }
-            expect(areValuesEqual(result, answer), isTrue,
-                reason:
-                    '$name.$key: $result (${result?.runtimeType}) != $answer (${answer?.runtimeType})');
+            if (pinned != null) {
+              // Pinned: the defines named in the pin still answer wrongly;
+              // the pin fails once they are right, so the list only shrinks.
+              expect(
+                wrong,
+                isNotEmpty,
+                reason: '$name now executes right: remove its pin ($pinned)',
+              );
+            }
           }
-          if (pinned != null) {
-            // Pinned: the defines named in the pin still answer wrongly;
-            // the pin fails once they are right, so the list only shrinks.
-            expect(wrong, isNotEmpty,
-                reason: '$name now executes right: remove its pin ($pinned)');
-          }
-        }
-      }, skip: _executionThrows[name]);
+        },
+        skip: _executionThrows[name],
+      );
     });
   }
 }

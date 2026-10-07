@@ -12,9 +12,7 @@ import '../test_helpers/cql_test_helpers.dart';
 void main() {
   final engineDir = Directory('cql/cqf-engine');
   if (!engineDir.existsSync()) {
-    print('CQF engine tests not downloaded. '
-        'Run: bash utils/download_engine_tests.sh');
-    return;
+    throw StateError('cql/cqf-engine is missing: the suite cannot run');
   }
 
   final libraryManager = LibraryManager(
@@ -33,15 +31,20 @@ void main() {
           as Map<String, dynamic>;
 
       final includedCode = results['IncludedCode'];
-      expect(includedCode, isNotNull,
-          reason: 'IncludedCode should resolve from Common library');
+      expect(
+        includedCode,
+        isNotNull,
+        reason: 'IncludedCode should resolve from Common library',
+      );
       expect(includedCode, isA<CqlCode>());
       if (includedCode is CqlCode) {
         expect(includedCode.code, equals('community'));
         expect(
-            includedCode.system,
-            equals(
-                'http://terminology.hl7.org/CodeSystem/medicationrequest-category'));
+          includedCode.system,
+          equals(
+            'http://terminology.hl7.org/CodeSystem/medicationrequest-category',
+          ),
+        );
       }
     });
   });
@@ -57,8 +60,11 @@ void main() {
           as Map<String, dynamic>;
 
       final concept = results['testIncludedConceptRef'];
-      expect(concept, isNotNull,
-          reason: 'testIncludedConceptRef should resolve from Common');
+      expect(
+        concept,
+        isNotNull,
+        reason: 'testIncludedConceptRef should resolve from Common',
+      );
       expect(concept, isA<CqlConcept>());
       if (concept is CqlConcept) {
         expect(concept.display, equals('concept-display'));
@@ -99,8 +105,11 @@ void main() {
           as Map<String, dynamic>;
 
       final vs = results['IncludedValueSet'];
-      expect(vs, isNotNull,
-          reason: 'IncludedValueSet should resolve from Common');
+      expect(
+        vs,
+        isNotNull,
+        reason: 'IncludedValueSet should resolve from Common',
+      );
       expect(vs, isA<CqlValueSet>());
       if (vs is CqlValueSet) {
         expect(vs.id, equals('http://test/common'));
@@ -146,7 +155,8 @@ void main() {
     setUp(() {
       coverageManager = LibraryManager(
         sourceProvider: FileSystemLibrarySourceProvider(
-            basePath: 'cql/cqf-engine/CoverageTest'),
+          basePath: 'cql/cqf-engine/CoverageTest',
+        ),
         parseLibrary: parseAndBuildLibrary,
       );
     });
@@ -162,7 +172,8 @@ void main() {
       // CoverageTest/Tests.cql uses assertEquals which returns the message
       // source (first arg to Message). If assertion passes, condition is false
       // so Message is not triggered and result is 'Assertion failed' string.
-      // Actually: assertEquals returns Message(..., not (expected = actual), ...)
+      // Actually: assertEquals returns
+      // Message(..., not (expected = actual), ...)
       // When assertion PASSES, condition to Message is false, so Message
       // returns its source unchanged.
       // test1: assertEquals(Library1.expr1, 3) → expr1 = 1+2 = 3 → passes
@@ -185,7 +196,8 @@ void main() {
     setUp(() {
       multilibManager = LibraryManager(
         sourceProvider: FileSystemLibrarySourceProvider(
-            basePath: 'cql/cqf-engine/multilib'),
+          basePath: 'cql/cqf-engine/multilib',
+        ),
         parseLibrary: parseAndBuildLibrary,
       );
     });

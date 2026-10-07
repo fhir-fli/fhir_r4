@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:cql/src/internal.dart';
-import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 
 import 'cql_test_helpers.dart';
 
@@ -24,8 +22,10 @@ Map<String, dynamic> loadValueSets(String dirPath) {
 /// (used by `Today()` and `Now()` in CQL). This is needed for test bundles
 /// with date-sensitive logic (e.g., age thresholds).
 Map<String, dynamic> buildContext(
-    Map<String, dynamic> bundleContext, Map<String, dynamic> valueSets,
-    {String? evaluationDate}) {
+  Map<String, dynamic> bundleContext,
+  Map<String, dynamic> valueSets, {
+  String? evaluationDate,
+}) {
   final context = Map<String, dynamic>.from(bundleContext);
   context['_valueSets'] = valueSets;
   if (evaluationDate != null) {
@@ -38,7 +38,7 @@ Map<String, dynamic> buildContext(
 LibraryManager createWhoLibraryManager() {
   return LibraryManager(
     sourceProvider: FileSystemLibrarySourceProvider(basePath: 'cql/who'),
-    parseLibrary: (source) => parseAndBuildLibrary(source),
+    parseLibrary: parseAndBuildLibrary,
   );
 }
 
@@ -47,18 +47,4 @@ LibraryManager createWhoLibraryManager() {
 CqlLibrary loadWhoLibrary(String filename, LibraryManager libraryManager) {
   final cql = File('cql/who/$filename').readAsStringSync();
   return parseAndBuildLibrary(cql, libraryManager: libraryManager);
-}
-
-/// Reads a bundle JSON file and pretty-prints its structure for debugging.
-void debugBundle(String path) {
-  final content = File(path).readAsStringSync();
-  final bundle = jsonDecode(content) as Map<String, dynamic>;
-  final entries = bundle['entry'] as List? ?? [];
-  print('Bundle: ${bundle['id']} (${entries.length} entries)');
-  for (final entry in entries) {
-    final resource = (entry as Map)['resource'] as Map?;
-    if (resource != null) {
-      print('  ${resource['resourceType']}/${resource['id']}');
-    }
-  }
 }

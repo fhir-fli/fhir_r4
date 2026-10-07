@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cql/src/internal.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 
@@ -26,8 +25,7 @@ void main() {
   // Check if WHO CQL files exist before running tests
   final whoDir = Directory('cql/who');
   if (!whoDir.existsSync()) {
-    print('WHO CQL files not found. Run utils/download_who_cql.sh first.');
-    return;
+    throw StateError('cql/who is missing: the suite cannot run');
   }
 
   setUpAll(() {
@@ -40,35 +38,53 @@ void main() {
 
     setUpAll(() {
       measlesLogic = loadWhoLibrary(
-          'IMMZD2DTMeaslesLowTransmissionLogic.cql', libraryManager);
+        'IMMZD2DTMeaslesLowTransmissionLogic.cql',
+        libraryManager,
+      );
     });
 
     // Test case 22.1: Patient under 12 months - not due for MCV1
     test('Measles22.1 - Client under 12 months, not due for MCV1', () async {
       final bundleContext =
           loadBundle('cql/who/tests/tests-Measles22.1-bundle.json');
-      final context = buildContext(bundleContext, valueSets,
-          evaluationDate: _evaluationDate);
-      final result =
-          await measlesLogic.execute(context, const R4ModelResolver());
+      final context = buildContext(
+        bundleContext,
+        valueSets,
+        evaluationDate: _evaluationDate,
+      );
+      final result = await measlesLogic.execute(
+          context, const R4ModelResolver()) as Map<String, dynamic>;
 
-      expect(result['Client is not due for MCV1 Case 1'], CqlBoolean(true),
-          reason: 'Patient < 12 months should trigger not-due case 1');
-      expect(result['Client is not due for MCV1'], CqlBoolean(true),
-          reason: 'Patient should not be due for MCV1');
+      expect(
+        result['Client is not due for MCV1 Case 1'],
+        CqlBoolean(true),
+        reason: 'Patient < 12 months should trigger not-due case 1',
+      );
+      expect(
+        result['Client is not due for MCV1'],
+        CqlBoolean(true),
+        reason: 'Patient should not be due for MCV1',
+      );
     });
 
-    // Test case 23.3: Patient >= 12 months, no doses, no recent live vaccine - due for MCV1
+    // Test case 23.3: Patient >= 12 months, no doses, no recent live
+    // vaccine - due for MCV1
     test('Measles23.3 - Client due for MCV1', () async {
       final bundleContext =
           loadBundle('cql/who/tests/tests-Measles23.3-bundle.json');
-      final context = buildContext(bundleContext, valueSets,
-          evaluationDate: _evaluationDate);
-      final result =
-          await measlesLogic.execute(context, const R4ModelResolver());
+      final context = buildContext(
+        bundleContext,
+        valueSets,
+        evaluationDate: _evaluationDate,
+      );
+      final result = await measlesLogic.execute(
+          context, const R4ModelResolver()) as Map<String, dynamic>;
 
-      expect(result['Client is due for MCV1'], CqlBoolean(true),
-          reason: 'Patient >= 12 months with no doses should be due for MCV1');
+      expect(
+        result['Client is due for MCV1'],
+        CqlBoolean(true),
+        reason: 'Patient >= 12 months with no doses should be due for MCV1',
+      );
     });
 
     // Test case 25.2: MCV1 administered, patient < 15 months - not due for MCV2
@@ -80,14 +96,20 @@ void main() {
           loadBundle('cql/who/tests/tests-Measles25.2-bundle.json');
       final context =
           buildContext(bundleContext, valueSets, evaluationDate: '2025-12-01');
-      final result =
-          await measlesLogic.execute(context, const R4ModelResolver());
+      final result = await measlesLogic.execute(
+          context, const R4ModelResolver()) as Map<String, dynamic>;
 
-      expect(result['Client is not due for MCV2 Case 1'], CqlBoolean(true),
-          reason:
-              'Patient with MCV1 and < 15 months should trigger not-due case 1');
-      expect(result['Client is not due for MCV2'], CqlBoolean(true),
-          reason: 'Patient should not be due for MCV2');
+      expect(
+        result['Client is not due for MCV2 Case 1'],
+        CqlBoolean(true),
+        reason:
+            'Patient with MCV1 and < 15 months should trigger not-due case 1',
+      );
+      expect(
+        result['Client is not due for MCV2'],
+        CqlBoolean(true),
+        reason: 'Patient should not be due for MCV2',
+      );
     });
 
     // Test case 28.1: MCV2 administered - primary series complete
@@ -98,13 +120,19 @@ void main() {
         return;
       }
       final bundleContext = loadBundle(bundleFile.path);
-      final context = buildContext(bundleContext, valueSets,
-          evaluationDate: _evaluationDate);
-      final result =
-          await measlesLogic.execute(context, const R4ModelResolver());
+      final context = buildContext(
+        bundleContext,
+        valueSets,
+        evaluationDate: _evaluationDate,
+      );
+      final result = await measlesLogic.execute(
+          context, const R4ModelResolver()) as Map<String, dynamic>;
 
-      expect(result['Measles primary series is complete'], CqlBoolean(true),
-          reason: 'Patient with MCV2 should have complete primary series');
+      expect(
+        result['Measles primary series is complete'],
+        CqlBoolean(true),
+        reason: 'Patient with MCV2 should have complete primary series',
+      );
     });
 
     // Self-validation: The CQL itself contains a "Test Validation" define
@@ -112,25 +140,37 @@ void main() {
     test('Measles22.1 - Test Validation', () async {
       final bundleContext =
           loadBundle('cql/who/tests/tests-Measles22.1-bundle.json');
-      final context = buildContext(bundleContext, valueSets,
-          evaluationDate: _evaluationDate);
-      final result =
-          await measlesLogic.execute(context, const R4ModelResolver());
+      final context = buildContext(
+        bundleContext,
+        valueSets,
+        evaluationDate: _evaluationDate,
+      );
+      final result = await measlesLogic.execute(
+          context, const R4ModelResolver()) as Map<String, dynamic>;
 
-      expect(result['Test Validation'], CqlBoolean(true),
-          reason: 'CQL Test Validation define should evaluate to true');
+      expect(
+        result['Test Validation'],
+        CqlBoolean(true),
+        reason: 'CQL Test Validation define should evaluate to true',
+      );
     });
 
     test('Measles23.3 - Test Validation', () async {
       final bundleContext =
           loadBundle('cql/who/tests/tests-Measles23.3-bundle.json');
-      final context = buildContext(bundleContext, valueSets,
-          evaluationDate: _evaluationDate);
-      final result =
-          await measlesLogic.execute(context, const R4ModelResolver());
+      final context = buildContext(
+        bundleContext,
+        valueSets,
+        evaluationDate: _evaluationDate,
+      );
+      final result = await measlesLogic.execute(
+          context, const R4ModelResolver()) as Map<String, dynamic>;
 
-      expect(result['Test Validation'], CqlBoolean(true),
-          reason: 'CQL Test Validation define should evaluate to true');
+      expect(
+        result['Test Validation'],
+        CqlBoolean(true),
+        reason: 'CQL Test Validation define should evaluate to true',
+      );
     });
 
     test('Measles25.2 - Test Validation', () async {
@@ -138,11 +178,14 @@ void main() {
           loadBundle('cql/who/tests/tests-Measles25.2-bundle.json');
       final context =
           buildContext(bundleContext, valueSets, evaluationDate: '2025-12-01');
-      final result =
-          await measlesLogic.execute(context, const R4ModelResolver());
+      final result = await measlesLogic.execute(
+          context, const R4ModelResolver()) as Map<String, dynamic>;
 
-      expect(result['Test Validation'], CqlBoolean(true),
-          reason: 'CQL Test Validation define should evaluate to true');
+      expect(
+        result['Test Validation'],
+        CqlBoolean(true),
+        reason: 'CQL Test Validation define should evaluate to true',
+      );
     });
   });
 }

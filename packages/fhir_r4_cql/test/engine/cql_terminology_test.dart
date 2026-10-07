@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 
 /// A minimal CqlExpression wrapper that returns a constant value.
 class _ConstExpr extends CqlExpression {
-  final dynamic value;
   _ConstExpr(this.value);
+  final dynamic value;
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async => value;
@@ -223,10 +223,12 @@ void main() {
     test('returns true when code system matches', () async {
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final inCS = InCodeSystem(
-        code: _ConstExpr(CqlCode(
-          code: '8480-6',
-          system: 'http://loinc.org',
-        )),
+        code: _ConstExpr(
+          const CqlCode(
+            code: '8480-6',
+            system: 'http://loinc.org',
+          ),
+        ),
         codesystem: CodeSystemRef(name: 'LOINC'),
       );
       final result = await inCS.execute(context);
@@ -236,10 +238,12 @@ void main() {
     test('returns false when code system does not match', () async {
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final inCS = InCodeSystem(
-        code: _ConstExpr(CqlCode(
-          code: '271649006',
-          system: 'http://snomed.info/sct',
-        )),
+        code: _ConstExpr(
+          const CqlCode(
+            code: '271649006',
+            system: 'http://snomed.info/sct',
+          ),
+        ),
         codesystem: CodeSystemRef(name: 'LOINC'),
       );
       final result = await inCS.execute(context);
@@ -260,9 +264,11 @@ void main() {
       // InCodeSystem only handles CqlCode; for other types it returns null
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final inCS = InCodeSystem(
-        code: _ConstExpr(CqlConcept(
-          codes: [CqlCode(code: '8480-6', system: 'http://loinc.org')],
-        )),
+        code: _ConstExpr(
+          CqlConcept(
+            codes: const [CqlCode(code: '8480-6', system: 'http://loinc.org')],
+          ),
+        ),
         codesystem: CodeSystemRef(name: 'LOINC'),
       );
       final result = await inCS.execute(context);
@@ -275,8 +281,8 @@ void main() {
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final anyInCS = AnyInCodeSystem(
         codes: _ConstExpr([
-          CqlCode(code: '271649006', system: 'http://snomed.info/sct'),
-          CqlCode(code: '8480-6', system: 'http://loinc.org'),
+          const CqlCode(code: '271649006', system: 'http://snomed.info/sct'),
+          const CqlCode(code: '8480-6', system: 'http://loinc.org'),
         ]),
         codesystem: CodeSystemRef(name: 'LOINC'),
       );
@@ -288,8 +294,8 @@ void main() {
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final anyInCS = AnyInCodeSystem(
         codes: _ConstExpr([
-          CqlCode(code: '271649006', system: 'http://snomed.info/sct'),
-          CqlCode(code: '38341003', system: 'http://snomed.info/sct'),
+          const CqlCode(code: '271649006', system: 'http://snomed.info/sct'),
+          const CqlCode(code: '38341003', system: 'http://snomed.info/sct'),
         ]),
         codesystem: CodeSystemRef(name: 'LOINC'),
       );
@@ -336,7 +342,10 @@ void main() {
       );
       final anyInVS = AnyInValueSet(
         codes: _ConstExpr([
-          CqlCode(code: 'E11.9', system: 'http://hl7.org/fhir/sid/icd-10'),
+          const CqlCode(
+            code: 'E11.9',
+            system: 'http://hl7.org/fhir/sid/icd-10',
+          ),
         ]),
         valueset: ValueSetRef(name: 'Diabetes'),
       );
@@ -360,7 +369,7 @@ void main() {
       );
       final anyInVS = AnyInValueSet(
         codes: _ConstExpr([
-          CqlCode(code: '8480-6', system: 'http://loinc.org'),
+          const CqlCode(code: '8480-6', system: 'http://loinc.org'),
         ]),
         valueset: ValueSetRef(name: 'Diabetes'),
       );
@@ -403,7 +412,10 @@ void main() {
       );
       final anyInVS = AnyInValueSet(
         codes: _ConstExpr([
-          CqlCode(code: 'E11.9', system: 'http://hl7.org/fhir/sid/icd-10'),
+          const CqlCode(
+            code: 'E11.9',
+            system: 'http://hl7.org/fhir/sid/icd-10',
+          ),
         ]),
         valueset: ValueSetRef(name: 'Diabetes'),
       );
@@ -445,10 +457,14 @@ void main() {
       expect(codes.length, equals(2));
       expect(codes[0], isA<CqlCode>());
       expect((codes[0] as CqlCode).code, equals('E11.9'));
-      expect((codes[0] as CqlCode).system,
-          equals('http://hl7.org/fhir/sid/icd-10'));
-      expect((codes[0] as CqlCode).display,
-          equals('Type 2 diabetes mellitus without complications'));
+      expect(
+        (codes[0] as CqlCode).system,
+        equals('http://hl7.org/fhir/sid/icd-10'),
+      );
+      expect(
+        (codes[0] as CqlCode).display,
+        equals('Type 2 diabetes mellitus without complications'),
+      );
       expect((codes[1] as CqlCode).code, equals('E10.9'));
     });
 
@@ -482,8 +498,8 @@ void main() {
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final subsumes = Subsumes(
         operand: [
-          _ConstExpr(CqlCode(code: '8480-6', system: 'http://loinc.org')),
-          _ConstExpr(CqlCode(code: '8462-4', system: 'http://loinc.org')),
+          _ConstExpr(const CqlCode(code: '8480-6', system: 'http://loinc.org')),
+          _ConstExpr(const CqlCode(code: '8462-4', system: 'http://loinc.org')),
         ],
       );
       final result = await subsumes.execute(context);
@@ -496,7 +512,7 @@ void main() {
       final subsumes = Subsumes(
         operand: [
           _ConstExpr(null),
-          _ConstExpr(CqlCode(code: '8462-4', system: 'http://loinc.org')),
+          _ConstExpr(const CqlCode(code: '8462-4', system: 'http://loinc.org')),
         ],
       );
       final result = await subsumes.execute(context);
@@ -509,8 +525,8 @@ void main() {
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final subsumedBy = SubsumedBy(
         operand: [
-          _ConstExpr(CqlCode(code: '8462-4', system: 'http://loinc.org')),
-          _ConstExpr(CqlCode(code: '8480-6', system: 'http://loinc.org')),
+          _ConstExpr(const CqlCode(code: '8462-4', system: 'http://loinc.org')),
+          _ConstExpr(const CqlCode(code: '8480-6', system: 'http://loinc.org')),
         ],
       );
       final result = await subsumedBy.execute(context);
@@ -522,7 +538,7 @@ void main() {
       final context = _buildContext(codeSystemDefs: [loincDef]);
       final subsumedBy = SubsumedBy(
         operand: [
-          _ConstExpr(CqlCode(code: '8462-4', system: 'http://loinc.org')),
+          _ConstExpr(const CqlCode(code: '8462-4', system: 'http://loinc.org')),
           _ConstExpr(null),
         ],
       );

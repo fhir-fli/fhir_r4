@@ -17,7 +17,8 @@ define function AddOne(x Integer): x + 1
 define TestAddOne: AddOne(5)
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestAddOne'], equals(CqlInteger(6)));
     });
 
@@ -32,7 +33,8 @@ define function Add(a Integer, b Integer): a + b
 define TestAdd: Add(3, 4)
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestAdd'], equals(CqlInteger(7)));
     });
   });
@@ -49,7 +51,8 @@ define fluent function double(x Integer): x * 2
 define TestDouble: 5.double()
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestDouble'], equals(CqlInteger(10)));
     });
 
@@ -64,7 +67,8 @@ define fluent function double(x Integer): x * 2
 define TestExprDouble: (2 + 3).double()
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestExprDouble'], equals(CqlInteger(10)));
     });
 
@@ -79,7 +83,8 @@ define fluent function double(x Integer): x * 2
 define TestChain: 3.double().double()
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestChain'], equals(CqlInteger(12)));
     });
 
@@ -116,7 +121,8 @@ define TestOne: Greet('World')
 define TestTwo: Greet('John', 'Doe')
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestOne'], equals(CqlString('Hello World')));
       expect(result['TestTwo'], equals(CqlString('Hello John Doe')));
     });
@@ -134,7 +140,8 @@ define TestOne: (42).describe()
 define TestTwo: (42).describe('Value')
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestOne'], equals(CqlString('Number: 42')));
       expect(result['TestTwo'], equals(CqlString('Value: 42')));
     });
@@ -150,7 +157,8 @@ define function AddOne(x Integer): x + 1
 define TestResult: AddOne(10)
 ''';
       final library = parseAndBuildLibrary(cql);
-      final result = await library.execute({}, const R4ModelResolver());
+      final result = await library.execute({}, const R4ModelResolver())
+          as Map<String, dynamic>;
       expect(result['TestResult'], equals(CqlInteger(11)));
     });
   });

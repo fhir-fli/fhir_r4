@@ -34,7 +34,9 @@ void main() {
     });
     test('define "StringAsString": \'hello\' as String // \'hello\'', () async {
       final asOp = As(
-          asType: QName.fromElmType('String'), operand: LiteralString('hello'));
+        asType: QName.fromElmType('String'),
+        operand: LiteralString('hello'),
+      );
       final result = await asOp.execute(_ctx());
       expect(result, CqlString('hello'));
     });
@@ -56,7 +58,9 @@ void main() {
     });
     test('define "StringIsString": \'hello\' is String // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('String'), operand: LiteralString('hello'));
+        isType: QName.fromElmType('String'),
+        operand: LiteralString('hello'),
+      );
       expect(await isOp.execute(_ctx()), CqlBoolean(true));
     });
     test('define "NullIsAnything": null is Integer // false', () async {
@@ -66,12 +70,16 @@ void main() {
     });
     test('define "BooleanIsBoolean": true is Boolean // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('Boolean'), operand: LiteralBoolean(true));
+        isType: QName.fromElmType('Boolean'),
+        operand: LiteralBoolean(true),
+      );
       expect(await isOp.execute(_ctx()), CqlBoolean(true));
     });
     test('define "DecimalIsDecimal": 3.5 is Decimal // true', () async {
       final isOp = Is(
-          isType: QName.fromElmType('Decimal'), operand: LiteralDecimal(3.5));
+        isType: QName.fromElmType('Decimal'),
+        operand: LiteralDecimal(3.5),
+      );
       expect(await isOp.execute(_ctx()), CqlBoolean(true));
     });
   });
@@ -114,7 +122,7 @@ void main() {
       final toString = ToString(operand: LiteralDecimal(3.5));
       final result = await toString.execute(_ctx());
       expect(result, isA<CqlString>());
-      expect((result as CqlString).valueString, contains('3.5'));
+      expect((result!).valueString, contains('3.5'));
     });
     test('define "ToStringIsNull": ToString(null)', () async {
       final toString = ToString(operand: LiteralNull());
@@ -262,7 +270,7 @@ void main() {
   group('ToRatio', () {
     test('define "StringToRatio": ToRatio(\'1.0 \'\'mg\'\':2.0 \'\'mg\'\'\')',
         () async {
-      final toRatio = ToRatio(operand: LiteralString('1.0 \'mg\':2.0 \'mg\''));
+      final toRatio = ToRatio(operand: LiteralString("1.0 'mg':2.0 'mg'"));
       final result = await toRatio.execute(_ctx());
       expect(result, isNotNull);
     });
@@ -283,7 +291,7 @@ void main() {
     test('define "ConvertStringToInt": Convert(\'5\', Integer) // 5', () async {
       final convert = Convert(
         operand: LiteralString('5'),
-        toType: QName(localPart: 'Integer'),
+        toType: const QName(localPart: 'Integer'),
       );
       final result = await convert.execute(_ctx());
       expect(result, CqlInteger(5));
@@ -291,7 +299,7 @@ void main() {
     test('define "ConvertIntToString": Convert(5, String) // \'5\'', () async {
       final convert = Convert(
         operand: LiteralInteger(5),
-        toType: QName(localPart: 'String'),
+        toType: const QName(localPart: 'String'),
       );
       final result = await convert.execute(_ctx());
       expect(result, CqlString('5'));
@@ -300,7 +308,7 @@ void main() {
         () async {
       final convert = Convert(
         operand: LiteralString('true'),
-        toType: QName(localPart: 'Boolean'),
+        toType: const QName(localPart: 'Boolean'),
       );
       final result = await convert.execute(_ctx());
       expect(result, CqlBoolean(true));
@@ -309,7 +317,7 @@ void main() {
         () async {
       final convert = Convert(
         operand: LiteralString('3.5'),
-        toType: QName(localPart: 'Decimal'),
+        toType: const QName(localPart: 'Decimal'),
       );
       final result = await convert.execute(_ctx());
       expect(result, CqlDecimal(3.5));
@@ -317,7 +325,7 @@ void main() {
     test('define "ConvertIsNull": Convert(null, Integer)', () async {
       final convert = Convert(
         operand: LiteralNull(),
-        toType: QName(localPart: 'Integer'),
+        toType: const QName(localPart: 'Integer'),
       );
       expect(await convert.execute(_ctx()), isNull);
     });
@@ -331,7 +339,7 @@ void main() {
         () async {
       final canConvert = CanConvert(
         operand: LiteralString('5'),
-        toType: QName(localPart: 'Integer'),
+        toType: const QName(localPart: 'Integer'),
       );
       final result = await canConvert.execute(_ctx());
       expect(result, CqlBoolean(true));
@@ -340,7 +348,7 @@ void main() {
         () async {
       final canConvert = CanConvert(
         operand: LiteralString('hello'),
-        toType: QName(localPart: 'Integer'),
+        toType: const QName(localPart: 'Integer'),
       );
       final result = await canConvert.execute(_ctx());
       expect(result, CqlBoolean(false));
@@ -348,7 +356,7 @@ void main() {
     test('define "CanConvertIsNull": CanConvert(null, Integer)', () async {
       final canConvert = CanConvert(
         operand: LiteralNull(),
-        toType: QName(localPart: 'Integer'),
+        toType: const QName(localPart: 'Integer'),
       );
       expect(await canConvert.execute(_ctx()), isNull);
     });
@@ -357,7 +365,7 @@ void main() {
         () async {
       final canConvert = CanConvert(
         operand: LiteralString('true'),
-        toType: QName(localPart: 'Boolean'),
+        toType: const QName(localPart: 'Boolean'),
       );
       final result = await canConvert.execute(_ctx());
       expect(result, CqlBoolean(true));
@@ -517,8 +525,7 @@ void main() {
     test(
         'define "ConvertsToRatioTrue": ConvertsToRatio(\'1.0 \'\'mg\'\':2.0 \'\'mg\'\'\') // true',
         () async {
-      final op =
-          ConvertsToRatio(operand: LiteralString('1.0 \'mg\':2.0 \'mg\''));
+      final op = ConvertsToRatio(operand: LiteralString("1.0 'mg':2.0 'mg'"));
       expect(await op.execute(_ctx()), CqlBoolean(true));
     });
     test('define "ConvertsToRatioFalse": ConvertsToRatio(\'abc\') // false',
@@ -589,19 +596,20 @@ void main() {
       expect(vr.denominator, ValidatedQuantity.fromNumber(2, unit: 'mg'));
     });
 
-    test('Ratio literal parsing via CQL: 1 \'mg\':2 \'mg\'', () async {
+    test("Ratio literal parsing via CQL: 1 'mg':2 'mg'", () async {
       final lib = parseAndBuildLibrary(
         "library TestRatio\ndefine \"Ratio\": 1 'mg':2 'mg'",
       );
-      final result = await lib.execute();
+      final result = await lib.execute() as Map<String, dynamic>;
       expect(result['Ratio'], isA<ValidatedRatio>());
     });
 
     test('Ratio equivalence via CQL: 1:8 ~ 2:16', () async {
       final lib = parseAndBuildLibrary(
-        'library TestRatioEquiv\ndefine "Result": 1 \'mg\':8 \'mg\' ~ 2 \'mg\':16 \'mg\'',
+        'library TestRatioEquiv\n'
+        'define "Result": 1 \'mg\':8 \'mg\' ~ 2 \'mg\':16 \'mg\'',
       );
-      final result = await lib.execute();
+      final result = await lib.execute() as Map<String, dynamic>;
       expect(result['Result'], CqlBoolean(true));
     });
   });
@@ -619,7 +627,7 @@ void main() {
       final result = await toQuantity.execute(_ctx());
       expect(result, isA<ValidatedQuantity>());
       // mg/mg produces dimensionless '1' unit with value 0.50
-      final vq = result as ValidatedQuantity;
+      final vq = result!;
       expect(vq.value.asDouble, closeTo(0.5, 0.001));
     });
 
@@ -636,7 +644,7 @@ void main() {
   group('Instance', () {
     test('Instance Ratio with numerator and denominator', () async {
       final instance = Instance(
-        classType: QName(localPart: 'Ratio'),
+        classType: const QName(localPart: 'Ratio'),
         element: [
           InstanceElement(
             name: 'numerator',
@@ -657,7 +665,7 @@ void main() {
 
     test('Instance Interval with low/high', () async {
       final instance = Instance(
-        classType: QName(localPart: 'Interval'),
+        classType: const QName(localPart: 'Interval'),
         element: [
           InstanceElement(name: 'low', value: LiteralInteger(1)),
           InstanceElement(name: 'high', value: LiteralInteger(10)),
@@ -674,7 +682,7 @@ void main() {
 
     test('Instance Interval with closed boundaries', () async {
       final instance = Instance(
-        classType: QName(localPart: 'Interval'),
+        classType: const QName(localPart: 'Interval'),
         element: [
           InstanceElement(name: 'low', value: LiteralInteger(1)),
           InstanceElement(name: 'high', value: LiteralInteger(10)),
@@ -709,7 +717,7 @@ void main() {
       final toChars = ToChars(operand: LiteralString(''));
       final result = await toChars.execute(_ctx());
       expect(result, isA<List<dynamic>>());
-      expect((result as List), isEmpty);
+      expect(result as List, isEmpty);
     });
 
     test('null operand returns null', () async {

@@ -1,7 +1,6 @@
-import 'package:ucum/ucum.dart';
-
 import 'package:cql/src/internal.dart';
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
+import 'package:ucum/ucum.dart';
 
 final exercises03 = <String, dynamic>{
   'String Equality': CqlBoolean(true),
@@ -12,31 +11,31 @@ final exercises03 = <String, dynamic>{
   'String Equality With Null': CqlBoolean(true),
   'String Equivalence With Null': CqlBoolean(true),
   'T1': <String, dynamic>{
-    "X": 1,
-    "Y": null,
+    'X': 1,
+    'Y': null,
   },
   'T2': <String, dynamic>{
-    "X": 1,
-    "Y": null,
+    'X': 1,
+    'Y': null,
   },
   'T3': <String, dynamic>{
-    "X": 1,
-    "Y": 2,
+    'X': 1,
+    'Y': 2,
   },
   'TEqual': CqlBoolean(true),
   'TEqualWithNull': CqlBoolean(true),
   'TEquivalent': CqlBoolean(true),
-  'C1': CqlCode.fromJson({
+  'C1': CqlCode.fromJson(const {
     'code': 'ABC',
     'system': 'http://example.com',
     'version': '2017-01',
-    'display': 'Code ABC'
+    'display': 'Code ABC',
   }),
-  'C2': CqlCode.fromJson({
+  'C2': CqlCode.fromJson(const {
     'code': 'ABC',
     'system': 'http://example.com',
     'version': '2017-05',
-    'display': 'Variant Description'
+    'display': 'Variant Description',
   }),
   'CEqual': CqlBoolean(true),
   'CEquivalent': CqlBoolean(true),

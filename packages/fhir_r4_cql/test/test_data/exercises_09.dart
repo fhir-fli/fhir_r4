@@ -8,8 +8,8 @@ final _patient09 = <String, dynamic>{
   'id': 'example',
   'meta': {
     'profile': [
-      'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient'
-    ]
+      'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient',
+    ],
   },
   'extension': [
     {
@@ -20,51 +20,51 @@ final _patient09 = <String, dynamic>{
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '2106-3',
-            'display': 'White'
-          }
+            'display': 'White',
+          },
         },
         {
           'url': 'ombCategory',
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '1002-5',
-            'display': 'American Indian or Alaska Native'
-          }
+            'display': 'American Indian or Alaska Native',
+          },
         },
         {
           'url': 'ombCategory',
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '2028-9',
-            'display': 'Asian'
-          }
+            'display': 'Asian',
+          },
         },
         {
           'url': 'detailed',
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '1586-7',
-            'display': 'Shoshone'
-          }
+            'display': 'Shoshone',
+          },
         },
         {
           'url': 'detailed',
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '2036-2',
-            'display': 'Filipino'
-          }
+            'display': 'Filipino',
+          },
         },
         {
           'url': 'detailed',
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '1735-0',
-            'display': 'Alaska Native'
-          }
+            'display': 'Alaska Native',
+          },
         },
-        {'url': 'text', 'valueString': 'Mixed'}
-      ]
+        {'url': 'text', 'valueString': 'Mixed'},
+      ],
     },
     {
       'url':
@@ -75,31 +75,31 @@ final _patient09 = <String, dynamic>{
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '2135-2',
-            'display': 'Hispanic or Latino'
-          }
+            'display': 'Hispanic or Latino',
+          },
         },
         {
           'url': 'detailed',
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '2184-0',
-            'display': 'Dominican'
-          }
+            'display': 'Dominican',
+          },
         },
         {
           'url': 'detailed',
           'valueCoding': {
             'system': 'urn:oid:2.16.840.1.113883.6.238',
             'code': '2148-5',
-            'display': 'Mexican'
-          }
+            'display': 'Mexican',
+          },
         },
-        {'url': 'text', 'valueString': 'Hispanic or Latino'}
-      ]
+        {'url': 'text', 'valueString': 'Hispanic or Latino'},
+      ],
     },
     {
       'url': 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex',
-      'valueCode': 'M'
+      'valueCode': 'M',
     }
   ],
   'active': true,
@@ -110,9 +110,9 @@ final _patient09 = <String, dynamic>{
     'coding': [
       {
         'system': 'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus',
-        'code': 'M'
+        'code': 'M',
       }
-    ]
+    ],
   },
 };
 
@@ -129,7 +129,7 @@ final _bpObs = <String, dynamic>{
         'code': '85354-9',
         'display': 'blood pressure',
       }
-    ]
+    ],
   },
   'subject': {'reference': 'Patient/example'},
   'component': [
@@ -141,7 +141,7 @@ final _bpObs = <String, dynamic>{
             'code': '8480-6',
             'display': 'Systolic blood pressure',
           }
-        ]
+        ],
       },
       'valueQuantity': {
         'value': 120,
@@ -158,7 +158,7 @@ final _bpObs = <String, dynamic>{
             'code': '8462-4',
             'display': 'Diastolic blood pressure',
           }
-        ]
+        ],
       },
       'valueQuantity': {
         'value': 80,

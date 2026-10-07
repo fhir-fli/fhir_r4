@@ -1,14 +1,14 @@
-import 'package:fhir_r4/fhir_r4.dart' hide Count, Quantity, Ratio;
-import 'package:fhir_r4/fhir_r4.dart' as fhir show Quantity, Ratio;
 import 'package:cql/src/internal.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir show Quantity, Ratio;
+import 'package:fhir_r4/fhir_r4.dart' hide Count, Quantity, Ratio;
 import 'package:fhir_r4_cql/fhir_r4_cql.dart';
 import 'package:test/test.dart';
 import 'package:ucum/ucum.dart';
 
 /// Helper expression that returns a fixed value when executed.
 class _Literal extends CqlExpression {
-  final dynamic value;
   _Literal(this.value);
+  final dynamic value;
 
   @override
   Future<dynamic> execute(Map<String, dynamic> context) async => value;
@@ -330,7 +330,7 @@ void main() {
     });
 
     test('CqlCode passthrough', () async {
-      final code = CqlCode(
+      const code = CqlCode(
         code: 'B',
         system: 'http://example.com',
         display: 'Beta',
