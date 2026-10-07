@@ -262,12 +262,6 @@ void main() {
     {
       'Test': '1, 2, 3, 4, 5',
     },
-    knownFailures: {
-      'Test': 'Combine operator fails with List<CqlInteger> argument',
-    },
-    skipAll: 'executing the library throws ArgumentError "Invalid argument '
-        'for Combine operator" (an Error, so the whole run stops; restored '
-        '2026-10-06)',
   );
 
   // ── SignatureOutputTests ──

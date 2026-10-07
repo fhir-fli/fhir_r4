@@ -78,18 +78,26 @@ void main() {
 const _knownFailures = <String, String>{
   // Interval Expand cross-unit edge cases (2 tests) — require matching CQF precision during unit conversion
   'test_QtyIvlExpand_ClosedSingleGPerMG':
-      'Interval Expand cross-unit edge cases',
+      'the reference engine writes the sub-interval highs at a fourth decimal (2.0009 g for per 1 mg); the spec gives no cross-unit precision rule',
   'test_QtyIvlExpand_ClosedSingleMGPerGTrunc':
-      'Interval Expand cross-unit edge cases',
+      'the reference engine writes the sub-interval highs at a fourth decimal (2.0009 g for per 1 mg); the spec gives no cross-unit precision rule',
   // Type conversion edge cases (1 test) - ToList promotion in CQL-to-ELM translator
-  // Null list inclusion semantics (8 tests) — CQF returns false, CQL spec says null;
-  // cannot fix without breaking unit tests (null as List<T> is indistinguishable from null at runtime)
-  'test_IncludedIn_NullIncluded': 'Null list inclusion semantics',
-  'test_IncludedIn_NullIncludes': 'Null list inclusion semantics',
-  'test_Includes_NullIncluded': 'Null list inclusion semantics',
-  'test_Includes_NullIncludes': 'Null list inclusion semantics',
-  'test_ProperIncludedIn_NullIncluded': 'Null list inclusion semantics',
-  'test_ProperIncludedIn_NullIncludes': 'Null list inclusion semantics',
-  'test_ProperIncludes_NullIncluded': 'Null list inclusion semantics',
-  'test_ProperIncludes_NullIncludes': 'Null list inclusion semantics',
+  // Null list inclusion (8 tests). CQL reference 09-b, Includes / Included
+  // In (lists): "For the list-list overload, if either argument is null,
+  // the result is null." The engine answers null; this suite expects false
+  // (`not IncludedIn_NullIncluded`). Measured 2026-10-07.
+  'test_IncludedIn_NullIncluded':
+      'the spec says null; this suite expects false',
+  'test_IncludedIn_NullIncludes':
+      'the spec says null; this suite expects false',
+  'test_Includes_NullIncluded': 'the spec says null; this suite expects false',
+  'test_Includes_NullIncludes': 'the spec says null; this suite expects false',
+  'test_ProperIncludedIn_NullIncluded':
+      'the spec says null; this suite expects false',
+  'test_ProperIncludedIn_NullIncludes':
+      'the spec says null; this suite expects false',
+  'test_ProperIncludes_NullIncluded':
+      'the spec says null; this suite expects false',
+  'test_ProperIncludes_NullIncludes':
+      'the spec says null; this suite expects false',
 };
