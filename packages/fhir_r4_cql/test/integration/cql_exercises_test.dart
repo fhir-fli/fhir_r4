@@ -112,18 +112,8 @@ const _elmNotYetEqual = <String, String>{
 /// (measured 2026-10-06; each is a binding or engine defect to fix).
 const _executionNotYetRight = <String, String>{
   'Exercises05': 'Patient: the resource is compared as a map',
-  'Exercises07': 'Quantitative Laboratory Encounters: the retrieve-with-query '
-      'answers an empty list',
   'Exercises09': 'TestPrimitives: null instead of the Patient',
-  'Exercises11': 'Initial Population: null instead of true',
 };
 
 /// Exercises whose execution throws (an Error, so nothing can be compared).
-const _executionThrows = <String, String>{
-  'Exercises03': 'Less over a FhirDecimal property and a CqlDecimal literal: '
-      'the R4 resolver hands the engine a FHIR decimal where a System '
-      'Decimal is needed (restored 2026-10-06)',
-  'Exercises10': 'Multiply over a FHIR Quantity and a CqlDecimal: the R4 '
-      'resolver hands the engine a FHIR Quantity where a System Quantity '
-      'is needed (restored 2026-10-06)',
-};
+const _executionThrows = <String, String>{};

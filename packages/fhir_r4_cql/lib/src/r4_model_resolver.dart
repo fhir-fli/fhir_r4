@@ -86,7 +86,69 @@ class R4ModelResolver implements ModelResolver {
     }
   }
 
+  /// Whether [value], a System value, is what [typeName] converts to at the
+  /// boundary (toCqlSystemType), read as that FHIR type.
+  bool _systemValueIsFhirType(dynamic value, String typeName) {
+    switch (typeName) {
+      case 'boolean':
+        return value is CqlBoolean;
+      case 'integer':
+      case 'positiveInt':
+      case 'unsignedInt':
+        return value is CqlInteger;
+      case 'integer64':
+        return value is CqlLong;
+      case 'decimal':
+        return value is CqlDecimal;
+      case 'string':
+      case 'code':
+      case 'id':
+      case 'markdown':
+      case 'uri':
+      case 'url':
+      case 'canonical':
+      case 'oid':
+      case 'uuid':
+        return value is CqlString;
+      case 'date':
+        return value is CqlDate;
+      case 'dateTime':
+      case 'instant':
+        return value is CqlDateTime;
+      case 'time':
+        return value is CqlTime;
+      case 'Quantity':
+      case 'SimpleQuantity':
+      case 'Age':
+      case 'Duration':
+      case 'Distance':
+      case 'Count':
+      case 'MoneyQuantity':
+        return value is ValidatedQuantity;
+      case 'Coding':
+        return value is CqlCode;
+      case 'CodeableConcept':
+        return value is CqlConcept;
+      case 'Period':
+        return value is CqlInterval<CqlDateTime>;
+      case 'Range':
+        return value is CqlInterval<ValidatedQuantity>;
+      case 'Ratio':
+        return value is ValidatedRatio;
+      default:
+        return false;
+    }
+  }
+
   bool? _isFhirR4(dynamic value, String typeName) {
+    // A value that crossed the boundary (resolvePath answers System values
+    // for the primitives and the composites the model info maps) still is
+    // its FHIR type: `O.value as CodeableConcept` over a converted
+    // CodeableConcept, `O.value is Quantity`. Measured 2026-10-07
+    // (Exercises08 "Blood Glucose Observations", Exercises10 "Former smoker
+    // observation" answered empty once the boundary converted).
+    final asSystem = _systemValueIsFhirType(value, typeName);
+    if (asSystem) return true;
     switch (typeName) {
       // FHIR primitive types
       case 'boolean':
@@ -313,8 +375,15 @@ class R4ModelResolver implements ModelResolver {
           result = [child];
         }
       }
-      if (result.length == 1) return result.first;
-      return result;
+      // The boundary contract: a FHIR primitive or one of the composites
+      // the model info maps (Quantity, Coding, CodeableConcept, Period,
+      // Range, Ratio) reaches the engine as its System value; a resource or
+      // any other element passes through (toCqlSystemType). Measured
+      // 2026-10-07 (Exercises10 "Pack-years"): a component's valueQuantity
+      // reached Multiply as a FHIR Quantity and threw.
+      final converted = result.map(toCqlSystemType).toList();
+      if (converted.length == 1) return converted.first;
+      return converted;
     } on Exception catch (_) {
       // A path the engine cannot parse or evaluate resolves to nothing.
       return null;
