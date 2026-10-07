@@ -1,0 +1,2427 @@
+{
+    "resourceType": "StructureMap",
+    "id": "BundleToCdaCh",
+    "url": "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCdaCh",
+    "name": "BundleToCdaCh",
+    "status": "draft",
+    "description": "CDA-CH document, 2.16.756.5.30.1.1.10.1.14\r\n2020-01-16 Oliver Egger, copyright ahdis ag, Apache License\r\nCDA-CH:  https://art-decor.org/art-decor/decor-templates--hl7chcda-\r\nFHIR CH-Core: http://fhir.ch/ig/ch-core/index.html",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+            "mode": "target",
+            "alias": "ClinicalDocument"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/Author",
+            "mode": "target",
+            "alias": "Author"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/RecordTarget",
+            "mode": "target",
+            "alias": "RecordTarget"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/DataEnterer",
+            "mode": "target",
+            "alias": "DataEnterer"
+        },
+        {
+            "url": "http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity",
+            "mode": "target",
+            "alias": "AssignedEntity"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Bundle",
+            "mode": "source",
+            "alias": "Bundle"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Composition",
+            "mode": "source",
+            "alias": "Composition"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Person",
+            "mode": "source",
+            "alias": "Person"
+        }
+    ],
+    "import": [
+        "http://fhir.ch/ig/cda-fhir-maps/StructureMap/FhirToCdaTypes",
+        "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCda"
+    ],
+    "group": [
+        {
+            "name": "BundleToCdaCh",
+            "typeMode": "none",
+            "documentation": "source: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-document.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "bundle",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "recordTarget",
+                            "variable": "recordTarget"
+                        },
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "author",
+                            "variable": "author"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "BundleToClinicalDocumentCh",
+                            "variable": [
+                                "bundle",
+                                "recordTarget",
+                                "author",
+                                "cda"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BundleToClinicalDocumentCh",
+            "extends": "BundleToClinicalDocument",
+            "typeMode": "none",
+            "documentation": "source: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-document.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "recordTarget",
+                    "type": "RecordTarget",
+                    "mode": "target"
+                },
+                {
+                    "name": "author",
+                    "type": "Author",
+                    "mode": "target"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "tempalteId",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "author",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.9.23"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "tempalteId",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "recordTarget",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.2.1"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "tempalteId",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "custodian",
+                            "variable": "custodian"
+                        },
+                        {
+                            "context": "custodian",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.2.3"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "realmCode",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "realmCode",
+                            "variable": "realmCode"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "CHE",
+                            "source": [
+                                {
+                                    "context": "bundle"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "realmCode",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "CHE"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "0-structuredBody",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "root",
+                            "source": [
+                                {
+                                    "context": "bundle"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.756.5.30.1.1.10.1.9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "componentAsStructuredBody",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "root",
+                            "source": [
+                                {
+                                    "context": "bundle"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.840.1.113883.10.12.2"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "HL7CdaR2-2005",
+                    "source": [
+                        {
+                            "context": "bundle"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "root",
+                            "source": [
+                                {
+                                    "context": "bundle"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.840.1.113883.10.12.1"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "resource",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "resource",
+                                    "condition": "$this.ofType(FHIR.Composition)"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CompositionClinicalDocumentCH",
+                                    "variable": [
+                                        "bundle",
+                                        "resource",
+                                        "cda"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SectionCdaRemarksCoded",
+            "extends": "SectionCdaSection",
+            "typeMode": "none",
+            "documentation": "_________________________ Section Level Templates _________________________\r\nsource: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-definitions.html#Composition.section\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.3.2",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "section",
+                    "type": "Section",
+                    "mode": "source"
+                },
+                {
+                    "name": "cdasection",
+                    "type": "CdaSection",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "templateId",
+                    "source": [
+                        {
+                            "context": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.3.2"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "entry",
+                            "variable": "entry"
+                        },
+                        {
+                            "context": "entry",
+                            "contextType": "variable",
+                            "element": "act",
+                            "variable": "act"
+                        },
+                        {
+                            "context": "act",
+                            "contextType": "variable",
+                            "element": "classCode",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "ACT"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "act",
+                            "contextType": "variable",
+                            "element": "moodCode",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "EVN"
+                                }
+                            ]
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "templateId",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "act",
+                                    "contextType": "variable",
+                                    "element": "templateId",
+                                    "variable": "templateId"
+                                },
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.756.5.30.1.1.10.4.2"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "templateId",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "act",
+                                    "contextType": "variable",
+                                    "element": "templateId",
+                                    "variable": "templateId"
+                                },
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.840.1.113883.10.20.1.40"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "templateId",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "act",
+                                    "contextType": "variable",
+                                    "element": "templateId",
+                                    "variable": "templateId"
+                                },
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "1.3.6.1.4.1.19376.1.5.3.1.4.2"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "code",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "act",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "variable": "code"
+                                },
+                                {
+                                    "context": "code",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "48767-8"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "code",
+                                    "contextType": "variable",
+                                    "element": "codeSystem",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.840.1.113883.6.1"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "code",
+                                    "contextType": "variable",
+                                    "element": "codeSystemName",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "LOINC"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "code",
+                                    "contextType": "variable",
+                                    "element": "displayName",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Annotation comment"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "text",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "element": "text",
+                                    "variable": "text"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "id",
+                                    "source": [
+                                        {
+                                            "context": "text",
+                                            "element": "div",
+                                            "variable": "div"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "act",
+                                            "contextType": "variable",
+                                            "element": "text",
+                                            "variable": "text"
+                                        },
+                                        {
+                                            "context": "text",
+                                            "contextType": "variable",
+                                            "element": "reference",
+                                            "variable": "reference"
+                                        },
+                                        {
+                                            "context": "reference",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "transform": "evaluate",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "'#' + %div.substring(%div.indexOf('id') + %div.substring(%div.indexOf('id')).indexOf('\\\"') + 1, %div.substring(%div.indexOf('id') + %div.substring(%div.indexOf('id')).indexOf('\\\"') + 1).indexOf('\\\"'))"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "completed",
+                            "source": [
+                                {
+                                    "context": "section"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "act",
+                                    "contextType": "variable",
+                                    "element": "statusCode",
+                                    "variable": "statusCode"
+                                },
+                                {
+                                    "context": "statusCode",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "completed"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SectionCdaOriginalRepresentationObservationMedia",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "binary",
+                    "type": "Binary",
+                    "mode": "source"
+                },
+                {
+                    "name": "section",
+                    "type": "Section",
+                    "mode": "source"
+                },
+                {
+                    "name": "cdasection",
+                    "type": "CdaSection",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "Section",
+                    "source": [
+                        {
+                            "context": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "text",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "<div xmlns=\"\"http://www.w3.org/1999/xhtml\"\">Representation of the original view:<img src=\"\"pdf1\"\"/></div>"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "entry",
+                    "source": [
+                        {
+                            "context": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "driv",
+                            "source": [
+                                {
+                                    "context": "binary"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "entry",
+                                    "contextType": "variable",
+                                    "element": "typeCode",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "DRIV"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "observationMedia",
+                            "source": [
+                                {
+                                    "context": "binary"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "entry",
+                                    "contextType": "variable",
+                                    "element": "observationMedia",
+                                    "variable": "observationMedia"
+                                },
+                                {
+                                    "context": "observationMedia",
+                                    "contextType": "variable",
+                                    "element": "classCode",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "OBS"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "context": "observationMedia",
+                                    "contextType": "variable",
+                                    "element": "moodCode",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "EVN"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "templateId",
+                                    "source": [
+                                        {
+                                            "context": "binary"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "observationMedia",
+                                            "contextType": "variable",
+                                            "element": "templateId",
+                                            "variable": "templateId"
+                                        },
+                                        {
+                                            "context": "templateId",
+                                            "contextType": "variable",
+                                            "element": "root",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "2.16.756.5.30.1.1.10.4.83"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "reference",
+                                    "source": [
+                                        {
+                                            "context": "binary"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "observationMedia",
+                                            "contextType": "variable",
+                                            "element": "ID",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "pdf1"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "value",
+                                    "source": [
+                                        {
+                                            "context": "binary"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "observationMedia",
+                                            "contextType": "variable",
+                                            "element": "value",
+                                            "variable": "value"
+                                        },
+                                        {
+                                            "context": "value",
+                                            "contextType": "variable",
+                                            "element": "mediaType",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "2.16.756.5.30.1.1.10.4.83"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "context": "value",
+                                            "contextType": "variable",
+                                            "element": "representation",
+                                            "transform": "copy",
+                                            "parameter": [
+                                                {
+                                                    "valueString": "B64"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "contentType",
+                                            "source": [
+                                                {
+                                                    "context": "binary",
+                                                    "element": "contentType",
+                                                    "variable": "contentType"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "value",
+                                                    "contextType": "variable",
+                                                    "element": "mediaType",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueId": "contentType"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "data",
+                                            "source": [
+                                                {
+                                                    "context": "binary",
+                                                    "element": "data",
+                                                    "variable": "data"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "value",
+                                                    "contextType": "variable",
+                                                    "element": "data",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueId": "data"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "lang",
+                                            "source": [
+                                                {
+                                                    "context": "binary",
+                                                    "element": "language",
+                                                    "variable": "lang"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "observationMedia",
+                                                    "contextType": "variable",
+                                                    "element": "languageCode",
+                                                    "variable": "languageCode"
+                                                },
+                                                {
+                                                    "context": "languageCode",
+                                                    "contextType": "variable",
+                                                    "element": "code",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueId": "lang"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "langUnknown",
+                                            "source": [
+                                                {
+                                                    "context": "binary",
+                                                    "condition": "$this.language.exists() = false"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "observationMedia",
+                                                    "contextType": "variable",
+                                                    "element": "languageCode",
+                                                    "variable": "languageCode"
+                                                },
+                                                {
+                                                    "context": "languageCode",
+                                                    "contextType": "variable",
+                                                    "element": "nullFlavor",
+                                                    "transform": "copy",
+                                                    "parameter": [
+                                                        {
+                                                            "valueString": "UNK"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SectionCdaOriginalRepresentation",
+            "extends": "SectionCdaSection",
+            "typeMode": "none",
+            "documentation": "source: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-definitions.html#Composition.section\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.1.14\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.4.83",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "section",
+                    "type": "Section",
+                    "mode": "source"
+                },
+                {
+                    "name": "cdasection",
+                    "type": "CdaSection",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "templateId",
+                    "source": [
+                        {
+                            "context": "section"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cdasection",
+                            "contextType": "variable",
+                            "element": "templateId",
+                            "variable": "templateId"
+                        },
+                        {
+                            "context": "templateId",
+                            "contextType": "variable",
+                            "element": "root",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "2.16.756.5.30.1.1.10.3.45"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "defaulttitles",
+                    "source": [
+                        {
+                            "context": "section",
+                            "condition": "title.exists().not()"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "titleDE",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "condition": "(%bundle.entry[0].resource.language.startsWith('de'))"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "title",
+                                    "variable": "title"
+                                },
+                                {
+                                    "context": "title",
+                                    "contextType": "variable",
+                                    "element": "data",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Original Darstellung"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "titleFR",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "condition": "(%bundle.entry[0].resource.language.startsWith('fr'))"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "title",
+                                    "variable": "title"
+                                },
+                                {
+                                    "context": "title",
+                                    "contextType": "variable",
+                                    "element": "data",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Représentation originale"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "titleIT",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "condition": "(%bundle.entry[0].resource.language.startsWith('it'))"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "title",
+                                    "variable": "title"
+                                },
+                                {
+                                    "context": "title",
+                                    "contextType": "variable",
+                                    "element": "data",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Rappresentazione originale"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "titleEN",
+                            "source": [
+                                {
+                                    "context": "section",
+                                    "condition": "(%bundle.entry[0].resource.language.startsWith('en'))"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cdasection",
+                                    "contextType": "variable",
+                                    "element": "title",
+                                    "variable": "title"
+                                },
+                                {
+                                    "context": "title",
+                                    "contextType": "variable",
+                                    "element": "data",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "Original representation"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "patient",
+                    "source": [
+                        {
+                            "context": "bundle",
+                            "element": "entry",
+                            "variable": "entry"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "fullUrlAsUuid",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "fullUrl",
+                                    "condition": "($this in %section.entry.reference) and $this.startsWith('urn:uuid')"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "patient",
+                                    "source": [
+                                        {
+                                            "context": "entry",
+                                            "element": "resource",
+                                            "variable": "binary"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "SectionCdaOriginalRepresentationObservationMedia",
+                                            "variable": [
+                                                "binary",
+                                                "section",
+                                                "cdasection"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "patient",
+                            "source": [
+                                {
+                                    "context": "entry",
+                                    "element": "resource",
+                                    "variable": "binary",
+                                    "condition": "('Binary' + '/' + $this.id) in %section.entry.reference"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "SectionCdaOriginalRepresentationObservationMedia",
+                                    "variable": [
+                                        "binary",
+                                        "section",
+                                        "cdasection"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "PersonAssignedEntityWithId",
+            "typeMode": "none",
+            "documentation": "_________________________ Entry Level Templates   ________________________\r\n_________________________ Header Level Templates _________________________\r\nsource: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-epr.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.12",
+            "input": [
+                {
+                    "name": "practitioner",
+                    "type": "Practitioner",
+                    "mode": "source"
+                },
+                {
+                    "name": "assignedEntity",
+                    "type": "AssignedEntity",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "identifier",
+                    "source": [
+                        {
+                            "context": "practitioner",
+                            "element": "identifier",
+                            "variable": "identifier"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "assignedEntity",
+                            "contextType": "variable",
+                            "element": "id",
+                            "variable": "id"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "IdentifierII",
+                            "variable": [
+                                "identifier",
+                                "id"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "address",
+                    "source": [
+                        {
+                            "context": "practitioner",
+                            "element": "address",
+                            "variable": "address"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "assignedEntity",
+                            "contextType": "variable",
+                            "element": "addr",
+                            "variable": "addr"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "AddressAD",
+                            "variable": [
+                                "address",
+                                "addr"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "name",
+                    "source": [
+                        {
+                            "context": "practitioner",
+                            "element": "name",
+                            "variable": "humanname"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "assignedEntity",
+                            "contextType": "variable",
+                            "element": "assignedPerson",
+                            "variable": "assignedPerson"
+                        },
+                        {
+                            "context": "assignedPerson",
+                            "contextType": "variable",
+                            "element": "name",
+                            "variable": "en"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "HumanNameEN",
+                            "variable": [
+                                "humanname",
+                                "en"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DataEnterer",
+            "typeMode": "none",
+            "documentation": "source: http://build.fhir.org/ig/hl7ch/ch-core/branches/master/StructureDefinition-ch-core-composition-epr.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.12",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "practitionerRole",
+                    "type": "PractitionerRole",
+                    "mode": "source"
+                },
+                {
+                    "name": "assignedEntity",
+                    "type": "AssignedEntity",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "extensionPerson",
+                    "source": [
+                        {
+                            "context": "practitionerRole",
+                            "element": "practitioner",
+                            "variable": "practitioner"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "valueReference",
+                            "source": [
+                                {
+                                    "context": "practitioner",
+                                    "element": "reference",
+                                    "variable": "reference"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "practitioner",
+                                    "source": [
+                                        {
+                                            "context": "bundle",
+                                            "element": "entry",
+                                            "variable": "entry"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "uuid",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "element": "fullUrl",
+                                                    "condition": "($this in %reference.value) and $this.startsWith('urn:uuid')"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "AssignedEntityWithId",
+                                                    "source": [
+                                                        {
+                                                            "context": "entry",
+                                                            "type": "Practitioner",
+                                                            "element": "resource",
+                                                            "variable": "practitioner"
+                                                        }
+                                                    ],
+                                                    "dependent": [
+                                                        {
+                                                            "name": "PersonAssignedEntityWithId",
+                                                            "variable": [
+                                                                "practitioner",
+                                                                "assignedEntity"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "AssignedEntityWithId",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "type": "Practitioner",
+                                                    "element": "resource",
+                                                    "variable": "practitioner",
+                                                    "condition": "('Practitioner' + '/' + $this.id) in %reference.value"
+                                                }
+                                            ],
+                                            "dependent": [
+                                                {
+                                                    "name": "PersonAssignedEntityWithId",
+                                                    "variable": [
+                                                        "practitioner",
+                                                        "assignedEntity"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "extensionPerson",
+                    "source": [
+                        {
+                            "context": "practitionerRole",
+                            "element": "organization",
+                            "variable": "organization"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "assignedEntity",
+                            "contextType": "variable",
+                            "element": "representedOrganization",
+                            "variable": "representedOrganization"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "valueReference",
+                            "source": [
+                                {
+                                    "context": "organization",
+                                    "element": "reference",
+                                    "variable": "reference"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "practitioner",
+                                    "source": [
+                                        {
+                                            "context": "bundle",
+                                            "element": "entry",
+                                            "variable": "entry"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "uuid",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "element": "fullUrl",
+                                                    "condition": "($this in %reference.value) and $this.startsWith('urn:uuid')"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "representedOrganization",
+                                                    "source": [
+                                                        {
+                                                            "context": "entry",
+                                                            "type": "Organization",
+                                                            "element": "resource",
+                                                            "variable": "organization"
+                                                        }
+                                                    ],
+                                                    "dependent": [
+                                                        {
+                                                            "name": "Organization2CdaOrganization",
+                                                            "variable": [
+                                                                "organization",
+                                                                "representedOrganization"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "representedOrganization",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "type": "Organization",
+                                                    "element": "resource",
+                                                    "variable": "organization",
+                                                    "condition": "('Organization' + '/' + $this.id) in %reference.value"
+                                                }
+                                            ],
+                                            "dependent": [
+                                                {
+                                                    "name": "Organization2CdaOrganization",
+                                                    "variable": [
+                                                        "organization",
+                                                        "representedOrganization"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CompositionClinicalDocumentCH",
+            "typeMode": "none",
+            "documentation": "_________________________ Template Type not specified  ___________________\r\nsource: http://hl7.org/fhir/R4/person.html\r\ntarget: https://art-decor.org/art-decor/decor-templates--hl7chcda-?id=2.16.756.5.30.1.1.10.9.36",
+            "input": [
+                {
+                    "name": "bundle",
+                    "type": "Bundle",
+                    "mode": "source"
+                },
+                {
+                    "name": "composition",
+                    "type": "Composition",
+                    "mode": "source"
+                },
+                {
+                    "name": "cda",
+                    "type": "ClinicalDocument",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "type",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "type",
+                            "variable": "type"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "translation",
+                            "source": [
+                                {
+                                    "context": "type",
+                                    "element": "coding",
+                                    "variable": "coding",
+                                    "condition": "$this.system = 'http://snomed.info/sct'"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cda",
+                                    "contextType": "variable",
+                                    "element": "code",
+                                    "variable": "code"
+                                },
+                                {
+                                    "context": "code",
+                                    "contextType": "variable",
+                                    "element": "translation",
+                                    "variable": "translation"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "CodingCE",
+                                    "variable": [
+                                        "coding",
+                                        "translation"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "confidentialityCode",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "confidentiality",
+                            "variable": "conf",
+                            "condition": "$this.extension.where(url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-confidentialitycode').exists()"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "confidentialityCode",
+                            "variable": "cdaconf"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "extension",
+                            "source": [
+                                {
+                                    "context": "conf",
+                                    "element": "extension",
+                                    "variable": "extension"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "valueCodeableConcept",
+                                    "source": [
+                                        {
+                                            "context": "extension",
+                                            "element": "valueCodeableConcept",
+                                            "variable": "valueCodeableConcept"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "coding",
+                                            "source": [
+                                                {
+                                                    "context": "valueCodeableConcept",
+                                                    "element": "coding",
+                                                    "variable": "coding"
+                                                }
+                                            ],
+                                            "dependent": [
+                                                {
+                                                    "name": "CodingCE",
+                                                    "variable": [
+                                                        "coding",
+                                                        "cdaconf"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "IdentifierII",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "identifier",
+                            "variable": "identifier",
+                            "condition": "$this.system = 'urn:ietf:rfc:3986'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "setId",
+                            "variable": "setId"
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "IdentifierII",
+                            "variable": [
+                                "identifier",
+                                "setId"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "setIdCreated",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "condition": "$this.identifier.where(system = 'urn:ietf:rfc:3986').exists() = false"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "setId",
+                            "source": [
+                                {
+                                    "context": "bundle",
+                                    "element": "identifier",
+                                    "variable": "identifier"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "cda",
+                                    "contextType": "variable",
+                                    "element": "setId",
+                                    "variable": "id"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "IdentifierII",
+                                    "variable": [
+                                        "identifier",
+                                        "id"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "versionNumberMapped",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "extension",
+                            "variable": "ext",
+                            "condition": "$this.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "versionNumber",
+                            "variable": "versionNumber"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "IntegerInt",
+                            "source": [
+                                {
+                                    "context": "ext",
+                                    "element": "valueUnsignedInt",
+                                    "variable": "valueUnsignedInt"
+                                }
+                            ],
+                            "dependent": [
+                                {
+                                    "name": "IntegerINT",
+                                    "variable": [
+                                        "valueUnsignedInt",
+                                        "versionNumber"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "versionNumberCreated",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "variable": "composition",
+                            "condition": "$this.extension.where(url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-versionnumber').exists() = false"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "versionNumber",
+                            "variable": "versionNumber"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "versionNumber",
+                            "source": [
+                                {
+                                    "context": "composition"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "versionNumber",
+                                    "contextType": "variable",
+                                    "element": "value",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "1"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "informationRecipient",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "extension",
+                            "variable": "extension",
+                            "condition": "$this.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-informationrecipient'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "informationRecipient",
+                            "variable": "informationRecipient"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "PRCP",
+                            "source": [
+                                {
+                                    "context": "extension"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "informationRecipient",
+                                    "contextType": "variable",
+                                    "element": "typeCode",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "PRCP"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "templateId",
+                            "source": [
+                                {
+                                    "context": "extension"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "informationRecipient",
+                                    "contextType": "variable",
+                                    "element": "templateId",
+                                    "variable": "templateId"
+                                },
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.756.5.30.1.1.10.2.4"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "valueReference",
+                            "source": [
+                                {
+                                    "context": "extension",
+                                    "element": "valueReference",
+                                    "variable": "valueReference"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "entry",
+                                    "source": [
+                                        {
+                                            "context": "bundle",
+                                            "element": "entry",
+                                            "variable": "entry"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "uuid",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "element": "fullUrl",
+                                                    "condition": "($this in %valueReference.reference) and $this.startsWith('urn:uuid')"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "fullUrlPatient",
+                                                    "source": [
+                                                        {
+                                                            "context": "entry",
+                                                            "type": "Patient",
+                                                            "element": "resource",
+                                                            "variable": "patient"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "informationRecipient",
+                                                            "contextType": "variable",
+                                                            "element": "intendedRecipient",
+                                                            "variable": "intendedRecipient",
+                                                            "listMode": [
+                                                                "share"
+                                                            ],
+                                                            "listRuleId": "intendedRecipient"
+                                                        }
+                                                    ],
+                                                    "rule": [
+                                                        {
+                                                            "name": "address",
+                                                            "source": [
+                                                                {
+                                                                    "context": "patient",
+                                                                    "element": "address",
+                                                                    "variable": "address"
+                                                                }
+                                                            ],
+                                                            "target": [
+                                                                {
+                                                                    "context": "intendedRecipient",
+                                                                    "contextType": "variable",
+                                                                    "element": "addr",
+                                                                    "variable": "addr"
+                                                                }
+                                                            ],
+                                                            "dependent": [
+                                                                {
+                                                                    "name": "AddressAD",
+                                                                    "variable": [
+                                                                        "address",
+                                                                        "addr"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "name",
+                                                            "source": [
+                                                                {
+                                                                    "context": "patient",
+                                                                    "element": "name",
+                                                                    "variable": "humanname"
+                                                                }
+                                                            ],
+                                                            "target": [
+                                                                {
+                                                                    "context": "intendedRecipient",
+                                                                    "contextType": "variable",
+                                                                    "element": "informationRecipient",
+                                                                    "variable": "informationRecipient2"
+                                                                },
+                                                                {
+                                                                    "context": "informationRecipient2",
+                                                                    "contextType": "variable",
+                                                                    "element": "name",
+                                                                    "variable": "en"
+                                                                }
+                                                            ],
+                                                            "dependent": [
+                                                                {
+                                                                    "name": "HumanNameEN",
+                                                                    "variable": [
+                                                                        "humanname",
+                                                                        "en"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "organization",
+                                                    "source": [
+                                                        {
+                                                            "context": "entry",
+                                                            "type": "Organization",
+                                                            "element": "resource",
+                                                            "variable": "organization"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "informationRecipient",
+                                                            "contextType": "variable",
+                                                            "element": "intendedRecipient",
+                                                            "variable": "intendedRecipient",
+                                                            "listMode": [
+                                                                "share"
+                                                            ],
+                                                            "listRuleId": "intendedRecipient"
+                                                        },
+                                                        {
+                                                            "context": "intendedRecipient",
+                                                            "contextType": "variable",
+                                                            "element": "receivedOrganization",
+                                                            "variable": "receivedOrganization"
+                                                        }
+                                                    ],
+                                                    "dependent": [
+                                                        {
+                                                            "name": "Organization2CdaOrganization",
+                                                            "variable": [
+                                                                "organization",
+                                                                "receivedOrganization"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "intendedRecipient",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "type": "Patient",
+                                                    "element": "resource",
+                                                    "variable": "patient",
+                                                    "condition": "(($this.id = %valueReference.reference.substring(8)) or ($this.id = %valueReference.reference.substring(9)))"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "informationRecipient",
+                                                    "contextType": "variable",
+                                                    "element": "intendedRecipient",
+                                                    "variable": "intendedRecipient",
+                                                    "listMode": [
+                                                        "share"
+                                                    ],
+                                                    "listRuleId": "intendedRecipient"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "address",
+                                                    "source": [
+                                                        {
+                                                            "context": "patient",
+                                                            "element": "address",
+                                                            "variable": "address"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "intendedRecipient",
+                                                            "contextType": "variable",
+                                                            "element": "addr",
+                                                            "variable": "addr"
+                                                        }
+                                                    ],
+                                                    "dependent": [
+                                                        {
+                                                            "name": "AddressAD",
+                                                            "variable": [
+                                                                "address",
+                                                                "addr"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "name",
+                                                    "source": [
+                                                        {
+                                                            "context": "patient",
+                                                            "element": "name",
+                                                            "variable": "humanname"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "intendedRecipient",
+                                                            "contextType": "variable",
+                                                            "element": "informationRecipient",
+                                                            "variable": "informationRecipient2"
+                                                        },
+                                                        {
+                                                            "context": "informationRecipient2",
+                                                            "contextType": "variable",
+                                                            "element": "name",
+                                                            "variable": "en"
+                                                        }
+                                                    ],
+                                                    "dependent": [
+                                                        {
+                                                            "name": "HumanNameEN",
+                                                            "variable": [
+                                                                "humanname",
+                                                                "en"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "organization",
+                                            "source": [
+                                                {
+                                                    "context": "entry",
+                                                    "type": "Organization",
+                                                    "element": "resource",
+                                                    "variable": "organization",
+                                                    "condition": "(($this.id = %valueReference.reference.substring(13)) or ($this.id = %valueReference.reference.substring(9)))"
+                                                }
+                                            ],
+                                            "target": [
+                                                {
+                                                    "context": "informationRecipient",
+                                                    "contextType": "variable",
+                                                    "element": "intendedRecipient",
+                                                    "variable": "intendedRecipient",
+                                                    "listMode": [
+                                                        "share"
+                                                    ],
+                                                    "listRuleId": "intendedRecipient"
+                                                },
+                                                {
+                                                    "context": "intendedRecipient",
+                                                    "contextType": "variable",
+                                                    "element": "receivedOrganization",
+                                                    "variable": "receivedOrganization"
+                                                }
+                                            ],
+                                            "dependent": [
+                                                {
+                                                    "name": "Organization2CdaOrganization",
+                                                    "variable": [
+                                                        "organization",
+                                                        "receivedOrganization"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "dataEnterer",
+                    "source": [
+                        {
+                            "context": "composition",
+                            "element": "extension",
+                            "variable": "extension",
+                            "condition": "$this.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer'"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "cda",
+                            "contextType": "variable",
+                            "element": "dataEnterer",
+                            "variable": "dataEnterer"
+                        }
+                    ],
+                    "rule": [
+                        {
+                            "name": "templateId",
+                            "source": [
+                                {
+                                    "context": "extension"
+                                }
+                            ],
+                            "target": [
+                                {
+                                    "context": "dataEnterer",
+                                    "contextType": "variable",
+                                    "element": "templateId",
+                                    "variable": "templateId"
+                                },
+                                {
+                                    "context": "templateId",
+                                    "contextType": "variable",
+                                    "element": "root",
+                                    "transform": "copy",
+                                    "parameter": [
+                                        {
+                                            "valueString": "2.16.756.5.30.1.1.10.2.7"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "extensionTime",
+                            "source": [
+                                {
+                                    "context": "extension",
+                                    "element": "extension",
+                                    "variable": "extensionTime",
+                                    "condition": "$this.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-time'"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "DateTime",
+                                    "source": [
+                                        {
+                                            "context": "extensionTime",
+                                            "element": "valueDateTime",
+                                            "variable": "valueDateTime"
+                                        }
+                                    ],
+                                    "target": [
+                                        {
+                                            "context": "dataEnterer",
+                                            "contextType": "variable",
+                                            "element": "time",
+                                            "variable": "time"
+                                        }
+                                    ],
+                                    "dependent": [
+                                        {
+                                            "name": "DateTimeTS",
+                                            "variable": [
+                                                "valueDateTime",
+                                                "time"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "extensionPerson",
+                            "source": [
+                                {
+                                    "context": "extension",
+                                    "element": "extension",
+                                    "variable": "extensionPerson",
+                                    "condition": "$this.url = 'enterer'"
+                                }
+                            ],
+                            "rule": [
+                                {
+                                    "name": "valueReference",
+                                    "source": [
+                                        {
+                                            "context": "extensionPerson",
+                                            "element": "valueReference",
+                                            "variable": "valueReference"
+                                        }
+                                    ],
+                                    "rule": [
+                                        {
+                                            "name": "practitioner",
+                                            "source": [
+                                                {
+                                                    "context": "bundle",
+                                                    "element": "entry",
+                                                    "variable": "entry"
+                                                }
+                                            ],
+                                            "rule": [
+                                                {
+                                                    "name": "uuid",
+                                                    "source": [
+                                                        {
+                                                            "context": "entry",
+                                                            "element": "fullUrl",
+                                                            "condition": "($this in %valueReference.reference) and $this.startsWith('urn:uuid')"
+                                                        }
+                                                    ],
+                                                    "rule": [
+                                                        {
+                                                            "name": "AssignedEntityWithId",
+                                                            "source": [
+                                                                {
+                                                                    "context": "entry",
+                                                                    "type": "PractitionerRole",
+                                                                    "element": "resource",
+                                                                    "variable": "practitionerRole"
+                                                                }
+                                                            ],
+                                                            "target": [
+                                                                {
+                                                                    "context": "dataEnterer",
+                                                                    "contextType": "variable",
+                                                                    "element": "assignedEntity",
+                                                                    "variable": "assignedEntity"
+                                                                }
+                                                            ],
+                                                            "dependent": [
+                                                                {
+                                                                    "name": "DataEnterer",
+                                                                    "variable": [
+                                                                        "bundle",
+                                                                        "practitionerRole",
+                                                                        "assignedEntity"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "AssignedEntityWithId",
+                                                    "source": [
+                                                        {
+                                                            "context": "entry",
+                                                            "type": "PractitionerRole",
+                                                            "element": "resource",
+                                                            "variable": "practitionerRole",
+                                                            "condition": "('PractitionerRole' + '/' + $this.id) in %valueReference.reference"
+                                                        }
+                                                    ],
+                                                    "target": [
+                                                        {
+                                                            "context": "dataEnterer",
+                                                            "contextType": "variable",
+                                                            "element": "assignedEntity",
+                                                            "variable": "assignedEntity"
+                                                        }
+                                                    ],
+                                                    "dependent": [
+                                                        {
+                                                            "name": "DataEnterer",
+                                                            "variable": [
+                                                                "bundle",
+                                                                "practitionerRole",
+                                                                "assignedEntity"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
