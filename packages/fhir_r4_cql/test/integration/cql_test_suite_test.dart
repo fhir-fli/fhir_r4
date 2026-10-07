@@ -85,10 +85,6 @@ void main() {
 /// /* ... */ block comments or // line comments). These are not counted.
 // ignore_for_file: lines_longer_than_80_chars
 const _knownFailures = <String, String>{
-  // Interval Expand cross-unit edge case (1 test; the MGPerGTrunc twin
-  // started passing 2026-10-07 and its pin came out).
-  'test_QtyIvlExpand_ClosedSingleGPerMG':
-      'the reference engine writes the sub-interval highs at a fourth decimal (2.0009 g for per 1 mg); the spec gives no cross-unit precision rule',
   // Type conversion edge cases (1 test) - ToList promotion in CQL-to-ELM translator
   // Null list inclusion (8 tests). CQL reference 09-b, Includes / Included
   // In (lists): "For the list-list overload, if either argument is null,
