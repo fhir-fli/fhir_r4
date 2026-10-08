@@ -134,8 +134,11 @@ void main() {
     knownFailures: {
       // Interval[null, null] with untyped nulls is a null interval, and a
       // point in a null interval is false (09-b, Contains: "If the first
-      // argument is null, the result is false"); this file expects null.
-      // Measured 2026-10-07.
+      // argument is null, the result is false"; HL7's own conformance suite,
+      // CqlIntervalOperatorsTest: `5 in Interval[null, null] // false`,
+      // `Interval[null, null] // null`). This Java engine file expects
+      // null, as does the JavaScript engine; Firely's .NET answers true
+      // (read 2026-10-07). Measured 2026-10-07.
       'Date in Null Interval Test':
           'the spec says false; this file expects null',
       'DateTime in Null Interval Test':

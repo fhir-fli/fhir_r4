@@ -88,6 +88,19 @@ void main() {
 /// /* ... */ block comments or // line comments). These are not counted.
 // ignore_for_file: lines_longer_than_80_chars
 const _knownFailures = <String, String>{
+  // Variance of quantities (5 tests). CQL reference 09-b's example keeps
+  // the unit (`2.5 'mg'`); the JavaScript cql-execution and Firely .NET
+  // engines keep it too (read 2026-10-07). This suite's Java engine squares
+  // and canonicalizes it (`2.5 'm2'`, `0 'm6'`); the engine follows the
+  // spec and the other two engines (cql #31).
+  'test_Variance_v_q': 'the spec keeps the unit; this suite squares it',
+  'test_Variance_q_diff_units':
+      'the spec keeps the unit; this suite squares it',
+  'test_Variance_q2': 'the spec keeps the unit; this suite squares it',
+  'test_PopulationVariance_v_q':
+      'the spec keeps the unit; this suite squares it',
+  'test_PopulationVariance_q_diff_units':
+      'the spec keeps the unit; this suite squares it',
   // Type conversion edge cases (1 test) - ToList promotion in CQL-to-ELM translator
   // Null list inclusion (8 tests). CQL reference 09-b, Includes / Included
   // In (lists): "For the list-list overload, if either argument is null,
