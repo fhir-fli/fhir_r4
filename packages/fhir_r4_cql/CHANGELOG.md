@@ -1,5 +1,10 @@
 # fhir_r4_cql
 
+## [Unreleased]
+
+- **The June 2026 suite is back** (2,283 cases: the cqf CqlTestSuite, error and timezone suites, the engine test files, the fourteen exercise libraries, WHO measles): deleted 2026-07-07 as "stale", restored verbatim 2026-10-06 and brought to 0 failures with cql main. Every pin asserts the measured answer and cites the spec sentence it disagrees with.
+- **The boundary contract with the cql engine** (measured 2026-10-07 against that suite): `resolvePath` hands a FHIR primitive, or a composite the model info maps (Quantity, Coding, CodeableConcept, Period, Range, Ratio), to the engine as its System value; a value that crossed the boundary still `is` its FHIR type (`O.value is Quantity` over a converted Quantity); a map with no `resourceType` is a CQL Tuple (ELM 04, Property: "the source may be a Tuple") whose element is the key, instead of being handed to `Resource.fromJson`, which threw and stopped the whole CqlTestSuite. `test/r4_boundary_contract_test.dart`.
+
 ## [0.13.0]
 
 - **Re-exports cql 0.7.0** (breaking there: `To*`, `ConvertsTo*` and the
