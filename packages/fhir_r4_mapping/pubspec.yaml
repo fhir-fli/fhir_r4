@@ -28,7 +28,7 @@ environment:
 
 dependencies:
   collection: ^1.19.1
-  fhir_mapping: ^0.13.0
+  fhir_mapping: ^0.13.1
   fhir_node: ^0.6.1
   fhir_r4: ^0.13.0
   fhir_r4_path: ^0.13.0
