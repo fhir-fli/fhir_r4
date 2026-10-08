@@ -1,0 +1,139 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "ccdaDocumentToFhir",
+  "text" : {
+    "status" : "additional",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://hl7.org/fhir/cda/mapping/ccdaDocumentToFhir&quot; = &quot;C-CDA Document from CDA to FHIR&quot;\n\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument&quot; alias ClinicalDocument as source\nuses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias Bundle as target\nuses &quot;http://hl7.org/fhir/StructureDefinition/Composition&quot; alias Composition as produced\nuses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as source\n\nuses &quot;http://hl7.org/fhir/cda/StructureDefinition/Act&quot; alias Act as source\nuses &quot;http://hl7.org/fhir/StructureDefinition/AllergyIntolerance&quot; alias AllergyIntolerance as source\n\nimports &quot;http://hl7.org/fhir/cda/mapping/cdaAllergyIntolerance&quot;\nimports &quot;http://hl7.org/fhir/cda/mapping/ClinicalDocumentToFHIR&quot;\n\n\ngroup CCDADocument\n\tinput source: ClinicalDocument as source\n\t\n\tstart: for source make create(&quot;Bundle&quot;) as target then ClinicalDocumentBundle(source, target)\nendgroup\n\n\ngroup CCDASections\n\tinput source : ClinicalDocument as source\n\tinput component as source\n\tinput patient: Patient as source\n\tinput target: Composition as target\n\tinput bundle: Bundle as target\n\n\tallergySection: for component.section as srcSection where code.code = '48765-2' make target.section as tgtSection then AllergySection(srcSection, patient, bundle, tgtSection)\n\tsection: for component.section as srcSection where code.code != '48765-2' make target.section as tgtSection then ClinicalDocumentSection(srcSection, patient, tgtSection)\nendgroup\n</pre></div>"
+  },
+  "url" : "http://hl7.org/fhir/cda/mapping/ccdaDocumentToFhir",
+  "name" : "C-CDA Document from CDA to FHIR",
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument",
+    "mode" : "source",
+    "alias" : "ClinicalDocument"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Composition",
+    "mode" : "produced",
+    "alias" : "Composition"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Patient",
+    "mode" : "source",
+    "alias" : "Patient"
+  },
+  {
+    "url" : "http://hl7.org/fhir/cda/StructureDefinition/Act",
+    "mode" : "source",
+    "alias" : "Act"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance",
+    "mode" : "source",
+    "alias" : "AllergyIntolerance"
+  }],
+  "import" : ["http://hl7.org/fhir/cda/mapping/cdaAllergyIntolerance",
+  "http://hl7.org/fhir/cda/mapping/ClinicalDocumentToFHIR"],
+  "group" : [{
+    "name" : "CCDADocument",
+    "input" : [{
+      "name" : "source",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    }],
+    "rule" : [{
+      "name" : "start",
+      "source" : [{
+        "context" : "source"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "target",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Bundle"
+        }]
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentBundle",
+        "variable" : ["source",
+        "target"]
+      }]
+    }]
+  },
+  {
+    "name" : "CCDASections",
+    "input" : [{
+      "name" : "source",
+      "type" : "ClinicalDocument",
+      "mode" : "source"
+    },
+    {
+      "name" : "component",
+      "mode" : "source"
+    },
+    {
+      "name" : "patient",
+      "type" : "Patient",
+      "mode" : "source"
+    },
+    {
+      "name" : "target",
+      "type" : "Composition",
+      "mode" : "target"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "allergySection",
+      "source" : [{
+        "context" : "component",
+        "element" : "section",
+        "variable" : "srcSection",
+        "condition" : "code.code = '48765-2'"
+      }],
+      "target" : [{
+        "context" : "target",
+        "contextType" : "variable",
+        "element" : "section",
+        "variable" : "tgtSection"
+      }],
+      "dependent" : [{
+        "name" : "AllergySection",
+        "variable" : ["srcSection",
+        "patient",
+        "bundle",
+        "tgtSection"]
+      }]
+    },
+    {
+      "name" : "section",
+      "source" : [{
+        "context" : "component",
+        "element" : "section",
+        "variable" : "srcSection",
+        "condition" : "code.code != '48765-2'"
+      }],
+      "target" : [{
+        "context" : "target",
+        "contextType" : "variable",
+        "element" : "section",
+        "variable" : "tgtSection"
+      }],
+      "dependent" : [{
+        "name" : "ClinicalDocumentSection",
+        "variable" : ["srcSection",
+        "patient",
+        "tgtSection"]
+      }]
+    }]
+  }]
+}

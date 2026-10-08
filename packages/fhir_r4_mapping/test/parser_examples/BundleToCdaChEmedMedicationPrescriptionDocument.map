@@ -1,0 +1,84 @@
+map "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCdaChEmedMedicationPrescriptionDocument" = "BundleToCdaChEmedMedicationPrescriptionDocument"
+
+// Medication Prescription document, 2.16.756.5.30.1.1.10.1.4
+// 2020-01-27 Michaela Ziegler, copyright ahdis ag, Apache License
+// CDA-CH-EMED:  https://art-decor.org/art-decor/decor-project--cdachemed-
+// FHIR CH-EMED: http://fhir.ch/ig/ch-emed/index.html
+
+uses "http://hl7.org/fhir/cda/StructureDefinition/ClinicalDocument" alias ClinicalDocument as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/AssignedAuthor" alias AssignedAuthor as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/AssignedEntity" alias AssignedEntity as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/Author" alias Author as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/CustodianOrganization" alias CustodianOrganization as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/IVL_TS" alias IVL_TS as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/EIVL_TS" alias EIVL_TS as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/PatientRole" alias PatientRole as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/RecordTarget" alias RecordTarget as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/Section" alias Section as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/SubstanceAdministration" alias SubstanceAdministration as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/SXPR_TS" alias SXPR_TS as target
+uses "http://hl7.org/fhir/cda/StructureDefinition/Supply" alias Supply as target
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as source
+uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as source
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
+uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as source
+uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as source
+uses "http://hl7.org/fhir/StructureDefinition/MedicationRequest" alias MedicationRequest as source
+uses "http://hl7.org/fhir/StructureDefinition/Dosage" alias Dosage as source
+
+imports "http://fhir.ch/ig/cda-fhir-maps/StructureMap/FhirToCdaTypes"
+imports "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCda"
+imports "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCdaCh"
+imports "http://fhir.ch/ig/cda-fhir-maps/StructureMap/BundleToCdaChEmed"
+
+// source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationprescription.html
+// target: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.4
+group BundleToCdaChEmedMedicationPrescriptionDocument(source bundle : Bundle, target cda : ClinicalDocument) {
+  bundle ->  cda.recordTarget as recordTarget,  cda.author as author then BundleToClinicalDocumentEmedMedicationPrescriptionDocument(bundle, recordTarget, author, cda) "bundle";
+}
+
+// source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationprescription.html
+// target: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.1.4
+group CompositionClinicalDocumentChEmedMedicationPrescriptionDocument(source bundle : Bundle, source composition : Composition, target cda : ClinicalDocument) {
+  composition.type ->  cda.code as code,  code.codeSystem = '2.16.840.1.113883.6.1',  code.codeSystemName = 'LOINC',  code.code = '57833-6',  code.displayName = 'Prescription for medication' "fixloinc";
+  composition.section as section where $this.code.coding.where((system = 'http://loinc.org') and (code = '57828-6')) -> cda.component as component then {
+    section -> component.contextConductionInd = true "contextConductionInd";
+    section ->  component.structuredBody as structuredBody,  structuredBody.component as component,  component.section as cdasection then SectionPrescriptionSectionContentModule(bundle, section, cdasection) "cdasection";
+  } "SectionPrescriptionSectionContentModule";
+  composition.section as section where $this.code.coding.where((system = 'http://loinc.org') and (code = '48767-8')) -> cda.component as component then {
+    section -> component.contextConductionInd = true "contextConductionInd";
+    section ->  component.structuredBody as structuredBody,  structuredBody.component as component,  component.section as cdasection then SectionCdaRemarksCoded(bundle, section, cdasection) "cdasection";
+  } "SectionRemarksCoded";
+  composition.section as section where $this.code.coding.where((system = 'http://loinc.org') and (code = '55108-5')) -> cda.component as component then {
+    section -> component.contextConductionInd = true "contextConductionInd";
+    section ->  component.structuredBody as structuredBody,  structuredBody.component as component,  component.section as cdasection then SectionCdaOriginalRepresentation(bundle, section, cdasection) "cdasection";
+  } "SectionCdaOriginalRepresentation";
+}
+
+// _________________________ Section Level Templates _________________________
+// source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationprescription.html
+// target: https://art-decor.org/art-decor/decor-templates--cdachemed-?section=templates&id=2.16.756.5.30.1.1.10.3.10
+group SectionPrescriptionSectionContentModule(source bundle : Bundle, source section : Section, target cdasection : CdaSection) extends SectionCdaSection {
+  section ->  cdasection.templateId as templateId,  templateId.root = '2.16.756.5.30.1.1.10.3.10' "CH-PHARM-PrescriptionSectionContentModule";
+  section ->  cdasection.templateId as templateId,  templateId.root = '1.3.6.1.4.1.19376.1.9.1.2.1' "IHE-PrescriptionSectionContentModule";
+  section where text.exists() = false -> cdasection.text = '<div xmlns=\"http://www.w3.org/1999/xhtml\"><span id=\"refpdf\">see pdf</span></div>' "Section";
+  bundle.entry as entry then {
+    entry.fullUrl where ($this in %section.entry.reference) and $this.startsWith('urn:uuid') then {
+      entry.resource as medicationRequest where $this.ofType(FHIR.MedicationRequest) ->  cdasection.entry as entry,  entry.substanceAdministration as substanceAdministration then PrescriptionItemEntryContentModule(bundle, medicationRequest, substanceAdministration) "MedicationRequest";
+    } "fullUrlAsUuid";
+    entry.resource as medicationRequest where $this.ofType(FHIR.MedicationRequest) and (('MedicationRequest' + '/' + $this.id) in %section.entry.reference) ->  cdasection.entry as entry,  entry.substanceAdministration as substanceAdministration then PrescriptionItemEntryContentModule(bundle, medicationRequest, substanceAdministration) "MedicationRequest";
+  };
+}
+
+// _________________________ Header Level Templates _________________________
+// source: http://build.fhir.org/ig/hl7ch/ch-emed/StructureDefinition-ch-emed-composition-medicationprescription.html
+// target:
+group BundleToClinicalDocumentEmedMedicationPrescriptionDocument(source bundle : Bundle, target recordTarget : RecordTarget, target author : Author, target cda : ClinicalDocument) extends BundleToClinicalDocumentCh {
+  bundle ->  cda.templateId as templateId,  templateId.root = '2.16.756.5.30.1.127.1.4' "ExchangeFormatAccordingToTheSwissEPR";
+  bundle ->  cda.templateId as templateId,  templateId.root = '1.3.6.1.4.1.19376.1.5.3.1.1.1' "IHE-PCC";
+  bundle ->  cda.templateId as templateId,  templateId.root = '1.3.6.1.4.1.19376.1.9.1.1.1' "IHE-PRE";
+  bundle ->  cda.templateId as templateId,  templateId.root = '2.16.756.5.30.1.1.10.1.4' "CDA-CH-EMED-MedicationPrescriptionDocument";
+  bundle.entry as entry then {
+    entry.resource as resource where $this.ofType(FHIR.Composition) then CompositionClinicalDocumentChEmedMedicationPrescriptionDocument(bundle, resource, cda);
+  };
+}
