@@ -6,7 +6,7 @@
   `ResourceModel`; the store's text pair is `fromJsonText` / `toJsonText`
   (fhir_db 0.15.0).
 
-## [Unreleased]
+## [0.14.0]
 
 - **`subject:identifier=|42` matches only a system-less identifier** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q5): the leading-pipe token form; it was read as a bare value. Two tests in `test/search_syntax_test.dart`.
 - **`:missing=maybe` is refused** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q4): the value is `true` or `false`, case-insensitive; anything else is `InvalidSearchValue` instead of being read as false. `test/search_syntax_test.dart`.
