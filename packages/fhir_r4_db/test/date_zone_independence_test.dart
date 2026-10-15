@@ -20,6 +20,25 @@ import 'package:test/test.dart';
 /// a different zone (test/support/zone_probe.dart), since a Dart process's
 /// local zone is fixed at start.
 void main() {
+  // The children are `dart run`. Under `flutter test` this process is
+  // `flutter_tester`, which takes `run <file>` as its own arguments and
+  // never exits: the hang behind this test's 15-minute CI timeouts
+  // (2026-09-18; reproduced 2026-10-15, killed at 180 s, while `dart test`
+  // passed in 26 s). `flutter test` sets FLUTTER_ROOT; the SDK's own `dart`
+  // is under it (not `bin/dart`, a wrapper that takes Flutter's lock).
+  final dart = () {
+    final self = Platform.resolvedExecutable;
+    final name = self.split(Platform.pathSeparator).last;
+    if (name == 'dart' || name == 'dart.exe') return self;
+    final root = Platform.environment['FLUTTER_ROOT'];
+    if (root == null) {
+      throw StateError('running under $self with no FLUTTER_ROOT');
+    }
+    final sep = Platform.pathSeparator;
+    final exe = Platform.isWindows ? 'dart.exe' : 'dart';
+    return [root, 'bin', 'cache', 'dart-sdk', 'bin', exe].join(sep);
+  }();
+
   late Directory dir;
 
   setUp(() async {
@@ -30,7 +49,7 @@ void main() {
   Future<Map<String, String>> probe(String tz) async {
     final out = File('${dir.path}/${tz.replaceAll('/', '_')}.txt');
     final result = await Process.run(
-      Platform.resolvedExecutable,
+      dart,
       ['run', 'test/support/zone_probe.dart'],
       environment: {
         'TZ': tz,
@@ -50,7 +69,7 @@ void main() {
     () async {
       // Written under a third zone, so neither reader shares it.
       final writer = await Process.run(
-        Platform.resolvedExecutable,
+        dart,
         ['run', 'test/support/zone_writer.dart'],
         environment: {
           'TZ': 'America/New_York',
@@ -59,9 +78,7 @@ void main() {
       );
       expect(writer.exitCode, 0, reason: '${writer.stdout}\n${writer.stderr}');
 
-      // One reader, in a zone 14 hours from the writer's: a second
-      // `dart run` child on CI costs minutes (the native build hooks run
-      // again), and the test timed out at four children (2026-09-18).
+      // One reader, in a zone 14 hours from the writer's.
       final tokyo = await probe('Asia/Tokyo');
       expect(tokyo['birthdate-eq'], '1', reason: '$tokyo');
       expect(tokyo['birthdate-day-before'], '0', reason: '$tokyo');
