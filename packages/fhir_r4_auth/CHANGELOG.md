@@ -1,5 +1,9 @@
 # fhir_r4_auth
 
+## [0.14.0]
+
+- No code changes; version aligned with the fhir_r4 0.14.0 family release
+
 ## [0.13.0]
 
 - This package is now a re-export of `fhir_auth` 0.13.0, which serves every

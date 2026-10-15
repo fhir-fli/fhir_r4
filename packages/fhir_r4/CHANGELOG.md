@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.14.0]
+
+- No code changes; version aligned with the fhir_r4 0.14.0 family release
+
 ## [0.13.0]
 
 - **A bound `code` carries its CodeSystem.** Every enum constant's `system` is the CodeSystem the code is defined in (`http://hl7.org/fhir/observation-status`), with that CodeSystem's `version`; it used to be the ValueSet's url, which is not a code system. A value parsed from JSON, or built from a string, now carries the `system`, `version` and `display` of the constant it matches; it used to carry none, so `fhir_r4_db` indexed every `code` element (`status`, `gender`, ...) with no system and `status=<system>|final`, `:in` and `:not-in` could never match one (fhirant REVIEW-2026-09-17 Q8). `withElement` keeps them too. `toJson` is unchanged. Stores indexed before this need a reindex.

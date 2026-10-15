@@ -1,5 +1,9 @@
 # fhir_r4_path
 
+## [0.14.0]
+
+- No code changes; version aligned with the fhir_r4 0.14.0 family release
+
 ## [0.13.0]
 
 - **Binding over fhir_path 0.15.0.** The terminology layer, the resource
