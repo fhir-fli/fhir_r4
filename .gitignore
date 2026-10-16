@@ -29,3 +29,6 @@ test_output.log
 test_results_*.txt
 error_log.txt
 .flutter-plugins-dependencies
+
+# Test coverage output (dart test --coverage)
+coverage/

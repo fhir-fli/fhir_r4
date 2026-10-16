@@ -1,5 +1,9 @@
 # fhir_r4_mapping
 
+## [0.14.0]
+
+- Requires `fhir_mapping` 0.13.1: a map's header description drops empty comment lines, a group always writes its rule list, and the metadata lines may come before the `map` line.
+
 ## [0.13.0]
 
 - **The engine and parser move to `fhir_mapping` 0.13.0**; this package is
