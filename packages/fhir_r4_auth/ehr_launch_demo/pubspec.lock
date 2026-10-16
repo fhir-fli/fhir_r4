@@ -141,10 +141,10 @@ packages:
     dependency: transitive
     description:
       name: fhir_node
-      sha256: "904b145b4a967c2b7a94f3b2f9946fd9136bf1e0d3b879a9b191e7a507cf29da"
+      sha256: "3fec7f3d5dcc0e699b42b9f64c292acc794f27caf729811e0f984abd26ca4f95"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "0.6.1"
   fhir_r4:
     dependency: "direct main"
     description:
@@ -159,7 +159,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fixnum:
     dependency: transitive
     description:

@@ -85,10 +85,10 @@ packages:
     dependency: transitive
     description:
       name: cql
-      sha256: "26375650e004a46dd8e86dd3c5303a5fcbdb1d1c5c39f7dc56a9b5c06e483754"
+      sha256: b24771719a3d9140fd0a82393318afd4ca92424cb6184829fbcbfae901db9129
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.8.0"
   crypto:
     dependency: transitive
     description:
@@ -173,18 +173,18 @@ packages:
     dependency: transitive
     description:
       name: fhir_db
-      sha256: "33620710195863a854af10f0f4a78777cecfee34db7a2232383b149d4be470d4"
+      sha256: a82e7726328751232fba277d4c077d4a7c56975ef6f636703c4fdb2d5f84c646
       url: "https://pub.dev"
     source: hosted
-    version: "0.15.0"
+    version: "0.15.1"
   fhir_mapping:
     dependency: transitive
     description:
       name: fhir_mapping
-      sha256: "0d3e9a5bd25cb468a5b0780c09f722524d95576b943d26172dae19f1024621c5"
+      sha256: b17eec6b9cc2a87b9b564ec3339f6c312156fcaa9e5f92abe209deda89527d76
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.0"
+    version: "0.13.1"
   fhir_node:
     dependency: transitive
     description:
@@ -207,70 +207,70 @@ packages:
       path: "packages/fhir_r4"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_at_rest:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_at_rest"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_auth:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_auth"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_bulk:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_bulk"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_cds_hooks:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_cds_hooks"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_cql:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_cql"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_db:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_db"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_mapping:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_mapping"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_path:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_path"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_r4_validation:
     dependency: "direct overridden"
     description:
       path: "packages/fhir_r4_validation"
       relative: true
     source: path
-    version: "0.13.0"
+    version: "0.14.0"
   fhir_validation:
     dependency: transitive
     description:
@@ -722,10 +722,10 @@ packages:
     dependency: transitive
     description:
       name: ucum
-      sha256: "4050dc5c4b45fe769ef7e2174b1de055eae3447977024b307ff5e0a3172e3302"
+      sha256: "9e4730ee9b6a847aea20fbbbb4e11eeee0ac14205e1ed70cd3f6ba7a0c87121f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.0"
+    version: "0.9.1"
   url_launcher:
     dependency: transitive
     description:
