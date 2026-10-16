@@ -1,13 +1,14 @@
 # fhir_r4_db
 
+## [0.14.0]
+
+- No code changes; version aligned with the fhir_r4 0.14.0 family release
+
 ## [0.13.0]
 
 - `R4Model` gives `fromJson(Map)` / `toJson(Resource)` through fhir_node's
   `ResourceModel`; the store's text pair is `fromJsonText` / `toJsonText`
   (fhir_db 0.15.0).
-
-## [0.14.0]
-
 - **`subject:identifier=|42` matches only a system-less identifier** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q5): the leading-pipe token form; it was read as a bare value. Two tests in `test/search_syntax_test.dart`.
 - **`:missing=maybe` is refused** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q4): the value is `true` or `false`, case-insensitive; anything else is `InvalidSearchValue` instead of being read as false. `test/search_syntax_test.dart`.
 - **`name:text` and `subject:type` are refused** (fhir_db 0.14.0, fhirant REVIEW-2026-09-17 Q3): R4B 3.1.1.4.4 gives string only `:exact` and `:contains`, and `:[type]` is a placeholder for a resource type. Both were answered silently as something else. `test/search_syntax_test.dart`.
