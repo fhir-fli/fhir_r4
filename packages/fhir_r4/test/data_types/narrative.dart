@@ -30,9 +30,15 @@ void narrativeTest() {
         status: NarrativeStatus.additional,
         div: FhirXhtml('<div xmlns="http://www.w3.org/1999/xhtml">Add</div>'),
       );
+      // R4B narrative-status `empty`: "The contents of the narrative are
+      // some equivalent of 'No human-readable text provided in this case'",
+      // so the div still has text (txt-2).
       final empty = Narrative(
         status: NarrativeStatus.empty_,
-        div: FhirXhtml('<div xmlns="http://www.w3.org/1999/xhtml"></div>'),
+        div: FhirXhtml(
+          '<div xmlns="http://www.w3.org/1999/xhtml">No human-readable text '
+          'provided in this case</div>',
+        ),
       );
 
       expect(generated.status, NarrativeStatus.generated);
