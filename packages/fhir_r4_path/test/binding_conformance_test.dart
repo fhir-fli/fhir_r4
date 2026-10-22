@@ -173,7 +173,9 @@ Future<void> main() async {
       ]) {
         expect(
           await check(
-              withDiv('<div $ns>$inner</div>'), 'text.div.htmlChecks()'),
+            withDiv('<div $ns>$inner</div>'),
+            'text.div.htmlChecks()',
+          ),
           isFalse,
           reason: inner,
         );
