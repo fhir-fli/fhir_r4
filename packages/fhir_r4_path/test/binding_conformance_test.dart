@@ -145,4 +145,46 @@ Future<void> main() async {
       expect((result as FhirDate).valueString, '1974-12-25');
     });
   });
+
+  // R4B Narrative.div txt-1 and txt-2 are both `htmlChecks()`; the engine
+  // asks this binding, which answers with fhir_r4's own check.
+  group('narrative checks', () {
+    const ns = 'xmlns="http://www.w3.org/1999/xhtml"';
+    Patient withDiv(String div) => Patient(
+          text: Narrative(
+            status: NarrativeStatus.generated,
+            div: FhirXhtml.fromValidatedXhtml(div),
+          ),
+        );
+    Future<bool> check(FhirBase context, String expr) async =>
+        ((await eval(context, expr)).single as FhirBoolean).valueBoolean!;
+
+    test('a legal narrative passes htmlChecks() and htmlChecks2()', () async {
+      final p = withDiv('<div $ns><p>H<sub>2</sub>O</p></div>');
+      expect(await check(p, 'text.div.htmlChecks()'), isTrue);
+      expect(await check(p, 'text.div.htmlChecks2()'), isTrue);
+    });
+
+    test('markup fhir_r4 refuses fails htmlChecks()', () async {
+      for (final inner in const [
+        '<script>x</script>',
+        '<a href="javascript:alert(1)">x</a>',
+        '<span href="#x">x</span>',
+      ]) {
+        expect(
+          await check(
+              withDiv('<div $ns>$inner</div>'), 'text.div.htmlChecks()'),
+          isFalse,
+          reason: inner,
+        );
+      }
+    });
+
+    test('an empty narrative passes htmlChecks() but not htmlChecks2()',
+        () async {
+      final p = withDiv('<div $ns> </div>');
+      expect(await check(p, 'text.div.htmlChecks()'), isTrue);
+      expect(await check(p, 'text.div.htmlChecks2()'), isFalse);
+    });
+  });
 }
