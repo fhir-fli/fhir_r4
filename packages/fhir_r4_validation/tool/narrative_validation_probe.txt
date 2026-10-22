@@ -1,0 +1,7 @@
+getStructureDefinition(Narrative): null
+getStructureDefinition(HumanName): null
+getStructureDefinition(http://hl7.org/fhir/StructureDefinition/Narrative): found, snapshot true
+loaded 1468 definitions
+fhir_validation-0.13.0 legal: 1 diagnostics
+fhir_validation-0.13.0 name-no-narrative: 1 diagnostics
+fhir_validation-0.13.0 sub-and-address: 5 diagnostics

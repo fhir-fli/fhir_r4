@@ -1,0 +1,7 @@
+arm	case	severity	diagnostics
+fhir_validation-0.13.0	legal	error	No StructureDefinition or Profile found for Element type Narrative (from http://hl7.org/fhir/StructureDefinition/Patient|4.3.0)
+fhir_validation-0.13.0	legal	summary	diagnostics 1
+fhir_validation-0.13.0	name-no-narrative	summary	diagnostics 1
+fhir_validation-0.13.0	sub-and-address	error	No StructureDefinition or Profile found for Element type Narrative (from http://hl7.org/fhir/StructureDefinition/Patient|4.3.0)
+fhir_validation-0.13.0	sub-and-address	error	Type conversion failed: Unable to convert _Map<String, dynamic> to FHIR type "Narrative". Error: FormatException: Invalid XHTML: FormatException: Element <sub> is not allowed.
+fhir_validation-0.13.0	sub-and-address	summary	diagnostics 5
