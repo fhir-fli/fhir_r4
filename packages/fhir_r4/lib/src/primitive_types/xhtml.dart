@@ -158,7 +158,14 @@ class FhirXhtml extends PrimitiveType {
   ///
   /// HL7's further checks on link and image addresses (`UrlUtil`) and on
   /// internal references are not part of txt-1 and are not made here.
-  static List<String> narrativeProblems(String xhtml) {
+  ///
+  /// With [requireContent] false the last rule is left out: what
+  /// FHIRPath's `htmlChecks()` asks of the markup alone (HL7's
+  /// `checkHtmlNames`); [narrativeHasContent] is the rule on its own.
+  static List<String> narrativeProblems(
+    String xhtml, {
+    bool requireContent = true,
+  }) {
     final XmlDocument document;
     try {
       document = XmlDocument.parse(xhtml);
@@ -180,10 +187,20 @@ class FhirXhtml extends PrimitiveType {
       );
     }
     _checkElement(root, problems);
-    if (!_hasContent(root)) {
+    if (requireContent && !_hasContent(root)) {
       problems.add('there is no text and no image');
     }
     return problems;
+  }
+
+  /// Whether [xhtml] has some non-whitespace text or an image (txt-2; HL7
+  /// FHIRPathEngine.checkForContent); false when it is not XML.
+  static bool narrativeHasContent(String xhtml) {
+    try {
+      return _hasContent(XmlDocument.parse(xhtml).rootElement);
+    } on XmlException {
+      return false;
+    }
   }
 
   static const _xhtmlNamespace = 'http://www.w3.org/1999/xhtml';

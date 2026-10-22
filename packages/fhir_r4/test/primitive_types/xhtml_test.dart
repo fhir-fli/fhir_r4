@@ -272,6 +272,16 @@ void narrativeRulesTest() {
       expect(FhirXhtml.narrativeProblems(div('<img src="#i"/>')), isEmpty);
     });
 
+    test('the content rule can be asked for alone, or left out', () {
+      final blank = div(' ');
+      expect(
+          FhirXhtml.narrativeProblems(blank, requireContent: false), isEmpty);
+      expect(FhirXhtml.narrativeHasContent(blank), isFalse);
+      expect(FhirXhtml.narrativeHasContent(div('x')), isTrue);
+      expect(FhirXhtml.narrativeHasContent(div('<img src="#i"/>')), isTrue);
+      expect(FhirXhtml.narrativeHasContent('<div'), isFalse);
+    });
+
     test('a DOCTYPE is refused', () {
       expect(
         FhirXhtml.narrativeProblems('<!DOCTYPE div>${div('x')}'),
