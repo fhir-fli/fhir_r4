@@ -191,6 +191,117 @@ void xhtmlTest() {
   });
 }
 
+/// FHIR's txt-1 and txt-2 on Narrative.div, as HL7's validator applies them
+/// (hapifhir/org.hl7.fhir.core at 430c03b: XhtmlValidator's element and
+/// attribute lists, a div root, InstanceValidator.isActiveScheme on links,
+/// FHIRPathEngine.checkForContent).
+void narrativeRulesTest() {
+  String div(String inner, {String root = 'div'}) =>
+      '<$root xmlns="http://www.w3.org/1999/xhtml">$inner</$root>';
+
+  group('narrative rules', () {
+    test('elements HL7 allows that were refused are accepted', () {
+      for (final inner in const [
+        '<p>H<sub>2</sub>O</p>',
+        '<address>Clinic</address>',
+        '<p><kbd>Ctrl</kbd></p>',
+        '<p><bdo dir="rtl">x</bdo></p>',
+        'Clinic map<map name="m"><area shape="rect" coords="0,0,1,1" '
+            'href="#a" '
+            'alt="x"/></map>',
+        '<table summary="s" frame="box" rules="all"><tr><td nowrap="nowrap" '
+            'headers="h" scope="row" axis="a">x</td></tr></table>',
+        '<a href="#x" rel="next" hreflang="en">x</a>',
+        '<p><img src="#i" longdesc="#d" usemap="#m" alt="x"/></p>',
+      ]) {
+        expect(FhirXhtml.narrativeProblems(div(inner)), isEmpty, reason: inner);
+        expect(FhirXhtml(div(inner)).valueString, div(inner));
+      }
+    });
+
+    test('a javascript: or vbscript: link is refused', () {
+      for (final href in const [
+        'javascript:alert(1)',
+        ' JavaScript:alert(1)',
+        'vbscript:msgbox(1)',
+      ]) {
+        final xhtml = div('<a href="$href">x</a>');
+        expect(FhirXhtml.narrativeProblems(xhtml), isNotEmpty, reason: href);
+        expect(() => FhirXhtml(xhtml), throwsFormatException);
+      }
+      expect(
+        FhirXhtml.narrativeProblems(div('<a href="https://hl7.org">x</a>')),
+        isEmpty,
+      );
+    });
+
+    test('the root must be a div', () {
+      expect(
+        FhirXhtml.narrativeProblems(div('x', root: 'p')),
+        contains(contains('not <div>')),
+      );
+      expect(() => FhirXhtml(div('x', root: 'span')), throwsFormatException);
+    });
+
+    test('an attribute is allowed only where HL7 lists it', () {
+      for (final inner in const [
+        '<span href="#x">x</span>',
+        '<p src="x.png">x</p>',
+        '<td border="1">x</td>',
+        '<p height="3">x</p>',
+        '<p name="n">x</p>',
+        '<p onclick="alert(1)">x</p>',
+      ]) {
+        expect(FhirXhtml.narrativeProblems(div(inner)), isNotEmpty,
+            reason: inner);
+      }
+    });
+
+    test('elements outside the list are refused', () {
+      for (final name in const ['script', 'iframe', 'form', 'u', 'object']) {
+        expect(
+          FhirXhtml.narrativeProblems(div('<$name>x</$name>')),
+          contains(contains('<$name>')),
+        );
+      }
+    });
+
+    test('there must be text or an image (txt-2)', () {
+      expect(FhirXhtml.narrativeProblems(div(' ')), isNotEmpty);
+      expect(FhirXhtml.narrativeProblems(div('<p> </p><br/>')), isNotEmpty);
+      expect(FhirXhtml.narrativeProblems(div('<img src="#i"/>')), isEmpty);
+    });
+
+    test('the content rule can be asked for alone, or left out', () {
+      final blank = div(' ');
+      expect(
+          FhirXhtml.narrativeProblems(blank, requireContent: false), isEmpty);
+      expect(FhirXhtml.narrativeHasContent(blank), isFalse);
+      expect(FhirXhtml.narrativeHasContent(div('x')), isTrue);
+      expect(FhirXhtml.narrativeHasContent(div('<img src="#i"/>')), isTrue);
+      expect(FhirXhtml.narrativeHasContent('<div'), isFalse);
+    });
+
+    test('a DOCTYPE is refused', () {
+      expect(
+        FhirXhtml.narrativeProblems('<!DOCTYPE div>${div('x')}'),
+        contains(contains('DOCTYPE')),
+      );
+    });
+
+    test('xml:lang, xml:space and lang are allowed', () {
+      expect(
+        FhirXhtml.narrativeProblems(
+          div('<p xml:lang="en" lang="en"><pre xml:space="preserve">x</pre>'
+              '</p>'),
+        ),
+        isEmpty,
+      );
+    });
+  });
+}
+
 void main() {
   xhtmlTest();
+  narrativeRulesTest();
 }

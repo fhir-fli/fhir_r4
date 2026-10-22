@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.14.1]
+
+- **A narrative is checked as HL7's validator checks it.** `FhirXhtml` (Narrative.div) now applies txt-1 and txt-2 with the element and attribute lists of HL7's Java validator (hapifhir/org.hl7.fhir.core `XhtmlValidator`), and `FhirXhtml.narrativeProblems(xhtml)` says why a value is refused. Newly accepted: `<sub>`, `<address>`, `<kbd>`, `<bdo>`, `<map>`, `<area>`, and table and link attributes HL7 allows (`headers`, `scope`, `rel`, `hreflang`, `xml:space`, ...). Newly refused, with a `FormatException` at parse: an `a href` with a `javascript:` or `vbscript:` scheme; a root element other than `<div>`; a narrative with no text and no image (txt-2; a narrative with status `empty` still carries "No human-readable text provided" or the like); an attribute HL7 allows only on another element (`href` on a `<span>`, `src` on a `<p>`, `border` on a `<td>`); a DOCTYPE. All 4,540 narratives in the R4B examples parse.
+
 ## [0.14.0]
 
 - No code changes; version aligned with the fhir_r4 0.14.0 family release
