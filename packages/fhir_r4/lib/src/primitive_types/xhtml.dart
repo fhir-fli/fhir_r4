@@ -8,9 +8,7 @@ extension FhirXhtmlExtension on String {
 
 /// Represents the FHIR primitive type `xhtml`.
 ///
-/// XHTML must meet certain constraints
-/// (e.g., valid XML, correct namespace, etc.).
-/// We provide a validation step in [_validateXhtml].
+/// A value must be a legal narrative; see [narrativeProblems].
 class FhirXhtml extends PrimitiveType {
   // --------------------------------------------------------------------------
   // Private Internal Constructor
@@ -125,129 +123,246 @@ class FhirXhtml extends PrimitiveType {
   // Validation
   // --------------------------------------------------------------------------
 
-  /// Ensures [xhtml] is valid XML, with the correct namespace,
-  /// using [xml] package.
+  /// Throws a [FormatException] naming the first of [narrativeProblems] in
+  /// [xhtml], or returns [xhtml] when there is none.
   static String _validateXhtml(String xhtml) {
+    final problems = narrativeProblems(xhtml);
+    if (problems.isNotEmpty) {
+      throw FormatException('Invalid XHTML: ${problems.first}');
+    }
+    return xhtml;
+  }
+
+  /// Why [xhtml] is not a legal narrative, or an empty list when it is.
+  ///
+  /// The rules are FHIR's Narrative.div constraints, txt-1 ("The narrative
+  /// SHALL contain only the basic html formatting elements and attributes
+  /// described in chapters 7-11 (except section 4 of chapter 9) and 15 of
+  /// the HTML 4.0 standard, <a> elements (either name or href), images and
+  /// internally contained style attributes") and txt-2 ("The narrative SHALL
+  /// have some non-whitespace content"), the same in R4B, R5 and R6 (R6
+  /// folds txt-2 into txt-1; profiles-types.json of each, read 2026-10-21),
+  /// as HL7's own validator applies them (hapifhir/org.hl7.fhir.core at
+  /// 430c03b, read 2026-10-21):
+  ///
+  /// - XML, with a `div` root in the XHTML namespace, and no DOCTYPE
+  ///   (`XhtmlValidator.validate`, `checkInnerNames`).
+  /// - Only the elements of [_elements], and only the attributes of
+  ///   [_attributes], an `xmlns` declaration, or an element-and-attribute
+  ///   pair of [_elementAttributes] (`XhtmlValidator`'s three lists;
+  ///   `xml:space` is a hint there, not an error, and is allowed here).
+  /// - No `javascript:` or `vbscript:` link in `a href`
+  ///   (`InstanceValidator.isActiveScheme`).
+  /// - Some non-whitespace text, or an image
+  ///   (`FHIRPathEngine.checkForContent`, behind `htmlChecks2()`).
+  ///
+  /// HL7's further checks on link and image addresses (`UrlUtil`) and on
+  /// internal references are not part of txt-1 and are not made here.
+  ///
+  /// With [requireContent] false the last rule is left out: what
+  /// FHIRPath's `htmlChecks()` asks of the markup alone (HL7's
+  /// `checkHtmlNames`); [narrativeHasContent] is the rule on its own.
+  static List<String> narrativeProblems(
+    String xhtml, {
+    bool requireContent = true,
+  }) {
+    final XmlDocument document;
     try {
-      final document = XmlDocument.parse(xhtml);
-      final root = document.rootElement;
-      if (!_allowedElements.contains(root.name.local)) {
-        throw FormatException(
-          'Invalid root element: ${root.name.local}. '
-          'Allowed elements: ${_allowedElements.join(', ')}.',
-        );
-      }
+      document = XmlDocument.parse(xhtml);
+    } on XmlException catch (e) {
+      return ['not XML: ${e.message}'];
+    }
+    final problems = <String>[];
+    if (document.children.any((n) => n is XmlDoctype)) {
+      problems.add('a DOCTYPE is not allowed');
+    }
+    final root = document.rootElement;
+    if (root.name.local != 'div') {
+      problems.add('the root element is <${root.name.local}>, not <div>');
+    }
+    final ns = root.getAttribute('xmlns');
+    if (ns != _xhtmlNamespace) {
+      problems.add(
+        'the namespace is "$ns", not "$_xhtmlNamespace"',
+      );
+    }
+    _checkElement(root, problems);
+    if (requireContent && !_hasContent(root)) {
+      problems.add('there is no text and no image');
+    }
+    return problems;
+  }
 
-      final xmlns = root.getAttribute('xmlns');
-      if (xmlns != 'http://www.w3.org/1999/xhtml') {
-        throw FormatException(
-          'Invalid XHTML namespace. Expected "http://www.w3.org/1999/xhtml", '
-          'but found "$xmlns".',
-        );
-      }
-
-      _validateElement(root);
-      return xhtml; // Successfully validated
-    } catch (e) {
-      throw FormatException('Invalid XHTML: $e');
+  /// Whether [xhtml] has some non-whitespace text or an image (txt-2; HL7
+  /// FHIRPathEngine.checkForContent); false when it is not XML.
+  static bool narrativeHasContent(String xhtml) {
+    try {
+      return _hasContent(XmlDocument.parse(xhtml).rootElement);
+    } on XmlException {
+      return false;
     }
   }
 
-  /// Validates [element] and its children/attributes.
-  static void _validateElement(XmlElement element) {
-    if (!_allowedElements.contains(element.name.local)) {
-      throw FormatException('Element <${element.name.local}> is not allowed.');
-    }
+  static const _xhtmlNamespace = 'http://www.w3.org/1999/xhtml';
 
-    for (final attr in element.attributes) {
-      if (!_allowedAttributes.contains(attr.name.local) &&
-          !(attr.name.local == 'xmlns' && element.parent == null)) {
-        throw FormatException(
-          'Invalid attribute "${attr.name.local}" in <${element.name.local}>.',
-        );
+  static void _checkElement(XmlElement element, List<String> problems) {
+    final name = element.name.local;
+    if (!_elements.contains(name)) {
+      problems.add('element <$name> is not allowed');
+    }
+    for (final attribute in element.attributes) {
+      final a = attribute.name.qualified;
+      if (a.startsWith('xmlns') ||
+          a == 'xml:space' ||
+          _attributes.contains(a) ||
+          _elementAttributes.contains('$name.$a')) {
+        if (name == 'a' && a == 'href' && _isActiveScheme(attribute.value)) {
+          problems.add('a link to "${attribute.value}" is not allowed');
+        }
+        continue;
       }
+      problems.add('attribute "$a" is not allowed on <$name>');
     }
-
-    element.children.whereType<XmlElement>().forEach(_validateElement);
+    for (final child in element.childElements) {
+      _checkElement(child, problems);
+    }
   }
 
-  /// Set of allowed root/child element names.
-  static final List<String> _allowedElements = [
-    'div',
+  /// `InstanceValidator.isActiveScheme`: the scheme of an absolute URL is
+  /// `javascript` or `vbscript`.
+  static bool _isActiveScheme(String href) {
+    final colon = href.indexOf(':');
+    if (colon < 0) return false;
+    final scheme = href.substring(0, colon).trim().toLowerCase();
+    return scheme == 'javascript' || scheme == 'vbscript';
+  }
+
+  static bool _hasContent(XmlNode node) {
+    if (node is XmlText && node.value.trim().isNotEmpty) return true;
+    if (node is XmlElement && node.name.local == 'img') return true;
+    return node.children.any(_hasContent);
+  }
+
+  /// `XhtmlValidator.HTML_ELEMENTS`.
+  static const _elements = {
     'p',
-    'b',
-    'i',
-    'em',
-    'strong',
-    'ul',
-    'ol',
-    'li',
-    'span',
     'br',
-    'a',
-    'img',
+    'div',
     'h1',
     'h2',
     'h3',
     'h4',
     'h5',
     'h6',
-    'table',
-    'thead',
-    'tbody',
-    'tfoot',
-    'tr',
-    'th',
-    'td',
-    'pre',
-    'code',
+    'a',
+    'span',
+    'b',
+    'em',
+    'i',
+    'strong',
+    'small',
+    'big',
+    'tt',
+    'dfn',
+    'q',
+    'var',
+    'abbr',
+    'acronym',
+    'cite',
     'blockquote',
-    'caption',
-    'colgroup',
-    'col',
     'hr',
+    'address',
+    'bdo',
+    'kbd',
+    'sub',
+    'sup',
+    'ul',
+    'ol',
+    'li',
     'dl',
     'dt',
     'dd',
-    'big',
-    'small',
-    'tt',
-    'q',
-    'dfn',
-    'var',
-    'cite',
-    'abbr',
-    'acronym',
+    'pre',
+    'table',
+    'caption',
+    'colgroup',
+    'col',
+    'thead',
+    'tr',
+    'tfoot',
+    'tbody',
+    'th',
+    'td',
+    'code',
     'samp',
-    'sup',
-  ];
+    'img',
+    'map',
+    'area',
+  };
 
-  /// Set of allowed attributes on XHTML elements.
-  static final List<String> _allowedAttributes = [
+  /// `XhtmlValidator.HTML_ATTRIBUTES`: allowed on any element.
+  static const _attributes = {
+    'title',
     'style',
     'class',
-    'src',
     'id',
-    'xml:id',
     'lang',
     'xml:lang',
     'dir',
-    'href',
-    'name',
-    'alt',
-    'title',
-    'colspan',
-    'rowspan',
+    'accesskey',
+    'tabindex',
+    'span',
     'width',
-    'height',
     'align',
     'valign',
-    'border',
-    'xmlns',
-    'cellpadding',
-    'cellspacing',
-    'span',
-  ];
+    'char',
+    'charoff',
+    'abbr',
+    'axis',
+    'headers',
+    'scope',
+    'rowspan',
+    'colspan',
+  };
+
+  /// `XhtmlValidator.HTML_COMBO_LIST`: allowed only on the element named.
+  static const _elementAttributes = {
+    'a.href',
+    'a.name',
+    'img.src',
+    'img.border',
+    'div.xmlns',
+    'blockquote.cite',
+    'q.cite',
+    'a.charset',
+    'a.type',
+    'a.hreflang',
+    'a.rel',
+    'a.rev',
+    'a.shape',
+    'a.coords',
+    'img.alt',
+    'img.longdesc',
+    'img.height',
+    'img.width',
+    'img.usemap',
+    'img.ismap',
+    'map.name',
+    'area.shape',
+    'area.coords',
+    'area.href',
+    'area.nohref',
+    'area.alt',
+    'table.summary',
+    'table.width',
+    'table.border',
+    'table.frame',
+    'table.rules',
+    'table.cellspacing',
+    'table.cellpadding',
+    'pre.space',
+    'td.nowrap',
+  };
 
   // --------------------------------------------------------------------------
   // FHIR Overrides
