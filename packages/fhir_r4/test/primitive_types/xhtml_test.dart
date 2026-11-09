@@ -201,16 +201,19 @@ void narrativeRulesTest() {
 
   group('narrative rules', () {
     test('elements HL7 allows that were refused are accepted', () {
+      const map = 'Clinic map<map name="m"><area shape="rect" '
+          'coords="0,0,1,1" href="#a" alt="x"/></map>';
+      const cell =
+          '<td nowrap="nowrap" headers="h" scope="row" axis="a">x</td>';
+      const table =
+          '<table summary="s" frame="box" rules="all"><tr>$cell</tr></table>';
       for (final inner in const [
         '<p>H<sub>2</sub>O</p>',
         '<address>Clinic</address>',
         '<p><kbd>Ctrl</kbd></p>',
         '<p><bdo dir="rtl">x</bdo></p>',
-        'Clinic map<map name="m"><area shape="rect" coords="0,0,1,1" '
-            'href="#a" '
-            'alt="x"/></map>',
-        '<table summary="s" frame="box" rules="all"><tr><td nowrap="nowrap" '
-            'headers="h" scope="row" axis="a">x</td></tr></table>',
+        map,
+        table,
         '<a href="#x" rel="next" hreflang="en">x</a>',
         '<p><img src="#i" longdesc="#d" usemap="#m" alt="x"/></p>',
       ]) {
@@ -252,8 +255,11 @@ void narrativeRulesTest() {
         '<p name="n">x</p>',
         '<p onclick="alert(1)">x</p>',
       ]) {
-        expect(FhirXhtml.narrativeProblems(div(inner)), isNotEmpty,
-            reason: inner);
+        expect(
+          FhirXhtml.narrativeProblems(div(inner)),
+          isNotEmpty,
+          reason: inner,
+        );
       }
     });
 
@@ -275,7 +281,9 @@ void narrativeRulesTest() {
     test('the content rule can be asked for alone, or left out', () {
       final blank = div(' ');
       expect(
-          FhirXhtml.narrativeProblems(blank, requireContent: false), isEmpty);
+        FhirXhtml.narrativeProblems(blank, requireContent: false),
+        isEmpty,
+      );
       expect(FhirXhtml.narrativeHasContent(blank), isFalse);
       expect(FhirXhtml.narrativeHasContent(div('x')), isTrue);
       expect(FhirXhtml.narrativeHasContent(div('<img src="#i"/>')), isTrue);
@@ -290,13 +298,9 @@ void narrativeRulesTest() {
     });
 
     test('xml:lang, xml:space and lang are allowed', () {
-      expect(
-        FhirXhtml.narrativeProblems(
-          div('<p xml:lang="en" lang="en"><pre xml:space="preserve">x</pre>'
-              '</p>'),
-        ),
-        isEmpty,
-      );
+      const inner =
+          '<p xml:lang="en" lang="en"><pre xml:space="preserve">x</pre></p>';
+      expect(FhirXhtml.narrativeProblems(div(inner)), isEmpty);
     });
   });
 }
