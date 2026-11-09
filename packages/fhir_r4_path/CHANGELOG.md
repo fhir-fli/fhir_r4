@@ -2,7 +2,7 @@
 
 ## [0.14.1]
 
-- **FHIRPath's `htmlChecks()` and `htmlChecks2()` answer for R4.** `R4ModelBinding` supplies fhir_path 0.15.1's narrative hook from fhir_r4 0.14.1's own check (`FhirXhtml.narrativeProblems`, `narrativeHasContent`), so txt-1 and txt-2 evaluate as the parser enforces them; both used to be false for every narrative. Needs fhir_r4 ^0.14.1 and fhir_path ^0.15.1.
+- **FHIRPath's `htmlChecks()` and `htmlChecks2()` answer for R4.** `R4ModelBinding` supplies fhir_path 0.15.2's narrative hook from fhir_r4 0.14.1's own check (`FhirXhtml.narrativeProblems`, `narrativeHasContent`), so txt-1 and txt-2 evaluate as the parser enforces them; both used to be false for every narrative. Needs fhir_r4 ^0.14.1 and fhir_path ^0.15.2.
 
 ## [0.14.0]
 
