@@ -66,4 +66,14 @@ class R4ModelBinding extends FhirModelBinding {
     final concept = TypeConvertor.castToCodeableConcept(node as FhirBase);
     return concept == null ? null : ConceptValue.fromJson(concept.toJson());
   }
+
+  /// fhir_r4's own narrative check, the one its parser applies, without the
+  /// content rule (FHIRPath's `htmlChecks()` asks it separately).
+  @override
+  List<String> narrativeMarkupProblems(String xhtml) =>
+      FhirXhtml.narrativeProblems(xhtml, requireContent: false);
+
+  @override
+  bool narrativeHasContent(String xhtml) =>
+      FhirXhtml.narrativeHasContent(xhtml);
 }
