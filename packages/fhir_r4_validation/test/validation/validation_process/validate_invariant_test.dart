@@ -171,20 +171,24 @@ void main() {
                     LiteralNode('Doe', 'Doe', path: 'Patient.name[0].family'),
               PropertyNode(path: 'Patient.name[0].given')
                 ..key = ValueNode('given', 'given')
-                ..value = ArrayNode(path: 'Patient.name[0].given')
-                ..children.add(
-                  LiteralNode('John', 'John', path: 'Patient.name[0].given[0]'),
-                ),
+                ..value = (ArrayNode(path: 'Patient.name[0].given')
+                  ..children.add(
+                    LiteralNode(
+                      'John',
+                      'John',
+                      path: 'Patient.name[0].given[0]',
+                    ),
+                  )),
             ]),
           // Invalid HumanName (missing `family`)
           ObjectNode(path: 'Patient.name[1]')
             ..children.add(
               PropertyNode(path: 'Patient.name[1].given')
                 ..key = ValueNode('given', 'given')
-                ..value = ArrayNode(path: 'Patient.name[1].given')
-                ..children.add(
-                  LiteralNode('', '', path: 'Patient.name[1].given[0]'),
-                ),
+                ..value = (ArrayNode(path: 'Patient.name[1].given')
+                  ..children.add(
+                    LiteralNode('', '', path: 'Patient.name[1].given[0]'),
+                  )),
             ),
         ]);
 
@@ -217,11 +221,13 @@ void main() {
         resourceCache: CanonicalResourceCache(),
       );
 
-      // Expect one error for the invalid entry
-      expect(validationResults.results, hasLength(5));
+      // Each name is its own constraint context, so only the invalid entry
+      // fails, once per constraint, at the constraints' severity (error).
       expect(
-        validationResults.results.first.diagnostics,
-        contains('Unable to determine context type for node:'),
+        [
+          for (final r in validationResults.results) '${r.path} ${r.severity}',
+        ],
+        ['Patient.name[1] error', 'Patient.name[1] error'],
       );
     });
   });
