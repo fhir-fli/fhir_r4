@@ -1,7 +1,7 @@
 name: ehr_launch_demo
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.13.0
 
 dependencies:
   fhir_r4: any
@@ -9,6 +9,7 @@ dependencies:
     path: ../
   flutter:
     sdk: flutter
+  material_ui: ^1.11.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

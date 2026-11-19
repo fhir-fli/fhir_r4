@@ -28,7 +28,7 @@ import 'dart:developer' as developer;
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Writes a demo diagnostic [message] to the developer log channel.
 ///
@@ -173,15 +173,13 @@ class _SmartEhrLaunchHomePageState extends State<SmartEhrLaunchHomePage> {
       testCredentials: TestCredentials(
         username: 'fhircamila',
         password: 'epicepic1',
-        note:
-            'Use the Epic Launch Simulator at https://fhir.epic.com/Documentation?docId=launching',
+        note: 'Use the Epic Launch Simulator at https://fhir.epic.com/Documentation?docId=launching',
       ),
     ),
 
     // ========== CERNER CONFIGURATION ==========
     EhrVendor.cerner: EhrVendorConfig(
-      fhirBaseUrl:
-          'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
+      fhirBaseUrl: 'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
       // Register at: https://code.cerner.com/
       // TODO(fhirfli): Replace with your Cerner EHR launch client ID
       clientId: 'YOUR-CERNER-EHR-LAUNCH-CLIENT-ID',
