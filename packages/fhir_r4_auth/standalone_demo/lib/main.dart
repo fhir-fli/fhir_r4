@@ -22,7 +22,7 @@ import 'dart:developer' as developer;
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Writes a demo diagnostic [message] to the developer log channel.
 ///
@@ -320,8 +320,7 @@ class _SmartStandaloneHomePageState extends State<SmartStandaloneHomePage> {
 
     // ========== CERNER CONFIGURATION ==========
     EhrVendor.cerner: VendorConfig(
-      baseUrl:
-          'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
+      baseUrl: 'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d',
       clientIds: {
         // Register at: https://code.cerner.com/
         // Patient app - TODO: Replace with your ID

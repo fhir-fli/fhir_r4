@@ -31,7 +31,6 @@ extension StringExtensionForFHIR on String {
 
   /// Returns true if the string matches another string
   bool regionMatches(
-    // ignore: avoid_positional_boolean_parameters
     bool ignoreCase,
     int toffset,
     String other,
@@ -183,7 +182,6 @@ extension StringExtensionForFHIR on String {
   }
 
   /// Checks if the string is a valid date
-  // ignore: avoid_positional_boolean_parameters
   String applyPrecision(String v, int p, bool down) {
     var nv = v;
     final dp = nv.indexOf('.');
@@ -527,7 +525,6 @@ extension StringExtensionForFHIR on String {
 
   /// Checks if the string is an absolute URL, if not, returns the string
   String escapeJson([
-    // ignore: avoid_positional_boolean_parameters
     bool escapeUnicodeWhitespace = true,
   ]) {
     final b = StringBuffer();

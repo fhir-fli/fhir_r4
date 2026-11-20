@@ -152,7 +152,6 @@ abstract class FhirBaseBuilder implements FhirNodeBuilder {
   }
 
   /// Retrieves the properties of the object.
-  // ignore: avoid_positional_boolean_parameters
   List<FhirBaseBuilder> getChildrenByName(
     String name, [
     bool checkValid = false,
@@ -184,7 +183,6 @@ abstract class FhirBaseBuilder implements FhirNodeBuilder {
   }
 
   /// Checks if the object is equal to another object.
-  // ignore: avoid_positional_boolean_parameters
   bool compareDeepStrings(String? s1, String? s2, bool allowNull) {
     if (allowNull) {
       final noLeft = s1 == null || s1.isEmpty;
@@ -203,7 +201,6 @@ abstract class FhirBaseBuilder implements FhirNodeBuilder {
   static bool compareDeepLists<T extends FhirBaseBuilder>(
     List<T>? e1,
     List<T>? e2,
-    // ignore: avoid_positional_boolean_parameters
     bool allowNull,
   ) {
     if (noList(e1) && noList(e2) && allowNull) {
@@ -244,7 +241,6 @@ abstract class FhirBaseBuilder implements FhirNodeBuilder {
   static bool compareDeepBases(
     FhirBaseBuilder? e1,
     FhirBaseBuilder? e2,
-    // ignore: avoid_positional_boolean_parameters
     bool allowNull,
   ) {
     if (allowNull) {

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_mapping/fhir_r4_mapping.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const MyApp());
@@ -106,25 +106,24 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     await showDialog<void>(
       context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Parsed StructureMap (JSON)'),
-            content: SizedBox(
-              width: 600,
-              child: SingleChildScrollView(
-                child: SelectableText(
-                  _renderedMap,
-                  style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
-                ),
-              ),
+      builder: (context) => AlertDialog(
+        title: const Text('Parsed StructureMap (JSON)'),
+        content: SizedBox(
+          width: 600,
+          child: SingleChildScrollView(
+            child: SelectableText(
+              _renderedMap,
+              style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
             ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
-              ),
-            ],
           ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
     );
   }
 
