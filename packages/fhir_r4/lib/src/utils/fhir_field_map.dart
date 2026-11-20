@@ -3,7 +3,6 @@
 /// FHIR Field
 class FhirField {
   /// Constructor
-  // ignore: avoid_positional_boolean_parameters
   const FhirField(this.isList, this.type);
 
   /// Whether the field is a list

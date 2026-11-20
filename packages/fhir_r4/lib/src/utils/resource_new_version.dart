@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// updates the [lastUpdated] and increases the [version] by 1
 FhirMeta updateFhirMetaVersion(
   FhirMeta? oldFhirMeta, [
-  // ignore: avoid_positional_boolean_parameters
   bool versionIdAsTime = false,
 ]) {
   final now = DateTime.now().toUtc();
