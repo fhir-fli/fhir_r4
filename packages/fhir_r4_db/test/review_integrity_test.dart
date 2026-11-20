@@ -445,7 +445,11 @@ Future<void> main() async {
         after.length,
         await dao.countHistory(R4ResourceType.Patient, 'h', since: since),
       );
-      expect(after.every((e) => e.lastUpdated.isAfter(since)), isTrue);
+      // R4B http.html §3.1.0.12: `_since` keeps versions "created at or
+      // after the given instant", so the version at `since` is one of them
+      // (this asserted strictly after until fhir_db 0.15.4).
+      expect(after.every((e) => !e.lastUpdated.isBefore(since)), isTrue);
+      expect(after.map((e) => e.versionId), contains(all[3].versionId));
       final at = await dao.getHistory(
         R4ResourceType.Patient,
         'h',
