@@ -114,7 +114,7 @@ packages:
     source: hosted
     version: "0.14.0"
   fhir_r4_path:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: fhir_r4_path
       sha256: f1432a3025c16b35a0653b4718c809198a5a721eb1afa730878f7fb3b067f425
@@ -134,14 +134,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_lints:
-    dependency: "direct dev"
-    description:
-      name: flutter_lints
-      sha256: "3105dc8492f6183fb076ccf1f351ac3d60564bff92e20bfc4af9cc1651f4e7e1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   flutter_localizations:
     dependency: transitive
     description: flutter
@@ -205,14 +197,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  lints:
-    dependency: transitive
-    description:
-      name: lints
-      sha256: "12f842a479589fea194fe5c5a3095abc7be0c1f2ddfa9a0e76aed1dbd26a87df"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.0"
   matcher:
     dependency: transitive
     description:
