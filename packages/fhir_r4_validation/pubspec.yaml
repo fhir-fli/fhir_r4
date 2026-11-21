@@ -30,7 +30,7 @@ dependencies:
   fhir_node: ^0.6.1
   fhir_r4: ^0.14.0
   fhir_r4_path: ^0.14.0
-  fhir_validation: ^0.13.0
+  fhir_validation: ^0.13.2
   http: ^1.6.0
 
 dev_dependencies:

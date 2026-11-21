@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const MyApp());
@@ -93,9 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
             json.decode(_variablesController.text) as Map<String, dynamic>;
         environment = <String, dynamic>{
           for (final entry in rawVars.entries)
-            (entry.key.startsWith('%')
-                ? entry.key.substring(1)
-                : entry.key): _toFhirValues(entry.value),
+            (entry.key.startsWith('%') ? entry.key.substring(1) : entry.key):
+                _toFhirValues(entry.value),
         };
       }
 
@@ -110,17 +109,15 @@ class _MyHomePageState extends State<MyHomePage> {
         environment: environment,
       );
 
-      final values =
-          results
-              .map(
-                (e) =>
-                    e is PrimitiveType
-                        ? e.toString()
-                        : e is FhirBase
-                        ? e.toJson()
-                        : e.toString(),
-              )
-              .toList();
+      final values = results
+          .map(
+            (e) => e is PrimitiveType
+                ? e.toString()
+                : e is FhirBase
+                ? e.toJson()
+                : e.toString(),
+          )
+          .toList();
 
       setState(() {
         _result = const JsonEncoder.withIndent('  ').convert(values);

@@ -75,7 +75,6 @@ abstract class FhirBase implements FhirNode {
   }
 
   /// Checks if the object is equal to another object.
-  // ignore: avoid_positional_boolean_parameters
   bool compareDeepStrings(String? s1, String? s2, bool allowNull) {
     if (allowNull) {
       final noLeft = s1 == null || s1.isEmpty;
@@ -188,7 +187,6 @@ abstract class FhirBase implements FhirNode {
   static bool compareDeepBases(
     FhirBase? e1,
     FhirBase? e2,
-    // ignore: avoid_positional_boolean_parameters
     bool allowNull,
   ) {
     if (allowNull) {
@@ -215,7 +213,6 @@ abstract class FhirBase implements FhirNode {
   bool compareDeepLists<T extends FhirBase>(
     List<T>? e1,
     List<T>? e2,
-    // ignore: avoid_positional_boolean_parameters
     bool allowNull,
   ) {
     if (noList(e1) && noList(e2) && allowNull) {

@@ -1,5 +1,14 @@
 # fhir_r4_auth
 
+## [0.15.0]
+
+- Requires `fhir_auth` 0.15.0, which is now built on the pure-Dart
+  `fhir_auth_core`. Apps that use `SmartFhirClient` need no change.
+  Breaking: a class that extends `FhirAuthClient` directly must pass
+  `tokenStorage`. See `fhir_auth`'s changelog.
+- README now points to `fhir_auth` for usage; the old one showed the 0.6
+  API.
+
 ## [0.14.0]
 
 - No code changes; version aligned with the fhir_r4 0.14.0 family release
