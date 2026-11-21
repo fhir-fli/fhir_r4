@@ -27,8 +27,8 @@ environment:
 dependencies:
   fhir_bulk: ^0.13.0
   fhir_r4: ^0.14.0
-  http: ^1.6.0
 
 dev_dependencies:
+  http: ^1.6.0
   test: ^1.29.0
   very_good_analysis: ^10.0.0
