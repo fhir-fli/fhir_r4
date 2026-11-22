@@ -261,7 +261,7 @@ void main() {
       final query = search.buildQuery();
       expect(
         query,
-        contains('gender=http://hl7.org/fhir/administrative-gender|male'),
+        contains('gender=http://hl7.org/fhir/administrative-gender%7Cmale'),
       );
     });
   });

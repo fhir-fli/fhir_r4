@@ -6,6 +6,9 @@ import 'package:test/test.dart';
 /// the syntax and examples of https://hl7.org/fhir/R4/search.html.
 /// [parameter]=[prefix][value] — the prefix (eq/ne/gt/lt/ge/le/sa/eb/ap)
 /// goes immediately after '=', and applies only to date/number/quantity.
+/// The `|` of the FHIR syntax is percent-encoded as `%7C` by buildQuery()
+/// (fhir_at_rest 0.14.0): RFC 3986 does not allow it in a query, and Dart's
+/// Uri already sent it as `%7C` before then. Servers decode before parsing.
 void main() {
   group('wire format — parameter names:', () {
     test('hyphenated SearchParameter.code goes on the wire verbatim', () {
@@ -54,7 +57,7 @@ void main() {
               system: FhirUri('http://hl7.org/fhir/administrative-gender'),
             )
             .buildQuery(),
-        equals('gender=http://hl7.org/fhir/administrative-gender|male'),
+        equals('gender=http://hl7.org/fhir/administrative-gender%7Cmale'),
       );
     });
   });
@@ -113,7 +116,7 @@ void main() {
         SearchObservation()
             .valueQuantity(FhirDecimal(5.4), unit: 'mg'.toFhirString)
             .buildQuery(),
-        equals('value-quantity=5.4||mg'),
+        equals('value-quantity=5.4%7C%7Cmg'),
       );
     });
 
@@ -127,7 +130,7 @@ void main() {
               unit: 'mg'.toFhirString,
             )
             .buildQuery(),
-        equals('value-quantity=le5.4|http://unitsofmeasure.org|mg'),
+        equals('value-quantity=le5.4%7Chttp://unitsofmeasure.org%7Cmg'),
       );
     });
   });
