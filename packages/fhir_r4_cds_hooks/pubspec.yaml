@@ -29,5 +29,4 @@ dependencies:
   fhir_r4: ^0.14.0
 
 dev_dependencies:
-  test: ^1.29.0
   very_good_analysis: ^10.0.0
