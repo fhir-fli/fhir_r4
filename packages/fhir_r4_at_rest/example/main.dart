@@ -885,7 +885,7 @@ void main() {
 
       expect(
         request.buildUri().toString(),
-        'http://hapi.fhir.org/baseR4/Patient?eqaddress=123%20Main%20St&_format=json',
+        'http://hapi.fhir.org/baseR4/Patient?address=123%20Main%20St&_format=json',
       );
 
       expect(
@@ -919,7 +919,7 @@ void main() {
 
       expect(
         request.buildUri().toString(),
-        'http://hapi.fhir.org/baseR4/Patient?gebirthdate=2010-01-01&lebirthdate=2011-12-31&_format=json',
+        'http://hapi.fhir.org/baseR4/Patient?birthdate=ge2010-01-01&birthdate=le2011-12-31&_format=json',
       );
 
       expect(
@@ -1158,15 +1158,18 @@ void main() {
         headers: {'test': 'headers'},
       );
 
+      // POST search sends form data: hl7.org/fhir/R4B/http.html, search,
+      // read verbatim 2026-11-21: "name=value pairs encoded in the URL (or
+      // as an application/x-www-form-urlencoded submission for a POST)".
       expect(
         request.buildUri().toString(),
-        'http://hapi.fhir.org/baseR4/Patient/_search?_format=json',
+        'http://hapi.fhir.org/baseR4/Patient/_search',
       );
 
       expect(
         request.buildHeaders(),
         {
-          'Content-Type': 'application/fhir+json',
+          'Content-Type': 'application/x-www-form-urlencoded',
           'Accept': 'application/fhir+json',
           'test': 'headers',
         },
@@ -1174,7 +1177,7 @@ void main() {
 
       expect(
         request.buildBody(),
-        '{"birthdate":"ge2010-01-01","_count":"10"}',
+        'birthdate=ge2010-01-01&_count=10&_format=json',
       );
     });
 
@@ -1472,7 +1475,7 @@ void main() {
       );
     });
 
-    test('batch request with missing entries', () {
+    test('batch request with no entries is sent', () {
       final emptyBundle = {
         'resourceType': 'Bundle',
         'type': 'batch',
@@ -1485,16 +1488,8 @@ void main() {
         headers: {'test': 'headers'},
       );
 
-      expect(
-        request.buildBody,
-        throwsA(
-          isA<FormatException>().having(
-            (e) => e.message,
-            'message',
-            'Bundle must contain an "entry" array with items.',
-          ),
-        ),
-      );
+      // A Bundle with no entries is sent (Bundle.entry is 0..*).
+      expect(request.buildBody(), jsonEncode(emptyBundle));
     });
   });
 
@@ -1612,24 +1607,24 @@ void main() {
         headers: {'test': 'headers'},
       );
 
+      // POST parameters go as form data: hl7.org/fhir/R4B/http.html,
+      // Summary table, read verbatim 2026-11-21, (operation) row: "POST
+      // application/x-www-form-urlencoded form data".
       expect(
         request.buildUri().toString(),
-        r'http://hapi.fhir.org/baseR4/$everything?start=2020-01-01&end=2020-08-01&_format=json',
+        r'http://hapi.fhir.org/baseR4/$everything?_format=json',
       );
 
       expect(
         request.buildHeaders(),
         {
-          'Content-Type': 'application/fhir+json',
+          'Content-Type': 'application/x-www-form-urlencoded',
           'Accept': 'application/fhir+json',
           'test': 'headers',
         },
       );
 
-      expect(
-        request.buildBody(),
-        '{"start":"2020-01-01","end":"2020-08-01"}',
-      );
+      expect(request.buildBody(), 'start=2020-01-01&end=2020-08-01');
     });
   });
 }

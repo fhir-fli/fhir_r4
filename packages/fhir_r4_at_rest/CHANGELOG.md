@@ -1,5 +1,21 @@
 # fhir_r4_at_rest
 
+## [0.15.0]
+
+- On `fhir_at_rest` 0.14.0, checked against the RESTful API page of R4,
+  R4B, R5 and R6. Breaking: query names and values are percent-encoded
+  (`buildQuery()` gives `%7C` for `|`, `%2B` for `+`); POST search and POST
+  operations send form data (or, for operations, a Parameters `body`)
+  instead of a JSON object; `Summary.none` is gone; `PatchBody` takes `from`
+  for move and copy. Added: compartment search, type history, conditional
+  update/patch/delete, FHIRPath Patch, HEAD, paging (`bundleLink`,
+  `FhirUrlRequest`), the conditional and `Prefer` headers, response headers
+  (`FhirResponseHeaders`), asynchronous requests, and the R6 delete-history
+  interactions. A non-error answer with no body (204, 304, 202) parses as
+  success. See the `fhir_at_rest` CHANGELOG.
+- The example's assertions now match what is sent: `birthdate=ge2010-01-01`
+  (it expected `gebirthdate=`), `address=` (it expected `eqaddress=`).
+
 ## [0.14.0]
 
 - No code changes; version aligned with the fhir_r4 0.14.0 family release

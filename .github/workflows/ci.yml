@@ -87,3 +87,8 @@ jobs:
             exit 1
           fi
           echo "All packages passed"
+
+  # Fails when a package declares a dependency it does not use, or requires
+  # an older version of one of our pub.dev packages than the latest.
+  dependencies:
+    uses: fhir-fli/.github/.github/workflows/dependencies.yml@main
