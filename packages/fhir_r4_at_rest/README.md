@@ -11,6 +11,9 @@ FHIR® is the registered trademark of HL7 and is used with the permission of HL7
 ## Features
 
 - Type-safe request builders for all FHIR RESTful operations
+- Conditional, compartment and POST search, HEAD, paging, FHIRPath Patch,
+  `If-Match`/`Prefer` and the other headers, and asynchronous requests: see
+  the [`fhir_at_rest` README](https://pub.dev/packages/fhir_at_rest)
 - Fluent interface for constructing complex queries
 - Resource-specific search parameter builders
 - Structured response parsing with `ReturnResults`
