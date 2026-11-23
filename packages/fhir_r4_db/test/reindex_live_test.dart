@@ -109,6 +109,55 @@ void main() {
     timeout: const Timeout(Duration(minutes: 5)),
   );
 
+  test(
+    'a copy saved with its own old time during the rebuild is indexed after '
+    'it',
+    () async {
+      // fhirant's `$sync` saves the other server's copy with its own
+      // `meta.lastUpdated` (`preserveMeta`). The rebuild picked up what was
+      // saved meanwhile by `last_updated >= start`, so such a copy kept no
+      // rows: measured 2026-11-22, `gender=male` found nothing.
+      await dao.saveResources([
+        for (var i = 0; i < 6000; i++) patient('p$i', 'female'),
+      ]);
+      var done = false;
+      final rebuild = db.rebuildSearchIndex();
+      unawaited(rebuild.whenComplete(() => done = true));
+      // Until the page holding p1 has gone into the new tables (white-box:
+      // they are built as `<table>_rebuild`).
+      while (!done) {
+        try {
+          final built = await db
+              .customSelect(
+                'SELECT count(*) AS n FROM token_search_parameters_rebuild',
+              )
+              .getSingle();
+          if (built.read<int>('n') > 0) break;
+        } on Object catch (_) {
+          // The table is not made yet.
+        }
+      }
+      final copy = fhir.Patient.fromJson({
+        'resourceType': 'Patient',
+        'id': 'p1',
+        'meta': {'versionId': '1', 'lastUpdated': '2001-01-01T00:00:00Z'},
+        'gender': 'male',
+      });
+      await dao.saveResource(copy, preserveMeta: true);
+      expect(done, isFalse, reason: 'the rebuild ended before the save');
+      await rebuild;
+      final males = await dao.search(
+        resourceType: fhir.R4ResourceType.Patient,
+        searchParameters: {
+          'gender': ['male'],
+        },
+      );
+      expect(males.map((r) => r.id!.valueString), ['p1']);
+      expect(await females(), 6000 - 1);
+    },
+    timeout: const Timeout(Duration(minutes: 5)),
+  );
+
   test('the value indexes exist once each after a rebuild', () async {
     await dao.saveResource(patient('p', 'female'));
     await db.rebuildSearchIndex();
