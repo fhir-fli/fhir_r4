@@ -27,7 +27,7 @@ environment:
 # The store itself is fhir_db, model-independent; this package binds it to
 # fhir_r4 and carries the generated per-version data.
 dependencies:
-  fhir_db: ^0.15.6
+  fhir_db: ^0.15.7
   fhir_node: ^0.6.0
   fhir_r4: ^0.14.0
   fhir_r4_path: ^0.14.0
