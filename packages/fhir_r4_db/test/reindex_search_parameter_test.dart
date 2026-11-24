@@ -352,10 +352,15 @@ void main() {
         await db.fhirDao.saveResource(
           parameter(code: 'sex', expression: 'Patient.gender'),
         );
-        Future<int> females() async => (await found(db, {
-              'sex': ['female'],
-            }))
-                .length;
+        // Counted, not read: reading 3000 matches took about as long as a
+        // quarter of the build, so a search fitted in only 3 or 4 times
+        // (measured 2026-11-24), too few to see a half-swapped index.
+        Future<int> females() => db.fhirDao.searchCount(
+              resourceType: fhir.R4ResourceType.Patient,
+              searchParameters: {
+                'sex': ['female'],
+              },
+            );
         expect(await db.reindexSearchParameter('sex'), n);
         expect(await females(), n);
 
@@ -364,21 +369,40 @@ void main() {
           parameter(code: 'sex', expression: 'Patient.maritalStatus'),
         );
         final answers = <Object>{};
+        // Answers given once the build had read a page and before it
+        // swapped: white-box, the build marks each resource it has read
+        // with a row named ' read ' (FhirDb._readMark) and removes the
+        // marks at the swap.
+        final midBuild = <Object>{};
         var polls = 0;
         var done = false;
         final job = db.reindexSearchParameter('sex');
         unawaited(job.whenComplete(() => done = true));
         while (!done) {
+          final building = (await db
+                      .customSelect(
+                        'SELECT count(*) AS n FROM uri_search_parameters '
+                        "WHERE search_name = ' read '",
+                      )
+                      .getSingle())
+                  .read<int>('n') >
+              0;
+          Object answer;
           try {
-            answers.add(await females());
+            answer = await females();
           } on Object catch (e) {
-            answers.add('error: ${e.runtimeType}');
+            answer = 'error: ${e.runtimeType}';
           }
+          answers.add(answer);
+          if (building) midBuild.add(answer);
           polls++;
         }
         await job;
         expect(polls, greaterThan(3), reason: 'too fast to poll');
         expect(answers.difference({n, 0}), isEmpty, reason: '$polls polls');
+        // The old rows answered while it built: a build that cleared them
+        // first answers 0 from its first page.
+        expect(midBuild, contains(n), reason: '$polls polls');
         expect(await females(), 0);
       },
       timeout: const Timeout(Duration(minutes: 5)),
