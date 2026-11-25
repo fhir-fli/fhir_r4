@@ -134,7 +134,9 @@ void main() {
         'test/support/upload_search_parameter.dart',
         file.path,
       ]);
+      addTearDown(() => child.kill(ProcessSignal.sigkill));
       final childOut = StringBuffer();
+      final childClock = Stopwatch()..start();
       final uploaded = Completer<void>();
       child.stdout.transform(utf8.decoder).listen((s) {
         childOut.write(s);
@@ -143,7 +145,13 @@ void main() {
         }
       });
       child.stderr.transform(utf8.decoder).listen(childOut.write);
-      await uploaded.future.timeout(const Duration(minutes: 2));
+      await uploaded.future.timeout(
+        const Duration(minutes: 5),
+        onTimeout: () => fail(
+          'the child printed no "uploaded" in '
+          '${childClock.elapsed.inSeconds} s: $childOut',
+        ),
+      );
 
       // Watched through a connection that runs nothing itself.
       final watcher = connect()..reindexOnSearchParameterChange = false;
@@ -286,6 +294,44 @@ void main() {
     );
     expect(result, 'a');
   });
+
+  test(
+    "another connection's saves go through while a large run swaps in",
+    () async {
+      // The swap is one transaction holding the store's write lock; its
+      // check for records changed meanwhile once read every mark for every
+      // record, 11.1 s at 20,000 patients, and a save through another
+      // connection waited out its 10 s busy timeout and failed (measured
+      // 2026-11-25, tool/probe_writer_during_reindex.dart).
+      const n = 20000;
+      final server = connect();
+      final screen = connect();
+      await storePatients(server, n);
+      await screen.customSelect('SELECT 1').get();
+      await server.fhirDao.saveResource(sex);
+      var running = true;
+      final idle = server.searchParameterIndexing.idle
+          .whenComplete(() => running = false);
+      var i = 0;
+      while (running) {
+        await screen.fhirDao.saveResource(
+          fhir.Patient.fromJson({
+            'resourceType': 'Patient',
+            'id': 'screen${i++}',
+            'gender': 'female',
+          }),
+        );
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+      }
+      await idle;
+      expect(
+        (await status(screen))['sex']!.state,
+        SearchParameterIndexState.done,
+      );
+      expect(await count(screen, 'sex', 'female'), n ~/ 2 + i);
+    },
+    timeout: const Timeout(Duration(minutes: 3)),
+  );
 }
 
 void _appConnection(Database raw) => raw
