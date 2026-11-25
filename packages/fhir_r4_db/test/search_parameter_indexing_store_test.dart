@@ -146,12 +146,18 @@ void main() {
       });
       child.stderr.transform(utf8.decoder).listen(childOut.write);
       await uploaded.future.timeout(
-        const Duration(minutes: 5),
+        const Duration(minutes: 10),
         onTimeout: () => fail(
           'the child printed no "uploaded" in '
           '${childClock.elapsed.inSeconds} s: $childOut',
         ),
       );
+      // How long a `dart run` of the child takes here: 12.6 s on the
+      // development machine; on CI it ran past the 4 minutes this test was
+      // first given (2026-11-25).
+      // In the log whether the test passes: CI's time is the number wanted.
+      // ignore: avoid_print
+      print('child uploaded after ${childClock.elapsed.inSeconds} s');
 
       // Watched through a connection that runs nothing itself.
       final watcher = connect()..reindexOnSearchParameterChange = false;
@@ -202,7 +208,7 @@ void main() {
       expect(await count(next, 'sex', 'male'), n ~/ 2);
       expect(await marked(next), 0);
     },
-    timeout: const Timeout(Duration(minutes: 4)),
+    timeout: const Timeout(Duration(minutes: 12)),
   );
 
   test('two connections never run at once', () async {
