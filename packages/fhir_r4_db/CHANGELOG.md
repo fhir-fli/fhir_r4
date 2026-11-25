@@ -2,12 +2,16 @@
 
 ## [0.14.1]
 
-- Requires fhir_db 0.16.1: the store's background re-index is recorded in
+- Requires fhir_db 0.16.2: the store's background re-index is recorded in
   the store file, read through `searchParameterIndexing.status()`, and a
   run cut off with its process is finished by the next connection.
   Tests: `search_parameter_indexing_store_test.dart` (one kills a real
   process partway through a run), and the change and two-connection
   tests read the stored record.
+- Store test "a run that finds the store locked stays queued and finishes
+  later": a connection with no busy timeout (as fhirant's) meets another
+  connection's write mid-run; on fhir_db 0.16.1 the run was still
+  running 30 s after, on 0.16.2 it finishes.
 - `tool/probe_writer_during_reindex.dart`: another connection's save
   during a re-index of 20,000 patients failed after its 10 s busy
   timeout on 0.15.8 and 0.16.0; none fails on 0.16.1. A test in the

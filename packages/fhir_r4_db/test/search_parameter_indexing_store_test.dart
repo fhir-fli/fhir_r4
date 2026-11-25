@@ -22,9 +22,12 @@ void main() {
   /// A connection as an app opens one: on its own isolate, write-ahead
   /// log, and a wait for the other connection's write rather than
   /// "database is locked" (tool/probe_open_while_writing.dart).
-  FhirDb connect() {
+  FhirDb connect({bool waits = true}) {
     final db = FhirDb(
-      NativeDatabase.createInBackground(file, setup: _appConnection),
+      NativeDatabase.createInBackground(
+        file,
+        setup: waits ? _appConnection : _noWaitConnection,
+      ),
     );
     open.add(db);
     return db;
@@ -374,8 +377,68 @@ void main() {
     },
     timeout: const Timeout(Duration(minutes: 3)),
   );
+
+  test(
+    'a run that finds the store locked stays queued and finishes later',
+    () async {
+      // No busy timeout, as fhirant's store has none: a write that meets
+      // another connection's write fails at once with "database is locked".
+      // That is the other connection's lock, not this code's failure.
+      const n = 20000;
+      final runner = connect(waits: false);
+      final other = connect();
+      // Reads while [other] holds its transaction: a query on [other]
+      // itself would wait for that transaction to end.
+      final watcher = connect()..reindexOnSearchParameterChange = false;
+      await storePatients(other, n);
+      await runner.customSelect('SELECT 1').get();
+      await watcher.customSelect('SELECT 1').get();
+      await runner.fhirDao.saveResource(sex);
+      while (await marked(watcher) == 0) {
+        await Future<void>.delayed(const Duration(milliseconds: 1));
+      }
+      final release = Completer<void>();
+      final held = Completer<void>();
+      final hold = other.transaction(() async {
+        await other.customStatement(
+          'UPDATE search_parameter_generation SET n = n WHERE id = 0',
+        );
+        held.complete();
+        await release.future;
+      });
+      await held.future;
+      // Longer than a page of the run takes: it meets the lock.
+      await Future<void>.delayed(const Duration(seconds: 1));
+      final during = (await status(watcher))['sex']!;
+      expect(await marked(watcher), lessThan(n), reason: 'ended before');
+      release.complete();
+      await hold;
+
+      final done = Completer<SearchParameterIndexStatus>();
+      final until = DateTime.now().add(const Duration(seconds: 30));
+      while (!done.isCompleted && DateTime.now().isBefore(until)) {
+        final s = (await status(watcher))['sex']!;
+        if (s.state == SearchParameterIndexState.done ||
+            s.state == SearchParameterIndexState.failed) {
+          done.complete(s);
+        }
+        await Future<void>.delayed(const Duration(milliseconds: 20));
+      }
+      expect(done.isCompleted, isTrue, reason: 'still ${during.state.name}');
+      final ended = await done.future;
+      expect(ended.state, SearchParameterIndexState.done, reason: ended.error);
+      expect(ended.resourcesRead, n);
+      expect(await count(watcher, 'sex', 'female'), n ~/ 2);
+      expect(await marked(watcher), 0);
+    },
+    timeout: const Timeout(Duration(minutes: 2)),
+  );
 }
 
 void _appConnection(Database raw) => raw
   ..execute('PRAGMA journal_mode = WAL')
   ..execute('PRAGMA busy_timeout = 10000');
+
+void _noWaitConnection(Database raw) => raw
+  ..execute('PRAGMA journal_mode = WAL')
+  ..execute('PRAGMA busy_timeout = 0');
