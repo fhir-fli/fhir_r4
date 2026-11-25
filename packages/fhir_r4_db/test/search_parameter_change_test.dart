@@ -79,6 +79,10 @@ void main() {
           .toList()
         ..sort();
 
+  Future<Map<String, SearchParameterIndexStatus>> status() async => {
+        for (final s in await db.searchParameterIndexing.status()) s.code: s,
+      };
+
   Future<int> rowsNamed(String code) async {
     var n = 0;
     for (final table in FhirDb.searchTableNames) {
@@ -104,10 +108,12 @@ void main() {
     await db.searchParameterIndexing.idle;
 
     expect(await found('race', '2028-9'), ['asian']);
-    final last = db.searchParameterIndexing.last['race']!;
+    final last = (await status())['race']!;
+    expect(last.state, SearchParameterIndexState.done);
     expect(last.resourcesRead, 2);
     expect(last.error, isNull);
-    expect(last.finished.isBefore(last.started), isFalse);
+    expect(last.interrupted, isFalse);
+    expect(last.finished!.isBefore(last.started!), isFalse);
   });
 
   test("a code changed from one to another moves the rows to the new one's",
@@ -122,7 +128,7 @@ void main() {
     expect(await rowsNamed('race'), 0);
     expect(await found('ethnicity', '2028-9'), ['asian']);
     expect(
-      db.searchParameterIndexing.last.keys,
+      (await status()).keys,
       containsAll(['race', 'ethnicity']),
     );
   });
@@ -154,7 +160,7 @@ void main() {
     await db.fhirDao.saveResource(parameter());
     await db.searchParameterIndexing.idle;
     expect(await found('race', '2028-9'), isEmpty);
-    expect(db.searchParameterIndexing.last, isEmpty);
+    expect(await status(), isEmpty);
   });
 
   test('a definition saved inside a transaction is indexed after it commits',
@@ -164,7 +170,7 @@ void main() {
       await db.fhirDao.saveResource(parameter());
     });
     await db.searchParameterIndexing.idle;
-    expect(db.searchParameterIndexing.last['race']?.error, isNull);
+    expect((await status())['race']?.state, SearchParameterIndexState.done);
     expect(await found('race', '2028-9'), ['asian']);
   });
 
@@ -182,10 +188,10 @@ void main() {
       ),
     );
     await db.searchParameterIndexing.idle;
-    final last = db.searchParameterIndexing.last['family-one']!;
+    final last = (await status())['family-one']!;
+    expect(last.state, SearchParameterIndexState.failed);
     expect(last.error, isNotNull);
     expect(last.resourcesRead, isNull);
-    expect(db.searchParameterIndexing.running, isNull);
     expect(await found('family', 'Shaw'), ['two']);
   });
 }

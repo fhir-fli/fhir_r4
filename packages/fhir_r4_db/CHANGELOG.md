@@ -1,5 +1,17 @@
 # fhir_r4_db
 
+## [0.14.1]
+
+- Requires fhir_db 0.16.0: the store's background re-index is recorded in
+  the store file, read through `searchParameterIndexing.status()`, and a
+  run cut off with its process is finished by the next connection.
+  Tests: `search_parameter_indexing_store_test.dart` (one kills a real
+  process partway through a run), and the change and two-connection
+  tests read the stored record.
+- `tool/probe_open_while_writing.dart`: a second connection's open fails
+  with "database is locked" while another writes, unless each connection
+  is on its own isolate and sets a busy timeout (results in its header).
+
 ## [0.14.0]
 
 - No code changes; version aligned with the fhir_r4 0.14.0 family release
