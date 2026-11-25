@@ -129,7 +129,13 @@ void main() {
       await first.close();
       open.remove(first);
 
-      final child = await Process.start(Platform.resolvedExecutable, [
+      // Under `flutter test` (CI) this process is flutter_tester, which
+      // cannot `run` a file; the dart beside Flutter is on the PATH there.
+      final executable = Platform.resolvedExecutable;
+      final dart = RegExp(r'(^|[/\\])dart(\.exe)?$').hasMatch(executable)
+          ? executable
+          : 'dart';
+      final child = await Process.start(dart, [
         'run',
         'test/support/upload_search_parameter.dart',
         file.path,
@@ -145,17 +151,27 @@ void main() {
         }
       });
       child.stderr.transform(utf8.decoder).listen(childOut.write);
+      unawaited(
+        child.exitCode.then((code) {
+          if (!uploaded.isCompleted) {
+            uploaded.completeError(
+              StateError('the child ended ($code) before uploading: '
+                  '$childOut'),
+            );
+          }
+        }),
+      );
       await uploaded.future.timeout(
-        const Duration(minutes: 10),
+        const Duration(minutes: 5),
         onTimeout: () => fail(
           'the child printed no "uploaded" in '
           '${childClock.elapsed.inSeconds} s: $childOut',
         ),
       );
-      // How long a `dart run` of the child takes here: 12.6 s on the
-      // development machine; on CI it ran past the 4 minutes this test was
-      // first given (2026-11-25).
-      // In the log whether the test passes: CI's time is the number wanted.
+      // How long the child took to start: 10-15 s on the development
+      // machine. On CI it never started at first (2026-11-25): run by
+      // flutter_tester, "Could not prepare isolate"; the test waited out
+      // its time.
       // ignore: avoid_print
       print('child uploaded after ${childClock.elapsed.inSeconds} s');
 
@@ -208,7 +224,7 @@ void main() {
       expect(await count(next, 'sex', 'male'), n ~/ 2);
       expect(await marked(next), 0);
     },
-    timeout: const Timeout(Duration(minutes: 12)),
+    timeout: const Timeout(Duration(minutes: 8)),
   );
 
   test('two connections never run at once', () async {
