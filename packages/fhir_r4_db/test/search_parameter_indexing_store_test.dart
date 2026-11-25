@@ -364,9 +364,11 @@ void main() {
       }
       await idle;
       printOnFailure(timeline.join('\n'));
+      final ended = (await status(screen))['sex']!;
       expect(
-        (await status(screen))['sex']!.state,
+        ended.state,
         SearchParameterIndexState.done,
+        reason: '${ended.error}',
       );
       expect(await count(screen, 'sex', 'female'), n ~/ 2 + i);
     },
