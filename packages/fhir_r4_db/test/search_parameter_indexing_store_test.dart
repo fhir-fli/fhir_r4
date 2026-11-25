@@ -334,18 +334,36 @@ void main() {
       var running = true;
       final idle = server.searchParameterIndexing.idle
           .whenComplete(() => running = false);
+      // When each save started and ended, and where the run stood, for a
+      // failure to say where the time went.
+      final clock = Stopwatch()..start();
+      final timeline = <String>[];
       var i = 0;
       while (running) {
-        await screen.fhirDao.saveResource(
-          fhir.Patient.fromJson({
-            'resourceType': 'Patient',
-            'id': 'screen${i++}',
-            'gender': 'female',
-          }),
-        );
+        final at = clock.elapsedMilliseconds;
+        final stood = (await status(screen))['sex'];
+        try {
+          await screen.fhirDao.saveResource(
+            fhir.Patient.fromJson({
+              'resourceType': 'Patient',
+              'id': 'screen${i++}',
+              'gender': 'female',
+            }),
+          );
+          timeline.add('$at ms save ${i - 1} (run ${stood?.state.name}, '
+              'read so far ${await marked(screen)}): '
+              '${clock.elapsedMilliseconds - at} ms');
+        } on Object catch (e) {
+          timeline.add('$at ms save ${i - 1} (run ${stood?.state.name}): '
+              'FAILED after ${clock.elapsedMilliseconds - at} ms: '
+              '${'$e'.split('\n').first}');
+          await idle;
+          fail(timeline.join('\n'));
+        }
         await Future<void>.delayed(const Duration(milliseconds: 50));
       }
       await idle;
+      printOnFailure(timeline.join('\n'));
       expect(
         (await status(screen))['sex']!.state,
         SearchParameterIndexState.done,
