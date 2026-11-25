@@ -356,10 +356,10 @@ void main() {
           timeline.add('$at ms save ${i - 1} (run ${stood?.state.name}, '
               'read so far ${await marked(screen)}): '
               '${clock.elapsedMilliseconds - at} ms');
-        } on Object catch (e) {
+        } on Object catch (e, st) {
           timeline.add('$at ms save ${i - 1} (run ${stood?.state.name}): '
               'FAILED after ${clock.elapsedMilliseconds - at} ms: '
-              '${'$e'.split('\n').first}');
+              '$e\n$st');
           await idle;
           fail(timeline.join('\n'));
         }
