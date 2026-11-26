@@ -57,6 +57,6 @@ void main(List<String> args) {
     }
     a.execute('ROLLBACK');
   }
-  a.dispose();
-  b.dispose();
+  a.close();
+  b.close();
 }

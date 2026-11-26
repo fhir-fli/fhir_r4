@@ -20,7 +20,7 @@ void main() {
   final open = <FhirDb>[];
 
   /// A connection as an app opens one: on its own isolate, write-ahead
-  /// log, and a wait for the other connection's write rather than
+  /// log, and a 10 s wait for the other connection's write rather than
   /// "database is locked" (tool/probe_open_while_writing.dart).
   FhirDb connect({bool waits = true}) {
     final db = FhirDb(
@@ -435,9 +435,12 @@ void main() {
   );
 }
 
-void _appConnection(Database raw) => raw
-  ..execute('PRAGMA journal_mode = WAL')
-  ..execute('PRAGMA busy_timeout = 10000');
+void _appConnection(Database raw) {
+  raw.execute('PRAGMA journal_mode = WAL');
+  // Not `PRAGMA busy_timeout = 10000`: under `flutter test` it gave up
+  // after about 120 ms (fhir_db `waitForWriters`).
+  waitForWriters(raw);
+}
 
 void _noWaitConnection(Database raw) => raw
   ..execute('PRAGMA journal_mode = WAL')
