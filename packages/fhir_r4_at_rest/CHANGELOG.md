@@ -1,5 +1,9 @@
 # fhir_r4_at_rest
 
+## [0.15.1]
+
+- README: install with `dart pub add`, which picks the current version. The README pinned ^0.6.x.
+
 ## [0.15.0]
 
 - On `fhir_at_rest` 0.14.0, checked against the RESTful API page of R4,
