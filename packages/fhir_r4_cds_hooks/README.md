@@ -23,12 +23,11 @@ A Dart package implementing [CDS Hooks 2.0](https://cds-hooks.hl7.org/2.0/) for 
 
 ## Installation
 
-Add to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  fhir_r4_cds_hooks: ^0.6.0
+```sh
+dart pub add fhir_r4_cds_hooks
 ```
+
+In a Flutter app, use `flutter pub add`.
 
 ## Usage
 

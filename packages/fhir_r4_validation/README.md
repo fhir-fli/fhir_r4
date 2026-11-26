@@ -6,12 +6,11 @@ Since 0.13.0 the validator lives in [`fhir_validation`](https://pub.dev/packages
 
 ## Installation
 
-```yaml
-dependencies:
-  fhir_r4_validation: ^0.6.0
-  fhir_r4: ^0.6.0
-  fhir_r4_path: ^0.6.0
+```sh
+dart pub add fhir_r4_validation fhir_r4 fhir_r4_path
 ```
+
+In a Flutter app, use `flutter pub add`.
 
 ## Features
 
