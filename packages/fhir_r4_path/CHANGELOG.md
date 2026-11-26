@@ -1,5 +1,10 @@
 # fhir_r4_path
 
+## [0.14.2]
+
+- README: install with `dart pub add`, which picks the current version. The README pinned ^0.6.x.
+- `// ignore:` comments for a lint the package no longer runs are removed. No code change.
+
 ## [0.14.1]
 
 - **FHIRPath's `htmlChecks()` and `htmlChecks2()` answer for R4.** `R4ModelBinding` supplies fhir_path 0.15.2's narrative hook from fhir_r4 0.14.1's own check (`FhirXhtml.narrativeProblems`, `narrativeHasContent`), so txt-1 and txt-2 evaluate as the parser enforces them; both used to be false for every narrative. Needs fhir_r4 ^0.14.1 and fhir_path ^0.15.2.
