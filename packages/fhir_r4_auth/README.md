@@ -17,10 +17,11 @@ use [fhir_auth_core](https://pub.dev/packages/fhir_auth_core).
 
 ## Installation
 
-```yaml
-dependencies:
-  fhir_r4_auth: ^0.15.0
+```sh
+dart pub add fhir_r4_auth
 ```
+
+In a Flutter app, use `flutter pub add`.
 
 ```dart
 import 'package:fhir_r4_auth/fhir_r4_auth.dart';
