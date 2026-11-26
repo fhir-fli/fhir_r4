@@ -39,14 +39,13 @@ final patient = Patient.fromJson(jsonDecode(response.body));
 
 ## Installation
 
-```yaml
-dependencies:
-  fhir_r4_at_rest: ^0.6.0
-  fhir_r4: ^0.6.0
-  
-  # Optional: For authenticated requests
-  fhir_r4_auth: ^0.6.0
+```sh
+dart pub add fhir_r4_at_rest fhir_r4
+# Optional: For authenticated requests
+dart pub add fhir_r4_auth
 ```
+
+In a Flutter app, use `flutter pub add`.
 
 ## FHIR Version Support
 

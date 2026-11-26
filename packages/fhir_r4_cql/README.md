@@ -24,10 +24,11 @@ you the whole engine plus the R4 wiring.
 
 ## Installation
 
-```yaml
-dependencies:
-  fhir_r4_cql: ^0.6.0
+```sh
+dart pub add fhir_r4_cql
 ```
+
+In a Flutter app, use `flutter pub add`.
 
 ## Usage
 

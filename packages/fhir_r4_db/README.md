@@ -19,13 +19,11 @@ FHIR® is the registered trademark of HL7 and is used with the permission of HL7
 
 ## Installation
 
-```yaml
-dependencies:
-  fhir_r4_db: ^0.6.0
-  fhir_r4: ^0.6.1
-  drift: ^2.33.0
-  sqlite3: ^3.1.5
+```sh
+dart pub add fhir_r4_db fhir_r4 drift sqlite3
 ```
+
+In a Flutter app, use `flutter pub add`.
 
 To open a database you supply a Drift `QueryExecutor`. On native platforms this
 comes from `package:drift/native.dart`. SQLite itself is compiled and loaded by

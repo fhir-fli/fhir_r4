@@ -18,11 +18,11 @@ FHIR® is the registered trademark of HL7 and is used with the permission of HL7
 
 ## Installation
 
-```yaml
-dependencies:
-  fhir_r4_bulk: ^0.6.0
-  fhir_r4: ^0.6.0
+```sh
+dart pub add fhir_r4_bulk fhir_r4
 ```
+
+In a Flutter app, use `flutter pub add`.
 
 ## Usage
 
