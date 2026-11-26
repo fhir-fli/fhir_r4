@@ -85,9 +85,11 @@ void main() {
 
     expect(await sex(server, 'female'), ['f']);
     expect(await sex(screen, 'female'), ['f']);
-    // The re-index is the saving connection's alone.
-    await screen.searchParameterIndexing.idle;
-    expect(screen.searchParameterIndexing.last, isEmpty);
+    // The other connection reads how it ended.
+    final status = await screen.searchParameterIndexing.status();
+    expect(status.map((s) => s.code), ['sex']);
+    expect(status.single.state, SearchParameterIndexState.done);
+    expect(status.single.resourcesRead, 2);
   });
 
   test("the other's saves are indexed under it", () async {
