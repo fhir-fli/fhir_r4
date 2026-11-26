@@ -1,5 +1,31 @@
 # fhir_r4_db
 
+## [0.14.1]
+
+- Requires fhir_db 0.16.3: the store's background re-index is recorded in
+  the store file, read through `searchParameterIndexing.status()`, and a
+  run cut off with its process is finished by the next connection.
+  Tests: `search_parameter_indexing_store_test.dart` (one kills a real
+  process partway through a run), and the change and two-connection
+  tests read the stored record.
+- Test connections wait for each other's writes with fhir_db
+  `waitForWriters` rather than `PRAGMA busy_timeout`, which under
+  `flutter test` (Dart's profiler on) gave up after about 120 ms and
+  failed a save 2 CI runs in 8. `test/wait_for_writers_test.dart` runs
+  under the profiler: the pragma gave up after 37 ms there,
+  `waitForWriters` waited its 2 s.
+- Store test "a run that finds the store locked stays queued and finishes
+  later": a connection with no busy timeout (as fhirant's) meets another
+  connection's write mid-run; on fhir_db 0.16.1 the run was still
+  running 30 s after, on 0.16.2 it finishes.
+- `tool/probe_writer_during_reindex.dart`: another connection's save
+  during a re-index of 20,000 patients failed after its 10 s busy
+  timeout on 0.15.8 and 0.16.0; none fails on 0.16.1. A test in the
+  store test file fails the same way without that fix.
+- `tool/probe_open_while_writing.dart`: a second connection's open fails
+  with "database is locked" while another writes, unless each connection
+  is on its own isolate and sets a busy timeout (results in its header).
+
 ## [0.14.0]
 
 - No code changes; version aligned with the fhir_r4 0.14.0 family release
