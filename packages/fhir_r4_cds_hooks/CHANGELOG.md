@@ -1,5 +1,9 @@
 # fhir_r4_cds_hooks
 
+## [0.14.1]
+
+- README: install with `dart pub add`, which picks the current version. The README pinned ^0.6.x.
+
 ## [0.14.0]
 
 - No code changes; version aligned with the fhir_r4 0.14.0 family release

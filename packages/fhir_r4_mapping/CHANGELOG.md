@@ -1,5 +1,10 @@
 # fhir_r4_mapping
 
+## [0.14.1]
+
+- README: install with `dart pub add`, which picks the current version. The README pinned ^0.6.x.
+- `// ignore:` comments for a lint the package no longer runs are removed. No code change.
+
 ## [0.14.0]
 
 - Requires `fhir_mapping` 0.13.1: a map's header description drops empty comment lines, a group always writes its rule list, and the metadata lines may come before the `map` line.
