@@ -1,5 +1,9 @@
 # fhir_r4_cql
 
+## [0.14.1]
+
+- README: install with `dart pub add`, which picks the current version. The README pinned ^0.6.x.
+
 ## [0.14.0]
 
 - **Re-exports cql 0.8.0** (breaking there: every string operator answers a `CqlString`, not a Dart `String`; `Successor`/`Predecessor` at a type's bound answer null where they threw; Variance of quantities keeps the elements' unit).

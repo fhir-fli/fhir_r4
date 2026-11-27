@@ -1,5 +1,9 @@
 # fhir_r4_auth
 
+## [0.15.1]
+
+- README: install with `dart pub add`, which picks the current version. The README pinned ^0.6.x.
+
 ## [0.15.0]
 
 - Requires `fhir_auth` 0.15.0, which is now built on the pure-Dart
